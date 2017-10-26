@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ms_alum.azrieli_college_of_engineering.com.msamanager.kablni_mishne_activity">
+
+    <Button
+        android:id="@+id/kablni_mishne_pshot"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/kablni_mishne_ntonim_hodshiim"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/button_sample1"
+        android:text="@string/kablni_mishne_tavla_pshota" />
+
+    <Button
+        android:id="@+id/kablni_mishne_ntonim_hodshiim"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/kablni_mishne_pshot"
+        android:layout_marginEnd="79dp"
+        android:layout_marginTop="91dp"
+        android:background="@drawable/button_sample1"
+        android:text="@string/kablni_mishne_hodshiim" />
+
+    <Button
+        android:id="@+id/kablni_mishne_pirot"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/kablni_mishne_ntonim_hodshiim"
+        android:layout_below="@+id/kablni_mishne_ntonim_hodshiim"
+        android:layout_marginTop="79dp"
+        android:background="@drawable/button_sample1"
+        android:text="@string/kablni_mishne_pirot" />
+
+</RelativeLayout>

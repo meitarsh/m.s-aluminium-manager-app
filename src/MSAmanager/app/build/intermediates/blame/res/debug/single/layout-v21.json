@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Chaosruler\\.android\\build-cache\\f3cd896845f14127a1a3a6e579545984bf85d717\\output\\res\\layout-v21\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\Chaosruler\\.android\\build-cache\\f3cd896845f14127a1a3a6e579545984bf85d717\\output\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Chaosruler\\.android\\build-cache\\f3cd896845f14127a1a3a6e579545984bf85d717\\output\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\Chaosruler\\.android\\build-cache\\f3cd896845f14127a1a3a6e579545984bf85d717\\output\\res\\layout-v21\\notification_action.xml"
+    }
+]
