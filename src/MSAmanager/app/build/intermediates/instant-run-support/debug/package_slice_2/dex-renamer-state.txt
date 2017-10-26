@@ -1,0 +1,4 @@
+#Wed Oct 04 06:25:19 IDT 2017
+base.0=/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2
+renamed.0=classes.dex
+file.0=/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex

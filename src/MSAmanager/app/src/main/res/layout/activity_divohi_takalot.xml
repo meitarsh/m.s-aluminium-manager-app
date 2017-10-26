@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ms_alum.azrieli_college_of_engineering.com.msamanager.divohi_takalot_activity">
+
+    <Button
+        android:id="@+id/divohi_takalot_edit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_sample1"
+        android:text="@string/divohi_takalot_edit"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="111dp"
+        android:layout_marginTop="108dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/divohi_takalot_form" />
+
+    <Button
+        android:id="@+id/divohi_takalot_form"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_sample1"
+        android:text="@string/divohi_takalot_form"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="269dp"
+        android:layout_marginTop="103dp"
+        android:layout_below="@+id/divohi_takalot_edit"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
