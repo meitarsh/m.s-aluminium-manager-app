@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
+        "outputFile": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
         "map": [
             {
                 "to": {
@@ -11,31 +11,7 @@
                     "endOffset": 106
                 },
                 "from": {
-                    "file": "/home/chaosruler/.android/build-cache/cf637b670c37431eb938e63e16f2bf157581bad5/output/res/values-port/values-port.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 55,
-                        "endOffset": 106
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 55,
-                    "endOffset": 106
-                },
-                "from": {
-                    "file": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\a7f9440481bb2f03ee6b30c5c12705a6ed44bb4b\\output\\res\\values-port\\values-port.xml",
+                    "file": "C:\\Users\\מיתר\\.android\\build-cache\\49c27c02d09f8e570293444f58b89f5b544b97de\\output\\res\\values-port\\values-port.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
