@@ -1,18 +1,10 @@
 [
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher_round.png",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher.png",
+        "source": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher.png",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher_round.png",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher_round.png",
+        "source": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     }
 ]

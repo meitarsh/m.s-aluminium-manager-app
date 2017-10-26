@@ -1,114 +1,58 @@
 [
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\a7f9440481bb2f03ee6b30c5c12705a6ed44bb4b\\output\\res\\anim\\abc_slide_in_top.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\49c27c02d09f8e570293444f58b89f5b544b97de\\output\\res\\anim\\abc_fade_out.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
-        "source": "/home/chaosruler/.android/build-cache/cf637b670c37431eb938e63e16f2bf157581bad5/output/res/anim/abc_slide_out_bottom.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\49c27c02d09f8e570293444f58b89f5b544b97de\\output\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\a7f9440481bb2f03ee6b30c5c12705a6ed44bb4b\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\49c27c02d09f8e570293444f58b89f5b544b97de\\output\\res\\anim\\abc_slide_out_bottom.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/design_fab_out.xml",
-        "source": "/home/chaosruler/.android/build-cache/c7fb37622064b98aafd0f071cccd370bc382462b/output/res/anim/design_fab_out.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\49c27c02d09f8e570293444f58b89f5b544b97de\\output\\res\\anim\\abc_fade_in.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_out.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\00403cb2f4bf2eb7ed05dfe38967f5d0be0fd6f5\\output\\res\\anim\\design_snackbar_out.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_out.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\91868e9078f5fff3513ad2739a8c4a2e31be5bde\\output\\res\\anim\\design_snackbar_out.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_in.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\00403cb2f4bf2eb7ed05dfe38967f5d0be0fd6f5\\output\\res\\anim\\design_snackbar_in.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\49c27c02d09f8e570293444f58b89f5b544b97de\\output\\res\\anim\\abc_popup_enter.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
-        "source": "/home/chaosruler/.android/build-cache/cf637b670c37431eb938e63e16f2bf157581bad5/output/res/anim/abc_popup_exit.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_in.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\91868e9078f5fff3513ad2739a8c4a2e31be5bde\\output\\res\\anim\\design_snackbar_in.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\a7f9440481bb2f03ee6b30c5c12705a6ed44bb4b\\output\\res\\anim\\abc_popup_exit.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\49c27c02d09f8e570293444f58b89f5b544b97de\\output\\res\\anim\\abc_popup_exit.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
-        "source": "/home/chaosruler/.android/build-cache/cf637b670c37431eb938e63e16f2bf157581bad5/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_in.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\91868e9078f5fff3513ad2739a8c4a2e31be5bde\\output\\res\\anim\\design_fab_in.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
-        "source": "/home/chaosruler/.android/build-cache/cf637b670c37431eb938e63e16f2bf157581bad5/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_out.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\91868e9078f5fff3513ad2739a8c4a2e31be5bde\\output\\res\\anim\\design_fab_out.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_in.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\00403cb2f4bf2eb7ed05dfe38967f5d0be0fd6f5\\output\\res\\anim\\design_fab_in.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\49c27c02d09f8e570293444f58b89f5b544b97de\\output\\res\\anim\\abc_slide_in_top.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/design_snackbar_in.xml",
-        "source": "/home/chaosruler/.android/build-cache/c7fb37622064b98aafd0f071cccd370bc382462b/output/res/anim/design_snackbar_in.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\49c27c02d09f8e570293444f58b89f5b544b97de\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\a7f9440481bb2f03ee6b30c5c12705a6ed44bb4b\\output\\res\\anim\\abc_fade_in.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\49c27c02d09f8e570293444f58b89f5b544b97de\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
     },
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\a7f9440481bb2f03ee6b30c5c12705a6ed44bb4b\\output\\res\\anim\\abc_slide_in_bottom.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\a7f9440481bb2f03ee6b30c5c12705a6ed44bb4b\\output\\res\\anim\\abc_fade_out.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
-        "source": "/home/chaosruler/.android/build-cache/cf637b670c37431eb938e63e16f2bf157581bad5/output/res/anim/abc_slide_in_top.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\a7f9440481bb2f03ee6b30c5c12705a6ed44bb4b\\output\\res\\anim\\abc_slide_out_top.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\a7f9440481bb2f03ee6b30c5c12705a6ed44bb4b\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\a7f9440481bb2f03ee6b30c5c12705a6ed44bb4b\\output\\res\\anim\\abc_slide_out_bottom.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
-        "source": "/home/chaosruler/.android/build-cache/cf637b670c37431eb938e63e16f2bf157581bad5/output/res/anim/abc_slide_in_bottom.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/design_fab_in.xml",
-        "source": "/home/chaosruler/.android/build-cache/c7fb37622064b98aafd0f071cccd370bc382462b/output/res/anim/design_fab_in.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
-        "source": "/home/chaosruler/.android/build-cache/cf637b670c37431eb938e63e16f2bf157581bad5/output/res/anim/abc_fade_out.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\a7f9440481bb2f03ee6b30c5c12705a6ed44bb4b\\output\\res\\anim\\abc_popup_enter.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_out.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\00403cb2f4bf2eb7ed05dfe38967f5d0be0fd6f5\\output\\res\\anim\\design_fab_out.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
-        "source": "/home/chaosruler/.android/build-cache/cf637b670c37431eb938e63e16f2bf157581bad5/output/res/anim/abc_fade_in.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
-        "source": "/home/chaosruler/.android/build-cache/cf637b670c37431eb938e63e16f2bf157581bad5/output/res/anim/abc_popup_enter.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/design_snackbar_out.xml",
-        "source": "/home/chaosruler/.android/build-cache/c7fb37622064b98aafd0f071cccd370bc382462b/output/res/anim/design_snackbar_out.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
-        "source": "/home/chaosruler/.android/build-cache/cf637b670c37431eb938e63e16f2bf157581bad5/output/res/anim/abc_slide_out_top.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\49c27c02d09f8e570293444f58b89f5b544b97de\\output\\res\\anim\\abc_slide_out_top.xml"
     }
 ]

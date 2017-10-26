@@ -1,10 +1,6 @@
 [
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\design_layout_snackbar.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\.android\\build-cache\\00403cb2f4bf2eb7ed05dfe38967f5d0be0fd6f5\\output\\res\\layout-sw600dp-v13\\design_layout_snackbar.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
-        "source": "/home/chaosruler/.android/build-cache/c7fb37622064b98aafd0f071cccd370bc382462b/output/res/layout-sw600dp-v13/design_layout_snackbar.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\design_layout_snackbar.xml",
+        "source": "C:\\Users\\מיתר\\.android\\build-cache\\91868e9078f5fff3513ad2739a8c4a2e31be5bde\\output\\res\\layout-sw600dp-v13\\design_layout_snackbar.xml"
     }
 ]

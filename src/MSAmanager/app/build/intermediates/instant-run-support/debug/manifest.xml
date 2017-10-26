@@ -31,7 +31,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="ms_alum.azrieli_college_of_engineering.com.msamanager.LoginActivity"
+            android:configChanges="orientation"
             android:label="@string/app_title"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,10 +41,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ms_alum.azrieli_college_of_engineering.com.msamanager.MainActivity" />
+        <activity
+            android:name="ms_alum.azrieli_college_of_engineering.com.msamanager.MainActivity"
+            android:configChanges="orientation"
+            android:label="@string/project_options_title"
+            android:screenOrientation="portrait" />
         <activity
             android:name="ms_alum.azrieli_college_of_engineering.com.msamanager.user_delete_activity"
-            android:label="@string/delete_title" />
+            android:configChanges="orientation"
+            android:label="@string/delete_title"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ms_alum.azrieli_college_of_engineering.com.msamanager.project_options"
+            android:configChanges="orientation"
+            android:label="@string/project_options_decide"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ms_alum.azrieli_college_of_engineering.com.msamanager.kablni_mishne_activity"
+            android:configChanges="orientation"
+            android:label="@string/project_options_1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ms_alum.azrieli_college_of_engineering.com.msamanager.divohi_takalot_activity"
+            android:configChanges="orientation"
+            android:label="@string/project_options_2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ms_alum.azrieli_college_of_engineering.com.msamanager.loz_activity"
+            android:configChanges="orientation"
+            android:label="@string/project_options_3"
+            android:screenOrientation="landscape" />
         <activity
             android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
             android:excludeFromRecents="true"

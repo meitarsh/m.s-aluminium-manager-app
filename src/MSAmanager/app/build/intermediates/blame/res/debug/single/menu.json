@@ -1,10 +1,6 @@
 [
     {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\menu\\login_menu.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\\Users\\Chaosruler\\AndroidStudioProjects\\MSAmanager\\app\\src\\main\\res\\menu\\login_menu.xml"
-    },
-    {
-        "merged": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/res/merged/debug/menu/login_menu.xml",
-        "source": "/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/src/main/res/menu/login_menu.xml"
+        "merged": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\build\\intermediates\\res\\merged\\debug\\menu\\login_menu.xml",
+        "source": "C:\\Final Project\\m.s-aluminium-manager-app\\src\\MSAmanager\\app\\src\\main\\res\\menu\\login_menu.xml"
     }
 ]

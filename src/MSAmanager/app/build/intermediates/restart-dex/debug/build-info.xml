@@ -3,168 +3,102 @@
     abi="arm64-v8a,armeabi-v7a,armeabi"
     api-level="24"
     build-mode="FULL"
-    density="xxhdpi"
+    density="420dpi"
     format="10"
     plugin-version="2.3.3"
-    timestamp="1507089031230"
-    token="-5236990737214972374"
+    timestamp="1509007238331"
+    token="-2609735926941621030"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="1273" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="1225" />
     <task
         name="verifier"
-        duration="0" />
+        duration="473" />
 
     <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+        location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
         type="SPLIT" />
     <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+        location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
         type="SPLIT" />
     <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+        location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
         type="SPLIT" />
     <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+        location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
         type="SPLIT" />
     <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+        location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
         type="SPLIT" />
     <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
+        location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
         type="SPLIT" />
     <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+        location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
         type="SPLIT" />
     <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+        location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
         type="SPLIT" />
     <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+        location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
         type="SPLIT" />
     <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+        location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
         type="SPLIT" />
     <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+        location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
         type="SPLIT" />
     <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
-        type="SPLIT" />
-    <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
-        type="SPLIT" />
-    <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-        type="SPLIT" />
-    <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-        type="SPLIT" />
-    <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
-        type="SPLIT" />
-    <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
-        type="SPLIT" />
-    <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
-        type="SPLIT" />
-    <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
-        type="SPLIT" />
-    <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
-        type="SPLIT" />
-    <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-        type="SPLIT" />
-    <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
-        type="SPLIT" />
-    <artifact
-        location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/outputs/apk/app-debug.apk"
+        location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\outputs\apk\app-debug.apk"
         type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1507089031230"
+        timestamp="1509007238331"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
             type="SPLIT" />
         <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+            location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+            location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
+            location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
         <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+            location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
         <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
         <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
-            type="SPLIT" />
-        <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
-            type="SPLIT" />
-        <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
-            type="SPLIT" />
-        <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
-            type="SPLIT" />
-        <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
-            type="SPLIT" />
-        <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-            type="SPLIT" />
-        <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/C:\Users\Chaosruler\AndroidStudioProjects\MSAmanager\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="/run/media/chaosruler/A0A80486A8045CE2/Android Projects/MSAmanager/app/build/outputs/apk/app-debug.apk"
+            location="C:\Final Project\m.s-aluminium-manager-app\src\MSAmanager\app\build\outputs\apk\app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
 
