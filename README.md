@@ -26,8 +26,8 @@ Zeev Melumuian
 
 ## Iteration
 
-* [Iteration 0]()
-* [Iteration 1]()
-* [Iteration 2]()
-* [Iteration 3]()
-* [Iteration 4]()
+* [Iteration 0 ZFR]()
+* [Iteration 1 MVP]()
+* [Iteration 2 alpa]()
+* [Iteration 3 beta]()
+* [Iteration 4 final]()
