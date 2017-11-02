@@ -461,7 +461,7 @@
     <string name="project_options_2">דיווחי תקלות</string>
     <string name="project_options_3">לו\"ז</string>
     <string name="project_options_decide">בחירת הפעולה</string>
-    <string name="project_options_title">בורר הפרויטקים</string>
+    <string name="project_options_title">בורר פרויקטים</string>
     <string name="prompt_email">שם משתמש</string>
     <string name="prompt_password">סיסמה</string>
     <string name="status_bar_notification_info_overflow">999+</string>
