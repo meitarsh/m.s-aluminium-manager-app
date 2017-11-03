@@ -38,7 +38,7 @@ Zeev Melumuian
 
 ## [Software Design](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Software-Design)
 
-## [Iteration](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Iterations)
+## [Iterations](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Iterations)
 
 * [Iteration 0 ZFR](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Iteration-0-ZFR)
 * [Iteration 1 MVP](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Iteration-1-MVP)
