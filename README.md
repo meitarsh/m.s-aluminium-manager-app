@@ -24,7 +24,18 @@ Zeev Melumuian
 * Acedamic advisor 
   Shay Tavor
   
- 
+ |Category|Status|
+|---|---|
+| Version Control System| [git](https://git-scm.com/) & [github](https://github.com/) |
+| Recommended IDE | [Android Studio](https://developer.android.com/studio/index.html) |
+| License | [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/) |
+| Code Style | [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/meitarsh/m.s-aluminium-manager-app) |
+| Issues | [![GitHub issues](https://img.shields.io/github/issues/meitarsh/m.s-aluminium-manager-app.svg?style=flat)](https://github.com/meitarsh/m.s-aluminium-manager-app/issues) |
+| Project Management Board| [here](https://github.com/meitarsh/m.s-aluminium-manager-app/projects/1) |
+| Documnetation | [![Inline docs](http://inch-ci.org/github/meitarsh/m.s-aluminium-manager-app.svg?branch=master)](https://github.com/meitarsh/m.s-aluminium-manager-app/tree/master/docs) |
+| Diary | [![Inline docs](http://inch-ci.org/github/meitarsh/m.s-aluminium-manager-app.svg?branch=master)](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Diary) |
+
+
 ## [Issue Board](https://github.com/meitarsh/m.s-aluminium-manager-app/issues)
 
 ## [Documents](https://github.com/meitarsh/m.s-aluminium-manager-app/tree/master/docs)
