@@ -36,9 +36,7 @@ Zeev Melumuian
 | Diary | [![Inline docs](http://inch-ci.org/github/meitarsh/m.s-aluminium-manager-app.svg?branch=master)](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Diary) |
 
 
-## [Issue Board](https://github.com/meitarsh/m.s-aluminium-manager-app/issues)
-
-## [Documents](https://github.com/meitarsh/m.s-aluminium-manager-app/tree/master/docs)
+## [Software Design](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Software-Design)
 
 ## [Iteration](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Iterations)
 
