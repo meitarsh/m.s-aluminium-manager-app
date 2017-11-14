@@ -65,4 +65,10 @@
     <string name="USER_COL_PASSWORD">password</string>
     <string name="USER_DB_VERSION">3</string>
     <string name="title_activity_login">Sign in</string>
+
+
+    <!-- Strings related to abstracted remote database server control -->
+    <string name="REMOTE_IP_ADDR">10.0.0.7</string>
+    <string name="class_jtds_jdbc">net.sourceforge.jtds.jdbc.Driver</string>
+    <string name="REMOTE_CONNECT_STRING">jdbc:jtds:sqlserver://</string>
 </resources>
