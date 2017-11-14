@@ -170,7 +170,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         }
     }
 
-    private fun isEmailValid(@SuppressWarnings("UNUSED_PARAMETER") email: String): Boolean {
+    private fun isEmailValid(@SuppressWarnings("UNUSED")email: String): Boolean {
        // return email.contains("@")
         return true
     }
@@ -320,14 +320,16 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         override fun doInBackground(vararg params: Void): Boolean?
         {
 
-            var result = false;
+            var result: Boolean
 
 
             if (get_status()) {
                 db.add_user( mEmail, mPassword)
             }
+            var con:remote_SQL_Helper =  remote_SQL_Helper(baseContext,mEmail,mPassword)
+            result = con.isValid()
 
-            result = true
+            //result = true
             return result
 
 
