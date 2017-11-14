@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         // Set up the login form.
 
 
-        val users = db.get_entire_db(baseContext)
+        val users = db.get_entire_db()
         adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, users)
         login_spinner.adapter = adapter
         login_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -170,7 +170,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         }
     }
 
-    private fun isEmailValid(email: String): Boolean {
+    private fun isEmailValid(@SuppressWarnings("UNUSED_PARAMETER") email: String): Boolean {
        // return email.contains("@")
         return true
     }
@@ -320,11 +320,11 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         override fun doInBackground(vararg params: Void): Boolean?
         {
 
-            var result:Boolean = false;
+            var result = false;
 
 
             if (get_status()) {
-                db.add_user(baseContext, mEmail, mPassword)
+                db.add_user( mEmail, mPassword)
             }
 
             result = true

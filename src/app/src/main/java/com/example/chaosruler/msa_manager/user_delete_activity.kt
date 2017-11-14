@@ -25,7 +25,7 @@ class user_delete_activity : Activity() {
 
     private fun init_spinner()
     {
-        val users = db!!.get_entire_db(baseContext)
+        val users = db!!.get_entire_db()
         adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, users)
         delete_spinner.adapter = adapter
         delete_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -49,7 +49,7 @@ class user_delete_activity : Activity() {
     {
         // button to activate subroutine to delete a user from database
         delete_delete.setOnClickListener({
-            db!!.delete_user(baseContext, (delete_spinner.selectedItem as User).get__username())
+            db!!.delete_user( (delete_spinner.selectedItem as User).get__username())
             adapter!!.remove(delete_spinner.selectedItem as User)
         })
 
@@ -78,7 +78,7 @@ class user_delete_activity : Activity() {
                 return@OnClickListener
             } else {
                 Toast.makeText(this@user_delete_activity, resources.getString(R.string.delete_confirmed), Toast.LENGTH_SHORT).show() // confirmed match, this is when action is sent and confirmed
-                db!!.update_user(baseContext, (delete_spinner.selectedItem as User).get__username(), new_pass)
+                db!!.update_user( (delete_spinner.selectedItem as User).get__username(), new_pass)
                 reset_password_fields()
                 return@OnClickListener
             }
@@ -92,7 +92,7 @@ class user_delete_activity : Activity() {
         delete_password2_edittext.visibility = View.INVISIBLE
         delete_password2_textview.visibility = View.INVISIBLE
         delete_password2_textview.text.javaClass
-        delete_send_changes_btn.setVisibility(View.INVISIBLE)
+        delete_send_changes_btn.visibility = View.INVISIBLE
     }
 
     override fun onBackPressed() // overridden to make sure that pressing back right now will return us to the login activity, and won't exit the app, also reloading the login activity will reload the spinner on the login activity
