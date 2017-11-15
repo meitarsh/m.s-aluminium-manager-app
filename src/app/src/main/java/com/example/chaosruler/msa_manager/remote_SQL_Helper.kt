@@ -1,6 +1,7 @@
 package com.example.chaosruler.msa_manager
 
 import android.content.Context
+import android.util.Log
 import java.sql.Connection
 import java.sql.DriverManager
 import java.util.*
@@ -21,6 +22,8 @@ class remote_SQL_Helper(private  val context: Context,private var username:Strin
 
     public fun Connect():Boolean
     {
+        if(isValid())
+            return true
         try
         {
             Class.forName(context.getString(R.string.class_jtds_jdbc))
@@ -34,8 +37,6 @@ class remote_SQL_Helper(private  val context: Context,private var username:Strin
                 connection = con
             }
 
-
-            con.close()
         }
         catch (e : Exception)
         {
@@ -45,7 +46,7 @@ class remote_SQL_Helper(private  val context: Context,private var username:Strin
         return isValid
     }
 
-    private fun add_data( db:String,  table:String, vector: Vector<String>, map : HashMap<String,String>): Boolean
+    public fun add_data( db:String,  table:String, vector: Vector<String>, map : HashMap<String,String>): Boolean
     {
         try
         {
@@ -67,10 +68,12 @@ class remote_SQL_Helper(private  val context: Context,private var username:Strin
                     command+=","
             }
             command+=")"
-            return connection!!.prepareStatement(command).execute()
-
-        } catch (e: Exception)
+            connection!!.prepareStatement(command).execute()
+            return true
+        }
+        catch (e: Exception)
         {
+            System.out.println("Exception: " + e.localizedMessage)
             e.printStackTrace()
             return false
         }
@@ -78,7 +81,7 @@ class remote_SQL_Helper(private  val context: Context,private var username:Strin
     }
 
 
-    private fun remove_data(db:String,  table:String, where_clause:String, compare_to:Array<String>, type:String): Boolean
+    public fun remove_data(db:String,  table:String, where_clause:String, compare_to:Array<String>, type:String): Boolean
     {
         try {
             var command:String = "USE [$db]" +
@@ -89,8 +92,8 @@ class remote_SQL_Helper(private  val context: Context,private var username:Strin
                 if(item != compare_to.last())
                     command += " OR "
             }
-            return connection!!.prepareStatement(command).execute()
-
+            connection!!.prepareStatement(command).execute()
+            return true
         }
         catch (e: Exception)
         {
@@ -104,7 +107,6 @@ class remote_SQL_Helper(private  val context: Context,private var username:Strin
     {
         try
         {
-            val result = ArrayList<Array<String>>()
             val rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]")
             val columnCount = rs.metaData.columnCount
             var vector:Vector<HashMap<String,String>> = Vector()
@@ -112,9 +114,10 @@ class remote_SQL_Helper(private  val context: Context,private var username:Strin
             while (rs.next())
             {
                 var map: HashMap<String,String> = HashMap()
-                for(i in 0..columnCount)
+                for(i in 0..(columnCount-1))
                 {
-                    map[rs_meta.getColumnName(i)] = rs.getString(rs_meta.getColumnName(i))
+                    var colum_name:String = rs_meta.getColumnName(i+1)
+                    map[colum_name] = rs.getString(colum_name)
                 }
                 vector.addElement(map)
             }
@@ -128,7 +131,7 @@ class remote_SQL_Helper(private  val context: Context,private var username:Strin
 
     }
 
-    private fun update_query(db:String, table:String, where_clause:String, compare_to:Array<String>, type:String, update_to : HashMap<String,String>): Boolean
+    public fun update_query(db:String, table:String, where_clause:String, compare_to:Array<String>, type:String, update_to : HashMap<String,String>): Boolean
     {
         try {
             var command:String = "USE [$db]" +
@@ -150,8 +153,8 @@ class remote_SQL_Helper(private  val context: Context,private var username:Strin
                 if(item != compare_to.last())
                     command += " OR "
             }
-            return connection!!.prepareStatement(command).execute()
-
+            connection!!.prepareStatement(command).execute()
+            return true
         }
         catch (e: Exception)
         {
@@ -159,6 +162,12 @@ class remote_SQL_Helper(private  val context: Context,private var username:Strin
             return false
         }
 
+    }
+
+    public fun Disconnect()
+    {
+        this.isValid = false
+        connection!!.close()
     }
 
 }
