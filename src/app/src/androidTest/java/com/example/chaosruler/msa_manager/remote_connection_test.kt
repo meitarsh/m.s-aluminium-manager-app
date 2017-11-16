@@ -38,11 +38,10 @@ class remote_connection_test {
 
 
         System.out.println("This test requires internet connection!\ninitating ")
-        var remote_connection:remote_SQL_Helper? = null
         try
         {
-            remote_connection = remote_SQL_Helper(con, username,password)
-            Assert.assertTrue("remote database tests: connect #$test_num$amount_str: fails\n ", remote_connection.isValid() )
+            remote_SQL_Helper.Connect(con,username,password)
+            Assert.assertTrue("remote database tests: connect #$test_num$amount_str: fails\n ", remote_SQL_Helper.isValid() )
             Log.d("remote database tests", "connect #$test_num$amount_str: success\n ")
         } catch (e: Exception) {
             Log.d("remote database tests", "connect #$test_num$amount_str: fails\n ")
@@ -60,7 +59,7 @@ class remote_connection_test {
             map[project_ID] = 1.toString()
             map[project_name] = "'hi'"
             map[project_manager_name] = "'bye'"
-            Assert.assertTrue("remote database tests: add #$test_num$amount_str: fails\n ", remote_connection!!.add_data(db_name,table_name,string_vector,map) )
+            Assert.assertTrue("remote database tests: add #$test_num$amount_str: fails\n ", remote_SQL_Helper.add_data(db_name,table_name,string_vector,map) )
             Log.d("remote database tests", "add #$test_num$amount_str: success\n ")
         } catch (e: Exception)
         {
@@ -72,7 +71,8 @@ class remote_connection_test {
         try
         {
 
-            Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_connection!!.get_all_table(db_name,table_name)!!.size==1 )
+            Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_SQL_Helper.get_all_table(db_name,table_name)!!.size==1 )
+            printVector(remote_SQL_Helper.get_all_table(db_name,table_name)!!)
             Log.d("remote database tests", "print all #$test_num$amount_str: success\n ")
         } catch (e: Exception) {
             Log.d("remote database tests", "print all#$test_num$amount_str: fails\n ")
@@ -85,7 +85,7 @@ class remote_connection_test {
         {
             var map:HashMap<String,String> = HashMap()
             map[project_ID] = 2.toString()
-            Assert.assertTrue("remote database tests: update #$test_num$amount_str: fails\n ", remote_connection!!.update_query(db_name,table_name,project_ID, arrayOf("1"),"int",map) )
+            Assert.assertTrue("remote database tests: update #$test_num$amount_str: fails\n ", remote_SQL_Helper.update_query(db_name,table_name,project_ID, arrayOf("1"),"int",map) )
             Log.d("remote database tests", "update #$test_num$amount_str: success\n ")
         } catch (e: Exception)
         {
@@ -98,7 +98,8 @@ class remote_connection_test {
         try
         {
 
-            Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_connection!!.get_all_table(db_name,table_name)!!.size==1 )
+            Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_SQL_Helper.get_all_table(db_name,table_name)!!.size==1 )
+            printVector(remote_SQL_Helper.get_all_table(db_name,table_name)!!)
             Log.d("remote database tests", "print all #$test_num$amount_str: success\n ")
         } catch (e: Exception)
         {
@@ -111,7 +112,7 @@ class remote_connection_test {
         try
         {
 
-            Assert.assertTrue("remote database tests: remove #$test_num$amount_str: fails\n ", remote_connection!!.remove_data(db_name,table_name,project_manager_name, arrayOf("'bye'"),"varchar(max)") )
+            Assert.assertTrue("remote database tests: remove #$test_num$amount_str: fails\n ", remote_SQL_Helper.remove_data(db_name,table_name,project_manager_name, arrayOf("'bye'"),"varchar(max)") )
             Log.d("remote database tests", "remove  #$test_num$amount_str: success\n ")
         } catch (e: Exception) {
             Log.d("remote database tests", "remove  #$test_num$amount_str: fails\n ")
@@ -121,7 +122,8 @@ class remote_connection_test {
 
         try
         {
-            Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_connection!!.get_all_table(db_name,table_name)!!.size==0 )
+            Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_SQL_Helper.get_all_table(db_name,table_name)!!.size==0 )
+            printVector(remote_SQL_Helper.get_all_table(db_name,table_name)!!)
             Log.d("remote database tests", "print all #$test_num$amount_str: success\n ")
         } catch (e: Exception)
         {
@@ -129,6 +131,23 @@ class remote_connection_test {
         }
 
     }
+
+    public fun printVector(vector:Vector<HashMap<String,String>>):String
+    {
+        var str:String = ""
+        var i:Int = 0
+        for(item in vector)
+        {
+            str+= "row $i: "
+            for(colum in item)
+            {
+                str+="[${colum.key}] = ${colum.value} "
+            }
+            str+="\n"
+        }
+        return str
+    }
+
 
 }
 

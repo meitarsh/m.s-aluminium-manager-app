@@ -39,6 +39,7 @@
 
     <!-- Strings related to Project chooser activity -->
     <string name="hello_string">שלום באיזה פרויקט תרצה לעבוד?</string>
+    <string name="shalom">שלום</string>
     <string name="project_options_title">בורר הפרויטקים</string>
     <string name="main_btn_choose">בחר בפרויקט</string>
 
@@ -68,7 +69,17 @@
 
 
     <!-- Strings related to abstracted remote database server control -->
-    <string name="REMOTE_IP_ADDR">10.0.0.7</string>
+    <string name="REMOTE_IP_ADDR">10.0.0.7</string> <!-- IPs : 10.0.0.7  192.168.43.85 -->
     <string name="class_jtds_jdbc">net.sourceforge.jtds.jdbc.Driver</string>
     <string name="REMOTE_CONNECT_STRING">jdbc:jtds:sqlserver://</string>
+
+
+    <!-- strings passed as keys between activities -->
+    <string name="username">username</string>
+    <string name="password">password</string>
+
+
+    <!-- Network error messages strings -->
+    <string name="network">network</string>
+    <string name="network_error">There&quot;s and error connecting to server, please try again</string>
 </resources>
