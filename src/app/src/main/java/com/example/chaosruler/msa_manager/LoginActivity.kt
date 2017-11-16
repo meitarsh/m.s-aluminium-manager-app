@@ -24,6 +24,7 @@ import android.widget.TextView
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.AdapterView
@@ -55,8 +56,10 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, users)
         login_spinner.adapter = adapter
         login_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
+            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, i: Int, l: Long) {
 
+                if(i<0)
+                    return
                 login_email.setText(adapter!!.getItem(i)!!.get__username())
                 login_password.setText(adapter!!.getItem(i)!!.get__password())
 
@@ -147,23 +150,27 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(emailStr)) {
+        if (TextUtils.isEmpty(emailStr))
+        {
             login_email.error = getString(R.string.error_field_required)
             focusView = login_email
             cancel = true
-        } else if (!isEmailValid(emailStr)) {
+        } else if (!isEmailValid(emailStr))
+        {
             login_email.error = getString(R.string.error_invalid_email)
             focusView = login_email
             cancel = true
         }
 
-        if (cancel) {
+        if (cancel)
+        {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView?.requestFocus()
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+
             showProgress(true)
             mAuthTask = UserLoginTask(emailStr, passwordStr)
             mAuthTask!!.execute(null as Void?)
@@ -194,17 +201,15 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         when (item.itemId) {
             R.id.login_switch -> {
                 status = !get_status()
-                if (status == false)
+                if (!status)
                 // false case -> spinner, email invisible, spinner visible, textview (login) visible password disabled
                 {
                     login_textview.visibility = View.INVISIBLE
                     login_spinner.visibility = View.VISIBLE
                     login_email.visibility = View.INVISIBLE
                     login_password.isEnabled = false
-                    if (login_spinner.count != 0) {
-                        val usr = login_spinner.selectedItem as User
-                        login_password.setText(usr.get__password())
-                    }
+                    login_spinner.onItemSelectedListener.onItemSelected(login_spinner,login_spinner.selectedView,login_spinner.selectedItemPosition,login_spinner.selectedItemId)
+
                     item.setTitle(R.string.entry1)
                 } else
                 // true case -> spinner, textview login invisible, password enabled, email visible
@@ -213,8 +218,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
                     login_spinner.visibility = View.INVISIBLE
                     login_email.visibility = View.VISIBLE
                     login_password.isEnabled = true
-                    login_password.setText("")
                     item.setTitle(R.string.entry2)
+                    login_email.text.clear()
+                    login_password.text.clear()
                 }
             }
             R.id.manage_users_db -> {
@@ -323,16 +329,15 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             var result: Boolean
 
 
-            if (get_status()) {
+            remote_SQL_Helper.Connect(baseContext,mEmail,mPassword)
+            result = remote_SQL_Helper.isValid()
+            if(result && get_status())
+            {
                 db.add_user( mEmail, mPassword)
             }
-            var con:remote_SQL_Helper =  remote_SQL_Helper(baseContext,mEmail,mPassword)
-            result = con.isValid()
 
             //result = true
             return result
-
-
 
         }
 

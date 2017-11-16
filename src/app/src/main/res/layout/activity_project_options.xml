@@ -34,4 +34,16 @@
         android:layout_marginTop="77dp"
         android:background="@drawable/button_sample1"
         android:text="@string/project_options_3" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/project_options_btn_loz">
+
+        <TextView
+            android:id="@+id/activity_project_test_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
 </RelativeLayout>

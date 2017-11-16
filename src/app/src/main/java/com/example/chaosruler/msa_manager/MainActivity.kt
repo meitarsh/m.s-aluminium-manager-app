@@ -18,9 +18,8 @@ class MainActivity : Activity() {
 
     private fun create_intro_text()
     {
-        val name = "Template Name"
-        val old_text_view_str = main_textview.getText().toString()
-        old_text_view_str.replace("שלום", "שלום " + name)
+        val name = remote_SQL_Helper.getusername()
+        main_textview.text = main_textview.text.toString().replace(getString(R.string.shalom),getString(R.string.shalom) + " " + name)
     }
 
     private fun init_buttons()
