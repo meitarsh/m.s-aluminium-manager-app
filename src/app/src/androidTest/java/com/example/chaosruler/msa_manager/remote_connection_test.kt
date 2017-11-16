@@ -72,7 +72,7 @@ class remote_connection_test {
         {
 
             Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_SQL_Helper.get_all_table(db_name,table_name)!!.size==1 )
-            printVector(remote_SQL_Helper.get_all_table(db_name,table_name)!!)
+            System.out.println(remote_SQL_Helper.VectorToString(remote_SQL_Helper.get_all_table(db_name,table_name)))
             Log.d("remote database tests", "print all #$test_num$amount_str: success\n ")
         } catch (e: Exception) {
             Log.d("remote database tests", "print all#$test_num$amount_str: fails\n ")
@@ -99,7 +99,7 @@ class remote_connection_test {
         {
 
             Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_SQL_Helper.get_all_table(db_name,table_name)!!.size==1 )
-            printVector(remote_SQL_Helper.get_all_table(db_name,table_name)!!)
+            System.out.println(remote_SQL_Helper.VectorToString(remote_SQL_Helper.get_all_table(db_name,table_name)))
             Log.d("remote database tests", "print all #$test_num$amount_str: success\n ")
         } catch (e: Exception)
         {
@@ -123,7 +123,7 @@ class remote_connection_test {
         try
         {
             Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_SQL_Helper.get_all_table(db_name,table_name)!!.size==0 )
-            printVector(remote_SQL_Helper.get_all_table(db_name,table_name)!!)
+            System.out.println(remote_SQL_Helper.VectorToString(remote_SQL_Helper.get_all_table(db_name,table_name)))
             Log.d("remote database tests", "print all #$test_num$amount_str: success\n ")
         } catch (e: Exception)
         {
@@ -132,21 +132,7 @@ class remote_connection_test {
 
     }
 
-    public fun printVector(vector:Vector<HashMap<String,String>>):String
-    {
-        var str:String = ""
-        var i:Int = 0
-        for(item in vector)
-        {
-            str+= "row $i: "
-            for(colum in item)
-            {
-                str+="[${colum.key}] = ${colum.value} "
-            }
-            str+="\n"
-        }
-        return str
-    }
+
 
 
 }
