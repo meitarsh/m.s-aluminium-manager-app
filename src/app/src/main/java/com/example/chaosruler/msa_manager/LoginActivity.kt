@@ -352,8 +352,12 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            } else {
-                login_password.error = getString(R.string.error_incorrect_password)
+            } else
+            {
+                if(remote_SQL_Helper.getSQLException()!=null && remote_SQL_Helper.getSQLException().errorCode == 0)
+                    login_password.error = getString(R.string.network_error)
+                else
+                    login_password.error = getString(R.string.error_incorrect_password)
                 login_password.requestFocus()
             }
         }

@@ -6,6 +6,7 @@ import android.widget.Toast
 
 import java.sql.Connection
 import java.sql.DriverManager
+import java.sql.SQLException
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -18,13 +19,14 @@ class remote_SQL_Helper()
         private lateinit var password: String
         private var isvalid: Boolean = false
         private var connection: Connection? = null
-
+        private lateinit var exception:SQLException
         fun getusername():String
                 = username
 
         fun isValid():Boolean
                 = isvalid
-
+        fun getSQLException():SQLException
+                = exception
         /*
             subroutine neccesery to connect to db, without this call, no DB operations can be done
          */
@@ -41,16 +43,18 @@ class remote_SQL_Helper()
                         context.getString(R.string.REMOTE_CONNECT_STRING) + context.getString(R.string.REMOTE_IP_ADDR)
                         , username,
                         password)
-                if (con != null) {
+                if (con != null)
+                {
                     isvalid = true
                     connection = con
                 }
 
             }
-            catch (e: Exception)
+            catch (e: SQLException)
             {
                 e.printStackTrace()
                 isvalid = false
+                exception = e
 
             }
             return isvalid
@@ -86,9 +90,10 @@ class remote_SQL_Helper()
                 AsyncTask.execute(Runnable {  connection!!.prepareStatement(command).execute() })
                 return true
             }
-            catch (e: Exception)
+            catch (e: SQLException)
             {
                 e.printStackTrace()
+                exception = e
                 return false
             }
 
@@ -115,9 +120,10 @@ class remote_SQL_Helper()
                 AsyncTask.execute(Runnable { connection!!.prepareStatement(command).execute() })
                 return true
             }
-            catch (e: Exception)
+            catch (e: SQLException)
             {
                 e.printStackTrace()
+                exception = e
                 return false
             }
 
@@ -155,9 +161,10 @@ class remote_SQL_Helper()
                 }
                 return vector
             }
-            catch (e: Exception)
+            catch (e: SQLException)
             {
                 e.printStackTrace()
+                exception = e
                 return null
             }
 
@@ -193,9 +200,10 @@ class remote_SQL_Helper()
 
                 return true
             }
-            catch (e: Exception)
+            catch (e: SQLException)
             {
                 e.printStackTrace()
+                exception = e
                 return false
             }
 
@@ -243,9 +251,10 @@ class remote_SQL_Helper()
                 connection!!.prepareStatement(context.getString(R.string.get_date_from_server)).execute()
                 return true
             }
-            catch (e:Exception)
+            catch (e:SQLException)
             {
                 e.printStackTrace()
+                exception = e
                 return false
             }
         }
