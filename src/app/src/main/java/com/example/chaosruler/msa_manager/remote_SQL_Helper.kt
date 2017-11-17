@@ -19,13 +19,17 @@ class remote_SQL_Helper()
         private var isvalid: Boolean = false
         private var connection: Connection? = null
 
-        public fun getusername():String
+        fun getusername():String
                 = username
 
-        public fun isValid():Boolean
+        fun isValid():Boolean
                 = isvalid
 
-        public fun Connect(con:Context,user: String, pass: String): Boolean {
+        /*
+            subroutine neccesery to connect to db, without this call, no DB operations can be done
+         */
+        fun Connect(con:Context,user: String, pass: String): Boolean
+        {
             if (isvalid)
                 return true
             context = con
@@ -42,7 +46,9 @@ class remote_SQL_Helper()
                     connection = con
                 }
 
-            } catch (e: Exception) {
+            }
+            catch (e: Exception)
+            {
                 e.printStackTrace()
                 isvalid = false
 
@@ -50,8 +56,17 @@ class remote_SQL_Helper()
             return isvalid
         }
 
-        public fun add_data(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>): Boolean {
-            try {
+        /*
+            subroutine that takes as parameters the add query, it templates it into MSSQL format
+            and sends it, it expects values to be with quotes if neccesery
+         */
+        fun add_data(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>): Boolean {
+            if(!isvalid)
+                return false
+            try
+            {
+                if(connection!!.isReadOnly)
+                    return false
                 var command: String = "USE [$db] " +
                         "INSERT INTO [dbo].[$table] ("
 
@@ -70,16 +85,26 @@ class remote_SQL_Helper()
                 command += ")"
                 AsyncTask.execute(Runnable {  connection!!.prepareStatement(command).execute() })
                 return true
-            } catch (e: Exception) {
+            }
+            catch (e: Exception)
+            {
                 e.printStackTrace()
                 return false
             }
 
         }
 
-
-        public fun remove_data(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String): Boolean {
-            try {
+        /*
+            subroutine to take as parameters the data to remove and what it matches to, it templates
+            it into MSSQL query and sends it, expects compare_to to be with quotes if neccesery
+         */
+        fun remove_data(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String): Boolean {
+            if(!isvalid)
+                return false
+            try
+            {
+                if(connection!!.isReadOnly)
+                    return false
                 var command: String = "USE [$db]" +
                         " DELETE FROM [dbo].[$table] WHERE "
                 for (item in compare_to) {
@@ -89,25 +114,32 @@ class remote_SQL_Helper()
                 }
                 AsyncTask.execute(Runnable { connection!!.prepareStatement(command).execute() })
                 return true
-            } catch (e: Exception) {
+            }
+            catch (e: Exception)
+            {
                 e.printStackTrace()
                 return false
             }
 
         }
-
-        public fun get_all_table(db: String, table: String): Vector<HashMap<String, String>>? {
-            try {
+        /*
+            subroutine that gets as parameters an entire table and converts it into Hashmap vector, which is later can be converted to string, sql is select * form table
+         */
+        fun get_all_table(db: String, table: String): Vector<HashMap<String, String>>? {
+            if(!isvalid)
+                return null
+            try
+            {
                 var vector: Vector<HashMap<String, String>> = Vector()
                 var done:Boolean = false
-                AsyncTask.execute(Runnable {
+                AsyncTask.execute({
                     val rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]")
                     val columnCount = rs.metaData.columnCount
                     val rs_meta = rs.metaData
                     while (rs.next()) {
                         var map: HashMap<String, String> = HashMap()
-                        for (i in 0..(columnCount - 1)) {
-                            var colum_name: String = rs_meta.getColumnName(i + 1)
+                        for (i in 1..(columnCount)) {
+                            var colum_name: String = rs_meta.getColumnName(i)
                             map[colum_name] = rs.getString(colum_name)
                         }
                         vector.addElement(map)
@@ -130,9 +162,16 @@ class remote_SQL_Helper()
             }
 
         }
-
-        public fun update_query(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>): Boolean {
-            try {
+        /*
+            subroutine to take parameters of an update query and template it into MSSQL acceptable query, excepts update parameters to be with quotes if neccesery
+         */
+        fun update_query(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>): Boolean {
+            if(!isvalid)
+                return false
+            try
+            {
+                if(connection!!.isReadOnly)
+                    return false
                 var command: String = "USE [$db]" +
                         " UPDATE [dbo].[$table] SET "
                 var breaker: Int = 0
@@ -153,31 +192,73 @@ class remote_SQL_Helper()
                 AsyncTask.execute { Runnable {   connection!!.prepareStatement(command).execute() } }
 
                 return true
-            } catch (e: Exception) {
+            }
+            catch (e: Exception)
+            {
                 e.printStackTrace()
                 return false
             }
 
         }
-
-        public fun Disconnect() {
-            this.isvalid = false
-            connection!!.close()
+        /*
+            subroutine to handle disconnection
+         */
+        fun Disconnect()
+        {
+            if(this.isvalid)
+            {
+                this.isvalid = false
+                connection!!.close()
+            }
         }
 
-        public fun VectorToString(vector: Vector<HashMap<String, String>>?): String {
+        /*
+            subroutine to handle result set converted vector to String, for testing purposes
+         */
+        fun VectorToString(vector: Vector<HashMap<String, String>>?): String {
             if(vector == null)
                 return "Empty"
             var str: String = ""
             var i: Int = 0
             for (item in vector) {
-                str += "row $i: "
+                str += "row ${++i}: "
                 for (colum in item) {
                     str += "[${colum.key}] = ${colum.value} "
                 }
                 str += "\n"
+
             }
             return str
         }
+
+        /*
+            subroutine in charge to check if connection is alive
+         */
+        public fun isAlive():Boolean
+        {
+            if(!isvalid)
+                return false
+            try
+            {
+                connection!!.prepareStatement(context.getString(R.string.get_date_from_server)).execute()
+                return true
+            }
+            catch (e:Exception)
+            {
+                e.printStackTrace()
+                return false
+            }
+        }
+
+        /*
+            android lifecycle - is in charge of giving a living context, maybe be called once on main activity for all application lifecycle
+
+            IS CALLED ON MAINACTIVITY, ITS ENOUGH HANDLING ON THAT DEPARTMENT
+         */
+        fun refresh_context(con: Context)
+        {
+            this.context = con
+        }
+
     }
 }

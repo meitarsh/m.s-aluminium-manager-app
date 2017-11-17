@@ -35,24 +35,27 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <AutoCompleteTextView
-                    android:id="@+id/login_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_email"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:visibility="invisible" />
+                android:layout_height="wrap_content"
+                android:id="@+id/login_textinputlayout_login"
+                >
 
                 <TextView
                     android:id="@+id/login_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/prompt_email"
-                    android:visibility="invisible" />
+                    android:visibility="visible" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/login_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:visibility="invisible"
+
+                    />
 
                 <Spinner
                     android:id="@+id/login_spinner"
@@ -77,7 +80,8 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    tools:ignore="InvalidImeActionId" />
 
             </android.support.design.widget.TextInputLayout>
 

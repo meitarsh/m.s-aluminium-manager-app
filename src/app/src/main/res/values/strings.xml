@@ -72,7 +72,7 @@
     <string name="REMOTE_IP_ADDR">10.0.0.7</string> <!-- IPs : 10.0.0.7  192.168.43.85 -->
     <string name="class_jtds_jdbc">net.sourceforge.jtds.jdbc.Driver</string>
     <string name="REMOTE_CONNECT_STRING">jdbc:jtds:sqlserver://</string>
-
+    <string name="get_date_from_server">select getdate()</string>
 
     <!-- strings passed as keys between activities -->
     <string name="username">username</string>
