@@ -28,6 +28,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.AdapterView
+import android.widget.AutoCompleteTextView
 
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -177,7 +178,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         }
     }
 
-    private fun isEmailValid(@SuppressWarnings("UNUSED")email: String): Boolean {
+    private fun isEmailValid(@Suppress("UNUSED_PARAMETER")email: String): Boolean {
        // return email.contains("@")
         return true
     }
@@ -204,12 +205,12 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
                 if (!status)
                 // false case -> spinner, email invisible, spinner visible, textview (login) visible password disabled
                 {
-                    login_textview.visibility = View.INVISIBLE
+                    login_textview.visibility = View.VISIBLE
                     login_spinner.visibility = View.VISIBLE
                     login_email.visibility = View.INVISIBLE
+                    login_textinputlayout_login.hint = ""
                     login_password.isEnabled = false
                     login_spinner.onItemSelectedListener.onItemSelected(login_spinner,login_spinner.selectedView,login_spinner.selectedItemPosition,login_spinner.selectedItemId)
-
                     item.setTitle(R.string.entry1)
                 } else
                 // true case -> spinner, textview login invisible, password enabled, email visible
@@ -217,6 +218,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
                     login_textview.visibility = View.INVISIBLE
                     login_spinner.visibility = View.INVISIBLE
                     login_email.visibility = View.VISIBLE
+                    login_textinputlayout_login.hint = getString(R.string.prompt_email)
                     login_password.isEnabled = true
                     item.setTitle(R.string.entry2)
                     login_email.text.clear()
@@ -326,11 +328,11 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         override fun doInBackground(vararg params: Void): Boolean?
         {
 
-            var result: Boolean
+
 
 
             remote_SQL_Helper.Connect(baseContext,mEmail,mPassword)
-            result = remote_SQL_Helper.isValid()
+            var result:Boolean = remote_SQL_Helper.isValid()
             if(result && get_status())
             {
                 db.add_user( mEmail, mPassword)

@@ -12,6 +12,7 @@ class MainActivity : Activity() {
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        remote_SQL_Helper.refresh_context(baseContext)
         create_intro_text()
         init_buttons()
     }
@@ -28,5 +29,11 @@ class MainActivity : Activity() {
             val intent = Intent(this@MainActivity, project_options::class.java)
             startActivity(intent)
         })
+    }
+
+    override fun onDestroy()
+    {
+        super.onDestroy()
+        remote_SQL_Helper.Disconnect()
     }
 }

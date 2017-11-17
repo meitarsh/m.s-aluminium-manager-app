@@ -19,6 +19,9 @@ abstract class loal_SQL_Helper(context: Context, protected var DATABASE_NAME: St
      */
     protected lateinit var vector_of_variables:Vector<String>
 
+    /*
+        must call - inits vector that we work on later!
+     */
     protected fun init_vector_of_variables(vector:Vector<String>)
     {
         vector_of_variables = vector
@@ -41,6 +44,10 @@ abstract class loal_SQL_Helper(context: Context, protected var DATABASE_NAME: St
         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME)
     }
 
+    /*
+        subroutine to template a create table statement
+            takes parameters neccesery
+     */
     protected fun createDB(db: SQLiteDatabase ,variables: HashMap<String,String>) {
 
         var create_statement:String = "create table $TABLE_NAME ("
@@ -58,6 +65,9 @@ abstract class loal_SQL_Helper(context: Context, protected var DATABASE_NAME: St
 
     }
 
+    /*
+        subroutine gets entire database to vector of hashmap values, self colum feeder
+     */
     protected fun get_db():Vector<HashMap<String,String>>
     {
         var db:SQLiteDatabase = this.readableDatabase
@@ -77,7 +87,9 @@ abstract class loal_SQL_Helper(context: Context, protected var DATABASE_NAME: St
         db.close()
         return vector
     }
-
+    /*
+        subroutine that templates an add query
+     */
     protected fun add_data(variables: Vector<HashMap<String,String>>):Boolean
     {
         var return_value = false
@@ -100,6 +112,9 @@ abstract class loal_SQL_Helper(context: Context, protected var DATABASE_NAME: St
         return false
     }
 
+    /*
+        subroutine that templates remove query
+     */
     protected fun remove_from_db( where_clause:String,  equal_to: Array<String>) :Boolean
     {
         var result:Boolean = false
@@ -110,6 +125,9 @@ abstract class loal_SQL_Helper(context: Context, protected var DATABASE_NAME: St
         return result
     }
 
+    /*
+        subroutine that templates update query
+     */
     protected fun update_data(where_clause: String, equal_to: Array<String>, update_to: HashMap<String,String>):Boolean
     {
         var result:Boolean = false
@@ -121,6 +139,38 @@ abstract class loal_SQL_Helper(context: Context, protected var DATABASE_NAME: St
             result = true
         db.close()
         return result
+    }
+
+    fun get_rows(map:HashMap<String,String>):Vector<HashMap<String,String>>
+    {
+        var db:SQLiteDatabase = this.readableDatabase
+        var vector:Vector<HashMap<String,String>> = Vector()
+
+        var sql_query:String = "SELECT * FROM " + TABLE_NAME + " WHERE"
+        var breaker:Int = 0
+        for(item in map)
+        {
+            sql_query += " ${item.key} = ${item.value} "
+            breaker++
+            if(breaker < map.size)
+                sql_query += " AND"
+            else
+                break
+        }
+        val c = db.rawQuery(sql_query, null)
+        c.moveToFirst()
+        while (!c.isAfterLast) {
+            var small_map:HashMap<String,String> = HashMap()
+            for(variable in vector_of_variables)
+            {
+                small_map[variable] = c.getString(c.getColumnIndex(variable))
+            }
+            vector.addElement(small_map)
+            c.moveToNext()
+        }
+        db.close()
+        return vector
+
     }
 
 }
