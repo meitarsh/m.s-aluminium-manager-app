@@ -72,6 +72,8 @@ class project_options : Activity() {
                     Thread({
                         offline_mode_service.push_add_command(db, table, vector, map)
                     }).start()
+                    Toast.makeText(baseContext,getString(R.string.successfull_operation),Toast.LENGTH_SHORT).show()
+
                 })
 
         project_options_btn_kablni_mishne.setOnClickListener(
@@ -81,6 +83,8 @@ class project_options : Activity() {
                         var str:String= remote_SQL_Helper.VectorToString(remote_SQL_Helper.get_all_table(db, table))
                         runOnUiThread { activity_project_test_textview.text = str }
                     }).start()
+                    Toast.makeText(baseContext,getString(R.string.successfull_operation),Toast.LENGTH_SHORT).show()
+
                 })
         project_options_btn_loz.setOnClickListener(
                 {
@@ -89,10 +93,8 @@ class project_options : Activity() {
                    {
                       offline_mode_service.push_remove_command(db, table, "project_ID", arrayOf(project_ID.toString()), "int")
 
-
-
                    }).start()
-
+                   Toast.makeText(baseContext,getString(R.string.successfull_operation),Toast.LENGTH_SHORT).show()
                 })
 
     }
