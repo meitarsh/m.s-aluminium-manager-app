@@ -26,7 +26,7 @@ class offline_mode_service() : Service() {
                 {
                     try_to_run_command()
                     try {
-                        sleep(5000)
+                        sleep(context.getString(R.string.time_to_sync).toLong())
                     }
                     catch (e:InterruptedException)
                     {
@@ -74,7 +74,5 @@ class offline_mode_service() : Service() {
 
     }
 
-    override fun onBind(intent: Intent): IBinder? {
-        return null
-    }
+    override fun onBind(intent: Intent): IBinder? = null
 }
