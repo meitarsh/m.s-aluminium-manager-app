@@ -70,8 +70,7 @@ class project_options : Activity() {
         project_options_btn_divohi_takalot.setOnClickListener(
                 {
                     Thread({
-                        remote_SQL_Helper.add_data(db, table, vector, map)
-                        project_options_btn_kablni_mishne.callOnClick()
+                        offline_mode_service.push_add_command(db, table, vector, map)
                     }).start()
                 })
 
@@ -86,9 +85,12 @@ class project_options : Activity() {
         project_options_btn_loz.setOnClickListener(
                 {
 
-                   Thread({
-                       remote_SQL_Helper.remove_data(db, table, "project_ID", arrayOf(project_ID.toString()), "int")
-                       project_options_btn_kablni_mishne.callOnClick()
+                   Thread(
+                   {
+                      offline_mode_service.push_remove_command(db, table, "project_ID", arrayOf(project_ID.toString()), "int")
+
+
+
                    }).start()
 
                 })
