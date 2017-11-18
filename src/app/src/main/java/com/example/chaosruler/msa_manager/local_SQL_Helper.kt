@@ -10,7 +10,7 @@ import kotlin.collections.HashMap
 /**
  * Created by chaosruler on 11/14/17.
  */
-abstract class loal_SQL_Helper(context: Context, protected var DATABASE_NAME: String, factory: SQLiteDatabase.CursorFactory?, version: Int, protected var TABLE_NAME:String) : SQLiteOpenHelper(context, DATABASE_NAME, factory, version)
+abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: String, factory: SQLiteDatabase.CursorFactory?, version: Int, protected var TABLE_NAME:String) : SQLiteOpenHelper(context, DATABASE_NAME, factory, version)
 {
 
     /*
@@ -124,6 +124,27 @@ abstract class loal_SQL_Helper(context: Context, protected var DATABASE_NAME: St
         db.close()
         return result
     }
+    /*
+     subroutine that templates remove query with two or more where clauses
+  */
+    protected fun remove_from_db( where_clause:Array<String>,  equal_to: Array<String>) :Boolean
+    {
+        var result:Boolean = false
+        var db:SQLiteDatabase = this.writableDatabase
+        var where_clause_arguemnt = ""
+        for(item in where_clause)
+        {
+            where_clause_arguemnt += item + " =?"
+            if(item != where_clause.last())
+                where_clause_arguemnt += " AND "
+        }
+        if(db.delete(TABLE_NAME,where_clause_arguemnt, equal_to) >0)
+            result = true
+        db.close()
+        return result
+    }
+
+
 
     /*
         subroutine that templates update query

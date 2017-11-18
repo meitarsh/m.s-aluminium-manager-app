@@ -72,6 +72,7 @@
     <string name="REMOTE_IP_ADDR">10.0.0.7</string> <!-- IPs : 10.0.0.7  192.168.43.85 -->
     <string name="class_jtds_jdbc">net.sourceforge.jtds.jdbc.Driver</string>
     <string name="REMOTE_CONNECT_STRING">jdbc:jtds:sqlserver://</string>
+    <string name="REMOTE_CONNECT_OPTIONS">;progname=Android_MSA;socketKeepAlive=true;socketTimeout=5</string>
     <string name="get_date_from_server">select getdate()</string>
 
     <!-- strings passed as keys between activities -->
@@ -82,4 +83,12 @@
     <!-- Network error messages strings -->
     <string name="network">network</string>
     <string name="network_error">There&quot;s and error connecting to server, please try again</string>
+
+    <!-- Server-command cache db -->
+    <string name="cache_DB_NAME">cache.db</string>
+    <string name="cache_table_name">cache</string>
+    <string name="cache_col_1">id</string>
+    <string name="cache_col_2">command</string>
+    <string name="cache_col_3">USER</string>
+    <string name="cache_db_ver">1</string>
 </resources>

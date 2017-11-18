@@ -2,20 +2,22 @@ package com.example.chaosruler.msa_manager
 
 import android.content.Context
 import android.os.AsyncTask
+import android.os.Build
+import android.os.Debug
+import android.util.Log
 import android.widget.Toast
+import java.sql.*
 
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.SQLException
 import java.util.*
 import kotlin.collections.HashMap
 
 class remote_SQL_Helper()
 {
-    companion object {
+    companion object
+    {
 
         private lateinit var context:Context
-        private lateinit var username: String
+        public lateinit var username: String
         private lateinit var password: String
         private var isvalid: Boolean = false
         private var connection: Connection? = null
@@ -40,7 +42,7 @@ class remote_SQL_Helper()
             try {
                 Class.forName(context.getString(R.string.class_jtds_jdbc))
                 var con: Connection? = DriverManager.getConnection(
-                        context.getString(R.string.REMOTE_CONNECT_STRING) + context.getString(R.string.REMOTE_IP_ADDR)
+                        context.getString(R.string.REMOTE_CONNECT_STRING) + context.getString(R.string.REMOTE_IP_ADDR) + context.getString(R.string.REMOTE_CONNECT_OPTIONS)
                         , username,
                         password)
                 if (con != null)
@@ -48,7 +50,6 @@ class remote_SQL_Helper()
                     isvalid = true
                     connection = con
                 }
-
             }
             catch (e: SQLException)
             {
@@ -60,86 +61,53 @@ class remote_SQL_Helper()
             return isvalid
         }
 
-        /*
-            subroutine that takes as parameters the add query, it templates it into MSSQL format
-            and sends it, it expects values to be with quotes if neccesery
-         */
-        fun add_data(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>): Boolean {
-            if(!isvalid)
-                return false
-            try
-            {
-                if(connection!!.isReadOnly)
-                    return false
-                var command: String = "USE [$db] " +
-                        "INSERT INTO [dbo].[$table] ("
 
-                for (item in vector) {
-                    command += "[$item]"
-                    if (item != vector.lastElement())
-                        command += ","
-                }
-                command += ") VALUES ("
-
-                for (item in vector) {
-                    command += map[item]
-                    if (item != vector.lastElement())
-                        command += ","
-                }
-                command += ")"
-                AsyncTask.execute(Runnable {  connection!!.prepareStatement(command).execute() })
-                return true
-            }
-            catch (e: SQLException)
-            {
-                e.printStackTrace()
-                exception = e
-                return false
-            }
-
-        }
-
-        /*
-            subroutine to take as parameters the data to remove and what it matches to, it templates
-            it into MSSQL query and sends it, expects compare_to to be with quotes if neccesery
-         */
-        fun remove_data(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String): Boolean {
-            if(!isvalid)
-                return false
-            try
-            {
-                if(connection!!.isReadOnly)
-                    return false
-                var command: String = "USE [$db]" +
-                        " DELETE FROM [dbo].[$table] WHERE "
-                for (item in compare_to) {
-                    command += "CONVERT($type,$where_clause) = $item "
-                    if (item != compare_to.last())
-                        command += " OR "
-                }
-                AsyncTask.execute(Runnable { connection!!.prepareStatement(command).execute() })
-                return true
-            }
-            catch (e: SQLException)
-            {
-                e.printStackTrace()
-                exception = e
-                return false
-            }
-
-        }
         /*
             subroutine that gets as parameters an entire table and converts it into Hashmap vector, which is later can be converted to string, sql is select * form table
          */
         fun get_all_table(db: String, table: String): Vector<HashMap<String, String>>? {
+            try
+            {
+                connection!!.isReadOnly
+            }
+            catch (e:SQLException)
+            {
+                if(e.errorCode==0)
+                {
+                    ReConnect()
+                }
+            }
+            catch (e:KotlinNullPointerException)
+            {
+                ReConnect()
+            }
             if(!isvalid)
                 return null
             try
             {
                 var vector: Vector<HashMap<String, String>> = Vector()
-                var done:Boolean = false
-                AsyncTask.execute({
-                    val rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]")
+                var lock = java.lang.Object()
+                AsyncTask.execute(
+                {
+                    var rs:ResultSet? = null
+                    try
+                    {
+                        rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]")
+                    }
+                    catch (e:SQLTimeoutException)
+                    {
+                        rs = null
+                    }
+                    catch (e:SQLException)
+                    {
+                        rs = null
+                    }
+                    catch (e: KotlinNullPointerException)
+                    {
+                        rs = null
+                    }
+                    if(rs == null)
+                        return@execute
                     val columnCount = rs.metaData.columnCount
                     val rs_meta = rs.metaData
                     while (rs.next()) {
@@ -150,15 +118,19 @@ class remote_SQL_Helper()
                         }
                         vector.addElement(map)
                     }
-                    done=true
+                    synchronized(lock)
+                    {
+                        lock.notify()
+                    }
                 })
-                while(true)
+                try
                 {
-                    if(!done)
-                        Thread.sleep(300)
-                    else
-                        break
+                    synchronized(lock)
+                    {
+                        lock.wait()
+                    }
                 }
+                catch (e: InterruptedException){}
                 return vector
             }
             catch (e: SQLException)
@@ -172,33 +144,54 @@ class remote_SQL_Helper()
         /*
             subroutine to take parameters of an update query and template it into MSSQL acceptable query, excepts update parameters to be with quotes if neccesery
          */
-        fun update_query(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>): Boolean {
+        fun run_command(command:String): Boolean {
+            try
+            {
+                connection!!.isReadOnly
+            }
+            catch (e:SQLException)
+            {
+                if(e.errorCode==0)
+                    ReConnect()
+            }
+            catch (e:KotlinNullPointerException)
+            {
+                ReConnect()
+            }
             if(!isvalid)
                 return false
             try
             {
                 if(connection!!.isReadOnly)
+                {
                     return false
-                var command: String = "USE [$db]" +
-                        " UPDATE [dbo].[$table] SET "
-                var breaker: Int = 0
-                for (item in update_to) {
-                    command += " [${item.key}] = ${item.value} "
-                    breaker++
-                    if (breaker < update_to.size)
-                        command += " , "
-                    else
-                        break
                 }
-                command += " WHERE "
-                for (item in compare_to) {
-                    command += "CONVERT($type,$where_clause) = $item "
-                    if (item != compare_to.last())
-                        command += " OR "
+                var return_value:Boolean = false
+                var lock = java.lang.Object()
+                AsyncTask.execute { Runnable {
+                    try
+                    {
+                        return_value = connection!!.prepareStatement(command).executeUpdate()>=0
+                    }
+                    catch (e:SQLTimeoutException)
+                    {
+                    }
+                    catch (e:SQLException)
+                    {
+                    }
+                    synchronized(lock)
+                    {
+                        lock.notify()
+                    }
+                }.run() }
+                try {
+                    synchronized(lock)
+                    {
+                        lock.wait()
+                    }
                 }
-                AsyncTask.execute { Runnable {   connection!!.prepareStatement(command).execute() } }
-
-                return true
+                catch (e: InterruptedException){}
+                return return_value
             }
             catch (e: SQLException)
             {
@@ -244,19 +237,48 @@ class remote_SQL_Helper()
          */
         public fun isAlive():Boolean
         {
-            if(!isvalid)
-                return false
             try
             {
-                connection!!.prepareStatement(context.getString(R.string.get_date_from_server)).execute()
-                return true
+                connection!!.isReadOnly
             }
             catch (e:SQLException)
             {
-                e.printStackTrace()
-                exception = e
-                return false
+                if(e.errorCode==0)
+                {
+                    ReConnect()
+                }
             }
+            catch (e:KotlinNullPointerException)
+            {
+                ReConnect()
+            }
+            if(!isvalid)
+                return false
+            var lock = java.lang.Object()
+            AsyncTask.execute { Runnable {
+                try
+                {
+                    connection!!.prepareStatement(context.getString(R.string.get_date_from_server)).execute()
+                }
+                catch (e:SQLException)
+                {
+                    e.printStackTrace()
+                }
+                synchronized(lock)
+                {
+                    lock.notify()
+                }
+            } }
+
+            try
+            {
+             synchronized(lock)
+             {
+                 lock.wait()
+             }
+            }
+            catch (e:InterruptedException){}
+            return true
         }
 
         /*
@@ -269,5 +291,68 @@ class remote_SQL_Helper()
             this.context = con
         }
 
+        fun ReConnect():Boolean
+        {
+            isvalid=false
+            connection=null
+            return Connect(context, username, password)
+
+        }
+
+        fun construct_add_str(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>):String
+        {
+            var command: String = "USE [$db] " +
+                    "INSERT INTO [dbo].[$table] ("
+
+            for (item in vector) {
+                command += "[$item]"
+                if (item != vector.lastElement())
+                    command += ","
+            }
+            command += ") VALUES ("
+
+            for (item in vector) {
+                command += map[item]
+                if (item != vector.lastElement())
+                    command += ","
+            }
+            command += ")"
+            return command
+        }
+
+        fun construct_remove_str(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String):String
+        {
+            var command: String = "USE [$db]" +
+                    " DELETE FROM [dbo].[$table] WHERE "
+            for (item in compare_to)
+            {
+                command += "CONVERT($type,$where_clause) = $item "
+                if (item != compare_to.last())
+                    command += " OR "
+            }
+            return command
+        }
+
+        fun construct_update_str(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>):String
+        {
+            var command: String = "USE [$db]" +
+                    " UPDATE [dbo].[$table] SET "
+            var breaker: Int = 0
+            for (item in update_to) {
+                command += " [${item.key}] = ${item.value} "
+                breaker++
+                if (breaker < update_to.size)
+                    command += " , "
+                else
+                    break
+            }
+            command += " WHERE "
+            for (item in compare_to) {
+                command += "CONVERT($type,$where_clause) = $item "
+                if (item != compare_to.last())
+                    command += " OR "
+            }
+            return command
+        }
     }
 }

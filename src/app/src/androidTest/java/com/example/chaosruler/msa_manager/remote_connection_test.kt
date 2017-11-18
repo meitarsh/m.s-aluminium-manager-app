@@ -59,7 +59,7 @@ class remote_connection_test {
             map[project_ID] = 1.toString()
             map[project_name] = "'hi'"
             map[project_manager_name] = "'bye'"
-            Assert.assertTrue("remote database tests: add #$test_num$amount_str: fails\n ", remote_SQL_Helper.add_data(db_name,table_name,string_vector,map) )
+            Assert.assertTrue("remote database tests: add #$test_num$amount_str: fails\n ", remote_SQL_Helper.run_command(remote_SQL_Helper.construct_add_str(db_name,table_name,string_vector,map)) )
             Log.d("remote database tests", "add #$test_num$amount_str: success\n ")
         } catch (e: Exception)
         {
@@ -85,7 +85,7 @@ class remote_connection_test {
         {
             var map:HashMap<String,String> = HashMap()
             map[project_ID] = 2.toString()
-            Assert.assertTrue("remote database tests: update #$test_num$amount_str: fails\n ", remote_SQL_Helper.update_query(db_name,table_name,project_ID, arrayOf("1"),"int",map) )
+            Assert.assertTrue("remote database tests: update #$test_num$amount_str: fails\n ", remote_SQL_Helper.run_command(remote_SQL_Helper.construct_update_str(db_name,table_name,project_ID, arrayOf("1"),"int",map)) )
             Log.d("remote database tests", "update #$test_num$amount_str: success\n ")
         } catch (e: Exception)
         {
@@ -112,7 +112,7 @@ class remote_connection_test {
         try
         {
 
-            Assert.assertTrue("remote database tests: remove #$test_num$amount_str: fails\n ", remote_SQL_Helper.remove_data(db_name,table_name,project_manager_name, arrayOf("'bye'"),"varchar(max)") )
+            Assert.assertTrue("remote database tests: remove #$test_num$amount_str: fails\n ", remote_SQL_Helper.run_command(remote_SQL_Helper.construct_remove_str(db_name,table_name,project_manager_name, arrayOf("'bye'"),"varchar(max)")) )
             Log.d("remote database tests", "remove  #$test_num$amount_str: success\n ")
         } catch (e: Exception) {
             Log.d("remote database tests", "remove  #$test_num$amount_str: fails\n ")

@@ -8,7 +8,7 @@ import kotlin.collections.HashMap
 /**
  * Created by chaosruler on 11/14/17.
  */
-class user_database_helper(private val con: Context) : loal_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.getString(R.string.USER_DB_VERSION).toInt(),con.getString(R.string.USER_TABLE_NAME) ) {
+class user_database_helper(private val con: Context) : local_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.getString(R.string.USER_DB_VERSION).toInt(),con.getString(R.string.USER_TABLE_NAME) ) {
     private val USERS_ID: String = con.getString(R.string.USER_COL_ID)
     private val PASSWORD: String = con.getString(R.string.USER_COL_PASSWORD)
 
@@ -43,9 +43,9 @@ class user_database_helper(private val con: Context) : loal_SQL_Helper(con, con.
         if user is valid, and it exists, update it
         if its a new user, add a new user to table
      */
-    fun add_user(username: String?, password: String) // subroutine that manages the user adding operation to the database
+    fun add_user(username: String, password: String) // subroutine that manages the user adding operation to the database
             : Boolean {
-        if (username == null || password == null || username.isEmpty() || password.isEmpty() || con == null)
+        if ( username.isEmpty() || password.isEmpty())
             return false
         if (check_user( username)) // checks if user exists in database
             update_user(username, password) // if it does, lets update its password
@@ -64,7 +64,7 @@ class user_database_helper(private val con: Context) : loal_SQL_Helper(con, con.
      */
     fun check_user(username: String) // subroutine to check if users exists on the database
             : Boolean {
-        if (username == null || username.isEmpty() || con == null)
+        if ( username.isEmpty())
             return false
         val user = get_user_by_id( username)
         return user != null
@@ -76,7 +76,7 @@ class user_database_helper(private val con: Context) : loal_SQL_Helper(con, con.
      */
     private fun insert_user(username: String, password: String) // subroutine to insert a user to the database
     {
-        if (username == null || password == null || username.isEmpty() || password.isEmpty() || con == null)
+        if ( username.isEmpty() || password.isEmpty())
             return
         var everything_to_add:Vector<HashMap<String,String>> = Vector()
 
@@ -92,7 +92,7 @@ class user_database_helper(private val con: Context) : loal_SQL_Helper(con, con.
      */
     fun update_user(username: String, password: String) // subroutine to update data of a user that exists on the database
             : Boolean {
-        if (username == null || password == null || username.isEmpty() || password.isEmpty() || con == null)
+        if ( username.isEmpty() || password.isEmpty())
             return false
 
         var change_to:HashMap<String,String> = HashMap()
@@ -106,8 +106,8 @@ class user_database_helper(private val con: Context) : loal_SQL_Helper(con, con.
      */
     fun delete_user( username: String):Boolean // subroutine to delete a user from the database (local)
     {
-        if (username == null || username.isEmpty() || con == null)
-            return false
+        if ( username.isEmpty())
+             return false
         if (!check_user( username))
             return false
         return remove_from_db(USERS_ID, arrayOf(username))
@@ -123,7 +123,7 @@ class user_database_helper(private val con: Context) : loal_SQL_Helper(con, con.
         var vector:Vector<HashMap<String,String>> = get_db()
         for(item in vector)
         {
-            var user:User = User(item!![USERS_ID].toString(), item!![PASSWORD].toString())
+            var user:User = User(item!![USERS_ID].toString(), item[PASSWORD].toString())
             users.addElement(user)
         }
         return users
@@ -136,7 +136,7 @@ class user_database_helper(private val con: Context) : loal_SQL_Helper(con, con.
     fun get_user_by_id(username: String) // subroutine to get a User object representing a user by the user id (username)
             : User?
     {
-        if (username == null || username.isEmpty() || con == null)
+        if ( username.isEmpty())
             return null
         var input_map = HashMap<String,String>()
         input_map[USERS_ID] = "'$username'"
