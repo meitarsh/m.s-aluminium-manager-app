@@ -65,9 +65,12 @@ class offline_mode_service() : Service() {
             var vector = get_DB()
             for(item in vector)
             {
-                var result_of_query = remote_SQL_Helper.run_command(item.__command.replace("&quote;","'"))
-                if(result_of_query)
-                    cache.remove_command(item)
+                if(item.__user == remote_SQL_Helper.username)
+                {
+                    var result_of_query = remote_SQL_Helper.run_command(item.__command.replace("&quote;", "'"))
+                    if (result_of_query)
+                        cache.remove_command(item)
+                }
             }
         }
 
