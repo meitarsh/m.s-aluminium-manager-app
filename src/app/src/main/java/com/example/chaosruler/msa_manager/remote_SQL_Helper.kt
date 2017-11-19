@@ -41,14 +41,14 @@ class remote_SQL_Helper()
             password = pass
             try {
                 Class.forName(context.getString(R.string.class_jtds_jdbc))
-                var con: Connection? = DriverManager.getConnection(
+                var conn: Connection? = DriverManager.getConnection(
                         context.getString(R.string.REMOTE_CONNECT_STRING) + context.getString(R.string.REMOTE_IP_ADDR) + context.getString(R.string.REMOTE_CONNECT_OPTIONS)
                         , username,
                         password)
-                if (con != null)
+                if (conn != null)
                 {
                     isvalid = true
-                    connection = con
+                    connection = conn
                 }
             }
             catch (e: SQLException)
@@ -89,7 +89,8 @@ class remote_SQL_Helper()
                 var lock = java.lang.Object()
                 AsyncTask.execute(
                 {
-                    var rs:ResultSet? = null
+                    var rs:ResultSet?
+                    rs = null
                     try
                     {
                         rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]")

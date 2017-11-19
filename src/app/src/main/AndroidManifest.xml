@@ -59,7 +59,9 @@
         <service
             android:name=".offline_mode_service"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"
+            android:stopWithTask="false"
+            ></service>
     </application>
 
 </manifest>
