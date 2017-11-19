@@ -69,7 +69,7 @@
 
 
     <!-- Strings related to abstracted remote database server control -->
-    <string name="REMOTE_IP_ADDR">10.0.0.7</string> <!-- IPs : 10.0.0.7  192.168.43.85 -->
+    <string name="REMOTE_IP_ADDR">10.0.0.7</string> <!-- IPs : 10.0.0.7   -->
     <string name="class_jtds_jdbc">net.sourceforge.jtds.jdbc.Driver</string>
     <string name="REMOTE_CONNECT_STRING">jdbc:jtds:sqlserver://</string>
     <string name="REMOTE_CONNECT_OPTIONS">;progname=Android_MSA;socketKeepAlive=true;socketTimeout=5</string>
@@ -92,6 +92,10 @@
     <string name="cache_col_3">USER</string>
     <string name="cache_db_ver">1</string>
 
-    <string name="time_to_sync">5000</string>
+    <string name="time_to_sync_in_sec">5</string>
+    <string name="millis_in_sec">1000</string>
     <string name="successfull_operation">הפעולה בוצעה בהצלחה</string>
+
+    <!-- Service strings -->
+    <string name="service_name">offline_mode_service</string>
 </resources>

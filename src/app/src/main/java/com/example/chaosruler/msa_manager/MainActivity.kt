@@ -13,7 +13,7 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         remote_SQL_Helper.refresh_context(baseContext)
-        offline_mode_service.init_cache(baseContext)
+        startService(Intent(this,offline_mode_service::class.java))
         create_intro_text()
         init_buttons()
     }
