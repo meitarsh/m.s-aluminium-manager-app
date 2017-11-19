@@ -7,9 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper
 import java.util.*
 import kotlin.collections.HashMap
 
-/**
- * Created by chaosruler on 11/14/17.
- */
 abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: String, factory: SQLiteDatabase.CursorFactory?, version: Int, protected var TABLE_NAME:String) : SQLiteOpenHelper(context, DATABASE_NAME, factory, version)
 {
 
@@ -162,6 +159,9 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         return result
     }
 
+    /*
+        subroutine to look for and get a row from the database that accepts certain conditions (ALL)
+     */
     fun get_rows(map:HashMap<String,String>):Vector<HashMap<String,String>>
     {
         var db:SQLiteDatabase = this.readableDatabase
