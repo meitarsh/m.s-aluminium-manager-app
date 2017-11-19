@@ -21,10 +21,18 @@ class remote_SQL_Helper()
         private lateinit var password: String
         private var isvalid: Boolean = false
         private var connection: Connection? = null
+        /*
+            last exception got
+         */
         private lateinit var exception:SQLException
+        /*
+            username logged in
+         */
         fun getusername():String
                 = username
-
+        /*
+            is connection online?
+         */
         fun isValid():Boolean
                 = isvalid
         fun getSQLException():SQLException
@@ -299,7 +307,9 @@ class remote_SQL_Helper()
             return Connect(context, username, password)
 
         }
-
+        /*
+            subroutine to constuct an add statement for the MSSQL
+         */
         fun construct_add_str(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>):String
         {
             var command: String = "USE [$db] " +
@@ -321,6 +331,9 @@ class remote_SQL_Helper()
             return command
         }
 
+        /*
+            subroutine to construct a remove statement for the MSSQL database
+         */
         fun construct_remove_str(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String):String
         {
             var command: String = "USE [$db]" +

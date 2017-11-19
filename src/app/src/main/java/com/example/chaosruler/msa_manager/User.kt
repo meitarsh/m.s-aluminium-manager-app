@@ -1,7 +1,7 @@
 package com.example.chaosruler.msa_manager
 
-/**
- * Created by chaosruler on 11/14/17.
+/*
+    an object representation of a user
  */
 class User() {
 
