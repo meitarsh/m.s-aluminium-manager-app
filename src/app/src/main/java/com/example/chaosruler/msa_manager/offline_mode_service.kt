@@ -3,6 +3,7 @@ package com.example.chaosruler.msa_manager
 import android.app.IntentService
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import java.lang.Thread.sleep
 import java.util.*
 
@@ -33,20 +34,22 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
          */
         private var trd = Thread(
                 {
-                   try
-                   {
-                       try_to_run_command()
-                       sleep(this.ctx.getString(R.string.millis_in_sec).toLong()*this.ctx.getString(R.string.time_to_sync_in_sec).toLong())
-                   }
-                   catch (e:InterruptedException){}
-                }
-        )
+                    while (true)
+                    {
+                        try {
+                            try_to_run_command()
+                            sleep(this.ctx.getString(R.string.millis_in_sec).toLong() * this.ctx.getString(R.string.time_to_sync_in_sec).toLong())
+                        } catch (e: InterruptedException) {
+                        }
+                    }
+                })
 
         /*
             subroutine respoonsible to initate the service with a thread that automaticily sends commends every X seconds
          */
         fun init_cache(context: Context)
         {
+
             ctx=context
             cache = cache_server_commands(context)
             start_trd()
@@ -56,7 +59,6 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         fun start_trd()
         {
             trd.start()
-
         }
         /*
             following subroutines pushes server commands to stack
