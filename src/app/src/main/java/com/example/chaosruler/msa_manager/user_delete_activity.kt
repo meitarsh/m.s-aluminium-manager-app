@@ -31,7 +31,7 @@ class user_delete_activity : Activity() {
         delete_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
                 // upon Spinner selecting a user, update the other fields
-                delete_password1_edittext.setText(users!!.elementAt(i).get__password())
+                delete_password1_edittext.setText(users.elementAt(i).get__password())
                 delete_delete.isEnabled = true
                 delete_password2_textview.isEnabled = true
             }

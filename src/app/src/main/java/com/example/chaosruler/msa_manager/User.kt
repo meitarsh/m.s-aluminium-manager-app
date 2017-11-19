@@ -23,7 +23,7 @@ class User() {
     }
 
     fun set__username(username: String) {
-        this.__username = __username
+        this.__username = username
     }
 
     fun get__password(): String {
@@ -31,6 +31,6 @@ class User() {
     }
 
     fun set__password(password: String) {
-        this.__password = __password
+        this.__password = password
     }
 }
