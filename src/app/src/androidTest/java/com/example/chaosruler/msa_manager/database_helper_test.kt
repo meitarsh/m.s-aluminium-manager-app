@@ -31,7 +31,7 @@ class database_helper_test {
 
         try {
 
-            assertFalse("user database tests: register #$test_num$amount_str: fails\n ", db.add_user( null, password))
+            assertFalse("user database tests: register #$test_num$amount_str: fails\n ", db.add_user( "", password))
             Log.d("user database tests", "register #$test_num$amount_str: success\n ")
         } catch (e: Exception) {
             Log.d("user database tests", "register #$test_num$amount_str: fails\n ")
