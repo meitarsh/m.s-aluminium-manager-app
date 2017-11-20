@@ -69,7 +69,7 @@
 
 
     <!-- Strings related to abstracted remote database server control -->
-    <string name="REMOTE_IP_ADDR">10.0.0.7</string> <!-- IPs : 10.0.0.7 10.0.0.9  -->
+    <string name="REMOTE_IP_ADDR">192.168.43.85</string> <!-- IPs : 10.0.0.7 10.0.0.9  -->
     <string name="class_jtds_jdbc">net.sourceforge.jtds.jdbc.Driver</string>
     <string name="REMOTE_CONNECT_STRING">jdbc:jtds:sqlserver://</string>
     <string name="REMOTE_CONNECT_OPTIONS">;progname=Android_MSA;socketKeepAlive=true;socketTimeout=5</string>
