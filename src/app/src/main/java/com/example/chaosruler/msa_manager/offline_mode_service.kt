@@ -8,8 +8,7 @@ import android.support.v4.app.NotificationCompat
 import java.lang.Thread.sleep
 import java.util.*
 import android.app.NotificationManager
-
-
+import android.util.Log
 
 
 /*
@@ -55,14 +54,8 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         fun grab_time(context: Context)
         {
             time = ctx.getString(R.string.millis_in_sec).toLong()
-            try
-            {
-                time*=PreferenceManager.getDefaultSharedPreferences(context).getLong(context.getString(R.string.sync_frequency),1)
-            }
-            catch (e:Exception)
-            {
-                time*=ctx.getString(R.string.time_to_sync_in_sec).toLong()
-            }
+            var sec = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.sync_frequency),context.getString(R.string.time_to_sync_in_sec)).toLong()
+            time*=sec
         }
         fun init_trd()
         {
