@@ -49,7 +49,7 @@ class remote_SQL_Helper()
             context = con
             username = user
             password = pass
-            var ip = ""
+            var ip:String
             try
             {
                 ip = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP),"")
