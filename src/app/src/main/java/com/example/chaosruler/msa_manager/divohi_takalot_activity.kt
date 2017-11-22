@@ -7,6 +7,7 @@ class divohi_takalot_activity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
+        setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_divohi_takalot_activity)
 

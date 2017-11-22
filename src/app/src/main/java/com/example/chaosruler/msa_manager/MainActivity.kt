@@ -3,6 +3,8 @@ package com.example.chaosruler.msa_manager
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.preference.Preference
+import android.preference.PreferenceManager
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -10,6 +12,7 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
+        setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         remote_SQL_Helper.refresh_context(baseContext)
@@ -20,7 +23,11 @@ class MainActivity : Activity() {
 
     private fun create_intro_text()
     {
-        val name = remote_SQL_Helper.getusername()
+        val name = PreferenceManager.getDefaultSharedPreferences(baseContext).getString(getString(R.string.username_key),remote_SQL_Helper.getusername())
+        /*
+            implement get user name as NAME
+         */
+
         main_textview.text = main_textview.text.toString().replace(getString(R.string.shalom),getString(R.string.shalom) + " " + name)
     }
 

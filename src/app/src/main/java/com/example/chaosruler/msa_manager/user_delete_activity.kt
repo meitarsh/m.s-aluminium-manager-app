@@ -3,6 +3,9 @@ package com.example.chaosruler.msa_manager
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -16,6 +19,7 @@ class user_delete_activity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
+        setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_delete_activity)
         db = user_database_helper(baseContext)
@@ -100,5 +104,32 @@ class user_delete_activity : Activity() {
         val intent:Intent = Intent(this@user_delete_activity, LoginActivity::class.java)
         startActivity(intent)
         super.onBackPressed()
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        super.onCreateOptionsMenu(menu)
+        val inflater = menuInflater
+        inflater.inflate(R.menu.user_delete_activity_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.return_to_login->
+            {
+                onBackPressed()
+            }
+            R.id.settings->
+            {
+                startActivity(Intent(this@user_delete_activity,SettingsActivity::class.java))
+            }
+            else ->
+            {
+
+            }
+        }
+        return true
     }
 }

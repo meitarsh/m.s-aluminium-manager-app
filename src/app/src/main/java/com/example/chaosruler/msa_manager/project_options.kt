@@ -14,6 +14,7 @@ import android.os.StrictMode
 class project_options : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_options)
         test_init_buttons()
