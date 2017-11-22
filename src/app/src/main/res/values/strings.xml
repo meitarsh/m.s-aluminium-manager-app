@@ -13,7 +13,7 @@
     <string name="error_field_required">השדה הזה הוא שדה חובה</string>
     <string name="permission_rationale">גישה לאנשי קשר נדרשת כדי לבצע השלמה אוטומטית</string>
     <string name="login">התחבר</string>
-
+    <string name="return_to_login">חזור למסך ההתחברות</string>
     <!-- Strings related to login menu -->
     <string name="entry1">הזן ידנית</string>
     <string name="entry2">הזן אוטומטית</string>
@@ -40,7 +40,7 @@
     <!-- Strings related to Project chooser activity -->
     <string name="hello_string">שלום באיזה פרויקט תרצה לעבוד?</string>
     <string name="shalom">שלום</string>
-    <string name="project_options_title">בורר הפרויטקים</string>
+    <string name="project_options_title">בורר הפרויקטים</string>
     <string name="main_btn_choose">בחר בפרויקט</string>
 
     <!-- Strings related to project menu options -->
@@ -79,7 +79,7 @@
     <string name="username">username</string>
     <string name="password">password</string>
 
-1
+    1
     <!-- Network error messages strings -->
     <string name="network">network</string>
     <string name="network_error">There&quot;s and error connecting to server, please try again</string>
@@ -98,4 +98,92 @@
 
     <!-- Service strings -->
     <string name="service_name">offline_mode_service</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+    <string name="settings_str">הגדרות</string>
+    <string name="restart_activity">הגדרות אלו ייחלו רק מיד לאחר מעבר למסך אחר</string>
+
+
+
+
+
+
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">כללי</string>
+
+    <string name="pref_style_txt">סטייל האפליקציה</string>
+    <string name="pref_style_summary">מגדיר אפשרויות שונות ומגניבות לתצוגת המסך!</string>
+    <string name="warning_need_restart">ההגדרות יוטמעו לחלוטין לאחר פתיחה מחדש של האפליקציה</string>
+    <string-array name="style_entries">
+        <item>חשוך</item>
+        <item>מואר</item>
+        <item>CodeFreak</item>
+    </string-array>
+
+    <string-array name="style_values">
+        <item>Dark</item>
+        <item>Light</item>
+        <item>CodeFreak</item>
+    </string-array>
+
+    <string name="pref_title_display_name">שם המשתמש</string>
+    <string name="pref_display_name_summary">יוצג כאשר אין שם משתמש מוגדר למשתמש מצד השרת</string>
+    <string name="pref_default_display_name">אבי כהן</string>
+
+
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">נתונים</string>
+
+    <string name="pref_title_sync_frequency">קצב הרענון</string>
+    <string name="pref_freq_summary">קצב הסנכרון לשרת</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>5 שניות</item>
+        <item>5 דקות</item>
+        <item>15 דקות</item>
+        <item>30 דקות</item>
+        <item>שעה</item>
+        <item>שעתיים</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>5</item>
+        <item>300</item>
+        <item>900</item>
+        <item>1800</item>
+        <item>3600</item>
+        <item>7200</item>
+    </string-array>
+
+    <string name="pref_IP_address">כתובת הIP</string>
+    <string name="pref_ip_summary">כתובת הIP לתקשורת בין השרת ללקוח.</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">התראות</string>
+
+    <string name="pref_txt_notification">התראות דלוקות</string>
+    <string name="pref_txt_notification_summary">התראות ישלחו בכל פעם שיהיה סנכרון מוצלח של מסד הנתונים</string>
+
+
+
+    <string name="delete_users">מחק את טבלת המשתמשים</string>
+    <string name="delete_users_warning">דורש הפעלה מחדש של האפליקציה</string>
+    <string name="delete_offline">מחק את טבלת הoffline mode</string>
+
+
+    <string name="notification_sync_successfuk">סנכרון בוצע בהצלחה!</string>
+    <string name="notification_title">מ.ש אלומיניום</string>
+
+    <string name="save_data_local">לשמור העתק של הנתונים על המכשיר?</string>
+
+
+    <string name="local_or_not">local_or_not</string>
+    <string name="sync_frequency">sync_frequency</string>
+    <string name="IP">IP</string>
+    <string name="delete_users_key">delete_users</string>
+    <string name="delete_offline_key">delete_offline</string>
+    <string name="notification">notification</string>
+    <string name="style">style</string>
+    <string name="username_key">username</string>
 </resources>

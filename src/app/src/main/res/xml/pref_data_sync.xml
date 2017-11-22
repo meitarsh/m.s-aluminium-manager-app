@@ -1,0 +1,48 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it. -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/local_or_not"
+        android:title="@string/save_data_local"
+        />
+
+    <ListPreference
+        android:defaultValue="5"
+        android:entries="@array/pref_sync_frequency_titles"
+        android:entryValues="@array/pref_sync_frequency_values"
+        android:key="@string/sync_frequency"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:summary="@string/pref_freq_summary"
+        android:title="@string/pref_title_sync_frequency" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/REMOTE_IP_ADDR"
+        android:inputType="text"
+        android:digits="0123456789."
+        android:key="@string/IP"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="@string/pref_ip_summary"
+        android:title="@string/pref_IP_address" />
+
+    <Preference android:title="@string/delete_users"
+        android:key="@string/delete_users_key"
+        android:summary="@string/delete_users_warning"
+        />
+    <Preference android:title="@string/delete_offline"
+        android:key="@string/delete_offline_key"
+        />
+
+    <!-- This preference simply launches an intent when selected. Use this UI sparingly, per
+         design guidelines.
+    <Preference android:title="@string/pref_title_system_sync_settings">
+        <intent android:action="android.settings.SYNC_SETTINGS" />
+    </Preference>
+    -->
+</PreferenceScreen>

@@ -3,9 +3,13 @@ package com.example.chaosruler.msa_manager
 import android.app.IntentService
 import android.content.Context
 import android.content.Intent
-import android.util.Log
+import android.preference.PreferenceManager
+import android.support.v4.app.NotificationCompat
 import java.lang.Thread.sleep
 import java.util.*
+import android.app.NotificationManager
+
+
 
 
 /*
@@ -29,20 +33,11 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             */
         private lateinit var cache: cache_server_commands
         private lateinit var ctx:Context
+        private var time:Long = 0
         /*
             thread, run in thread to not hang the UI
          */
-        private var trd = Thread(
-                {
-                    while (true)
-                    {
-                        try {
-                            try_to_run_command()
-                            sleep(this.ctx.getString(R.string.millis_in_sec).toLong() * this.ctx.getString(R.string.time_to_sync_in_sec).toLong())
-                        } catch (e: InterruptedException) {
-                        }
-                    }
-                })
+        private lateinit var trd:Thread
 
         /*
             subroutine respoonsible to initate the service with a thread that automaticily sends commends every X seconds
@@ -52,13 +47,41 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
 
             ctx=context
             cache = cache_server_commands(context)
+            grab_time(ctx)
+            init_trd()
             start_trd()
         }
 
-
+        fun grab_time(context: Context)
+        {
+            time = ctx.getString(R.string.millis_in_sec).toLong()
+            try
+            {
+                time*=PreferenceManager.getDefaultSharedPreferences(context).getLong(context.getString(R.string.sync_frequency),1)
+            }
+            catch (e:Exception)
+            {
+                time*=ctx.getString(R.string.time_to_sync_in_sec).toLong()
+            }
+        }
+        fun init_trd()
+        {
+            trd = Thread(
+                    {
+                        while (true)
+                        {
+                            try {
+                                try_to_run_command()
+                                sleep(time)
+                            } catch (e: InterruptedException) {
+                            }
+                        }
+                    })
+        }
         fun start_trd()
         {
-            trd.start()
+            if(trd.state == Thread.State.NEW) // new thread, not started
+                trd.start()
         }
         /*
             following subroutines pushes server commands to stack
@@ -67,13 +90,13 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         fun push_add_command(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>) {
             var str = remote_SQL_Helper.construct_add_str(db, table, vector, map).replace("'","&quote;")
             var username = remote_SQL_Helper.username
-            cache.add_command_to_list(cache_command(str, username))
+            general_push_command(str,username)
         }
 
         fun push_update_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>) {
             var str = remote_SQL_Helper.construct_update_str(db, table, where_clause, compare_to, type, update_to).replace("'","&quote;")
             var username = remote_SQL_Helper.username
-            cache.add_command_to_list(cache_command(str, username))
+            general_push_command(str,username)
         }
 
         /*
@@ -82,9 +105,16 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         fun push_remove_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String) {
             var str = remote_SQL_Helper.construct_remove_str(db, table, where_clause, compare_to, type).replace("'","&quote;")
             var username = remote_SQL_Helper.username
-            cache.add_command_to_list(cache_command(str, username))
+            general_push_command(str,username)
         }
 
+        private fun general_push_command(command:String, username:String)
+        {
+            if(PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.local_or_not),true))
+                cache.add_command_to_list(cache_command(command,username))
+            else
+                remote_SQL_Helper.run_command(command.replace("&quote;", "'"))
+        }
         /*
             gets all the comand cache database to a string
          */
@@ -103,16 +133,35 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         fun try_to_run_command()
         {
             var vector = get_DB()
+            var success=false
             for(item in vector)
             {
                 if(item.__user == remote_SQL_Helper.username)
                 {
                     var result_of_query = remote_SQL_Helper.run_command(item.__command.replace("&quote;", "'"))
                     if (result_of_query)
+                    {
                         cache.remove_command(item)
+                        success=true
+                    }
                 }
             }
+            if(PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.notification),false) && success)
+                build_small_notification()
+
+
         }
+
+        fun build_small_notification()
+        {
+            val mBuilder = NotificationCompat.Builder(ctx)
+                    .setSmallIcon(R.drawable.notification_icon_background)
+                    .setContentTitle(ctx.getString(R.string.notification_title))
+                    .setContentText(ctx.getString(R.string.notification_sync_successfuk))
+            val mNotificationManager = ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
+            mNotificationManager!!.notify(1,mBuilder.build())
+        }
+
 
 
     }

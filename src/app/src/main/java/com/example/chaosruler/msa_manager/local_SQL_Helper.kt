@@ -34,11 +34,16 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     }
 
 
-    private fun dropDB(db: SQLiteDatabase?) // subroutine to delete the entire database, including the file
+    protected fun dropDB(db: SQLiteDatabase?) // subroutine to delete the entire database, including the file
     {
         if (db == null)
             return
         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME)
+    }
+
+    public fun clearDB()
+    {
+        this.writableDatabase.execSQL("delete from " + TABLE_NAME)
     }
 
     /*

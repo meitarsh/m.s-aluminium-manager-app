@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/return_to_login"
+        android:title="@string/return_to_login"></item>
+
+    <item
+        android:id="@+id/settings"
+        android:title="@string/settings_str"></item>
+</menu>

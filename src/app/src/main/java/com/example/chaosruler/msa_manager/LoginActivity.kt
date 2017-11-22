@@ -24,11 +24,9 @@ import android.widget.TextView
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.AdapterView
-import android.widget.AutoCompleteTextView
 
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -43,7 +41,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     private var status: Boolean = false
     private lateinit var db : user_database_helper
     private var adapter: ArrayAdapter<User>? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
+        setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
@@ -66,9 +66,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
             }
 
-            override fun onNothingSelected(adapterView: AdapterView<*>) {
-
-            }
+            override fun onNothingSelected(adapterView: AdapterView<*>) = Unit
         }
 
 
@@ -83,7 +81,6 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
         login_sign_in_button.setOnClickListener { attemptLogin() }
     }
-
     private fun populateAutoComplete() {
         if (!mayRequestContacts()) {
             return
@@ -178,26 +175,23 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         }
     }
 
-    private fun isEmailValid(@Suppress("UNUSED_PARAMETER")email: String): Boolean {
-       // return email.contains("@")
-        return true
-    }
+    private fun isEmailValid(@Suppress("UNUSED_PARAMETER")email: String): Boolean =// return email.contains("@")
+            true
 
-    private fun isPasswordValid(password: String): Boolean {
-        return password.length >= 6
-    }
+    private fun isPasswordValid(@Suppress("UNUSED_PARAMETER")password: String): Boolean = true
 
     private fun get_status():Boolean
-    {
-        return this.status
-    }
+            = this.status
 
+    override fun onResume() {
+        super.onResume()
+        baseContext.setTheme(themer.style(baseContext))
+    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.login_menu, menu)
         return true
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.login_switch -> {
@@ -226,15 +220,28 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
                 }
             }
             R.id.manage_users_db -> {
-                val intent:Intent = Intent(this@LoginActivity, user_delete_activity::class.java)
+                val intent = Intent(this@LoginActivity, user_delete_activity::class.java)
                 startActivity(intent)
                 finish()
+            }
+            R.id.settings ->
+            {
+                val intent = Intent(this@LoginActivity,SettingsActivity::class.java)
+                startActivity(intent)
+
             }
             else -> {
             }
         }
         return true
     }
+
+
+
+    /*
+        Style handling subroutine
+     */
+
     /**
      * Shows the progress UI and hides the login form.
      */
@@ -299,9 +306,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         addEmailsToAutoComplete(emails)
     }
 
-    override fun onLoaderReset(cursorLoader: Loader<Cursor>) {
-
-    }
+    override fun onLoaderReset(cursorLoader: Loader<Cursor>) = Unit
 
     private fun addEmailsToAutoComplete(emailAddressCollection: List<String>) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.

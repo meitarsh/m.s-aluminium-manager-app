@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Debug
+import android.preference.Preference
+import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.Toast
 import java.sql.*
@@ -47,10 +49,19 @@ class remote_SQL_Helper()
             context = con
             username = user
             password = pass
+            var ip = ""
+            try
+            {
+                ip = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP),"")
+            }
+            catch (e:Exception)
+            {
+                ip = context.getString(R.string.REMOTE_IP_ADDR)
+            }
             try {
                 Class.forName(context.getString(R.string.class_jtds_jdbc))
                 var conn: Connection? = DriverManager.getConnection(
-                        context.getString(R.string.REMOTE_CONNECT_STRING) + context.getString(R.string.REMOTE_IP_ADDR) + context.getString(R.string.REMOTE_CONNECT_OPTIONS)
+                        context.getString(R.string.REMOTE_CONNECT_STRING) + ip + context.getString(R.string.REMOTE_CONNECT_OPTIONS)
                         , username,
                         password)
                 if (conn != null)
@@ -98,7 +109,6 @@ class remote_SQL_Helper()
                 AsyncTask.execute(
                 {
                     var rs:ResultSet?
-                    rs = null
                     try
                     {
                         rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]")
