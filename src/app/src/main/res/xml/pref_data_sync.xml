@@ -19,25 +19,7 @@
         android:summary="@string/pref_freq_summary"
         android:title="@string/pref_title_sync_frequency" />
 
-    <EditTextPreference
-        android:capitalize="words"
-        android:defaultValue="@string/REMOTE_IP_ADDR"
-        android:inputType="text"
-        android:digits="0123456789."
-        android:key="@string/IP"
-        android:maxLines="1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:summary="@string/pref_ip_summary"
-        android:title="@string/pref_IP_address" />
 
-    <Preference android:title="@string/delete_users"
-        android:key="@string/delete_users_key"
-        android:summary="@string/delete_users_warning"
-        />
-    <Preference android:title="@string/delete_offline"
-        android:key="@string/delete_offline_key"
-        />
 
     <!-- This preference simply launches an intent when selected. Use this UI sparingly, per
          design guidelines.

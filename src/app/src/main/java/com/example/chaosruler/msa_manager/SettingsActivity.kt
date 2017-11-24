@@ -14,10 +14,12 @@ import android.preference.Preference
 import android.preference.PreferenceActivity
 import android.preference.PreferenceFragment
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
-
-
+import android.app.PendingIntent
+import android.app.AlarmManager
+import java.util.*
 
 
 /**
@@ -72,6 +74,7 @@ class SettingsActivity : AppCompatPreferenceActivity() {
                 || GeneralPreferenceFragment::class.java.name == fragmentName
                 || DataSyncPreferenceFragment::class.java.name == fragmentName
                 || NotificationPreferenceFragment::class.java.name == fragmentName
+                || DevelopMentSettingsPrefFragment::class.java.name == fragmentName
     }
 
     /**
@@ -88,7 +91,8 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             PreferenceManager.getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener { _, key ->
                 if(key == "style")
                 {
-                    Toast.makeText(this.context,getString(R.string.warning_need_restart),Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this.context,getString(R.string.warning_need_restart),Toast.LENGTH_SHORT).show()
+                    restart_app()
                 }
             }
 
@@ -109,6 +113,17 @@ class SettingsActivity : AppCompatPreferenceActivity() {
                 return true
             }
             return super.onOptionsItemSelected(item)
+        }
+
+        fun restart_app()
+        {
+            val am = activity.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            am.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().timeInMillis + 500, // one second
+                    PendingIntent.getActivity(activity, 0, activity.intent, PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_CANCEL_CURRENT))
+            val i = activity.baseContext.packageManager
+                    .getLaunchIntentForPackage(activity.baseContext.packageName)
+            i!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(i)
         }
     }
 
@@ -157,9 +172,12 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             // guidelines.
 
             bindPreferenceSummaryToValue(findPreference(getString(R.string.sync_frequency)),null)
+            /*
             bindPreferenceSummaryToValue(findPreference(getString(R.string.IP)),null)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_users_key)),activity.baseContext)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_offline_key)),activity.baseContext)
+            */
+
         }
 
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -167,6 +185,30 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             if (id == android.R.id.home)
             {
                // startActivity(Intent(activity, SettingsActivity::class.java))
+                return true
+            }
+            return super.onOptionsItemSelected(item)
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    class DevelopMentSettingsPrefFragment : PreferenceFragment() {
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            addPreferencesFromResource(R.xml.pref_development)
+            setHasOptionsMenu(true)
+
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.IP)),null)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_users_key)),activity.baseContext)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_offline_key)),activity.baseContext)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.gui_mode_key)),activity.baseContext)
+        }
+
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            val id = item.itemId
+            if (id == android.R.id.home)
+            {
+                // startActivity(Intent(activity, SettingsActivity::class.java))
                 return true
             }
             return super.onOptionsItemSelected(item)
@@ -243,6 +285,10 @@ class SettingsActivity : AppCompatPreferenceActivity() {
                     Toast.makeText(context,context.getString(R.string.successfull_operation),Toast.LENGTH_SHORT).show()
                     return@setOnPreferenceClickListener true
                 }
+            }
+            else if(preference.key == "gui_mode_key")
+            {
+                sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,PreferenceManager.getDefaultSharedPreferences(preference.context).getBoolean(preference.key,false))
             }
             else
             {

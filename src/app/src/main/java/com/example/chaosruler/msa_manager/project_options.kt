@@ -8,7 +8,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_project_options.*
 import java.util.*
 import android.os.StrictMode
-
+import android.preference.PreferenceManager
 
 
 class project_options : Activity() {
@@ -17,7 +17,10 @@ class project_options : Activity() {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_options)
-        test_init_buttons()
+        if(PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key),false))
+            init_buttons()
+        else
+            test_init_buttons()
     }
 
     private fun init_buttons()
