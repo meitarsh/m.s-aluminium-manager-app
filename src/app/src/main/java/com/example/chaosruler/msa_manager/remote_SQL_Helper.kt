@@ -49,15 +49,7 @@ class remote_SQL_Helper()
             context = con
             username = user
             password = pass
-            var ip:String
-            try
-            {
-                ip = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP),"")
-            }
-            catch (e:Exception)
-            {
-                ip = context.getString(R.string.REMOTE_IP_ADDR)
-            }
+            var ip:String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP),context.getString(R.string.REMOTE_IP_ADDR))
             try {
                 Class.forName(context.getString(R.string.class_jtds_jdbc))
                 var conn: Connection? = DriverManager.getConnection(

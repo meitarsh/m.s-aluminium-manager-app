@@ -74,9 +74,10 @@ class project_options : Activity() {
         project_options_btn_divohi_takalot.setOnClickListener(
                 {
                     Thread({
-                        offline_mode_service.push_add_command(db, table, vector, map)
+                        var str = offline_mode_service.push_add_command(db, table, vector, map)
+                       runOnUiThread({ Toast.makeText(baseContext, str, Toast.LENGTH_SHORT).show() })
                     }).start()
-                    Toast.makeText(baseContext,getString(R.string.successfull_operation),Toast.LENGTH_SHORT).show()
+
 
                 })
 
@@ -93,10 +94,10 @@ class project_options : Activity() {
 
                    Thread(
                    {
-                      offline_mode_service.push_remove_command(db, table, "project_ID", arrayOf(project_ID.toString()), "int")
-
+                      var str = offline_mode_service.push_remove_command(db, table, "project_ID", arrayOf(project_ID.toString()), "int")
+                       runOnUiThread({ Toast.makeText(baseContext, str, Toast.LENGTH_SHORT).show() })
                    }).start()
-                   Toast.makeText(baseContext,getString(R.string.successfull_operation),Toast.LENGTH_SHORT).show()
+
                 })
 
     }
