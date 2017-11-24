@@ -34,6 +34,7 @@ Zeev Melumuian
 | Project Management Board| [here](https://github.com/meitarsh/m.s-aluminium-manager-app/projects/1) |
 | Documnetation | [![Inline docs](http://inch-ci.org/github/meitarsh/m.s-aluminium-manager-app.svg?branch=master)](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Documents) |
 | Diary |  [link](https://calendar.google.com/calendar/embed?src=t1f2ojv5arrqonei6h09i5fld0%40group.calendar.google.com&ctz=Europe/Athens) |
+| Releases | [link](https://github.com/meitarsh/m.s-aluminium-manager-app/releases)
 
 
 ## [Software Design](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Software-Design)
