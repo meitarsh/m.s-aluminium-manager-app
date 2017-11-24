@@ -76,7 +76,13 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         var vector:Vector<HashMap<String,String>> = Vector()
 
         val c = db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
-        c.moveToFirst()
+        try {
+            c.moveToFirst()
+        }
+        catch (e:Exception)
+        {
+            return vector
+        }
         while (!c.isAfterLast) {
             var small_map:HashMap<String,String> = HashMap()
             for(variable in vector_of_variables)
