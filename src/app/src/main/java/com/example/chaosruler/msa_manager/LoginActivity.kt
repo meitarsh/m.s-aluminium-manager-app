@@ -24,6 +24,7 @@ import android.widget.TextView
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
+import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.AdapterView
@@ -337,7 +338,11 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
 
             remote_SQL_Helper.Connect(baseContext,mEmail,mPassword)
-            var result:Boolean = remote_SQL_Helper.isValid()
+            var result:Boolean
+            if( PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key),false)  )
+                result = true
+            else
+                result= remote_SQL_Helper.isValid()
             if(result && get_status())
             {
                 db.add_user( mEmail, mPassword)

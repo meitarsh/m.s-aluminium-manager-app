@@ -156,6 +156,7 @@
         <item>7200</item>
     </string-array>
 
+    <string name="development_title">הגדרות פיתוח</string>
     <string name="pref_IP_address">כתובת הIP</string>
     <string name="pref_ip_summary">כתובת הIP לתקשורת בין השרת ללקוח.</string>
 
@@ -170,7 +171,8 @@
     <string name="delete_users">מחק את טבלת המשתמשים</string>
     <string name="delete_users_warning">דורש הפעלה מחדש של האפליקציה</string>
     <string name="delete_offline">מחק את טבלת הoffline mode</string>
-
+    <string name="GUI_only_title">קריאות האפליקציה יהיו ללא צד שרת בכלל</string>
+    <string name="GUI_only_summary">במצב הזה נוכל לזרום בממשק משתמש ללא שימוש בתקשורת האינטרנט</string>
 
     <string name="notification_sync_successfuk">סנכרון בוצע בהצלחה!</string>
     <string name="notification_title">מ.ש אלומיניום</string>
@@ -186,4 +188,5 @@
     <string name="notification">notification</string>
     <string name="style">style</string>
     <string name="username_key">username</string>
+    <string name="gui_mode_key">gui_mode_key</string>
 </resources>
