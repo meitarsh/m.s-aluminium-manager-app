@@ -26,6 +26,7 @@ Zeev Melumuian
 
  |Category|Status|
 |---|---|
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1ba0470e040144e08e6a235be2940a13)](https://www.codacy.com/app/trunks_ishter/m.s-aluminium-manager-app?utm_source=github.com&utm_medium=referral&utm_content=meitarsh/m.s-aluminium-manager-app&utm_campaign=badger)
 | Version Control System| [![git](https://img.shields.io/badge/Version%20Control-Git-green.svg)](https://git-scm.com/) & [![github](https://img.shields.io/badge/Version%20Control-Github-green.svg)](https://github.com/) |
 | Recommended IDE | [![Android Studio](https://img.shields.io/badge/IDE-Android%20Studio-green.svg)](https://developer.android.com/studio/index.html) |
 | License | [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/) |
