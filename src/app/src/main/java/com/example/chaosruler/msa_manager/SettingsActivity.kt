@@ -20,6 +20,9 @@ import android.widget.Toast
 import android.app.PendingIntent
 import android.app.AlarmManager
 import java.util.*
+import android.preference.Preference.OnPreferenceChangeListener
+
+
 
 
 /**
@@ -289,6 +292,15 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             else if(preference.key == "gui_mode_key")
             {
                 sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,PreferenceManager.getDefaultSharedPreferences(preference.context).getBoolean(preference.key,false))
+            }
+            else if(preference.key == "style") {
+                var pref_for_list: ListPreference = preference as ListPreference
+                pref_for_list.summary = pref_for_list.entry
+                pref_for_list.setOnPreferenceChangeListener { _, newValue ->
+
+                    pref_for_list.summary = pref_for_list.entries[pref_for_list.findIndexOfValue(newValue as String)]
+                    return@setOnPreferenceChangeListener true
+                }
             }
             else
             {
