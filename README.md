@@ -36,7 +36,7 @@ Zeev Melumuian
 | Diary |  [![link](https://img.shields.io/badge/Diary-On%20demand-blue.svg)](https://calendar.google.com/calendar/embed?src=t1f2ojv5arrqonei6h09i5fld0%40group.calendar.google.com&ctz=Europe/Athens) |
 | Releases |  [![release](http://github-release-version.herokuapp.com/github/meitarsh/m.s-aluminium-manager-app/release.svg?style=flat)](https://github.com/meitarsh/m.s-aluminium-manager-app/releases/latest) |
 | Evaluation | [![evaluate](https://img.shields.io/badge/Latest%20evaluation-Ok-green.svg)](https://inch-ci.org/github/meitarsh/m.s-aluminium-manager-app?pending_build=378842)|
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1ba0470e040144e08e6a235be2940a13)](https://www.codacy.com/app/trunks_ishter/m.s-aluminium-manager-app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=meitarsh/m.s-aluminium-manager-app&amp;utm_campaign=Badge_Grade)
 
 
 ## [Software Design](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Software-Design)
