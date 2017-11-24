@@ -10,7 +10,6 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         android:summary="@string/pref_style_summary"
-        android:singleLineTitle="true"
         android:title="@string/pref_style_txt" />
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
