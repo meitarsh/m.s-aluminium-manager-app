@@ -9,6 +9,7 @@ import java.lang.Thread.sleep
 import java.util.*
 import android.app.NotificationManager
 import android.util.Log
+import android.widget.Toast
 
 
 /*
@@ -80,35 +81,42 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             following subroutines pushes server commands to stack
          */
 
-        fun push_add_command(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>) {
+        fun push_add_command(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>):String {
             var str = remote_SQL_Helper.construct_add_str(db, table, vector, map).replace("'","&quote;")
             var username = remote_SQL_Helper.username
-            general_push_command(str,username)
+            return general_push_command(str,username)
         }
 
-        fun push_update_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>) {
+        fun push_update_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>):String {
             var str = remote_SQL_Helper.construct_update_str(db, table, where_clause, compare_to, type, update_to).replace("'","&quote;")
             var username = remote_SQL_Helper.username
-            general_push_command(str,username)
+            return general_push_command(str,username)
         }
 
         /*
         removes a stored command
          */
-        fun push_remove_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String) {
+        fun push_remove_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String):String {
             var str = remote_SQL_Helper.construct_remove_str(db, table, where_clause, compare_to, type).replace("'","&quote;")
             var username = remote_SQL_Helper.username
-            general_push_command(str,username)
+            return general_push_command(str,username)
         }
 
-        private fun general_push_command(command:String, username:String)
+        private fun general_push_command(command:String, username:String):String
         {
-            if(PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.local_or_not),true))
-                cache.add_command_to_list(cache_command(command,username))
+            var string:String
+            if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.local_or_not), true)) {
+                cache.add_command_to_list(cache_command(command, username))
+                string = ctx.getString(R.string.successfull_operation) + " קוד פעולה:  " + cache.get_id_of_command(cache_command(command, username))
+            }
             else
+            {
                 remote_SQL_Helper.run_command(command.replace("&quote;", "'"))
+                string = ctx.getString(R.string.successfull_operation)
+            }
+            return string
         }
-        /*
+            /*
             gets all the comand cache database to a string
          */
         fun get_DB_string(): String
@@ -126,7 +134,6 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         fun try_to_run_command()
         {
             var vector = get_DB()
-            var success=false
             for(item in vector)
             {
                 if(item.__user == remote_SQL_Helper.username)
@@ -134,23 +141,24 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
                     var result_of_query = remote_SQL_Helper.run_command(item.__command.replace("&quote;", "'"))
                     if (result_of_query)
                     {
+
+                        if(PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.notification),false))
+                            build_small_notification(cache.get_id_of_command(item).toString())
                         cache.remove_command(item)
-                        success=true
                     }
                 }
             }
-            if(PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.notification),false) && success)
-                build_small_notification()
+
 
 
         }
 
-        fun build_small_notification()
+        fun build_small_notification(string: String)
         {
             val mBuilder = NotificationCompat.Builder(ctx)
                     .setSmallIcon(R.drawable.notification_icon_background)
                     .setContentTitle(ctx.getString(R.string.notification_title))
-                    .setContentText(ctx.getString(R.string.notification_sync_successfuk))
+                    .setContentText(ctx.getString(R.string.notification_sync_successfuk) + "קוד פעולה: " + string)
             val mNotificationManager = ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
             mNotificationManager!!.notify(1,mBuilder.build())
         }

@@ -62,6 +62,16 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
 
     }
 
+    fun get_id_of_command(command: cache_command):Long
+    {
+        var input_map = HashMap<String,String>()
+        input_map[COMMAND] = "'${command.__command}'"
+        input_map[USER] = "'${command.__user}'"
+        if(get_rows(input_map).size <= 0)
+            return -1
+        return get_rows(input_map).firstElement()[ID]!!.toLong()
+    }
+
     fun insert_command(command: cache_command)
     {
         var everything_to_add:Vector<HashMap<String,String>> = Vector()
