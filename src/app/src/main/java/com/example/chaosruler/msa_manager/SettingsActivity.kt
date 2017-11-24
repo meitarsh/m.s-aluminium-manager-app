@@ -1,7 +1,7 @@
 package com.example.chaosruler.msa_manager
 
 import android.annotation.TargetApi
-import android.app.FragmentManager
+
 
 import android.content.Context
 import android.content.Intent
@@ -14,13 +14,13 @@ import android.preference.Preference
 import android.preference.PreferenceActivity
 import android.preference.PreferenceFragment
 import android.preference.PreferenceManager
-import android.util.Log
+
 import android.view.MenuItem
 import android.widget.Toast
 import android.app.PendingIntent
 import android.app.AlarmManager
 import java.util.*
-import android.preference.Preference.OnPreferenceChangeListener
+
 
 
 
@@ -35,7 +35,8 @@ import android.preference.Preference.OnPreferenceChangeListener
  * for design guidelines and the [Settings API Guide](http://developer.android.com/guide/topics/ui/settings.html)
  * for more information on developing a Settings UI.
  */
-class SettingsActivity : AppCompatPreferenceActivity() {
+class SettingsActivity : AppCompatPreferenceActivity()
+{
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -49,7 +50,10 @@ class SettingsActivity : AppCompatPreferenceActivity() {
         finish()
     }
 
+
+
     /**
+     *
      * Set up the [android.app.ActionBar], if the API is available.
      */
     private fun setupActionBar() {
@@ -91,13 +95,7 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             addPreferencesFromResource(R.xml.pref_general)
             setHasOptionsMenu(true)
 
-            PreferenceManager.getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener { _, key ->
-                if(key == "style")
-                {
-                    //Toast.makeText(this.context,getString(R.string.warning_need_restart),Toast.LENGTH_SHORT).show()
-                    restart_app()
-                }
-            }
+
 
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
             // to their values. When their values change, their summaries are
@@ -105,19 +103,18 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             // guidelines.
             bindPreferenceSummaryToValue(findPreference(getString(R.string.username_key)),null)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.style)),null)
+            findPreference(getString(R.string.style)).setOnPreferenceChangeListener { _, _ ->
 
-
-        }
-
-        override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            val id = item.itemId
-            if (id == android.R.id.home) {
-                startActivity(Intent(activity, SettingsActivity::class.java))
-                return true
+                restart_app()
+                return@setOnPreferenceChangeListener true
             }
-            return super.onOptionsItemSelected(item)
-        }
+            findPreference(getString(R.string.style)).setOnPreferenceClickListener {
+                Toast.makeText(activity.baseContext,getString(R.string.pref_style_summary),Toast.LENGTH_SHORT).show()
+                return@setOnPreferenceClickListener true
+            }
 
+
+        }
         fun restart_app()
         {
             val am = activity.getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -128,6 +125,16 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             i!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(i)
         }
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            val id = item.itemId
+            if (id == android.R.id.home) {
+                startActivity(Intent(activity, SettingsActivity::class.java))
+                return true
+            }
+            return super.onOptionsItemSelected(item)
+        }
+
+
     }
 
     /**
@@ -175,11 +182,7 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             // guidelines.
 
             bindPreferenceSummaryToValue(findPreference(getString(R.string.sync_frequency)),null)
-            /*
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.IP)),null)
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_users_key)),activity.baseContext)
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_offline_key)),activity.baseContext)
-            */
+
 
         }
 
@@ -293,15 +296,6 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             {
                 sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,PreferenceManager.getDefaultSharedPreferences(preference.context).getBoolean(preference.key,false))
             }
-            else if(preference.key == "style") {
-                var pref_for_list: ListPreference = preference as ListPreference
-                pref_for_list.summary = pref_for_list.entry
-                pref_for_list.setOnPreferenceChangeListener { _, newValue ->
-
-                    pref_for_list.summary = pref_for_list.entries[pref_for_list.findIndexOfValue(newValue as String)]
-                    return@setOnPreferenceChangeListener true
-                }
-            }
             else
             {
                 sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
@@ -311,6 +305,8 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             }
             return true
         }
+
+
     }
 
 
