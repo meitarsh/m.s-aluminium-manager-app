@@ -178,7 +178,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         var db:SQLiteDatabase = this.readableDatabase
         var vector:Vector<HashMap<String,String>> = Vector()
 
-        var sql_query:String = "SELECT * FROM " + TABLE_NAME + " WHERE"
+        var sql_query:String = "SELECT * FROM $TABLE_NAME WHERE"
         var breaker:Int = 0
         for(item in map)
         {
@@ -190,7 +190,13 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
                 break
         }
         val c = db.rawQuery(sql_query, null)
-        c.moveToFirst()
+        try {
+            c.moveToFirst()
+        }
+        catch (e: Exception)
+        {
+            return vector
+        }
         while (!c.isAfterLast) {
             var small_map:HashMap<String,String> = HashMap()
             for(variable in vector_of_variables)
