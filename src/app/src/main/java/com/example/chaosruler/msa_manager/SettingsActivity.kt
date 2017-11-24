@@ -17,9 +17,6 @@ import android.preference.PreferenceManager
 
 import android.view.MenuItem
 import android.widget.Toast
-import android.app.PendingIntent
-import android.app.AlarmManager
-import java.util.*
 
 
 
@@ -44,12 +41,6 @@ class SettingsActivity : AppCompatPreferenceActivity()
         super.onCreate(savedInstanceState)
         setupActionBar()
     }
-
-    override fun onBackPressed()
-    {
-        finish()
-    }
-
 
 
     /**
@@ -84,6 +75,15 @@ class SettingsActivity : AppCompatPreferenceActivity()
                 || DevelopMentSettingsPrefFragment::class.java.name == fragmentName
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == android.R.id.home)
+        {
+            startActivity(Intent(this,LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
     /**
      * This fragment shows general preferences only. It is used when the
      * activity is showing a two-pane settings UI.
@@ -95,8 +95,6 @@ class SettingsActivity : AppCompatPreferenceActivity()
             addPreferencesFromResource(R.xml.pref_general)
             setHasOptionsMenu(true)
 
-
-
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
@@ -104,7 +102,6 @@ class SettingsActivity : AppCompatPreferenceActivity()
             bindPreferenceSummaryToValue(findPreference(getString(R.string.username_key)),null)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.style)),null)
             findPreference(getString(R.string.style)).setOnPreferenceChangeListener { _, _ ->
-
                 restart_app()
                 return@setOnPreferenceChangeListener true
             }
@@ -117,18 +114,13 @@ class SettingsActivity : AppCompatPreferenceActivity()
         }
         fun restart_app()
         {
-            val am = activity.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            am.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().timeInMillis + 500, // one second
-                    PendingIntent.getActivity(activity, 0, activity.intent, PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_CANCEL_CURRENT))
-            val i = activity.baseContext.packageManager
-                    .getLaunchIntentForPackage(activity.baseContext.packageName)
-            i!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(i)
+            startActivity(Intent(activity.baseContext,LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
-            if (id == android.R.id.home) {
-                startActivity(Intent(activity, SettingsActivity::class.java))
+            if (id == android.R.id.home)
+            {
+                activity.onBackPressed()
                 return true
             }
             return super.onOptionsItemSelected(item)
@@ -158,8 +150,10 @@ class SettingsActivity : AppCompatPreferenceActivity()
 
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
-            if (id == android.R.id.home) {
-                startActivity(Intent(activity, SettingsActivity::class.java))
+            if (id == android.R.id.home)
+            {
+                //startActivity(Intent(activity, SettingsActivity::class.java))
+                activity.finish()
                 return true
             }
             return super.onOptionsItemSelected(item)
@@ -190,7 +184,7 @@ class SettingsActivity : AppCompatPreferenceActivity()
             val id = item.itemId
             if (id == android.R.id.home)
             {
-               // startActivity(Intent(activity, SettingsActivity::class.java))
+                activity.onBackPressed()
                 return true
             }
             return super.onOptionsItemSelected(item)
@@ -214,7 +208,7 @@ class SettingsActivity : AppCompatPreferenceActivity()
             val id = item.itemId
             if (id == android.R.id.home)
             {
-                // startActivity(Intent(activity, SettingsActivity::class.java))
+                activity.onBackPressed()
                 return true
             }
             return super.onOptionsItemSelected(item)
