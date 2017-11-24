@@ -34,7 +34,8 @@ Zeev Melumuian
 | Project Management Board| [![here](https://img.shields.io/badge/Project%20Management%20Board-On%20demand-lightgrey.svg)](https://github.com/meitarsh/m.s-aluminium-manager-app/projects/1) |
 | Documnetation | [![Inline docs](http://inch-ci.org/github/meitarsh/m.s-aluminium-manager-app.svg?branch=master)](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Documents) |
 | Diary |  [![link](https://img.shields.io/badge/Diary-On%20demand-blue.svg)](https://calendar.google.com/calendar/embed?src=t1f2ojv5arrqonei6h09i5fld0%40group.calendar.google.com&ctz=Europe/Athens) |
-| Releases |  [![release](http://github-release-version.herokuapp.com/github/meitarsh/m.s-aluminium-manager-app/release.svg?style=flat)](https://github.com/meitarsh/m.s-aluminium-manager-app/releases/latest)
+| Releases |  [![release](http://github-release-version.herokuapp.com/github/meitarsh/m.s-aluminium-manager-app/release.svg?style=flat)](https://github.com/meitarsh/m.s-aluminium-manager-app/releases/latest) |
+| Evaluation | [![evaluate](https://img.shields.io/badge/Latest%20evaluation-Ok-green.svg)](https://inch-ci.org/github/meitarsh/m.s-aluminium-manager-app?pending_build=378842)|
 
 
 
