@@ -16,25 +16,26 @@
 ## Staff
 * Main project developer repository masters
 
-Zeev Melumuian 
+Zeev Melumuian
 <img src="https://avatars3.githubusercontent.com/u/25983708?s=400&u=b8851ea42c6dc967d131b307a0b99074a84a851e&v=4" height="100" width="80">
  Meitar Shukrun
  <img src="https://avatars1.githubusercontent.com/u/26038128?s=400&v=4" height="100" width="80">
 
-* Acedamic advisor 
+* Acedamic advisor
   Shay Tavor
-  
+
  |Category|Status|
 |---|---|
-| Version Control System| [git](https://git-scm.com/) & [github](https://github.com/) |
-| Recommended IDE | [Android Studio](https://developer.android.com/studio/index.html) |
+| Version Control System| [![git](https://img.shields.io/badge/Version%20Control-Git-green.svg)](https://git-scm.com/) & [![github](https://img.shields.io/badge/Version%20Control-Github-green.svg)](https://github.com/) |
+| Recommended IDE | [![Android Studio](https://img.shields.io/badge/IDE-Android%20Studio-green.svg)](https://developer.android.com/studio/index.html) |
 | License | [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/) |
 | Code Style | [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/meitarsh/m.s-aluminium-manager-app) |
 | Issues | [![GitHub issues](https://img.shields.io/github/issues/meitarsh/m.s-aluminium-manager-app.svg?style=flat)](https://github.com/meitarsh/m.s-aluminium-manager-app/issues) |
-| Project Management Board| [here](https://github.com/meitarsh/m.s-aluminium-manager-app/projects/1) |
+| Project Management Board| [![here](https://img.shields.io/badge/Project%20Management%20Board-On%20demand-lightgrey.svg)](https://github.com/meitarsh/m.s-aluminium-manager-app/projects/1) |
 | Documnetation | [![Inline docs](http://inch-ci.org/github/meitarsh/m.s-aluminium-manager-app.svg?branch=master)](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Documents) |
-| Diary |  [link](https://calendar.google.com/calendar/embed?src=t1f2ojv5arrqonei6h09i5fld0%40group.calendar.google.com&ctz=Europe/Athens) |
-| Releases | [link](https://github.com/meitarsh/m.s-aluminium-manager-app/releases)
+| Diary |  [![link](https://img.shields.io/badge/Diary-On%20demand-blue.svg)](https://calendar.google.com/calendar/embed?src=t1f2ojv5arrqonei6h09i5fld0%40group.calendar.google.com&ctz=Europe/Athens) |
+| Releases |  [![release](http://github-release-version.herokuapp.com/github/meitarsh/m.s-aluminium-manager-app/release.svg?style=flat)](https://github.com/meitarsh/m.s-aluminium-manager-app/releases/latest)
+
 
 
 ## [Software Design](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Software-Design)
