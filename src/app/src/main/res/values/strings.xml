@@ -140,7 +140,7 @@
     <string name="pref_title_sync_frequency">קצב הרענון</string>
     <string name="pref_freq_summary">קצב הסנכרון לשרת</string>
     <string-array name="pref_sync_frequency_titles">
-        <item>5 שניות</item>
+        <item>15 שניות</item>
         <item>5 דקות</item>
         <item>15 דקות</item>
         <item>30 דקות</item>
@@ -148,7 +148,7 @@
         <item>שעתיים</item>
     </string-array>
     <string-array name="pref_sync_frequency_values">
-        <item>5</item>
+        <item>15</item>
         <item>300</item>
         <item>900</item>
         <item>1800</item>
@@ -171,10 +171,10 @@
     <string name="delete_users">מחק את טבלת המשתמשים</string>
     <string name="delete_users_warning">דורש הפעלה מחדש של האפליקציה</string>
     <string name="delete_offline">מחק את טבלת הoffline mode</string>
-    <string name="GUI_only_title">קריאות האפליקציה יהיו ללא צד שרת בכלל</string>
+    <string name="GUI_only_title">קריאות האפליקציה יהיו ללא צד שרת</string>
     <string name="GUI_only_summary">במצב הזה נוכל לזרום בממשק משתמש ללא שימוש בתקשורת האינטרנט</string>
 
-    <string name="notification_sync_successfuk">סנכרון בוצע בהצלחה!</string>
+    <string name="notification_sync_successfuk">סנכרון בוצע בהצלחה! </string>
     <string name="notification_title">מ.ש אלומיניום</string>
 
     <string name="save_data_local">לשמור העתק של הנתונים על המכשיר?</string>
