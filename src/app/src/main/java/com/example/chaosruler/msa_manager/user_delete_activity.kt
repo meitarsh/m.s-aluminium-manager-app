@@ -14,13 +14,14 @@ import kotlinx.android.synthetic.main.activity_user_delete_activity.*
 
 class user_delete_activity : Activity() {
 
-    private var db: user_database_helper = user_database_helper(baseContext)
-    private var adapter: ArrayAdapter<User> = ArrayAdapter(this, android.R.layout.simple_spinner_item, db.get_entire_db())
-
+    private lateinit var db: user_database_helper
+    private lateinit var adapter: ArrayAdapter<User>
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
+        db = user_database_helper(baseContext)
+        adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, db.get_entire_db())
         setContentView(R.layout.activity_user_delete_activity)
         init_spinner()
         init_buttons()
