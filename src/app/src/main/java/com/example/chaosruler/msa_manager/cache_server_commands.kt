@@ -82,7 +82,9 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
         everything_to_add.addElement(data)
         add_data(everything_to_add)
     }
-
+    /*
+        subroutine to remove command from localDB of commands
+     */
     fun remove_command(command: cache_command):Boolean
     {
         return remove_from_db(arrayOf(COMMAND,USER), arrayOf(command.__command,command.__user))

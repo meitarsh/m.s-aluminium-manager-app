@@ -3,15 +3,8 @@ package com.example.chaosruler.msa_manager
 /*
     an object representation of a user
  */
-class User() {
+class User(private var __username: String, private var __password: String) {
 
-    private lateinit var  __username: String
-    private lateinit var __password: String
-
-    constructor(__username: String, __password: String) : this() {
-        this.__username = __username
-        this.__password = __password
-    }
 
     override fun toString(): String
     {

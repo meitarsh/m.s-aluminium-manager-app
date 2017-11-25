@@ -14,6 +14,9 @@ import kotlin.collections.HashMap
 @RunWith(AndroidJUnit4::class)
 class remote_connection_test {
     @Test
+    /*
+        Test to run various connection scenerios
+     */
     fun remote_connection_test()
     {
         val can_run_test = true
@@ -43,7 +46,9 @@ class remote_connection_test {
             remote_SQL_Helper.Connect(con,username,password)
             Assert.assertTrue("remote database tests: connect #$test_num$amount_str: fails\n ", remote_SQL_Helper.isValid() )
             Log.d("remote database tests", "connect #$test_num$amount_str: success\n ")
-        } catch (e: Exception) {
+        }
+        catch (e: AssertionError)
+        {
             Log.d("remote database tests", "connect #$test_num$amount_str: fails\n ")
         }
 
@@ -61,7 +66,7 @@ class remote_connection_test {
             map[project_manager_name] = "'bye'"
             Assert.assertTrue("remote database tests: add #$test_num$amount_str: fails\n ", remote_SQL_Helper.run_command(remote_SQL_Helper.construct_add_str(db_name,table_name,string_vector,map)) )
             Log.d("remote database tests", "add #$test_num$amount_str: success\n ")
-        } catch (e: Exception)
+        } catch (e: AssertionError)
         {
             Log.d("remote database tests", "add #$test_num$amount_str: fails\n ")
         }
@@ -71,10 +76,12 @@ class remote_connection_test {
         try
         {
 
-            Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_SQL_Helper.get_all_table(db_name,table_name)!!.size==1 )
+            Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_SQL_Helper.get_all_table(db_name,table_name).size==1 )
             System.out.println(remote_SQL_Helper.VectorToString(remote_SQL_Helper.get_all_table(db_name,table_name)))
             Log.d("remote database tests", "print all #$test_num$amount_str: success\n ")
-        } catch (e: Exception) {
+        }
+        catch (e: AssertionError)
+        {
             Log.d("remote database tests", "print all#$test_num$amount_str: fails\n ")
         }
 
@@ -87,7 +94,8 @@ class remote_connection_test {
             map[project_ID] = 2.toString()
             Assert.assertTrue("remote database tests: update #$test_num$amount_str: fails\n ", remote_SQL_Helper.run_command(remote_SQL_Helper.construct_update_str(db_name,table_name,project_ID, arrayOf("1"),"int",map)) )
             Log.d("remote database tests", "update #$test_num$amount_str: success\n ")
-        } catch (e: Exception)
+        }
+        catch (e: AssertionError)
         {
             Log.d("remote database tests", "update #$test_num$amount_str: fails\n ")
         }
@@ -98,10 +106,11 @@ class remote_connection_test {
         try
         {
 
-            Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_SQL_Helper.get_all_table(db_name,table_name)!!.size==1 )
+            Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_SQL_Helper.get_all_table(db_name,table_name).size==1 )
             System.out.println(remote_SQL_Helper.VectorToString(remote_SQL_Helper.get_all_table(db_name,table_name)))
             Log.d("remote database tests", "print all #$test_num$amount_str: success\n ")
-        } catch (e: Exception)
+        }
+        catch (e: AssertionError)
         {
             Log.d("remote database tests", "print all#$test_num$amount_str: fails\n ")
         }
@@ -114,7 +123,9 @@ class remote_connection_test {
 
             Assert.assertTrue("remote database tests: remove #$test_num$amount_str: fails\n ", remote_SQL_Helper.run_command(remote_SQL_Helper.construct_remove_str(db_name,table_name,project_manager_name, arrayOf("'bye'"),"varchar(max)")) )
             Log.d("remote database tests", "remove  #$test_num$amount_str: success\n ")
-        } catch (e: Exception) {
+        }
+        catch (e: AssertionError)
+        {
             Log.d("remote database tests", "remove  #$test_num$amount_str: fails\n ")
         }
 
@@ -125,7 +136,8 @@ class remote_connection_test {
             Assert.assertTrue("remote database tests: print all #$test_num$amount_str: fails\n ", remote_SQL_Helper.get_all_table(db_name,table_name)!!.size==0 )
             System.out.println(remote_SQL_Helper.VectorToString(remote_SQL_Helper.get_all_table(db_name,table_name)))
             Log.d("remote database tests", "print all #$test_num$amount_str: success\n ")
-        } catch (e: Exception)
+        }
+        catch (e: AssertionError)
         {
             Log.d("remote database tests", "print all#$test_num$amount_str: fails\n ")
         }
