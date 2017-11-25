@@ -5,7 +5,10 @@ import android.preference.PreferenceManager
 
 
 
-
+/*
+    general static class responsible for getting the right updated theme for every page based on the settings
+    of the style chosen by the user, default being Light
+ */
 class themer {
     companion object {
         fun style(context: Context):Int
@@ -22,14 +25,7 @@ class themer {
 
 
 
-        fun getResourceId(context: Context,pVariableName: String, pResourcename: String, pPackageName: String): Int {
-            try {
-                return context.resources.getIdentifier(pVariableName, pResourcename, pPackageName)
-            } catch (e: Exception) {
-                e.printStackTrace()
-                return -1
-            }
-
-        }
+        fun getResourceId(context: Context,pVariableName: String, pResourcename: String, pPackageName: String): Int =
+                context.resources.getIdentifier(pVariableName, pResourcename, pPackageName)
     }
 }

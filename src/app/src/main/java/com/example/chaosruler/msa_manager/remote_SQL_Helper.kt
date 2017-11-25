@@ -19,8 +19,8 @@ class remote_SQL_Helper()
     {
 
         private lateinit var context:Context
-        public lateinit var username: String
-        private lateinit var password: String
+        private var username: String = ""
+        private var password: String = ""
         private var isvalid: Boolean = false
         private var connection: Connection? = null
         /*
@@ -76,7 +76,9 @@ class remote_SQL_Helper()
         /*
             subroutine that gets as parameters an entire table and converts it into Hashmap vector, which is later can be converted to string, sql is select * form table
          */
-        fun get_all_table(db: String, table: String): Vector<HashMap<String, String>>? {
+        fun get_all_table(db: String, table: String): Vector<HashMap<String, String>>
+        {
+            var vector: Vector<HashMap<String, String>> = Vector()
             try
             {
                 connection!!.isReadOnly
@@ -93,10 +95,9 @@ class remote_SQL_Helper()
                 ReConnect()
             }
             if(!isvalid)
-                return null
+                return vector
             try
             {
-                var vector: Vector<HashMap<String, String>> = Vector()
                 var lock = java.lang.Object()
                 AsyncTask.execute(
                 {
@@ -142,15 +143,15 @@ class remote_SQL_Helper()
                     }
                 }
                 catch (e: InterruptedException){}
-                return vector
+
             }
             catch (e: SQLException)
             {
                 e.printStackTrace()
                 exception = e
-                return null
-            }
 
+            }
+            return vector
         }
         /*
             subroutine to take parameters of an update query and template it into MSSQL acceptable query, excepts update parameters to be with quotes if neccesery
@@ -302,6 +303,9 @@ class remote_SQL_Helper()
             this.context = con
         }
 
+        /*
+            Attempts to reconnect with the server if connection is broke
+         */
         fun ReConnect():Boolean
         {
             isvalid=false

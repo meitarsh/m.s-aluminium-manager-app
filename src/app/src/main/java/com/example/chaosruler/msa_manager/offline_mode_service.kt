@@ -15,7 +15,6 @@ import android.widget.Toast
 /*
     service responsible for storing server commands offline and sending them whenever possible
  */
-
 class offline_mode_service() : IntentService(".offline_mode_service") {
 
     /*
@@ -83,13 +82,13 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
 
         fun push_add_command(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>):String {
             var str = remote_SQL_Helper.construct_add_str(db, table, vector, map).replace("'","&quote;")
-            var username = remote_SQL_Helper.username
+            var username = remote_SQL_Helper.getusername()
             return general_push_command(str,username)
         }
 
         fun push_update_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>):String {
             var str = remote_SQL_Helper.construct_update_str(db, table, where_clause, compare_to, type, update_to).replace("'","&quote;")
-            var username = remote_SQL_Helper.username
+            var username = remote_SQL_Helper.getusername()
             return general_push_command(str,username)
         }
 
@@ -98,7 +97,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
          */
         fun push_remove_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String):String {
             var str = remote_SQL_Helper.construct_remove_str(db, table, where_clause, compare_to, type).replace("'","&quote;")
-            var username = remote_SQL_Helper.username
+            var username = remote_SQL_Helper.getusername()
             return general_push_command(str,username)
         }
 
@@ -136,7 +135,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             var vector = get_DB()
             for(item in vector)
             {
-                if(item.__user == remote_SQL_Helper.username)
+                if(item.__user == remote_SQL_Helper.getusername())
                 {
                     var result_of_query = remote_SQL_Helper.run_command(item.__command.replace("&quote;", "'"))
                     if (result_of_query)

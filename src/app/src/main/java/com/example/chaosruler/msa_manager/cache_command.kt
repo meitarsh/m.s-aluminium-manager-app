@@ -10,4 +10,6 @@ class cache_command(public val __command:String, public val __user:String)
     {
         return __command
     }
+
+
 }

@@ -281,8 +281,11 @@ class SettingsActivity : AppCompatPreferenceActivity()
             else if(preference.key == "delete_offline")
             {
                 preference.setOnPreferenceClickListener {
-                    cache_server_commands(context!!).clearDB()
-                    Toast.makeText(context,context.getString(R.string.successfull_operation),Toast.LENGTH_SHORT).show()
+                    if (context != null)
+                    {
+                        cache_server_commands(context).clearDB()
+                        Toast.makeText(context,context.getString(R.string.successfull_operation),Toast.LENGTH_SHORT).show()
+                    }
                     return@setOnPreferenceClickListener true
                 }
             }

@@ -14,23 +14,21 @@ import kotlinx.android.synthetic.main.activity_user_delete_activity.*
 
 class user_delete_activity : Activity() {
 
-    private var adapter: ArrayAdapter<User>? = null
-    private var db: user_database_helper? = null
+    private var db: user_database_helper = user_database_helper(baseContext)
+    private var adapter: ArrayAdapter<User> = ArrayAdapter(this, android.R.layout.simple_spinner_item, db.get_entire_db())
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_delete_activity)
-        db = user_database_helper(baseContext)
         init_spinner()
         init_buttons()
     }
 
     private fun init_spinner()
     {
-        val users = db!!.get_entire_db()
-        adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, users)
+        val users = db.get_entire_db()
         delete_spinner.adapter = adapter
         delete_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
@@ -53,8 +51,8 @@ class user_delete_activity : Activity() {
     {
         // button to activate subroutine to delete a user from database
         delete_delete.setOnClickListener({
-            db!!.delete_user( (delete_spinner.selectedItem as User).get__username())
-            adapter!!.remove(delete_spinner.selectedItem as User)
+            db.delete_user( (delete_spinner.selectedItem as User).get__username())
+            adapter.remove(delete_spinner.selectedItem as User)
         })
 
         // button to activate the changing password mechanism and subroutine, in actual there's a hidden change password button and password confirm field
@@ -82,7 +80,7 @@ class user_delete_activity : Activity() {
                 return@OnClickListener
             } else {
                 Toast.makeText(this@user_delete_activity, resources.getString(R.string.delete_confirmed), Toast.LENGTH_SHORT).show() // confirmed match, this is when action is sent and confirmed
-                db!!.update_user( (delete_spinner.selectedItem as User).get__username(), new_pass)
+                db.update_user( (delete_spinner.selectedItem as User).get__username(), new_pass)
                 reset_password_fields()
                 return@OnClickListener
             }
