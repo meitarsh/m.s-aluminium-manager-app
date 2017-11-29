@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.chaosruler.msa_manager.loz_activity">
+    tools:context="com.example.chaosruler.msa_manager.loz_activity"
+    android:layoutDirection="ltr"
+    >
 
 </android.support.constraint.ConstraintLayout>
