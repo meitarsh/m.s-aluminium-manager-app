@@ -79,7 +79,7 @@
     <string name="username">username</string>
     <string name="password">password</string>
 
-    1
+
     <!-- Network error messages strings -->
     <string name="network">network</string>
     <string name="network_error">There&quot;s and error connecting to server, please try again</string>
@@ -95,22 +95,21 @@
     <string name="time_to_sync_in_sec">5</string>
     <string name="millis_in_sec">1000</string> <!-- should be 1000 -->
     <string name="successfull_operation">הפעולה בוצעה בהצלחה</string>
+    <string name="notificatoin_op_id">קוד הפעולה :</string>
+
+
 
     <!-- Service strings -->
     <string name="service_name">offline_mode_service</string>
     <string name="title_activity_settings">Settings</string>
+
 
     <!-- Strings related to Settings -->
     <string name="settings_str">הגדרות</string>
     <string name="restart_activity">הגדרות אלו ייחלו רק מיד לאחר מעבר למסך אחר</string>
 
 
-
-
-
-
-
-    <!-- Example General settings -->
+    <!-- General settings -->
     <string name="pref_header_general">כללי</string>
 
     <string name="pref_style_txt">סטייל האפליקציה</string>
@@ -134,12 +133,13 @@
 
 
 
-    <!-- Example settings for Data & Sync -->
+    <!-- settings for Data & Sync -->
     <string name="pref_header_data_sync">נתונים</string>
 
     <string name="pref_title_sync_frequency">קצב הרענון</string>
     <string name="pref_freq_summary">קצב הסנכרון לשרת</string>
     <string-array name="pref_sync_frequency_titles">
+        <item>ללא</item>
         <item>15 שניות</item>
         <item>5 דקות</item>
         <item>15 דקות</item>
@@ -148,6 +148,7 @@
         <item>שעתיים</item>
     </string-array>
     <string-array name="pref_sync_frequency_values">
+        <item>0</item>
         <item>15</item>
         <item>300</item>
         <item>900</item>
@@ -160,7 +161,7 @@
     <string name="pref_IP_address">כתובת הIP</string>
     <string name="pref_ip_summary">כתובת הIP לתקשורת בין השרת ללקוח.</string>
 
-    <!-- Example settings for Notifications -->
+    <!-- settings for Notifications -->
     <string name="pref_header_notifications">התראות</string>
 
     <string name="pref_txt_notification">התראות דלוקות</string>
@@ -189,4 +190,144 @@
     <string name="style">style</string>
     <string name="username_key">username</string>
     <string name="gui_mode_key">gui_mode_key</string>
+
+
+
+    <!-- Remote Database names and Table names -->
+    <string name="DATAAREAID_DEVELOP">mz11</string>
+    <string name="DATABASE_NAME">Aluminum</string>
+    <string name="TABLE_INVENTORY">inventtable</string>
+    <string name="TABLE_PROJECTS">projtable</string>
+    <string name="TABLE_VENDORS">vendortable</string>
+    <string name="TABLE_MYSTERY">OferKablanConstructionOnAccount2</string>
+    <string name="TABLE_BIG">OferKablanConstructionOnAccount</string>
+
+
+    <!-- TABLE INVENTORY -->
+    <string name="INVENTORY_ID">itemid</string>
+    <string name="INVENTORY_ID_TYPE">text</string>
+
+    <string name="INVENTORY_NAME">itamname</string>
+    <string name="INVENTORY_NAME_TYPE">text</string>
+
+    <string name="INVENTORY_DATAAREAID">dataareaid</string>
+    <string name="INVENTORY_DATAAREAID_TYPE">text</string>
+
+    <!-- TABLE PROJECTS -->
+
+    <string name="PROJECTS_ID">projid</string>
+    <string name="PROJECTS_ID_TYPE">text</string>
+
+    <string name="PROJECTS_NAME">name</string>
+    <string name="PROJECTS_NAME_TYPE">text</string>
+
+    <string name="PROJECTS_DATAAREAID">dataareaid</string>
+    <string name="PROJECTS_DATAAREAID_TYPE">text</string>
+
+
+    <!-- TABLE MYSTERY -->
+    <string name="MYSTERY_ID">OPRID</string>
+    <string name="MYSTERY_ID_TYPE">text</string>
+
+
+    <string name="MYSTERY_NAME">NAME</string>
+    <string name="MYSTERY_NAME_TYPE">text</string>
+
+
+    <string name="MYSTERY_DATAAREAID">DATAAREAID</string>
+    <string name="MYSTERY_DATAAREAID_TYPE">text</string>
+
+
+    <!-- TABLE VENDORS -->
+    <string name="VENDORS_ID">accountnum</string>
+    <string name="VENDORS_ID_TYPE">DATAAREAID</string>
+
+    <string name="VENDORS_NAME">name</string>
+    <string name="VENDORS_NAME_TYPE">DATAAREAID</string>
+
+    <string name="VENDORS_DATAAREAID">dataareaid</string>
+    <string name="VENDORS_DATAAREAID_TYPE">DATAAREAID</string>
+
+
+    <!-- TABLE BIG -->
+    <string name="TABLE_BIG_VENDOR_ID">ACCOUNTNUM</string>
+    <string name="TABLE_BIG_VENDOR_ID_TYPE">text</string>
+
+    <string name="TABLE_BIG_DATAAREAID">DATAAREAID</string>
+    <string name="TABLE_BIG_DATAAREAID_TYPE">text</string>
+
+
+    <string name="TABLE_BIG_REC_VERSION">RECVERSION</string>
+    <string name="TABLE_BIG_REC_VERSION_TYPE">text</string>
+
+
+    <string name="TABLE_BIG_REC_ID">RECID</string>
+    <string name="TABLE_BIG_REC_ID_TYPE">text</string>
+
+
+    <string name="TABLE_BIG_PROJECTS_ID">PROJID</string>
+    <string name="TABLE_BIG_PROJECTS_ID_TYPE">text</string>
+
+
+    <string name="TABLE_BIG_INVENTORY_ID">ITEMID</string>
+    <string name="TABLE_BIG_INVENTORY_ID_TYPE">text</string>
+
+
+    <string name="TABLE_BIG_FLAT">FLAT</string>
+    <string name="TABLE_BIG_FLAT_TYPE">text</string>
+
+
+    <string name="TABLE_BIG_FLOOR">FLOOR</string>
+    <string name="TABLE_BIG_FLOOR_TYPE">text</string>
+
+
+    <string name="TABLE_BIG_QTY">QTY</string>
+    <string name="TABLE_BIG_QTY_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_SALESPRICE">SALESPRICE</string>
+    <string name="TABLE_BIG_SALESPRICE_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_MYSTERY_ID">OPRID</string>
+    <string name="TABLE_BIG_MYSTERY_ID_TYPE">text</string>
+
+
+    <string name="TABLE_BIG_MILESTONEPERCENT">MILESTONEPERCENT</string>
+    <string name="TABLE_BIG_MILESTONEPERCENT_TYPE">real</string>
+
+    <string name="TABLE_BIG_QTYFORACCOUNT">QTYFORACCOUNT</string>
+    <string name="TABLE_BIG_QTYFORACCOUNT_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_PERCENTFORACCOUNT">PERCENTFORACCOUNT</string>
+    <string name="TABLE_BIG_PERCENTFORACCOUNT_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_TOTALSUM">TOTALSUM</string>
+    <string name="TABLE_BIG_TOTALSUM_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_SALPROG">SALRPOG</string>
+    <string name="TABLE_BIG_SALPROG_TYPE">tinyint</string>
+
+
+    <string name="TABLE_BIG_PRINTORDER">PRINTORDER</string>
+    <string name="TABLE_BIG_PRINTORDER_TYPE">int</string>
+
+
+    <string name="TABLE_BIG_ITEMNUMBER">ITEMNUMBER</string>
+    <string name="TABLE_BIG_ITEMNUMBER_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_KOMANUM">KOMANUM</string>
+    <string name="TABLE_BIG_KOMANUM_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_DIRANUM">DIRANUM</string>
+    <string name="TABLE_BIG_DIRANUM_TYPE">real</string>
+
+    <string name="sync_btn_text">סנכרן עכשיו</string>
+
+
 </resources>

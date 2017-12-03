@@ -17,10 +17,7 @@ class project_options : Activity() {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_options)
-        if(PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key),false))
-            init_buttons()
-        else
-            test_init_buttons()
+        init_buttons()
     }
 
     private fun init_buttons()

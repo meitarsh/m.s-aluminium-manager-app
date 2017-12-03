@@ -46,19 +46,30 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
 
             ctx=context
             cache = cache_server_commands(context)
+            init_remote_databases(context)
             grab_time(ctx)
             init_trd()
             start_trd()
         }
 
-        fun grab_time(context: Context)
+        private fun grab_time(context: Context)
         {
             time = ctx.getString(R.string.millis_in_sec).toLong()
             var sec = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.sync_frequency),context.getString(R.string.time_to_sync_in_sec)).toLong()
             time*=sec
         }
-        fun init_trd()
+        private fun init_remote_databases(context: Context)
         {
+            remote_vendors_table_helper.init_variables(context)
+            remote_big_table_helper.init_variables(context)
+            remote_inventory_table_helper.init_variables(context)
+            remote_mystery_table_helper.init_variables(context)
+            remote_projects_table_helper.init_variables(context)
+        }
+        private fun init_trd()
+        {
+            if(time==0.toLong())
+                return
             trd = Thread(
                     {
                         while (true)
@@ -71,7 +82,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
                         }
                     })
         }
-        fun start_trd()
+        private fun start_trd()
         {
             if(trd.state == Thread.State.NEW) // new thread, not started
                 trd.start()
@@ -103,28 +114,25 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
 
         private fun general_push_command(command:String, username:String):String
         {
-            var string:String
-            if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.local_or_not), true)) {
+            var string:String = if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.local_or_not), true)) {
                 cache.add_command_to_list(cache_command(command, username))
-                string = ctx.getString(R.string.successfull_operation) + " קוד פעולה:  " + cache.get_id_of_command(cache_command(command, username))
-            }
-            else
-            {
+                ctx.getString(R.string.successfull_operation) + ctx.getString(R.string.notificatoin_op_id) + cache.get_id_of_command(cache_command(command, username))
+            } else {
                 remote_SQL_Helper.run_command(command.replace("&quote;", "'"))
-                string = ctx.getString(R.string.successfull_operation)
+                ctx.getString(R.string.successfull_operation)
             }
             return string
         }
             /*
             gets all the comand cache database to a string
          */
-        fun get_DB_string(): String
+        private fun get_DB_string(): String
                 = cache.get_db_string()
 
         /*
             gets all the command cache database to a vector
          */
-        fun get_DB(): Vector<cache_command>
+        private fun get_DB(): Vector<cache_command>
                 = cache.get_entire_db()
 
         /*
@@ -132,6 +140,17 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
          */
         fun try_to_run_command()
         {
+            try // safe call
+            {
+                if(ctx == null)
+                    return
+            }
+            catch (e:UninitializedPropertyAccessException)
+            {
+
+            }
+
+
             var vector = get_DB()
             for(item in vector)
             {
@@ -152,19 +171,20 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
 
         }
 
-        fun build_small_notification(string: String)
+        private fun build_small_notification(string: String)
         {
             val mBuilder = NotificationCompat.Builder(ctx)
                     .setSmallIcon(R.drawable.notification_icon_background)
                     .setContentTitle(ctx.getString(R.string.notification_title))
-                    .setContentText(ctx.getString(R.string.notification_sync_successfuk) + "קוד פעולה: " + string)
+                    .setContentText(ctx.getString(R.string.notification_sync_successfuk) + ctx.getString(R.string.notificatoin_op_id) + string)
             val mNotificationManager = ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
             mNotificationManager!!.notify(1,mBuilder.build())
         }
 
 
 
-    }
+
+    } // companion end
 
 
 }

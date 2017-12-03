@@ -75,22 +75,45 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         var db:SQLiteDatabase = this.readableDatabase
         var vector:Vector<HashMap<String,String>> = Vector()
 
-        val c = db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
-        try {
-            c.moveToFirst()
-        }
-        catch (e:Exception)
-        {
-            return vector
-        }
-        while (!c.isAfterLast) {
-            var small_map:HashMap<String,String> = HashMap()
-            for(variable in vector_of_variables)
+        var syncToken = Object()
+        // to not hang the ui
+        Thread({
+            val c = db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
+            try
             {
-                small_map[variable] = c.getString(c.getColumnIndex(variable))
+                c.moveToFirst()
             }
-            vector.addElement(small_map)
-            c.moveToNext()
+            catch (e: Exception)
+            {
+                synchronized(syncToken)
+                {
+                    syncToken.notify()
+                }
+
+            }
+            while (!c.isAfterLast)
+            {
+                var small_map: HashMap<String, String> = HashMap()
+                for (variable in vector_of_variables) {
+                    small_map[variable] = c.getString(c.getColumnIndex(variable))
+                }
+                vector.addElement(small_map)
+                c.moveToNext()
+            }
+            synchronized(syncToken)
+            {
+                syncToken.notify()
+            }
+        }).start()
+
+
+        synchronized(syncToken)
+        {
+            try
+            {
+                syncToken.wait()
+
+            } catch (e: InterruptedException) { }
         }
         db.close()
         return vector
@@ -100,13 +123,8 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
      */
     protected fun add_data(variables: Vector<HashMap<String,String>>):Boolean
     {
-        var return_value = false
         var db:SQLiteDatabase = this.writableDatabase
-        for(item in variables)
-        {
-            if(add_single_data(db, item))
-                return_value=true
-        }
+        val return_value = variables.any { add_single_data(db, it) }
         db.close()
         return return_value
     }
@@ -115,7 +133,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         val values = ContentValues()
         for(item in items)
             values.put(item.key,item.value)
-        if(db.insert(TABLE_NAME, null, values)>0)
+        if(db.insertOrThrow(TABLE_NAME, null, values)>0)
             return true
         return false
     }
@@ -177,38 +195,120 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     {
         var db:SQLiteDatabase = this.readableDatabase
         var vector:Vector<HashMap<String,String>> = Vector()
-
-        var sql_query:String = "SELECT * FROM $TABLE_NAME WHERE"
-        var breaker:Int = 0
-        for(item in map)
-        {
-            sql_query += " ${item.key} = ${item.value} "
-            breaker++
-            if(breaker < map.size)
-                sql_query += " AND"
-            else
-                break
-        }
-        val c = db.rawQuery(sql_query, null)
-        try {
-            c.moveToFirst()
-        }
-        catch (e: Exception)
-        {
-            return vector
-        }
-        while (!c.isAfterLast) {
-            var small_map:HashMap<String,String> = HashMap()
-            for(variable in vector_of_variables)
+        var sync_token = Object()
+        //to not hang the ui
+        Thread({
+            var sql_query: String = "SELECT * FROM $TABLE_NAME WHERE"
+            var breaker: Int = 0
+            for (item in map)
             {
-                small_map[variable] = c.getString(c.getColumnIndex(variable))
+                sql_query += " ${item.key} = ${item.value} "
+                breaker++
+                if (breaker < map.size)
+                    sql_query += " AND"
+                else
+                    break
             }
-            vector.addElement(small_map)
-            c.moveToNext()
+            val c = db.rawQuery(sql_query, null)
+            try
+            {
+                c.moveToFirst()
+            } catch (e: Exception)
+            {
+                synchronized(sync_token)
+                {
+                    sync_token.notify()
+                }
+            }
+            while (!c.isAfterLast)
+            {
+                var small_map: HashMap<String, String> = HashMap()
+                for (variable in vector_of_variables) {
+                    small_map[variable] = c.getString(c.getColumnIndex(variable))
+                }
+                vector.addElement(small_map)
+                c.moveToNext()
+            }
+            synchronized(sync_token)
+            {
+                sync_token.notify()
+            }
+        }).start()
+
+        synchronized(sync_token)
+        {
+            try
+            {
+                sync_token.wait()
+            }
+            catch (e:InterruptedException){}
         }
         db.close()
         return vector
 
+    }
+
+
+
+    /*
+       subroutine gets entire database to vector of hashmap values, self colum feeder
+       includes sorting
+    */
+    protected fun get_db(sort_by_value:String,isAscending:Boolean):Vector<HashMap<String,String>>
+    {
+        var db:SQLiteDatabase = this.readableDatabase
+        var vector:Vector<HashMap<String,String>> = Vector()
+
+        var syncToken = Object()
+        // to not hang the ui
+        Thread({
+            var ascending_descending_str:String
+            if(isAscending)
+            {
+                ascending_descending_str = " ASC"
+            }
+            else
+            {
+                ascending_descending_str = " DESC"
+            }
+            val c = db.query(TABLE_NAME,null,null,null,null,null,sort_by_value+ascending_descending_str)
+            try
+            {
+                c.moveToFirst()
+            }
+            catch (e: Exception)
+            {
+                synchronized(syncToken)
+                {
+                    syncToken.notify()
+                }
+            }
+            while (!c.isAfterLast)
+            {
+                var small_map: HashMap<String, String> = HashMap()
+                for (variable in vector_of_variables) {
+                    small_map[variable] = c.getString(c.getColumnIndex(variable))
+                }
+                vector.addElement(small_map)
+                c.moveToNext()
+            }
+            synchronized(syncToken)
+            {
+                syncToken.notify()
+            }
+        }).start()
+
+
+        synchronized(syncToken)
+        {
+            try
+            {
+                syncToken.wait()
+
+            } catch (e: InterruptedException) { }
+        }
+        db.close()
+        return vector
     }
 
 }

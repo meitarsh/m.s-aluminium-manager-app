@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.preference.Preference
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity() {
@@ -17,8 +19,10 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
         remote_SQL_Helper.refresh_context(baseContext)
         startService(Intent(this,offline_mode_service::class.java))
+        offline_mode_service.init_cache(baseContext)
         create_intro_text()
         init_buttons()
+
     }
 
     private fun create_intro_text()
@@ -37,6 +41,13 @@ class MainActivity : Activity() {
             val intent = Intent(this@MainActivity, project_options::class.java)
             startActivity(intent)
         })
+
+        if(PreferenceManager.getDefaultSharedPreferences(baseContext).getString(baseContext.getString(R.string.sync_frequency),baseContext.getString(R.string.time_to_sync_in_sec)).toLong() == 0.toLong())
+        {
+            // if sync time is equal zero - meaning OFF
+            main_button_sync.visibility = View.VISIBLE
+            main_button_sync.setOnClickListener { offline_mode_service.try_to_run_command() }
+        }
     }
 
     override fun onDestroy()

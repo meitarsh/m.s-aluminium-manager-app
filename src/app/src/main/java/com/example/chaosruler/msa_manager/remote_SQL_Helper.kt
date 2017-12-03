@@ -153,6 +153,111 @@ class remote_SQL_Helper()
             }
             return vector
         }
+
+
+
+
+
+        fun select_columns_from_db_with_where(db: String, table: String, colm_to_type:HashMap<String,String>, where_column:String?,where_compare:String?): Vector<HashMap<String, String>>
+        {
+            var vector: Vector<HashMap<String, String>> = Vector()
+            try
+            {
+                connection!!.isReadOnly
+            }
+            catch (e:SQLException)
+            {
+                if(e.errorCode==0)
+                {
+                    ReConnect()
+                }
+            }
+            catch (e:KotlinNullPointerException)
+            {
+                ReConnect()
+            }
+            if(!isvalid)
+                return vector
+            try
+            {
+                var lock = java.lang.Object()
+                AsyncTask.execute(
+                        {
+                            var rs:ResultSet?
+                            try
+                            {
+                                var qry:String = "USE [$db] SELECT "
+                                var first:Boolean = false
+                                for(column in colm_to_type)
+                                {
+                                    if(first)
+                                        qry+= " ,"
+                                    qry += "${column.key}"
+                                    first=true
+                                }
+
+                                qry+=" FROM [dbo].[$table]"
+                                if(where_column != null && where_compare!=null)
+                                {
+                                   var item:String = if(colm_to_type.getValue(where_column) == "text")
+                                       this.add_quotes(where_compare)
+                                   else
+                                       where_compare
+                                    qry+= "WHERE "
+                                    qry += "CONVERT(${colm_to_type.getValue(where_column)},$where_column) = $item"
+                                }
+                                rs = connection!!.createStatement().executeQuery(qry)
+                            }
+                            catch (e:SQLTimeoutException)
+                            {
+                                rs = null
+                            }
+                            catch (e:SQLException)
+                            {
+                                rs = null
+                            }
+                            catch (e: KotlinNullPointerException)
+                            {
+                                rs = null
+                            }
+                            if(rs == null)
+                                return@execute
+                            val columnCount = rs.metaData.columnCount
+                            val rs_meta = rs.metaData
+                            while (rs.next()) {
+                                var map: HashMap<String, String> = HashMap()
+                                for (i in 1..(columnCount)) {
+                                    var colum_name: String = rs_meta.getColumnName(i)
+                                    map[colum_name] = rs.getString(colum_name)
+                                }
+                                vector.addElement(map)
+                            }
+                            synchronized(lock)
+                            {
+                                lock.notify()
+                            }
+                        })
+                try
+                {
+                    synchronized(lock)
+                    {
+                        lock.wait()
+                    }
+                }
+                catch (e: InterruptedException){}
+
+            }
+            catch (e: SQLException)
+            {
+                e.printStackTrace()
+                exception = e
+
+            }
+            return vector
+        }
+
+
+
         /*
             subroutine to take parameters of an update query and template it into MSSQL acceptable query, excepts update parameters to be with quotes if neccesery
          */
@@ -328,7 +433,8 @@ class remote_SQL_Helper()
             }
             command += ") VALUES ("
 
-            for (item in vector) {
+            for (item in vector)
+            {
                 command += map[item]
                 if (item != vector.lastElement())
                     command += ","
@@ -374,5 +480,19 @@ class remote_SQL_Helper()
             }
             return command
         }
-    }
+
+        fun add_quotes(str:String):String = "'$str'"
+
+        fun nirmol_input(input:HashMap<String,String>,types:HashMap<String,String>)
+        {
+            for(column in input)
+            {
+                if(types[column.key]!=null && types[column.key] == "text")
+                {
+                    column.setValue(add_quotes(column.value))
+                }
+            }
+        }
+
+    } // companion end!
 }

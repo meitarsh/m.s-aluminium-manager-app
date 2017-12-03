@@ -36,4 +36,13 @@
         android:layout_marginBottom="114dp"
         android:background="@drawable/button_sample1"
         android:text="@string/main_btn_choose" />
+
+    <Button
+        android:id="@+id/main_button_sync"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/ic_sync_black_24dp"
+        android:visibility="gone" />
 </RelativeLayout>
