@@ -10,65 +10,68 @@ class remote_big_table_helper
 {
     companion object
     {
-        private var DATABASE_NAME:String = ""
-        private var TABLE_NAME:String = ""
+        public var DATABASE_NAME:String = ""
+        public var TABLE_NAME:String = ""
 
-        private var VENDOR_ID:String = ""
-        private var VENDOR_ID_TYPE:String = ""
+        public var VENDOR_ID:String = ""
+        public var VENDOR_ID_TYPE:String = ""
 
-        private var DATAREAID:String = ""
-        private var DATAAREAID_TYPE:String = ""
+        public var DATAREAID:String = ""
+        public var DATAAREAID_TYPE:String = ""
 
-        private var RECVERSION:String = ""
-        private var RECVERSION_TYPE:String = ""
+        public var RECVERSION:String = ""
+        public var RECVERSION_TYPE:String = ""
 
-        private var PROJECTS_ID:String = ""
-        private var PROJECTS_ID_TYPE:String = ""
+        public var RECID:String = ""
+        public var RECID_TYPE:String = ""
 
-        private var INVENTORY_ID:String = ""
-        private var INVENTORY_ID_TYPE:String = ""
+        public var PROJECTS_ID:String = ""
+        public var PROJECTS_ID_TYPE:String = ""
 
-        private var FLAT:String = ""
-        private var FLAT_TYPE:String = ""
+        public var INVENTORY_ID:String = ""
+        public var INVENTORY_ID_TYPE:String = ""
 
-        private var FLOOR:String = ""
-        private var FLOOR_TYPE:String = ""
+        public var FLAT:String = ""
+        public var FLAT_TYPE:String = ""
 
-        private var QTY:String = ""
-        private var QTY_TYPE:String = ""
+        public var FLOOR:String = ""
+        public var FLOOR_TYPE:String = ""
 
-        private var SALESPRICE:String = ""
-        private var SALESPRICE_TYPE:String = ""
+        public var QTY:String = ""
+        public var QTY_TYPE:String = ""
 
-        private var MYSTERY_ID:String = ""
-        private var MYSTERY_ID_TYPE:String = ""
+        public var SALESPRICE:String = ""
+        public var SALESPRICE_TYPE:String = ""
 
-        private var MILESTONEPERCENT:String = ""
-        private var MILESTONEPERCENT_TYPE:String = ""
+        public var OPR_ID:String = ""
+        public var OPR_ID_TYPE:String = ""
 
-        private var QTYFORACCOUNT:String = ""
-        private var QTYFORACCOUNT_TYPE:String = ""
+        public var MILESTONEPERCENT:String = ""
+        public var MILESTONEPERCENT_TYPE:String = ""
 
-        private var PERCENTFORACCOUNT:String = ""
-        private var PERCENTFORACCOUNT_TYPE:String = ""
+        public var QTYFORACCOUNT:String = ""
+        public var QTYFORACCOUNT_TYPE:String = ""
 
-        private var TOTALSUM:String = ""
-        private var TOTALSUM_TYPE:String = ""
+        public var PERCENTFORACCOUNT:String = ""
+        public var PERCENTFORACCOUNT_TYPE:String = ""
 
-        private var SALPROG:String = ""
-        private var SALPROG_TYPE:String = ""
+        public var TOTALSUM:String = ""
+        public var TOTALSUM_TYPE:String = ""
 
-        private var PRINTORDER:String = ""
-        private var PRINTORDER_TYPE:String = ""
+        public var SALPROG:String = ""
+        public var SALPROG_TYPE:String = ""
 
-        private var ITEMNUMBER:String = ""
-        private var ITEMNUMBER_TYPE:String = ""
+        public var PRINTORDER:String = ""
+        public var PRINTORDER_TYPE:String = ""
 
-        private var KOMANUM:String = ""
-        private var KOMANUM_TYPE:String = ""
+        public var ITEMNUMBER:String = ""
+        public var ITEMNUMBER_TYPE:String = ""
 
-        private var DIRANUM:String = ""
-        private var DIRANUM_TYPE:String = ""
+        public var KOMANUM:String = ""
+        public var KOMANUM_TYPE:String = ""
+
+        public var DIRANUM:String = ""
+        public var DIRANUM_TYPE:String = ""
 
         public fun init_variables(context: Context)
         {
@@ -82,6 +85,9 @@ class remote_big_table_helper
 
             RECVERSION = context.getString(R.string.TABLE_BIG_REC_VERSION)
             RECVERSION_TYPE = context.getString(R.string.TABLE_BIG_REC_VERSION_TYPE)
+
+            RECID = context.getString(R.string.TABLE_BIG_REC_ID)
+            RECID_TYPE = context.getString(R.string.TABLE_BIG_REC_ID_TYPE)
 
             PROJECTS_ID = context.getString(R.string.TABLE_BIG_PROJECTS_ID)
             PROJECTS_ID_TYPE = context.getString(R.string.TABLE_BIG_PROJECTS_ID_TYPE)
@@ -101,8 +107,8 @@ class remote_big_table_helper
             SALESPRICE = context.getString(R.string.TABLE_BIG_SALESPRICE)
             SALESPRICE_TYPE = context.getString(R.string.TABLE_BIG_SALESPRICE_TYPE)
 
-            MYSTERY_ID = context.getString(R.string.TABLE_BIG_OPR_ID)
-            MYSTERY_ID_TYPE = context.getString(R.string.TABLE_BIG_OPR_ID_TYPE)
+            OPR_ID = context.getString(R.string.TABLE_BIG_OPR_ID)
+            OPR_ID_TYPE = context.getString(R.string.TABLE_BIG_OPR_ID_TYPE)
 
             MILESTONEPERCENT = context.getString(R.string.TABLE_BIG_MILESTONEPERCENT)
             MILESTONEPERCENT_TYPE = context.getString(R.string.TABLE_BIG_MILESTONEPERCENT_TYPE)
@@ -145,7 +151,7 @@ class remote_big_table_helper
             map[FLOOR] = FLOOR_TYPE
             map[QTY] = QTY_TYPE
             map[SALESPRICE] = SALESPRICE_TYPE
-            map[MYSTERY_ID] = MYSTERY_ID_TYPE
+            map[OPR_ID] = OPR_ID_TYPE
             map[MILESTONEPERCENT] = MILESTONEPERCENT_TYPE
             map[QTYFORACCOUNT] = QTYFORACCOUNT_TYPE
             map[PERCENTFORACCOUNT] = PERCENTFORACCOUNT_TYPE

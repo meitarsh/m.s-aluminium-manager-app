@@ -3,6 +3,7 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
+import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.project_data
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
@@ -82,14 +83,31 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
         */
     fun server_data_to_vector():Vector<project_data>
     {
-        var server_data:Vector<HashMap<String,String>> = remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS))
+        var server_data: Vector<java.util.HashMap<String, String>> =
+        if(BuildConfig.DEBUG)
+        {
+            var typemap: java.util.HashMap<String, String> = remote_projects_table_helper.make_type_map()
+            remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS),typemap,context.getString(R.string.PROJECTS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+        }
+        else
+        {
+            remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS))
+        }
         var result_vector:Vector<project_data> = Vector()
         for (item in server_data)
         {
-            var project = project_data(item[remote_projects_table_helper.ID]!!,
-                    item[remote_projects_table_helper.NAME]!!, item[remote_projects_table_helper.DATAAREAID]!!,
-                    remote_SQL_Helper.getusername())
-            result_vector.add(project)
+            try {
+
+
+                var project = project_data(item[remote_projects_table_helper.ID]?: "",
+                        item[remote_projects_table_helper.NAME]?: "", item[remote_projects_table_helper.DATAAREAID]?: "",
+                        remote_SQL_Helper.getusername())
+                result_vector.add(project)
+            }
+            catch (e:Exception)
+            {
+
+            }
         }
         return result_vector
     }
@@ -105,7 +123,13 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
         val vector = get_rows(input_map)
         if(vector.size > 0)
         {
-            return project_data(vector.firstElement()[ID]!!, vector.firstElement()[NAME]!!, vector.firstElement()[DATAAREAID]!!, vector.firstElement()[USERNAME]!!)
+            try {
+                return project_data(vector.firstElement()[ID]!!, vector.firstElement()[NAME]!!, vector.firstElement()[DATAAREAID]!!, vector.firstElement()[USERNAME]!!)
+            }
+            catch (e:Exception)
+            {
+
+            }
         }
 
 
@@ -150,10 +174,10 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
         var everything_to_add:Vector<HashMap<String,String>> = Vector()
 
         var data: HashMap<String,String> = HashMap()
-        data[ID] = proj.getProjID()
-        data[NAME] = proj.get_project_name()
-        data[DATAAREAID] = proj.get_DATAREAID()
-        data[USERNAME] = proj.get_USERNAME()
+        data[ID] = proj.getProjID() ?: ""
+        data[NAME] = proj.get_project_name() ?: ""
+        data[DATAAREAID] = proj.get_DATAREAID() ?: ""
+        data[USERNAME] = proj.get_USERNAME() ?: ""
         everything_to_add.addElement(data)
         return add_data(everything_to_add)
     }
@@ -166,10 +190,10 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
             : Boolean {
 
         var change_to:HashMap<String,String> = HashMap()
-        change_to[NAME] = to.get_project_name()
-        change_to[DATAAREAID] = to.get_DATAREAID()
-        change_to[USERNAME] = to.get_USERNAME()
-        return update_data(ID, arrayOf(from.getProjID()),change_to)
+        change_to[NAME] = to.get_project_name() ?: ""
+        change_to[DATAAREAID] = to.get_DATAREAID() ?: ""
+        change_to[USERNAME] = to.get_USERNAME() ?: ""
+        return update_data(ID, arrayOf(from.getProjID()!!),change_to)
     }
 
     /*
@@ -180,7 +204,7 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
     {
         if ( get_project_by_project(project)==null )
             return false
-        return remove_from_db(ID, arrayOf(project.getProjID()))
+        return remove_from_db(ID, arrayOf(project.getProjID()!!))
 
     }
 

@@ -3,6 +3,7 @@ package com.example.chaosruler.msa_manager.services
 import android.content.Context
 import android.os.AsyncTask
 import android.preference.PreferenceManager
+import android.util.Log
 import com.example.chaosruler.msa_manager.R
 import java.sql.*
 
@@ -122,7 +123,13 @@ class remote_SQL_Helper()
                         var map: HashMap<String, String> = HashMap()
                         for (i in 1..(columnCount)) {
                             var colum_name: String = rs_meta.getColumnName(i)
-                            map[colum_name] = rs.getString(colum_name)
+                            try {
+                                map[colum_name] = rs.getString(colum_name)
+                            }
+                            catch (e:IllegalStateException)
+                            {
+                                map[colum_name] = ""
+                            }
                         }
                         vector.addElement(map)
                     }
@@ -188,14 +195,14 @@ class remote_SQL_Helper()
                                 {
                                     if(first)
                                         qry+= " ,"
-                                    qry += "${column.key}"
+                                    qry += "[${column.key}]"
                                     first=true
                                 }
 
-                                qry+=" FROM [dbo].[$table]"
+                                qry+=" FROM [dbo].[$table] "
                                 if(where_column != null && where_compare!=null)
                                 {
-                                   var item:String = if(colm_to_type.getValue(where_column) == "text")
+                                   var item:String = if(colm_to_type.getValue(where_column) == "text" || colm_to_type.getValue(where_column) == "varchar")
                                        add_quotes(where_compare)
                                    else
                                        where_compare
@@ -224,7 +231,13 @@ class remote_SQL_Helper()
                                 var map: HashMap<String, String> = HashMap()
                                 for (i in 1..(columnCount)) {
                                     var colum_name: String = rs_meta.getColumnName(i)
-                                    map[colum_name] = rs.getString(colum_name)
+                                    try {
+                                        map[colum_name] = rs.getString(colum_name)
+                                    }
+                                    catch (e:IllegalStateException)
+                                    {
+                                        map[colum_name] = ""
+                                    }
                                 }
                                 vector.addElement(map)
                             }
@@ -483,7 +496,7 @@ class remote_SQL_Helper()
         {
             for(column in input)
             {
-                if(types[column.key]!=null && types[column.key] == "text")
+                if(types[column.key]!=null && (types[column.key] == "text" || types[column.key] == "varchar" ))
                 {
                     column.setValue(add_quotes(column.value))
                 }

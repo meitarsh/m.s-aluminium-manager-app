@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Service strings -->
+    <string name="service_name">offline_mode_service</string>
+    <string name="title_activity_settings">Settings</string>
+
+
+    <!-- Strings related to Settings -->
+    <string name="settings_str">הגדרות</string>
+    <string name="restart_activity">הגדרות אלו ייחלו רק מיד לאחר מעבר למסך אחר</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">כללי</string>
+
+    <string name="pref_style_txt">סטייל האפליקציה</string>
+    <string name="pref_style_summary">שינוי כאן יגרור הפעלה מחדש של האפליקציה</string>
+    <string name="warning_need_restart">ההגדרות יוטמעו לחלוטין לאחר פתיחה מחדש של האפליקציה</string>
+    <string-array name="style_entries">
+        <item>חשוך</item>
+        <item>מואר</item>
+        <item>CodeFreak</item>
+    </string-array>
+
+    <string-array name="style_values">
+        <item>Dark</item>
+        <item>Light</item>
+        <item>CodeFreak</item>
+    </string-array>
+
+    <string name="pref_title_display_name">שם המשתמש</string>
+    <string name="pref_display_name_summary">יוצג כאשר אין שם משתמש מוגדר למשתמש מצד השרת</string>
+    <string name="pref_default_display_name">אבי כהן</string>
+
+
+
+    <!-- settings for Data & Sync -->
+    <string name="pref_header_data_sync">נתונים</string>
+
+    <string name="pref_title_sync_frequency">קצב הרענון</string>
+    <string name="pref_freq_summary">קצב הסנכרון לשרת</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>ללא</item>
+        <item>15 שניות</item>
+        <item>5 דקות</item>
+        <item>15 דקות</item>
+        <item>30 דקות</item>
+        <item>שעה</item>
+        <item>שעתיים</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>0</item>
+        <item>15</item>
+        <item>300</item>
+        <item>900</item>
+        <item>1800</item>
+        <item>3600</item>
+        <item>7200</item>
+    </string-array>
+
+    <string name="development_title">הגדרות פיתוח</string>
+    <string name="pref_IP_address">כתובת הIP</string>
+    <string name="pref_ip_summary">כתובת הIP לתקשורת בין השרת ללקוח.</string>
+
+    <!-- settings for Notifications -->
+    <string name="pref_header_notifications">התראות</string>
+
+    <string name="pref_txt_notification">התראות דלוקות</string>
+    <string name="pref_txt_notification_summary">התראות ישלחו בכל פעם שיהיה סנכרון מוצלח של מסד הנתונים</string>
+
+
+
+    <string name="delete_users">מחק את טבלת המשתמשים</string>
+    <string name="delete_users_warning">דורש הפעלה מחדש של האפליקציה</string>
+    <string name="delete_offline">מחק את טבלת הoffline mode</string>
+    <string name="GUI_only_title">קריאות האפליקציה יהיו ללא צד שרת</string>
+    <string name="GUI_only_summary">במצב הזה נוכל לזרום בממשק משתמש ללא שימוש בתקשורת האינטרנט</string>
+
+    <string name="notification_sync_successfuk">סנכרון בוצע בהצלחה! </string>
+    <string name="notification_title">מ.ש אלומיניום</string>
+
+    <string name="save_data_local">לשמור העתק של הנתונים על המכשיר?</string>
+
+
+
+</resources>

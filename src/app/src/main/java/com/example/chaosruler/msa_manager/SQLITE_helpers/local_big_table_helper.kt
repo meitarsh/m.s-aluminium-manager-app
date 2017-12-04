@@ -3,8 +3,12 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
+import com.example.chaosruler.msa_manager.BuildConfig
+import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
 import com.example.chaosruler.msa_manager.services.local_SQL_Helper
+import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -12,36 +16,35 @@ import kotlin.collections.HashMap
  * Created by chaosruler on 12/3/17.
  */
 class local_big_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME)
-,null,context.getString(R.string.LOCAL_BIG_TABLE_VERSION).toInt(),context.getString(R.string.LOCAL_BIG_TABLE_NAME))
-{
+,null,context.getString(R.string.LOCAL_BIG_TABLE_VERSION).toInt(),context.getString(R.string.LOCAL_BIG_TABLE_NAME)) {
     private var ACCOUNT_NUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_ACCOUNTNUM)
-    private var DATAARAEID:String = context.getString(R.string.LOCAL_BIG_COLUMN_DATAARAEID)
-    private var RECVERSION:String = context.getString(R.string.LOCAL_BIG_COLUMN_RECVERSION)
-    private var RECID:String = context.getString(R.string.LOCAL_BIG_COLUMN_RECID)
-    private var PROJID:String = context.getString(R.string.LOCAL_BIG_COLUMN_PROJID)
-    private var ITEMID:String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMID)
-    private var FLAT:String = context.getString(R.string.LOCAL_BIG_COLUMN_FLAT)
-    private var FLOOR:String = context.getString(R.string.LOCAL_BIG_COLUMN_FLOOR)
-    private var QTY:String = context.getString(R.string.LOCAL_BIG_COLUMN_QTY)
-    private var SALESPRICE:String = context.getString(R.string.LOCAL_BIG_COLUMN_SALESPRICE)
-    private var OPR_ID:String = context.getString(R.string.LOCAL_BIG_COLUMN_OPRID)
-    private var MILESTONEPERCENTAGE:String = context.getString(R.string.LOCAL_BIG_COLUMN_MILESTONEPRECENT)
-    private var QTYFORACCOUNT:String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYFORACCOUNT)
-    private var PERCENTFORACCOUNT:String = context.getString(R.string.LOCAL_BIG_COLUMN_PERCENTFORACCOUNT)
-    private var TOTAL_SUM:String = context.getString(R.string.LOCAL_BIG_COLUMN_TOTALSUM)
-    private var SALPROG:String = context.getString(R.string.LOCAL_BIG_COLUMN_SALPROG)
-    private var PRINTORDER:String = context.getString(R.string.LOCAL_BIG_COLUMN_printorder)
-    private var ITEMNUMBER:String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMNUMBER)
-    private var KOMANUM:String = context.getString(R.string.LOCAL_BIG_COLUMN_KOMANUM)
-    private var DIRANUM:String = context.getString(R.string.LOCAL_BIG_COLUMN_DIRANUM)
+    private var DATAARAEID: String = context.getString(R.string.LOCAL_BIG_COLUMN_DATAARAEID)
+    private var RECVERSION: String = context.getString(R.string.LOCAL_BIG_COLUMN_RECVERSION)
+    private var RECID: String = context.getString(R.string.LOCAL_BIG_COLUMN_RECID)
+    private var PROJID: String = context.getString(R.string.LOCAL_BIG_COLUMN_PROJID)
+    private var ITEMID: String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMID)
+    private var FLAT: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLAT)
+    private var FLOOR: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLOOR)
+    private var QTY: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTY)
+    private var SALESPRICE: String = context.getString(R.string.LOCAL_BIG_COLUMN_SALESPRICE)
+    private var OPR_ID: String = context.getString(R.string.LOCAL_BIG_COLUMN_OPRID)
+    private var MILESTONEPERCENTAGE: String = context.getString(R.string.LOCAL_BIG_COLUMN_MILESTONEPRECENT)
+    private var QTYFORACCOUNT: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYFORACCOUNT)
+    private var PERCENTFORACCOUNT: String = context.getString(R.string.LOCAL_BIG_COLUMN_PERCENTFORACCOUNT)
+    private var TOTAL_SUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_TOTALSUM)
+    private var SALPROG: String = context.getString(R.string.LOCAL_BIG_COLUMN_SALPROG)
+    private var PRINTORDER: String = context.getString(R.string.LOCAL_BIG_COLUMN_printorder)
+    private var ITEMNUMBER: String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMNUMBER)
+    private var KOMANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_KOMANUM)
+    private var DIRANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_DIRANUM)
 
-    private val USER:String = context.getString(R.string.LOCAL_BIG_COLUMN_USERNAME)
+    private val USER: String = context.getString(R.string.LOCAL_BIG_COLUMN_USERNAME)
+
     /*
     MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
     SQL class
  */
-    init
-    {
+    init {
         var vector: Vector<String> = Vector()
         vector.add(ACCOUNT_NUM)
         vector.add(DATAARAEID)
@@ -66,13 +69,13 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         vector.add(USER)
         init_vector_of_variables(vector)
     }
+
     /*
            provides info for the abstracted SQL class
            on what the table schema is for creation
         */
-    override fun onCreate(db: SQLiteDatabase)
-    {
-        var map:HashMap<String,String> = HashMap()
+    override fun onCreate(db: SQLiteDatabase) {
+        var map: HashMap<String, String> = HashMap()
         map[ACCOUNT_NUM] = "text"
         map[DATAARAEID] = "text"
         map[RECVERSION] = "text"
@@ -93,11 +96,228 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         map[ITEMNUMBER] = "real"
         map[KOMANUM] = "real"
         map[DIRANUM] = "real"
-        var foreign:HashMap<String,String> = HashMap()
-        foreign[ACCOUNT_NUM] = context.getString(R.string.LOCAL_VENDORS_TABLE_NAME)+"("+context.getString(R.string.LOCAL_VENDORS_COLUMN_ID)+")"
-        foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME)+"("+context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID)+")"
-        foreign[OPR_ID] = context.getString(R.string.LOCAL_OPR_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_OPR_COLUMN_ID)+")"
+        var foreign: HashMap<String, String> = HashMap()
+        foreign[ACCOUNT_NUM] = context.getString(R.string.LOCAL_VENDORS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_VENDORS_COLUMN_ID) + ")"
+        foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID) + ")"
+        foreign[OPR_ID] = context.getString(R.string.LOCAL_OPR_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_OPR_COLUMN_ID) + ")"
         foreign[PROJID] = context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_PROJECTS_COLUMN_ID) + ")"
-        createDB(db,map,foreign)
+        createDB(db, map, foreign)
+    }
+
+    /*
+         adds all opr, updates, inserts... whatever
+      */
+    fun sync_db() {
+        var server_vec = server_data_to_vector()
+        for (item in server_vec) {
+            add_big(item)
+        }
+    }
+
+    /*
+        converts DB to vector of opr
+     */
+    fun get_local_DB(): Vector<big_table_data> {
+        var vector: Vector<big_table_data> = Vector()
+
+        var all_db: Vector<java.util.HashMap<String, String>> = get_db()
+        for (item in all_db) {
+
+            try {
+
+                var data: big_table_data = big_table_data(item[ACCOUNT_NUM]!!,
+                        item[DATAARAEID]!!, item[RECVERSION]!!,
+                        item[RECID]!!, item[PROJID]!!,
+                        item[ITEMID]!!, item[FLAT]!!,
+                        item[FLOOR]!!, item[QTY]!!,
+                        item[SALESPRICE]!!, item[OPR_ID]!!,
+                        item[MILESTONEPERCENTAGE]!!, item[QTYFORACCOUNT]!!,
+                        item[PERCENTFORACCOUNT]!!, item[TOTAL_SUM]!!,
+                        item[SALPROG]!!, item[PRINTORDER]!!,
+                        item[ITEMNUMBER]!!, item[KOMANUM]!!,
+                        item[DIRANUM]!!, item[USER]!!)
+                vector.addElement(data)
+            } catch (e: Exception) {
+
+            }
+        }
+        return vector
+    }
+
+
+    /*
+           subroutine to convert server data to vector of opr
+        */
+    fun server_data_to_vector(): Vector<big_table_data>
+    {
+
+        var server_data: Vector<java.util.HashMap<String, String>> =
+        if(BuildConfig.DEBUG)
+        {
+            var typemap:HashMap<String,String> = remote_big_table_helper.make_type_map()
+            remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+        }
+        else
+        {
+            remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
+        }
+        var result_vector: Vector<big_table_data> = Vector()
+        for(it in server_data)
+        {
+            var data:big_table_data =  big_table_data(it[remote_big_table_helper.VENDOR_ID]?: "",
+                    it[remote_big_table_helper.DATAREAID]?: "", it[remote_big_table_helper.RECVERSION]?: "",
+                    it[remote_big_table_helper.RECID]?: "", it[remote_big_table_helper.PROJECTS_ID]?: "",
+                    it[remote_big_table_helper.INVENTORY_ID]?: "", it[remote_big_table_helper.FLAT]?: "",
+                    it[remote_big_table_helper.FLOOR]?: "", it[remote_big_table_helper.QTY]?: "",
+                    it[remote_big_table_helper.SALESPRICE]?: "", it[remote_big_table_helper.OPR_ID]?: "",
+                    it[remote_big_table_helper.MILESTONEPERCENT]?: "", it[remote_big_table_helper.QTYFORACCOUNT]?: "",
+                    it[remote_big_table_helper.PERCENTFORACCOUNT]?: "", it[remote_big_table_helper.TOTALSUM]?: "",
+                    it[remote_big_table_helper.SALPROG]?: "", it[remote_big_table_helper.PRINTORDER]?: "",
+                    it[remote_big_table_helper.ITEMNUMBER]?: "", it[remote_big_table_helper.KOMANUM]?: "",
+                    it[remote_big_table_helper.DIRANUM]?: "", remote_SQL_Helper.getusername())
+                result_vector.addElement(data)
+        }
+        return result_vector
+    }
+
+    /*
+           subroutine that is in charge of getting the opr class
+           by query
+        */
+    fun get_big_by_big(big_table_data: big_table_data) // subroutine to get a opr object
+            : big_table_data? {
+        var input_map = java.util.HashMap<String, String>()
+        input_map[ACCOUNT_NUM] = "'${big_table_data.get_VENDOR_ID()}'"
+        input_map[PROJID] = "'${big_table_data.get_PROJECT_ID()}'"
+        input_map[ITEMID] = "'${big_table_data.get_INVENTORY_ID()}'"
+        input_map[OPR_ID] = "'${big_table_data.get_OPRID()}'"
+        val vector = get_rows(input_map)
+        if (vector.size > 0) {
+            try {
+                return big_table_data(vector.firstElement()[ACCOUNT_NUM]!!,
+                        vector.firstElement()[DATAARAEID]!!, vector.firstElement()[RECVERSION]!!,
+                        vector.firstElement()[RECID]!!, vector.firstElement()[PROJID]!!,
+                        vector.firstElement()[ITEMID]!!, vector.firstElement()[FLAT]!!,
+                        vector.firstElement()[FLOOR]!!, vector.firstElement()[QTY]!!,
+                        vector.firstElement()[SALESPRICE]!!, vector.firstElement()[OPR_ID]!!,
+                        vector.firstElement()[MILESTONEPERCENTAGE]!!, vector.firstElement()[QTYFORACCOUNT]!!,
+                        vector.firstElement()[PERCENTFORACCOUNT]!!, vector.firstElement()[TOTAL_SUM]!!,
+                        vector.firstElement()[SALPROG]!!, vector.firstElement()[PRINTORDER]!!,
+                        vector.firstElement()[ITEMNUMBER]!!, vector.firstElement()[KOMANUM]!!,
+                        vector.firstElement()[DIRANUM]!!, vector.firstElement()[USER]!!)
+
+            } catch (e: Exception) {
+
+            }
+        }
+
+
+
+
+        return null
+    }
+
+
+    /*
+      add opr mechanism
+      if opr is invalid, forget about it
+      if opr is valid, and it exists, update it
+      if its a new opr, add a new opr to table
+   */
+    fun add_big(big_table_data: big_table_data) // subroutine that manages the opr adding operation to the database
+            : Boolean {
+        return if (check_big(big_table_data)) // checks if opr exists in database
+            update_big(big_table_data, big_table_data.copy()) // if it does, lets update
+        else // if it doesn't lets create a new entry for the opr
+            insert_big(big_table_data)
+
+    }
+
+    /*
+          checks if opr exists, query is not that smart, gets an ENTIRE table and than checks
+          if the opr is there
+
+          // on update
+          will select USERNAME only
+       */
+    fun check_big(big_table_data: big_table_data) // subroutine to check if opr exists on the database
+            : Boolean {
+        val big: big_table_data? = get_big_by_big(big_table_data)
+        return big != null
+    }
+
+    /*
+        subroutine in charge of feeding schema and database information to SQL
+        abstract implentation on insert queries
+     */
+    private fun insert_big(big_table_data: big_table_data): Boolean // subroutine to insert a opr to the database
+    {
+
+        var everything_to_add: Vector<java.util.HashMap<String, String>> = Vector()
+
+        var data: java.util.HashMap<String, String> = java.util.HashMap()
+        data[DATAARAEID] = big_table_data.get_DATAAREAID() ?: ""
+        data[RECVERSION] = big_table_data.get_RECVERSION() ?: ""
+        data[RECID] = big_table_data.get_RECID() ?: ""
+        data[FLAT] = big_table_data.get_FLAT() ?: ""
+        data[FLOOR] = big_table_data.get_FLOOR() ?: ""
+        data[QTY] = big_table_data.get_QTY() ?: ""
+        data[SALESPRICE] = big_table_data.get_SALESPRICE() ?: ""
+        data[MILESTONEPERCENTAGE] = big_table_data.get_MILESTONEPERCENT() ?: ""
+        data[QTYFORACCOUNT] = big_table_data.get_QTYFORACCOUNT() ?: ""
+        data[PERCENTFORACCOUNT] = big_table_data.get_PERCENTFORACCOUNT() ?: ""
+        data[TOTAL_SUM] = big_table_data.get_TOTALSUM() ?: ""
+        data[SALPROG] = big_table_data.get_SALPROG() ?: ""
+        data[PRINTORDER] = big_table_data.get_PRINTORDER() ?: ""
+        data[ITEMNUMBER] = big_table_data.get_ITEMNUMBER() ?: ""
+        data[KOMANUM] = big_table_data.get_KOMANUM() ?: ""
+        data[DIRANUM] = big_table_data.get_DIRANUM() ?: ""
+        data[USER] = big_table_data.get_USERNAME() ?: ""
+        data[ACCOUNT_NUM] = big_table_data.get_VENDOR_ID() ?: ""
+        data[PROJID] = big_table_data.get_PROJECT_ID() ?: ""
+        data[ITEMID] = big_table_data.get_INVENTORY_ID() ?: ""
+        data[OPR_ID] = big_table_data.get_OPRID() ?: ""
+        everything_to_add.addElement(data)
+        return add_data(everything_to_add)
+    }
+
+    /*
+      subroutine in charge of feeding information and database information to
+      SQL abstraction on update queries
+   */
+    fun update_big(from: big_table_data, to: big_table_data) // subroutine to update data of a opr that exists on the database
+            : Boolean {
+
+        var change_to: java.util.HashMap<String, String> = java.util.HashMap()
+        change_to[DATAARAEID] = to.get_DATAAREAID() ?: ""
+        change_to[RECVERSION] = to.get_RECVERSION() ?: ""
+        change_to[RECID] = to.get_RECID() ?: ""
+        change_to[FLAT] = to.get_FLAT() ?: ""
+        change_to[FLOOR] = to.get_FLOOR() ?: ""
+        change_to[QTY] = to.get_QTY() ?: ""
+        change_to[SALESPRICE] = to.get_SALESPRICE() ?: ""
+        change_to[MILESTONEPERCENTAGE] = to.get_MILESTONEPERCENT() ?: ""
+        change_to[QTYFORACCOUNT] = to.get_QTYFORACCOUNT() ?: ""
+        change_to[PERCENTFORACCOUNT] = to.get_PERCENTFORACCOUNT() ?: ""
+        change_to[TOTAL_SUM] = to.get_TOTALSUM() ?: ""
+        change_to[SALPROG] = to.get_SALPROG() ?: ""
+        change_to[PRINTORDER] = to.get_PRINTORDER() ?: ""
+        change_to[ITEMNUMBER] = to.get_ITEMNUMBER() ?: ""
+        change_to[KOMANUM] = to.get_KOMANUM() ?: ""
+        change_to[DIRANUM] = to.get_DIRANUM() ?: ""
+        change_to[USER] = to.get_USERNAME() ?: ""
+        return update_data(arrayOf(ACCOUNT_NUM, PROJID, ITEMID, OPR_ID), arrayOf(from.get_VENDOR_ID()!!, from.get_PROJECT_ID()!!, from.get_INVENTORY_ID()!!, from.get_OPRID()!!), change_to)
+    }
+
+    /*
+        subroutine in charge of feeding information and database information to
+        SQL abstraction on delete queries
+     */
+    fun delete_big(big_table_data: big_table_data): Boolean // subroutine to delete a opr from the database (local)
+    {
+        if (get_big_by_big(big_table_data) == null)
+            return false
+        return remove_from_db(arrayOf(ACCOUNT_NUM, PROJID, ITEMID, OPR_ID), arrayOf(big_table_data.get_VENDOR_ID()!!, big_table_data.get_PROJECT_ID()!!, big_table_data.get_INVENTORY_ID()!!, big_table_data.get_OPRID()!!))
+
     }
 }

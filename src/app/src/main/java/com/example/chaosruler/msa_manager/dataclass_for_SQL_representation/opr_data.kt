@@ -1,15 +1,15 @@
 package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 
 
-class opr_data(private var ID:String,private var NAME:String,private var DATAAREAID:String,private var USERNAME:String)
+class opr_data(private var ID:String?,private var NAME:String?,private var DATAAREAID:String?,private var USERNAME:String?)
 {
-    fun get_oprid() = this.ID
+    fun get_oprid():String? = this.ID
 
-    fun get_opr_name() = this.NAME
+    fun get_opr_name():String? = this.NAME
 
-    fun get_DATAREAID() = this.DATAAREAID
+    fun get_DATAREAID():String? = this.DATAAREAID
 
-    fun get_USERNAME() = this.USERNAME
+    fun get_USERNAME():String? = this.USERNAME
 
     fun set_oprid(itemid:String)
     {

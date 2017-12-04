@@ -25,7 +25,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     {
         vector_of_variables = vector
         try {
-            this.onCreate(this.writableDatabase)
+            this.onCreate(this.writableDatabase) // ensures this is called, android by itself will only do it if it needs to read/write the database
         }
         catch (e:Exception){}
     }
@@ -218,6 +218,28 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         return result
     }
 
+    /*
+       subroutine that templates update query
+    */
+    protected fun update_data(where_clause: Array<String>, equal_to: Array<String>, update_to: HashMap<String,String>):Boolean
+    {
+        var result:Boolean = false
+        var db:SQLiteDatabase = this.writableDatabase
+        val values = ContentValues()
+        for(item in update_to)
+            values.put(item.key,item.value)
+        var where_str = ""
+        for(item in where_clause)
+        {
+            where_str += item + "+? "
+            if(item != where_clause.last())
+                where_str+=" AND "
+        }
+        if(db.update(TABLE_NAME,values,where_str, equal_to)>0)
+            result = true
+        db.close()
+        return result
+    }
     /*
         subroutine to look for and get a row from the database that accepts certain conditions (ALL)
      */

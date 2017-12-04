@@ -3,6 +3,7 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
+import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.opr_data
@@ -79,14 +80,38 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
         */
     fun server_data_to_vector():Vector<opr_data>
     {
-        var server_data:Vector<HashMap<String,String>> = remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_OPR))
+        var server_data: Vector<java.util.HashMap<String, String>> =
+        if(BuildConfig.DEBUG)
+        {
+            var typemap: java.util.HashMap<String, String> = remote_opr_table_helper.make_type_map()
+            remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_OPR),typemap,context.getString(R.string.OPR_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+        }
+        else
+        {
+            remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_OPR))
+        }
         var result_vector:Vector<opr_data> = Vector()
         for (item in server_data)
         {
-            var opr = opr_data(item[remote_opr_table_helper.ID]!!,
-                    item[remote_opr_table_helper.NAME]!!, item[remote_opr_table_helper.DATAAREAID]!!,
-                    remote_SQL_Helper.getusername())
-            result_vector.add(opr)
+            try
+            {
+                try {
+
+
+                    var opr = opr_data(item[remote_opr_table_helper.ID]?: "",
+                            item[remote_opr_table_helper.NAME]?: "", item[remote_opr_table_helper.DATAAREAID]?: "",
+                            remote_SQL_Helper.getusername())
+                    result_vector.add(opr)
+                }
+                catch (e:Exception)
+                {
+
+                }
+            }
+            catch (e:Exception)
+            {
+
+            }
         }
         return result_vector
     }
@@ -147,10 +172,10 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
         var everything_to_add:Vector<HashMap<String,String>> = Vector()
 
         var data: HashMap<String,String> = HashMap()
-        data[ID] = opr_data.get_oprid()
-        data[NAME] = opr_data.get_opr_name()
-        data[DATAARAEID] = opr_data.get_DATAREAID()
-        data[USER] = opr_data.get_USERNAME()
+        data[ID] = opr_data.get_oprid() ?: ""
+        data[NAME] = opr_data.get_opr_name() ?: ""
+        data[DATAARAEID] = opr_data.get_DATAREAID() ?: ""
+        data[USER] = opr_data.get_USERNAME() ?: ""
         everything_to_add.addElement(data)
         return add_data(everything_to_add)
     }
@@ -163,10 +188,10 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
             : Boolean {
 
         var change_to:HashMap<String,String> = HashMap()
-        change_to[NAME] = to.get_opr_name()
-        change_to[DATAARAEID] = to.get_DATAREAID()
-        change_to[USER] = to.get_USERNAME()
-        return update_data(ID, arrayOf(from.get_oprid()),change_to)
+        change_to[NAME] = to.get_opr_name() ?: ""
+        change_to[DATAARAEID] = to.get_DATAREAID() ?: ""
+        change_to[USER] = to.get_USERNAME() ?: ""
+        return update_data(ID!!, arrayOf(from.get_oprid()!!),change_to)
     }
 
     /*
@@ -177,7 +202,7 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
     {
         if ( get_opr_by_opr(opr_data)==null )
             return false
-        return remove_from_db(ID, arrayOf(opr_data.get_oprid()))
+        return remove_from_db(ID, arrayOf(opr_data.get_oprid()!!))
 
     }
 

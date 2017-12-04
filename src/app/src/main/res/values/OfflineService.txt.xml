@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="time_to_sync_in_sec">5</string>
+    <string name="millis_in_sec">1000</string> <!-- should be 1000 -->
+    <string name="successfull_operation">הפעולה בוצעה בהצלחה</string>
+    <string name="notificatoin_op_id">קוד הפעולה :</string>
+
+    <string name="sync_btn_text">סנכרן עכשיו</string>
+
+
+    <!-- strings passed as keys between activities -->
+    <string name="username">username</string>
+    <string name="password">password</string>
+
+
+</resources>

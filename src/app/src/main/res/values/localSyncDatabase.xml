@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- SYNC LOCAL SQL DATABASE STRINGS -->
+    <string name="LOCAL_SYNC_DATABASE_NAME">local_sync_db.db</string>
+    <!-- Local Projects TABLE strings -->
+    <string name="LOCAL_PROJECTS_TABLE_NAME">projects</string>
+    <string name="LOCAL_PROJECTS_TABLE_VERSION">1</string>
+    <string name="LOCAL_PROJECTS_COLUMN_ID">projid</string>
+    <string name="LOCAL_PROJECTS_COLUMN_NAME">name</string>
+    <string name="LOCAL_PROJECTS_COLUMN_DATAARAEID">dataaraeid</string>
+    <string name="LOCAL_PROJECTS_COLUMN_USERNAME">username</string>
+
+    <!-- Local vendors table strings -->
+    <string name="LOCAL_VENDORS_TABLE_NAME">vendors</string>
+    <string name="LOCAL_VENDORS_TABLE_VERSION">1</string>
+    <string name="LOCAL_VENDORS_COLUMN_ID">accountnum</string>
+    <string name="LOCAL_VENDORS_COLUMN_NAME">name</string>
+    <string name="LOCAL_VENDORS_COLUMN_DATAARAEID">dataaraeid</string>
+    <string name="LOCAL_VENDORS_COLUMN_USERNAME">username</string>
+
+    <!-- Local opr table strings -->
+    <string name="LOCAL_OPR_TABLE_NAME">OprRouteTable</string>
+    <string name="LOCAL_OPR_TABLE_VERSION">1</string>
+    <string name="LOCAL_OPR_COLUMN_ID">oprid</string>
+    <string name="LOCAL_OPR_COLUMN_NAME">name</string>
+    <string name="LOCAL_OPR_COLUMN_DATAARAEID">dataaraeid</string>
+    <string name="LOCAL_OPR_COLUMN_USERNAME">username</string>
+
+    <!-- Local inventory table strings -->
+    <string name="LOCAL_INVENTORY_TABLE_NAME">inventory</string>
+    <string name="LOCAL_INVENTORY_TABLE_VERSION">1</string>
+    <string name="LOCAL_INVENTORY_COLUMN_ID">itemid</string>
+    <string name="LOCAL_INVENTORY_COLUMN_NAME">name</string>
+    <string name="LOCAL_INVENTORY_COLUMN_DATAARAEID">dataaraeid</string>
+    <string name="LOCAL_INVENTORY_COLUMN_USERNAME">username</string>
+
+    <!-- Local big table strings -->
+    <string name="LOCAL_BIG_TABLE_NAME">big_table</string>
+    <string name="LOCAL_BIG_TABLE_VERSION">1</string>
+    <string name="LOCAL_BIG_COLUMN_ACCOUNTNUM">accountnum</string>
+    <string name="LOCAL_BIG_COLUMN_DATAARAEID">dataaraeid</string>
+    <string name="LOCAL_BIG_COLUMN_RECVERSION">recversion</string>
+    <string name="LOCAL_BIG_COLUMN_RECID">recid</string>
+    <string name="LOCAL_BIG_COLUMN_PROJID">projid</string>
+    <string name="LOCAL_BIG_COLUMN_ITEMID">itemid</string>
+    <string name="LOCAL_BIG_COLUMN_FLAT">flat</string>
+    <string name="LOCAL_BIG_COLUMN_FLOOR">floor</string>
+    <string name="LOCAL_BIG_COLUMN_QTY">qty</string>
+    <string name="LOCAL_BIG_COLUMN_SALESPRICE">salesprice</string>
+    <string name="LOCAL_BIG_COLUMN_OPRID">oprid</string>
+    <string name="LOCAL_BIG_COLUMN_MILESTONEPRECENT">milestoneprecent</string>
+    <string name="LOCAL_BIG_COLUMN_QTYFORACCOUNT">qtyforaccount</string>
+    <string name="LOCAL_BIG_COLUMN_PERCENTFORACCOUNT">percentdialog</string>
+    <string name="LOCAL_BIG_COLUMN_TOTALSUM">totalsum</string>
+    <string name="LOCAL_BIG_COLUMN_SALPROG">salprog</string>
+    <string name="LOCAL_BIG_COLUMN_printorder">printorder</string>
+    <string name="LOCAL_BIG_COLUMN_ITEMNUMBER">itemnumber</string>
+    <string name="LOCAL_BIG_COLUMN_KOMANUM">komanum</string>
+    <string name="LOCAL_BIG_COLUMN_DIRANUM">diranum</string>
+    <string name="LOCAL_BIG_COLUMN_USERNAME">username</string>
+</resources>

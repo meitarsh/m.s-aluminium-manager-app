@@ -1,15 +1,15 @@
 package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 
 
-class project_data(private var projectID:String,private var project_name:String,private var DATAAREAID:String,private var USERNAME:String)
+class project_data(private var projectID:String?,private var project_name:String?,private var DATAAREAID:String?,private var USERNAME:String?)
 {
-    fun getProjID() = this.projectID
+    fun getProjID():String? = this.projectID
 
-    fun get_project_name() = this.project_name
+    fun get_project_name():String? = this.project_name
 
-    fun get_DATAREAID() = this.DATAAREAID
+    fun get_DATAREAID():String? = this.DATAAREAID
 
-    fun get_USERNAME() = this.USERNAME
+    fun get_USERNAME():String? = this.USERNAME
 
     fun set_projid(new_projid:String)
     {

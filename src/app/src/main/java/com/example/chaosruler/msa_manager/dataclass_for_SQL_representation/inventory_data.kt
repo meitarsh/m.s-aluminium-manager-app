@@ -1,15 +1,15 @@
 package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 
 
-class inventory_data(private var ID:String,private var NAME:String,private var DATAAREAID:String,private var USERNAME:String)
+class inventory_data(private var ID:String?,private var NAME:String?,private var DATAAREAID:String?,private var USERNAME:String?)
 {
-    fun get_itemid() = this.ID
+    fun get_itemid():String? = this.ID
 
-    fun get_itemname() = this.NAME
+    fun get_itemname():String? = this.NAME
 
-    fun get_DATAREAID() = this.DATAAREAID
+    fun get_DATAREAID():String? = this.DATAAREAID
 
-    fun get_USERNAME() = this.USERNAME
+    fun get_USERNAME():String? = this.USERNAME
 
     fun set_itemid(itemid:String)
     {

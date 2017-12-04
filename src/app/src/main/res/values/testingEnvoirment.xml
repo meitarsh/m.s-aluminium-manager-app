@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Strings related to Firebase login service -->
+    <string name="gmail_suffix">\@gmail.com</string>
+
+    <!-- Strings related to JUnit testing envoirment -->
+    <string name="testing_uid">109876543210</string>
+    <string name="testing_email">dummy@test.com</string>
+    <string name="testing_username">dummy</string>
+    <string name="testing_password">1234</string>
+
+</resources>

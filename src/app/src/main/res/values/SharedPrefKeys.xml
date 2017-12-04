@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="local_or_not">local_or_not</string>
+    <string name="sync_frequency">sync_frequency</string>
+    <string name="IP">IP</string>
+    <string name="delete_users_key">delete_users</string>
+    <string name="delete_offline_key">delete_offline</string>
+    <string name="notification">notification</string>
+    <string name="style">style</string>
+    <string name="username_key">username</string>
+    <string name="gui_mode_key">gui_mode_key</string>
+
+</resources>

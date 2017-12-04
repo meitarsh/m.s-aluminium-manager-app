@@ -37,7 +37,7 @@ class remote_inventory_table_helper
             NAME_TYPE = context.getString(R.string.INVENTORY_NAME_TYPE)
 
             DATAAREAID = context.getString(R.string.INVENTORY_DATAAREAID)
-            DATAAREAID_TYPE = context.getString(R.string.INVENTORY_NAME_TYPE)
+            DATAAREAID_TYPE = context.getString(R.string.INVENTORY_DATAAREAID_TYPE)
         }
 
         fun make_type_map():HashMap<String,String>

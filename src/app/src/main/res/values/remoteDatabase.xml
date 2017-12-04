@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Remote Database names and Table names -->
+    <string name="DATAAREAID_DEVELOP">mz11</string>
+    <string name="DATABASE_NAME">Aluminum</string>
+    <string name="TABLE_INVENTORY">inventtable</string>
+    <string name="TABLE_PROJECTS">projtable</string>
+    <string name="TABLE_VENDORS">vendortable</string>
+    <string name="TABLE_OPR">OprRouteTable</string>
+    <string name="TABLE_BIG">OferKablanConstructionOnAccount</string>
+
+
+    <!-- TABLE INVENTORY -->
+    <string name="INVENTORY_ID">itemid</string>
+    <string name="INVENTORY_ID_TYPE">varchar</string>
+
+    <string name="INVENTORY_NAME">itamname</string>
+    <string name="INVENTORY_NAME_TYPE">text</string>
+
+    <string name="INVENTORY_DATAAREAID">dataareaid</string>
+    <string name="INVENTORY_DATAAREAID_TYPE">varchar</string>
+
+    <!-- TABLE PROJECTS -->
+
+    <string name="PROJECTS_ID">projid</string>
+    <string name="PROJECTS_ID_TYPE">text</string>
+
+    <string name="PROJECTS_NAME">name</string>
+    <string name="PROJECTS_NAME_TYPE">text</string>
+
+    <string name="PROJECTS_DATAAREAID">dataareaid</string>
+    <string name="PROJECTS_DATAAREAID_TYPE">varchar</string>
+
+
+    <!-- TABLE OPR -->
+    <string name="OPR_ID">OPRID</string>
+    <string name="OPR_ID_TYPE">varchar</string>
+
+
+    <string name="OPR_NAME">NAME</string>
+    <string name="OPR_NAME_TYPE">text</string>
+
+
+    <string name="OPR_DATAAREAID">DATAAREAID</string>
+    <string name="OPR_DATAAREAID_TYPE">varchar</string>
+
+
+    <!-- TABLE VENDORS -->
+    <string name="VENDORS_ID">accountnum</string>
+    <string name="VENDORS_ID_TYPE">varchar</string>
+
+    <string name="VENDORS_NAME">name</string>
+    <string name="VENDORS_NAME_TYPE">text</string>
+
+    <string name="VENDORS_DATAAREAID">dataareaid</string>
+    <string name="VENDORS_DATAAREAID_TYPE">varchar</string>
+
+
+    <!-- TABLE BIG -->
+    <string name="TABLE_BIG_VENDOR_ID">ACCOUNTNUM</string>
+    <string name="TABLE_BIG_VENDOR_ID_TYPE">varchar</string>
+
+    <string name="TABLE_BIG_DATAAREAID">DATAAREAID</string>
+    <string name="TABLE_BIG_DATAAREAID_TYPE">varchar</string>
+
+
+    <string name="TABLE_BIG_REC_VERSION">RECVERSION</string>
+    <string name="TABLE_BIG_REC_VERSION_TYPE">text</string>
+
+
+    <string name="TABLE_BIG_REC_ID">RECID</string>
+    <string name="TABLE_BIG_REC_ID_TYPE">text</string>
+
+
+    <string name="TABLE_BIG_PROJECTS_ID">PROJID</string>
+    <string name="TABLE_BIG_PROJECTS_ID_TYPE">varchar</string>
+
+
+    <string name="TABLE_BIG_INVENTORY_ID">ITEMID</string>
+    <string name="TABLE_BIG_INVENTORY_ID_TYPE">varchar</string>
+
+
+    <string name="TABLE_BIG_FLAT">FLAT</string>
+    <string name="TABLE_BIG_FLAT_TYPE">text</string>
+
+
+    <string name="TABLE_BIG_FLOOR">FLOOR</string>
+    <string name="TABLE_BIG_FLOOR_TYPE">text</string>
+
+
+    <string name="TABLE_BIG_QTY">QTY</string>
+    <string name="TABLE_BIG_QTY_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_SALESPRICE">SALESPRICE</string>
+    <string name="TABLE_BIG_SALESPRICE_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_OPR_ID">OPRID</string>
+    <string name="TABLE_BIG_OPR_ID_TYPE">varchar</string>
+
+
+    <string name="TABLE_BIG_MILESTONEPERCENT">MILESTONEPERCENT</string>
+    <string name="TABLE_BIG_MILESTONEPERCENT_TYPE">real</string>
+
+    <string name="TABLE_BIG_QTYFORACCOUNT">QTYFORACCOUNT</string>
+    <string name="TABLE_BIG_QTYFORACCOUNT_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_PERCENTFORACCOUNT">PERCENTFORACCOUNT</string>
+    <string name="TABLE_BIG_PERCENTFORACCOUNT_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_TOTALSUM">TOTALSUM</string>
+    <string name="TABLE_BIG_TOTALSUM_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_SALPROG">SALPROG</string>
+    <string name="TABLE_BIG_SALPROG_TYPE">tinyint</string>
+
+
+    <string name="TABLE_BIG_PRINTORDER">PRINTORDER</string>
+    <string name="TABLE_BIG_PRINTORDER_TYPE">int</string>
+
+
+    <string name="TABLE_BIG_ITEMNUMBER">ITEMNUMBER</string>
+    <string name="TABLE_BIG_ITEMNUMBER_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_KOMANUM">KOMANUM</string>
+    <string name="TABLE_BIG_KOMANUM_TYPE">real</string>
+
+
+    <string name="TABLE_BIG_DIRANUM">DIRANUM</string>
+    <string name="TABLE_BIG_DIRANUM_TYPE">real</string>
+</resources>

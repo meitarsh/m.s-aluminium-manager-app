@@ -194,14 +194,17 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
 
         public fun sync_local()
         {
-            Thread({
-                projects.sync_db()
-                inventory.sync_db()
-                opr.sync_db()
-                vendor.sync_db()
+            Thread({ db_sync_func()
             }).start()
+        }
 
-
+        private fun db_sync_func()
+        {
+            projects.sync_db()
+            inventory.sync_db()
+            opr.sync_db()
+            vendor.sync_db()
+            big_table.sync_db()
         }
 
     } // companion end

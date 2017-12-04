@@ -3,6 +3,7 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
+import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.vendor_data
@@ -81,14 +82,32 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         */
     fun server_data_to_vector():Vector<vendor_data>
     {
-        var server_data:Vector<HashMap<String,String>> = remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS))
+
+        var server_data: Vector<java.util.HashMap<String, String>> =
+        if(BuildConfig.DEBUG)
+        {
+            var typemap:HashMap<String,String> = remote_vendors_table_helper.make_type_map()
+            remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS),typemap,context.getString(R.string.VENDORS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+        }
+        else
+        {
+            remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS))
+        }
+
         var result_vector:Vector<vendor_data> = Vector()
         for (item in server_data)
         {
-            var opr = vendor_data(item[remote_vendors_table_helper.ID]!!,
-                    item[remote_vendors_table_helper.NAME]!!, item[remote_vendors_table_helper.DATAAREAID]!!,
-                    remote_SQL_Helper.getusername())
-            result_vector.add(opr)
+            try {
+
+                var opr = vendor_data(item[remote_vendors_table_helper.ID]?: "",
+                        item[remote_vendors_table_helper.NAME]?: "", item[remote_vendors_table_helper.DATAAREAID]?: "",
+                        remote_SQL_Helper.getusername())
+                result_vector.add(opr)
+            }
+            catch (e:Exception)
+            {
+
+            }
         }
         return result_vector
     }
@@ -104,7 +123,13 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         val vector = get_rows(input_map)
         if(vector.size > 0)
         {
-            return vendor_data(vector.firstElement()[ID]!!, vector.firstElement()[NAME]!!, vector.firstElement()[DATAARAEID]!!, vector.firstElement()[USER]!!)
+            try {
+                return vendor_data(vector.firstElement()[ID]!!, vector.firstElement()[NAME]!!, vector.firstElement()[DATAARAEID]!!, vector.firstElement()[USER]!!)
+            }
+            catch (e:Exception)
+            {
+
+            }
         }
 
 
@@ -149,10 +174,10 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         var everything_to_add:Vector<HashMap<String,String>> = Vector()
 
         var data: HashMap<String,String> = HashMap()
-        data[ID] = vendor_data.get_accountnum()
-        data[NAME] = vendor_data.get_accountname()
-        data[DATAARAEID] = vendor_data.get_DATAREAID()
-        data[USER] = vendor_data.get_USERNAME()
+        data[ID] = vendor_data.get_accountnum() ?: ""
+        data[NAME] = vendor_data.get_accountname() ?: ""
+        data[DATAARAEID] = vendor_data.get_DATAREAID() ?: ""
+        data[USER] = vendor_data.get_USERNAME() ?: ""
         everything_to_add.addElement(data)
         return add_data(everything_to_add)
     }
@@ -165,10 +190,10 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
             : Boolean {
 
         var change_to:HashMap<String,String> = HashMap()
-        change_to[NAME] = to.get_accountname()
-        change_to[DATAARAEID] = to.get_DATAREAID()
-        change_to[USER] = to.get_USERNAME()
-        return update_data(ID, arrayOf(from.get_accountnum()),change_to)
+        change_to[NAME] = to.get_accountname() ?: ""
+        change_to[DATAARAEID] = to.get_DATAREAID() ?: ""
+        change_to[USER] = to.get_USERNAME() ?: ""
+        return update_data(ID, arrayOf(from.get_accountnum()!!),change_to)
     }
 
     /*
@@ -179,7 +204,7 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
     {
         if ( get_vendor_by_vendor(vendor_data)==null )
             return false
-        return remove_from_db(ID, arrayOf(vendor_data.get_accountnum()))
+        return remove_from_db(ID, arrayOf(vendor_data.get_accountnum()!!))
 
     }
 }
