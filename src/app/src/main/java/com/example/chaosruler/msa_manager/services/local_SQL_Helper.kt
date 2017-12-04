@@ -1,7 +1,9 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.services
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
+import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import java.util.*
@@ -22,6 +24,10 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     protected fun init_vector_of_variables(vector:Vector<String>)
     {
         vector_of_variables = vector
+        try {
+            this.onCreate(this.writableDatabase)
+        }
+        catch (e:Exception){}
     }
 
     abstract override fun onCreate(db: SQLiteDatabase)
@@ -52,7 +58,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
      */
     protected fun createDB(db: SQLiteDatabase ,variables: HashMap<String,String>) {
 
-        var create_statement:String = "create table $TABLE_NAME ("
+        var create_statement:String = "create table IF NOT EXISTS $TABLE_NAME ("
         for(element in vector_of_variables)
         {
             create_statement += element + " " + variables[element]
@@ -68,9 +74,33 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     }
 
     /*
+        subroutine to template a create table statement
+            takes parameters neccesery
+            *with foreign key support*
+     */
+    protected fun createDB(db: SQLiteDatabase ,variables: HashMap<String,String>, foregin:HashMap<String,String>) {
+
+        var create_statement:String = "create table $TABLE_NAME ("
+        for(element in vector_of_variables)
+        {
+            create_statement += element + " " + variables[element]
+            if(vector_of_variables.lastElement() != element)
+                create_statement+=" ,"
+        }
+        for(element in foregin)
+        {
+            create_statement += ",FOREIGN KEY(${element.key}) REFERENCES ${element.value}"
+        }
+        create_statement += ")"
+
+
+        db.execSQL(create_statement)
+
+    }
+    /*
         subroutine gets entire database to vector of hashmap values, self colum feeder
      */
-    protected fun get_db():Vector<HashMap<String,String>>
+    public fun get_db():Vector<HashMap<String,String>>
     {
         var db:SQLiteDatabase = this.readableDatabase
         var vector:Vector<HashMap<String,String>> = Vector()
@@ -209,7 +239,19 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
                 else
                     break
             }
-            val c = db.rawQuery(sql_query, null)
+            var c:Cursor?
+            try
+            {
+                c = db.rawQuery(sql_query, null)
+            }
+            catch (e:SQLException)
+            {
+                synchronized(sync_token)
+                {
+                    sync_token.notify()
+                }
+                return@Thread
+            }
             try
             {
                 c.moveToFirst()
@@ -220,14 +262,15 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
                     sync_token.notify()
                 }
             }
-            while (!c.isAfterLast)
-            {
-                var small_map: HashMap<String, String> = HashMap()
-                for (variable in vector_of_variables) {
-                    small_map[variable] = c.getString(c.getColumnIndex(variable))
+            if(c!=null) {
+                while (!c.isAfterLast) {
+                    var small_map: HashMap<String, String> = HashMap()
+                    for (variable in vector_of_variables) {
+                        small_map[variable] = c.getString(c.getColumnIndex(variable))
+                    }
+                    vector.addElement(small_map)
+                    c.moveToNext()
                 }
-                vector.addElement(small_map)
-                c.moveToNext()
             }
             synchronized(sync_token)
             {

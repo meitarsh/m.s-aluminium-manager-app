@@ -1,4 +1,4 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.activies
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -28,6 +28,11 @@ import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.AdapterView
+import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.User
+import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
+import com.example.chaosruler.msa_manager.services.themer
 
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -227,7 +232,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             }
             R.id.settings ->
             {
-                val intent = Intent(this@LoginActivity,SettingsActivity::class.java)
+                val intent = Intent(this@LoginActivity, SettingsActivity::class.java)
                 startActivity(intent)
 
             }
@@ -335,9 +340,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         {
 
 
-
-
-            remote_SQL_Helper.Connect(baseContext,mEmail,mPassword)
+            remote_SQL_Helper.Connect(baseContext, mEmail, mPassword)
             var result:Boolean
             if( PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key),false)  )
                 result = true

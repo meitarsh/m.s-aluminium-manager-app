@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.chaosruler.msa_manager.MainActivity"
+    tools:context="com.example.chaosruler.msa_manager.activies.MainActivity"
     android:layoutDirection="ltr"
     >
 
@@ -45,4 +45,13 @@
         android:layout_alignParentEnd="true"
         android:background="@drawable/ic_sync_black_24dp"
         android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/main_progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/main_spinner"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 
 /*
     an object representation of a user

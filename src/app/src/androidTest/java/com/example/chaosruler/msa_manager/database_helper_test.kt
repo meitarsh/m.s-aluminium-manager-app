@@ -3,6 +3,8 @@ package com.example.chaosruler.msa_manager
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import android.util.Log
+import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.User
 
 
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.activies
 
 import android.content.res.Configuration
 import android.os.Bundle

@@ -1,7 +1,12 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.SQLITE_helpers
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
+import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.cache_command
+import com.example.chaosruler.msa_manager.services.local_SQL_Helper
+import java.sql.SQLException
 import java.util.*
 
 /**
@@ -38,7 +43,7 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
         createDB(db,map)
     }
 
-    fun add_command_to_list(command:cache_command):Boolean
+    fun add_command_to_list(command: cache_command):Boolean
     {
         if(check_command_exists(command))
         {
@@ -52,7 +57,7 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
 
     }
 
-    fun check_command_exists(command:cache_command):Boolean
+    fun check_command_exists(command: cache_command):Boolean
     {
             var input_map = HashMap<String,String>()
             input_map[COMMAND] = "'${command.__command}'"
@@ -99,7 +104,7 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
         var vector:Vector<HashMap<String,String>> = get_db()
         for(item in vector)
         {
-            var command:cache_command = cache_command(item!![COMMAND].toString(), item[USER].toString())
+            var command: cache_command = cache_command(item!![COMMAND].toString(), item[USER].toString())
             commands.addElement(command)
         }
         return commands

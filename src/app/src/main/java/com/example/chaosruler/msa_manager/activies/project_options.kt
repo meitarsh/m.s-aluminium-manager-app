@@ -1,14 +1,17 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.activies
 
 import android.app.Activity
 import android.content.Intent
-import android.os.AsyncTask
+
 import android.os.Bundle
 import android.widget.Toast
+import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.services.offline_mode_service
+import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
+import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_project_options.*
 import java.util.*
-import android.os.StrictMode
-import android.preference.PreferenceManager
+
 
 
 class project_options : Activity() {
@@ -18,6 +21,7 @@ class project_options : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_options)
         init_buttons()
+
     }
 
     private fun init_buttons()

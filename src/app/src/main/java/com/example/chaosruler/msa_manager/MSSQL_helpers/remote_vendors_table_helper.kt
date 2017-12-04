@@ -1,22 +1,23 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.MSSQL_helpers
 
 import android.content.Context
+import com.example.chaosruler.msa_manager.R
 
 class remote_vendors_table_helper()
 {
     companion object
     {
-        private var DATABASE_NAME:String = ""
-        private var TABLE_NAME:String = ""
+        public var DATABASE_NAME:String = ""
+        public var TABLE_NAME:String = ""
 
-        private var ID:String = ""
-        private var ID_TYPE:String = ""
+        public var ID:String = ""
+        public var ID_TYPE:String = ""
 
-        private var NAME:String = ""
-        private var NAME_TYPE:String = ""
+        public var NAME:String = ""
+        public var NAME_TYPE:String = ""
 
-        private var DATAAREAID:String = ""
-        private var DATAAREAID_TYPE:String = ""
+        public var DATAAREAID:String = ""
+        public var DATAAREAID_TYPE:String = ""
 
 
         public fun init_variables(context: Context)

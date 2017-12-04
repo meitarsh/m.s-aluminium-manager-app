@@ -1,7 +1,11 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.SQLITE_helpers
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
+import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.User
+import com.example.chaosruler.msa_manager.services.local_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -22,6 +26,8 @@ class user_database_helper(private val con: Context) : local_SQL_Helper(con, con
         vector.add(USERS_ID)
         vector.add(PASSWORD)
         init_vector_of_variables(vector)
+
+
     }
 
     /*
@@ -123,7 +129,7 @@ class user_database_helper(private val con: Context) : local_SQL_Helper(con, con
         var vector:Vector<HashMap<String,String>> = get_db()
         for(item in vector)
         {
-            var user:User = User(item!![USERS_ID].toString(), item[PASSWORD].toString())
+            var user: User = User(item!![USERS_ID].toString(), item[PASSWORD].toString())
             users.addElement(user)
         }
         return users
@@ -143,7 +149,7 @@ class user_database_helper(private val con: Context) : local_SQL_Helper(con, con
         val vector = get_rows(input_map)
         if(vector.size > 0)
         {
-            return User(vector.firstElement()[USERS_ID]!!,vector.firstElement()[PASSWORD]!! )
+            return User(vector.firstElement()[USERS_ID]!!, vector.firstElement()[PASSWORD]!!)
         }
 
 

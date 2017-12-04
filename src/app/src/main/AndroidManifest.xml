@@ -15,7 +15,7 @@
         android:theme="@style/Light"
         >
         <activity
-            android:name=".LoginActivity"
+            android:name=".activies.LoginActivity"
             android:configChanges="orientation"
             android:label="@string/app_title"
             android:screenOrientation="portrait"
@@ -27,13 +27,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activies.MainActivity"
             android:configChanges="orientation"
             android:label="@string/project_options_title"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".user_delete_activity"
+            android:name=".activies.user_delete_activity"
             android:configChanges="orientation"
             android:label="@string/delete_title"
             android:screenOrientation="portrait"
@@ -41,34 +41,34 @@
 
             />
         <activity
-            android:name=".project_options"
+            android:name=".activies.project_options"
             android:configChanges="orientation"
             android:label="@string/project_options_decide"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".kablni_mishne_activity"
+            android:name=".activies.kablni_mishne_activity"
             android:configChanges="orientation"
             android:label="@string/project_options_1"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".divohi_takalot_activity"
+            android:name=".activies.divohi_takalot_activity"
             android:configChanges="orientation"
             android:label="@string/project_options_2"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".loz_activity"
+            android:name=".activies.loz_activity"
             android:configChanges="orientation"
             android:label="@string/project_options_3"
             android:screenOrientation="landscape" />
 
         <service
-            android:name=".offline_mode_service"
+            android:name=".services.offline_mode_service"
             android:enabled="true"
             android:exported="true"
             android:stopWithTask="false" />
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activies.SettingsActivity"
             android:label="@string/settings_str"
             android:configChanges="orientation"
             android:screenOrientation="portrait"

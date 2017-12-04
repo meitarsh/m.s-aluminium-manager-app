@@ -1,15 +1,18 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.activies
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.User
+import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
+import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_user_delete_activity.*
 
 class user_delete_activity : Activity() {
@@ -116,13 +119,13 @@ class user_delete_activity : Activity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
         when (item.itemId) {
-            R.id.return_to_login->
+            R.id.return_to_login ->
             {
                 onBackPressed()
             }
-            R.id.settings->
+            R.id.settings ->
             {
-                startActivity(Intent(this@user_delete_activity,SettingsActivity::class.java))
+                startActivity(Intent(this@user_delete_activity, SettingsActivity::class.java))
             }
             else ->
             {

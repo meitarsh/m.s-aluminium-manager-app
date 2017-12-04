@@ -1,4 +1,4 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.services
 
 import android.app.IntentService
 import android.content.Context
@@ -9,7 +9,10 @@ import java.lang.Thread.sleep
 import java.util.*
 import android.app.NotificationManager
 import android.util.Log
-import android.widget.Toast
+import com.example.chaosruler.msa_manager.MSSQL_helpers.*
+import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.SQLITE_helpers.*
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.cache_command
 
 
 /*
@@ -23,7 +26,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
     override fun onHandleIntent(intent: Intent?)
     {
 
-        init_cache(this.applicationContext)
+        //init_cache(this.applicationContext)
     }
 
     companion object {
@@ -31,6 +34,11 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
                 local database to store server commands with appropiate users
             */
         private lateinit var cache: cache_server_commands
+        private lateinit var inventory: local_inventory_table_helper
+        private lateinit var projects: local_projects_table_helper
+        private lateinit var opr: local_OPR_table_helper
+        private lateinit var vendor: local_vendor_table_helper
+        private lateinit var big_table: local_big_table_helper
         private lateinit var ctx:Context
         private var time:Long = 0
         /*
@@ -41,34 +49,43 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         /*
             subroutine respoonsible to initate the service with a thread that automaticily sends commends every X seconds
          */
-        fun init_cache(context: Context)
+        fun init_cache(context: Context, intent: Intent)
         {
 
-            ctx=context
+            ctx =context
             cache = cache_server_commands(context)
+            inventory = local_inventory_table_helper(context)
+            projects = local_projects_table_helper(context)
+            opr = local_OPR_table_helper(context)
+            vendor = local_vendor_table_helper(context)
+            big_table = local_big_table_helper(context)
             init_remote_databases(context)
             grab_time(ctx)
             init_trd()
             start_trd()
+            sync_local()
+            intent.putExtra(context.getString(R.string.key_sync_offline),context.getString(R.string.key_sync_offline))
         }
+
+
 
         private fun grab_time(context: Context)
         {
             time = ctx.getString(R.string.millis_in_sec).toLong()
             var sec = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.sync_frequency),context.getString(R.string.time_to_sync_in_sec)).toLong()
-            time*=sec
+            time *=sec
         }
         private fun init_remote_databases(context: Context)
         {
             remote_vendors_table_helper.init_variables(context)
             remote_big_table_helper.init_variables(context)
             remote_inventory_table_helper.init_variables(context)
-            remote_mystery_table_helper.init_variables(context)
+            remote_opr_table_helper.init_variables(context)
             remote_projects_table_helper.init_variables(context)
         }
         private fun init_trd()
         {
-            if(time==0.toLong())
+            if(time ==0.toLong())
                 return
             trd = Thread(
                     {
@@ -94,13 +111,13 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         fun push_add_command(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>):String {
             var str = remote_SQL_Helper.construct_add_str(db, table, vector, map).replace("'","&quote;")
             var username = remote_SQL_Helper.getusername()
-            return general_push_command(str,username)
+            return general_push_command(str, username)
         }
 
         fun push_update_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>):String {
             var str = remote_SQL_Helper.construct_update_str(db, table, where_clause, compare_to, type, update_to).replace("'","&quote;")
             var username = remote_SQL_Helper.getusername()
-            return general_push_command(str,username)
+            return general_push_command(str, username)
         }
 
         /*
@@ -109,7 +126,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         fun push_remove_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String):String {
             var str = remote_SQL_Helper.construct_remove_str(db, table, where_clause, compare_to, type).replace("'","&quote;")
             var username = remote_SQL_Helper.getusername()
-            return general_push_command(str,username)
+            return general_push_command(str, username)
         }
 
         private fun general_push_command(command:String, username:String):String
@@ -140,16 +157,6 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
          */
         fun try_to_run_command()
         {
-            try // safe call
-            {
-                if(ctx == null)
-                    return
-            }
-            catch (e:UninitializedPropertyAccessException)
-            {
-
-            }
-
 
             var vector = get_DB()
             for(item in vector)
@@ -181,8 +188,21 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             mNotificationManager!!.notify(1,mBuilder.build())
         }
 
+        /*
+               updates all DB on thread
+            */
+
+        public fun sync_local()
+        {
+            Thread({
+                projects.sync_db()
+                inventory.sync_db()
+                opr.sync_db()
+                vendor.sync_db()
+            }).start()
 
 
+        }
 
     } // companion end
 

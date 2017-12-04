@@ -1,4 +1,4 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.activies
 
 import android.annotation.TargetApi
 
@@ -17,9 +17,10 @@ import android.preference.PreferenceManager
 
 import android.view.MenuItem
 import android.widget.Toast
-
-
-
+import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
+import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
+import com.example.chaosruler.msa_manager.services.themer
 
 
 /**
@@ -79,7 +80,7 @@ class SettingsActivity : AppCompatPreferenceActivity()
         val id = item.itemId
         if (id == android.R.id.home)
         {
-            startActivity(Intent(this,LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            startActivity(Intent(this, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -99,8 +100,8 @@ class SettingsActivity : AppCompatPreferenceActivity()
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.username_key)),null)
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.style)),null)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.username_key)), null)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.style)), null)
             findPreference(getString(R.string.style)).setOnPreferenceChangeListener { _, _ ->
                 restart_app()
                 return@setOnPreferenceChangeListener true
@@ -114,7 +115,7 @@ class SettingsActivity : AppCompatPreferenceActivity()
         }
         fun restart_app()
         {
-            startActivity(Intent(activity.baseContext,LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            startActivity(Intent(activity.baseContext, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
@@ -145,7 +146,7 @@ class SettingsActivity : AppCompatPreferenceActivity()
             // updated to reflect the new value, per the Android Design
             // guidelines.
             //bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"))
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.notification)),null)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.notification)), null)
         }
 
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -175,7 +176,7 @@ class SettingsActivity : AppCompatPreferenceActivity()
             // updated to reflect the new value, per the Android Design
             // guidelines.
 
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.sync_frequency)),null)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.sync_frequency)), null)
 
 
         }
@@ -198,10 +199,10 @@ class SettingsActivity : AppCompatPreferenceActivity()
             addPreferencesFromResource(R.xml.pref_development)
             setHasOptionsMenu(true)
 
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.IP)),null)
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_users_key)),activity.baseContext)
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_offline_key)),activity.baseContext)
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.gui_mode_key)),activity.baseContext)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.IP)), null)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_users_key)), activity.baseContext)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_offline_key)), activity.baseContext)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.gui_mode_key)), activity.baseContext)
         }
 
         override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -1,13 +1,9 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.services
 
 import android.content.Context
 import android.os.AsyncTask
-import android.os.Build
-import android.os.Debug
-import android.preference.Preference
 import android.preference.PreferenceManager
-import android.util.Log
-import android.widget.Toast
+import com.example.chaosruler.msa_manager.R
 import java.sql.*
 
 import java.util.*
@@ -49,7 +45,7 @@ class remote_SQL_Helper()
             context = con
             username = user
             password = pass
-            var ip:String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP),context.getString(R.string.REMOTE_IP_ADDR))
+            var ip:String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP), context.getString(R.string.REMOTE_IP_ADDR))
             try {
                 Class.forName(context.getString(R.string.class_jtds_jdbc))
                 var conn: Connection? = DriverManager.getConnection(
@@ -200,7 +196,7 @@ class remote_SQL_Helper()
                                 if(where_column != null && where_compare!=null)
                                 {
                                    var item:String = if(colm_to_type.getValue(where_column) == "text")
-                                       this.add_quotes(where_compare)
+                                       add_quotes(where_compare)
                                    else
                                        where_compare
                                     qry+= "WHERE "
@@ -323,9 +319,9 @@ class remote_SQL_Helper()
          */
         fun Disconnect()
         {
-            if(this.isvalid)
+            if(isvalid)
             {
-                this.isvalid = false
+                isvalid = false
                 connection!!.close()
             }
         }
@@ -405,7 +401,7 @@ class remote_SQL_Helper()
          */
         fun refresh_context(con: Context)
         {
-            this.context = con
+            context = con
         }
 
         /*
@@ -413,8 +409,8 @@ class remote_SQL_Helper()
          */
         fun ReConnect():Boolean
         {
-            isvalid=false
-            connection=null
+            isvalid =false
+            connection =null
             return Connect(context, username, password)
 
         }

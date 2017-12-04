@@ -1,8 +1,8 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.services
 
 import android.content.Context
 import android.preference.PreferenceManager
-
+import com.example.chaosruler.msa_manager.R
 
 
 /*
@@ -13,10 +13,10 @@ class themer {
     companion object {
         fun style(context: Context):Int
         {
-            var isDark:String = ""
+            var isDark:String
             var preferences = PreferenceManager.getDefaultSharedPreferences(context)
             isDark = preferences.getString(context.getString(R.string.style),"Light")
-            return getResourceId(context,isDark,"style",context.packageName)
+            return getResourceId(context, isDark, "style", context.packageName)
         }
 
 

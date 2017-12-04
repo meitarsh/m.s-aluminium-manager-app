@@ -1,6 +1,7 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.MSSQL_helpers
 
 import android.content.Context
+import com.example.chaosruler.msa_manager.R
 
 /**
  * Created by chaosruler on 12/3/17.
@@ -100,8 +101,8 @@ class remote_big_table_helper
             SALESPRICE = context.getString(R.string.TABLE_BIG_SALESPRICE)
             SALESPRICE_TYPE = context.getString(R.string.TABLE_BIG_SALESPRICE_TYPE)
 
-            MYSTERY_ID = context.getString(R.string.TABLE_BIG_MYSTERY_ID)
-            MYSTERY_ID_TYPE = context.getString(R.string.TABLE_BIG_MYSTERY_ID_TYPE)
+            MYSTERY_ID = context.getString(R.string.TABLE_BIG_OPR_ID)
+            MYSTERY_ID_TYPE = context.getString(R.string.TABLE_BIG_OPR_ID_TYPE)
 
             MILESTONEPERCENT = context.getString(R.string.TABLE_BIG_MILESTONEPERCENT)
             MILESTONEPERCENT_TYPE = context.getString(R.string.TABLE_BIG_MILESTONEPERCENT_TYPE)

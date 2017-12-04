@@ -1,7 +1,9 @@
-package com.example.chaosruler.msa_manager
+package com.example.chaosruler.msa_manager.activies
 
 import android.app.Activity
 import android.os.Bundle
+import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.services.themer
 
 /*
     class for the activity view of divohi takalot

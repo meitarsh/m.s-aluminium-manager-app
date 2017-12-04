@@ -28,6 +28,12 @@
     <string name="delete_empty_pw">הסיסמה לא יכולה להיות ריקה!</string>
     <string name="delete_confirmed">הפעולה בוצעה בהצלחה</string>
 
+    <!-- String related to main activity -->
+    <string name="key_sync_offline">offline_sync_key</string>
+    <string name="main_progress_bar_max">100</string>
+    <string name="main_progressbar_start">50</string>
+    <string name="main_progressbar_inc_rate">5</string>
+
     <!-- Strings related to JUnit testing envoirment -->
     <string name="testing_uid">109876543210</string>
     <string name="testing_email">dummy@test.com</string>
@@ -199,7 +205,7 @@
     <string name="TABLE_INVENTORY">inventtable</string>
     <string name="TABLE_PROJECTS">projtable</string>
     <string name="TABLE_VENDORS">vendortable</string>
-    <string name="TABLE_MYSTERY">OferKablanConstructionOnAccount2</string>
+    <string name="TABLE_OPR">OprRouteTable</string>
     <string name="TABLE_BIG">OferKablanConstructionOnAccount</string>
 
 
@@ -225,17 +231,17 @@
     <string name="PROJECTS_DATAAREAID_TYPE">text</string>
 
 
-    <!-- TABLE MYSTERY -->
-    <string name="MYSTERY_ID">OPRID</string>
-    <string name="MYSTERY_ID_TYPE">text</string>
+    <!-- TABLE OPR -->
+    <string name="OPR_ID">OPRID</string>
+    <string name="OPR_ID_TYPE">text</string>
 
 
-    <string name="MYSTERY_NAME">NAME</string>
-    <string name="MYSTERY_NAME_TYPE">text</string>
+    <string name="OPR_NAME">NAME</string>
+    <string name="OPR_NAME_TYPE">text</string>
 
 
-    <string name="MYSTERY_DATAAREAID">DATAAREAID</string>
-    <string name="MYSTERY_DATAAREAID_TYPE">text</string>
+    <string name="OPR_DATAAREAID">DATAAREAID</string>
+    <string name="OPR_DATAAREAID_TYPE">text</string>
 
 
     <!-- TABLE VENDORS -->
@@ -289,8 +295,8 @@
     <string name="TABLE_BIG_SALESPRICE_TYPE">real</string>
 
 
-    <string name="TABLE_BIG_MYSTERY_ID">OPRID</string>
-    <string name="TABLE_BIG_MYSTERY_ID_TYPE">text</string>
+    <string name="TABLE_BIG_OPR_ID">OPRID</string>
+    <string name="TABLE_BIG_OPR_ID_TYPE">text</string>
 
 
     <string name="TABLE_BIG_MILESTONEPERCENT">MILESTONEPERCENT</string>
@@ -329,5 +335,64 @@
 
     <string name="sync_btn_text">סנכרן עכשיו</string>
 
+
+    <!-- SYNC LOCAL SQL DATABASE STRINGS -->
+    <string name="LOCAL_SYNC_DATABASE_NAME">local_sync_db.db</string>
+    <!-- Local Projects TABLE strings -->
+    <string name="LOCAL_PROJECTS_TABLE_NAME">projects</string>
+    <string name="LOCAL_PROJECTS_TABLE_VERSION">1</string>
+    <string name="LOCAL_PROJECTS_COLUMN_ID">projid</string>
+    <string name="LOCAL_PROJECTS_COLUMN_NAME">name</string>
+    <string name="LOCAL_PROJECTS_COLUMN_DATAARAEID">dataaraeid</string>
+    <string name="LOCAL_PROJECTS_COLUMN_USERNAME">username</string>
+    
+    <!-- Local vendors table strings -->
+    <string name="LOCAL_VENDORS_TABLE_NAME">vendors</string>
+    <string name="LOCAL_VENDORS_TABLE_VERSION">1</string>
+    <string name="LOCAL_VENDORS_COLUMN_ID">accountnum</string>
+    <string name="LOCAL_VENDORS_COLUMN_NAME">name</string>
+    <string name="LOCAL_VENDORS_COLUMN_DATAARAEID">dataaraeid</string>
+    <string name="LOCAL_VENDORS_COLUMN_USERNAME">username</string>
+
+    <!-- Local opr table strings -->
+    <string name="LOCAL_OPR_TABLE_NAME">OprRouteTable</string>
+    <string name="LOCAL_OPR_TABLE_VERSION">1</string>
+    <string name="LOCAL_OPR_COLUMN_ID">oprid</string>
+    <string name="LOCAL_OPR_COLUMN_NAME">name</string>
+    <string name="LOCAL_OPR_COLUMN_DATAARAEID">dataaraeid</string>
+    <string name="LOCAL_OPR_COLUMN_USERNAME">username</string>
+
+    <!-- Local inventory table strings -->
+    <string name="LOCAL_INVENTORY_TABLE_NAME">inventory</string>
+    <string name="LOCAL_INVENTORY_TABLE_VERSION">1</string>
+    <string name="LOCAL_INVENTORY_COLUMN_ID">itemid</string>
+    <string name="LOCAL_INVENTORY_COLUMN_NAME">name</string>
+    <string name="LOCAL_INVENTORY_COLUMN_DATAARAEID">dataaraeid</string>
+    <string name="LOCAL_INVENTORY_COLUMN_USERNAME">username</string>
+
+    <!-- Local big table strings -->
+    <string name="LOCAL_BIG_TABLE_NAME">big_table</string>
+    <string name="LOCAL_BIG_TABLE_VERSION">1</string>
+    <string name="LOCAL_BIG_COLUMN_ACCOUNTNUM">accountnum</string>
+    <string name="LOCAL_BIG_COLUMN_DATAARAEID">dataaraeid</string>
+    <string name="LOCAL_BIG_COLUMN_RECVERSION">recversion</string>
+    <string name="LOCAL_BIG_COLUMN_RECID">recid</string>
+    <string name="LOCAL_BIG_COLUMN_PROJID">projid</string>
+    <string name="LOCAL_BIG_COLUMN_ITEMID">itemid</string>
+    <string name="LOCAL_BIG_COLUMN_FLAT">flat</string>
+    <string name="LOCAL_BIG_COLUMN_FLOOR">floor</string>
+    <string name="LOCAL_BIG_COLUMN_QTY">qty</string>
+    <string name="LOCAL_BIG_COLUMN_SALESPRICE">salesprice</string>
+    <string name="LOCAL_BIG_COLUMN_OPRID">oprid</string>
+    <string name="LOCAL_BIG_COLUMN_MILESTONEPRECENT">milestoneprecent</string>
+    <string name="LOCAL_BIG_COLUMN_QTYFORACCOUNT">qtyforaccount</string>
+    <string name="LOCAL_BIG_COLUMN_PERCENTFORACCOUNT">percentdialog</string>
+    <string name="LOCAL_BIG_COLUMN_TOTALSUM">totalsum</string>
+    <string name="LOCAL_BIG_COLUMN_SALPROG">salprog</string>
+    <string name="LOCAL_BIG_COLUMN_printorder">printorder</string>
+    <string name="LOCAL_BIG_COLUMN_ITEMNUMBER">itemnumber</string>
+    <string name="LOCAL_BIG_COLUMN_KOMANUM">komanum</string>
+    <string name="LOCAL_BIG_COLUMN_DIRANUM">diranum</string>
+    <string name="LOCAL_BIG_COLUMN_USERNAME">username</string>
 
 </resources>
