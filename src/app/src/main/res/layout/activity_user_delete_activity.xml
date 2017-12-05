@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="ltr"
-    tools:context="com.example.chaosruler.msa_manager.activies.user_delete_activity">
+    tools:context="com.example.chaosruler.msa_manager.activies.user_delete_activity"
+    >
 
     <Spinner
         android:id="@+id/delete_spinner"

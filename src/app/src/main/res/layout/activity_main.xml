@@ -1,57 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.chaosruler.msa_manager.activies.MainActivity"
     android:layoutDirection="ltr"
-    >
+    tools:context="com.example.chaosruler.msa_manager.activies.MainActivity">
 
 
     <Spinner
         android:id="@+id/main_spinner"
         android:layout_width="match_parent"
-        android:layout_height="50px"
+        android:layout_height="25dp"
         android:layout_marginTop="149dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        app:layout_constraintBottom_toTopOf="@+id/main_progressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_progressBar"
+        app:layout_constraintVertical_bias="0.481" />
 
     <TextView
         android:id="@+id/main_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="59dp"
-        android:text="@string/hello_string" />
+        android:text="@string/hello_string"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/main_button_choose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="114dp"
         android:background="@drawable/button_sample1"
-        android:text="@string/main_btn_choose" />
+        android:text="@string/main_btn_choose"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_spinner"
+        app:layout_constraintVertical_bias="0.896" />
 
     <Button
         android:id="@+id/main_button_sync"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:background="@drawable/ic_sync_black_24dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ProgressBar
         android:id="@+id/main_progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/main_spinner"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible" />
-</RelativeLayout>
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/main_button_choose"
+        app:layout_constraintEnd_toStartOf="@+id/main_spinner"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toEndOf="@+id/main_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/main_textview"
+        app:layout_constraintVertical_bias="0.217" />
+</android.support.constraint.ConstraintLayout>

@@ -32,6 +32,7 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.User
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
+import com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity
 import com.example.chaosruler.msa_manager.services.themer
 
 import kotlinx.android.synthetic.main.activity_login.*
@@ -341,12 +342,14 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
 
             remote_SQL_Helper.Connect(baseContext, mEmail, mPassword)
-            var result:Boolean
-            if( PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key),false)  )
-                result = true
+
+            var gui_mode_key:Boolean = PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key),false)
+            var result:Boolean =
+            if( gui_mode_key  )
+                true
             else
-                result= remote_SQL_Helper.isValid()
-            if(result && get_status())
+                remote_SQL_Helper.isValid()
+            if(!gui_mode_key && result && get_status())
             {
                 db.add_user( mEmail, mPassword)
             }

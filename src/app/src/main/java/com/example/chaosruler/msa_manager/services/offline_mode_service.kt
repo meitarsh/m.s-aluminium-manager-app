@@ -8,10 +8,10 @@ import android.support.v4.app.NotificationCompat
 import java.lang.Thread.sleep
 import java.util.*
 import android.app.NotificationManager
-import android.util.Log
 import com.example.chaosruler.msa_manager.MSSQL_helpers.*
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.*
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.cache_command
 
 
@@ -63,11 +63,19 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             grab_time(ctx)
             init_trd()
             start_trd()
-            sync_local()
-            intent.putExtra(context.getString(R.string.key_sync_offline),context.getString(R.string.key_sync_offline))
+            if(PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.local_or_not),true) )
+            {
+
+                sync_local(context,intent)
+            }
+            else
+                mark_done(context,intent)
         }
 
-
+        private fun mark_done(context: Context,intent: Intent)
+        {
+            intent.putExtra(context.getString(R.string.key_sync_offline),context.getString(R.string.key_sync_offline))
+        }
 
         private fun grab_time(context: Context)
         {
@@ -192,12 +200,37 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
                updates all DB on thread
             */
 
+        private fun sync_local(context: Context,intent: Intent)
+        {
+            Thread({ db_sync_func(context,intent)
+            }).start()
+        }
+
+        /*
+            inner call with sync-wait
+         */
+        private fun db_sync_func(context: Context,intent: Intent)
+        {
+            projects.sync_db()
+            inventory.sync_db()
+            opr.sync_db()
+            vendor.sync_db()
+            big_table.sync_db()
+            mark_done(context,intent)
+        }
+
+        /*
+        empty one as service
+         */
         public fun sync_local()
         {
             Thread({ db_sync_func()
             }).start()
         }
 
+        /*
+            empty call for outer-service
+         */
         private fun db_sync_func()
         {
             projects.sync_db()

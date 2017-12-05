@@ -1,8 +1,7 @@
-package com.example.chaosruler.msa_manager.SQLITE_helpers
+package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteException
 import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.project_data

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.services.themer
@@ -16,10 +17,24 @@ import java.util.*
 
 class project_options : Activity() {
 
+    /*
+        define the project name we are working on
+     */
+    companion object
+    {
+        private var project_name:String? = null
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_options)
+        if(!global_variables_dataclass.GUI_MODE)
+            project_name = intent.getStringExtra(getString(R.string.key_pass_main_to_options))
+        else
+            project_name = ""
+        if(project_name == null)
+            finish()
         init_buttons()
 
     }

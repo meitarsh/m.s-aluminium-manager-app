@@ -1,8 +1,7 @@
-package com.example.chaosruler.msa_manager.SQLITE_helpers
+package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteException
 import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R

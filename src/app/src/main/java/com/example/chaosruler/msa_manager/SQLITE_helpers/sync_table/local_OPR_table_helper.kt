@@ -1,8 +1,7 @@
-package com.example.chaosruler.msa_manager.SQLITE_helpers
+package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteException
 import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper
 import com.example.chaosruler.msa_manager.R
@@ -191,7 +190,7 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
         change_to[NAME] = to.get_opr_name() ?: ""
         change_to[DATAARAEID] = to.get_DATAREAID() ?: ""
         change_to[USER] = to.get_USERNAME() ?: ""
-        return update_data(ID!!, arrayOf(from.get_oprid()!!),change_to)
+        return update_data(ID, arrayOf(from.get_oprid()!!),change_to)
     }
 
     /*
@@ -206,5 +205,9 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
 
     }
 
-
+    public fun get_opr_by_id(id: String):opr_data?
+    {
+        var mock_obj:opr_data = opr_data(id,null,null,remote_SQL_Helper.getusername())
+        return get_opr_by_opr(mock_obj)
+    }
 }

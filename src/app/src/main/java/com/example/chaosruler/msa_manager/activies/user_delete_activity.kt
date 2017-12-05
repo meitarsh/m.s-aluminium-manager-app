@@ -12,6 +12,7 @@ import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.User
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
+import com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_user_delete_activity.*
 
@@ -23,11 +24,16 @@ class user_delete_activity : Activity() {
     {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
-        db = user_database_helper(baseContext)
-        adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, db.get_entire_db())
+        init_dbs()
         setContentView(R.layout.activity_user_delete_activity)
         init_spinner()
         init_buttons()
+    }
+
+    private fun init_dbs()
+    {
+        db = user_database_helper(baseContext)
+        adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, db.get_entire_db())
     }
 
     private fun init_spinner()

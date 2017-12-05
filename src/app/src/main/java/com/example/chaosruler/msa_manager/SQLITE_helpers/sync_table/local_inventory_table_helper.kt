@@ -1,8 +1,7 @@
-package com.example.chaosruler.msa_manager.SQLITE_helpers
+package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteException
 import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper
 import com.example.chaosruler.msa_manager.R
@@ -198,5 +197,11 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         if ( get_inventory_by_inventory(inventory_data)==null )
             return false
         return remove_from_db(ID, arrayOf(inventory_data.get_itemid()!!))
+    }
+
+    public fun get_opr_by_id(id: String):inventory_data?
+    {
+        var mock_obj:inventory_data = inventory_data(id,null,null,remote_SQL_Helper.getusername())
+        return get_inventory_by_inventory(mock_obj)
     }
 }

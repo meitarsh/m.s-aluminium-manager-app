@@ -41,6 +41,8 @@
     <string name="shalom">שלום</string>
     <string name="project_options_title">בורר הפרויקטים</string>
     <string name="main_btn_choose">בחר בפרויקט</string>
+    <string name="no_project_chosen">לא נבחר פרויקט!</string>
+    <string name="key_pass_main_to_options">projname</string>
 
     <!-- Strings related to project menu options -->
     <string name="project_options_1">קבלני משנה</string>
@@ -57,4 +59,13 @@
     <string name="kablni_mishne_tavla_pshota">טבלה פשוטה</string>
     <string name="kablni_mishne_hodshiim">נתונים של החודשיים האחרונים</string>
     <string name="kablni_mishne_pirot">פירוט</string>
+
+
+    <!-- Strings related to simple table - kablan_pashot activity -->
+    <string name="kablan_pashot_label">תצוגה פשוטה</string>
+    <string name="kablan_pashot_peola_str">פעולה</string>
+    <string name="kablan_pashot_ahoz_peola_str">אחוז פעולה</string>
+    <string name="kablan_pashot_hoza_str">חוזה</string>
+
+
 </resources>

@@ -1,4 +1,4 @@
-package com.example.chaosruler.msa_manager.activies
+package com.example.chaosruler.msa_manager.activies.settings_activity
 
 import android.annotation.TargetApi
 
@@ -20,6 +20,7 @@ import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
+import com.example.chaosruler.msa_manager.activies.LoginActivity
 import com.example.chaosruler.msa_manager.services.themer
 
 

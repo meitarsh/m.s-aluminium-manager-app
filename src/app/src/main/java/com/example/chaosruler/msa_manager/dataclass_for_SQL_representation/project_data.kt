@@ -31,5 +31,6 @@ class project_data(private var projectID:String?,private var project_name:String
         this.USERNAME = new_username
     }
 
+    override fun toString(): String = this.project_name ?: ""
     fun copy(): project_data = project_data(this.projectID, this.project_name, this.DATAAREAID, this.USERNAME)
 }

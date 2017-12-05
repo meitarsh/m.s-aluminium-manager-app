@@ -12,8 +12,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Light"
-        >
+        android:theme="@style/Light">
         <activity
             android:name=".activies.LoginActivity"
             android:configChanges="orientation"
@@ -30,16 +29,13 @@
             android:name=".activies.MainActivity"
             android:configChanges="orientation"
             android:label="@string/project_options_title"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activies.user_delete_activity"
             android:configChanges="orientation"
             android:label="@string/delete_title"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
-
-            />
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
         <activity
             android:name=".activies.project_options"
             android:configChanges="orientation"
@@ -68,14 +64,16 @@
             android:stopWithTask="false" />
 
         <activity
-            android:name=".activies.SettingsActivity"
+            android:name=".activies.settings_activity.SettingsActivity"
+            android:configChanges="orientation"
             android:label="@string/settings_str"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".activies.kablan_pashot_activity.kablan_pashot"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-
-            >
-
-        </activity>
+            android:label="@string/kablan_pashot_label"
+            ></activity>
     </application>
 
 </manifest>
