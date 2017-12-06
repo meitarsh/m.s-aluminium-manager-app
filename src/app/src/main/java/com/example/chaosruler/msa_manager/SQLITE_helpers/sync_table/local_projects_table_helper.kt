@@ -7,6 +7,7 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.project_data
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.local_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
@@ -54,6 +55,8 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
      */
     fun sync_db()
     {
+        if(!global_variables_dataclass.isLocal)
+            return
         var server_vec = server_data_to_vector()
         for(item in server_vec)
         {
@@ -67,11 +70,12 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
     fun get_local_DB():Vector<project_data>
     {
         var vector:Vector<project_data> = Vector()
-
         var all_db:Vector<HashMap<String,String>> = get_db()
         for(item in all_db)
         {
-            vector.addElement(project_data(item[ID]!!, item[NAME]!!, item[DATAAREAID]!!, item[USERNAME]!!))
+            if(item[USERNAME] ==null || item[USERNAME] != remote_SQL_Helper.getusername())
+                continue
+            vector.addElement(project_data(item[ID]?:"", item[NAME]?:"", item[DATAAREAID]?:"", item[USERNAME]?:""))
         }
         return vector
     }

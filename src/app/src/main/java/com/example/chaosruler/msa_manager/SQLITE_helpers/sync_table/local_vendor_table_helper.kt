@@ -6,6 +6,7 @@ import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.vendor_data
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.local_SQL_Helper
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
@@ -54,6 +55,8 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
     */
     fun sync_db()
     {
+        if(!global_variables_dataclass.isLocal)
+            return
         var server_vec = server_data_to_vector()
         for(item in server_vec)
         {
@@ -69,10 +72,9 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         var vector:Vector<vendor_data> = Vector()
 
         var all_db:Vector<HashMap<String,String>> = get_db()
-        for(item in all_db)
-        {
-            vector.addElement(vendor_data(item[ID]!!, item[NAME]!!, item[DATAARAEID]!!, item[USER]!!))
-        }
+        all_db
+                .filter { it[USER] != null && it[USER] == remote_SQL_Helper.getusername() }
+                .forEach { vector.addElement(vendor_data(it[ID]?:"", it[NAME]?:"", it[DATAARAEID]?:"", it[USER]?:"")) }
         return vector
     }
 

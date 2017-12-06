@@ -6,6 +6,7 @@ import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.inventory_data
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.local_SQL_Helper
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
@@ -54,6 +55,8 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
    */
     fun sync_db()
     {
+        if(!global_variables_dataclass.isLocal)
+            return
         var server_vec = server_data_to_vector()
         for(item in server_vec)
         {
@@ -71,7 +74,9 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         var all_db:Vector<HashMap<String,String>> = get_db()
         for(item in all_db)
         {
-            vector.addElement(inventory_data(item[ID]!!, item[NAME]!!, item[DATAARAEID]!!, item[USER]!!))
+            if(item[USER]==null || item[USER] != remote_SQL_Helper.getusername())
+                continue
+            vector.addElement(inventory_data(item[ID]?:"", item[NAME]?:"", item[DATAARAEID]?:"", item[USER]?:""))
         }
         return vector
     }
@@ -161,7 +166,8 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
           will select USERNAME only
        */
     fun check_inventory(inventory_data: inventory_data) // subroutine to check if inventory exists on the database
-            : Boolean {
+            : Boolean
+    {
         val inventory:inventory_data? = get_inventory_by_inventory( inventory_data)
         return inventory != null
     }

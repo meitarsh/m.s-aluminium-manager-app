@@ -1,9 +1,7 @@
-package com.example.chaosruler.msa_manager.activies.kablan_mforat_activity
+package com.example.chaosruler.msa_manager.activies
 
 import android.app.Activity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView

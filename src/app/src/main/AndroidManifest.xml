@@ -73,7 +73,7 @@
             android:configChanges="orientation"
             android:label="@string/kablan_pashot_label"
             android:screenOrientation="portrait" />
-        <activity android:name=".activies.kablan_mforat_activity.kablan_mforat"
+        <activity android:name=".activies.kablan_mforat"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:label="@string/kablan_mforat_label"

@@ -6,6 +6,7 @@ import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.local_SQL_Helper
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
@@ -106,9 +107,13 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     /*
          adds all opr, updates, inserts... whatever
       */
-    fun sync_db() {
+    fun sync_db()
+    {
+        if(!global_variables_dataclass.isLocal)
+            return
         var server_vec = server_data_to_vector()
-        for (item in server_vec) {
+        for (item in server_vec)
+        {
             add_big(item)
         }
     }
@@ -120,26 +125,22 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         var vector: Vector<big_table_data> = Vector()
 
         var all_db: Vector<java.util.HashMap<String, String>> = get_db()
-        for (item in all_db) {
-
-            try {
-
-                var data: big_table_data = big_table_data(item[ACCOUNT_NUM]!!,
-                        item[DATAARAEID]!!, item[RECVERSION]!!,
-                        item[RECID]!!, item[PROJID]!!,
-                        item[ITEMID]!!, item[FLAT]!!,
-                        item[FLOOR]!!, item[QTY]!!,
-                        item[SALESPRICE]!!, item[OPR_ID]!!,
-                        item[MILESTONEPERCENTAGE]!!, item[QTYFORACCOUNT]!!,
-                        item[PERCENTFORACCOUNT]!!, item[TOTAL_SUM]!!,
-                        item[SALPROG]!!, item[PRINTORDER]!!,
-                        item[ITEMNUMBER]!!, item[KOMANUM]!!,
-                        item[DIRANUM]!!, item[USER]!!)
-                vector.addElement(data)
-            } catch (e: Exception) {
-
-            }
-        }
+        all_db
+                .filter { it[USER] != null && it[USER]?:"" == remote_SQL_Helper.getusername() }
+                .map {
+                    big_table_data(it[ACCOUNT_NUM]?:"",
+                            it[DATAARAEID]?:"", it[RECVERSION]?:"",
+                            it[RECID]?:"", it[PROJID]?:"",
+                            it[ITEMID]?:"", it[FLAT]?:"",
+                            it[FLOOR]?:"", it[QTY]?:"",
+                            it[SALESPRICE]?:"", it[OPR_ID]?:"",
+                            it[MILESTONEPERCENTAGE]?:"", it[QTYFORACCOUNT]?:"",
+                            it[PERCENTFORACCOUNT]?:"", it[TOTAL_SUM]?:"",
+                            it[SALPROG]?:"", it[PRINTORDER]?:"",
+                            it[ITEMNUMBER]?:"", it[KOMANUM]?:"",
+                            it[DIRANUM]?:"", it[USER]?:"")
+                }
+                .forEach { vector.addElement(it) }
         return vector
     }
 
@@ -161,21 +162,21 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
             remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
         }
         var result_vector: Vector<big_table_data> = Vector()
-        for(it in server_data)
-        {
-            var data:big_table_data =  big_table_data(it[remote_big_table_helper.VENDOR_ID]?: "",
-                    it[remote_big_table_helper.DATAREAID]?: "", it[remote_big_table_helper.RECVERSION]?: "",
-                    it[remote_big_table_helper.RECID]?: "", it[remote_big_table_helper.PROJECTS_ID]?: "",
-                    it[remote_big_table_helper.INVENTORY_ID]?: "", it[remote_big_table_helper.FLAT]?: "",
-                    it[remote_big_table_helper.FLOOR]?: "", it[remote_big_table_helper.QTY]?: "",
-                    it[remote_big_table_helper.SALESPRICE]?: "", it[remote_big_table_helper.OPR_ID]?: "",
-                    it[remote_big_table_helper.MILESTONEPERCENT]?: "", it[remote_big_table_helper.QTYFORACCOUNT]?: "",
-                    it[remote_big_table_helper.PERCENTFORACCOUNT]?: "", it[remote_big_table_helper.TOTALSUM]?: "",
-                    it[remote_big_table_helper.SALPROG]?: "", it[remote_big_table_helper.PRINTORDER]?: "",
-                    it[remote_big_table_helper.ITEMNUMBER]?: "", it[remote_big_table_helper.KOMANUM]?: "",
-                    it[remote_big_table_helper.DIRANUM]?: "", remote_SQL_Helper.getusername())
-                result_vector.addElement(data)
-        }
+        server_data
+                .map { it ->
+                    big_table_data(it[remote_big_table_helper.VENDOR_ID]?: "",
+                            it[remote_big_table_helper.DATAREAID]?: "", it[remote_big_table_helper.RECVERSION]?: "",
+                            it[remote_big_table_helper.RECID]?: "", it[remote_big_table_helper.PROJECTS_ID]?: "",
+                            it[remote_big_table_helper.INVENTORY_ID]?: "", it[remote_big_table_helper.FLAT]?: "",
+                            it[remote_big_table_helper.FLOOR]?: "", it[remote_big_table_helper.QTY]?: "",
+                            it[remote_big_table_helper.SALESPRICE]?: "", it[remote_big_table_helper.OPR_ID]?: "",
+                            it[remote_big_table_helper.MILESTONEPERCENT]?: "", it[remote_big_table_helper.QTYFORACCOUNT]?: "",
+                            it[remote_big_table_helper.PERCENTFORACCOUNT]?: "", it[remote_big_table_helper.TOTALSUM]?: "",
+                            it[remote_big_table_helper.SALPROG]?: "", it[remote_big_table_helper.PRINTORDER]?: "",
+                            it[remote_big_table_helper.ITEMNUMBER]?: "", it[remote_big_table_helper.KOMANUM]?: "",
+                            it[remote_big_table_helper.DIRANUM]?: "", remote_SQL_Helper.getusername())
+                }
+                .forEach { result_vector.addElement(it) }
         return result_vector
     }
 

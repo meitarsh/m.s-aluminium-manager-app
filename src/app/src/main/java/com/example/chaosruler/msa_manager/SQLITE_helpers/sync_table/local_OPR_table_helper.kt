@@ -6,6 +6,7 @@ import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.opr_data
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.local_SQL_Helper
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
@@ -52,6 +53,8 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
     */
     fun sync_db()
     {
+        if(!global_variables_dataclass.isLocal)
+            return
         var server_vec = server_data_to_vector()
         for(item in server_vec)
         {
@@ -67,10 +70,9 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
         var vector:Vector<opr_data> = Vector()
 
         var all_db:Vector<HashMap<String,String>> = get_db()
-        for(item in all_db)
-        {
-            vector.addElement(opr_data(item[ID]!!, item[NAME]!!, item[DATAARAEID]!!, item[USER]!!))
-        }
+        all_db
+                .filter { it[USER] != null && it[USER] == remote_SQL_Helper.getusername() }
+                .forEach { vector.addElement(opr_data(it[ID]?:"", it[NAME]?:"", it[DATAARAEID]?:"", it[USER]?:"")) }
         return vector
     }
 
