@@ -3,6 +3,18 @@ package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 
 class inventory_data(private var ID:String?,private var NAME:String?,private var DATAAREAID:String?,private var USERNAME:String?)
 {
+
+    init
+    {
+        if(ID!=null)
+            ID=ID!!.trim()
+        if(NAME!=null)
+            NAME=NAME!!.trim()
+        if(DATAAREAID!=null)
+            DATAAREAID=DATAAREAID!!.trim()
+        if(USERNAME!=null)
+            USERNAME=USERNAME!!.trim()
+    }
     fun get_itemid():String? = this.ID
 
     fun get_itemname():String? = this.NAME

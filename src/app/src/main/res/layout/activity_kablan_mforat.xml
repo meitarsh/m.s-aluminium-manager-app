@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.chaosruler.msa_manager.activies.kablan_mforat_activity.kablan_mforat"
+    android:orientation="vertical"
+    >
+
+    <!--hoza chooser -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/kablan_mforat_spinner_txt" />
+
+        <Spinner
+            android:id="@+id/activity_kablan_mforat_spinner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+
+    </LinearLayout>
+
+
+    <!--kamot hoza -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/kablan_mforat_kamot_hoza_txt" />
+
+
+        <TextView
+            android:id="@+id/activity_kablan_mforat_kamot_hoza"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+             />
+
+    </LinearLayout>
+
+
+    <!--yehida price -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/kablan_mforat_mehir_yehida_txt" />
+
+
+        <TextView
+            android:id="@+id/activity_kablan_mforat_yehida_price"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+    <!--peola parcent -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/kablan_mforat_ahoz_peola_txt" />
+
+
+        <TextView
+            android:id="@+id/activity_kablan_mforat_peola_percent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+             />
+
+    </LinearLayout>
+
+    <!--kamot helki -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/kablan_mforat_kamot_lzorah_helki_txt" />
+
+        <EditText
+            android:id="@+id/activity_kablan_mforat_kamot_helki"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="numberSigned" />
+
+    </LinearLayout>
+
+    <!--kamot kablan -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/kablan_mforat_kamot_lzorah_heshbon_kablan_txt" />
+
+        <EditText
+            android:id="@+id/activity_kablan_mforat_kamot_kablan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="numberSigned" />
+
+    </LinearLayout>
+
+    <!--ahoz meosher -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/kablan_mforat_ahoz_meosher_txt" />
+
+        <EditText
+            android:id="@+id/activity_kablan_mforat_ahoz_meosher"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="numberSigned" />
+
+    </LinearLayout>
+
+    <!--tashlom saah -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/kablan_mforat_saah_tashlom_txt" />
+
+
+        <TextView
+            android:id="@+id/activity_kablan_mforat_tashlom_sah"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

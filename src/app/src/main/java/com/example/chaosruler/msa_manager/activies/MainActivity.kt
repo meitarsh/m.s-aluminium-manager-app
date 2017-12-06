@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : Activity()
 {
 
-    private lateinit var db: local_projects_table_helper
     private lateinit var adapter: ArrayAdapter<project_data>
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -36,7 +35,6 @@ class MainActivity : Activity()
             progress_subroutine()
         }
         create_intro_text()
-        init_dbs()
         if(!global_variables_dataclass.GUI_MODE)
             init_spinner()
         init_buttons()
@@ -44,14 +42,9 @@ class MainActivity : Activity()
 
     private fun init_companion()
     {
-        global_variables_dataclass.isLocal = PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.local_or_not),true)
-        global_variables_dataclass.GUI_MODE = PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key),false)
+        global_variables_dataclass.init_dbs(baseContext)
     }
 
-    private fun init_dbs()
-    {
-        db = local_projects_table_helper(baseContext)
-    }
 
     private fun init_sync_trd()
     {
@@ -66,9 +59,9 @@ class MainActivity : Activity()
     {
         val projects =
         if(global_variables_dataclass.isLocal)
-            db.get_local_DB()
+            global_variables_dataclass.DB_project!!.get_local_DB()
         else
-            db.server_data_to_vector()
+            global_variables_dataclass.DB_project!!.server_data_to_vector()
 
         adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,projects)
         main_spinner.adapter = adapter
@@ -77,7 +70,7 @@ class MainActivity : Activity()
         {
             override fun onNothingSelected(parent: AdapterView<*>?)
             {
-
+                finish()
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)

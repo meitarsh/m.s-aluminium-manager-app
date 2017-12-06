@@ -67,5 +67,14 @@
     <string name="kablan_pashot_ahoz_peola_str">אחוז פעולה</string>
     <string name="kablan_pashot_hoza_str">חוזה</string>
 
-
+    <!-- Strings related to mforat table - kablan_mforat activity -->
+    <string name="kablan_mforat_label">פירוט לקבלן</string>
+    <string name="kablan_mforat_spinner_txt">בחר קבלן</string>
+    <string name="kablan_mforat_kamot_hoza_txt">כמות חוזה</string>
+    <string name="kablan_mforat_mehir_yehida_txt">מחיר יחידה</string>
+    <string name="kablan_mforat_ahoz_peola_txt">אחוז פעולה</string>
+    <string name="kablan_mforat_kamot_lzorah_helki_txt">כמות לצורך חלקי</string>
+    <string name="kablan_mforat_kamot_lzorah_heshbon_kablan_txt">כמות לצורך חשבון קבלן</string>
+    <string name="kablan_mforat_ahoz_meosher_txt">אחוז מאושר</string>
+    <string name="kablan_mforat_saah_tashlom_txt">סהכ לתשלום</string>
 </resources>

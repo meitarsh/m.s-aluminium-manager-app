@@ -9,6 +9,7 @@ import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.vendo
 import com.example.chaosruler.msa_manager.services.local_SQL_Helper
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
+import kotlin.collections.HashMap
 
 /**
  * Created by chaosruler on 12/3/17.
@@ -143,12 +144,20 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
       if its a new vendor, add a new vendor to table
    */
     fun add_vendor(vendor_data: vendor_data) // subroutine that manages the vendor adding operation to the database
-            : Boolean {
+            : Boolean
+    {
+        /*
+        var map:HashMap<String,String> = HashMap()
+        map[ID] = vendor_data.get_accountnum() ?: ""
+        map[NAME] = vendor_data.get_accountname() ?: ""
+        map[DATAARAEID] = vendor_data.get_DATAREAID() ?: ""
+        map[USER] = vendor_data.get_USERNAME() ?: ""
+        return replace(map)
+        */
         return if (check_vendor( vendor_data)) // checks if vendor exists in database
             update_vendor(vendor_data,vendor_data.copy()) // if it does, lets update
         else // if it doesn't lets create a new entry for the vendor
             insert_vendor(vendor_data)
-
     }
 
     /*
@@ -206,4 +215,6 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         return remove_from_db(ID, arrayOf(vendor_data.get_accountnum()!!))
 
     }
+
+    fun get_vendor_by_id(id:String):vendor_data? = get_vendor_by_vendor(vendor_data(id,null,null,remote_SQL_Helper.getusername()))
 }

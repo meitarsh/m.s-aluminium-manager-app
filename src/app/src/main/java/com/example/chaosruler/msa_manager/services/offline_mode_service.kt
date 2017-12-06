@@ -8,6 +8,7 @@ import android.support.v4.app.NotificationCompat
 import java.lang.Thread.sleep
 import java.util.*
 import android.app.NotificationManager
+import android.util.Log
 import com.example.chaosruler.msa_manager.MSSQL_helpers.*
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.*
@@ -65,7 +66,6 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             start_trd()
             if(PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.local_or_not),true) )
             {
-
                 sync_local(context,intent)
             }
             else
@@ -99,10 +99,14 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
                     {
                         while (true)
                         {
-                            try {
+                            Log.d("offline_mode","Did a trd run")
+                            try
+                            {
                                 try_to_run_command()
                                 sleep(time)
-                            } catch (e: InterruptedException) {
+                            } catch (e: InterruptedException)
+                            {
+
                             }
                         }
                     })
@@ -137,7 +141,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             return general_push_command(str, username)
         }
 
-        private fun general_push_command(command:String, username:String):String
+        public fun general_push_command(command:String, username:String):String
         {
             var string:String = if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.local_or_not), true)) {
                 cache.add_command_to_list(cache_command(command, username))
@@ -167,11 +171,14 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         {
 
             var vector = get_DB()
+            Log.d("offline_mode","cache command size: " + vector.size.toString())
             for(item in vector)
             {
                 if(item.__user == remote_SQL_Helper.getusername())
                 {
                     var result_of_query = remote_SQL_Helper.run_command(item.__command.replace("&quote;", "'"))
+                    Log.d("offline_mode","Query to try :" + item.__command.replace("&quote;", "'"))
+                    Log.d("offline_mode","Query Result: " + result_of_query.toString())
                     if (result_of_query)
                     {
 
@@ -181,6 +188,8 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
                     }
                 }
             }
+
+            db_sync_func_without_mark()
 
 
 
@@ -217,6 +226,18 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             vendor.sync_db()
             big_table.sync_db()
             mark_done(context,intent)
+        }
+
+        /*
+          inner call with sync-wait without mark
+       */
+        private fun db_sync_func_without_mark()
+        {
+            projects.sync_db()
+            inventory.sync_db()
+            opr.sync_db()
+            vendor.sync_db()
+            big_table.sync_db()
         }
 
         /*

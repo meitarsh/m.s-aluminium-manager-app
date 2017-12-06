@@ -224,12 +224,37 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
       if its a new opr, add a new opr to table
    */
     fun add_big(big_table_data: big_table_data) // subroutine that manages the opr adding operation to the database
-            : Boolean {
+            : Boolean
+    {
+        /*
+        var map:HashMap<String,String> = HashMap()
+        map[ACCOUNT_NUM] = big_table_data.get_VENDOR_ID() ?: ""
+        map[DATAARAEID] = big_table_data.get_DATAAREAID() ?: ""
+        map[RECVERSION] = big_table_data.get_RECVERSION() ?: ""
+        map[RECID] = big_table_data.get_RECID() ?: ""
+        map[PROJID] = big_table_data.get_PROJECT_ID() ?: ""
+        map[ITEMID] = big_table_data.get_INVENTORY_ID() ?: ""
+        map[FLAT] = big_table_data.get_FLAT() ?: ""
+        map[FLOOR] = big_table_data.get_FLOOR() ?: ""
+        map[QTY] = big_table_data.get_QTY() ?: ""
+        map[SALESPRICE] = big_table_data.get_SALESPRICE() ?: ""
+        map[OPR_ID] = big_table_data.get_OPRID() ?: ""
+        map[MILESTONEPERCENTAGE] = big_table_data.get_MILESTONEPERCENT() ?: ""
+        map[QTYFORACCOUNT] = big_table_data.get_QTYFORACCOUNT() ?: ""
+        map[PERCENTFORACCOUNT] = big_table_data.get_PERCENTFORACCOUNT() ?: ""
+        map[TOTAL_SUM] = big_table_data.get_TOTALSUM() ?: ""
+        map[SALPROG] = big_table_data.get_SALPROG() ?: ""
+        map[PRINTORDER] = big_table_data.get_PRINTORDER() ?: ""
+        map[ITEMNUMBER] = big_table_data.get_ITEMNUMBER() ?: ""
+        map[KOMANUM] = big_table_data.get_KOMANUM() ?: ""
+        map[DIRANUM] = big_table_data.get_DIRANUM() ?: ""
+        map[USER] = big_table_data.get_USERNAME() ?: ""
+        return replace(map)
+        */
         return if (check_big(big_table_data)) // checks if opr exists in database
             update_big(big_table_data, big_table_data.copy()) // if it does, lets update
         else // if it doesn't lets create a new entry for the opr
             insert_big(big_table_data)
-
     }
 
     /*

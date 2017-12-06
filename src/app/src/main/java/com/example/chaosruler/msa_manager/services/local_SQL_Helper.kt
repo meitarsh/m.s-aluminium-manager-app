@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -24,8 +25,11 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     protected fun init_vector_of_variables(vector:Vector<String>)
     {
         vector_of_variables = vector
-        try {
-            this.onCreate(this.writableDatabase) // ensures this is called, android by itself will only do it if it needs to read/write the database
+        try
+        {
+            var db = this.writableDatabase
+            this.onCreate(db) // ensures this is called, android by itself will only do it if it needs to read/write the database
+            //db.close()
         }
         catch (e:Exception){}
     }
@@ -33,7 +37,8 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     abstract override fun onCreate(db: SQLiteDatabase)
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        if (newVersion > oldVersion) {
+        if (newVersion > oldVersion)
+        {
             dropDB(db)
             onCreate(db)
         }
@@ -145,7 +150,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
 
             } catch (e: InterruptedException) { }
         }
-        db.close()
+        //db.close()
         return vector
     }
     /*
@@ -155,7 +160,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     {
         var db:SQLiteDatabase = this.writableDatabase
         val return_value = variables.any { add_single_data(db, it) }
-        db.close()
+        //db.close()
         return return_value
     }
     protected fun add_single_data(db:SQLiteDatabase,items:HashMap<String,String>):Boolean
@@ -163,7 +168,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         val values = ContentValues()
         for(item in items)
             values.put(item.key,item.value)
-        if(db.insertOrThrow(TABLE_NAME, null, values)>0)
+        if(db.insertWithOnConflict(TABLE_NAME,null,values,SQLiteDatabase.CONFLICT_REPLACE)>0)
             return true
         return false
     }
@@ -177,7 +182,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         var db:SQLiteDatabase = this.writableDatabase
         if(db.delete(TABLE_NAME,where_clause + "=?", equal_to) >0)
             result = true
-        db.close()
+        //db.close()
         return result
     }
     /*
@@ -196,7 +201,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         }
         if(db.delete(TABLE_NAME,where_clause_arguemnt, equal_to) >0)
             result = true
-        db.close()
+        //db.close()
         return result
     }
 
@@ -214,7 +219,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             values.put(item.key,item.value)
         if(db.update(TABLE_NAME,values,where_clause + "=?", equal_to)>0)
             result = true
-        db.close()
+        //db.close()
         return result
     }
 
@@ -237,7 +242,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         }
         if(db.update(TABLE_NAME,values,where_str, equal_to)>0)
             result = true
-        db.close()
+        //db.close()
         return result
     }
     /*
@@ -274,6 +279,15 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
                 }
                 return@Thread
             }
+            catch (e:IllegalStateException)
+            {
+                Log.d("error","coudln't open DB")
+                synchronized(sync_token)
+                {
+                    sync_token.notify()
+                }
+                return@Thread
+            }
             try
             {
                 c.moveToFirst()
@@ -284,14 +298,22 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
                     sync_token.notify()
                 }
             }
-            if(c!=null) {
-                while (!c.isAfterLast) {
-                    var small_map: HashMap<String, String> = HashMap()
-                    for (variable in vector_of_variables) {
-                        small_map[variable] = c.getString(c.getColumnIndex(variable))
+            if(c!=null)
+            {
+                try
+                {
+                    while (!c.isAfterLast) {
+                        var small_map: HashMap<String, String> = HashMap()
+                        for (variable in vector_of_variables) {
+                            small_map[variable] = c.getString(c.getColumnIndex(variable))
+                        }
+                        vector.addElement(small_map)
+                        c.moveToNext()
                     }
-                    vector.addElement(small_map)
-                    c.moveToNext()
+                }
+                catch (e:IllegalStateException)
+                {
+                    Log.d("local","Couldn't grab SQL table")
                 }
             }
             synchronized(sync_token)
@@ -308,7 +330,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             }
             catch (e:InterruptedException){}
         }
-        db.close()
+        //db.close()
         return vector
 
     }
@@ -372,8 +394,41 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
 
             } catch (e: InterruptedException) { }
         }
-        db.close()
+        //db.close()
         return vector
+    }
+
+    public fun replace(map:HashMap<String,String>):Boolean
+    {
+
+        var db = this.writableDatabase
+        /*
+        var qry = "INSERT OR REPLACE INTO $TABLE_NAME"
+        var before:String = "("
+        var after:String = "("
+        var counter = 0
+        for(item in map)
+        {
+            before+=item.key
+            after+=remote_SQL_Helper.add_quotes(item.value)
+            counter++
+            if(counter < map.size)
+            {
+                before += ","
+                after += ","
+            }
+        }
+        before+=")"
+        after+=")"
+        qry += " $before VALUES $after"
+        val cursor = db.execSQL(qry)
+        */
+        var cv = ContentValues()
+        map.forEach { cv.put(it.key,it.value) }
+        var count = db.replace(TABLE_NAME,null,cv)
+        db.close()
+        return count > 0
+
     }
 
 }

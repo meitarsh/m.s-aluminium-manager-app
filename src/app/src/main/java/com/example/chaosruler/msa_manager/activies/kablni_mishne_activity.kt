@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.activies.kablan_mforat_activity.kablan_mforat
 import com.example.chaosruler.msa_manager.activies.kablan_pashot_activity.kablan_pashot
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_kablni_mishne_activity.*
@@ -25,6 +26,8 @@ class kablni_mishne_activity : Activity() {
             startActivity(Intent(this, kablan_pashot::class.java))
         })
 
-
+        kablni_mishne_pirot.setOnClickListener({
+            startActivity(Intent(this,kablan_mforat::class.java))
+        })
     }
 }

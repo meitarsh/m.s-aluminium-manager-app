@@ -1,7 +1,11 @@
 package com.example.chaosruler.msa_manager.MSSQL_helpers
 
 import android.content.Context
+import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
+import com.example.chaosruler.msa_manager.services.offline_mode_service
+import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
 /**
  * Created by chaosruler on 12/3/17.
@@ -75,7 +79,7 @@ class remote_big_table_helper
 
         public fun init_variables(context: Context)
         {
-            TABLE_NAME = context.getString(R.string.TABLE_INVENTORY)
+            TABLE_NAME = context.getString(R.string.TABLE_BIG)
             DATABASE_NAME = context.getString(R.string.DATABASE_NAME)
             VENDOR_ID = context.getString(R.string.TABLE_BIG_VENDOR_ID)
             VENDOR_ID_TYPE = context.getString(R.string.TABLE_BIG_VENDOR_ID_TYPE)
@@ -163,6 +167,21 @@ class remote_big_table_helper
             map[DIRANUM] = DIRANUM_TYPE
             // n = 18
             return map
+        }
+
+        public fun push_update(big_table_data: big_table_data,map:HashMap<String,String>,context: Context)
+        {
+            for(item in map)
+                item.setValue(remote_SQL_Helper.add_quotes(item.value))
+            var where_clause:HashMap<String,String> = HashMap()
+            where_clause[remote_big_table_helper.VENDOR_ID] = big_table_data.get_VENDOR_ID()!!
+            where_clause[remote_big_table_helper.INVENTORY_ID] = big_table_data.get_INVENTORY_ID()!!
+            where_clause[remote_big_table_helper.PROJECTS_ID] = big_table_data.get_PROJECT_ID()!!
+            where_clause[remote_big_table_helper.OPR_ID] = big_table_data.get_OPRID()!!
+            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME,remote_big_table_helper.TABLE_NAME,where_clause,"varchar",map)
+            query = query.replace("'","&quote;")
+            var str = offline_mode_service.general_push_command(query,remote_SQL_Helper.getusername())
+            Toast.makeText(context,str,Toast.LENGTH_SHORT).show()
         }
     } // companion end
 }

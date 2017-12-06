@@ -58,7 +58,12 @@ class user_database_helper(private val con: Context) : local_SQL_Helper(con, con
         else // if it doesn't lets create a new entry for the user
             insert_user(username, password)
         return true
-
+        /*
+        var map:HashMap<String,String> = HashMap()
+        map[USERS_ID] = username
+        map[PASSWORD] = password
+        return replace(map)
+        */
     }
 
     /*

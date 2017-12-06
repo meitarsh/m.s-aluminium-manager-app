@@ -9,6 +9,7 @@ import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.inven
 import com.example.chaosruler.msa_manager.services.local_SQL_Helper
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
+import kotlin.collections.HashMap
 
 /**
  * Created by chaosruler on 12/3/17.
@@ -136,12 +137,20 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
       if its a new inventory, add a new inventory to table
    */
     fun add_project(inventory_data: inventory_data) // subroutine that manages the inventory adding operation to the database
-            : Boolean {
+            : Boolean
+    {
+        /*
+        var map:HashMap<String,String> = HashMap()
+        map[ID] = inventory_data.get_itemid() ?: ""
+        map[NAME] = inventory_data.get_itemname() ?: ""
+        map[DATAARAEID] = inventory_data.get_DATAREAID() ?: ""
+        map[USER] = inventory_data.get_USERNAME() ?: ""
+        return replace(map)
+        */
         return if (check_inventory( inventory_data)) // checks if inventory exists in database
             update_inventory(inventory_data,inventory_data.copy()) // if it does, lets update
         else // if it doesn't lets create a new entry for the inventory
             insert_inventory(inventory_data)
-
     }
 
     /*

@@ -8,6 +8,51 @@ class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String
                      private var PERCENTFORACCOUNT:String?,private var TOTALSUM:String?,private var SALPROG:String?,private var PRINTORDER:String?,
                      private var ITEMNUMBER:String?,private var KOMANUM:String? ,private var DIRANUM:String?,private var USERNAME:String?)
 {
+    init
+    {
+        if(VENDOR_ID!=null)
+            VENDOR_ID=VENDOR_ID!!.trim()
+        if(DATAAREAID!=null)
+            DATAAREAID=DATAAREAID!!.trim()
+        if(RECVERSION!=null)
+            RECVERSION=RECVERSION!!.trim()
+        if(RECID!=null)
+            RECID=RECID!!.trim()
+        if(PROJECTS_ID!=null)
+            PROJECTS_ID=PROJECTS_ID!!.trim()
+        if(INVENTORY_ID!=null)
+            INVENTORY_ID=INVENTORY_ID!!.trim()
+        if(FLAT!=null)
+            FLAT = FLAT!!.trim()
+        if(FLOOR!=null)
+            FLOOR!=FLOOR!!.trim()
+        if(QTY!=null)
+            QTY = QTY!!.trim()
+        if(SALESPRICE!=null)
+            SALESPRICE = SALESPRICE!!.trim()
+        if(OPR_ID!=null)
+            OPR_ID = OPR_ID!!.trim()
+        if(MILESTONEPERCENT!=null)
+            MILESTONEPERCENT = MILESTONEPERCENT!!.trim()
+        if(QTYFORACCOUNT!=null)
+            QTYFORACCOUNT = QTYFORACCOUNT!!.trim()
+        if(PERCENTFORACCOUNT!=null)
+            PERCENTFORACCOUNT = PERCENTFORACCOUNT!!.trim()
+        if(TOTALSUM != null)
+            TOTALSUM = TOTALSUM!!.trim()
+        if(SALPROG != null)
+            SALPROG = SALPROG!!.trim()
+        if(PRINTORDER != null)
+            PRINTORDER = PRINTORDER!!.trim()
+        if(ITEMNUMBER != null)
+            ITEMNUMBER = ITEMNUMBER!!.trim()
+        if(KOMANUM != null)
+            KOMANUM = KOMANUM!!.trim()
+        if(DIRANUM != null)
+            DIRANUM = DIRANUM!!.trim()
+        if(USERNAME != null)
+            USERNAME = USERNAME!!.trim()
+    }
     public fun get_VENDOR_ID():String? = VENDOR_ID
     public fun get_DATAAREAID():String? = DATAAREAID
     public fun get_RECVERSION():String? = RECVERSION
@@ -115,6 +160,7 @@ class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String
         USERNAME = string
     }
 
+    override fun toString(): String = get_VENDOR_ID()?:"" + " " + get_PROJECT_ID() ?:"" + " " + get_OPRID() + get_INVENTORY_ID()
 
     public fun copy():big_table_data = big_table_data(get_VENDOR_ID(),get_DATAAREAID(),get_RECVERSION(),get_RECID(),get_PROJECT_ID(),get_INVENTORY_ID(),get_FLAT(),get_FLOOR(),get_QTY(),get_SALESPRICE(),get_OPRID(),get_MILESTONEPERCENT(),get_QTYFORACCOUNT(),get_PERCENTFORACCOUNT(),get_TOTALSUM(),get_SALPROG(),get_PRINTORDER(),get_ITEMNUMBER(),get_KOMANUM(),get_DIRANUM(),get_USERNAME())
 }

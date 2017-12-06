@@ -67,12 +67,16 @@
             android:name=".activies.settings_activity.SettingsActivity"
             android:configChanges="orientation"
             android:label="@string/settings_str"
-            android:screenOrientation="portrait"></activity>
-
-        <activity android:name=".activies.kablan_pashot_activity.kablan_pashot"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.kablan_pashot_activity.kablan_pashot"
+            android:configChanges="orientation"
+            android:label="@string/kablan_pashot_label"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activies.kablan_mforat_activity.kablan_mforat"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:label="@string/kablan_pashot_label"
+            android:label="@string/kablan_mforat_label"
             ></activity>
     </application>
 

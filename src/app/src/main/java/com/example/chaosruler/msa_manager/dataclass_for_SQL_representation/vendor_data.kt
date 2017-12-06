@@ -3,6 +3,17 @@ package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 
 class vendor_data(private var ID:String?,private var NAME:String?,private var DATAAREAID:String?,private var USERNAME:String?)
 {
+    init
+    {
+        if(ID!=null)
+            ID=ID!!.trim()
+        if(NAME!=null)
+            NAME=NAME!!.trim()
+        if(DATAAREAID!=null)
+            DATAAREAID=DATAAREAID!!.trim()
+        if(USERNAME!=null)
+            USERNAME=USERNAME!!.trim()
+    }
     fun get_accountnum():String? = this.ID
 
     fun get_accountname():String? = this.NAME

@@ -468,6 +468,9 @@ class remote_SQL_Helper()
             return command
         }
 
+        /*
+            for mulitple where clauses
+         */
         fun construct_update_str(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>):String
         {
             var command: String = "USE [$db]" +
@@ -486,6 +489,31 @@ class remote_SQL_Helper()
                 command += "CONVERT($type,$where_clause) = $item "
                 if (item != compare_to.last())
                     command += " OR "
+            }
+            return command
+        }
+
+        fun construct_update_str_multiwhere_text(db: String, table: String, where_clause:HashMap<String,String>, all_type:String, update_to: HashMap<String, String>):String
+        {
+            var command: String = "USE [$db]" +
+                    " UPDATE [dbo].[$table] SET "
+            var breaker: Int = 0
+            for (item in update_to) {
+                command += " [${item.key}] = ${item.value} "
+                breaker++
+                if (breaker < update_to.size)
+                    command += " , "
+                else
+                    break
+            }
+            command += " WHERE "
+            var where_counter = 0
+            for (item in where_clause)
+            {
+                command += "CONVERT($all_type,${item.key}) = '${item.value}' "
+                where_counter++
+                if (where_counter < where_clause.size)
+                    command += " AND "
             }
             return command
         }

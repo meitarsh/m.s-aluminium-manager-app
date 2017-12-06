@@ -143,12 +143,20 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
       if its a new project, add a new project to table
    */
     fun add_project(project: project_data) // subroutine that manages the project adding operation to the database
-            : Boolean {
+            : Boolean
+    {
+        /*
+        var map:HashMap<String,String> = HashMap()
+        map[ID] = project.getProjID() ?: ""
+        map[NAME] = project.get_project_name() ?: ""
+        map[DATAAREAID] = project.get_DATAREAID() ?: ""
+        map[USERNAME] = project.get_USERNAME() ?: ""
+        return replace(map)
+        */
         return if (check_project( project)) // checks if project exists in database
             update_project(project,project.copy()) // if it does, lets update
         else // if it doesn't lets create a new entry for the project
             insert_project(project)
-
     }
 
     /*
@@ -207,6 +215,11 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
 
     }
 
+    fun get_project_by_id(id:String):project_data?
+    {
+        var data:project_data? = get_project_by_project(project_data(id,null,null,remote_SQL_Helper.getusername()))
+        return data
+    }
 
 
 }

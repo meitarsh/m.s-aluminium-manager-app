@@ -9,6 +9,7 @@ import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.opr_d
 import com.example.chaosruler.msa_manager.services.local_SQL_Helper
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
+import kotlin.collections.HashMap
 
 /**
  * Created by chaosruler on 12/3/17.
@@ -141,12 +142,20 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
       if its a new opr, add a new opr to table
    */
     fun add_opr(opr_data: opr_data) // subroutine that manages the opr adding operation to the database
-            : Boolean {
+            : Boolean
+    {
+        /*
+       var map:HashMap<String,String> = HashMap()
+       map[ID] = opr_data.get_oprid() ?: ""
+       map[NAME] = opr_data.get_opr_name() ?: ""
+       map[DATAARAEID] = opr_data.get_DATAREAID() ?: ""
+       map[USER] = opr_data.get_USERNAME() ?: ""
+       return replace(map)
+       */
         return if (check_opr( opr_data)) // checks if opr exists in database
             update_opr(opr_data,opr_data.copy()) // if it does, lets update
         else // if it doesn't lets create a new entry for the opr
             insert_opr(opr_data)
-
     }
 
     /*

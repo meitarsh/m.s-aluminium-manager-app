@@ -9,9 +9,8 @@ import android.widget.TextView
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_OPR_table_helper
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.inventory_data
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.opr_data
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.*
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import java.util.*
 
 
@@ -20,11 +19,9 @@ import java.util.*
  */
 class kablan_pashot_listview_arrayadapter(context: Context,arr: Vector<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.kablan_pashot_listview,arr.toTypedArray())
 {
-    private var opr_db:local_OPR_table_helper = local_OPR_table_helper(context)
-    private var item_db:local_inventory_table_helper = local_inventory_table_helper(context)
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View
     {
+        @SuppressWarnings("hiding")
         var convertView:View = convertView ?: LayoutInflater.from(context).inflate(R.layout.kablan_pashot_listview,parent,false)
 
         val hoza:TextView = get_view(convertView,R.id.item_kablan_pashot_hoza) as TextView
@@ -32,12 +29,14 @@ class kablan_pashot_listview_arrayadapter(context: Context,arr: Vector<big_table
         val ahoz:TextView = get_view(convertView,R.id.item_kablan_pashot_ahoz_peola) as TextView
 
         val big_item:big_table_data = getItem(position)
-        val opr_item: opr_data = opr_db.get_opr_by_id(big_item.get_OPRID()!!)  ?: return convertView
-        val inventory:inventory_data = item_db.get_opr_by_id(big_item.get_INVENTORY_ID()!!) ?: return convertView
+        val opr_item: opr_data = global_variables_dataclass.DB_OPR!!.get_opr_by_id(big_item.get_OPRID()!!)!!
+        val project_item:project_data = global_variables_dataclass.DB_project!!.get_project_by_id(big_item.get_PROJECT_ID()!!)!!
+        val vendor_item:vendor_data = global_variables_dataclass.DB_VENDOR!!.get_vendor_by_id(big_item.get_VENDOR_ID()!!)!!
+        val inventory:inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_opr_by_id(big_item.get_INVENTORY_ID()!!)!!
 
-        hoza.text = opr_item.get_opr_name() ?: ""
-        peola.text = inventory.get_itemname() ?: ""
-        var parcent:String = big_item.get_MILESTONEPERCENT()?:0.toString()
+        hoza.text = vendor_item.get_accountnum() ?: ""
+        peola.text = vendor_item.get_accountname() ?: ""
+        var parcent:String = big_item.get_PERCENTFORACCOUNT()?:0.toString()
         ahoz.text = (parcent.toDouble()*100).toInt().toString() + "%"
         return convertView
     }
