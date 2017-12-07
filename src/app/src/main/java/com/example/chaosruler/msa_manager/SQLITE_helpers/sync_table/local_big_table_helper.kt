@@ -121,7 +121,8 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     /*
         converts DB to vector of opr
      */
-    fun get_local_DB(): Vector<big_table_data> {
+    fun get_local_DB(): Vector<big_table_data>
+    {
         var vector: Vector<big_table_data> = Vector()
 
         var all_db: Vector<java.util.HashMap<String, String>> = get_db()
@@ -144,6 +145,32 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         return vector
     }
 
+    /*
+           get local DB by project name
+        */
+    fun get_local_DB_by_projname(projid:String, projdb:local_projects_table_helper): Vector<big_table_data>
+    {
+        var vector: Vector<big_table_data> = Vector()
+
+        var all_db: Vector<java.util.HashMap<String, String>> = get_db()
+        all_db
+                .filter { it[USER] != null && it[USER]?:"" == remote_SQL_Helper.getusername() && it[PROJID]!=null && projid == it[PROJID]!!}
+                .map {
+                    big_table_data(it[ACCOUNT_NUM]?:"",
+                            it[DATAARAEID]?:"", it[RECVERSION]?:"",
+                            it[RECID]?:"", it[PROJID]?:"",
+                            it[ITEMID]?:"", it[FLAT]?:"",
+                            it[FLOOR]?:"", it[QTY]?:"",
+                            it[SALESPRICE]?:"", it[OPR_ID]?:"",
+                            it[MILESTONEPERCENTAGE]?:"", it[QTYFORACCOUNT]?:"",
+                            it[PERCENTFORACCOUNT]?:"", it[TOTAL_SUM]?:"",
+                            it[SALPROG]?:"", it[PRINTORDER]?:"",
+                            it[ITEMNUMBER]?:"", it[KOMANUM]?:"",
+                            it[DIRANUM]?:"", it[USER]?:"")
+                }
+                .forEach { vector.addElement(it) }
+        return vector
+    }
 
     /*
            subroutine to convert server data to vector of opr
@@ -180,6 +207,42 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         return result_vector
     }
 
+
+    /*
+        server data to vector... by projid
+     */
+    fun server_data_to_vector_by_projname(projid: String, projdb: local_projects_table_helper): Vector<big_table_data>
+    {
+
+        var server_data: Vector<java.util.HashMap<String, String>> =
+                if(BuildConfig.DEBUG)
+                {
+                    var typemap:HashMap<String,String> = remote_big_table_helper.make_type_map()
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+                }
+                else
+                {
+                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
+                }
+        var result_vector: Vector<big_table_data> = Vector()
+        server_data
+                .filter { it[PROJID]!=null && projid == it[PROJID]!!  }
+                .map { it ->
+                    big_table_data(it[remote_big_table_helper.VENDOR_ID]?: "",
+                            it[remote_big_table_helper.DATAREAID]?: "", it[remote_big_table_helper.RECVERSION]?: "",
+                            it[remote_big_table_helper.RECID]?: "", it[remote_big_table_helper.PROJECTS_ID]?: "",
+                            it[remote_big_table_helper.INVENTORY_ID]?: "", it[remote_big_table_helper.FLAT]?: "",
+                            it[remote_big_table_helper.FLOOR]?: "", it[remote_big_table_helper.QTY]?: "",
+                            it[remote_big_table_helper.SALESPRICE]?: "", it[remote_big_table_helper.OPR_ID]?: "",
+                            it[remote_big_table_helper.MILESTONEPERCENT]?: "", it[remote_big_table_helper.QTYFORACCOUNT]?: "",
+                            it[remote_big_table_helper.PERCENTFORACCOUNT]?: "", it[remote_big_table_helper.TOTALSUM]?: "",
+                            it[remote_big_table_helper.SALPROG]?: "", it[remote_big_table_helper.PRINTORDER]?: "",
+                            it[remote_big_table_helper.ITEMNUMBER]?: "", it[remote_big_table_helper.KOMANUM]?: "",
+                            it[remote_big_table_helper.DIRANUM]?: "", remote_SQL_Helper.getusername())
+                }
+                .forEach { result_vector.addElement(it) }
+        return result_vector
+    }
     /*
            subroutine that is in charge of getting the opr class
            by query

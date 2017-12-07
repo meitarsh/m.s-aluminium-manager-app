@@ -15,6 +15,7 @@ class global_variables_dataclass
         public var isLocal:Boolean = true
         public var GUI_MODE:Boolean = false
         public var DB_BIG:local_big_table_helper? = null
+        public var projid:String = ""
         public var DB_project:local_projects_table_helper? = null
         public var DB_OPR:local_OPR_table_helper? = null
         public var DB_VENDOR:local_vendor_table_helper? = null

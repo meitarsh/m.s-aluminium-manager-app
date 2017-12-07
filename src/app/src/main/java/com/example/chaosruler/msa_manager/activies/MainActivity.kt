@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.example.chaosruler.msa_manager.R
@@ -15,7 +16,7 @@ import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_main.*
-
+import java.lang.Thread.sleep
 
 
 class MainActivity : Activity()
@@ -116,6 +117,7 @@ class MainActivity : Activity()
             runOnUiThread {
                 show_everything()
                 main_progressBar.visibility = ProgressBar.GONE
+                init_spinner()
             }
         }).start()
 
@@ -165,6 +167,28 @@ class MainActivity : Activity()
             // if sync time is equal zero - meaning OFF
             main_button_sync.visibility = View.VISIBLE
             main_button_sync.setOnClickListener { offline_mode_service.try_to_run_command() }
+
+            main_button_download.visibility = View.VISIBLE
+            main_button_download.setOnClickListener({
+                offline_mode_service.db_sync_func(baseContext,intent)
+                Thread({
+                    while (intent.getStringExtra(baseContext.getString(R.string.key_sync_offline))==null)
+                    {
+                        try {
+                            sleep(1000)
+                        }
+                        catch (e:InterruptedException)
+                        {
+                            Log.d("main_trd","Woke up")
+                        }
+                    }
+                    intent.removeExtra(baseContext.getString(R.string.key_sync_offline))
+                    runOnUiThread({
+                        Toast.makeText(baseContext, getString(R.string.sync_done_prompt),Toast.LENGTH_SHORT).show()
+                        init_spinner()
+                    })
+                }).start()
+            })
         }
     }
 

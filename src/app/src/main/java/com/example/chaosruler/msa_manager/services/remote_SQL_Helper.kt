@@ -227,7 +227,8 @@ class remote_SQL_Helper()
                                 return@execute
                             val columnCount = rs.metaData.columnCount
                             val rs_meta = rs.metaData
-                            while (rs.next()) {
+                            while (rs.next())
+                            {
                                 var map: HashMap<String, String> = HashMap()
                                 for (i in 1..(columnCount)) {
                                     var colum_name: String = rs_meta.getColumnName(i)

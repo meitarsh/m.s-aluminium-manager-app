@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_marginTop="149dp"
+        android:textDirection="rtl"
         app:layout_constraintBottom_toTopOf="@+id/main_progressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -48,9 +49,9 @@
 
     <Button
         android:id="@+id/main_button_sync"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_sync_black_24dp"
+        android:layout_width="@dimen/main_activity_buttons"
+        android:layout_height="@dimen/main_activity_buttons"
+        android:background="@drawable/upload"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -67,4 +68,17 @@
         app:layout_constraintStart_toEndOf="@+id/main_spinner"
         app:layout_constraintTop_toBottomOf="@+id/main_textview"
         app:layout_constraintVertical_bias="0.217" />
+
+    <Button
+        android:id="@+id/main_button_download"
+        android:layout_width="@dimen/main_activity_buttons"
+        android:layout_height="@dimen/main_activity_buttons"
+        android:background="@drawable/download"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_button_choose"
+        app:layout_constraintVertical_bias="1.0" />
 </android.support.constraint.ConstraintLayout>

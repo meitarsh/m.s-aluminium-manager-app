@@ -208,6 +208,30 @@
 
     </LinearLayout>
 
+    <!--tashlom saah -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_mforat_saah_ahakol_activity"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/yellow"
+            android:text="@string/kablan_mforat_saah_hakol_txt" />
+
+
+        <TextView
+            android:id="@+id/activity_kablan_mforat_saah_hakol"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/yellow" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

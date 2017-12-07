@@ -32,7 +32,7 @@
     <string name="main_progress_bar_max">100</string>
     <string name="main_progressbar_start">50</string>
     <string name="main_progressbar_inc_rate">5</string>
-
+    <string name="sync_done_prompt">הורדת נתונים מהשרת הסתיימה</string>
 
 
 
@@ -77,4 +77,36 @@
     <string name="kablan_mforat_kamot_lzorah_heshbon_kablan_txt">כמות לצורך חשבון קבלן</string>
     <string name="kablan_mforat_ahoz_meosher_txt">אחוז מאושר</string>
     <string name="kablan_mforat_saah_tashlom_txt">סהכ לתשלום</string>
+    <string name="kablan_mforat_saah_hakol_txt">סהכ כל הפרויקטים</string>
+    
+    <!-- Strings related to loz activity -->
+    <string name="loz_activity_bnian_str">בניין</string>
+    <string name="loz_activity_koma_str">קומה</string>
+    <string name="loz_activity_begin_str">התחלה</string>
+    <string name="loz_activity_end_str">סיום</string>
+    <string name="loz_activity_ahoz_bizoa_str">אחוז ביצוע</string>
+    <string name="loz_activity_isFinished">האם הסתיים</string>
+    <string name="loz_activity_haarot">הערות</string>
+
+    
+    <!-- divohi takalot - strings shared with both tofes and edit -->
+    <string name="divohi_takalot_mispar_sirtot">מספר שרטוט</string>
+    <string name="divohi_takalot_mispar_parit">מספר פריט</string>
+    <string name="divohi_takalot_shem_parit">שם פריט</string>
+    <string name="divohi_takalot_mispar_project">מספר פרויקט</string>
+    <string name="divohi_takalot_shem_project">שם פרויקט</string>
+    <string name="divohi_takalot_kamot">כמות</string>
+    <string name="divohi_takalot_sog_takala">סוג תקלה</string>
+    <string name="divohi_takalot_koma">קומה</string>
+    <string name="divohi_takalot_bnian">בניין</string>
+    <string name="divohi_takalot_dira">דירה</string>
+    <string name="divohi_takalot_tiaoor_takala">תיאור תקלה</string>
+    <string name="divohi_takalot_peolot_tikon_momlazot">פעולות תיקון מומלצות</string>
+    <string name="divohi_takalot_peola_monaat">פעולה מונעת</string>
+    <string name="diovhi_takalot_tgovat_mnaal">תגובת מנהל האיכות//הנדסה</string>
+    <string name="divohi_takalot_alot_takala">עלות תקלה</string>
+
+    <string name="divohi_takalot_tofes_str">טופס - דיווחי תקלות</string>
+    <string name="divohi_takalot_edit_str">עריכה - דיווחי תקלות</string>
+    
 </resources>

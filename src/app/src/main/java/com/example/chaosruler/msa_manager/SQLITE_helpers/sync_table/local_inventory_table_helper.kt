@@ -60,7 +60,7 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         var server_vec = server_data_to_vector()
         for(item in server_vec)
         {
-            add_project(item)
+            add_inventory(item)
         }
     }
 
@@ -141,7 +141,7 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
       if inventory is valid, and it exists, update it
       if its a new inventory, add a new inventory to table
    */
-    fun add_project(inventory_data: inventory_data) // subroutine that manages the inventory adding operation to the database
+    fun add_inventory(inventory_data: inventory_data) // subroutine that manages the inventory adding operation to the database
             : Boolean
     {
         /*

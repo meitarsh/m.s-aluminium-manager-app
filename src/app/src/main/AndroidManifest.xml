@@ -55,7 +55,7 @@
             android:name=".activies.loz_activity"
             android:configChanges="orientation"
             android:label="@string/project_options_3"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".services.offline_mode_service"
@@ -69,15 +69,27 @@
             android:label="@string/settings_str"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.kablan_pashot_activity.kablan_pashot"
+            android:name=".activies.kablan_pashot"
             android:configChanges="orientation"
             android:label="@string/kablan_pashot_label"
             android:screenOrientation="portrait" />
-        <activity android:name=".activies.kablan_mforat"
+        <activity
+            android:name=".activies.kablan_mforat"
+            android:configChanges="orientation"
+            android:label="@string/kablan_mforat_label"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.DivohiTakalotTofesActivity"
+            android:configChanges="orientation"
+            android:label="@string/divohi_takalot_tofes_str"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activies.divohi_takalot_edit"
+            android:label="@string/divohi_takalot_edit_str"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:label="@string/kablan_mforat_label"
-            ></activity>
+            >
+
+        </activity>
     </application>
 
 </manifest>

@@ -20,20 +20,15 @@ class project_options : Activity() {
     /*
         define the project name we are working on
      */
-    companion object
-    {
-        private var project_name:String? = null
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_options)
         if(!global_variables_dataclass.GUI_MODE)
-            project_name = intent.getStringExtra(getString(R.string.key_pass_main_to_options))
+            global_variables_dataclass.projid = intent.getStringExtra(getString(R.string.key_pass_main_to_options))
         else
-            project_name = ""
-        if(project_name == null)
+            global_variables_dataclass.projid = ""
+        if(global_variables_dataclass.projid == null)
             finish()
         init_buttons()
 

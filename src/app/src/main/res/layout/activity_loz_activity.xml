@@ -1,11 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.chaosruler.msa_manager.activies.loz_activity"
-    android:layoutDirection="ltr"
-    >
 
-</android.support.constraint.ConstraintLayout>
+
+
+<HorizontalScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TableLayout
+        android:id="@+id/loz_activity_table"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="rtl">
+
+            <TextView
+                android:id="@+id/loz_activity_bnian"
+                android:gravity="center"
+                android:text="@string/loz_activity_bnian_str"
+                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
+                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
+                />
+
+            <TextView
+                android:id="@+id/loz_activity_koma"
+                android:gravity="center"
+                android:text="@string/loz_activity_koma_str"
+                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
+                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
+                />
+
+            <TextView
+                android:id="@+id/loz_activity_begin"
+                android:gravity="center"
+                android:text="@string/loz_activity_begin_str"
+                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
+                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
+                />
+            <TextView
+                android:id="@+id/loz_activity_finish"
+                android:gravity="center"
+                android:text="@string/loz_activity_end_str"
+                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
+                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
+                />
+            <TextView
+                android:id="@+id/loz_activity_ahoz_bizoa"
+                android:gravity="center"
+                android:text="@string/loz_activity_ahoz_bizoa_str"
+                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
+                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
+                />
+            <TextView
+                android:id="@+id/loz_activity_isfinished"
+                android:gravity="center"
+                android:text="@string/loz_activity_isFinished"
+                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
+                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
+                />
+            <TextView
+                android:id="@+id/loz_activity_haarot"
+                android:gravity="center"
+                android:text="@string/loz_activity_haarot"
+                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
+                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
+                />
+
+        </TableRow>
+    </TableLayout>
+</HorizontalScrollView>

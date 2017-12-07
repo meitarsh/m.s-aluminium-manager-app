@@ -171,8 +171,12 @@ class remote_big_table_helper
 
         public fun push_update(big_table_data: big_table_data,map:HashMap<String,String>,context: Context)
         {
+            var typemap = make_type_map()
             for(item in map)
-                item.setValue(remote_SQL_Helper.add_quotes(item.value))
+            {
+                if((typemap[item.key] ?: "") == "text" || (typemap[item.key] ?: "") != "varchar" )
+                    item.setValue(remote_SQL_Helper.add_quotes(item.value))
+            }
             var where_clause:HashMap<String,String> = HashMap()
             where_clause[remote_big_table_helper.VENDOR_ID] = big_table_data.get_VENDOR_ID()!!
             where_clause[remote_big_table_helper.INVENTORY_ID] = big_table_data.get_INVENTORY_ID()!!
