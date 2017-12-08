@@ -62,9 +62,9 @@ class remote_SQL_Helper()
             }
             catch (e: SQLException)
             {
+                Log.d("remote SQL","EXCEPTION ${e.message}")
                 exception = e
                 isvalid = false
-                exception = e
 
             }
             return isvalid
@@ -83,15 +83,19 @@ class remote_SQL_Helper()
             }
             catch (e:SQLException)
             {
-                exception = e
                 if(e.errorCode==0)
                 {
                     ReConnect()
+                }
+                else
+                {
+                    Log.d("remote SQL","EXCEPTION ${e.message}")
                 }
             }
             catch (e:KotlinNullPointerException)
             {
                 ReConnect()
+                Log.d("remote SQL","EXCEPTION kotlin null pointer exception")
             }
             if(!isvalid)
                 return vector
@@ -107,15 +111,17 @@ class remote_SQL_Helper()
                     }
                     catch (e:SQLTimeoutException)
                     {
+                        Log.d("remote SQL","EXCEPTION SQL timeout")
                         rs = null
                     }
                     catch (e:SQLException)
                     {
-                        exception = e
+                        Log.d("remote SQL","EXCEPTION ${e.message}")
                         rs = null
                     }
                     catch (e: KotlinNullPointerException)
                     {
+                        Log.d("remote SQL","EXCEPTION kotlin null pointer exception")
                         rs = null
                     }
                     if(rs == null)
@@ -126,13 +132,8 @@ class remote_SQL_Helper()
                         var map: HashMap<String, String> = HashMap()
                         for (i in 1..(columnCount)) {
                             var colum_name: String = rs_meta.getColumnName(i)
-                            try {
-                                map[colum_name] = rs.getString(colum_name)
-                            }
-                            catch (e:IllegalStateException)
-                            {
-                                map[colum_name] = ""
-                            }
+                            map[colum_name] = rs.getString(colum_name)
+
                         }
                         vector.addElement(map)
                     }
@@ -148,12 +149,15 @@ class remote_SQL_Helper()
                         lock.wait()
                     }
                 }
-                catch (e: InterruptedException){}
+                catch (e: InterruptedException)
+                {
+                    Log.d("remote SQL","done syncing table")
+                }
 
             }
             catch (e: SQLException)
             {
-                e.printStackTrace()
+                Log.d("remote SQL","EXCEPTION ${e.message}")
                 exception = e
 
             }
@@ -177,10 +181,12 @@ class remote_SQL_Helper()
                 {
                     ReConnect()
                 }
+                Log.d("remote SQL","EXCEPTION ${e.message}")
             }
             catch (e:KotlinNullPointerException)
             {
                 ReConnect()
+                Log.d("remote SQL","EXCEPTION kotlin null pointer exception")
             }
             if(!isvalid)
                 return vector
@@ -218,14 +224,17 @@ class remote_SQL_Helper()
                             }
                             catch (e:SQLTimeoutException)
                             {
+                                Log.d("remote SQL","EXCEPTION SQL timeout exception")
                                 rs = null
                             }
                             catch (e:SQLException)
                             {
+                                Log.d("remote SQL","EXCEPTION ${e.message}")
                                 rs = null
                             }
                             catch (e: KotlinNullPointerException)
                             {
+                                Log.d("remote SQL","EXCEPTION kotlin null pointer exception")
                                 rs = null
                             }
                             if(rs == null)
@@ -235,15 +244,10 @@ class remote_SQL_Helper()
                             while (rs.next())
                             {
                                 var map: HashMap<String, String> = HashMap()
-                                for (i in 1..(columnCount)) {
+                                for (i in 1..(columnCount))
+                                {
                                     var colum_name: String = rs_meta.getColumnName(i)
-                                    try {
-                                        map[colum_name] = rs.getString(colum_name)
-                                    }
-                                    catch (e:IllegalStateException)
-                                    {
-                                        map[colum_name] = ""
-                                    }
+                                    map[colum_name] = rs.getString(colum_name)
                                 }
                                 vector.addElement(map)
                             }
@@ -259,12 +263,15 @@ class remote_SQL_Helper()
                         lock.wait()
                     }
                 }
-                catch (e: InterruptedException){}
+                catch (e: InterruptedException)
+                {
+                    Log.d("remote SQL","done syncing table")
+                }
 
             }
             catch (e: SQLException)
             {
-                e.printStackTrace()
+                Log.d("remote SQL","EXCEPTION ${e.message}")
                 exception = e
 
             }
@@ -307,9 +314,11 @@ class remote_SQL_Helper()
                     }
                     catch (e:SQLTimeoutException)
                     {
+                        Log.d("remote SQL","Timed out! command: $command")
                     }
                     catch (e:SQLException)
                     {
+                        Log.d("remote SQL","EXCEPTION command: $command and exception ${e.message}")
                     }
                     synchronized(lock)
                     {
@@ -322,12 +331,15 @@ class remote_SQL_Helper()
                         lock.wait()
                     }
                 }
-                catch (e: InterruptedException){}
+                catch (e: InterruptedException)
+                {
+                    Log.d("remote SQL","Done sync")
+                }
                 return return_value
             }
             catch (e: SQLException)
             {
-                e.printStackTrace()
+                Log.d("remote SQL","EXCEPTION command: $command and exception ${e.message}")
                 exception = e
                 return false
             }
@@ -341,7 +353,8 @@ class remote_SQL_Helper()
             if(isvalid)
             {
                 isvalid = false
-                connection!!.close()
+                if(connection!=null)
+                    connection!!.close()
             }
         }
 
@@ -379,10 +392,15 @@ class remote_SQL_Helper()
                 {
                     ReConnect()
                 }
+                else
+                {
+                    Log.d("remote SQL","EXCEPTION ${e.message}")
+                }
             }
             catch (e:KotlinNullPointerException)
             {
                 ReConnect()
+                Log.d("remote SQL","EXCEPTION null pointer exception")
             }
             if(!isvalid)
                 return false
@@ -394,7 +412,7 @@ class remote_SQL_Helper()
                 }
                 catch (e:SQLException)
                 {
-                    e.printStackTrace()
+                    Log.d("remote SQL","EXCEPTION ${e.message}")
                 }
                 synchronized(lock)
                 {
@@ -409,7 +427,10 @@ class remote_SQL_Helper()
                  lock.wait()
              }
             }
-            catch (e:InterruptedException){}
+            catch (e:InterruptedException)
+            {
+                Log.d("remote SQL","Done login sync")
+            }
             return true
         }
 

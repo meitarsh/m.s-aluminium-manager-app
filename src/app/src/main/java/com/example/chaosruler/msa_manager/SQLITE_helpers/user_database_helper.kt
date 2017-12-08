@@ -8,9 +8,7 @@ import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.User
 import java.util.*
 import kotlin.collections.HashMap
 
-/**
- * Created by chaosruler on 11/14/17.
- */
+
 class user_database_helper(private val con: Context) : local_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.getString(R.string.USER_DB_VERSION).toInt(),con.getString(R.string.USER_TABLE_NAME) ) {
     private val USERS_ID: String = con.getString(R.string.USER_COL_ID)
     private val PASSWORD: String = con.getString(R.string.USER_COL_PASSWORD)

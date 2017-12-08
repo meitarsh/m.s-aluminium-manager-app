@@ -13,6 +13,9 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.divohi_takalot_tofes.*
 import java.util.*
 
+/*
+    divohi takalot form activity
+ */
 class DivohiTakalotTofesActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?)

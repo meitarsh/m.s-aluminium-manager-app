@@ -7,9 +7,7 @@ import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.cache_command
 import java.util.*
 
-/**
- * Created by chaosruler on 11/18/17.
- */
+
 class cache_server_commands( context: Context) : local_SQL_Helper(context,context.getString(R.string.cache_DB_NAME),null,context.getString(R.string.cache_db_ver).toInt(),context.getString(R.string.cache_table_name))
 {
 
@@ -81,7 +79,7 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
         input_map[USER] = "'${command.__user}'"
         if(get_rows(input_map).size <= 0)
             return -1
-        return get_rows(input_map).firstElement()[ID]!!.toLong()
+        return ((get_rows(input_map).firstElement()[ID]?:"-1").trim()).toLong()
     }
 
     /*

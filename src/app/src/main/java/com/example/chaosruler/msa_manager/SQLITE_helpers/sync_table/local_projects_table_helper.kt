@@ -72,7 +72,7 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
         var vector:Vector<project_data> = Vector()
         var all_db:Vector<HashMap<String,String>> = get_db()
         all_db
-                .filter { it[USERNAME] != null && it[USERNAME] == remote_SQL_Helper.getusername() }
+                .filter { (it[USERNAME]?:null) != null && it[USERNAME] == remote_SQL_Helper.getusername() }
                 .forEach { vector.addElement(project_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAAREAID]?:"").trim(), (it[USERNAME]?:"").trim())) }
         return vector
     }

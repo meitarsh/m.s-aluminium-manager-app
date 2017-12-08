@@ -5,9 +5,6 @@ import android.preference.PreferenceManager
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
 
-/**
- * Created by chaosruler on 12/5/17.
- */
 class global_variables_dataclass
 {
     companion object

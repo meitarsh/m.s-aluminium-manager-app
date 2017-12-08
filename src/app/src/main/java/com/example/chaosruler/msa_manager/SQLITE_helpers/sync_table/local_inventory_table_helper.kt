@@ -12,9 +12,7 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
 
-/**
- * Created by chaosruler on 12/3/17.
- */
+
 class local_inventory_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME),null,context.getString(R.string.LOCAL_INVENTORY_TABLE_VERSION).toInt(),context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME))
 {
     private val ID: String = context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID)
@@ -73,7 +71,7 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
 
         var all_db:Vector<HashMap<String,String>> = get_db()
         all_db
-                .filter { it[USER] != null && it[USER] == remote_SQL_Helper.getusername() }
+                .filter { (it[USER]?:null) != null && it[USER] == remote_SQL_Helper.getusername() }
                 .forEach { vector.addElement(inventory_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAARAEID]?:"").trim(), (it[USER]?:"").trim())) }
         return vector
     }

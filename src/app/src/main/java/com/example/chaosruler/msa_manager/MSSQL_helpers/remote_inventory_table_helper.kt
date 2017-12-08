@@ -11,9 +11,7 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
 
-/**
- * Created by chaosruler on 12/3/17.
- */
+
 class remote_inventory_table_helper
 {
     companion object : remote_helper()

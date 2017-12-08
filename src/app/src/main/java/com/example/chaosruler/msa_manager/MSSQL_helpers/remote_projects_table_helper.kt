@@ -9,9 +9,7 @@ import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
-/**
- * Created by chaosruler on 12/3/17.
- */
+
 class remote_projects_table_helper()
 {
 

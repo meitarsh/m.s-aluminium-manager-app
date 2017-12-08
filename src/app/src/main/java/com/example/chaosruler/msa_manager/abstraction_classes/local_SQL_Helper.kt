@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import java.util.*
@@ -31,11 +32,20 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             this.onCreate(db) // ensures this is called, android by itself will only do it if it needs to read/write the database
             //db.close()
         }
-        catch (e:Exception){}
+        catch (e:SQLiteException)
+        {
+            Log.d("Local SQL Exception","DB $DATABASE_NAME was not created yet")
+        }
     }
 
+    /*
+        API method abstraction
+     */
     abstract override fun onCreate(db: SQLiteDatabase)
 
+    /*
+        checks if we should upgrade.. and drops and recreates
+     */
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         if (newVersion > oldVersion)
         {
@@ -55,6 +65,9 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME)
     }
 
+    /*
+        clears all database values
+     */
     public fun clearDB()
     {
         this.writableDatabase.execSQL("delete from " + TABLE_NAME)
@@ -123,6 +136,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             }
             catch (e: Exception)
             {
+                Log.d("Local SQL helper","Failed for some reason with DB $DATABASE_NAME ${e.message}" )
                 synchronized(syncToken)
                 {
                     syncToken.notify()
@@ -151,7 +165,10 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             {
                 syncToken.wait()
 
-            } catch (e: InterruptedException) { }
+            } catch (e: InterruptedException)
+            {
+                Log.d("Local SQL helper","sync done with $DATABASE_NAME")
+            }
         }
         //db.close()
         return vector
@@ -279,6 +296,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             }
             catch (e:SQLException)
             {
+                Log.d("Local SQL helper","SQL Exception $DATABASE_NAME ${e.message}")
                 synchronized(sync_token)
                 {
                     sync_token.notify()
@@ -287,7 +305,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             }
             catch (e:IllegalStateException)
             {
-                Log.d("error","coudln't open DB")
+                Log.d("Local SQL helper","Illegal State ${e.message}")
                 synchronized(sync_token)
                 {
                     sync_token.notify()
@@ -297,8 +315,10 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             try
             {
                 c.moveToFirst()
-            } catch (e: Exception)
+            }
+            catch (e: Exception)
             {
+                Log.d("Local SQL helper","Error syncing ${e.message}")
                 synchronized(sync_token)
                 {
                     sync_token.notify()
@@ -334,7 +354,10 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             {
                 sync_token.wait()
             }
-            catch (e:InterruptedException){}
+            catch (e:InterruptedException)
+            {
+                Log.d("Local SQL helper","sync done with $DATABASE_NAME")
+            }
         }
         //db.close()
         return vector
@@ -371,6 +394,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             }
             catch (e: Exception)
             {
+                Log.d("Local SQL helper","SQL Error with $DATABASE_NAME ${e.message}")
                 synchronized(syncToken)
                 {
                     syncToken.notify()
@@ -398,7 +422,10 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             {
                 syncToken.wait()
 
-            } catch (e: InterruptedException) { }
+            } catch (e: InterruptedException)
+            {
+                Log.d("Local SQL helper","sync done with $DATABASE_NAME")
+            }
         }
         //db.close()
         return vector

@@ -55,7 +55,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
                     sleep(time)
                 } catch (e: InterruptedException)
                 {
-
+                    Log.d("offline mode","retring a re-sync of everything")
                 }
             }
         })

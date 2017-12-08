@@ -69,7 +69,7 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
 
         var all_db:Vector<HashMap<String,String>> = get_db()
         all_db
-                .filter { it[USER] != null && it[USER] == remote_SQL_Helper.getusername() }
+                .filter { (it[USER]?:null) != null && it[USER] == remote_SQL_Helper.getusername() }
                 .forEach { vector.addElement(opr_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAARAEID]?:"").trim(), (it[USER]?:"").trim())) }
         return vector
     }
@@ -182,7 +182,7 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
         change_to[NAME] = (to.get_opr_name() ?: "").trim()
         change_to[DATAARAEID] = (to.get_DATAREAID() ?: "").trim()
         change_to[USER] = (to.get_USERNAME() ?: "").trim()
-        return update_data(ID, arrayOf(from.get_oprid()!!),change_to)
+        return update_data(ID, arrayOf((from.get_oprid()?:"").trim()),change_to)
     }
 
     /*

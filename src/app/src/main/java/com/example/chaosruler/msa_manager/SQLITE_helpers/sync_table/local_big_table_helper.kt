@@ -12,9 +12,7 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
 
-/**
- * Created by chaosruler on 12/3/17.
- */
+
 class local_big_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME)
 ,null,context.getString(R.string.LOCAL_BIG_TABLE_VERSION).toInt(),context.getString(R.string.LOCAL_BIG_TABLE_NAME)) {
     private var ACCOUNT_NUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_ACCOUNTNUM)
@@ -155,7 +153,7 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
 
         var all_db: Vector<java.util.HashMap<String, String>> = get_db()
         all_db
-                .filter { it[USER] != null && it[USER]?:"" == remote_SQL_Helper.getusername() && it[PROJID]!=null && projid == it[PROJID]!!}
+                .filter { (it[USER]?:null) != null && it[USER]?:"" == remote_SQL_Helper.getusername() && (it[PROJID]?:null)!=null && projid == (it[PROJID]?:null) }
                 .map {
                     big_table_data((it[ACCOUNT_NUM]?:"").trim(),
                             (it[DATAARAEID]?:"").trim(), (it[RECVERSION]?:"").trim(),
@@ -257,7 +255,6 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         input_map[OPR_ID] = "'${big_table_data.get_OPRID()}'"
         val vector = get_rows(input_map)
         if (vector.size > 0) {
-            try {
                 return big_table_data(vector.firstElement()[ACCOUNT_NUM]?:"",
                         vector.firstElement()[DATAARAEID]?:"", vector.firstElement()[RECVERSION]?:"",
                         vector.firstElement()[RECID]?:"", vector.firstElement()[PROJID]?:"",
@@ -269,14 +266,7 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
                         vector.firstElement()[SALPROG]?:"", vector.firstElement()[PRINTORDER]?:"",
                         vector.firstElement()[ITEMNUMBER]?:"", vector.firstElement()[KOMANUM]?:"",
                         vector.firstElement()[DIRANUM]?:"", vector.firstElement()[USER]?:"")
-
-            } catch (e: Exception) {
-
-            }
         }
-
-
-
 
         return null
     }
