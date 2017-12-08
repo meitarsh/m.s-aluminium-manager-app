@@ -1,8 +1,10 @@
 package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+
 
 class vendor_data(private var ID:String?,private var NAME:String?,private var DATAAREAID:String?,private var USERNAME:String?)
-{
+    : table_dataclass {
     init
     {
         if(ID!=null)
@@ -14,6 +16,9 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
         if(USERNAME!=null)
             USERNAME=USERNAME!!.trim()
     }
+    /*
+    getters
+     */
     fun get_accountnum():String? = this.ID
 
     fun get_accountname():String? = this.NAME
@@ -22,6 +27,9 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
 
     fun get_USERNAME():String? = this.USERNAME
 
+    /*
+        setters
+     */
     fun set_accountnum(accountnum:String)
     {
         this.ID = accountnum
@@ -42,5 +50,12 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
         this.USERNAME = new_username
     }
 
-    fun copy(): vendor_data = vendor_data(this.ID, this.NAME, this.DATAAREAID, this.USERNAME)
+    /*
+        identifies
+     */
+    override fun toString(): String = get_accountname() ?: ""
+    /*
+        makes copy of
+     */
+    override fun copy(): vendor_data = vendor_data(this.ID, this.NAME, this.DATAAREAID, this.USERNAME)
 }

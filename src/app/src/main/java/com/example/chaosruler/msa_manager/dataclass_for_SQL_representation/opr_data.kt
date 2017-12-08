@@ -1,8 +1,10 @@
 package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+
 
 class opr_data(private var ID:String?,private var NAME:String?,private var DATAAREAID:String?,private var USERNAME:String?)
-{
+    : table_dataclass {
     init
     {
         if(ID!=null)
@@ -14,6 +16,9 @@ class opr_data(private var ID:String?,private var NAME:String?,private var DATAA
         if(USERNAME!=null)
             USERNAME=USERNAME!!.trim()
     }
+    /*
+        getters
+     */
     fun get_oprid():String? = this.ID
 
     fun get_opr_name():String? = this.NAME
@@ -22,6 +27,9 @@ class opr_data(private var ID:String?,private var NAME:String?,private var DATAA
 
     fun get_USERNAME():String? = this.USERNAME
 
+    /*
+        setters
+     */
     fun set_oprid(itemid:String)
     {
         this.ID = itemid
@@ -42,5 +50,12 @@ class opr_data(private var ID:String?,private var NAME:String?,private var DATAA
         this.USERNAME = new_username
     }
 
-    fun copy(): opr_data = opr_data(this.ID, this.NAME, this.DATAAREAID, this.USERNAME)
+    /*
+        identifies
+     */
+    override fun toString(): String = get_opr_name() ?: ""
+    /*
+    makes a copy of
+     */
+    override fun copy(): opr_data = opr_data(this.ID, this.NAME, this.DATAAREAID, this.USERNAME)
 }

@@ -1,4 +1,4 @@
-package com.example.chaosruler.msa_manager.services
+package com.example.chaosruler.msa_manager.abstraction_classes
 
 import android.content.ContentValues
 import android.content.Context

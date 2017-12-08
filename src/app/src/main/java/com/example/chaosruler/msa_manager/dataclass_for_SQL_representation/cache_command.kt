@@ -6,6 +6,9 @@ package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
  */
 class cache_command(public val __command:String, public val __user:String)
 {
+    /*
+        identifies
+     */
     override fun toString(): String
     {
         return __command

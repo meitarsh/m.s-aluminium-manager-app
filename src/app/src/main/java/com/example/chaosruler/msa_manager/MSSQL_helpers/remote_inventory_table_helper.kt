@@ -3,18 +3,22 @@ package com.example.chaosruler.msa_manager.MSSQL_helpers
 import android.content.Context
 import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.inventory_data
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
+import kotlin.collections.HashMap
 
 /**
  * Created by chaosruler on 12/3/17.
  */
 class remote_inventory_table_helper
 {
-    companion object
+    companion object : remote_helper()
     {
+
         public var DATABASE_NAME:String = ""
         public var TABLE_NAME:String = ""
 
@@ -27,8 +31,10 @@ class remote_inventory_table_helper
         public var DATAAREAID:String = ""
         public var DATAAREAID_TYPE:String = ""
 
-
-        public fun init_variables(context: Context)
+        /*
+            init database variables
+         */
+        override public fun init_variables(context: Context)
         {
             DATABASE_NAME = context.getString(R.string.DATABASE_NAME)
             TABLE_NAME = context.getString(R.string.TABLE_INVENTORY)
@@ -43,7 +49,10 @@ class remote_inventory_table_helper
             DATAAREAID_TYPE = context.getString(R.string.INVENTORY_DATAAREAID_TYPE)
         }
 
-        fun make_type_map():HashMap<String,String>
+        /*
+            make database typemap
+         */
+        override fun make_type_map():HashMap<String,String>
         {
             var map:HashMap<String,String> = HashMap()
             map[ID] = ID_TYPE
@@ -52,8 +61,25 @@ class remote_inventory_table_helper
             return map
         }
 
+        /*
+            select * from inventory
+         */
         fun select_wildcard(): Vector<HashMap<String, String>> = remote_SQL_Helper.select_columns_from_db_with_where(DATABASE_NAME, TABLE_NAME, make_type_map(), null, null)
 
+
+        /*
+        api call
+         */
+        override fun push_update(obj: table_dataclass, map: HashMap<String, String>, context: Context)
+        {
+            if(obj is inventory_data)
+                push_update(obj,map,context)
+        }
+
+
+        /*
+            push update
+         */
         public fun push_update(inventory: inventory_data,map:HashMap<String,String>,context: Context)
         {
             var typemap = make_type_map()

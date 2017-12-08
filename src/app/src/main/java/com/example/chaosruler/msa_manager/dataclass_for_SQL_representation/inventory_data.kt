@@ -1,8 +1,10 @@
 package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+
 
 class inventory_data(private var ID:String?,private var NAME:String?,private var DATAAREAID:String?,private var USERNAME:String?)
-{
+    : table_dataclass {
 
     init
     {
@@ -15,6 +17,9 @@ class inventory_data(private var ID:String?,private var NAME:String?,private var
         if(USERNAME!=null)
             USERNAME=USERNAME!!.trim()
     }
+    /*
+    getters
+     */
     fun get_itemid():String? = this.ID
 
     fun get_itemname():String? = this.NAME
@@ -23,6 +28,9 @@ class inventory_data(private var ID:String?,private var NAME:String?,private var
 
     fun get_USERNAME():String? = this.USERNAME
 
+    /*
+        setters
+     */
     fun set_itemid(itemid:String)
     {
         this.ID = itemid
@@ -43,5 +51,12 @@ class inventory_data(private var ID:String?,private var NAME:String?,private var
         this.USERNAME = new_username
     }
 
-    fun copy(): inventory_data = inventory_data(this.ID, this.NAME, this.DATAAREAID, this.USERNAME)
+    /*
+        identifies
+     */
+    override fun toString(): String = get_itemname() ?: ""
+    /*
+        copies
+     */
+    override fun copy(): inventory_data = inventory_data(this.ID, this.NAME, this.DATAAREAID, this.USERNAME)
 }

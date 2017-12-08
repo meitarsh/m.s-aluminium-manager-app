@@ -3,7 +3,9 @@ package com.example.chaosruler.msa_manager.MSSQL_helpers
 import android.content.Context
 import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.project_data
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
@@ -14,7 +16,7 @@ class remote_projects_table_helper()
 {
 
 
-    companion object
+    companion object : remote_helper()
     {
         public var DATABASE_NAME:String = ""
         public var TABLE_NAME:String = ""
@@ -29,7 +31,7 @@ class remote_projects_table_helper()
         public var DATAAREAID_TYPE:String = ""
 
 
-        public fun init_variables(context: Context)
+        override public fun init_variables(context: Context)
         {
             TABLE_NAME = context.getString(R.string.TABLE_PROJECTS)
             DATABASE_NAME = context.getString(R.string.DATABASE_NAME)
@@ -42,7 +44,7 @@ class remote_projects_table_helper()
             DATAAREAID = context.getString(R.string.PROJECTS_DATAAREAID)
             DATAAREAID_TYPE = context.getString(R.string.PROJECTS_DATAAREAID_TYPE)
         }
-        fun make_type_map():HashMap<String,String>
+        override fun make_type_map():HashMap<String,String>
         {
             var map:HashMap<String,String> = HashMap()
             map[ID] = ID_TYPE
@@ -64,6 +66,11 @@ class remote_projects_table_helper()
             query = query.replace("'","&quote;")
             var str = offline_mode_service.general_push_command(query,remote_SQL_Helper.getusername())
             Toast.makeText(context,str,Toast.LENGTH_SHORT).show()
+        }
+
+        override fun push_update(obj: table_dataclass, map: HashMap<String, String>, context: Context) {
+            if(obj is project_data)
+                push_update(obj,map,context)
         }
     }
 }

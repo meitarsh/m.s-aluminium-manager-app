@@ -1,8 +1,10 @@
 package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+
 
 class project_data(private var projectID:String?,private var project_name:String?,private var DATAAREAID:String?,private var USERNAME:String?)
-{
+    : table_dataclass {
     init
     {
         if(projectID!=null)
@@ -14,6 +16,9 @@ class project_data(private var projectID:String?,private var project_name:String
         if(USERNAME!=null)
             USERNAME=USERNAME!!.trim()
     }
+    /*
+        getters
+     */
     fun getProjID():String? = this.projectID
 
     fun get_project_name():String? = this.project_name
@@ -22,6 +27,9 @@ class project_data(private var projectID:String?,private var project_name:String
 
     fun get_USERNAME():String? = this.USERNAME
 
+    /*
+        setters
+     */
     fun set_projid(new_projid:String)
     {
         this.projectID = new_projid
@@ -42,6 +50,12 @@ class project_data(private var projectID:String?,private var project_name:String
         this.USERNAME = new_username
     }
 
+    /*
+    identifies
+     */
     override fun toString(): String = this.project_name ?: ""
-    fun copy(): project_data = project_data(this.projectID, this.project_name, this.DATAAREAID, this.USERNAME)
+    /*
+        makes copy of
+     */
+    override fun copy(): project_data = project_data(this.projectID, this.project_name, this.DATAAREAID, this.USERNAME)
 }

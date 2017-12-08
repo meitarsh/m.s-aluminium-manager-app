@@ -2,11 +2,9 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteException
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.cache_command
-import com.example.chaosruler.msa_manager.services.local_SQL_Helper
-import java.sql.SQLException
 import java.util.*
 
 /**

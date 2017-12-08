@@ -1,5 +1,7 @@
 package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+
 
 class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String?,private var RECVERSION:String?,private var RECID:String?
                      ,private var PROJECTS_ID:String?,private var INVENTORY_ID:String?,private var FLAT:String?
@@ -7,7 +9,7 @@ class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String
                      private var OPR_ID:String?,private var MILESTONEPERCENT:String?,private var QTYFORACCOUNT:String?,
                      private var PERCENTFORACCOUNT:String?,private var TOTALSUM:String?,private var SALPROG:String?,private var PRINTORDER:String?,
                      private var ITEMNUMBER:String?,private var KOMANUM:String? ,private var DIRANUM:String?,private var USERNAME:String?)
-{
+    : table_dataclass {
     init
     {
         if(VENDOR_ID!=null)
@@ -53,6 +55,9 @@ class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String
         if(USERNAME != null)
             USERNAME = USERNAME!!.trim()
     }
+    /*
+        Getters
+     */
     public fun get_VENDOR_ID():String? = VENDOR_ID
     public fun get_DATAAREAID():String? = DATAAREAID
     public fun get_RECVERSION():String? = RECVERSION
@@ -75,6 +80,9 @@ class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String
     public fun get_DIRANUM():String? = DIRANUM
     public fun get_USERNAME():String? = USERNAME
 
+    /*
+        setters
+     */
     public fun set_VENDOR_ID(string: String)
     {
             VENDOR_ID = string
@@ -162,5 +170,5 @@ class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String
 
     override fun toString(): String = get_VENDOR_ID()?:"" + " " + get_PROJECT_ID() ?:"" + " " + get_OPRID() + get_INVENTORY_ID()
 
-    public fun copy():big_table_data = big_table_data(get_VENDOR_ID(),get_DATAAREAID(),get_RECVERSION(),get_RECID(),get_PROJECT_ID(),get_INVENTORY_ID(),get_FLAT(),get_FLOOR(),get_QTY(),get_SALESPRICE(),get_OPRID(),get_MILESTONEPERCENT(),get_QTYFORACCOUNT(),get_PERCENTFORACCOUNT(),get_TOTALSUM(),get_SALPROG(),get_PRINTORDER(),get_ITEMNUMBER(),get_KOMANUM(),get_DIRANUM(),get_USERNAME())
+    override public fun copy():big_table_data = big_table_data(get_VENDOR_ID(),get_DATAAREAID(),get_RECVERSION(),get_RECID(),get_PROJECT_ID(),get_INVENTORY_ID(),get_FLAT(),get_FLOOR(),get_QTY(),get_SALESPRICE(),get_OPRID(),get_MILESTONEPERCENT(),get_QTYFORACCOUNT(),get_PERCENTFORACCOUNT(),get_TOTALSUM(),get_SALPROG(),get_PRINTORDER(),get_ITEMNUMBER(),get_KOMANUM(),get_DIRANUM(),get_USERNAME())
 }

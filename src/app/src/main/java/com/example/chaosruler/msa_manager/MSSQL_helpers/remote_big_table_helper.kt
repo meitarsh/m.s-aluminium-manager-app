@@ -3,7 +3,9 @@ package com.example.chaosruler.msa_manager.MSSQL_helpers
 import android.content.Context
 import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
@@ -12,8 +14,10 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
  */
 class remote_big_table_helper
 {
-    companion object
+    companion object : remote_helper()
     {
+
+
         public var DATABASE_NAME:String = ""
         public var TABLE_NAME:String = ""
 
@@ -77,7 +81,10 @@ class remote_big_table_helper
         public var DIRANUM:String = ""
         public var DIRANUM_TYPE:String = ""
 
-        public fun init_variables(context: Context)
+        /*
+            init the variables from strings.xml
+         */
+        override fun init_variables(context: Context)
         {
             TABLE_NAME = context.getString(R.string.TABLE_BIG)
             DATABASE_NAME = context.getString(R.string.DATABASE_NAME)
@@ -143,7 +150,10 @@ class remote_big_table_helper
 
         }
 
-        fun make_type_map():HashMap<String,String>
+        /*
+            make a big table type map
+         */
+        override fun make_type_map():HashMap<String,String>
         {
             var map:HashMap<String,String> = HashMap()
             map[VENDOR_ID] = VENDOR_ID_TYPE
@@ -169,7 +179,18 @@ class remote_big_table_helper
             return map
         }
 
-        public fun push_update(big_table_data: big_table_data,map:HashMap<String,String>,context: Context)
+        /*
+            API call
+         */
+        override fun push_update(obj: table_dataclass, map: HashMap<String, String>, context: Context)
+        {
+            if(obj is big_table_data)
+                push_update(obj,map,context)
+        }
+        /*
+        push an update
+         */
+        public fun push_update(obj: big_table_data, map:HashMap<String,String>, context: Context)
         {
             var typemap = make_type_map()
             for(item in map)
@@ -178,10 +199,10 @@ class remote_big_table_helper
                     item.setValue("N"+remote_SQL_Helper.add_quotes(item.value))
             }
             var where_clause:HashMap<String,String> = HashMap()
-            where_clause[remote_big_table_helper.VENDOR_ID] = big_table_data.get_VENDOR_ID()!!
-            where_clause[remote_big_table_helper.INVENTORY_ID] = big_table_data.get_INVENTORY_ID()!!
-            where_clause[remote_big_table_helper.PROJECTS_ID] = big_table_data.get_PROJECT_ID()!!
-            where_clause[remote_big_table_helper.OPR_ID] = big_table_data.get_OPRID()!!
+            where_clause[remote_big_table_helper.VENDOR_ID] = obj.get_VENDOR_ID()!!
+            where_clause[remote_big_table_helper.INVENTORY_ID] = obj.get_INVENTORY_ID()!!
+            where_clause[remote_big_table_helper.PROJECTS_ID] = obj.get_PROJECT_ID()!!
+            where_clause[remote_big_table_helper.OPR_ID] = obj.get_OPRID()!!
             var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME,remote_big_table_helper.TABLE_NAME,where_clause,"varchar",map)
             query = query.replace("'","&quote;")
             var str = offline_mode_service.general_push_command(query,remote_SQL_Helper.getusername())

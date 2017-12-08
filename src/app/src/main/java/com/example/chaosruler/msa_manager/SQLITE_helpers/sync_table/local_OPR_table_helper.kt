@@ -7,7 +7,7 @@ import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.opr_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
-import com.example.chaosruler.msa_manager.services.local_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
