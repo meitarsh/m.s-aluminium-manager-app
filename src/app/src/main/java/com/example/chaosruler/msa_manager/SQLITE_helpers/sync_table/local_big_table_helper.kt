@@ -74,7 +74,8 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
            provides info for the abstracted SQL class
            on what the table schema is for creation
         */
-    override fun onCreate(db: SQLiteDatabase) {
+    override fun onCreate(db: SQLiteDatabase)
+    {
         var map: HashMap<String, String> = HashMap()
         map[ACCOUNT_NUM] = "text"
         map[DATAARAEID] = "text"
@@ -257,17 +258,17 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         val vector = get_rows(input_map)
         if (vector.size > 0) {
             try {
-                return big_table_data(vector.firstElement()[ACCOUNT_NUM]!!,
-                        vector.firstElement()[DATAARAEID]!!, vector.firstElement()[RECVERSION]!!,
-                        vector.firstElement()[RECID]!!, vector.firstElement()[PROJID]!!,
-                        vector.firstElement()[ITEMID]!!, vector.firstElement()[FLAT]!!,
-                        vector.firstElement()[FLOOR]!!, vector.firstElement()[QTY]!!,
-                        vector.firstElement()[SALESPRICE]!!, vector.firstElement()[OPR_ID]!!,
-                        vector.firstElement()[MILESTONEPERCENTAGE]!!, vector.firstElement()[QTYFORACCOUNT]!!,
-                        vector.firstElement()[PERCENTFORACCOUNT]!!, vector.firstElement()[TOTAL_SUM]!!,
-                        vector.firstElement()[SALPROG]!!, vector.firstElement()[PRINTORDER]!!,
-                        vector.firstElement()[ITEMNUMBER]!!, vector.firstElement()[KOMANUM]!!,
-                        vector.firstElement()[DIRANUM]!!, vector.firstElement()[USER]!!)
+                return big_table_data(vector.firstElement()[ACCOUNT_NUM]?:"",
+                        vector.firstElement()[DATAARAEID]?:"", vector.firstElement()[RECVERSION]?:"",
+                        vector.firstElement()[RECID]?:"", vector.firstElement()[PROJID]?:"",
+                        vector.firstElement()[ITEMID]?:"", vector.firstElement()[FLAT]?:"",
+                        vector.firstElement()[FLOOR]?:"", vector.firstElement()[QTY]?:"",
+                        vector.firstElement()[SALESPRICE]?:"", vector.firstElement()[OPR_ID]?:"",
+                        vector.firstElement()[MILESTONEPERCENTAGE]?:"", vector.firstElement()[QTYFORACCOUNT]?:"",
+                        vector.firstElement()[PERCENTFORACCOUNT]?:"", vector.firstElement()[TOTAL_SUM]?:"",
+                        vector.firstElement()[SALPROG]?:"", vector.firstElement()[PRINTORDER]?:"",
+                        vector.firstElement()[ITEMNUMBER]?:"", vector.firstElement()[KOMANUM]?:"",
+                        vector.firstElement()[DIRANUM]?:"", vector.firstElement()[USER]?:"")
 
             } catch (e: Exception) {
 

@@ -199,10 +199,10 @@ class remote_big_table_helper
                     item.setValue("N"+remote_SQL_Helper.add_quotes(item.value))
             }
             var where_clause:HashMap<String,String> = HashMap()
-            where_clause[remote_big_table_helper.VENDOR_ID] = obj.get_VENDOR_ID()!!
-            where_clause[remote_big_table_helper.INVENTORY_ID] = obj.get_INVENTORY_ID()!!
-            where_clause[remote_big_table_helper.PROJECTS_ID] = obj.get_PROJECT_ID()!!
-            where_clause[remote_big_table_helper.OPR_ID] = obj.get_OPRID()!!
+            where_clause[remote_big_table_helper.VENDOR_ID] = obj.get_VENDOR_ID() ?: ""
+            where_clause[remote_big_table_helper.INVENTORY_ID] = obj.get_INVENTORY_ID() ?: ""
+            where_clause[remote_big_table_helper.PROJECTS_ID] = obj.get_PROJECT_ID() ?: ""
+            where_clause[remote_big_table_helper.OPR_ID] = obj.get_OPRID() ?: ""
             var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME,remote_big_table_helper.TABLE_NAME,where_clause,"varchar",map)
             query = query.replace("'","&quote;")
             var str = offline_mode_service.general_push_command(query,remote_SQL_Helper.getusername())

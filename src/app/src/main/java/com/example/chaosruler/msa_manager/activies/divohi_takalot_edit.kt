@@ -34,7 +34,7 @@ class divohi_takalot_edit : Activity() {
     private fun init_table():Boolean
     {
         var arr: Vector<big_table_data> =
-                if (global_variables_dataclass.GUI_MODE)
+                if (global_variables_dataclass.GUI_MODE || global_variables_dataclass.DB_BIG == null)
                     Vector<big_table_data>()
                 else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
                     global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname(global_variables_dataclass.projid,global_variables_dataclass.DB_project!!)
@@ -78,25 +78,23 @@ class divohi_takalot_edit : Activity() {
             all_txtviews.add(alot_takala)
 
             val big_item: big_table_data = item
-            //  val opr_item: opr_data = global_variables_dataclass.DB_OPR!!.get_opr_by_id(big_item.get_OPRID()!!)!!
             val project_item: project_data = global_variables_dataclass.DB_project!!.get_project_by_id(big_item.get_PROJECT_ID()!!)!!
-            // val vendor_item: vendor_data = global_variables_dataclass.DB_VENDOR!!.get_vendor_by_id(big_item.get_VENDOR_ID()!!)!!
-            val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_opr_by_id(big_item.get_INVENTORY_ID()!!)!!
+            val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id(big_item.get_INVENTORY_ID()!!)!!
 
             mispar_parit.hint = (big_item.get_ITEMNUMBER() ?: "").trim()
-            mispar_parit.setInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
+            mispar_parit.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
             shem_parit.hint = (inventory.get_itemname() ?: "").trim()
             mispar_project.hint = (project_item.getProjID() ?: "").trim()
             mispar_project.isEnabled = false
             shem_project.hint = (project_item.get_project_name() ?: "").trim()
             kamot.hint = (big_item.get_QTY() ?: "").trim()
-            kamot.setInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
+            kamot.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
             sog_takala.hint = "No value from database"
             sog_takala.isEnabled = false
             koma.hint = (big_item.get_FLOOR() ?: "").trim()
             bnian.hint = (big_item.get_FLAT() ?: "").trim()
             dira.hint = (big_item.get_DIRANUM() ?: "").trim()
-            dira.setInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
+            dira.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
             tiaor_takala.hint = "No value from database"
             tiaor_takala.isEnabled = false
             peolot_ltikon.hint = "No value from database"
@@ -106,7 +104,7 @@ class divohi_takalot_edit : Activity() {
             tgovat_mnaal.hint = "No value from database"
             tgovat_mnaal.isEnabled = false
             alot_takala.hint = (big_item.get_TOTALSUM() ?: "").trim()
-            alot_takala.setInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
+            alot_takala.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
 
 
             mispar_parit.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->

@@ -200,7 +200,7 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         change_to[NAME] = to.get_itemname() ?: ""
         change_to[DATAARAEID] = to.get_DATAREAID() ?: ""
         change_to[USER] = to.get_USERNAME() ?: ""
-        return update_data(ID, arrayOf(from.get_itemid()!!),change_to)
+        return update_data(ID, arrayOf(from.get_itemid()?:""),change_to)
     }
 
     /*
@@ -214,7 +214,10 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         return remove_from_db(ID, arrayOf(inventory_data.get_itemid()!!))
     }
 
-    public fun get_opr_by_id(id: String):inventory_data?
+    /*
+        get inventory by ID
+     */
+    public fun get_inventory_by_id(id: String):inventory_data?
     {
         var mock_obj:inventory_data = inventory_data(id,null,null,remote_SQL_Helper.getusername())
         return get_inventory_by_inventory(mock_obj)

@@ -67,10 +67,6 @@ class loz_activity : Activity() {
             all_views.add(haarot)
 
             val big_item:big_table_data = item
-           // val opr_item: opr_data = global_variables_dataclass.DB_OPR!!.get_opr_by_id(big_item.get_OPRID()!!)!!
-          //  val project_item: project_data = global_variables_dataclass.DB_project!!.get_project_by_id(big_item.get_PROJECT_ID()!!)!!
-          //  val vendor_item: vendor_data = global_variables_dataclass.DB_VENDOR!!.get_vendor_by_id(big_item.get_VENDOR_ID()!!)!!
-         //   val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_opr_by_id(big_item.get_INVENTORY_ID()!!)!!
 
             var ahoz_bizoa_str:String = big_item.get_MILESTONEPERCENT()?:0.toString()
 

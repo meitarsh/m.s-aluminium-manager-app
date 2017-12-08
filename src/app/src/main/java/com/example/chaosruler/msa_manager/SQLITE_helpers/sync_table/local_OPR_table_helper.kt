@@ -12,9 +12,7 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
 
-/**
- * Created by chaosruler on 12/3/17.
- */
+
 class local_OPR_table_helper(private var context: Context): local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME),null,context.getString(R.string.LOCAL_OPR_TABLE_VERSION).toInt(),context.getString(R.string.LOCAL_OPR_TABLE_NAME)) {
     private val ID: String = context.getString(R.string.LOCAL_OPR_COLUMN_ID)
     private val NAME: String = context.getString(R.string.LOCAL_OPR_COLUMN_NAME)
@@ -216,6 +214,9 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
 
     }
 
+    /*
+        gets opr object by its id, else returns null
+     */
     public fun get_opr_by_id(id: String):opr_data?
     {
         var mock_obj:opr_data = opr_data(id,null,null,remote_SQL_Helper.getusername())

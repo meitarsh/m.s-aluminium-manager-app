@@ -31,14 +31,12 @@ class DivohiTakalotTofesActivity : Activity() {
     private fun init_table():Boolean
     {
         var arr: Vector<big_table_data> =
-        if (global_variables_dataclass.GUI_MODE)
+        if (global_variables_dataclass.GUI_MODE || global_variables_dataclass.DB_BIG == null)
             Vector<big_table_data>()
         else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
             global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname(global_variables_dataclass.projid,global_variables_dataclass.DB_project!!)
         else
             global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname(global_variables_dataclass.projid,global_variables_dataclass.DB_project!!)
-        Log.d("diovhi_takalot_tofes","Arr length: " + arr.size.toString())
-        Log.d("divohi_takalot_tofes","Proj id " + global_variables_dataclass.projid)
 
         for(item in arr)
         {
@@ -77,10 +75,9 @@ class DivohiTakalotTofesActivity : Activity() {
             all_txtviews.add(alot_takala)
 
             val big_item:big_table_data = item
-          //  val opr_item: opr_data = global_variables_dataclass.DB_OPR!!.get_opr_by_id(big_item.get_OPRID()!!)!!
+
             val project_item: project_data = global_variables_dataclass.DB_project!!.get_project_by_id(big_item.get_PROJECT_ID()!!)!!
-           // val vendor_item: vendor_data = global_variables_dataclass.DB_VENDOR!!.get_vendor_by_id(big_item.get_VENDOR_ID()!!)!!
-            val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_opr_by_id(big_item.get_INVENTORY_ID()!!)!!
+            val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id(big_item.get_INVENTORY_ID()!!)!!
 
             mispar_parit.text = (big_item.get_ITEMNUMBER() ?: "").trim()
             shem_parit.text = (inventory.get_itemname() ?: "").trim()

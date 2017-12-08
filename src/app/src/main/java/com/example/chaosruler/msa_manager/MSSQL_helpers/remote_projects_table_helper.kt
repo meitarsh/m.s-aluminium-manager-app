@@ -30,7 +30,9 @@ class remote_projects_table_helper()
         public var DATAAREAID:String = ""
         public var DATAAREAID_TYPE:String = ""
 
-
+        /*
+            database init variables
+         */
         override public fun init_variables(context: Context)
         {
             TABLE_NAME = context.getString(R.string.TABLE_PROJECTS)
@@ -44,6 +46,9 @@ class remote_projects_table_helper()
             DATAAREAID = context.getString(R.string.PROJECTS_DATAAREAID)
             DATAAREAID_TYPE = context.getString(R.string.PROJECTS_DATAAREAID_TYPE)
         }
+        /*
+            makes database typemap
+         */
         override fun make_type_map():HashMap<String,String>
         {
             var map:HashMap<String,String> = HashMap()
@@ -52,6 +57,9 @@ class remote_projects_table_helper()
             map[DATAAREAID] = DATAAREAID_TYPE
             return map
         }
+        /*
+        pushes update to database
+         */
         public fun push_update(project: project_data,map:HashMap<String,String>,context: Context)
         {
             var typemap = make_type_map()
@@ -67,7 +75,9 @@ class remote_projects_table_helper()
             var str = offline_mode_service.general_push_command(query,remote_SQL_Helper.getusername())
             Toast.makeText(context,str,Toast.LENGTH_SHORT).show()
         }
-
+        /*
+        API call
+         */
         override fun push_update(obj: table_dataclass, map: HashMap<String, String>, context: Context) {
             if(obj is project_data)
                 push_update(obj,map,context)

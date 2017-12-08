@@ -49,10 +49,6 @@ class kablan_mforat : Activity() {
             {
                 // upon Spinner selecting a user, update the other fields
                 val big_item:big_table_data = activity_kablan_mforat_spinner.adapter.getItem(i) as big_table_data
-             //   val opr_item: opr_data = global_variables_dataclass.DB_OPR!!.get_opr_by_id(big_item.get_OPRID()!!)!!
-             //   val project_item: project_data = global_variables_dataclass.DB_project!!.get_project_by_id(big_item.get_PROJECT_ID()!!)!!
-             //   val vendor_item: vendor_data = global_variables_dataclass.DB_VENDOR!!.get_vendor_by_id(big_item.get_VENDOR_ID()!!)!!
-              //  val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_opr_by_id(big_item.get_INVENTORY_ID()!!)!!
 
                 var peola_parcent:String = big_item.get_PERCENTFORACCOUNT()?:0.toString()
                 var milestone_parcent:String = big_item.get_PERCENTFORACCOUNT()?:0.toString()
