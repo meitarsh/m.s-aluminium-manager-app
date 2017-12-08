@@ -2,6 +2,7 @@ package com.example.chaosruler.msa_manager.activies
 
 import android.app.Activity
 import android.os.Bundle
+import android.text.InputType
 import android.view.Gravity
 import android.view.View
 import android.widget.EditText
@@ -83,16 +84,19 @@ class divohi_takalot_edit : Activity() {
             val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_opr_by_id(big_item.get_INVENTORY_ID()!!)!!
 
             mispar_parit.hint = (big_item.get_ITEMNUMBER() ?: "").trim()
+            mispar_parit.setInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
             shem_parit.hint = (inventory.get_itemname() ?: "").trim()
             mispar_project.hint = (project_item.getProjID() ?: "").trim()
             mispar_project.isEnabled = false
             shem_project.hint = (project_item.get_project_name() ?: "").trim()
             kamot.hint = (big_item.get_QTY() ?: "").trim()
+            kamot.setInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
             sog_takala.hint = "No value from database"
             sog_takala.isEnabled = false
             koma.hint = (big_item.get_FLOOR() ?: "").trim()
             bnian.hint = (big_item.get_FLAT() ?: "").trim()
             dira.hint = (big_item.get_DIRANUM() ?: "").trim()
+            dira.setInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
             tiaor_takala.hint = "No value from database"
             tiaor_takala.isEnabled = false
             peolot_ltikon.hint = "No value from database"
@@ -102,6 +106,7 @@ class divohi_takalot_edit : Activity() {
             tgovat_mnaal.hint = "No value from database"
             tgovat_mnaal.isEnabled = false
             alot_takala.hint = (big_item.get_TOTALSUM() ?: "").trim()
+            alot_takala.setInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
 
 
             mispar_parit.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->

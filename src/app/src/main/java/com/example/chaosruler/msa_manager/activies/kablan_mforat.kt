@@ -2,6 +2,7 @@ package com.example.chaosruler.msa_manager.activies
 
 import android.app.Activity
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -59,16 +60,19 @@ class kablan_mforat : Activity() {
                // var txtview:TextView = view as TextView
               //  txtview.text = vendor_item.get_accountname()
 
-                activity_kablan_mforat_kamot_hoza.text = big_item.get_QTY() ?: "0"
-                activity_kablan_mforat_yehida_price.text = big_item.get_SALESPRICE() ?: "0"
-                activity_kablan_mforat_peola_percent.text = (peola_parcent.toDouble()).toInt().toString() + "%"
-                activity_kablan_mforat_kamot_helki.hint = big_item.get_QTYFORACCOUNT() ?: "0"
-                activity_kablan_mforat_kamot_kablan.hint = big_item.get_QTYFORACCOUNT() ?: "0"
-                activity_kablan_mforat_ahoz_meosher.hint = (milestone_parcent.toDouble()).toInt().toString() + "%"
+                activity_kablan_mforat_kamot_hoza.text = (big_item.get_QTY() ?: "0").trim()
+                activity_kablan_mforat_yehida_price.text = (big_item.get_SALESPRICE() ?: "0").trim()
+                activity_kablan_mforat_peola_percent.text = ((peola_parcent.toDouble()).toInt().toString() + "%").trim()
+                activity_kablan_mforat_kamot_helki.hint = (big_item.get_QTYFORACCOUNT() ?: "0").trim()
+                activity_kablan_mforat_kamot_helki.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+                activity_kablan_mforat_kamot_kablan.hint = (big_item.get_QTYFORACCOUNT() ?: "0").trim()
+                activity_kablan_mforat_kamot_kablan.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+                activity_kablan_mforat_ahoz_meosher.hint = ((milestone_parcent.toDouble()).toInt().toString() + "%").trim()
+                activity_kablan_mforat_ahoz_meosher.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
                 var price = (big_item.get_SALESPRICE() ?: "0").toDouble()
                 var count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
                 var parcent = milestone_parcent.toDouble()/100
-                activity_kablan_mforat_tashlom_sah.text = (price*count*parcent).toString()
+                activity_kablan_mforat_tashlom_sah.text = (price*count*parcent).toString().trim()
 
                 activity_kablan_mforat_kamot_helki.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_kamot_helki.text.isEmpty() )
@@ -77,7 +81,7 @@ class kablan_mforat : Activity() {
                     var update_value:HashMap<String,String> = HashMap()
                     update_value[remote_big_table_helper.QTYFORACCOUNT] = str
                     remote_big_table_helper.push_update(big_item,update_value,baseContext)
-                    activity_kablan_mforat_kamot_helki.hint = str
+                    activity_kablan_mforat_kamot_helki.hint = str.trim()
                     activity_kablan_mforat_kamot_helki.text.clear()
                     big_item.set_QTYFORACCOUNT(str)
                     global_variables_dataclass.DB_BIG!!.add_big(big_item)
@@ -91,7 +95,7 @@ class kablan_mforat : Activity() {
                     var update_value:HashMap<String,String> = HashMap()
                     update_value[remote_big_table_helper.QTYFORACCOUNT] = str
                     remote_big_table_helper.push_update(big_item,update_value,baseContext)
-                    activity_kablan_mforat_kamot_kablan.hint = str
+                    activity_kablan_mforat_kamot_kablan.hint = str.trim()
                     activity_kablan_mforat_kamot_kablan.text.clear()
                     big_item.set_QTYFORACCOUNT(str)
                     global_variables_dataclass.DB_BIG!!.add_big(big_item)
@@ -109,7 +113,7 @@ class kablan_mforat : Activity() {
                     big_item.set_PERCENTFORACCOUNT(str)
                     global_variables_dataclass.DB_BIG!!.add_big(big_item)
                     Log.d("kbalan_mforat","done")
-                    activity_kablan_mforat_ahoz_meosher.hint = str + "%"
+                    activity_kablan_mforat_ahoz_meosher.hint = (str + "%").trim()
                     activity_kablan_mforat_ahoz_meosher.text.clear()
                     compute_saah_hakol()
                 }
@@ -140,6 +144,6 @@ class kablan_mforat : Activity() {
             activity_kablan_mforat_saah_hakol.setTextColor(getColor(R.color.green))
         else // <= 0
             activity_kablan_mforat_saah_hakol.setTextColor(getColor(R.color.red))
-        activity_kablan_mforat_saah_hakol.text = price.toString()
+        activity_kablan_mforat_saah_hakol.text = price.toString().trim()
     }
 }
