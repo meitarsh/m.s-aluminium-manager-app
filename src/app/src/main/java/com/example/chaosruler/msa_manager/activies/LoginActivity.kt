@@ -362,12 +362,20 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         override fun onPostExecute(success: Boolean?) {
             mAuthTask = null
             showProgress(false)
-
-            if (success!!)
+            if(success == null)
+            {
+                if(remote_SQL_Helper.getSQLException().errorCode == 0)
+                    login_password.error = getString(R.string.network_error)
+                else
+                    login_password.error = getString(R.string.error_incorrect_password)
+                login_password.requestFocus()
+            }
+            else if (success!=null && success)
             {
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 finish()
-            } else
+            }
+            else
             {
                 if(remote_SQL_Helper.getSQLException().errorCode == 0)
                     login_password.error = getString(R.string.network_error)

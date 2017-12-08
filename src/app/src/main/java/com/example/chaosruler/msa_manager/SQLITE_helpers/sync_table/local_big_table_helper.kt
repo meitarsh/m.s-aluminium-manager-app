@@ -106,7 +106,7 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     }
 
     /*
-         adds all opr, updates, inserts... whatever
+         adds all big, updates, inserts... whatever
       */
     fun sync_db()
     {
@@ -120,7 +120,7 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     }
 
     /*
-        converts DB to vector of opr
+        converts DB to vector of big
      */
     fun get_local_DB(): Vector<big_table_data>
     {
@@ -130,17 +130,17 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         all_db
                 .filter { it[USER] != null && it[USER]?:"" == remote_SQL_Helper.getusername() }
                 .map {
-                    big_table_data(it[ACCOUNT_NUM]?:"",
-                            it[DATAARAEID]?:"", it[RECVERSION]?:"",
-                            it[RECID]?:"", it[PROJID]?:"",
-                            it[ITEMID]?:"", it[FLAT]?:"",
-                            it[FLOOR]?:"", it[QTY]?:"",
-                            it[SALESPRICE]?:"", it[OPR_ID]?:"",
-                            it[MILESTONEPERCENTAGE]?:"", it[QTYFORACCOUNT]?:"",
-                            it[PERCENTFORACCOUNT]?:"", it[TOTAL_SUM]?:"",
-                            it[SALPROG]?:"", it[PRINTORDER]?:"",
-                            it[ITEMNUMBER]?:"", it[KOMANUM]?:"",
-                            it[DIRANUM]?:"", it[USER]?:"")
+                    big_table_data((it[ACCOUNT_NUM]?:"").trim(),
+                            (it[DATAARAEID]?:"").trim(), (it[RECVERSION]?:"").trim(),
+                            (it[RECID]?:"").trim(), (it[PROJID]?:"").trim(),
+                            (it[ITEMID]?:"").trim(), (it[FLAT]?:"").trim(),
+                            (it[FLOOR]?:"").trim(), (it[QTY]?:"").trim(),
+                            (it[SALESPRICE]?:"").trim(), (it[OPR_ID]?:"").trim(),
+                            (it[MILESTONEPERCENTAGE]?:"").trim(), (it[QTYFORACCOUNT]?:"").trim(),
+                            (it[PERCENTFORACCOUNT]?:"").trim(), (it[TOTAL_SUM]?:"").trim(),
+                            (it[SALPROG]?:"").trim(), (it[PRINTORDER]?:"").trim(),
+                            (it[ITEMNUMBER]?:"").trim(), (it[KOMANUM]?:"").trim(),
+                            (it[DIRANUM]?:"").trim(), (it[USER]?:"").trim())
                 }
                 .forEach { vector.addElement(it) }
         return vector
@@ -149,7 +149,7 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     /*
            get local DB by project name
         */
-    fun get_local_DB_by_projname(projid:String, projdb:local_projects_table_helper): Vector<big_table_data>
+    fun get_local_DB_by_projname(projid:String): Vector<big_table_data>
     {
         var vector: Vector<big_table_data> = Vector()
 
@@ -157,24 +157,24 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         all_db
                 .filter { it[USER] != null && it[USER]?:"" == remote_SQL_Helper.getusername() && it[PROJID]!=null && projid == it[PROJID]!!}
                 .map {
-                    big_table_data(it[ACCOUNT_NUM]?:"",
-                            it[DATAARAEID]?:"", it[RECVERSION]?:"",
-                            it[RECID]?:"", it[PROJID]?:"",
-                            it[ITEMID]?:"", it[FLAT]?:"",
-                            it[FLOOR]?:"", it[QTY]?:"",
-                            it[SALESPRICE]?:"", it[OPR_ID]?:"",
-                            it[MILESTONEPERCENTAGE]?:"", it[QTYFORACCOUNT]?:"",
-                            it[PERCENTFORACCOUNT]?:"", it[TOTAL_SUM]?:"",
-                            it[SALPROG]?:"", it[PRINTORDER]?:"",
-                            it[ITEMNUMBER]?:"", it[KOMANUM]?:"",
-                            it[DIRANUM]?:"", it[USER]?:"")
+                    big_table_data((it[ACCOUNT_NUM]?:"").trim(),
+                            (it[DATAARAEID]?:"").trim(), (it[RECVERSION]?:"").trim(),
+                            (it[RECID]?:"").trim(), (it[PROJID]?:"").trim(),
+                            (it[ITEMID]?:"").trim(), (it[FLAT]?:"").trim(),
+                            (it[FLOOR]?:"").trim(), (it[QTY]?:"").trim(),
+                            (it[SALESPRICE]?:"").trim(), (it[OPR_ID]?:"").trim(),
+                            (it[MILESTONEPERCENTAGE]?:"").trim(), (it[QTYFORACCOUNT]?:"").trim(),
+                            (it[PERCENTFORACCOUNT]?:"").trim(), (it[TOTAL_SUM]?:"").trim(),
+                            (it[SALPROG]?:"").trim(), (it[PRINTORDER]?:"").trim(),
+                            (it[ITEMNUMBER]?:"").trim(), (it[KOMANUM]?:"").trim(),
+                            (it[DIRANUM]?:"").trim(), (it[USER]?:"").trim())
                 }
                 .forEach { vector.addElement(it) }
         return vector
     }
 
     /*
-           subroutine to convert server data to vector of opr
+           subroutine to convert server data to vector of big
         */
     fun server_data_to_vector(): Vector<big_table_data>
     {
@@ -212,7 +212,7 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     /*
         server data to vector... by projid
      */
-    fun server_data_to_vector_by_projname(projid: String, projdb: local_projects_table_helper): Vector<big_table_data>
+    fun server_data_to_vector_by_projname(projid: String): Vector<big_table_data>
     {
 
         var server_data: Vector<java.util.HashMap<String, String>> =
@@ -245,7 +245,7 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         return result_vector
     }
     /*
-           subroutine that is in charge of getting the opr class
+           subroutine that is in charge of getting the big class
            by query
         */
     fun get_big_by_big(big_table_data: big_table_data) // subroutine to get a opr object
@@ -283,12 +283,12 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
 
 
     /*
-      add opr mechanism
-      if opr is invalid, forget about it
-      if opr is valid, and it exists, update it
-      if its a new opr, add a new opr to table
+      add big mechanism
+      if big is invalid, forget about it
+      if big is valid, and it exists, update it
+      if its a new opr, add a new big to table
    */
-    fun add_big(big_table_data: big_table_data) // subroutine that manages the opr adding operation to the database
+    fun add_big(big_table_data: big_table_data) // subroutine that manages the big adding operation to the database
             : Boolean
     {
         /*
@@ -316,20 +316,18 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         map[USER] = big_table_data.get_USERNAME() ?: ""
         return replace(map)
         */
-        return if (check_big(big_table_data)) // checks if opr exists in database
+        return if (check_big(big_table_data)) // checks if big exists in database
             update_big(big_table_data, big_table_data.copy()) // if it does, lets update
-        else // if it doesn't lets create a new entry for the opr
+        else // if it doesn't lets create a new entry for the big
             insert_big(big_table_data)
     }
 
     /*
-          checks if opr exists, query is not that smart, gets an ENTIRE table and than checks
-          if the opr is there
+          checks if big exists, query is not that smart, gets an ENTIRE table and than checks
+          if the big is there
 
-          // on update
-          will select USERNAME only
        */
-    fun check_big(big_table_data: big_table_data) // subroutine to check if opr exists on the database
+    fun check_big(big_table_data: big_table_data) // subroutine to check if big exists on the database
             : Boolean {
         val big: big_table_data? = get_big_by_big(big_table_data)
         return big != null
@@ -339,33 +337,33 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         subroutine in charge of feeding schema and database information to SQL
         abstract implentation on insert queries
      */
-    private fun insert_big(big_table_data: big_table_data): Boolean // subroutine to insert a opr to the database
+    private fun insert_big(big_table_data: big_table_data): Boolean // subroutine to insert a big to the database
     {
 
         var everything_to_add: Vector<java.util.HashMap<String, String>> = Vector()
 
         var data: java.util.HashMap<String, String> = java.util.HashMap()
-        data[DATAARAEID] = big_table_data.get_DATAAREAID() ?: ""
-        data[RECVERSION] = big_table_data.get_RECVERSION() ?: ""
-        data[RECID] = big_table_data.get_RECID() ?: ""
-        data[FLAT] = big_table_data.get_FLAT() ?: ""
-        data[FLOOR] = big_table_data.get_FLOOR() ?: ""
-        data[QTY] = big_table_data.get_QTY() ?: ""
-        data[SALESPRICE] = big_table_data.get_SALESPRICE() ?: ""
-        data[MILESTONEPERCENTAGE] = big_table_data.get_MILESTONEPERCENT() ?: ""
-        data[QTYFORACCOUNT] = big_table_data.get_QTYFORACCOUNT() ?: ""
-        data[PERCENTFORACCOUNT] = big_table_data.get_PERCENTFORACCOUNT() ?: ""
-        data[TOTAL_SUM] = big_table_data.get_TOTALSUM() ?: ""
-        data[SALPROG] = big_table_data.get_SALPROG() ?: ""
-        data[PRINTORDER] = big_table_data.get_PRINTORDER() ?: ""
-        data[ITEMNUMBER] = big_table_data.get_ITEMNUMBER() ?: ""
-        data[KOMANUM] = big_table_data.get_KOMANUM() ?: ""
-        data[DIRANUM] = big_table_data.get_DIRANUM() ?: ""
-        data[USER] = big_table_data.get_USERNAME() ?: ""
-        data[ACCOUNT_NUM] = big_table_data.get_VENDOR_ID() ?: ""
-        data[PROJID] = big_table_data.get_PROJECT_ID() ?: ""
-        data[ITEMID] = big_table_data.get_INVENTORY_ID() ?: ""
-        data[OPR_ID] = big_table_data.get_OPRID() ?: ""
+        data[DATAARAEID] = (big_table_data.get_DATAAREAID() ?: "").trim()
+        data[RECVERSION] = (big_table_data.get_RECVERSION() ?: "").trim()
+        data[RECID] = (big_table_data.get_RECID() ?: "").trim()
+        data[FLAT] = (big_table_data.get_FLAT() ?: "").trim()
+        data[FLOOR] = (big_table_data.get_FLOOR() ?: "").trim()
+        data[QTY] = (big_table_data.get_QTY() ?: "").trim()
+        data[SALESPRICE] = (big_table_data.get_SALESPRICE() ?: "").trim()
+        data[MILESTONEPERCENTAGE] = (big_table_data.get_MILESTONEPERCENT() ?: "").trim()
+        data[QTYFORACCOUNT] = (big_table_data.get_QTYFORACCOUNT() ?: "").trim()
+        data[PERCENTFORACCOUNT] = (big_table_data.get_PERCENTFORACCOUNT() ?: "").trim()
+        data[TOTAL_SUM] = (big_table_data.get_TOTALSUM() ?: "").trim()
+        data[SALPROG] = (big_table_data.get_SALPROG() ?: "").trim()
+        data[PRINTORDER] = (big_table_data.get_PRINTORDER() ?: "").trim()
+        data[ITEMNUMBER] = (big_table_data.get_ITEMNUMBER() ?: "").trim()
+        data[KOMANUM] = (big_table_data.get_KOMANUM() ?: "").trim()
+        data[DIRANUM] = (big_table_data.get_DIRANUM() ?: "").trim()
+        data[USER] = (big_table_data.get_USERNAME() ?: "").trim()
+        data[ACCOUNT_NUM] = (big_table_data.get_VENDOR_ID() ?: "").trim()
+        data[PROJID] = (big_table_data.get_PROJECT_ID() ?: "").trim()
+        data[ITEMID] = (big_table_data.get_INVENTORY_ID() ?: "").trim()
+        data[OPR_ID] = (big_table_data.get_OPRID() ?: "").trim()
         everything_to_add.addElement(data)
         return add_data(everything_to_add)
     }
@@ -374,27 +372,27 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
       subroutine in charge of feeding information and database information to
       SQL abstraction on update queries
    */
-    fun update_big(from: big_table_data, to: big_table_data) // subroutine to update data of a opr that exists on the database
+    fun update_big(from: big_table_data, to: big_table_data) // subroutine to update data of a big that exists on the database
             : Boolean {
 
         var change_to: java.util.HashMap<String, String> = java.util.HashMap()
-        change_to[DATAARAEID] = to.get_DATAAREAID() ?: ""
-        change_to[RECVERSION] = to.get_RECVERSION() ?: ""
-        change_to[RECID] = to.get_RECID() ?: ""
-        change_to[FLAT] = to.get_FLAT() ?: ""
-        change_to[FLOOR] = to.get_FLOOR() ?: ""
-        change_to[QTY] = to.get_QTY() ?: ""
-        change_to[SALESPRICE] = to.get_SALESPRICE() ?: ""
-        change_to[MILESTONEPERCENTAGE] = to.get_MILESTONEPERCENT() ?: ""
-        change_to[QTYFORACCOUNT] = to.get_QTYFORACCOUNT() ?: ""
-        change_to[PERCENTFORACCOUNT] = to.get_PERCENTFORACCOUNT() ?: ""
-        change_to[TOTAL_SUM] = to.get_TOTALSUM() ?: ""
-        change_to[SALPROG] = to.get_SALPROG() ?: ""
-        change_to[PRINTORDER] = to.get_PRINTORDER() ?: ""
-        change_to[ITEMNUMBER] = to.get_ITEMNUMBER() ?: ""
-        change_to[KOMANUM] = to.get_KOMANUM() ?: ""
-        change_to[DIRANUM] = to.get_DIRANUM() ?: ""
-        change_to[USER] = to.get_USERNAME() ?: ""
+        change_to[DATAARAEID] = (to.get_DATAAREAID() ?: "").trim()
+        change_to[RECVERSION] = (to.get_RECVERSION() ?: "").trim()
+        change_to[RECID] = (to.get_RECID() ?: "").trim()
+        change_to[FLAT] = (to.get_FLAT() ?: "").trim()
+        change_to[FLOOR] = (to.get_FLOOR() ?: "").trim()
+        change_to[QTY] = (to.get_QTY() ?: "").trim()
+        change_to[SALESPRICE] = (to.get_SALESPRICE() ?: "").trim()
+        change_to[MILESTONEPERCENTAGE] = (to.get_MILESTONEPERCENT() ?: "").trim()
+        change_to[QTYFORACCOUNT] = (to.get_QTYFORACCOUNT() ?: "").trim()
+        change_to[PERCENTFORACCOUNT] = (to.get_PERCENTFORACCOUNT() ?: "").trim()
+        change_to[TOTAL_SUM] = (to.get_TOTALSUM() ?: "").trim()
+        change_to[SALPROG] = (to.get_SALPROG() ?: "").trim()
+        change_to[PRINTORDER] = (to.get_PRINTORDER() ?: "").trim()
+        change_to[ITEMNUMBER] = (to.get_ITEMNUMBER() ?: "").trim()
+        change_to[KOMANUM] = (to.get_KOMANUM() ?: "").trim()
+        change_to[DIRANUM] = (to.get_DIRANUM() ?: "").trim()
+        change_to[USER] = (to.get_USERNAME() ?: "").trim()
         return update_data(arrayOf(ACCOUNT_NUM, PROJID, ITEMID, OPR_ID), arrayOf(from.get_VENDOR_ID()!!, from.get_PROJECT_ID()!!, from.get_INVENTORY_ID()!!, from.get_OPRID()!!), change_to)
     }
 
@@ -402,11 +400,11 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         subroutine in charge of feeding information and database information to
         SQL abstraction on delete queries
      */
-    fun delete_big(big_table_data: big_table_data): Boolean // subroutine to delete a opr from the database (local)
+    fun delete_big(big_table_data: big_table_data): Boolean // subroutine to delete a big from the database (local)
     {
         if (get_big_by_big(big_table_data) == null)
             return false
-        return remove_from_db(arrayOf(ACCOUNT_NUM, PROJID, ITEMID, OPR_ID), arrayOf(big_table_data.get_VENDOR_ID()!!, big_table_data.get_PROJECT_ID()!!, big_table_data.get_INVENTORY_ID()!!, big_table_data.get_OPRID()!!))
+        return remove_from_db(arrayOf(ACCOUNT_NUM, PROJID, ITEMID, OPR_ID), arrayOf((big_table_data.get_VENDOR_ID()?:"").trim(), (big_table_data.get_PROJECT_ID()?:"").trim(), (big_table_data.get_INVENTORY_ID()?:"").trim(), (big_table_data.get_OPRID()?:"").trim()))
 
     }
 }

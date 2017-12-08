@@ -2,12 +2,8 @@ package com.example.chaosruler.msa_manager.activies
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.R
@@ -34,9 +30,9 @@ class DivohiTakalotTofesActivity : Activity() {
         if (global_variables_dataclass.GUI_MODE || global_variables_dataclass.DB_BIG == null)
             Vector<big_table_data>()
         else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-            global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname(global_variables_dataclass.projid,global_variables_dataclass.DB_project!!)
+            global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname(global_variables_dataclass.projid)
         else
-            global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname(global_variables_dataclass.projid,global_variables_dataclass.DB_project!!)
+            global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname(global_variables_dataclass.projid)
 
         for(item in arr)
         {
@@ -76,8 +72,8 @@ class DivohiTakalotTofesActivity : Activity() {
 
             val big_item:big_table_data = item
 
-            val project_item: project_data = global_variables_dataclass.DB_project!!.get_project_by_id(big_item.get_PROJECT_ID()!!)!!
-            val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id(big_item.get_INVENTORY_ID()!!)!!
+            val project_item: project_data = global_variables_dataclass.DB_project!!.get_project_by_id(big_item.get_PROJECT_ID()?:"")!!
+            val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id(big_item.get_INVENTORY_ID()?:"")!!
 
             mispar_parit.text = (big_item.get_ITEMNUMBER() ?: "").trim()
             shem_parit.text = (inventory.get_itemname() ?: "").trim()

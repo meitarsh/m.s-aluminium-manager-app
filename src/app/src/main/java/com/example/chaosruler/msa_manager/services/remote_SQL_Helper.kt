@@ -47,7 +47,8 @@ class remote_SQL_Helper()
             username = user
             password = pass
             var ip:String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP), context.getString(R.string.REMOTE_IP_ADDR))
-            try {
+            try
+            {
                 Class.forName(context.getString(R.string.class_jtds_jdbc))
                 var conn: Connection? = DriverManager.getConnection(
                         context.getString(R.string.REMOTE_CONNECT_STRING) + ip + context.getString(R.string.REMOTE_CONNECT_OPTIONS)
@@ -61,7 +62,7 @@ class remote_SQL_Helper()
             }
             catch (e: SQLException)
             {
-                e.printStackTrace()
+                exception = e
                 isvalid = false
                 exception = e
 
@@ -82,6 +83,7 @@ class remote_SQL_Helper()
             }
             catch (e:SQLException)
             {
+                exception = e
                 if(e.errorCode==0)
                 {
                     ReConnect()
@@ -109,6 +111,7 @@ class remote_SQL_Helper()
                     }
                     catch (e:SQLException)
                     {
+                        exception = e
                         rs = null
                     }
                     catch (e: KotlinNullPointerException)

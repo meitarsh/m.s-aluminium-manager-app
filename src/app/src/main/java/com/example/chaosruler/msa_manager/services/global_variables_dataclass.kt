@@ -20,6 +20,9 @@ class global_variables_dataclass
         public var DB_OPR:local_OPR_table_helper? = null
         public var DB_VENDOR:local_vendor_table_helper? = null
         public var DB_INVENTORY:local_inventory_table_helper? = null
+        /*
+            init databases for all the application
+         */
         public fun init_dbs(context: Context)
         {
             isLocal = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.local_or_not),true)

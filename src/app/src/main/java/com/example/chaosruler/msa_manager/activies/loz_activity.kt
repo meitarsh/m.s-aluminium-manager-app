@@ -3,13 +3,11 @@ package com.example.chaosruler.msa_manager.activies
 import android.app.Activity
 import android.os.Bundle
 import android.text.InputType
-import android.text.Layout
 import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.TableLayout
 import android.widget.TableRow
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
@@ -18,7 +16,6 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_loz_activity.*
 import java.util.*
-import android.support.v4.widget.SearchViewCompat.setInputType
 
 
 
@@ -39,9 +36,9 @@ class loz_activity : Activity() {
                 if (global_variables_dataclass.GUI_MODE)
                     Vector<big_table_data>()
                 else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                    global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname(global_variables_dataclass.projid,global_variables_dataclass.DB_project!!)
+                    global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname(global_variables_dataclass.projid)
                 else
-                    global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname(global_variables_dataclass.projid,global_variables_dataclass.DB_project!!)
+                    global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname(global_variables_dataclass.projid)
 
         for (item in arr)
         {

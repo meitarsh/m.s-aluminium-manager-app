@@ -74,7 +74,7 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         var all_db:Vector<HashMap<String,String>> = get_db()
         all_db
                 .filter { it[USER] != null && it[USER] == remote_SQL_Helper.getusername() }
-                .forEach { vector.addElement(vendor_data(it[ID]?:"", it[NAME]?:"", it[DATAARAEID]?:"", it[USER]?:"")) }
+                .forEach { vector.addElement(vendor_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAARAEID]?:"").trim(), (it[USER]?:"").trim())) }
         return vector
     }
 
@@ -97,19 +97,10 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         }
 
         var result_vector:Vector<vendor_data> = Vector()
-        for (item in server_data)
-        {
-            try {
-
-                var opr = vendor_data(item[remote_vendors_table_helper.ID]?: "",
-                        item[remote_vendors_table_helper.NAME]?: "", item[remote_vendors_table_helper.DATAAREAID]?: "",
-                        remote_SQL_Helper.getusername())
-                result_vector.add(opr)
-            }
-            catch (e:Exception)
-            {
-
-            }
+        server_data.mapTo(result_vector) {
+            vendor_data((it[remote_vendors_table_helper.ID]?: "").trim(),
+                    (it[remote_vendors_table_helper.NAME]?: "").trim(), (it[remote_vendors_table_helper.DATAAREAID]?: "").trim(),
+                    remote_SQL_Helper.getusername().trim())
         }
         return result_vector
     }
@@ -125,13 +116,7 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         val vector = get_rows(input_map)
         if(vector.size > 0)
         {
-            try {
-                return vendor_data(vector.firstElement()[ID]!!, vector.firstElement()[NAME]!!, vector.firstElement()[DATAARAEID]!!, vector.firstElement()[USER]!!)
-            }
-            catch (e:Exception)
-            {
-
-            }
+            return vendor_data((vector.firstElement()[ID]?:"").trim(), (vector.firstElement()[NAME]?:"").trim(), (vector.firstElement()[DATAARAEID]?:"").trim(), (vector.firstElement()[USER]?:"").trim())
         }
 
 
@@ -184,10 +169,10 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         var everything_to_add:Vector<HashMap<String,String>> = Vector()
 
         var data: HashMap<String,String> = HashMap()
-        data[ID] = vendor_data.get_accountnum() ?: ""
-        data[NAME] = vendor_data.get_accountname() ?: ""
-        data[DATAARAEID] = vendor_data.get_DATAREAID() ?: ""
-        data[USER] = vendor_data.get_USERNAME() ?: ""
+        data[ID] = (vendor_data.get_accountnum() ?: "").trim()
+        data[NAME] = (vendor_data.get_accountname() ?: "").trim()
+        data[DATAARAEID] = (vendor_data.get_DATAREAID() ?: "").trim()
+        data[USER] = (vendor_data.get_USERNAME() ?: "").trim()
         everything_to_add.addElement(data)
         return add_data(everything_to_add)
     }
@@ -200,9 +185,9 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
             : Boolean {
 
         var change_to:HashMap<String,String> = HashMap()
-        change_to[NAME] = to.get_accountname() ?: ""
-        change_to[DATAARAEID] = to.get_DATAREAID() ?: ""
-        change_to[USER] = to.get_USERNAME() ?: ""
+        change_to[NAME] = (to.get_accountname() ?: "").trim()
+        change_to[DATAARAEID] = (to.get_DATAREAID() ?: "").trim()
+        change_to[USER] = (to.get_USERNAME() ?: "").trim()
         return update_data(ID, arrayOf(from.get_accountnum()!!),change_to)
     }
 
@@ -214,7 +199,7 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
     {
         if ( get_vendor_by_vendor(vendor_data)==null )
             return false
-        return remove_from_db(ID, arrayOf(vendor_data.get_accountnum()!!))
+        return remove_from_db(ID, arrayOf((vendor_data.get_accountnum()?:"").trim()))
 
     }
 

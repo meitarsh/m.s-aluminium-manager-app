@@ -71,12 +71,9 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
     {
         var vector:Vector<project_data> = Vector()
         var all_db:Vector<HashMap<String,String>> = get_db()
-        for(item in all_db)
-        {
-            if(item[USERNAME] ==null || item[USERNAME] != remote_SQL_Helper.getusername())
-                continue
-            vector.addElement(project_data(item[ID]?:"", item[NAME]?:"", item[DATAAREAID]?:"", item[USERNAME]?:""))
-        }
+        all_db
+                .filter { it[USERNAME] != null && it[USERNAME] == remote_SQL_Helper.getusername() }
+                .forEach { vector.addElement(project_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAAREAID]?:"").trim(), (it[USERNAME]?:"").trim())) }
         return vector
     }
 
@@ -97,20 +94,10 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
             remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS))
         }
         var result_vector:Vector<project_data> = Vector()
-        for (item in server_data)
-        {
-            try {
-
-
-                var project = project_data(item[remote_projects_table_helper.ID]?: "",
-                        item[remote_projects_table_helper.NAME]?: "", item[remote_projects_table_helper.DATAAREAID]?: "",
-                        remote_SQL_Helper.getusername())
-                result_vector.add(project)
-            }
-            catch (e:Exception)
-            {
-
-            }
+        server_data.mapTo(result_vector) {
+            project_data((it[remote_projects_table_helper.ID]?: "").trim(),
+                    (it[remote_projects_table_helper.NAME]?: "").trim(), (it[remote_projects_table_helper.DATAAREAID]?: "").trim(),
+                    remote_SQL_Helper.getusername().trim())
         }
         return result_vector
     }
@@ -126,13 +113,7 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
         val vector = get_rows(input_map)
         if(vector.size > 0)
         {
-            try {
-                return project_data(vector.firstElement()[ID]!!, vector.firstElement()[NAME]!!, vector.firstElement()[DATAAREAID]!!, vector.firstElement()[USERNAME]!!)
-            }
-            catch (e:Exception)
-            {
-
-            }
+            return project_data((vector.firstElement()[ID]?:"").trim(), (vector.firstElement()[NAME]?:"").trim(), (vector.firstElement()[DATAAREAID]?:"").trim(), (vector.firstElement()[USERNAME]?:"").trim())
         }
 
 
@@ -185,10 +166,10 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
         var everything_to_add:Vector<HashMap<String,String>> = Vector()
 
         var data: HashMap<String,String> = HashMap()
-        data[ID] = proj.getProjID() ?: ""
-        data[NAME] = proj.get_project_name() ?: ""
-        data[DATAAREAID] = proj.get_DATAREAID() ?: ""
-        data[USERNAME] = proj.get_USERNAME() ?: ""
+        data[ID] = (proj.getProjID() ?: "").trim()
+        data[NAME] = (proj.get_project_name() ?: "").trim()
+        data[DATAAREAID] = (proj.get_DATAREAID() ?: "").trim()
+        data[USERNAME] = (proj.get_USERNAME() ?: "").trim()
         everything_to_add.addElement(data)
         return add_data(everything_to_add)
     }
@@ -201,9 +182,9 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
             : Boolean {
 
         var change_to:HashMap<String,String> = HashMap()
-        change_to[NAME] = to.get_project_name() ?: ""
-        change_to[DATAAREAID] = to.get_DATAREAID() ?: ""
-        change_to[USERNAME] = to.get_USERNAME() ?: ""
+        change_to[NAME] = (to.get_project_name() ?: "").trim()
+        change_to[DATAAREAID] = (to.get_DATAREAID() ?: "").trim()
+        change_to[USERNAME] = (to.get_USERNAME() ?: "").trim()
         return update_data(ID, arrayOf(from.getProjID()!!),change_to)
     }
 
@@ -215,7 +196,7 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
     {
         if ( get_project_by_project(project)==null )
             return false
-        return remove_from_db(ID, arrayOf(project.getProjID()!!))
+        return remove_from_db(ID, arrayOf((project.getProjID()?:"").trim()))
 
     }
 

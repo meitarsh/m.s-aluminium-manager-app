@@ -122,6 +122,9 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             return general_push_command(str, username)
         }
 
+        /*
+            pushes update command
+         */
         fun push_update_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>):String {
             var str = remote_SQL_Helper.construct_update_str(db, table, where_clause, compare_to, type, update_to).replace("'","&quote;")
             var username = remote_SQL_Helper.getusername()
@@ -137,6 +140,9 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             return general_push_command(str, username)
         }
 
+        /*
+            pushes command with an already prepared string and its usernames
+         */
         public fun general_push_command(command:String, username:String):String
         {
             var string:String = if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.local_or_not), true)) {
@@ -200,6 +206,9 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
 
         }
 
+        /*
+            build notificatoin to show on screen
+         */
         private fun build_small_notification(string: String)
         {
             val mBuilder = NotificationCompat.Builder(ctx)

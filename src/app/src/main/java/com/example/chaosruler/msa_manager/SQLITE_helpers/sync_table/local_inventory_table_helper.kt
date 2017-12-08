@@ -72,12 +72,9 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         var vector:Vector<inventory_data> = Vector()
 
         var all_db:Vector<HashMap<String,String>> = get_db()
-        for(item in all_db)
-        {
-            if(item[USER]==null || item[USER] != remote_SQL_Helper.getusername())
-                continue
-            vector.addElement(inventory_data(item[ID]?:"", item[NAME]?:"", item[DATAARAEID]?:"", item[USER]?:""))
-        }
+        all_db
+                .filter { it[USER] != null && it[USER] == remote_SQL_Helper.getusername() }
+                .forEach { vector.addElement(inventory_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAARAEID]?:"").trim(), (it[USER]?:"").trim())) }
         return vector
     }
 
@@ -98,14 +95,11 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
             remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_INVENTORY))
         }
         var result_vector:Vector<inventory_data> = Vector()
-        for (item in server_data)
-        {
-            var inventory = inventory_data(
-                    item[remote_inventory_table_helper.ID]?: "", item[remote_inventory_table_helper.NAME]?: "",
-                    item[remote_inventory_table_helper.DATAAREAID]?: "", remote_SQL_Helper.getusername()
+        server_data.mapTo(result_vector) {
+            inventory_data(
+                    (it[remote_inventory_table_helper.ID]?: "").trim(), (it[remote_inventory_table_helper.NAME]?: "").trim(),
+                    (it[remote_inventory_table_helper.DATAAREAID]?: "").trim(), (remote_SQL_Helper.getusername()).trim()
             )
-                result_vector.add(inventory)
-
         }
         return result_vector
     }
@@ -121,13 +115,7 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         val vector = get_rows(input_map)
         if(vector.size > 0)
         {
-            try {
-                return inventory_data(vector.firstElement()[ID]!!, vector.firstElement()[NAME]!!, vector.firstElement()[DATAARAEID]!!, vector.firstElement()[USER]!!)
-            }
-            catch (e:Exception)
-            {
-
-            }
+            return inventory_data((vector.firstElement()[ID]?:"").trim(), (vector.firstElement()[NAME]?:"").trim(), (vector.firstElement()[DATAARAEID]?:"").trim(), (vector.firstElement()[USER]?:"").trim())
         }
 
 
@@ -181,10 +169,10 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         var everything_to_add:Vector<HashMap<String,String>> = Vector()
 
         var data: HashMap<String,String> = HashMap()
-        data[ID] = inventory_data.get_itemid() ?: ""
-        data[NAME] = inventory_data.get_itemname() ?: ""
-        data[DATAARAEID] = inventory_data.get_DATAREAID() ?: ""
-        data[USER] = inventory_data.get_USERNAME() ?: ""
+        data[ID] = (inventory_data.get_itemid() ?: "").trim()
+        data[NAME] = (inventory_data.get_itemname() ?: "").trim()
+        data[DATAARAEID] = (inventory_data.get_DATAREAID() ?: "").trim()
+        data[USER] = (inventory_data.get_USERNAME() ?: "").trim()
         everything_to_add.addElement(data)
         return add_data(everything_to_add)
     }
@@ -197,9 +185,9 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
             : Boolean {
 
         var change_to:HashMap<String,String> = HashMap()
-        change_to[NAME] = to.get_itemname() ?: ""
-        change_to[DATAARAEID] = to.get_DATAREAID() ?: ""
-        change_to[USER] = to.get_USERNAME() ?: ""
+        change_to[NAME] = (to.get_itemname() ?: "").trim()
+        change_to[DATAARAEID] = (to.get_DATAREAID() ?: "").trim()
+        change_to[USER] = (to.get_USERNAME() ?: "").trim()
         return update_data(ID, arrayOf(from.get_itemid()?:""),change_to)
     }
 
@@ -211,7 +199,7 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
     {
         if ( get_inventory_by_inventory(inventory_data)==null )
             return false
-        return remove_from_db(ID, arrayOf(inventory_data.get_itemid()!!))
+        return remove_from_db(ID, arrayOf((inventory_data.get_itemid()?:"").trim()))
     }
 
     /*

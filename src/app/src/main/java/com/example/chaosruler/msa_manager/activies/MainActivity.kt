@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_projects_table_helper
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.project_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service

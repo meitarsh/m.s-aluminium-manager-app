@@ -6,6 +6,9 @@ package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 class User(private var __username: String, private var __password: String) {
 
 
+    /*
+        identifies user
+     */
     override fun toString(): String
     {
         return this.__username

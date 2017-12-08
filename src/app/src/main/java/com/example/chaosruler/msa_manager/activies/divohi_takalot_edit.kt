@@ -7,7 +7,6 @@ import android.view.Gravity
 import android.view.View
 import android.widget.EditText
 import android.widget.TableRow
-import android.widget.TextView
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper
@@ -37,9 +36,9 @@ class divohi_takalot_edit : Activity() {
                 if (global_variables_dataclass.GUI_MODE || global_variables_dataclass.DB_BIG == null)
                     Vector<big_table_data>()
                 else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                    global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname(global_variables_dataclass.projid,global_variables_dataclass.DB_project!!)
+                    global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname(global_variables_dataclass.projid)
                 else
-                    global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname(global_variables_dataclass.projid,global_variables_dataclass.DB_project!!)
+                    global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname(global_variables_dataclass.projid)
 
         for(item in arr)
         {
@@ -78,8 +77,8 @@ class divohi_takalot_edit : Activity() {
             all_txtviews.add(alot_takala)
 
             val big_item: big_table_data = item
-            val project_item: project_data = global_variables_dataclass.DB_project!!.get_project_by_id(big_item.get_PROJECT_ID()!!)!!
-            val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id(big_item.get_INVENTORY_ID()!!)!!
+            val project_item: project_data = global_variables_dataclass.DB_project!!.get_project_by_id(big_item.get_PROJECT_ID()?:"")!!
+            val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id(big_item.get_INVENTORY_ID()?:"")!!
 
             mispar_parit.hint = (big_item.get_ITEMNUMBER() ?: "").trim()
             mispar_parit.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
@@ -107,7 +106,7 @@ class divohi_takalot_edit : Activity() {
             alot_takala.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
 
 
-            mispar_parit.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            mispar_parit.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || mispar_parit.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = mispar_parit.text.toString()
@@ -120,7 +119,7 @@ class divohi_takalot_edit : Activity() {
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
             }
 
-            shem_parit.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            shem_parit.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || shem_parit.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = shem_parit.text.toString()
@@ -133,7 +132,7 @@ class divohi_takalot_edit : Activity() {
                 global_variables_dataclass.DB_INVENTORY!!.add_inventory(inventory)
             }
 
-            shem_project.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            shem_project.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || shem_project.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = shem_project.text.toString()
@@ -146,7 +145,7 @@ class divohi_takalot_edit : Activity() {
                 global_variables_dataclass.DB_project!!.add_project(project_item)
             }
 
-            kamot.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            kamot.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || kamot.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = kamot.text.toString()
@@ -160,7 +159,7 @@ class divohi_takalot_edit : Activity() {
             }
 
 
-            koma.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            koma.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || koma.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = koma.text.toString()
@@ -173,7 +172,7 @@ class divohi_takalot_edit : Activity() {
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
             }
 
-            bnian.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            bnian.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || bnian.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = bnian.text.toString()
@@ -186,7 +185,7 @@ class divohi_takalot_edit : Activity() {
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
             }
 
-            dira.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            dira.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || dira.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = dira.text.toString()
@@ -199,7 +198,7 @@ class divohi_takalot_edit : Activity() {
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
             }
 
-            alot_takala.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            alot_takala.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || alot_takala.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = alot_takala.text.toString()

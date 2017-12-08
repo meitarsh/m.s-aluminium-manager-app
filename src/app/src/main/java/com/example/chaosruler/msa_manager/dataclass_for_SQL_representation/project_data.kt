@@ -8,46 +8,58 @@ class project_data(private var projectID:String?,private var project_name:String
     init
     {
         if(projectID!=null)
-            projectID=projectID!!.trim()
+            projectID=(projectID?:"").trim()
         if(project_name!=null)
-            project_name=project_name!!.trim()
+            project_name=(project_name?:"").trim()
         if(DATAAREAID!=null)
-            DATAAREAID=DATAAREAID!!.trim()
+            DATAAREAID=(DATAAREAID?:"").trim()
         if(USERNAME!=null)
-            USERNAME=USERNAME!!.trim()
+            USERNAME=(USERNAME?:"").trim()
     }
     /*
-        getters
-     */
+       get projid
+    */
     fun getProjID():String? = this.projectID
-
+    /*
+           get project name
+        */
     fun get_project_name():String? = this.project_name
-
+    /*
+           get dataaraid
+        */
     fun get_DATAREAID():String? = this.DATAAREAID
-
+    /*
+           get username
+        */
     fun get_USERNAME():String? = this.USERNAME
 
     /*
-        setters
-     */
+      set projid
+   */
     fun set_projid(new_projid:String)
     {
-        this.projectID = new_projid
+        this.projectID = new_projid.trim()
     }
-
+    /*
+         set projname
+      */
     fun set_project_name(new_projname:String)
     {
-        this.project_name = new_projname
+        this.project_name = new_projname.trim()
     }
-
+    /*
+         set dataraaid
+      */
     fun set_dataareaid(new_dataareaid:String)
     {
-        this.DATAAREAID = new_dataareaid
+        this.DATAAREAID = new_dataareaid.trim()
     }
-
+    /*
+         set username
+      */
     fun set_username(new_username:String)
     {
-        this.USERNAME = new_username
+        this.USERNAME = new_username.trim()
     }
 
     /*

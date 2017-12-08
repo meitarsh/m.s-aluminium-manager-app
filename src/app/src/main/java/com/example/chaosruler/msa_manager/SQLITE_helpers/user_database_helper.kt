@@ -131,11 +131,9 @@ class user_database_helper(private val con: Context) : local_SQL_Helper(con, con
     {
         var users:Vector<User> = Vector()
         var vector:Vector<HashMap<String,String>> = get_db()
-        for(item in vector)
-        {
-            var user: User = User(item!![USERS_ID].toString(), item[PASSWORD].toString())
-            users.addElement(user)
-        }
+        vector
+                .map { User(it[USERS_ID].toString(), it[PASSWORD].toString()) }
+                .forEach { users.addElement(it) }
         return users
     }
 
@@ -153,7 +151,7 @@ class user_database_helper(private val con: Context) : local_SQL_Helper(con, con
         val vector = get_rows(input_map)
         if(vector.size > 0)
         {
-            return User(vector.firstElement()[USERS_ID]!!, vector.firstElement()[PASSWORD]!!)
+            return User((vector.firstElement()[USERS_ID]?:"").trim(), (vector.firstElement()[PASSWORD]?:"").trim())
         }
 
 

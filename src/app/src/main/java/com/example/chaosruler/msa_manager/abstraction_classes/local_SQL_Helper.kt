@@ -398,6 +398,9 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         return vector
     }
 
+    /*
+        replace data with another data! testing that
+     */
     public fun replace(map:HashMap<String,String>):Boolean
     {
 

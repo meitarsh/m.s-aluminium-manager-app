@@ -70,7 +70,7 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
         var all_db:Vector<HashMap<String,String>> = get_db()
         all_db
                 .filter { it[USER] != null && it[USER] == remote_SQL_Helper.getusername() }
-                .forEach { vector.addElement(opr_data(it[ID]?:"", it[NAME]?:"", it[DATAARAEID]?:"", it[USER]?:"")) }
+                .forEach { vector.addElement(opr_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAARAEID]?:"").trim(), (it[USER]?:"").trim())) }
         return vector
     }
 
@@ -91,27 +91,10 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
             remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_OPR))
         }
         var result_vector:Vector<opr_data> = Vector()
-        for (item in server_data)
-        {
-            try
-            {
-                try {
-
-
-                    var opr = opr_data(item[remote_opr_table_helper.ID]?: "",
-                            item[remote_opr_table_helper.NAME]?: "", item[remote_opr_table_helper.DATAAREAID]?: "",
-                            remote_SQL_Helper.getusername())
-                    result_vector.add(opr)
-                }
-                catch (e:Exception)
-                {
-
-                }
-            }
-            catch (e:Exception)
-            {
-
-            }
+        server_data.mapTo(result_vector) {
+            opr_data((it[remote_opr_table_helper.ID] ?: "").trim(),
+                    (it[remote_opr_table_helper.NAME] ?: "").trim(), (it[remote_opr_table_helper.DATAAREAID] ?: "").trim(),
+                    remote_SQL_Helper.getusername().trim())
         }
         return result_vector
     }
@@ -127,7 +110,7 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
         val vector = get_rows(input_map)
         if(vector.size > 0)
         {
-            return opr_data(vector.firstElement()[ID]!!, vector.firstElement()[NAME]!!, vector.firstElement()[DATAARAEID]!!, vector.firstElement()[USER]!!)
+            return opr_data((vector.firstElement()[ID]?:"").trim(), (vector.firstElement()[NAME]?:"").trim(), (vector.firstElement()[DATAARAEID]?:"").trim(), (vector.firstElement()[USER]?:"").trim())
         }
 
 
@@ -180,10 +163,10 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
         var everything_to_add:Vector<HashMap<String,String>> = Vector()
 
         var data: HashMap<String,String> = HashMap()
-        data[ID] = opr_data.get_oprid() ?: ""
-        data[NAME] = opr_data.get_opr_name() ?: ""
-        data[DATAARAEID] = opr_data.get_DATAREAID() ?: ""
-        data[USER] = opr_data.get_USERNAME() ?: ""
+        data[ID] = (opr_data.get_oprid() ?: "").trim()
+        data[NAME] = (opr_data.get_opr_name() ?: "").trim()
+        data[DATAARAEID] = (opr_data.get_DATAREAID() ?: "").trim()
+        data[USER] = (opr_data.get_USERNAME() ?: "").trim()
         everything_to_add.addElement(data)
         return add_data(everything_to_add)
     }
@@ -196,9 +179,9 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
             : Boolean {
 
         var change_to:HashMap<String,String> = HashMap()
-        change_to[NAME] = to.get_opr_name() ?: ""
-        change_to[DATAARAEID] = to.get_DATAREAID() ?: ""
-        change_to[USER] = to.get_USERNAME() ?: ""
+        change_to[NAME] = (to.get_opr_name() ?: "").trim()
+        change_to[DATAARAEID] = (to.get_DATAREAID() ?: "").trim()
+        change_to[USER] = (to.get_USERNAME() ?: "").trim()
         return update_data(ID, arrayOf(from.get_oprid()!!),change_to)
     }
 
@@ -210,7 +193,7 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
     {
         if ( get_opr_by_opr(opr_data)==null )
             return false
-        return remove_from_db(ID, arrayOf(opr_data.get_oprid()!!))
+        return remove_from_db(ID, arrayOf((opr_data.get_oprid()?:"").trim()))
 
     }
 
