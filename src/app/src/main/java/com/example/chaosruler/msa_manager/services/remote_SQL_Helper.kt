@@ -202,8 +202,10 @@ class remote_SQL_Helper()
                                 qry+=" FROM [dbo].[$table] "
                                 if(where_column != null && where_compare!=null)
                                 {
-                                   var item:String = if(colm_to_type.getValue(where_column) == "text" || colm_to_type.getValue(where_column) == "varchar")
-                                       add_quotes(where_compare)
+                                   var item:String = if(colm_to_type.getValue(where_column) == "text" || colm_to_type.getValue(where_column) == "varchar" || colm_to_type.getValue(where_column) == "nvarchar")
+                                   {
+                                       "N" + add_quotes(where_compare)
+                                   }
                                    else
                                        where_compare
                                     qry+= "WHERE "
@@ -477,7 +479,8 @@ class remote_SQL_Helper()
             var command: String = "USE [$db]" +
                     " UPDATE [dbo].[$table] SET "
             var breaker: Int = 0
-            for (item in update_to) {
+            for (item in update_to)
+            {
                 command += " [${item.key}] = ${item.value} "
                 breaker++
                 if (breaker < update_to.size)
@@ -499,7 +502,8 @@ class remote_SQL_Helper()
             var command: String = "USE [$db]" +
                     " UPDATE [dbo].[$table] SET "
             var breaker: Int = 0
-            for (item in update_to) {
+            for (item in update_to)
+            {
                 command += " [${item.key}] = ${item.value} "
                 breaker++
                 if (breaker < update_to.size)
@@ -525,9 +529,9 @@ class remote_SQL_Helper()
         {
             for(column in input)
             {
-                if(types[column.key]!=null && (types[column.key] == "text" || types[column.key] == "varchar" ))
+                if(types[column.key]!=null && (types[column.key] == "text" || types[column.key] == "varchar" || types[column.key] == "nvarchar"))
                 {
-                    column.setValue(add_quotes(column.value))
+                    column.setValue("N"+add_quotes(column.value))
                 }
             }
         }

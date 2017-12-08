@@ -55,8 +55,8 @@ class remote_projects_table_helper()
             var typemap = make_type_map()
             for(item in map)
             {
-                if((typemap[item.key] ?: "") == "text" || (typemap[item.key] ?: "") != "varchar" )
-                    item.setValue(remote_SQL_Helper.add_quotes(item.value))
+                if((typemap[item.key] ?: "") == "text" || (typemap[item.key] ?: "") != "varchar" || (typemap[item.key] ?: "") != "nvarchar"  )
+                    item.setValue("N"+remote_SQL_Helper.add_quotes(item.value))
             }
             var where_clause:HashMap<String,String> = HashMap()
             where_clause[remote_projects_table_helper.ID] = project.getProjID() ?: ""

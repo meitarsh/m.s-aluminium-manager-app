@@ -14,80 +14,80 @@
 
     <!-- TABLE INVENTORY -->
     <string name="INVENTORY_ID">itemid</string>
-    <string name="INVENTORY_ID_TYPE">varchar</string>
+    <string name="INVENTORY_ID_TYPE">nvarchar</string>
 
     <string name="INVENTORY_NAME">itamname</string>
-    <string name="INVENTORY_NAME_TYPE">text</string>
+    <string name="INVENTORY_NAME_TYPE">nvarchar</string>
 
     <string name="INVENTORY_DATAAREAID">dataareaid</string>
-    <string name="INVENTORY_DATAAREAID_TYPE">varchar</string>
+    <string name="INVENTORY_DATAAREAID_TYPE">nvarchar</string>
 
     <!-- TABLE PROJECTS -->
 
     <string name="PROJECTS_ID">projid</string>
-    <string name="PROJECTS_ID_TYPE">text</string>
+    <string name="PROJECTS_ID_TYPE">nvarchar</string>
 
     <string name="PROJECTS_NAME">name</string>
-    <string name="PROJECTS_NAME_TYPE">text</string>
+    <string name="PROJECTS_NAME_TYPE">nvarchar</string>
 
     <string name="PROJECTS_DATAAREAID">dataareaid</string>
-    <string name="PROJECTS_DATAAREAID_TYPE">varchar</string>
+    <string name="PROJECTS_DATAAREAID_TYPE">nvarchar</string>
 
 
     <!-- TABLE OPR -->
     <string name="OPR_ID">OPRID</string>
-    <string name="OPR_ID_TYPE">varchar</string>
+    <string name="OPR_ID_TYPE">nvarchar</string>
 
 
     <string name="OPR_NAME">NAME</string>
-    <string name="OPR_NAME_TYPE">text</string>
+    <string name="OPR_NAME_TYPE">nvarchar</string>
 
 
     <string name="OPR_DATAAREAID">DATAAREAID</string>
-    <string name="OPR_DATAAREAID_TYPE">varchar</string>
+    <string name="OPR_DATAAREAID_TYPE">nvarchar</string>
 
 
     <!-- TABLE VENDORS -->
     <string name="VENDORS_ID">accountnum</string>
-    <string name="VENDORS_ID_TYPE">varchar</string>
+    <string name="VENDORS_ID_TYPE">nvarchar</string>
 
     <string name="VENDORS_NAME">name</string>
-    <string name="VENDORS_NAME_TYPE">text</string>
+    <string name="VENDORS_NAME_TYPE">nvarchar</string>
 
     <string name="VENDORS_DATAAREAID">dataareaid</string>
-    <string name="VENDORS_DATAAREAID_TYPE">varchar</string>
+    <string name="VENDORS_DATAAREAID_TYPE">nvarchar</string>
 
 
     <!-- TABLE BIG -->
     <string name="TABLE_BIG_VENDOR_ID">ACCOUNTNUM</string>
-    <string name="TABLE_BIG_VENDOR_ID_TYPE">varchar</string>
+    <string name="TABLE_BIG_VENDOR_ID_TYPE">nvarchar</string>
 
     <string name="TABLE_BIG_DATAAREAID">DATAAREAID</string>
-    <string name="TABLE_BIG_DATAAREAID_TYPE">varchar</string>
+    <string name="TABLE_BIG_DATAAREAID_TYPE">nvarchar</string>
 
 
     <string name="TABLE_BIG_REC_VERSION">RECVERSION</string>
-    <string name="TABLE_BIG_REC_VERSION_TYPE">text</string>
+    <string name="TABLE_BIG_REC_VERSION_TYPE">nvarchar</string>
 
 
     <string name="TABLE_BIG_REC_ID">RECID</string>
-    <string name="TABLE_BIG_REC_ID_TYPE">text</string>
+    <string name="TABLE_BIG_REC_ID_TYPE">nvarchar</string>
 
 
     <string name="TABLE_BIG_PROJECTS_ID">PROJID</string>
-    <string name="TABLE_BIG_PROJECTS_ID_TYPE">varchar</string>
+    <string name="TABLE_BIG_PROJECTS_ID_TYPE">nvarchar</string>
 
 
     <string name="TABLE_BIG_INVENTORY_ID">ITEMID</string>
-    <string name="TABLE_BIG_INVENTORY_ID_TYPE">varchar</string>
+    <string name="TABLE_BIG_INVENTORY_ID_TYPE">nvarchar</string>
 
 
     <string name="TABLE_BIG_FLAT">FLAT</string>
-    <string name="TABLE_BIG_FLAT_TYPE">text</string>
+    <string name="TABLE_BIG_FLAT_TYPE">nvarchar</string>
 
 
     <string name="TABLE_BIG_FLOOR">FLOOR</string>
-    <string name="TABLE_BIG_FLOOR_TYPE">text</string>
+    <string name="TABLE_BIG_FLOOR_TYPE">nvarchar</string>
 
 
     <string name="TABLE_BIG_QTY">QTY</string>
@@ -99,7 +99,7 @@
 
 
     <string name="TABLE_BIG_OPR_ID">OPRID</string>
-    <string name="TABLE_BIG_OPR_ID_TYPE">varchar</string>
+    <string name="TABLE_BIG_OPR_ID_TYPE">nvarchar</string>
 
 
     <string name="TABLE_BIG_MILESTONEPERCENT">MILESTONEPERCENT</string>
