@@ -23,7 +23,9 @@ class DivohiTakalotTofesActivity : Activity() {
         if(!global_variables_dataclass.GUI_MODE && !init_table())
             finish()
     }
-
+    /*
+                   inits table
+            */
     private fun init_table():Boolean
     {
         var arr: Vector<big_table_data> =
@@ -102,7 +104,9 @@ class DivohiTakalotTofesActivity : Activity() {
         }
         return true
     }
-
+    /*
+                   centers all views
+            */
     private fun center_all_views(vector:Vector<View>)
     {
         for(item in vector)
@@ -110,7 +114,9 @@ class DivohiTakalotTofesActivity : Activity() {
             (item.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
         }
     }
-
+    /*
+                   gets textview
+            */
     private fun get_box():TextView
     {
         var box = TextView(this)

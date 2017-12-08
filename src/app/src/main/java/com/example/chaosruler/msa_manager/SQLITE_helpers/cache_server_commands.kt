@@ -41,20 +41,26 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
         createDB(db,map)
     }
 
+    /*
+        add command to list
+     */
     fun add_command_to_list(command: cache_command):Boolean
     {
-        if(check_command_exists(command))
+        return if(check_command_exists(command))
         {
-            return false
+            false
         }
         else
         {
             insert_command(command)
-            return true
+            true
         }
 
     }
 
+    /*
+        check if command exists
+     */
     fun check_command_exists(command: cache_command):Boolean
     {
             var input_map = HashMap<String,String>()
@@ -65,6 +71,9 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
 
     }
 
+    /*
+        get the command id
+     */
     fun get_id_of_command(command: cache_command):Long
     {
         var input_map = HashMap<String,String>()
@@ -75,6 +84,9 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
         return get_rows(input_map).firstElement()[ID]!!.toLong()
     }
 
+    /*
+        inserts a new command to db
+     */
     fun insert_command(command: cache_command)
     {
         var everything_to_add:Vector<HashMap<String,String>> = Vector()
@@ -108,6 +120,9 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
         return commands
     }
 
+    /*
+        gets entire DB to string
+     */
     fun get_db_string():String
     {
         var vector = get_entire_db()

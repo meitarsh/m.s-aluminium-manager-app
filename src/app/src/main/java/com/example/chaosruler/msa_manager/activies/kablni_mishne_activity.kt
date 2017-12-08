@@ -17,7 +17,9 @@ class kablni_mishne_activity : Activity() {
         init_buttons()
         //PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.local_or_not),true)
     }
-
+    /*
+                   inits buttons
+            */
     private fun init_buttons()
     {
         kablni_mishne_pshot.setOnClickListener({

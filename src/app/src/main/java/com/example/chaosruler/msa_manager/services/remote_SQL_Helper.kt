@@ -161,9 +161,9 @@ class remote_SQL_Helper()
         }
 
 
-
-
-
+/*
+        simulates select * from db...
+ */
         fun select_columns_from_db_with_where(db: String, table: String, colm_to_type:HashMap<String,String>, where_column:String?,where_compare:String?): Vector<HashMap<String, String>>
         {
             var vector: Vector<HashMap<String, String>> = Vector()
@@ -500,6 +500,9 @@ class remote_SQL_Helper()
             return command
         }
 
+        /*
+            like previous, only multi-variables
+         */
         fun construct_update_str_multiwhere_text(db: String, table: String, where_clause:HashMap<String,String>, all_type:String, update_to: HashMap<String, String>):String
         {
             var command: String = "USE [$db]" +
@@ -525,9 +528,14 @@ class remote_SQL_Helper()
             }
             return command
         }
-
+        /*
+                add quotes to a given string
+         */
         fun add_quotes(str:String):String = "'$str'"
 
+        /*
+            looks at entire hashmap and add quotes if needed
+         */
         fun nirmol_input(input:HashMap<String,String>,types:HashMap<String,String>)
         {
             for(column in input)

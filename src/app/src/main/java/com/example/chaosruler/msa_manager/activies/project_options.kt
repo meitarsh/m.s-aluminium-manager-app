@@ -33,7 +33,9 @@ class project_options : Activity() {
         init_buttons()
 
     }
-
+    /*
+                   inits buttons
+            */
     private fun init_buttons()
     {
 
@@ -56,7 +58,9 @@ class project_options : Activity() {
         })
 
     }
-
+    /*
+                   inits buttons for demo
+            */
     private fun test_init_buttons() {
 
         if (!remote_SQL_Helper.isValid()) {

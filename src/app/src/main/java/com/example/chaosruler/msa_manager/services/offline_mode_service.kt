@@ -86,17 +86,26 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
                 mark_done(context,intent)
         }
 
+        /*
+            adds to intent that sync is done
+         */
         private fun mark_done(context: Context,intent: Intent)
         {
             intent.putExtra(context.getString(R.string.key_sync_offline),context.getString(R.string.key_sync_offline))
         }
 
+        /*
+            grab time from settings
+         */
         private fun grab_time(context: Context)
         {
             time = ctx.getString(R.string.millis_in_sec).toLong()
             var sec = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.sync_frequency),context.getString(R.string.time_to_sync_in_sec)).toLong()
             time *=sec
         }
+        /*
+            init all remove database to variables
+         */
         private fun init_remote_databases(context: Context)
         {
             remote_vendors_table_helper.init_variables(context)
@@ -105,6 +114,9 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             remote_opr_table_helper.init_variables(context)
             remote_projects_table_helper.init_variables(context)
         }
+        /*
+            starts the sync thread
+         */
         private fun start_trd()
         {
             if(time == 0.toLong())
@@ -115,7 +127,6 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         /*
             following subroutines pushes server commands to stack
          */
-
         fun push_add_command(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>):String {
             var str = remote_SQL_Helper.construct_add_str(db, table, vector, map).replace("'","&quote;")
             var username = remote_SQL_Helper.getusername()
@@ -198,7 +209,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             }
             catch (e:Exception)
             {
-                Log.d("offline_mode","Couldn't sync! error on timed")
+                Log.d("offline_mode","Couldn't sync! error on time")
             }
 
 
@@ -222,7 +233,6 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         /*
                updates all DB on thread
             */
-
         private fun sync_local(context: Context,intent: Intent)
         {
             Thread({ db_sync_func(context,intent)

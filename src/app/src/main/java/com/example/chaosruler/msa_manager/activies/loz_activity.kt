@@ -29,7 +29,9 @@ class loz_activity : Activity() {
         if(!global_variables_dataclass.GUI_MODE && !init_table())
             finish()
     }
-
+    /*
+                   inits table
+            */
     private fun init_table():Boolean
     {
         var arr: Vector<big_table_data> =
@@ -130,7 +132,9 @@ class loz_activity : Activity() {
         }
         return true
     }
-
+    /*
+                   centers all views
+            */
     private fun center_all_views(vector:Vector<View>)
     {
         for(item in vector)
@@ -138,6 +142,9 @@ class loz_activity : Activity() {
             (item.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
         }
     }
+    /*
+               gets a new edit text
+        */
     private fun get_edittext(): EditText
     {
         var box = EditText(this)
@@ -148,7 +155,9 @@ class loz_activity : Activity() {
         box.gravity = Gravity.CENTER
         return box
     }
-
+    /*
+                   gets a new checkbox
+            */
     private fun get_checkbox(): CheckBox
     {
         var box = CheckBox(this)

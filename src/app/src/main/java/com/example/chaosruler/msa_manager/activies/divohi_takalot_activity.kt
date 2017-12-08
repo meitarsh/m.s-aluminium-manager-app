@@ -19,7 +19,9 @@ class divohi_takalot_activity : Activity() {
         setContentView(R.layout.activity_divohi_takalot_activity)
         init_buttons()
     }
-
+    /*
+                   inits buttons
+            */
     private fun init_buttons()
     {
         divohi_takalot_form.setOnClickListener { startActivity(Intent(this, DivohiTakalotTofesActivity::class.java)) }

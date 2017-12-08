@@ -29,7 +29,9 @@ class divohi_takalot_edit : Activity() {
         if(!global_variables_dataclass.GUI_MODE && !init_table())
             finish()
     }
-
+    /*
+               inits table
+        */
     private fun init_table():Boolean
     {
         var arr: Vector<big_table_data> =
@@ -222,7 +224,9 @@ class divohi_takalot_edit : Activity() {
         return true
     }
 
-
+    /*
+            center all views
+     */
     private fun center_all_views(vector: Vector<View>)
     {
         for(item in vector)
@@ -230,7 +234,9 @@ class divohi_takalot_edit : Activity() {
             (item.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
         }
     }
-
+    /*
+               gets box
+        */
     private fun get_box(): EditText
     {
         var box = EditText(this)

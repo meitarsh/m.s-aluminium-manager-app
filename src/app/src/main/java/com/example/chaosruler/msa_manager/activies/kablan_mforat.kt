@@ -28,7 +28,9 @@ class kablan_mforat : Activity() {
         compute_saah_hakol()
     }
 
-
+    /*
+                   inits spinner
+            */
     private fun init_spinner()
     {
         val big_table:Vector<big_table_data> =
@@ -122,7 +124,9 @@ class kablan_mforat : Activity() {
         }
 
     }
-
+    /*
+                   compute sum and puts into textview and colors it
+            */
     private fun compute_saah_hakol()
     {
         var price:Double=0.toDouble()

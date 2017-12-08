@@ -40,12 +40,17 @@ class MainActivity : Activity()
         init_buttons()
     }
 
+    /*
+               inits companion object
+        */
     private fun init_companion()
     {
         global_variables_dataclass.init_dbs(baseContext)
     }
 
-
+    /*
+                   inits sync thread
+            */
     private fun init_sync_trd()
     {
         Thread({
@@ -55,6 +60,9 @@ class MainActivity : Activity()
         }).start()
     }
 
+    /*
+               inits spinner
+        */
     private fun init_spinner()
     {
         val projects =
@@ -80,7 +88,9 @@ class MainActivity : Activity()
 
         }
     }
-
+    /*
+                   inits progress view subroutine
+            */
     private fun progress_subroutine()
     {
         main_progressBar.visibility = ProgressBar.VISIBLE
@@ -121,21 +131,27 @@ class MainActivity : Activity()
         }).start()
 
     }
-
+    /*
+                   hides all views until progress is complete
+            */
     private fun hide_everything()
     {
         main_spinner.visibility = Spinner.INVISIBLE
         main_textview.visibility = TextView.INVISIBLE
         main_button_choose.visibility = TextView.INVISIBLE
     }
-
+    /*
+                   show all views after progress is complete
+            */
     private fun show_everything()
     {
         main_spinner.visibility = Spinner.VISIBLE
         main_button_choose.visibility = Button.VISIBLE
         main_textview.visibility = TextView.VISIBLE
     }
-
+    /*
+                   creates intro text with username in it
+            */
     private fun create_intro_text()
     {
         var name = PreferenceManager.getDefaultSharedPreferences(baseContext).getString(getString(R.string.username_key), "")
@@ -146,7 +162,9 @@ class MainActivity : Activity()
             name = remote_SQL_Helper.getusername()
         main_textview.text = main_textview.text.toString().replace(getString(R.string.shalom),getString(R.string.shalom) + " " + name)
     }
-
+    /*
+                   inits buttons
+            */
     private fun init_buttons()
     {
         main_button_choose.setOnClickListener({
@@ -190,7 +208,9 @@ class MainActivity : Activity()
             })
         }
     }
-
+    /*
+                   inits disconnects when done
+            */
     override fun onDestroy()
     {
         super.onDestroy()

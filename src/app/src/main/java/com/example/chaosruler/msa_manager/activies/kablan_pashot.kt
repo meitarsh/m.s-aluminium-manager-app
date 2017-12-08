@@ -26,7 +26,9 @@ class kablan_pashot : Activity()
             finish()
     }
 
-
+    /*
+                   inits table
+            */
     private fun init_table():Boolean
     {
 
@@ -73,7 +75,9 @@ class kablan_pashot : Activity()
 
         return true
     }
-
+    /*
+                   centers all views
+            */
     private fun center_all_views(vector:Vector<View>)
     {
         for(item in vector)
@@ -81,7 +85,9 @@ class kablan_pashot : Activity()
             (item.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
         }
     }
-
+    /*
+                   gets a new textview
+            */
     private fun get_textview(): TextView
     {
         var box = TextView(this)

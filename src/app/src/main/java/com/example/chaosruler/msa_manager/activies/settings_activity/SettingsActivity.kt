@@ -36,7 +36,9 @@ import com.example.chaosruler.msa_manager.services.themer
  */
 class SettingsActivity : AppCompatPreferenceActivity()
 {
-
+    /*
+           override activity to initate perference activity
+        */
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
@@ -114,10 +116,16 @@ class SettingsActivity : AppCompatPreferenceActivity()
 
 
         }
+        /*
+               restarts entire app after style change
+    */
         fun restart_app()
         {
             startActivity(Intent(activity.baseContext, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
+        /*
+           on option selected event
+    */
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
             if (id == android.R.id.home)
@@ -150,6 +158,9 @@ class SettingsActivity : AppCompatPreferenceActivity()
             bindPreferenceSummaryToValue(findPreference(getString(R.string.notification)), null)
         }
 
+        /*
+        on option selected event
+ */
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
             if (id == android.R.id.home)
@@ -181,7 +192,9 @@ class SettingsActivity : AppCompatPreferenceActivity()
 
 
         }
-
+        /*
+                on option selected event
+         */
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
             if (id == android.R.id.home)
@@ -205,7 +218,9 @@ class SettingsActivity : AppCompatPreferenceActivity()
             bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_offline_key)), activity.baseContext)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.gui_mode_key)), activity.baseContext)
         }
-
+        /*
+                on option selected event
+         */
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
             if (id == android.R.id.home)
@@ -265,39 +280,25 @@ class SettingsActivity : AppCompatPreferenceActivity()
 
             // Trigger the listener immediately with the preference's
             // current value.
-            if(preference.key == "notification")
-            {
-                sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+            when {
+                preference.key == "notification" -> sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                         PreferenceManager
                                 .getDefaultSharedPreferences(preference.context)
                                 .getBoolean(preference.key,false))
-            }
-            else if(preference.key == "delete_users")
-            {
-                preference.setOnPreferenceClickListener {
+                preference.key == "delete_users" -> preference.setOnPreferenceClickListener {
                     user_database_helper(context!!).clearDB()
                     Toast.makeText(context,context.getString(R.string.successfull_operation),Toast.LENGTH_SHORT).show()
                     return@setOnPreferenceClickListener true
                 }
-            }
-            else if(preference.key == "delete_offline")
-            {
-                preference.setOnPreferenceClickListener {
-                    if (context != null)
-                    {
+                preference.key == "delete_offline" -> preference.setOnPreferenceClickListener {
+                    if (context != null) {
                         cache_server_commands(context).clearDB()
                         Toast.makeText(context,context.getString(R.string.successfull_operation),Toast.LENGTH_SHORT).show()
                     }
                     return@setOnPreferenceClickListener true
                 }
-            }
-            else if(preference.key == "gui_mode_key")
-            {
-                sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,PreferenceManager.getDefaultSharedPreferences(preference.context).getBoolean(preference.key,false))
-            }
-            else
-            {
-                sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+                preference.key == "gui_mode_key" -> sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,PreferenceManager.getDefaultSharedPreferences(preference.context).getBoolean(preference.key,false))
+                else -> sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                         PreferenceManager
                                 .getDefaultSharedPreferences(preference.context)
                                 .getString(preference.key, ""))

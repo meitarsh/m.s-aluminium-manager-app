@@ -29,13 +29,17 @@ class user_delete_activity : Activity() {
         init_spinner()
         init_buttons()
     }
-
+    /*
+                   inits dataases
+            */
     private fun init_dbs()
     {
         db = user_database_helper(baseContext)
         adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, db.get_entire_db())
     }
-
+    /*
+                   inits spinner
+            */
     private fun init_spinner()
     {
         val users = db.get_entire_db()
@@ -56,7 +60,9 @@ class user_delete_activity : Activity() {
             }
         }
     }
-
+    /*
+                   inits buttons
+            */
     private fun init_buttons()
     {
         // button to activate subroutine to delete a user from database
@@ -97,7 +103,9 @@ class user_delete_activity : Activity() {
         })
     }
 
-
+    /*
+                   inits reset both password fields
+            */
     private fun reset_password_fields() {
         // subroutine to reset the password fields to their defaults (meaning like it was when the activity first launched)
         delete_password1_edittext.isEnabled = false
@@ -106,7 +114,9 @@ class user_delete_activity : Activity() {
         delete_password2_textview.text.javaClass
         delete_send_changes_btn.visibility = View.INVISIBLE
     }
-
+    /*
+                   inits go back to new login activity
+            */
     override fun onBackPressed() // overridden to make sure that pressing back right now will return us to the login activity, and won't exit the app, also reloading the login activity will reload the spinner on the login activity
     {
         val intent:Intent = Intent(this@user_delete_activity, LoginActivity::class.java)
@@ -114,14 +124,18 @@ class user_delete_activity : Activity() {
         super.onBackPressed()
     }
 
-
+    /*
+                   inits menu
+            */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         super.onCreateOptionsMenu(menu)
         val inflater = menuInflater
         inflater.inflate(R.menu.user_delete_activity_menu, menu)
         return true
     }
-
+    /*
+                   event handler for menu item
+            */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
         when (item.itemId) {
@@ -135,7 +149,7 @@ class user_delete_activity : Activity() {
             }
             else ->
             {
-
+                return false
             }
         }
         return true
