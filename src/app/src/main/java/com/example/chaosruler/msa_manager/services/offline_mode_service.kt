@@ -30,7 +30,8 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         //init_cache(this.applicationContext)
     }
 
-    companion object {
+    companion object
+    {
         /*
                 local database to store server commands with appropiate users
             */
@@ -74,16 +75,20 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             opr = local_OPR_table_helper(context)
             vendor = local_vendor_table_helper(context)
             big_table = local_big_table_helper(context)
+
             grab_time(ctx)
             init_remote_databases(context)
             grab_time(ctx)
+
             start_trd()
-            if(PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.local_or_not),true) )
-            {
-                sync_local(context,intent)
-            }
-            else
-                mark_done(context,intent)
+
+           if(PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.local_or_not),true) )
+           {
+               sync_local(context,intent)
+           }
+           else
+               mark_done(context,intent)
+
         }
 
         /*
@@ -204,7 +209,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
 
             try
             {
-                if(PreferenceManager.getDefaultSharedPreferences(ctx).getInt(ctx.getString(R.string.sync_frequency), 15)!=0)
+                if(PreferenceManager.getDefaultSharedPreferences(ctx).getString(ctx.getString(R.string.sync_frequency), 15.toString()).toInt()!=0)
                     db_sync_func_without_mark()
             }
             catch (e:Exception)
@@ -227,7 +232,8 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
                     .setContentTitle(ctx.getString(R.string.notification_title))
                     .setContentText(ctx.getString(R.string.notification_sync_successfuk) + ctx.getString(R.string.notificatoin_op_id) + string)
             val mNotificationManager = ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
-            mNotificationManager!!.notify(1,mBuilder.build())
+            if(mNotificationManager!=null)
+                 mNotificationManager.notify(1,mBuilder.build())
         }
 
         /*
@@ -235,7 +241,9 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             */
         private fun sync_local(context: Context,intent: Intent)
         {
-            Thread({ db_sync_func(context,intent)
+            Thread({
+
+                db_sync_func(context,intent)
             }).start()
         }
 
@@ -244,11 +252,20 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
          */
         public fun db_sync_func(context: Context,intent: Intent)
         {
-            projects.sync_db()
-            inventory.sync_db()
-            opr.sync_db()
-            vendor.sync_db()
-            big_table.sync_db()
+            try
+            {
+                /*
+                projects.sync_db()
+                inventory.sync_db()
+                opr.sync_db()
+                vendor.sync_db()
+                big_table.sync_db()
+                */
+            }
+            catch (e:Exception)
+            {
+                Log.d("offline_mode","Couldn't sync for first time for some reason")
+            }
             mark_done(context,intent)
         }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.Gravity
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TableRow
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
@@ -83,19 +84,19 @@ class divohi_takalot_edit : Activity() {
             val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id(big_item.get_INVENTORY_ID()?:"")!!
 
             mispar_parit.hint = (big_item.get_ITEMNUMBER() ?: "").trim()
-            mispar_parit.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+            mispar_parit.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
             shem_parit.hint = (inventory.get_itemname() ?: "").trim()
             mispar_project.hint = (project_item.getProjID() ?: "").trim()
             mispar_project.isEnabled = false
             shem_project.hint = (project_item.get_project_name() ?: "").trim()
             kamot.hint = (big_item.get_QTY() ?: "").trim()
-            kamot.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+            kamot.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
             sog_takala.hint = "No value from database"
             sog_takala.isEnabled = false
             koma.hint = (big_item.get_FLOOR() ?: "").trim()
             bnian.hint = (big_item.get_FLAT() ?: "").trim()
             dira.hint = (big_item.get_DIRANUM() ?: "").trim()
-            dira.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+            dira.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
             tiaor_takala.hint = "No value from database"
             tiaor_takala.isEnabled = false
             peolot_ltikon.hint = "No value from database"
@@ -105,7 +106,7 @@ class divohi_takalot_edit : Activity() {
             tgovat_mnaal.hint = "No value from database"
             tgovat_mnaal.isEnabled = false
             alot_takala.hint = (big_item.get_TOTALSUM() ?: "").trim()
-            alot_takala.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+            alot_takala.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
 
 
             mispar_parit.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -119,6 +120,7 @@ class divohi_takalot_edit : Activity() {
                 mispar_parit.text.clear()
                 big_item.set_FLAT(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                hideKeyboard(mispar_parit)
             }
 
             shem_parit.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -132,6 +134,7 @@ class divohi_takalot_edit : Activity() {
                 shem_parit.text.clear()
                 inventory.set_itemname(str)
                 global_variables_dataclass.DB_INVENTORY!!.add_inventory(inventory)
+                hideKeyboard(shem_parit)
             }
 
             shem_project.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -145,6 +148,7 @@ class divohi_takalot_edit : Activity() {
                 shem_project.text.clear()
                 project_item.set_project_name(str)
                 global_variables_dataclass.DB_project!!.add_project(project_item)
+                hideKeyboard(shem_project)
             }
 
             kamot.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -158,6 +162,7 @@ class divohi_takalot_edit : Activity() {
                 kamot.text.clear()
                 big_item.set_QTY(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                hideKeyboard(kamot)
             }
 
 
@@ -172,6 +177,7 @@ class divohi_takalot_edit : Activity() {
                 koma.text.clear()
                 big_item.set_FLOOR(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                hideKeyboard(koma)
             }
 
             bnian.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -185,6 +191,7 @@ class divohi_takalot_edit : Activity() {
                 bnian.text.clear()
                 big_item.set_FLAT(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                hideKeyboard(bnian)
             }
 
             dira.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -198,6 +205,7 @@ class divohi_takalot_edit : Activity() {
                 dira.text.clear()
                 big_item.set_DIRANUM(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                hideKeyboard(dira)
             }
 
             alot_takala.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -211,6 +219,7 @@ class divohi_takalot_edit : Activity() {
                 alot_takala.text.clear()
                 big_item.set_TOTALSUM(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                hideKeyboard(alot_takala)
             }
 
             for(box in all_txtviews)
@@ -246,5 +255,12 @@ class divohi_takalot_edit : Activity() {
         box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
         box.gravity = Gravity.CENTER
         return box
+    }
+    /*
+           hides softkeyboard from specific view
+        */
+    fun hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

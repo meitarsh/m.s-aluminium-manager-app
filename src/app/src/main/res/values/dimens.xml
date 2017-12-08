@@ -8,4 +8,8 @@
     <dimen name="height_divohi_takalot">40dp</dimen>
     <dimen name="height_loz">30dp</dimen>
     <dimen name="main_activity_buttons">80dp</dimen>
+    <dimen name="button_margin_project_options">40dp</dimen>
+    <dimen name="button_margin_divohi_takalot">100dp</dimen>
+    <dimen name="table_chooser_vertical">20dp</dimen>
+    <dimen name="height_text_buttons">40dp</dimen>
 </resources>

@@ -9,6 +9,7 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -76,7 +77,20 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
                 .forEach { vector.addElement(project_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAAREAID]?:"").trim(), (it[USERNAME]?:"").trim())) }
         return vector
     }
+    /*
+                  get local DB by project name
+               */
+    fun get_local_DB_by_projname(projid:String): Vector<project_data>
+    {
+        var vector: Vector<project_data> = Vector()
 
+        var projdb : Vector<project_data> = global_variables_dataclass.DB_project!!.get_local_DB()
+
+        projdb
+                .filter { (it.getProjID()?:"")==projid }
+                .forEach { vector.addElement(it) }
+        return vector
+    }
 
     /*
            subroutine to convert server data to vector of project_data
@@ -101,6 +115,32 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
         }
         return result_vector
     }
+    /*
+               subroutine to convert server data to vector of project_data
+            */
+    fun server_data_to_vector_by_projid(projid:String):Vector<project_data>
+    {
+        var server_data: Vector<java.util.HashMap<String, String>> =
+                if(BuildConfig.DEBUG)
+                {
+                    var typemap: java.util.HashMap<String, String> = remote_projects_table_helper.make_type_map()
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS),typemap,context.getString(R.string.PROJECTS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+                }
+                else
+                {
+                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS))
+                }
+        var result_vector:Vector<project_data> = Vector()
+        for(item in server_data)
+        {
+            if( (item[remote_projects_table_helper.ID]?:"") == projid  )
+                result_vector.addElement( project_data((item[remote_projects_table_helper.ID]?: "").trim(),
+                        (item[remote_projects_table_helper.NAME]?: "").trim(), (item[remote_projects_table_helper.DATAAREAID]?: "").trim(),
+                        remote_SQL_Helper.getusername().trim()))
+        }
+        return result_vector
+    }
+
     /*
            subroutine that is in charge of getting the project class
            by query

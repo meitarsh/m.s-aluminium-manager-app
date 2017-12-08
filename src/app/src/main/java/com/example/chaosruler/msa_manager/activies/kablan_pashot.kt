@@ -3,6 +3,7 @@ package com.example.chaosruler.msa_manager.activies
 import android.app.Activity
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.Gravity
 import android.view.View
 import android.widget.TableRow
@@ -59,11 +60,13 @@ class kablan_pashot : Activity()
             peola.text = (vendor_item.get_accountname() ?: "").trim()
             var parcent:String = big_item.get_PERCENTFORACCOUNT()?:0.toString().trim()
             ahoz.text = ((parcent.toDouble()*1).toInt().toString() + "%").trim()
-
+            ahoz.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
             var all_views = Vector<View>()
             all_views.addElement(hoza)
             all_views.add(peola)
             all_views.add(ahoz)
+
+
 
             for(view in all_views)
                 row.addView(view)
@@ -85,9 +88,11 @@ class kablan_pashot : Activity()
             (item.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
         }
     }
+
+
     /*
-                   gets a new textview
-            */
+       hides softkeyboard from specific view
+    */
     private fun get_textview(): TextView
     {
         var box = TextView(this)

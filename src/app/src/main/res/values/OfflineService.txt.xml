@@ -8,7 +8,7 @@
 
     <string name="sync_btn_text">סנכרן עכשיו</string>
 
-
+    <string name="inittime">10000</string>
     <!-- strings passed as keys between activities -->
     <string name="username">username</string>
     <string name="password">password</string>

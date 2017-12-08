@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.chaosruler.msa_manager.activies.kablan_mforat"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode ="true"
     >
 
     <!--hoza chooser -->

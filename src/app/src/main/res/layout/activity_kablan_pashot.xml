@@ -8,6 +8,8 @@
     tools:context="com.example.chaosruler.msa_manager.activies.kablan_pashot"
     android:layoutDirection="rtl"
     android:id="@+id/kablan_pashot_table"
+    android:focusable="true"
+    android:focusableInTouchMode ="true"
     >
 
 

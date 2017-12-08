@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- Table BIG -->
+    
+    <string name="edit_table_big">הטבלה הגדולה</string>
+    <string name="edit_accountnum">מספר חשבון</string>
+    <string name="edit_DATAARAEID">מזהה טסטים</string>
+    <string name="edit_RECVERSION">גרסאת הrec</string>
+    <string name="edit_RECID">מזהה ייחודי לrec</string>
+    <string name="edit_projID">מספר פרויקט</string>
+    <string name="edit_itemID">מספר מוצר</string>
+    <string name="edit_FLAT">דירה 1</string>
+    <string name="edit_FLOOR">קומה 1</string>
+    <string name="edit_QTY">כמות</string>
+    <string name="edit_SALESPRICE">מחיר</string>
+    <string name="edit_OPRID">מספר פעולה</string>
+    <string name="edit_MILESTONEPERCENT">אחוז ביצוע לmilestone</string>
+    <string name="edit_QTYFORACCOUNT">כמות ללקוח</string>
+    <string name="edit_PERCENTFORACCOUNT">אחוז ללקוח</string>
+    <string name="edit_TOTALSUM">סך הכל</string>
+    <string name="edit_SALPROG">מחיר החבילה</string>
+    <string name="edit_PRINTORDER">סדר ההדפסה</string>
+    <string name="edit_ITEMNUMBER">כמות המוצר</string>
+    <string name="edit_KOMANUM">קומה 2</string>
+    <string name="edit_DIRANUM">דירה 2</string>
+
+
+    <!-- OPR table -->
+
+    <string name="edit_table_opr">טבלת פעולות</string>
+    <string name="edit_table_opr_id">קוד פעולה</string>
+    <string name="edit_table_opr_DATAARAEID">מזהה טסטים</string>
+    <string name="edit_table_opr_name">שם פעולה</string>
+
+    <!-- project table -->
+
+    <string name="edit_table_proj">טבלת פרויקטים</string>
+    <string name="edit_table_proj_id">קוד פרויקט</string>
+    <string name="edit_table_proj_DATAARAEID">מזהה טסטים</string>
+    <string name="edit_table_proj_name">שם פרויקט</string>
+
+    <!-- vendor table -->
+
+    <string name="edit_table_vendor">טבלת ספקים</string>
+    <string name="edit_table_vendor_id">קוד ספק</string>
+    <string name="edit_table_vendor_DATAARAEID">מזהה טסטים</string>
+    <string name="edit_table_vendor_name">שם ספק</string>
+
+    <!-- Inventory table -->
+
+    <string name="edit_table_inventory">טבלת מוצרים</string>
+    <string name="edit_table_inventory_id">קוד מוצר</string>
+    <string name="edit_table_inventory_DATAARAEID">מזהה טסטים</string>
+    <string name="edit_table_inventory_name">שם מוצר</string>
+
+</resources>

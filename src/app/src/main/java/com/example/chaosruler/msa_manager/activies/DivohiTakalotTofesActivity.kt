@@ -130,4 +130,6 @@ class DivohiTakalotTofesActivity : Activity() {
         box.gravity = Gravity.CENTER
         return box
     }
+
+
 }

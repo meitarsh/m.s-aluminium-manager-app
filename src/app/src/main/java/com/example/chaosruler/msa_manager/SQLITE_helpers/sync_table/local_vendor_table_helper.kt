@@ -3,11 +3,13 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.BuildConfig
+import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.vendor_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
@@ -75,7 +77,29 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
                 .forEach { vector.addElement(vendor_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAARAEID]?:"").trim(), (it[USER]?:"").trim())) }
         return vector
     }
+    /*
+           gets local data by projname
+        */
+    fun get_local_DB_by_projname(projid:String): Vector<vendor_data>
+    {
+        var vector: Vector<vendor_data> = Vector()
 
+        var all_db: Vector<big_table_data> = global_variables_dataclass.DB_BIG!!.get_local_DB()
+        var vendordb : Vector<vendor_data> = global_variables_dataclass.DB_VENDOR!!.get_local_DB()
+
+
+        for(vendor in vendordb)
+        {
+            for (big in all_db)
+            {
+                if((big.get_PROJECT_ID()?:"") == projid && (big.get_VENDOR_ID()?:"") == (vendor.get_accountnum()?:"1")  ) {
+                    vector.addElement(vendor)
+                    break
+                }
+            }
+        }
+        return vector
+    }
 
     /*
            subroutine to convert server data to vector of vendor
@@ -102,6 +126,52 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         }
         return result_vector
     }
+
+    /*
+         subroutine to convert server data to vector of vendor by projname
+      */
+    fun server_data_to_vector_by_projname(projid: String): Vector<vendor_data>
+    {
+
+        var server_data_big: Vector<java.util.HashMap<String, String>> =
+                if(BuildConfig.DEBUG)
+                {
+                    var typemap:HashMap<String,String> = remote_big_table_helper.make_type_map()
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+                }
+                else
+                {
+                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
+                }
+
+        var server_data_vendor: Vector<java.util.HashMap<String, String>> =
+                if(BuildConfig.DEBUG)
+                {
+                    var typemap:HashMap<String,String> = remote_vendors_table_helper.make_type_map()
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS),typemap,context.getString(R.string.VENDORS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+                }
+                else
+                {
+                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS))
+                }
+        var result_vector: Vector<vendor_data> = Vector()
+        for(vendor in server_data_vendor)
+        {
+            for (big in server_data_big)
+            {
+                if((big[remote_big_table_helper.PROJECTS_ID]?:"").trim() == projid && (big[remote_big_table_helper.VENDOR_ID]?:"").trim() == (vendor[remote_vendors_table_helper.ID]?:"1").trim()  ) {
+                    result_vector.addElement(vendor_data( (vendor[remote_vendors_table_helper.ID]?:"").trim(),
+                            (vendor[remote_vendors_table_helper.NAME]?:"").trim(),(vendor[remote_vendors_table_helper.DATAAREAID]?:"").trim()
+                            ,(remote_SQL_Helper.getusername().trim())))
+
+                    break
+                }
+            }
+        }
+
+        return result_vector
+    }
+
     /*
            subroutine that is in charge of getting the vendor class
            by query

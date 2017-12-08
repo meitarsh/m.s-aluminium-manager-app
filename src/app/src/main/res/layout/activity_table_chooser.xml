@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_chooser"
+    android:orientation="vertical"
+    >
+
+
+    <Button
+        android:id="@+id/table_chooser_big"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_text_buttons"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/table_chooser_vertical"
+        android:layout_marginTop="@dimen/main_activity_buttons"
+        android:background="@drawable/button_sample1"
+        android:text="@string/table_chooser_big" />
+
+    <Button
+        android:id="@+id/table_chooser_project"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_text_buttons"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/table_chooser_vertical"
+        android:layout_marginTop="@dimen/table_chooser_vertical"
+        android:background="@drawable/button_sample1"
+        android:text="@string/table_chooser_project" />
+
+    <Button
+        android:id="@+id/table_chooser_vendor"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_text_buttons"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/table_chooser_vertical"
+        android:layout_marginTop="@dimen/table_chooser_vertical"
+        android:background="@drawable/button_sample1"
+        android:text="@string/table_chooser_vendor" />
+
+    <Button
+        android:id="@+id/table_chooser_opr"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_text_buttons"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/table_chooser_vertical"
+        android:layout_marginTop="@dimen/table_chooser_vertical"
+        android:background="@drawable/button_sample1"
+        android:text="@string/table_chooser_opr" />
+
+    <Button
+        android:id="@+id/table_chooser_inventory"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_text_buttons"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/table_chooser_vertical"
+        android:layout_marginTop="@dimen/table_chooser_vertical"
+        android:background="@drawable/button_sample1"
+        android:text="@string/table_chooser_inventory" />
+</LinearLayout>

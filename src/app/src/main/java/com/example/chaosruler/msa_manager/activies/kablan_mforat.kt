@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
@@ -62,11 +63,11 @@ class kablan_mforat : Activity() {
                 activity_kablan_mforat_yehida_price.text = (big_item.get_SALESPRICE() ?: "0").trim()
                 activity_kablan_mforat_peola_percent.text = ((peola_parcent.toDouble()).toInt().toString() + "%").trim()
                 activity_kablan_mforat_kamot_helki.hint = (big_item.get_QTYFORACCOUNT() ?: "0").trim()
-                activity_kablan_mforat_kamot_helki.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+                activity_kablan_mforat_kamot_helki.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 activity_kablan_mforat_kamot_kablan.hint = (big_item.get_QTYFORACCOUNT() ?: "0").trim()
-                activity_kablan_mforat_kamot_kablan.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+                activity_kablan_mforat_kamot_kablan.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 activity_kablan_mforat_ahoz_meosher.hint = ((milestone_parcent.toDouble()).toInt().toString() + "%").trim()
-                activity_kablan_mforat_ahoz_meosher.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+                activity_kablan_mforat_ahoz_meosher.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 var price = (big_item.get_SALESPRICE() ?: "0").toDouble()
                 var count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
                 var parcent = milestone_parcent.toDouble()/100
@@ -84,6 +85,7 @@ class kablan_mforat : Activity() {
                     big_item.set_QTYFORACCOUNT(str)
                     global_variables_dataclass.DB_BIG!!.add_big(big_item)
                     compute_saah_hakol()
+                    hideKeyboard(activity_kablan_mforat_kamot_helki)
                 }
 
                 activity_kablan_mforat_kamot_kablan.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
@@ -98,6 +100,7 @@ class kablan_mforat : Activity() {
                     big_item.set_QTYFORACCOUNT(str)
                     global_variables_dataclass.DB_BIG!!.add_big(big_item)
                     compute_saah_hakol()
+                    hideKeyboard(activity_kablan_mforat_kamot_kablan)
                 }
 
                 activity_kablan_mforat_ahoz_meosher.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
@@ -114,6 +117,7 @@ class kablan_mforat : Activity() {
                     activity_kablan_mforat_ahoz_meosher.hint = (str + "%").trim()
                     activity_kablan_mforat_ahoz_meosher.text.clear()
                     compute_saah_hakol()
+                    hideKeyboard(activity_kablan_mforat_ahoz_meosher)
                 }
             }
 
@@ -145,5 +149,12 @@ class kablan_mforat : Activity() {
         else // <= 0
             activity_kablan_mforat_saah_hakol.setTextColor(getColor(R.color.red))
         activity_kablan_mforat_saah_hakol.text = price.toString().trim()
+    }
+    /*
+       hides softkeyboard from specific view
+    */
+    fun hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

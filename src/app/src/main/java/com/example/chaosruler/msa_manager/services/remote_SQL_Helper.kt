@@ -132,8 +132,13 @@ class remote_SQL_Helper()
                         var map: HashMap<String, String> = HashMap()
                         for (i in 1..(columnCount)) {
                             var colum_name: String = rs_meta.getColumnName(i)
-                            map[colum_name] = rs.getString(colum_name)
-
+                            try
+                            {
+                                map[colum_name] = rs.getString(colum_name)
+                            }
+                            catch (e:Exception) {
+                                map[colum_name] = ""
+                            }
                         }
                         vector.addElement(map)
                     }
@@ -247,7 +252,14 @@ class remote_SQL_Helper()
                                 for (i in 1..(columnCount))
                                 {
                                     var colum_name: String = rs_meta.getColumnName(i)
-                                    map[colum_name] = rs.getString(colum_name)
+                                    try
+                                    {
+                                        map[colum_name] = rs.getString(colum_name)
+                                    }
+                                    catch (e:Exception)
+                                    {
+                                        map[colum_name] = ""
+                                    }
                                 }
                                 vector.addElement(map)
                             }

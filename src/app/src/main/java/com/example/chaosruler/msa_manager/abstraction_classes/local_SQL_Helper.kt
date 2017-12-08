@@ -29,7 +29,8 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         try
         {
             var db = this.writableDatabase
-            this.onCreate(db) // ensures this is called, android by itself will only do it if it needs to read/write the database
+            if(!isTableExists(TABLE_NAME))
+                this.onCreate(db) // ensures this is called, android by itself will only do it if it needs to read/write the database
             //db.close()
         }
         catch (e:SQLiteException)
@@ -38,6 +39,23 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         }
     }
 
+    /*
+    check if database exists
+     */
+    fun isTableExists(tableName: String): Boolean {
+
+        var mDatabase:SQLiteDatabase = readableDatabase
+
+        val cursor = mDatabase.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '$tableName'", null)
+        if (cursor != null) {
+            if (cursor!!.getCount() > 0) {
+                cursor!!.close()
+                return true
+            }
+            cursor!!.close()
+        }
+        return false
+    }
     /*
         API method abstraction
      */

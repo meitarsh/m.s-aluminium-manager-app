@@ -74,7 +74,7 @@
         android:layout_width="@dimen/main_activity_buttons"
         android:layout_height="@dimen/main_activity_buttons"
         android:background="@drawable/download"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.682"

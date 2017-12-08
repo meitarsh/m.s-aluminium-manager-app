@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    >
+
+    <TableLayout
+        android:id="@+id/table_chooser_inventory_table"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        >
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="rtl">
+
+            <TextView
+                android:gravity="center"
+                android:text="@string/edit_table_inventory_id"
+                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
+                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
+                />
+
+            <TextView
+                android:gravity="center"
+                android:text="@string/edit_table_inventory_DATAARAEID"
+                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
+                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
+                />
+            <TextView
+                android:gravity="center"
+                android:text="@string/edit_table_inventory_name"
+                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
+                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
+                />
+
+        </TableRow>
+
+    </TableLayout>
+
+
+
+</HorizontalScrollView>

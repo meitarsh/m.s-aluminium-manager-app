@@ -3,11 +3,14 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.BuildConfig
+import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.opr_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.project_data
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
@@ -73,7 +76,29 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
                 .forEach { vector.addElement(opr_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAARAEID]?:"").trim(), (it[USER]?:"").trim())) }
         return vector
     }
+    /*
+              get local DB by project name
+           */
+    fun get_local_DB_by_projname(projid:String): Vector<opr_data>
+    {
+        var vector: Vector<opr_data> = Vector()
 
+        var all_db: Vector<big_table_data> = global_variables_dataclass.DB_BIG!!.get_local_DB()
+        var oprdb : Vector<opr_data> = global_variables_dataclass.DB_OPR!!.get_local_DB()
+
+
+        for(opr in oprdb)
+        {
+            for (big in all_db)
+            {
+                if((big.get_PROJECT_ID()?:"") == projid && (big.get_OPRID()?:"") == (opr.get_oprid()?:"1")  ) {
+                    vector.addElement(opr)
+                    break
+                }
+            }
+        }
+        return vector
+    }
 
     /*
            subroutine to convert server data to vector of opr
@@ -96,6 +121,50 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
                     (it[remote_opr_table_helper.NAME] ?: "").trim(), (it[remote_opr_table_helper.DATAAREAID] ?: "").trim(),
                     remote_SQL_Helper.getusername().trim())
         }
+        return result_vector
+    }
+    /*
+           gets server data by projname
+        */
+    fun server_data_to_vector_by_projname(projid: String): Vector<opr_data>
+    {
+
+        var server_data_big: Vector<java.util.HashMap<String, String>> =
+                if(BuildConfig.DEBUG)
+                {
+                    var typemap:HashMap<String,String> = remote_big_table_helper.make_type_map()
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+                }
+                else
+                {
+                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
+                }
+
+        var server_data_opr: Vector<java.util.HashMap<String, String>> =
+                if(BuildConfig.DEBUG)
+                {
+                    var typemap:HashMap<String,String> = remote_opr_table_helper.make_type_map()
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_OPR),typemap,context.getString(R.string.OPR_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+                }
+                else
+                {
+                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_OPR))
+                }
+        var result_vector: Vector<opr_data> = Vector()
+        for(opr in server_data_opr)
+        {
+            for (big in server_data_big)
+            {
+                if((big[remote_big_table_helper.PROJECTS_ID]?:"").trim() == projid && (big[remote_big_table_helper.OPR_ID]?:"").trim() == (opr[remote_opr_table_helper.ID]?:"1").trim()  ) {
+                    result_vector.addElement(opr_data( (opr[remote_opr_table_helper.ID]?:"").trim(),
+                            (opr[remote_opr_table_helper.NAME]?:"").trim(),(opr[remote_opr_table_helper.DATAAREAID]?:"").trim()
+                    ,(remote_SQL_Helper.getusername().trim())))
+
+                    break
+                }
+            }
+        }
+
         return result_vector
     }
     /*

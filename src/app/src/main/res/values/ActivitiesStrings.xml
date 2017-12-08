@@ -49,6 +49,7 @@
     <string name="project_options_2">דיווחי תקלות</string>
     <string name="project_options_3">לו\"ז</string>
     <string name="project_options_decide">בחירת הפעולה</string>
+    <string name="project_options_view_all">הצג את כל מסד הנתונים</string>
 
     <!-- Strings related to divohi takalot activity -->
     <string name="divohi_takalot_form">טופס</string>
@@ -108,5 +109,14 @@
 
     <string name="divohi_takalot_tofes_str">טופס - דיווחי תקלות</string>
     <string name="divohi_takalot_edit_str">עריכה - דיווחי תקלות</string>
-    
+
+
+    <!-- Strings related to table chooser activity -->
+    <string name="table_chooser_str">בורר טבלאות</string>
+    <string name="table_chooser_big">הטבלה הגדולה</string>
+    <string name="table_chooser_project">טבלת פרויקטים</string>
+    <string name="table_chooser_opr">טבלת פעולות</string>
+    <string name="table_chooser_vendor">טבלת ספקים</string>
+    <string name="table_chooser_inventory">טבלת מוצרים</string>
+
 </resources>

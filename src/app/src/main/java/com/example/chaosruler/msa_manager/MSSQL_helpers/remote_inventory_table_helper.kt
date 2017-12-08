@@ -87,7 +87,7 @@ class remote_inventory_table_helper
                     item.setValue("N"+remote_SQL_Helper.add_quotes(item.value))
             }
             var where_clause:HashMap<String,String> = HashMap()
-            where_clause[remote_projects_table_helper.ID] = inventory.get_itemid() ?: ""
+            where_clause[remote_inventory_table_helper.ID] = inventory.get_itemid() ?: ""
             var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_inventory_table_helper.DATABASE_NAME,remote_inventory_table_helper.TABLE_NAME,where_clause,"varchar",map)
             query = query.replace("'","&quote;")
             var str = offline_mode_service.general_push_command(query,remote_SQL_Helper.getusername())

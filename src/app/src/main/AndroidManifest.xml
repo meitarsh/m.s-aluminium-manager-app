@@ -83,13 +83,42 @@
             android:configChanges="orientation"
             android:label="@string/divohi_takalot_tofes_str"
             android:screenOrientation="portrait" />
-        <activity android:name=".activies.divohi_takalot_edit"
+        <activity
+            android:name=".activies.divohi_takalot_edit"
+            android:configChanges="orientation"
             android:label="@string/divohi_takalot_edit_str"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.testing_do_all_table_activities.table_chooser"
+            android:configChanges="orientation"
+            android:label="@string/table_chooser_str"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.testing_do_all_table_activities.table_big_edit"
+            android:configChanges="orientation"
+            android:label="@string/edit_table_big"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.testing_do_all_table_activities.table_peolot_edit"
+            android:configChanges="orientation"
+            android:label="@string/edit_table_opr"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.testing_do_all_table_activities.table_projects_edit"
+            android:configChanges="orientation"
+            android:label="@string/edit_table_proj"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.testing_do_all_table_activities.table_vendors_edit"
+            android:configChanges="orientation"
+            android:label="@string/edit_table_vendor"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.testing_do_all_table_activities.table_inventory_edit"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            >
-
-        </activity>
+            android:label="@string/edit_table_inventory"
+            ></activity>
     </application>
 
 </manifest>

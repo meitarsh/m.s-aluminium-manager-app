@@ -60,14 +60,14 @@ class remote_vendors_table_helper()
          */
         public fun push_update(vendor_data: vendor_data, map:HashMap<String,String>, context: Context)
         {
-            var typemap = remote_projects_table_helper.make_type_map()
+            var typemap = remote_vendors_table_helper.make_type_map()
             for(item in map)
             {
                 if((typemap[item.key] ?: "") == "text" || (typemap[item.key] ?: "") != "varchar" || (typemap[item.key] ?: "") != "nvarchar"  )
                     item.setValue("N"+ remote_SQL_Helper.add_quotes(item.value))
             }
             var where_clause:HashMap<String,String> = HashMap()
-            where_clause[remote_vendors_table_helper.ID] = vendor_data.get_accountname() ?: ""
+            where_clause[remote_vendors_table_helper.ID] = (vendor_data.get_accountnum() ?: "").trim()
             var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_vendors_table_helper.DATABASE_NAME,remote_vendors_table_helper.TABLE_NAME,where_clause,"varchar",map)
             query = query.replace("'","&quote;")
             var str = offline_mode_service.general_push_command(query, remote_SQL_Helper.getusername())

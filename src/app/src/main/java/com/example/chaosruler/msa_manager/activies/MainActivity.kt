@@ -28,16 +28,19 @@ class MainActivity : Activity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init_companion()
+
         if(global_variables_dataclass.isLocal && !global_variables_dataclass.GUI_MODE)
         {
             hide_everything()
             init_sync_trd()
             progress_subroutine()
         }
+
         create_intro_text()
         if(!global_variables_dataclass.GUI_MODE)
             init_spinner()
         init_buttons()
+
     }
 
     /*

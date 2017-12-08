@@ -6,6 +6,7 @@ import android.text.InputType
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TableRow
@@ -79,11 +80,11 @@ class loz_activity : Activity() {
 
             isFinished.isEnabled = false
             ahoz_bizoaa.hint = (ahoz_bizoa_str + "%").trim()
-            ahoz_bizoaa.setInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
+            ahoz_bizoaa.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
             haarot.hint = "No database value to grab"
             haarot.isEnabled = false
 
-            bnian.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            bnian.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || bnian.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = bnian.text.toString()
@@ -94,9 +95,10 @@ class loz_activity : Activity() {
                 bnian.text.clear()
                 big_item.set_FLAT(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                hideKeyboard(bnian)
             }
 
-            koma.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            koma.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || koma.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = koma.text.toString()
@@ -107,9 +109,10 @@ class loz_activity : Activity() {
                 koma.text.clear()
                 big_item.set_FLOOR(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                hideKeyboard(koma)
             }
 
-            ahoz_bizoaa.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            ahoz_bizoaa.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || ahoz_bizoaa.text.isEmpty())
                     return@OnFocusChangeListener
                 var str = ahoz_bizoaa.text.toString()
@@ -122,6 +125,7 @@ class loz_activity : Activity() {
                 Log.d("kbalan_mforat","done")
                 ahoz_bizoaa.hint = (str + "%").trim()
                 ahoz_bizoaa.text.clear()
+                hideKeyboard(ahoz_bizoaa)
             }
 
 
@@ -166,5 +170,13 @@ class loz_activity : Activity() {
         var marginnum = resources.getDimension(R.dimen.divohi_takalot_horiz_dimen)
         box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
         return box
+    }
+
+    /*
+        hides softkeyboard from specific view
+     */
+    fun hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

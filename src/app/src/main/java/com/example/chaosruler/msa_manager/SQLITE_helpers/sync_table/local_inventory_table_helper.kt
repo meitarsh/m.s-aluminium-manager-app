@@ -3,11 +3,13 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.BuildConfig
+import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.inventory_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
@@ -75,6 +77,29 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
                 .forEach { vector.addElement(inventory_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAARAEID]?:"").trim(), (it[USER]?:"").trim())) }
         return vector
     }
+    /*
+           gets local data by projname
+        */
+    fun get_local_DB_by_projname(projid:String): Vector<inventory_data>
+    {
+        var vector: Vector<inventory_data> = Vector()
+
+        var all_db: Vector<big_table_data> = global_variables_dataclass.DB_BIG!!.get_local_DB()
+        var inventorydb : Vector<inventory_data> = global_variables_dataclass.DB_INVENTORY!!.get_local_DB()
+
+
+        for(inventory in inventorydb)
+        {
+            for (big in all_db)
+            {
+                if((big.get_PROJECT_ID()?:"") == projid && (big.get_INVENTORY_ID()?:"") == (inventory.get_itemid()?:"1")  ) {
+                    vector.addElement(inventory)
+                    break
+                }
+            }
+        }
+        return vector
+    }
 
 
     /*
@@ -99,6 +124,51 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
                     (it[remote_inventory_table_helper.DATAAREAID]?: "").trim(), (remote_SQL_Helper.getusername()).trim()
             )
         }
+        return result_vector
+    }
+
+    /*
+       subroutine to convert server data to vector of vendor by projname
+    */
+    fun server_data_to_vector_by_projname(projid: String): Vector<inventory_data>
+    {
+
+        var server_data_big: Vector<java.util.HashMap<String, String>> =
+                if(BuildConfig.DEBUG)
+                {
+                    var typemap:HashMap<String,String> = remote_big_table_helper.make_type_map()
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+                }
+                else
+                {
+                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
+                }
+
+        var server_data_inventory: Vector<java.util.HashMap<String, String>> =
+                if(BuildConfig.DEBUG)
+                {
+                    var typemap:HashMap<String,String> = remote_inventory_table_helper.make_type_map()
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_INVENTORY),typemap,context.getString(R.string.INVENTORY_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+                }
+                else
+                {
+                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_INVENTORY))
+                }
+        var result_vector: Vector<inventory_data> = Vector()
+        for(inventory in server_data_inventory)
+        {
+            for (big in server_data_big)
+            {
+                if((big[remote_big_table_helper.PROJECTS_ID]?:"").trim() == projid && (big[remote_big_table_helper.INVENTORY_ID]?:"").trim() == (inventory[remote_inventory_table_helper.ID]?:"1").trim()  ) {
+                    result_vector.addElement(inventory_data( (inventory[remote_inventory_table_helper.ID]?:"").trim(),
+                            (inventory[remote_inventory_table_helper.NAME]?:"").trim(),(inventory[remote_inventory_table_helper.DATAAREAID]?:"").trim()
+                            ,(remote_SQL_Helper.getusername().trim())))
+
+                    break
+                }
+            }
+        }
+
         return result_vector
     }
     /*
