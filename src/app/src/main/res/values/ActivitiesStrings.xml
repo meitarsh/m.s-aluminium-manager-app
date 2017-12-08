@@ -104,12 +104,15 @@
     <string name="divohi_takalot_tiaoor_takala">תיאור תקלה</string>
     <string name="divohi_takalot_peolot_tikon_momlazot">פעולות תיקון מומלצות</string>
     <string name="divohi_takalot_peola_monaat">פעולה מונעת</string>
-    <string name="diovhi_takalot_tgovat_mnaal">תגובת מנהל האיכות//הנדסה</string>
+    <string name="diovhi_takalot_tgovat_mnaal">תגובת מנהל האיכות/הנדסה</string>
     <string name="divohi_takalot_alot_takala">עלות תקלה</string>
 
     <string name="divohi_takalot_tofes_str">טופס - דיווחי תקלות</string>
     <string name="divohi_takalot_edit_str">עריכה - דיווחי תקלות</string>
 
+    <string name="divohi_takalot_upload">טען</string>
+    <string name="divohi_takalot_please_install">בבקשה התקן דפדפן קבצים</string>
+    <string name="divohi_takalot_choose_file">בחר קובץ</string>
 
     <!-- Strings related to table chooser activity -->
     <string name="table_chooser_str">בורר טבלאות</string>

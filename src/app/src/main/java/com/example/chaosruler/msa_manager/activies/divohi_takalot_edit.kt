@@ -6,8 +6,6 @@ import android.text.InputType
 import android.view.Gravity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.TableRow
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper
@@ -19,6 +17,16 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.divohi_takalot_tofes.*
 import java.util.*
+import android.content.Intent
+import android.content.ContentValues.TAG
+import android.content.Context
+import android.database.Cursor
+import android.net.Uri
+import android.view.ViewGroup
+import android.widget.*
+import java.io.File
+import java.net.URISyntaxException
+
 
 class divohi_takalot_edit : Activity() {
 
@@ -48,20 +56,21 @@ class divohi_takalot_edit : Activity() {
             var row = TableRow(baseContext)
             row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT)
             row.layoutDirection = TableRow.LAYOUT_DIRECTION_RTL
-            var mispar_parit = get_box()
-            var shem_parit = get_box()
-            var mispar_project = get_box()
-            var shem_project = get_box()
-            var kamot = get_box()
-            var sog_takala = get_box()
-            var koma = get_box()
-            var bnian = get_box()
-            var dira = get_box()
-            var tiaor_takala = get_box()
-            var peolot_ltikon = get_box()
-            var peolot_monoot = get_box()
-            var tgovat_mnaal = get_box()
-            var alot_takala = get_box()
+            var mispar_parit = get_editext()
+            var shem_parit = get_editext()
+            var mispar_project = get_editext()
+            var shem_project = get_editext()
+            var kamot = get_editext()
+            var sog_takala = get_editext()
+            var koma = get_editext()
+            var bnian = get_editext()
+            var dira = get_editext()
+            var tiaor_takala = get_editext()
+            var peolot_ltikon = get_editext()
+            var peolot_monoot = get_editext()
+            var tgovat_mnaal = get_editext()
+            var alot_takala = get_editext()
+            var upload_btn = get_button()
 
             var all_txtviews = Vector<View>()
             all_txtviews.add(mispar_parit)
@@ -78,6 +87,7 @@ class divohi_takalot_edit : Activity() {
             all_txtviews.add(peolot_monoot)
             all_txtviews.add(tgovat_mnaal)
             all_txtviews.add(alot_takala)
+            all_txtviews.addElement(upload_btn)
 
             val big_item: big_table_data = item
             val project_item: project_data = global_variables_dataclass.DB_project!!.get_project_by_id(big_item.get_PROJECT_ID()?:"")!!
@@ -108,6 +118,8 @@ class divohi_takalot_edit : Activity() {
             alot_takala.hint = (big_item.get_TOTALSUM() ?: "").trim()
             alot_takala.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
 
+          //  upload_btn.text= getString(R.string.divohi_takalot_upload)
+            upload_btn.background = getDrawable(R.drawable.filesend)
 
             mispar_parit.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || mispar_parit.text.isEmpty() )
@@ -222,6 +234,13 @@ class divohi_takalot_edit : Activity() {
                 hideKeyboard(alot_takala)
             }
 
+            upload_btn.setOnClickListener({
+                var index = divohi_takalot_tofes_table.indexOfChild(row)
+                if(index==-1)
+                    return@setOnClickListener
+                showFileChooser(index)
+            })
+
             for(box in all_txtviews)
             {
                 row.addView(box)
@@ -243,10 +262,36 @@ class divohi_takalot_edit : Activity() {
             (item.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
         }
     }
+
+    /*
+              gets box
+       */
+    private fun get_button(): Button
+    {
+        var box = Button(this)
+        // box.layoutParams = ViewGroup.LayoutParams(resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt(),resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt())
+        var marginnum = resources.getDimension(R.dimen.divohi_takalot_horiz_dimen)
+        box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
+        box.gravity = Gravity.CENTER
+        return box
+    }
+    /*
+              gets box
+       */
+    private fun get_textview(): TextView
+    {
+        var box = TextView(this)
+        // box.layoutParams = ViewGroup.LayoutParams(resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt(),resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt())
+        // box.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
+        var marginnum = resources.getDimension(R.dimen.divohi_takalot_horiz_dimen)
+        box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
+        box.gravity = Gravity.CENTER
+        return box
+    }
     /*
                gets box
         */
-    private fun get_box(): EditText
+    private fun get_editext(): EditText
     {
         var box = EditText(this)
         // box.layoutParams = ViewGroup.LayoutParams(resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt(),resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt())
@@ -263,4 +308,56 @@ class divohi_takalot_edit : Activity() {
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
+    /*
+        shows the file chooser
+     */
+
+    private fun showFileChooser(code:Int)
+    {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "*/*"
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+
+        try
+        {
+            startActivityForResult(
+                    Intent.createChooser(intent, getString(R.string.divohi_takalot_choose_file)),
+                    code)
+        } catch (ex: android.content.ActivityNotFoundException)
+        {
+            // Potentially direct the user to the Market with a Dialog
+            Toast.makeText(this, getString(R.string.divohi_takalot_please_install),
+                    Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    /*
+        get the file
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent)
+    {
+       if(resultCode == Activity.RESULT_OK)
+       {
+                // Get the Uri of the selected file
+                val uri = data.data
+                // Get the path
+                var path_text = get_textview()
+                var row = divohi_takalot_tofes_table.getChildAt(requestCode) as TableRow
+                var btn = row.getChildAt(row.childCount-1) as Button
+                btn.isEnabled = false
+                btn.visibility = View.GONE
+                path_text.text = File(uri.path).absolutePath
+                row.addView(path_text)
+                row.refreshDrawableState()
+                (path_text.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
+                // Get the file instance
+                // File file = new File(path);
+                // Initiate the upload
+       }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+
 }
