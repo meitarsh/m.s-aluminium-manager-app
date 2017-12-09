@@ -1,10 +1,11 @@
 package com.example.chaosruler.msa_manager.activies
 
-import android.app.Activity
+
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Thread.sleep
 
 
-class MainActivity : Activity()
+class MainActivity : AppCompatActivity()
 {
 
     private lateinit var adapter: ArrayAdapter<project_data>

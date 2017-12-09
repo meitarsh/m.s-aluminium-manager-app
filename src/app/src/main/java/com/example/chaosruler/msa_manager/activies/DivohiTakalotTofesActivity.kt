@@ -1,11 +1,10 @@
 package com.example.chaosruler.msa_manager.activies
 
-import android.app.Activity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.view.View
-import android.widget.TableRow
-import android.widget.TextView
+import android.widget.*
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.*
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
@@ -16,7 +15,7 @@ import java.util.*
 /*
     divohi takalot form activity
  */
-class DivohiTakalotTofesActivity : Activity() {
+class DivohiTakalotTofesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -42,22 +41,25 @@ class DivohiTakalotTofesActivity : Activity() {
         for(item in arr)
         {
             var row = TableRow(baseContext)
-            row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT)
+
+            row.layoutParams = TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT,1.0f)
             row.layoutDirection = TableRow.LAYOUT_DIRECTION_RTL
-            var mispar_parit = get_box()
-            var shem_parit = get_box()
-            var mispar_project = get_box()
-            var shem_project = get_box()
-            var kamot = get_box()
-            var sog_takala = get_box()
-            var koma = get_box()
-            var bnian = get_box()
-            var dira = get_box()
-            var tiaor_takala = get_box()
-            var peolot_ltikon = get_box()
-            var peolot_monoot = get_box()
-            var tgovat_mnaal = get_box()
-            var alot_takala = get_box()
+
+
+            var mispar_parit = themer.get_textview(baseContext)
+            var shem_parit = themer.get_textview(baseContext)
+            var mispar_project = themer.get_textview(baseContext)
+            var shem_project = themer.get_textview(baseContext)
+            var kamot = themer.get_textview(baseContext)
+            var sog_takala = themer.get_textview(baseContext)
+            var koma = themer.get_textview(baseContext)
+            var bnian = themer.get_textview(baseContext)
+            var dira = themer.get_textview(baseContext)
+            var tiaor_takala = themer.get_textview(baseContext)
+            var peolot_ltikon = themer.get_textview(baseContext)
+            var peolot_monoot = themer.get_textview(baseContext)
+            var tgovat_mnaal = themer.get_textview(baseContext)
+            var alot_takala = themer.get_textview(baseContext)
 
             var all_txtviews = Vector<View>()
             all_txtviews.add(mispar_parit)
@@ -102,34 +104,14 @@ class DivohiTakalotTofesActivity : Activity() {
                 row.addView(box)
             }
             divohi_takalot_tofes_table.addView(row)
+            themer.fix_size(baseContext,all_txtviews)
 
-            center_all_views(all_txtviews)
+            //center_all_views(all_txtviews)
         }
         return true
     }
-    /*
-                   centers all views
-            */
-    private fun center_all_views(vector:Vector<View>)
-    {
-        for(item in vector)
-        {
-            (item.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
-        }
-    }
-    /*
-                   gets textview
-            */
-    private fun get_box():TextView
-    {
-        var box = TextView(this)
-        // box.layoutParams = ViewGroup.LayoutParams(resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt(),resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt())
-        // box.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
-        var marginnum = resources.getDimension(R.dimen.divohi_takalot_horiz_dimen)
-        box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
-        box.gravity = Gravity.CENTER
-        return box
-    }
+
+
 
 
 }

@@ -1,9 +1,9 @@
 package com.example.chaosruler.msa_manager.activies
 
-import android.app.Activity
 import android.content.Intent
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import com.example.chaosruler.msa_manager.BuildConfig
 
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_project_options.*
 
 
 
-class project_options : Activity() {
+class project_options : AppCompatActivity() {
 
     /*
         define the project name we are working on

@@ -1,8 +1,8 @@
 package com.example.chaosruler.msa_manager.activies
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_divohi_takalot_activity.*
@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_divohi_takalot_activity.*
 /*
     class for the activity view of divohi takalot
  */
-class divohi_takalot_activity : Activity() {
+class divohi_takalot_activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -30,4 +30,6 @@ class divohi_takalot_activity : Activity() {
 
 
     }
+
+
 }

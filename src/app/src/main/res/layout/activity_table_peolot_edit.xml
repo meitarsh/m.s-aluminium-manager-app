@@ -1,50 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<HorizontalScrollView
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layoutDirection="rtl"
-    >
-
-    <TableLayout
-        android:id="@+id/table_chooser_table_opr"
-        android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+    <HorizontalScrollView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusableInTouchMode="true"
         >
 
-
-        <TableRow
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fillViewport="true"
             android:layoutDirection="rtl">
 
-            <TextView
-                android:gravity="center"
-                android:text="@string/edit_table_opr_id"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                />
+            <TableLayout
+                android:id="@+id/table_chooser_table_opr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:isScrollContainer="true"
+                android:layoutDirection="rtl"
+                android:scrollbars="horizontal|vertical"
+                android:stretchColumns="*"
 
-            <TextView
-                android:gravity="center"
-                android:text="@string/edit_table_opr_DATAARAEID"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                />
-            <TextView
-                android:gravity="center"
-                android:text="@string/edit_table_opr_name"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                />
-
-        </TableRow>
-
-    </TableLayout>
+                >
 
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/table_top_layer_to_data"
+                    android:layoutDirection="rtl">
 
-</HorizontalScrollView>
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:width="0dp"
+                        android:height="@dimen/cell_height"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/edit_table_opr_id"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:width="0dp"
+                        android:height="@dimen/cell_height"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/edit_table_opr_DATAARAEID"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:width="0dp"
+                        android:height="@dimen/cell_height"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/edit_table_opr_name"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+            </TableLayout>
+        </ScrollView>
+    </HorizontalScrollView>
+</LinearLayout>

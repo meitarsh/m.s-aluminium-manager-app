@@ -15,7 +15,7 @@
             android:layoutDirection="rtl">
 
             <TableLayout
-                android:id="@+id/table_chooser_table_big"
+                android:id="@+id/divohi_takalot_tofes_table"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:focusable="true"
@@ -31,229 +31,144 @@
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/table_top_layer_to_data">
+                    android:layout_marginBottom="@dimen/table_top_layer_to_data"
+                    android:layoutDirection="rtl">
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_accountnum"
+                        android:text="@string/divohi_takalot_mispar_parit"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_DATAARAEID"
+                        android:text="@string/divohi_takalot_shem_parit"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_RECVERSION"
+                        android:text="@string/divohi_takalot_mispar_project"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_RECID"
+                        android:text="@string/divohi_takalot_shem_project"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_projID"
+                        android:text="@string/divohi_takalot_kamot"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_itemID"
+                        android:text="@string/divohi_takalot_sog_takala"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_FLAT"
+                        android:text="@string/divohi_takalot_koma"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_FLOOR"
+                        android:text="@string/divohi_takalot_bnian"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_QTY"
+                        android:text="@string/divohi_takalot_dira"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_SALESPRICE"
+                        android:text="@string/divohi_takalot_tiaoor_takala"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_OPRID"
+                        android:text="@string/divohi_takalot_peolot_tikon_momlazot"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_MILESTONEPERCENT"
+                        android:text="@string/divohi_takalot_peola_monaat"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_QTYFORACCOUNT"
+                        android:text="@string/diovhi_takalot_tgovat_mnaal"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_PERCENTFORACCOUNT"
+                        android:text="@string/divohi_takalot_alot_takala"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/cell_width"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
-                        android:text="@string/edit_TOTALSUM"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="@dimen/cell_width"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:text="@string/edit_SALPROG"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="@dimen/cell_width"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:text="@string/edit_PRINTORDER"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="@dimen/cell_width"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:text="@string/edit_ITEMNUMBER"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="@dimen/cell_width"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:text="@string/edit_KOMANUM"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="@dimen/cell_width"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:text="@string/edit_DIRANUM"
+                        android:text="@string/divohi_takalot_upload_label"
                         android:textStyle="bold" />
                 </TableRow>
-
             </TableLayout>
         </ScrollView>
     </HorizontalScrollView>

@@ -12,4 +12,7 @@
     <dimen name="button_margin_divohi_takalot">100dp</dimen>
     <dimen name="table_chooser_vertical">20dp</dimen>
     <dimen name="height_text_buttons">40dp</dimen>
+    <dimen name="table_top_layer_to_data">0dp</dimen>
+    <dimen name="cell_width">100dp</dimen>
+    <dimen name="cell_height">20dp</dimen>
 </resources>

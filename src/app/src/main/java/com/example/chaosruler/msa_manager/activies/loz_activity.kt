@@ -2,14 +2,13 @@ package com.example.chaosruler.msa_manager.activies
 
 import android.app.Activity
 import android.os.Bundle
+import android.os.Looper
+import android.support.v7.app.AppCompatActivity
 import android.text.InputType
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TableRow
+import android.widget.*
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.*
@@ -19,8 +18,7 @@ import kotlinx.android.synthetic.main.activity_loz_activity.*
 import java.util.*
 
 
-
-class loz_activity : Activity() {
+class loz_activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -28,7 +26,7 @@ class loz_activity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loz_activity)
         if(!global_variables_dataclass.GUI_MODE && !init_table())
-            finish()
+           finish()
     }
     /*
                    inits table
@@ -46,16 +44,18 @@ class loz_activity : Activity() {
         for (item in arr)
         {
             var row = TableRow(baseContext)
-            row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT)
+
+            row.layoutParams = TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.MATCH_PARENT,1.0f)
             row.layoutDirection = TableRow.LAYOUT_DIRECTION_RTL
 
-            var bnian = get_edittext()
-            var koma = get_edittext()
-            var begin = get_edittext()
-            var finish = get_edittext()
-            var ahoz_bizoaa = get_edittext()
-            var isFinished = get_checkbox()
-            var haarot = get_edittext()
+            loz_activity_table.addView(row)
+            var bnian = themer.get_edittext(baseContext)
+            var koma = themer.get_edittext(baseContext)
+            var begin = themer.get_edittext(baseContext)
+            var finish = themer.get_edittext(baseContext)
+            var ahoz_bizoaa = themer.get_edittext(baseContext)
+            var isFinished = themer.get_checkbox(baseContext)
+            var haarot = themer.get_edittext(baseContext)
 
             var all_views = Vector<View>()
             all_views.add(bnian)
@@ -72,6 +72,7 @@ class loz_activity : Activity() {
 
 
             bnian.hint = (big_item.get_FLAT() ?: "").trim()
+
             koma.hint = (big_item.get_FLOOR() ?:  "").trim()
             begin.hint = ("No database value to grab").trim()
             begin.isEnabled = false
@@ -88,95 +89,61 @@ class loz_activity : Activity() {
                 if(hasFocus || bnian.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = bnian.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.FLAT] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.FLAT] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_FLAT(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,bnian)
+                }).start()
                 bnian.hint = str.trim()
                 bnian.text.clear()
-                big_item.set_FLAT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(bnian)
             }
 
             koma.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || koma.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = koma.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.FLOOR] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.FLOOR] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_FLOOR(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,koma)
+                }).start()
                 koma.hint = str.trim()
                 koma.text.clear()
-                big_item.set_FLOOR(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(koma)
             }
 
             ahoz_bizoaa.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || ahoz_bizoaa.text.isEmpty())
                     return@OnFocusChangeListener
                 var str = ahoz_bizoaa.text.toString()
-                Log.d("loz  ","mshoar str is : " + str)
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.MILESTONEPERCENT] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
-                big_item.set_MILESTONEPERCENT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                Log.d("kbalan_mforat","done")
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.MILESTONEPERCENT] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_MILESTONEPERCENT(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,ahoz_bizoaa)
+                }).start()
                 ahoz_bizoaa.hint = (str + "%").trim()
                 ahoz_bizoaa.text.clear()
-                hideKeyboard(ahoz_bizoaa)
             }
 
 
             for(view in all_views)
                 row.addView(view)
-            loz_activity_table.addView(row)
-            center_all_views(all_views)
+            themer.fix_size(baseContext,all_views)
+          //  center_all_views(all_views)
         }
+        loz_activity_table.isStretchAllColumns = true
         return true
     }
-    /*
-                   centers all views
-            */
-    private fun center_all_views(vector:Vector<View>)
-    {
-        for(item in vector)
-        {
-            (item.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
-        }
-    }
-    /*
-               gets a new edit text
-        */
-    private fun get_edittext(): EditText
-    {
-        var box = EditText(this)
-        // box.layoutParams = ViewGroup.LayoutParams(resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt(),resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt())
-        // box.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
-        var marginnum = resources.getDimension(R.dimen.divohi_takalot_horiz_dimen)
-        box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
-        box.gravity = Gravity.CENTER
-        return box
-    }
-    /*
-                   gets a new checkbox
-            */
-    private fun get_checkbox(): CheckBox
-    {
-        var box = CheckBox(this)
-        // box.layoutParams = ViewGroup.LayoutParams(resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt(),resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt())
-        // box.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
-        var marginnum = resources.getDimension(R.dimen.divohi_takalot_horiz_dimen)
-        box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
-        return box
-    }
 
-    /*
-        hides softkeyboard from specific view
-     */
-    fun hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
-    }
 }

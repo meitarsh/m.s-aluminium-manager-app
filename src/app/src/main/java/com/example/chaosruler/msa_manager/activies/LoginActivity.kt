@@ -148,19 +148,19 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         var focusView: View? = null
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(passwordStr) && !isPasswordValid(passwordStr)) {
+        if (!TextUtils.isEmpty(passwordStr) && !isPasswordValid(passwordStr) && !PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key),false)) {
             login_password.error = getString(R.string.error_invalid_password)
             focusView = login_password
             cancel = true
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(emailStr))
+        if (TextUtils.isEmpty(emailStr) && !PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key),false))
         {
             login_email.error = getString(R.string.error_field_required)
             focusView = login_email
             cancel = true
-        } else if (!isEmailValid(emailStr))
+        } else if (!isEmailValid(emailStr) && !PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key),false))
         {
             login_email.error = getString(R.string.error_invalid_email)
             focusView = login_email

@@ -10,7 +10,6 @@ import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.opr_d
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.project_data
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap

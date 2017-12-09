@@ -1,45 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.chaosruler.msa_manager.activies.kablan_pashot"
-    android:layoutDirection="rtl"
-    android:id="@+id/kablan_pashot_table"
-    android:focusable="true"
-    android:focusableInTouchMode ="true"
-    >
-
-
-    <TableRow
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+         >
 
-        <TextView
-            android:id="@+id/activity_kablan_pashot_hoza"
-            android:text="@string/kablan_pashot_hoza_str"
-            android:gravity="center"
-            android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-            android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-            />
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:layoutDirection="rtl">
 
-        <TextView
-            android:id="@+id/activity_kablan_pashot_peola"
-            android:text="@string/kablan_pashot_peola_str"
-            android:gravity="center"
-            android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-            android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-            />
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/kablan_pashot_table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:isScrollContainer="true"
+                android:layoutDirection="rtl"
+                android:scrollbars="horizontal|vertical"
+                android:stretchColumns="*"
+                tools:context="com.example.chaosruler.msa_manager.activies.kablan_pashot"
 
-        <TextView
-            android:id="@+id/activity_kablan_pashot_ahoz_peola"
-            android:text="@string/kablan_pashot_ahoz_peola_str"
-            android:gravity="center"
-            android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-            android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-            />
+                >
 
-    </TableRow>
-</TableLayout>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/table_top_layer_to_data">
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+
+                        android:text="@string/kablan_pashot_hoza_str"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+
+                        android:text="@string/kablan_pashot_peola_str"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+
+                        android:text="@string/kablan_pashot_ahoz_peola_str"
+                        android:textStyle="bold" />
+
+
+
+
+                </TableRow>
+            </TableLayout>
+
+        </ScrollView>
+    </HorizontalScrollView>
+</LinearLayout>

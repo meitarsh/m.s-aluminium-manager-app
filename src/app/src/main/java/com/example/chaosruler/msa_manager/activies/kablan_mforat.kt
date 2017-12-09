@@ -2,8 +2,9 @@ package com.example.chaosruler.msa_manager.activies
 
 import android.app.Activity
 import android.os.Bundle
+import android.os.Looper
+import android.support.v7.app.AppCompatActivity
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_kablan_mforat.*
 import java.util.*
 import kotlin.collections.HashMap
 
-class kablan_mforat : Activity() {
+class kablan_mforat : AppCompatActivity() {
 
     private lateinit var adapter:ArrayAdapter<big_table_data>
     override fun onCreate(savedInstanceState: Bundle?)
@@ -26,7 +27,6 @@ class kablan_mforat : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kablan_mforat)
         init_spinner()
-        compute_saah_hakol()
     }
 
     /*
@@ -77,47 +77,54 @@ class kablan_mforat : Activity() {
                     if(hasFocus || activity_kablan_mforat_kamot_helki.text.isEmpty() )
                         return@OnFocusChangeListener
                     var str = activity_kablan_mforat_kamot_helki.text.toString()
-                    var update_value:HashMap<String,String> = HashMap()
-                    update_value[remote_big_table_helper.QTYFORACCOUNT] = str
-                    remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                    Thread({
+                        Looper.prepare()
+                        var update_value: HashMap<String, String> = HashMap()
+                        update_value[remote_big_table_helper.QTYFORACCOUNT] = str
+                        remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                        big_item.set_QTYFORACCOUNT(str)
+                        global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                        themer.hideKeyboard(baseContext,activity_kablan_mforat_kamot_helki)
+                        runOnUiThread { compute_saah_hakol() }
+                    }).start()
                     activity_kablan_mforat_kamot_helki.hint = str.trim()
                     activity_kablan_mforat_kamot_helki.text.clear()
-                    big_item.set_QTYFORACCOUNT(str)
-                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                    compute_saah_hakol()
-                    hideKeyboard(activity_kablan_mforat_kamot_helki)
                 }
 
                 activity_kablan_mforat_kamot_kablan.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_kamot_kablan.text.isEmpty())
                         return@OnFocusChangeListener
                     var str = activity_kablan_mforat_kamot_kablan.text.toString()
-                    var update_value:HashMap<String,String> = HashMap()
-                    update_value[remote_big_table_helper.QTYFORACCOUNT] = str
-                    remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                    Thread({
+                        Looper.prepare()
+                        var update_value: HashMap<String, String> = HashMap()
+                        update_value[remote_big_table_helper.QTYFORACCOUNT] = str
+                        remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                        big_item.set_QTYFORACCOUNT(str)
+                        global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                        themer.hideKeyboard(baseContext,activity_kablan_mforat_kamot_kablan)
+                        runOnUiThread { compute_saah_hakol() }
+                    }).start()
                     activity_kablan_mforat_kamot_kablan.hint = str.trim()
                     activity_kablan_mforat_kamot_kablan.text.clear()
-                    big_item.set_QTYFORACCOUNT(str)
-                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                    compute_saah_hakol()
-                    hideKeyboard(activity_kablan_mforat_kamot_kablan)
                 }
 
                 activity_kablan_mforat_ahoz_meosher.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_ahoz_meosher.text.isEmpty())
                         return@OnFocusChangeListener
                     var str = activity_kablan_mforat_ahoz_meosher.text.toString()
-                    Log.d("kbalan_mforat","str is : " + str)
-                    var update_value:HashMap<String,String> = HashMap()
-                    update_value[remote_big_table_helper.PERCENTFORACCOUNT] = str
-                    remote_big_table_helper.push_update(big_item,update_value,baseContext)
-                    big_item.set_PERCENTFORACCOUNT(str)
-                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                    Log.d("kbalan_mforat","done")
+                    Thread({
+                        Looper.prepare()
+                        var update_value: HashMap<String, String> = HashMap()
+                        update_value[remote_big_table_helper.PERCENTFORACCOUNT] = str
+                        remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                        big_item.set_PERCENTFORACCOUNT(str)
+                        global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                        themer.hideKeyboard(baseContext,activity_kablan_mforat_ahoz_meosher)
+                        runOnUiThread { compute_saah_hakol() }
+                    }).start()
                     activity_kablan_mforat_ahoz_meosher.hint = (str + "%").trim()
                     activity_kablan_mforat_ahoz_meosher.text.clear()
-                    compute_saah_hakol()
-                    hideKeyboard(activity_kablan_mforat_ahoz_meosher)
                 }
             }
 
@@ -126,18 +133,20 @@ class kablan_mforat : Activity() {
                 // case there was nothing to select (empty database)
             }
         }
-
+        compute_saah_hakol()
     }
     /*
                    compute sum and puts into textview and colors it
             */
     private fun compute_saah_hakol()
     {
+        if(baseContext == null)
+            return
         var price:Double=0.toDouble()
         for(i in 0..activity_kablan_mforat_spinner.adapter.count-1)
         {
             val big_item:big_table_data = activity_kablan_mforat_spinner.adapter.getItem(i) as big_table_data
-            var price = (big_item.get_SALESPRICE() ?: "0").toDouble()
+            price = (big_item.get_SALESPRICE() ?: "0").toDouble()
             var count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
             var milestone_parcent:String = big_item.get_PERCENTFORACCOUNT()?:0.toString()
             var parcent = milestone_parcent.toDouble()/100
@@ -150,11 +159,5 @@ class kablan_mforat : Activity() {
             activity_kablan_mforat_saah_hakol.setTextColor(getColor(R.color.red))
         activity_kablan_mforat_saah_hakol.text = price.toString().trim()
     }
-    /*
-       hides softkeyboard from specific view
-    */
-    fun hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
-    }
+
 }

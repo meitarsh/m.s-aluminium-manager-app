@@ -1,137 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<HorizontalScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    >
-    <TableLayout
-        android:id="@+id/divohi_takalot_tofes_table"
-        android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+    <HorizontalScrollView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:focusable="true"
-        android:focusableInTouchMode ="true"
         >
 
-
-        <TableRow
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layoutDirection="rtl"
-            >
+            android:fillViewport="true"
+            android:layoutDirection="rtl">
 
-            <TextView
-                android:id="@+id/divohi_takalot_tofes_mispar_parit"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_mispar_parit"
-                />
+            <TableLayout
+                android:id="@+id/divohi_takalot_tofes_table"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:isScrollContainer="true"
+                android:layoutDirection="rtl"
+                android:scrollbars="horizontal|vertical"
+                android:stretchColumns="*"
 
-            <TextView
-                android:id="@+id/divohi_takalot_tofes_shem_parit"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_shem_parit"
-                />
+                >
 
-            <TextView
-                android:id="@+id/takalot_toefs_mispar_project"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_mispar_project"
-                />
 
-            <TextView
-                android:id="@+id/divohi_takalot_tofes_shem_project"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_shem_project"
-                />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/table_top_layer_to_data"
+                    android:layoutDirection="rtl">
 
-            <TextView
-                android:id="@+id/divohi_takalot_tofes_kamot"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_kamot"
-                />
+                    <TextView
+                        android:id="@+id/divohi_takalot_tofes_mispar_parit"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_mispar_parit"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/divohi_takalot_tofes_sog_takala"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_sog_takala"
-                />
+                    <TextView
+                        android:id="@+id/divohi_takalot_tofes_shem_parit"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_shem_parit"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/divohi_takalot_tofes_koma"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_koma"
-                />
+                    <TextView
+                        android:id="@+id/takalot_toefs_mispar_project"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_mispar_project"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/divohi_takalot_tofes_bnian"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_bnian"
-                />
+                    <TextView
+                        android:id="@+id/divohi_takalot_tofes_shem_project"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_shem_project"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/divohi_takalot_tofes_dira"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_dira"
-                />
+                    <TextView
+                        android:id="@+id/divohi_takalot_tofes_kamot"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_kamot"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/divohi_takalot_tofes_tiaor_takala"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_tiaoor_takala"
-                />
+                    <TextView
+                        android:id="@+id/divohi_takalot_tofes_sog_takala"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_sog_takala"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/divohi_takalot_tofes_peolot_tikon_momlazot"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_peolot_tikon_momlazot"
-                />
+                    <TextView
+                        android:id="@+id/divohi_takalot_tofes_koma"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_koma"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/divohi_takalot_tofes_peolot_monaot"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_peola_monaat"
-                />
+                    <TextView
+                        android:id="@+id/divohi_takalot_tofes_bnian"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_bnian"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/divohi_takalot_tgovat_mnaal"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/diovhi_takalot_tgovat_mnaal"
-                />
+                    <TextView
+                        android:id="@+id/divohi_takalot_tofes_dira"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_dira"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/divohi_takalot_alot_takala"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                android:gravity="center"
-                android:text="@string/divohi_takalot_alot_takala"
-                />
-        </TableRow>
-    </TableLayout>
-</HorizontalScrollView>
+                    <TextView
+                        android:id="@+id/divohi_takalot_tofes_tiaor_takala"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_tiaoor_takala"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/divohi_takalot_tofes_peolot_tikon_momlazot"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_peolot_tikon_momlazot"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/divohi_takalot_tofes_peolot_monaot"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_peola_monaat"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/divohi_takalot_tgovat_mnaal"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/diovhi_takalot_tgovat_mnaal"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/divohi_takalot_alot_takala"
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:text="@string/divohi_takalot_alot_takala"
+                        android:textStyle="bold" />
+                </TableRow>
+            </TableLayout>
+        </ScrollView>
+    </HorizontalScrollView>
+</LinearLayout>

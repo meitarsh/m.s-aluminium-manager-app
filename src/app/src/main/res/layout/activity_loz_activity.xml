@@ -1,79 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
-<HorizontalScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layoutDirection="rtl"
-    >
-    <TableLayout
-        android:id="@+id/loz_activity_table"
-        android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+    <HorizontalScrollView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:focusable="true"
-        android:focusableInTouchMode ="true"
-        >
+         >
 
-
-        <TableRow
-            android:layout_width="match_parent"
+        <ScrollView
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:fillViewport="true"
             android:layoutDirection="rtl">
 
-            <TextView
-                android:id="@+id/loz_activity_bnian"
-                android:gravity="center"
-                android:text="@string/loz_activity_bnian_str"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                />
 
-            <TextView
-                android:id="@+id/loz_activity_koma"
-                android:gravity="center"
-                android:text="@string/loz_activity_koma_str"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                />
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/loz_activity_table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:isScrollContainer="true"
+                android:layoutDirection="rtl"
+                android:scrollbars="horizontal|vertical"
+                android:stretchColumns="*"
 
-            <TextView
-                android:id="@+id/loz_activity_begin"
-                android:gravity="center"
-                android:text="@string/loz_activity_begin_str"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                />
-            <TextView
-                android:id="@+id/loz_activity_finish"
-                android:gravity="center"
-                android:text="@string/loz_activity_end_str"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                />
-            <TextView
-                android:id="@+id/loz_activity_ahoz_bizoa"
-                android:gravity="center"
-                android:text="@string/loz_activity_ahoz_bizoa_str"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                />
-            <TextView
-                android:id="@+id/loz_activity_isfinished"
-                android:gravity="center"
-                android:text="@string/loz_activity_isFinished"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                />
-            <TextView
-                android:id="@+id/loz_activity_haarot"
-                android:gravity="center"
-                android:text="@string/loz_activity_haarot"
-                android:layout_marginEnd="@dimen/divohi_takalot_horiz_dimen"
-                android:layout_marginStart="@dimen/divohi_takalot_horiz_dimen"
-                />
+                tools:context="com.example.chaosruler.msa_manager.activies.loz_activity">
 
-        </TableRow>
-    </TableLayout>
-</HorizontalScrollView>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+
+                        android:text="@string/loz_activity_bnian_str"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+
+                        android:text="@string/loz_activity_koma_str"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+
+                        android:text="@string/loz_activity_begin_str"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+
+                        android:text="@string/loz_activity_end_str"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+
+                        android:text="@string/loz_activity_ahoz_bizoa_str"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+
+                        android:text="@string/loz_activity_isFinished"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/cell_width"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+
+                        android:text="@string/loz_activity_haarot"
+                        android:textStyle="bold" />
+                </TableRow>
+
+            </TableLayout>
+
+        </ScrollView>
+    </HorizontalScrollView>
+</LinearLayout>

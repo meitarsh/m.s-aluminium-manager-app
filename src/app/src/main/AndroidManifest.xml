@@ -53,9 +53,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.loz_activity"
-            android:configChanges="orientation"
-            android:label="@string/project_options_3"
-            android:screenOrientation="portrait" />
+            android:label="@string/project_options_3" />
 
         <service
             android:name=".services.offline_mode_service"
@@ -70,24 +68,18 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.kablan_pashot"
-            android:configChanges="orientation"
-            android:label="@string/kablan_pashot_label"
-            android:screenOrientation="portrait" />
+            android:label="@string/kablan_pashot_label" />
         <activity
             android:name=".activies.kablan_mforat"
             android:configChanges="orientation"
-            android:label="@string/kablan_mforat_label"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="@string/kablan_mforat_label" />
         <activity
             android:name=".activies.DivohiTakalotTofesActivity"
-            android:configChanges="orientation"
-            android:label="@string/divohi_takalot_tofes_str"
-            android:screenOrientation="portrait" />
+            android:label="@string/divohi_takalot_tofes_str" />
         <activity
             android:name=".activies.divohi_takalot_edit"
-            android:configChanges="orientation"
-            android:label="@string/divohi_takalot_edit_str"
-            android:screenOrientation="portrait" />
+            android:label="@string/divohi_takalot_edit_str" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_chooser"
             android:configChanges="orientation"
@@ -95,28 +87,19 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_big_edit"
-            android:configChanges="orientation"
             android:label="@string/edit_table_big"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_peolot_edit"
-            android:configChanges="orientation"
-            android:label="@string/edit_table_opr"
-            android:screenOrientation="portrait" />
+            android:label="@string/edit_table_opr" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_projects_edit"
-            android:configChanges="orientation"
-            android:label="@string/edit_table_proj"
-            android:screenOrientation="portrait" />
+            android:label="@string/edit_table_proj" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_vendors_edit"
-            android:configChanges="orientation"
-            android:label="@string/edit_table_vendor"
-            android:screenOrientation="portrait" />
+            android:label="@string/edit_table_vendor" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_inventory_edit"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
             android:label="@string/edit_table_inventory"
             ></activity>
     </application>

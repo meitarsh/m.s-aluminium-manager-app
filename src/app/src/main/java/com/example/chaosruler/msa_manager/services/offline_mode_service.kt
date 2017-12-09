@@ -47,7 +47,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
             thread, run in thread to not hang the UI
          */
         private var trd:Thread= Thread({
-            while (true)
+            while (time!=0.toLong())
             {
                 Log.d("offline_mode","Did a trd run")
                 try

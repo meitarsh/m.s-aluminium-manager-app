@@ -2,14 +2,13 @@ package com.example.chaosruler.msa_manager.activies.testing_do_all_table_activit
 
 import android.app.Activity
 import android.os.Bundle
+import android.os.Looper
+import android.support.v7.app.AppCompatActivity
 import android.text.InputType
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.TableRow
-import android.widget.TextView
+import android.widget.*
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
@@ -18,7 +17,7 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_table_big_edit.*
 import java.util.*
 
-class table_big_edit : Activity() {
+class table_big_edit : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -42,39 +41,40 @@ class table_big_edit : Activity() {
         for (item in arr)
         {
             var row = TableRow(baseContext)
-            row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT)
+
+            row.layoutParams = TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT,1.0f)
             row.layoutDirection = TableRow.LAYOUT_DIRECTION_RTL
 
-            var accountnum = get_textview()
-            var dataaraeid = get_textview()
-            var recversion = get_edittext()
-            var recid = get_edittext()
-            var projid = get_textview()
-            var itemid = get_textview()
-            var flat = get_edittext()
-            var floor = get_edittext()
-            var qty = get_edittext()
+            var accountnum = themer.get_textview(baseContext)
+            var dataaraeid = themer.get_textview(baseContext)
+            var recversion = themer.get_edittext(baseContext)
+            var recid = themer.get_edittext(baseContext)
+            var projid = themer.get_textview(baseContext)
+            var itemid = themer.get_textview(baseContext)
+            var flat = themer.get_edittext(baseContext)
+            var floor = themer.get_edittext(baseContext)
+            var qty = themer.get_edittext(baseContext)
             qty.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-            var salesprice = get_edittext()
+            var salesprice = themer.get_edittext(baseContext)
             salesprice.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-            var oprid = get_textview()
-            var milestone_percent =get_edittext()
+            var oprid = themer.get_textview(baseContext)
+            var milestone_percent =themer.get_edittext(baseContext)
             milestone_percent.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-            var qtyforaccount = get_edittext()
+            var qtyforaccount = themer.get_edittext(baseContext)
             qtyforaccount.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-            var percentforaccount = get_edittext()
+            var percentforaccount = themer.get_edittext(baseContext)
             percentforaccount.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-            var totalsum = get_edittext()
+            var totalsum = themer.get_edittext(baseContext)
             totalsum.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-            var salprog = get_edittext()
+            var salprog = themer.get_edittext(baseContext)
             salprog.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-            var printorder = get_edittext()
+            var printorder = themer.get_edittext(baseContext)
             printorder.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-            var itemnumber = get_edittext()
+            var itemnumber = themer.get_edittext(baseContext)
             itemnumber.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-            var komanum = get_edittext()
+            var komanum = themer.get_edittext(baseContext)
             komanum.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-            var diranum = get_edittext()
+            var diranum = themer.get_edittext(baseContext)
             diranum.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
 
             var all_views = Vector<View>()
@@ -131,84 +131,104 @@ class table_big_edit : Activity() {
                 if(hasFocus || recversion.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = recversion.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.RECVERSION] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.RECVERSION] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_RECVERSION(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,recversion)
+                }).start()
+
                 recversion.hint = str.trim()
                 recversion.text.clear()
-                big_item.set_RECVERSION(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(recversion)
             }
 
             recid.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || recid.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = recid.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.RECID] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.RECID] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_RECID(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,recid)
+                }).start()
                 recid.hint = str.trim()
                 recid.text.clear()
-                big_item.set_RECID(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(recid)
             }
 
             flat.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || flat.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = flat.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.FLAT] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.FLAT] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_FLAT(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,flat)
+                }).start()
                 flat.hint = str.trim()
                 flat.text.clear()
-                big_item.set_FLAT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(flat)
             }
 
             floor.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-                if(hasFocus || floor.text.isEmpty() )
+                if (hasFocus || floor.text.isEmpty())
                     return@OnFocusChangeListener
                 var str = floor.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
+                Thread({
+                Looper.prepare()
+                var update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.FLOOR] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
-                floor.hint = str.trim()
-                floor.text.clear()
+                remote_big_table_helper.push_update(big_item, update_value, baseContext)
                 big_item.set_FLOOR(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(floor)
+                themer.hideKeyboard(baseContext,floor)
+                }).start()
+
+                floor.hint = str.trim()
+                floor.text.clear()
             }
 
             qty.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || qty.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = qty.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.QTY] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.QTY] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_QTY(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,qty)
+                }).start()
                 qty.hint = str.trim()
                 qty.text.clear()
-                big_item.set_QTY(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(qty)
             }
 
             salesprice.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || salesprice.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = salesprice.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.SALESPRICE] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.SALESPRICE] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_SALESPRICE(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,salesprice)
+                }).start()
                 salesprice.hint = str.trim()
                 salesprice.text.clear()
-                big_item.set_SALESPRICE(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(salesprice)
             }
 
 
@@ -217,58 +237,68 @@ class table_big_edit : Activity() {
                 if(hasFocus || milestone_percent.text.isEmpty())
                     return@OnFocusChangeListener
                 var str = milestone_percent.text.toString()
-                Log.d("loz  ","mshoar str is : " + str)
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.MILESTONEPERCENT] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
-                big_item.set_MILESTONEPERCENT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                Log.d("kbalan_mforat","done")
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.MILESTONEPERCENT] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_MILESTONEPERCENT(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,milestone_percent)
+                }).start()
                 milestone_percent.hint = (str + "%").trim()
                 milestone_percent.text.clear()
-                hideKeyboard(milestone_percent)
             }
 
             qtyforaccount.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || qtyforaccount.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = qtyforaccount.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.QTYFORACCOUNT] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.QTYFORACCOUNT] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_QTYFORACCOUNT(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,qtyforaccount)
+                }).start()
                 qtyforaccount.hint = str.trim()
                 qtyforaccount.text.clear()
-                big_item.set_QTYFORACCOUNT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(qtyforaccount)
             }
 
             percentforaccount.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || percentforaccount.text.isEmpty())
                     return@OnFocusChangeListener
                 var str = percentforaccount.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.PERCENTFORACCOUNT] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
-                big_item.set_PERCENTFORACCOUNT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.PERCENTFORACCOUNT] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_PERCENTFORACCOUNT(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,percentforaccount)
+                }).start()
                 percentforaccount.hint = (str + "%").trim()
                 percentforaccount.text.clear()
-                hideKeyboard(percentforaccount)
             }
 
             totalsum.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || qtyforaccount.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = totalsum.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.TOTALSUM] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.TOTALSUM] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_TOTALSUM(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,totalsum)
+                }).start()
                 totalsum.hint = str.trim()
                 totalsum.text.clear()
-                big_item.set_TOTALSUM(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(totalsum)
             }
 
 
@@ -276,70 +306,85 @@ class table_big_edit : Activity() {
                 if(hasFocus || salprog.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = salprog.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.SALPROG] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.SALPROG] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_SALPROG(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,salprog)
+                }).start()
                 salprog.hint = str.trim()
                 salprog.text.clear()
-                big_item.set_SALPROG(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(salprog)
             }
 
             printorder.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || printorder.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = printorder.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.PRINTORDER] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.PRINTORDER] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_PRINTORDER(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,printorder)
+                }).start()
                 printorder.hint = str.trim()
                 printorder.text.clear()
-                big_item.set_PRINTORDER(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(printorder)
             }
 
             itemnumber.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || itemnumber.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = itemnumber.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.ITEMNUMBER] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.ITEMNUMBER] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_ITEMNUMBER(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,itemnumber)
+                }).start()
                 itemnumber.hint = str.trim()
                 itemnumber.text.clear()
-                big_item.set_ITEMNUMBER(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(itemnumber)
             }
 
             komanum.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || komanum.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = komanum.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.KOMANUM] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.KOMANUM] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_KOMANUM(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,komanum)
+                }).start()
                 komanum.hint = str.trim()
                 komanum.text.clear()
-                big_item.set_KOMANUM(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(komanum)
             }
 
             diranum.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || diranum.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = diranum.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.DIRANUM] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.DIRANUM] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_DIRANUM(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,diranum)
+                }).start()
                 diranum.hint = str.trim()
                 diranum.text.clear()
-                big_item.set_DIRANUM(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(diranum)
             }
 
 
@@ -348,54 +393,11 @@ class table_big_edit : Activity() {
             for(view in all_views)
                 row.addView(view)
             table_chooser_table_big.addView(row)
-            center_all_views(all_views)
+            themer.fix_size(baseContext,all_views)
+          //  center_all_views(all_views)
         }
         return true
     }
 
 
-    /*
-                      centers all views
-               */
-    private fun center_all_views(vector: Vector<View>)
-    {
-        for(item in vector)
-        {
-            (item.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
-        }
-    }
-    /*
-               gets a new edit text
-        */
-    private fun get_edittext(): EditText
-    {
-        var box = EditText(this)
-        // box.layoutParams = ViewGroup.LayoutParams(resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt(),resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt())
-        // box.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
-        var marginnum = resources.getDimension(R.dimen.divohi_takalot_horiz_dimen)
-        box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
-        box.gravity = Gravity.CENTER
-        return box
-    }
-
-    /*
-                 gets textview
-          */
-    private fun get_textview(): TextView
-    {
-        var box = TextView(this)
-        // box.layoutParams = ViewGroup.LayoutParams(resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt(),resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt())
-        // box.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
-        var marginnum = resources.getDimension(R.dimen.divohi_takalot_horiz_dimen)
-        box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
-        box.gravity = Gravity.CENTER
-        return box
-    }
-    /*
-           hides softkeyboard from specific view
-        */
-    fun hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
-    }
 }

@@ -1,11 +1,11 @@
 package com.example.chaosruler.msa_manager.activies
 
-import android.app.Activity
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.text.InputType
-import android.view.Gravity
 import android.view.View
+import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.R
@@ -15,7 +15,7 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_kablan_pashot.*
 import java.util.*
 
-class kablan_pashot : Activity()
+class kablan_pashot : AppCompatActivity()
 {
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -45,13 +45,13 @@ class kablan_pashot : Activity()
         for(item in arr)
         {
             var row = TableRow(baseContext)
-            row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT)
+
+            row.layoutParams = TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT,1.0f)
             row.layoutDirection = TableRow.LAYOUT_DIRECTION_RTL
 
-
-            var hoza = get_textview()
-            var peola = get_textview()
-            var ahoz = get_textview()
+            var hoza = themer.get_textview(baseContext)
+            var peola = themer.get_textview(baseContext)
+            var ahoz = themer.get_textview(baseContext)
 
             val big_item:big_table_data = item
             val vendor_item: vendor_data = global_variables_dataclass.DB_VENDOR!!.get_vendor_by_id(big_item.get_VENDOR_ID()!!)!!
@@ -67,40 +67,14 @@ class kablan_pashot : Activity()
             all_views.add(ahoz)
 
 
-
             for(view in all_views)
                 row.addView(view)
-
             kablan_pashot_table.addView(row)
-            center_all_views(all_views)
+            themer.fix_size(baseContext,all_views)
         }
-
 
         return true
     }
-    /*
-                   centers all views
-            */
-    private fun center_all_views(vector:Vector<View>)
-    {
-        for(item in vector)
-        {
-            (item.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
-        }
-    }
 
 
-    /*
-       hides softkeyboard from specific view
-    */
-    private fun get_textview(): TextView
-    {
-        var box = TextView(this)
-        // box.layoutParams = ViewGroup.LayoutParams(resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt(),resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt())
-        // box.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
-        var marginnum = resources.getDimension(R.dimen.divohi_takalot_horiz_dimen)
-        box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
-        box.gravity = Gravity.CENTER
-        return box
-    }
 }

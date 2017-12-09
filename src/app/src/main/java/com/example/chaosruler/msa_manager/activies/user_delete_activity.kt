@@ -1,8 +1,8 @@
 package com.example.chaosruler.msa_manager.activies
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -16,7 +16,7 @@ import com.example.chaosruler.msa_manager.activies.settings_activity.SettingsAct
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_user_delete_activity.*
 
-class user_delete_activity : Activity() {
+class user_delete_activity : AppCompatActivity() {
 
     private lateinit var db: user_database_helper
     private lateinit var adapter: ArrayAdapter<User>

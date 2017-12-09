@@ -18,23 +18,19 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.divohi_takalot_tofes.*
 import java.util.*
 import android.content.Intent
-import android.content.ContentValues.TAG
-import android.content.Context
-import android.database.Cursor
-import android.net.Uri
-import android.view.ViewGroup
+import android.os.Looper
+import android.support.v7.app.AppCompatActivity
 import android.widget.*
 import java.io.File
-import java.net.URISyntaxException
 
 
-class divohi_takalot_edit : Activity() {
+class divohi_takalot_edit : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.divohi_takalot_tofes)
+        setContentView(R.layout.divohi_takalot_edit)
         if(!global_variables_dataclass.GUI_MODE && !init_table())
             finish()
     }
@@ -54,23 +50,26 @@ class divohi_takalot_edit : Activity() {
         for(item in arr)
         {
             var row = TableRow(baseContext)
-            row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT)
+
+            row.layoutParams = TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.MATCH_PARENT,1.0f)
             row.layoutDirection = TableRow.LAYOUT_DIRECTION_RTL
-            var mispar_parit = get_editext()
-            var shem_parit = get_editext()
-            var mispar_project = get_editext()
-            var shem_project = get_editext()
-            var kamot = get_editext()
-            var sog_takala = get_editext()
-            var koma = get_editext()
-            var bnian = get_editext()
-            var dira = get_editext()
-            var tiaor_takala = get_editext()
-            var peolot_ltikon = get_editext()
-            var peolot_monoot = get_editext()
-            var tgovat_mnaal = get_editext()
-            var alot_takala = get_editext()
-            var upload_btn = get_button()
+
+
+            var mispar_parit = themer.get_edittext(baseContext)
+            var shem_parit = themer.get_edittext(baseContext)
+            var mispar_project = themer.get_edittext(baseContext)
+            var shem_project = themer.get_edittext(baseContext)
+            var kamot = themer.get_edittext(baseContext)
+            var sog_takala = themer.get_edittext(baseContext)
+            var koma = themer.get_edittext(baseContext)
+            var bnian = themer.get_edittext(baseContext)
+            var dira = themer.get_edittext(baseContext)
+            var tiaor_takala = themer.get_edittext(baseContext)
+            var peolot_ltikon = themer.get_edittext(baseContext)
+            var peolot_monoot = themer.get_edittext(baseContext)
+            var tgovat_mnaal = themer.get_edittext(baseContext)
+            var alot_takala = themer.get_edittext(baseContext)
+            var upload_btn = themer.get_button(baseContext)
 
             var all_txtviews = Vector<View>()
             all_txtviews.add(mispar_parit)
@@ -125,56 +124,68 @@ class divohi_takalot_edit : Activity() {
                 if(hasFocus || mispar_parit.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = mispar_parit.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.ITEMNUMBER] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.ITEMNUMBER] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_FLAT(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,mispar_parit)
+                }).start()
                 mispar_parit.hint = str.trim()
                 mispar_parit.text.clear()
-                big_item.set_FLAT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(mispar_parit)
             }
 
             shem_parit.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || shem_parit.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = shem_parit.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_inventory_table_helper.NAME] = str
-                remote_inventory_table_helper.push_update(inventory,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_inventory_table_helper.NAME] = str
+                    remote_inventory_table_helper.push_update(inventory, update_value, baseContext)
+                    inventory.set_itemname(str)
+                    global_variables_dataclass.DB_INVENTORY!!.add_inventory(inventory)
+                    themer.hideKeyboard(baseContext,shem_parit)
+                }).start()
                 shem_parit.hint = str.trim()
                 shem_parit.text.clear()
-                inventory.set_itemname(str)
-                global_variables_dataclass.DB_INVENTORY!!.add_inventory(inventory)
-                hideKeyboard(shem_parit)
             }
 
             shem_project.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || shem_project.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = shem_project.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_projects_table_helper.NAME] = str
-                remote_projects_table_helper.push_update(project_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_projects_table_helper.NAME] = str
+                    remote_projects_table_helper.push_update(project_item, update_value, baseContext)
+                    project_item.set_project_name(str)
+                    global_variables_dataclass.DB_project!!.add_project(project_item)
+                    themer.hideKeyboard(baseContext,shem_project)
+                }).start()
                 shem_project.hint = str.trim()
                 shem_project.text.clear()
-                project_item.set_project_name(str)
-                global_variables_dataclass.DB_project!!.add_project(project_item)
-                hideKeyboard(shem_project)
             }
 
             kamot.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || kamot.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = kamot.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.QTY] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.QTY] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_QTY(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,kamot)
+                }).start()
                 kamot.hint = str.trim()
                 kamot.text.clear()
-                big_item.set_QTY(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(kamot)
             }
 
 
@@ -182,56 +193,68 @@ class divohi_takalot_edit : Activity() {
                 if(hasFocus || koma.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = koma.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.FLOOR] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.FLOOR] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_FLOOR(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,koma)
+                }).start()
                 koma.hint = str.trim()
                 koma.text.clear()
-                big_item.set_FLOOR(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(koma)
             }
 
             bnian.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || bnian.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = bnian.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.FLAT] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.FLAT] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_FLAT(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,bnian)
+                }).start()
                 bnian.hint = str.trim()
                 bnian.text.clear()
-                big_item.set_FLAT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(bnian)
             }
 
             dira.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || dira.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = dira.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.DIRANUM] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.DIRANUM] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_DIRANUM(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,dira)
+                }).start()
                 dira.hint = str.trim()
                 dira.text.clear()
-                big_item.set_DIRANUM(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(dira)
             }
 
             alot_takala.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if(hasFocus || alot_takala.text.isEmpty() )
                     return@OnFocusChangeListener
                 var str = alot_takala.text.toString()
-                var update_value:HashMap<String,String> = HashMap()
-                update_value[remote_big_table_helper.TOTALSUM] = str
-                remote_big_table_helper.push_update(big_item,update_value,baseContext)
+                Thread({
+                    Looper.prepare()
+                    var update_value: HashMap<String, String> = HashMap()
+                    update_value[remote_big_table_helper.TOTALSUM] = str
+                    remote_big_table_helper.push_update(big_item, update_value, baseContext)
+                    big_item.set_TOTALSUM(str)
+                    global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                    themer.hideKeyboard(baseContext,alot_takala)
+                }).start()
                 alot_takala.hint = str.trim()
                 alot_takala.text.clear()
-                big_item.set_TOTALSUM(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                hideKeyboard(alot_takala)
             }
 
             upload_btn.setOnClickListener({
@@ -246,68 +269,14 @@ class divohi_takalot_edit : Activity() {
                 row.addView(box)
             }
             divohi_takalot_tofes_table.addView(row)
+            themer.fix_size(baseContext,all_txtviews)
 
-            center_all_views(all_txtviews)
+           // center_all_views(all_txtviews)
         }
+
         return true
     }
 
-    /*
-            center all views
-     */
-    private fun center_all_views(vector: Vector<View>)
-    {
-        for(item in vector)
-        {
-            (item.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
-        }
-    }
-
-    /*
-              gets box
-       */
-    private fun get_button(): Button
-    {
-        var box = Button(this)
-        // box.layoutParams = ViewGroup.LayoutParams(resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt(),resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt())
-        var marginnum = resources.getDimension(R.dimen.divohi_takalot_horiz_dimen)
-        box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
-        box.gravity = Gravity.CENTER
-        return box
-    }
-    /*
-              gets box
-       */
-    private fun get_textview(): TextView
-    {
-        var box = TextView(this)
-        // box.layoutParams = ViewGroup.LayoutParams(resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt(),resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt())
-        // box.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
-        var marginnum = resources.getDimension(R.dimen.divohi_takalot_horiz_dimen)
-        box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
-        box.gravity = Gravity.CENTER
-        return box
-    }
-    /*
-               gets box
-        */
-    private fun get_editext(): EditText
-    {
-        var box = EditText(this)
-        // box.layoutParams = ViewGroup.LayoutParams(resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt(),resources.getDimension(R.dimen.divohi_takalot_horiz_dimen).toInt())
-        // box.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
-        var marginnum = resources.getDimension(R.dimen.divohi_takalot_horiz_dimen)
-        box.setPadding(marginnum.toInt(),0,marginnum.toInt(),0)
-        box.gravity = Gravity.CENTER
-        return box
-    }
-    /*
-           hides softkeyboard from specific view
-        */
-    fun hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
-    }
 
     /*
         shows the file chooser
@@ -343,7 +312,7 @@ class divohi_takalot_edit : Activity() {
                 // Get the Uri of the selected file
                 val uri = data.data
                 // Get the path
-                var path_text = get_textview()
+                var path_text = themer.get_textview(baseContext)
                 var row = divohi_takalot_tofes_table.getChildAt(requestCode) as TableRow
                 var btn = row.getChildAt(row.childCount-1) as Button
                 btn.isEnabled = false
@@ -351,8 +320,7 @@ class divohi_takalot_edit : Activity() {
                 path_text.text = File(uri.path).absolutePath
                 row.addView(path_text)
                 row.refreshDrawableState()
-                (path_text.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
-                // Get the file instance
+           // Get the file instance
                 // File file = new File(path);
                 // Initiate the upload
        }

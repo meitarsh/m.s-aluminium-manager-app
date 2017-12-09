@@ -79,7 +79,9 @@
     <string name="kablan_mforat_ahoz_meosher_txt">אחוז מאושר</string>
     <string name="kablan_mforat_saah_tashlom_txt">סהכ לתשלום</string>
     <string name="kablan_mforat_saah_hakol_txt">סהכ כל הפרויקטים</string>
-    
+
+    <integer name="table_width">600</integer>
+    <integer name="table_height">200</integer>
     <!-- Strings related to loz activity -->
     <string name="loz_activity_bnian_str">בניין</string>
     <string name="loz_activity_koma_str">קומה</string>
@@ -110,6 +112,7 @@
     <string name="divohi_takalot_tofes_str">טופס - דיווחי תקלות</string>
     <string name="divohi_takalot_edit_str">עריכה - דיווחי תקלות</string>
 
+    <string name="divohi_takalot_upload_label">קובץ טעינה</string>
     <string name="divohi_takalot_upload">טען</string>
     <string name="divohi_takalot_please_install">בבקשה התקן דפדפן קבצים</string>
     <string name="divohi_takalot_choose_file">בחר קובץ</string>
