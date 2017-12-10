@@ -73,7 +73,10 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
 
         var all_db:Vector<HashMap<String,String>> = get_db()
         all_db
-                .filter { (it[USER]?:null) != null && it[USER] == remote_SQL_Helper.getusername() }
+                .filter {
+                    @Suppress("USELESS_ELVIS_RIGHT_IS_NULL")
+                    (it[USER]?:null) != null && it[USER] == remote_SQL_Helper.getusername()
+                }
                 .forEach { vector.addElement(inventory_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAARAEID]?:"").trim(), (it[USER]?:"").trim())) }
         return vector
     }

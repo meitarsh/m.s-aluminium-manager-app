@@ -153,7 +153,10 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
 
         var all_db: Vector<java.util.HashMap<String, String>> = get_db()
         all_db
-                .filter { (it[USER]?:null) != null && it[USER]?:"" == remote_SQL_Helper.getusername() && (it[PROJID]?:null)!=null && projid == (it[PROJID]?:null) }
+                .filter {
+                    @Suppress("USELESS_ELVIS_RIGHT_IS_NULL")
+                    (it[USER]?:null) != null && it[USER]?:"" == remote_SQL_Helper.getusername() && (it[PROJID]?:null)!=null && projid == (it[PROJID]?:null)
+                }
                 .map {
                     big_table_data((it[ACCOUNT_NUM]?:"").trim(),
                             (it[DATAARAEID]?:"").trim(), (it[RECVERSION]?:"").trim(),

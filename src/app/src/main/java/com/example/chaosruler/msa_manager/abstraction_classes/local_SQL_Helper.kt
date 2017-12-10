@@ -48,11 +48,11 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
 
         val cursor = mDatabase.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '$tableName'", null)
         if (cursor != null) {
-            if (cursor!!.getCount() > 0) {
-                cursor!!.close()
+            if (cursor.count > 0) {
+                cursor.close()
                 return true
             }
-            cursor!!.close()
+            cursor.close()
         }
         return false
     }

@@ -1,42 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:focusableInTouchMode="true"
+    android:clickable="true"
+    android:focusable="true"
+    >
+
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layoutDirection="rtl"
+        android:scrollbars="horizontal|vertical"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:focusable="true"
         >
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:layoutDirection="rtl">
 
-            <TableLayout
-                android:id="@+id/divohi_takalot_tofes_table"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:isScrollContainer="true"
                 android:layoutDirection="rtl"
+                android:orientation="vertical"
                 android:scrollbars="horizontal|vertical"
-                android:stretchColumns="*"
-
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:focusable="true"
                 >
 
 
-                <TableRow
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/table_top_layer_to_data"
-                    android:layoutDirection="rtl">
+                    android:layout_height="@dimen/cell_height"
+                    android:isScrollContainer="true"
+                    android:layoutDirection="rtl"
+                    android:scrollbars="horizontal|vertical"
+                    android:focusableInTouchMode="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    >
+
 
                     <TextView
-                        android:id="@+id/divohi_takalot_tofes_mispar_parit"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -45,8 +56,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/divohi_takalot_tofes_shem_parit"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -55,8 +65,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/takalot_toefs_mispar_project"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -65,8 +74,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/divohi_takalot_tofes_shem_project"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -75,8 +83,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/divohi_takalot_tofes_kamot"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -85,8 +92,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/divohi_takalot_tofes_sog_takala"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -95,8 +101,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/divohi_takalot_tofes_koma"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -105,8 +110,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/divohi_takalot_tofes_bnian"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -115,8 +119,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/divohi_takalot_tofes_dira"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -125,8 +128,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/divohi_takalot_tofes_tiaor_takala"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -135,8 +137,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/divohi_takalot_tofes_peolot_tikon_momlazot"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -145,8 +146,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/divohi_takalot_tofes_peolot_monaot"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -155,8 +155,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/divohi_takalot_tgovat_mnaal"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -165,16 +164,29 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/divohi_takalot_alot_takala"
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
                         android:text="@string/divohi_takalot_alot_takala"
                         android:textStyle="bold" />
-                </TableRow>
-            </TableLayout>
-        </ScrollView>
+
+
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/divohi_takalot_tofes_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:isScrollContainer="true"
+                    android:layoutDirection="rtl"
+                    android:scrollbars="horizontal|vertical"
+                    />
+            </LinearLayout>
+
     </HorizontalScrollView>
 </LinearLayout>

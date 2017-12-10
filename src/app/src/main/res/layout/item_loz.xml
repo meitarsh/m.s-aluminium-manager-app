@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    >
+
+
+    <EditText
+        android:id="@+id/item_loz_bnian"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_loz_koma"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_loz_begin"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_loz_end"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_loz_ahoz_bizoaa"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <CheckBox
+        android:id="@+id/item_loz_isfinished"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center_horizontal"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_loz_haarot"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+
+
+
+
+</LinearLayout>

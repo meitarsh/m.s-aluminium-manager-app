@@ -59,8 +59,9 @@ class MainActivity : AppCompatActivity()
     {
         Thread({
             remote_SQL_Helper.refresh_context(baseContext)
-            startService(Intent(this, offline_mode_service::class.java))
-            offline_mode_service.init_cache(baseContext,intent)
+            //startService(Intent(this, offline_mode_service::class.java))
+            //offline_mode_service.init_cache(baseContext,intent)
+            offline_mode_service.getInstance(baseContext,intent)
         }).start()
     }
 
@@ -143,6 +144,7 @@ class MainActivity : AppCompatActivity()
         main_spinner.visibility = Spinner.INVISIBLE
         main_textview.visibility = TextView.INVISIBLE
         main_button_choose.visibility = TextView.INVISIBLE
+        main_button_download.visibility = Button.INVISIBLE
     }
     /*
                    show all views after progress is complete
@@ -152,6 +154,7 @@ class MainActivity : AppCompatActivity()
         main_spinner.visibility = Spinner.VISIBLE
         main_button_choose.visibility = Button.VISIBLE
         main_textview.visibility = TextView.VISIBLE
+        main_button_download.visibility = Button.VISIBLE
     }
     /*
                    creates intro text with username in it
@@ -189,28 +192,30 @@ class MainActivity : AppCompatActivity()
             main_button_sync.visibility = View.VISIBLE
             main_button_sync.setOnClickListener { offline_mode_service.try_to_run_command() }
 
-            main_button_download.visibility = View.VISIBLE
-            main_button_download.setOnClickListener({
-                offline_mode_service.db_sync_func(baseContext,intent)
-                Thread({
-                    while (intent.getStringExtra(baseContext.getString(R.string.key_sync_offline))==null)
-                    {
-                        try {
-                            sleep(1000)
-                        }
-                        catch (e:InterruptedException)
-                        {
-                            Log.d("main_trd","Woke up")
-                        }
-                    }
-                    intent.removeExtra(baseContext.getString(R.string.key_sync_offline))
-                    runOnUiThread({
-                        Toast.makeText(baseContext, getString(R.string.sync_done_prompt),Toast.LENGTH_SHORT).show()
-                        init_spinner()
-                    })
-                }).start()
-            })
+
         }
+
+        main_button_download.visibility = View.VISIBLE
+        main_button_download.setOnClickListener({
+            offline_mode_service.db_sync_func(baseContext,intent)
+            Thread({
+                while (intent.getStringExtra(baseContext.getString(R.string.key_sync_offline))==null)
+                {
+                    try {
+                        sleep(1000)
+                    }
+                    catch (e:InterruptedException)
+                    {
+                        Log.d("main_trd","Woke up")
+                    }
+                }
+                intent.removeExtra(baseContext.getString(R.string.key_sync_offline))
+                runOnUiThread({
+                    Toast.makeText(baseContext, getString(R.string.sync_done_prompt),Toast.LENGTH_SHORT).show()
+                    init_spinner()
+                })
+            }).start()
+        })
     }
     /*
                    inits disconnects when done

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl">
+
+
+    <TextView
+        android:id="@+id/item_big_accountnum"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_big_dataaraeid"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_recversion"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_recid"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_big_projid"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_big_itemid"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center_horizontal"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_flat"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_floor"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_qty"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_salesprice"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_big_oprid"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_milestone_percent"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_qtyforaccount"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_percentforaccount"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_totalsum"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_salprog"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_printorder"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_itemnumber"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_komanum"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/item_big_diranum"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+
+</LinearLayout>

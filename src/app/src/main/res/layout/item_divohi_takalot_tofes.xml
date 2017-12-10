@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    >
+
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_mispar_parit"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_shem_parit"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_mispar_project"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_shem_project"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_kamot"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_sog_takala"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_koma"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_bnian"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_dira"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_tiaaor_takala"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_peolot_ltikon"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_peolot_monoot"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_tgovat_mnaal"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_divohi_takalot_tofes_alot_takala"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    
+
+</LinearLayout>

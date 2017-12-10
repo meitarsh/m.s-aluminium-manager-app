@@ -8,6 +8,7 @@ import android.widget.Button
 import com.example.chaosruler.msa_manager.BuildConfig
 
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.activies.loz_activity.loz_activity
 import com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_chooser
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer

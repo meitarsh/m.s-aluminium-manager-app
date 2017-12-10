@@ -362,6 +362,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         override fun onPostExecute(success: Boolean?) {
             mAuthTask = null
             showProgress(false)
+            @Suppress("SENSELESS_COMPARISON")
             if(success == null)
             {
                 if(remote_SQL_Helper.getSQLException().errorCode == 0)

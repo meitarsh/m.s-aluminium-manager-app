@@ -1,41 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:focusableInTouchMode="true"
+    android:clickable="true"
+    android:focusable="true"
+    >
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         >
+        android:fillViewport="true"
+        android:scrollbars="horizontal|vertical"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:focusable="true"
+        >
 
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:layoutDirection="rtl">
 
-
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/loz_activity_table"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
                 android:isScrollContainer="true"
                 android:layoutDirection="rtl"
+                android:orientation="vertical"
                 android:scrollbars="horizontal|vertical"
-                android:stretchColumns="*"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:focusable="true"
+                >
 
-                tools:context="com.example.chaosruler.msa_manager.activies.loz_activity">
 
-                <TableRow
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="@dimen/cell_height"
+                    android:isScrollContainer="true"
+                    android:layoutDirection="rtl"
+                    android:scrollbars="horizontal|vertical"
+                    android:focusableInTouchMode="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    >
 
 
                     <TextView
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -45,7 +54,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -55,7 +64,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -65,7 +74,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -75,7 +84,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -85,7 +94,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -95,7 +104,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
@@ -103,10 +112,22 @@
 
                         android:text="@string/loz_activity_haarot"
                         android:textStyle="bold" />
-                </TableRow>
+                </LinearLayout>
 
-            </TableLayout>
 
-        </ScrollView>
+                <ListView
+                    android:id="@+id/loz_activity_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:isScrollContainer="true"
+                    android:layoutDirection="rtl"
+                    android:scrollbars="horizontal|vertical"
+                    android:focusableInTouchMode="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    />
+            </LinearLayout>
+
+
     </HorizontalScrollView>
 </LinearLayout>

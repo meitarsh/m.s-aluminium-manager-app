@@ -1,75 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:isScrollContainer="true"
+    android:layoutDirection="rtl"
+    android:scrollbars="horizontal|vertical"
+    android:focusableInTouchMode="true"
+    android:clickable="true"
+    android:focusable="true"
+    >
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:isScrollContainer="true"
+        android:layoutDirection="rtl"
+        android:scrollbars="horizontal|vertical"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:focusable="true"
         >
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:layoutDirection="rtl">
 
-            <TableLayout
-                android:id="@+id/table_chooser_table_opr"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:isScrollContainer="true"
                 android:layoutDirection="rtl"
                 android:scrollbars="horizontal|vertical"
-                android:stretchColumns="*"
-
+                android:orientation="vertical"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:focusable="true"
                 >
 
 
-                <TableRow
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/table_top_layer_to_data"
-                    android:layoutDirection="rtl">
+                    android:layout_height="@dimen/cell_height"
+                    android:isScrollContainer="true"
+                    android:layoutDirection="rtl"
+                    android:scrollbars="horizontal|vertical"
+                    android:focusableInTouchMode="true"
+                    android:clickable="true"
+                    android:focusable="true"
+
+                    >
+
 
                     <TextView
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
+
                         android:text="@string/edit_table_opr_id"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
+
                         android:text="@string/edit_table_opr_DATAARAEID"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="@dimen/cell_width"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:width="0dp"
-                        android:height="@dimen/cell_height"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
+
                         android:text="@string/edit_table_opr_name"
                         android:textStyle="bold" />
 
-                </TableRow>
 
-            </TableLayout>
-        </ScrollView>
+                </LinearLayout>
+
+
+                <ListView
+                    android:id="@+id/table_opr_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:isScrollContainer="true"
+                    android:layoutDirection="rtl"
+                    android:scrollbars="horizontal|vertical"
+                    android:focusableInTouchMode="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    />
+            </LinearLayout>
+
+
     </HorizontalScrollView>
 </LinearLayout>

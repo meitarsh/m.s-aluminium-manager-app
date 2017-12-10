@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.os.Looper
 import android.support.v7.app.AppCompatActivity
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.*
@@ -38,9 +40,9 @@ class kablan_mforat : AppCompatActivity() {
         if(global_variables_dataclass.GUI_MODE)
             Vector<big_table_data>()
         else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-            global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname(global_variables_dataclass.projid)
+            global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
         else
-            global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname(global_variables_dataclass.projid)
+            global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
 
 
         adapter = ArrayAdapter<big_table_data>(this, android.R.layout.simple_spinner_item,big_table)
@@ -53,8 +55,8 @@ class kablan_mforat : AppCompatActivity() {
                 // upon Spinner selecting a user, update the other fields
                 val big_item:big_table_data = activity_kablan_mforat_spinner.adapter.getItem(i) as big_table_data
 
-                var peola_parcent:String = big_item.get_PERCENTFORACCOUNT()?:0.toString()
-                var milestone_parcent:String = big_item.get_PERCENTFORACCOUNT()?:0.toString()
+                var peola_parcent:String = (big_item.get_PERCENTFORACCOUNT()?:0).toString()
+                var milestone_parcent:String = (big_item.get_PERCENTFORACCOUNT()?:0).toString()
 
                // var txtview:TextView = view as TextView
               //  txtview.text = vendor_item.get_accountname()
@@ -73,7 +75,7 @@ class kablan_mforat : AppCompatActivity() {
                 var parcent = milestone_parcent.toDouble()/100
                 activity_kablan_mforat_tashlom_sah.text = (price*count*parcent).toString().trim()
 
-                activity_kablan_mforat_kamot_helki.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+                activity_kablan_mforat_kamot_helki.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_kamot_helki.text.isEmpty() )
                         return@OnFocusChangeListener
                     var str = activity_kablan_mforat_kamot_helki.text.toString()
@@ -91,7 +93,7 @@ class kablan_mforat : AppCompatActivity() {
                     activity_kablan_mforat_kamot_helki.text.clear()
                 }
 
-                activity_kablan_mforat_kamot_kablan.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+                activity_kablan_mforat_kamot_kablan.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_kamot_kablan.text.isEmpty())
                         return@OnFocusChangeListener
                     var str = activity_kablan_mforat_kamot_kablan.text.toString()
@@ -109,7 +111,7 @@ class kablan_mforat : AppCompatActivity() {
                     activity_kablan_mforat_kamot_kablan.text.clear()
                 }
 
-                activity_kablan_mforat_ahoz_meosher.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+                activity_kablan_mforat_ahoz_meosher.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_ahoz_meosher.text.isEmpty())
                         return@OnFocusChangeListener
                     var str = activity_kablan_mforat_ahoz_meosher.text.toString()
@@ -143,14 +145,15 @@ class kablan_mforat : AppCompatActivity() {
         if(baseContext == null)
             return
         var price:Double=0.toDouble()
-        for(i in 0..activity_kablan_mforat_spinner.adapter.count-1)
+        for(i in 0 until activity_kablan_mforat_spinner.adapter.count)
         {
             val big_item:big_table_data = activity_kablan_mforat_spinner.adapter.getItem(i) as big_table_data
-            price = (big_item.get_SALESPRICE() ?: "0").toDouble()
+            var current_price = (big_item.get_SALESPRICE() ?: "0").toDouble()
             var count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
-            var milestone_parcent:String = big_item.get_PERCENTFORACCOUNT()?:0.toString()
+            var milestone_parcent:String = (big_item.get_PERCENTFORACCOUNT()?:0).toString()
             var parcent = milestone_parcent.toDouble()/100
-            var current_price = price*count*parcent
+            current_price *= count*parcent
+
             price+=current_price
         }
         if(price>0)

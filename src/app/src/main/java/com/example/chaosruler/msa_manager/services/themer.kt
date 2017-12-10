@@ -60,7 +60,7 @@ class themer {
         {
             for(item in vector)
             {
-                (item.layoutParams as TableRow.LayoutParams).gravity = Gravity.CENTER
+                (item.layoutParams as LinearLayout.LayoutParams).gravity = Gravity.CENTER
             }
         }
 
@@ -120,12 +120,19 @@ class themer {
         fun hideKeyboard(context: Context,view: View)
         {
             val inputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
         /*
         gets resourceid from context
         */
         public fun getResourceId(context: Context, pVariableName: String, pResourcename: String, pPackageName: String): Int =
                 context.resources.getIdentifier(pVariableName, pResourcename, pPackageName)
+
+        /*
+            gets a resource from context, without sending context
+         */
+        public fun get_view(convertView: View,id:Int) : View = convertView.findViewById(id) // grabs the correpsonding view by id from layout
+
+
     } // companion object
 }

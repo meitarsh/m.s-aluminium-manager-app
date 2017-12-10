@@ -1,6 +1,6 @@
 package com.example.chaosruler.msa_manager.services
 
-import android.app.IntentService
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.preference.PreferenceManager
@@ -19,28 +19,44 @@ import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.cache
 /*
     service responsible for storing server commands offline and sending them whenever possible
  */
-class offline_mode_service() : IntentService(".offline_mode_service") {
-
-    /*
-        on service start intent, initates the cache with the thread
-     */
-    override fun onHandleIntent(intent: Intent?)
+class offline_mode_service private constructor(context: Context,intent: Intent){
+    init
     {
-
-        //init_cache(this.applicationContext)
+        init_cache(context,intent)
     }
+
+
 
     companion object
     {
+        @SuppressLint("StaticFieldLeak")
+        private var ourInstance:offline_mode_service? = null //SINGLETON!
+        public fun getInstance(context: Context,intent: Intent): offline_mode_service?
+        {
+            if(ourInstance == null)
+            {
+                init_flag=true
+                ourInstance = offline_mode_service(context,intent)
+                return ourInstance
+            }
+            else
+                return ourInstance
+        }
+        private var init_flag:Boolean = false
         /*
                 local database to store server commands with appropiate users
             */
         private lateinit var cache: cache_server_commands
+        @SuppressLint("StaticFieldLeak")
         private lateinit var inventory: local_inventory_table_helper
+        @SuppressLint("StaticFieldLeak")
         private lateinit var projects: local_projects_table_helper
+        @SuppressLint("StaticFieldLeak")
         private lateinit var opr: local_OPR_table_helper
+        @SuppressLint("StaticFieldLeak")
         private lateinit var vendor: local_vendor_table_helper
         private lateinit var big_table: local_big_table_helper
+        @SuppressLint("StaticFieldLeak")
         private lateinit var ctx:Context
         private var time:Long = 0
         /*
@@ -65,7 +81,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         /*
             subroutine respoonsible to initate the service with a thread that automaticily sends commends every X seconds
          */
-        fun init_cache(context: Context, intent: Intent)
+        private fun init_cache(context: Context, intent: Intent)
         {
 
             ctx =context
@@ -132,7 +148,9 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         /*
             following subroutines pushes server commands to stack
          */
-        fun push_add_command(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>):String {
+        fun push_add_command(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>):String
+        {
+
             var str = remote_SQL_Helper.construct_add_str(db, table, vector, map).replace("'","&quote;")
             var username = remote_SQL_Helper.getusername()
             return general_push_command(str, username)
@@ -141,7 +159,9 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         /*
             pushes update command
          */
-        fun push_update_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>):String {
+        fun push_update_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>):String
+        {
+
             var str = remote_SQL_Helper.construct_update_str(db, table, where_clause, compare_to, type, update_to).replace("'","&quote;")
             var username = remote_SQL_Helper.getusername()
             return general_push_command(str, username)
@@ -150,7 +170,9 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         /*
         removes a stored command
          */
-        fun push_remove_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String):String {
+        fun push_remove_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String):String
+        {
+
             var str = remote_SQL_Helper.construct_remove_str(db, table, where_clause, compare_to, type).replace("'","&quote;")
             var username = remote_SQL_Helper.getusername()
             return general_push_command(str, username)
@@ -161,6 +183,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
          */
         public fun general_push_command(command:String, username:String):String
         {
+
             var string:String = if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.local_or_not), true)) {
                 cache.add_command_to_list(cache_command(command, username))
                 ctx.getString(R.string.successfull_operation) + ctx.getString(R.string.notificatoin_op_id) + cache.get_id_of_command(cache_command(command, username))
@@ -227,6 +250,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
          */
         private fun build_small_notification(string: String)
         {
+            @Suppress("DEPRECATION")
             val mBuilder = NotificationCompat.Builder(ctx)
                     .setSmallIcon(R.drawable.notification_icon_background)
                     .setContentTitle(ctx.getString(R.string.notification_title))
@@ -242,7 +266,6 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
         private fun sync_local(context: Context,intent: Intent)
         {
             Thread({
-
                 db_sync_func(context,intent)
             }).start()
         }
@@ -252,15 +275,14 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
          */
         public fun db_sync_func(context: Context,intent: Intent)
         {
+
             try
             {
-                /*
                 projects.sync_db()
                 inventory.sync_db()
                 opr.sync_db()
                 vendor.sync_db()
                 big_table.sync_db()
-                */
             }
             catch (e:Exception)
             {
@@ -286,6 +308,7 @@ class offline_mode_service() : IntentService(".offline_mode_service") {
          */
         public fun sync_local()
         {
+
             Thread({ db_sync_func()
             }).start()
         }

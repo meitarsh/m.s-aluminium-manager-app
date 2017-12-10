@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.activies.kablan_pashot_activity.kablan_pashot
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_kablni_mishne_activity.*
 
