@@ -95,6 +95,7 @@ class offline_mode_service private constructor(context: Context,intent: Intent){
             grab_time(ctx)
             init_remote_databases(context)
             grab_time(ctx)
+            var i:Int
 
             start_trd()
 
