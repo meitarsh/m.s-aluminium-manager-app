@@ -5,7 +5,7 @@
     <string name="LOCAL_SYNC_DATABASE_NAME">local_sync_db.db</string>
     <!-- Local Projects TABLE strings -->
     <string name="LOCAL_PROJECTS_TABLE_NAME">projects</string>
-    <string name="LOCAL_PROJECTS_TABLE_VERSION">1</string>
+    <integer name="LOCAL_PROJECTS_TABLE_VERSION">1</integer>
     <string name="LOCAL_PROJECTS_COLUMN_ID">projid</string>
     <string name="LOCAL_PROJECTS_COLUMN_NAME">name</string>
     <string name="LOCAL_PROJECTS_COLUMN_DATAARAEID">dataaraeid</string>
@@ -13,7 +13,7 @@
 
     <!-- Local vendors table strings -->
     <string name="LOCAL_VENDORS_TABLE_NAME">vendors</string>
-    <string name="LOCAL_VENDORS_TABLE_VERSION">1</string>
+    <integer name="LOCAL_VENDORS_TABLE_VERSION">1</integer>
     <string name="LOCAL_VENDORS_COLUMN_ID">accountnum</string>
     <string name="LOCAL_VENDORS_COLUMN_NAME">name</string>
     <string name="LOCAL_VENDORS_COLUMN_DATAARAEID">dataaraeid</string>
@@ -21,7 +21,7 @@
 
     <!-- Local opr table strings -->
     <string name="LOCAL_OPR_TABLE_NAME">OprRouteTable</string>
-    <string name="LOCAL_OPR_TABLE_VERSION">1</string>
+    <integer name="LOCAL_OPR_TABLE_VERSION">1</integer>
     <string name="LOCAL_OPR_COLUMN_ID">oprid</string>
     <string name="LOCAL_OPR_COLUMN_NAME">name</string>
     <string name="LOCAL_OPR_COLUMN_DATAARAEID">dataaraeid</string>
@@ -29,7 +29,7 @@
 
     <!-- Local inventory table strings -->
     <string name="LOCAL_INVENTORY_TABLE_NAME">inventory</string>
-    <string name="LOCAL_INVENTORY_TABLE_VERSION">1</string>
+    <integer name="LOCAL_INVENTORY_TABLE_VERSION">1</integer>
     <string name="LOCAL_INVENTORY_COLUMN_ID">itemid</string>
     <string name="LOCAL_INVENTORY_COLUMN_NAME">name</string>
     <string name="LOCAL_INVENTORY_COLUMN_DATAARAEID">dataaraeid</string>
@@ -37,7 +37,7 @@
 
     <!-- Local big table strings -->
     <string name="LOCAL_BIG_TABLE_NAME">big_table</string>
-    <string name="LOCAL_BIG_TABLE_VERSION">1</string>
+    <integer name="LOCAL_BIG_TABLE_VERSION">1</integer>
     <string name="LOCAL_BIG_COLUMN_ACCOUNTNUM">accountnum</string>
     <string name="LOCAL_BIG_COLUMN_DATAARAEID">dataaraeid</string>
     <string name="LOCAL_BIG_COLUMN_RECVERSION">recversion</string>

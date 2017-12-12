@@ -16,7 +16,7 @@ import kotlin.collections.HashMap
 /**
  * Created by chaosruler on 12/3/17.
  */
-class local_projects_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME),null,context.getString(R.string.LOCAL_PROJECTS_TABLE_VERSION).toInt(),context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME))
+class local_projects_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME),null,context.resources.getInteger(R.integer.LOCAL_PROJECTS_TABLE_VERSION),context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME))
 {
     private var ID = context.getString(R.string.LOCAL_PROJECTS_COLUMN_ID)
     private var NAME = context.getString(R.string.LOCAL_PROJECTS_COLUMN_NAME)

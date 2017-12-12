@@ -14,7 +14,7 @@ import kotlin.collections.HashMap
 
 
 class local_big_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME)
-,null,context.getString(R.string.LOCAL_BIG_TABLE_VERSION).toInt(),context.getString(R.string.LOCAL_BIG_TABLE_NAME)) {
+,null,context.resources.getInteger(R.integer.LOCAL_BIG_TABLE_VERSION),context.getString(R.string.LOCAL_BIG_TABLE_NAME)) {
     private var ACCOUNT_NUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_ACCOUNTNUM)
     private var DATAARAEID: String = context.getString(R.string.LOCAL_BIG_COLUMN_DATAARAEID)
     private var RECVERSION: String = context.getString(R.string.LOCAL_BIG_COLUMN_RECVERSION)

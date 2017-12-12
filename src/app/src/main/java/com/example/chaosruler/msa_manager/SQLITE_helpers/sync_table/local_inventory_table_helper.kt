@@ -15,7 +15,7 @@ import java.util.*
 import kotlin.collections.HashMap
 
 
-class local_inventory_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME),null,context.getString(R.string.LOCAL_INVENTORY_TABLE_VERSION).toInt(),context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME))
+class local_inventory_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME),null,context.resources.getInteger(R.integer.LOCAL_INVENTORY_TABLE_VERSION),context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME))
 {
     private val ID: String = context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID)
     private val NAME:String = context.getString(R.string.LOCAL_INVENTORY_COLUMN_NAME)

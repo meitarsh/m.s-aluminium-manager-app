@@ -80,8 +80,7 @@
     <string name="kablan_mforat_saah_tashlom_txt">סהכ לתשלום</string>
     <string name="kablan_mforat_saah_hakol_txt">סהכ כל הפרויקטים</string>
 
-    <integer name="table_width">600</integer>
-    <integer name="table_height">200</integer>
+
     <!-- Strings related to loz activity -->
     <string name="loz_activity_bnian_str">בניין</string>
     <string name="loz_activity_koma_str">קומה</string>

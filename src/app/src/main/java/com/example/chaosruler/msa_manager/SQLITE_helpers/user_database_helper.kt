@@ -9,7 +9,7 @@ import java.util.*
 import kotlin.collections.HashMap
 
 
-class user_database_helper(private val con: Context) : local_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.getString(R.string.USER_DB_VERSION).toInt(),con.getString(R.string.USER_TABLE_NAME) ) {
+class user_database_helper(private val con: Context) : local_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.resources.getInteger(R.integer.USER_DB_VERSION),con.getString(R.string.USER_TABLE_NAME) ) {
     private val USERS_ID: String = con.getString(R.string.USER_COL_ID)
     private val PASSWORD: String = con.getString(R.string.USER_COL_PASSWORD)
 

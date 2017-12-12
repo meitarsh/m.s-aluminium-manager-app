@@ -8,6 +8,11 @@ import android.support.v4.app.NotificationCompat
 import java.lang.Thread.sleep
 import java.util.*
 import android.app.NotificationManager
+import android.app.Service
+import android.content.BroadcastReceiver
+import android.os.Binder
+import android.os.IBinder
+import android.support.v4.content.LocalBroadcastManager
 import android.util.Log
 import com.example.chaosruler.msa_manager.MSSQL_helpers.*
 import com.example.chaosruler.msa_manager.R
@@ -19,16 +24,33 @@ import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.cache
 /*
     service responsible for storing server commands offline and sending them whenever possible
  */
-class offline_mode_service private constructor(context: Context,intent: Intent){
+class offline_mode_service : Service(){
+
+    /*
     init
     {
         init_cache(context,intent)
     }
+    */
+    inner class the_binder : Binder() {
+        @Suppress("PropertyName")
+        internal val service_label: offline_mode_service
+            get() = this@offline_mode_service
+    }
+    private val binder = the_binder()
+    override fun onBind(intent: Intent?): IBinder = binder
 
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int
+    {
 
+        if(intent!=null)
+            init_cache(baseContext,intent)
+        return super.onStartCommand(intent, flags, startId)
+    }
 
     companion object
     {
+        /*
         @SuppressLint("StaticFieldLeak")
         private var ourInstance:offline_mode_service? = null //SINGLETON!
         public fun getInstance(context: Context,intent: Intent): offline_mode_service?
@@ -43,6 +65,7 @@ class offline_mode_service private constructor(context: Context,intent: Intent){
                 return ourInstance
         }
         private var init_flag:Boolean = false
+        */
         /*
                 local database to store server commands with appropiate users
             */
@@ -112,6 +135,12 @@ class offline_mode_service private constructor(context: Context,intent: Intent){
          */
         private fun mark_done(context: Context,intent: Intent)
         {
+            /*
+            var local_intent = Intent(context.getString(R.string.inent_sync_done_action_offline_service))
+            local_intent.putExtra(context.getString(R.string.key_sync_offline),context.getString(R.string.key_sync_offline))
+            LocalBroadcastManager.getInstance(context).sendBroadcast(local_intent)
+            */
+            broadcast_reciever.report_to_Main_Activity_Thread_syncing_is_done()
             intent.putExtra(context.getString(R.string.key_sync_offline),context.getString(R.string.key_sync_offline))
         }
 
@@ -120,8 +149,8 @@ class offline_mode_service private constructor(context: Context,intent: Intent){
          */
         private fun grab_time(context: Context)
         {
-            time = ctx.getString(R.string.millis_in_sec).toLong()
-            var sec = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.sync_frequency),context.getString(R.string.time_to_sync_in_sec)).toLong()
+            time = ctx.resources.getInteger(R.integer.millis_in_sec).toLong()
+            var sec = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.sync_frequency),context.resources.getInteger(R.integer.time_to_sync_in_sec).toString()).toLong()
             time *=sec
         }
         /*

@@ -17,12 +17,17 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Thread.sleep
+import java.util.*
 
 
 class MainActivity : AppCompatActivity()
 {
 
     private lateinit var adapter: ArrayAdapter<project_data>
+    companion object {
+        var service_sync_done:Boolean = false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
@@ -61,7 +66,8 @@ class MainActivity : AppCompatActivity()
             remote_SQL_Helper.refresh_context(baseContext)
             //startService(Intent(this, offline_mode_service::class.java))
             //offline_mode_service.init_cache(baseContext,intent)
-            offline_mode_service.getInstance(baseContext,intent)
+            var service_intent = Intent(this,offline_mode_service::class.java)
+            startService(service_intent)
         }).start()
     }
 
@@ -70,12 +76,19 @@ class MainActivity : AppCompatActivity()
         */
     private fun init_spinner()
     {
-        val projects =
-        if(global_variables_dataclass.isLocal)
-            global_variables_dataclass.DB_project!!.get_local_DB()
-        else
-            global_variables_dataclass.DB_project!!.server_data_to_vector()
+        Thread {
+            val projects =
+                    if (global_variables_dataclass.isLocal)
+                        global_variables_dataclass.DB_project!!.get_local_DB()
+                    else
+                        global_variables_dataclass.DB_project!!.server_data_to_vector()
+            runOnUiThread { on_adapter_set(projects) }
+        }.start()
 
+    }
+
+    private fun on_adapter_set(projects:Vector<project_data>)
+    {
         adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,projects)
         main_spinner.adapter = adapter
 
@@ -105,7 +118,7 @@ class MainActivity : AppCompatActivity()
         var handler:Handler = Handler()
         var rate = 1
         Thread(Runnable {
-            while (intent.getStringExtra(getString(R.string.key_sync_offline))==null)
+            while (!service_sync_done)
             {
                 progressStatus += rate
                 // Update the progress bar and display the
@@ -117,8 +130,10 @@ class MainActivity : AppCompatActivity()
                 {
                     // Sleep for 1000/60 milliseconds.
                     Thread.sleep(1000/60)
-                } catch (e: InterruptedException)
+                }
+                catch (e: InterruptedException)
                 {
+                    Log.d("Main Activity","Syncing still")
                 }
 
                 if(progressStatus>=getString(R.string.main_progress_bar_max).toInt() )
@@ -127,7 +142,6 @@ class MainActivity : AppCompatActivity()
                     rate = 1
             }
             main_progressBar.progress = getString(R.string.main_progress_bar_max).toInt()
-            intent.removeExtra(getString(R.string.key_sync_offline))
             runOnUiThread {
                 show_everything()
                 main_progressBar.visibility = ProgressBar.GONE
@@ -186,7 +200,7 @@ class MainActivity : AppCompatActivity()
             startActivity(intent)
         })
 
-        if(PreferenceManager.getDefaultSharedPreferences(baseContext).getString(baseContext.getString(R.string.sync_frequency),baseContext.getString(R.string.time_to_sync_in_sec)).toLong() == 0.toLong())
+        if(PreferenceManager.getDefaultSharedPreferences(baseContext).getString(baseContext.getString(R.string.sync_frequency),baseContext.resources.getInteger(R.integer.time_to_sync_in_sec).toString()) == 0.toString())
         {
             // if sync time is equal zero - meaning OFF
             main_button_sync.visibility = View.VISIBLE
@@ -217,12 +231,14 @@ class MainActivity : AppCompatActivity()
             }).start()
         })
     }
+
     /*
                    inits disconnects when done
             */
     override fun onDestroy()
     {
         super.onDestroy()
+        stopService(Intent(this,offline_mode_service::class.java))
         remote_SQL_Helper.Disconnect()
     }
 }

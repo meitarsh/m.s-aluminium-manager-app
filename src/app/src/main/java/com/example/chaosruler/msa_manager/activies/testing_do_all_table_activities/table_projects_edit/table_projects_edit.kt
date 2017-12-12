@@ -26,14 +26,16 @@ class table_projects_edit : AppCompatActivity() {
 
     private fun init_table():Boolean
     {
-        var arr: Vector<project_data> =
-                if (global_variables_dataclass.GUI_MODE)
-                    Vector<project_data>()
-                else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                    global_variables_dataclass.DB_project!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
-                else
-                    global_variables_dataclass.DB_project!!.server_data_to_vector_by_projid((global_variables_dataclass.projid?:"").trim())
-        table_projects_listview.adapter = table_projects_arrayadapter(this,arr)
+        Thread{
+            var arr: Vector<project_data> =
+                    if (global_variables_dataclass.GUI_MODE)
+                        Vector<project_data>()
+                    else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
+                        global_variables_dataclass.DB_project!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
+                    else
+                        global_variables_dataclass.DB_project!!.server_data_to_vector_by_projid((global_variables_dataclass.projid?:"").trim())
+            runOnUiThread {table_projects_listview.adapter = table_projects_arrayadapter(this,arr) }
+        }.start()
        return true
     }
 

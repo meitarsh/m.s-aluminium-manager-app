@@ -40,15 +40,20 @@ class divohi_takalot_edit : AppCompatActivity() {
         */
     private fun init_table():Boolean
     {
-        var arr: Vector<big_table_data> =
-                if (global_variables_dataclass.GUI_MODE || global_variables_dataclass.DB_BIG == null)
-                    Vector<big_table_data>()
-                else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                    global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
-                else
-                    global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
 
-        divohi_takalot_edit_listview.adapter = divohi_takalot_edit_arrayadapter(this,arr)
+        Thread({
+            var arr: Vector<big_table_data> =
+                    if (global_variables_dataclass.GUI_MODE || global_variables_dataclass.DB_BIG == null)
+                        Vector<big_table_data>()
+                    else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
+                        global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname((global_variables_dataclass.projid ?: "").trim())
+                    else
+                        global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid ?: "").trim())
+
+            runOnUiThread({divohi_takalot_edit_listview.adapter = divohi_takalot_edit_arrayadapter(this, arr)
+            })
+
+        }).start()
         return true
     }
 

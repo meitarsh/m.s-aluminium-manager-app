@@ -27,15 +27,18 @@ class table_inventory_edit : AppCompatActivity()
 
     private fun init_table():Boolean
     {
-        var arr: Vector<inventory_data> =
-                if (global_variables_dataclass.GUI_MODE)
-                    Vector<inventory_data>()
-                else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                    global_variables_dataclass.DB_INVENTORY!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
-                else
-                    global_variables_dataclass.DB_INVENTORY!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
+        Thread{
+            var arr: Vector<inventory_data> =
+                    if (global_variables_dataclass.GUI_MODE)
+                        Vector<inventory_data>()
+                    else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
+                        global_variables_dataclass.DB_INVENTORY!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
+                    else
+                        global_variables_dataclass.DB_INVENTORY!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
 
-        table_inventory_listview.adapter = table_inventory_arrayadapter(this,arr)
+            runOnUiThread {             table_inventory_listview.adapter = table_inventory_arrayadapter(this,arr)
+            }
+        }.start()
         return true
     }
 

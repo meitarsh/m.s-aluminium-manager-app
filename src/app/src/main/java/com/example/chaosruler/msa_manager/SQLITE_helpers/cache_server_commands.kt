@@ -8,7 +8,7 @@ import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.cache
 import java.util.*
 
 
-class cache_server_commands( context: Context) : local_SQL_Helper(context,context.getString(R.string.cache_DB_NAME),null,context.getString(R.string.cache_db_ver).toInt(),context.getString(R.string.cache_table_name))
+class cache_server_commands( context: Context) : local_SQL_Helper(context,context.getString(R.string.cache_DB_NAME),null,context.resources.getInteger(R.integer.cache_db_ver),context.getString(R.string.cache_table_name))
 {
 
     private val ID: String = context.getString(R.string.cache_col_1)

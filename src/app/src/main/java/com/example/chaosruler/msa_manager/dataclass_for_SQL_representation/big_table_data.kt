@@ -1,6 +1,8 @@
 package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
 
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
 
 class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String?,private var RECVERSION:String?,private var RECID:String?
@@ -291,7 +293,14 @@ class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String
     /*
         identifies
      */
-    override fun toString(): String = get_VENDOR_ID()?:"" + " " + get_PROJECT_ID() ?:"" + " " + get_OPRID() + get_INVENTORY_ID()
+    override fun toString(): String
+    {
+        var opr = global_variables_dataclass.DB_OPR!!.get_opr_by_id((OPR_ID?:"").trim())
+        var project = global_variables_dataclass.DB_project!!.get_project_by_id((PROJECTS_ID?:"").trim())
+        var vendor = global_variables_dataclass.DB_VENDOR!!.get_vendor_by_id((VENDOR_ID?:"").trim())
+        var item = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id((INVENTORY_ID?:"").trim())
+        return "OPR: " + (opr?.toString()?:"").trim() + " Project: " + (project?.toString()?:"").trim() + " Vendor: " + (vendor?.toString()?:"").trim() +" Inventory: " +(item?.toString()?:"").trim()
+    }
 
     /*
         copies

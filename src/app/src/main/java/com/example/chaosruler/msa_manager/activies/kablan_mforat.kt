@@ -19,6 +19,7 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_kablan_mforat.*
 import java.util.*
 import kotlin.collections.HashMap
+import kotlin.math.roundToInt
 
 class kablan_mforat : AppCompatActivity() {
 
@@ -36,15 +37,22 @@ class kablan_mforat : AppCompatActivity() {
             */
     private fun init_spinner()
     {
-        val big_table:Vector<big_table_data> =
-        if(global_variables_dataclass.GUI_MODE)
-            Vector<big_table_data>()
-        else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-            global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
-        else
-            global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
+        Thread{
+            val big_table:Vector<big_table_data> =
+                    if(global_variables_dataclass.GUI_MODE)
+                        Vector<big_table_data>()
+                    else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
+                        global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
+                    else
+                        global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
 
+            runOnUiThread { spinner_populate(big_table) }
+        }.start()
 
+    }
+
+    private fun spinner_populate(big_table:Vector<big_table_data>)
+    {
         adapter = ArrayAdapter<big_table_data>(this, android.R.layout.simple_spinner_item,big_table)
 
         activity_kablan_mforat_spinner.adapter = adapter
@@ -58,8 +66,8 @@ class kablan_mforat : AppCompatActivity() {
                 var peola_parcent:String = (big_item.get_PERCENTFORACCOUNT()?:0).toString()
                 var milestone_parcent:String = (big_item.get_PERCENTFORACCOUNT()?:0).toString()
 
-               // var txtview:TextView = view as TextView
-              //  txtview.text = vendor_item.get_accountname()
+                // var txtview:TextView = view as TextView
+                //  txtview.text = vendor_item.get_accountname()
 
                 activity_kablan_mforat_kamot_hoza.text = (big_item.get_QTY() ?: "0").trim()
                 activity_kablan_mforat_yehida_price.text = (big_item.get_SALESPRICE() ?: "0").trim()
@@ -73,7 +81,7 @@ class kablan_mforat : AppCompatActivity() {
                 var price = (big_item.get_SALESPRICE() ?: "0").toDouble()
                 var count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
                 var parcent = milestone_parcent.toDouble()/100
-                activity_kablan_mforat_tashlom_sah.text = (price*count*parcent).toString().trim()
+                activity_kablan_mforat_tashlom_sah.text = (price*count*parcent).roundToInt().toString().trim()
 
                 activity_kablan_mforat_kamot_helki.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_kamot_helki.text.isEmpty() )
@@ -160,7 +168,7 @@ class kablan_mforat : AppCompatActivity() {
             activity_kablan_mforat_saah_hakol.setTextColor(getColor(R.color.green))
         else // <= 0
             activity_kablan_mforat_saah_hakol.setTextColor(getColor(R.color.red))
-        activity_kablan_mforat_saah_hakol.text = price.toString().trim()
+        activity_kablan_mforat_saah_hakol.text = price.toInt().toString().trim()
     }
 
 }

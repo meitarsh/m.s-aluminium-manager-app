@@ -15,7 +15,7 @@ import java.util.*
 import kotlin.collections.HashMap
 
 
-class local_vendor_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME),null,context.getString(R.string.LOCAL_VENDORS_TABLE_VERSION).toInt(),context.getString(R.string.LOCAL_VENDORS_TABLE_NAME)) {
+class local_vendor_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME),null,context.resources.getInteger(R.integer.LOCAL_VENDORS_TABLE_VERSION),context.getString(R.string.LOCAL_VENDORS_TABLE_NAME)) {
     private val ID: String = context.getString(R.string.LOCAL_VENDORS_COLUMN_ID)
     private val NAME: String = context.getString(R.string.LOCAL_VENDORS_COLUMN_NAME)
     private val DATAARAEID: String = context.getString(R.string.LOCAL_VENDORS_COLUMN_DATAARAEID)

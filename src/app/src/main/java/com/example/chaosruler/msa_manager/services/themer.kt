@@ -77,31 +77,6 @@ class themer {
             return box
         }
 
-    /*
-            predefined size
-         */
-    public fun fix_size(context: Context,vector: Vector<View>)
-    {
-        for(item in vector)
-        {
-            if(item is TextView)
-            {
-                item.width = context.resources.getInteger(R.integer.table_width)
-                item.height = context.resources.getInteger(R.integer.table_height)
-            }
-            if(item is EditText)
-            {
-                item.width = context.resources.getInteger(R.integer.table_width)
-                item.height = context.resources.getInteger(R.integer.table_height)
-            }
-            if(item is CheckBox)
-            {
-                item.width = context.resources.getInteger(R.integer.table_width)
-                item.height = context.resources.getInteger(R.integer.table_height)
-            }
-
-        }
-    }
         /*
                    gets box
             */

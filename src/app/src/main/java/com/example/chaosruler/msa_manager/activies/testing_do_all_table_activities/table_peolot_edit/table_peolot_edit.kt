@@ -27,15 +27,17 @@ class table_peolot_edit : AppCompatActivity() {
 
     private fun init_table():Boolean
     {
-        var arr: Vector<opr_data> =
-                if (global_variables_dataclass.GUI_MODE)
-                    Vector<opr_data>()
-                else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                    global_variables_dataclass.DB_OPR!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
-                else
-                    global_variables_dataclass.DB_OPR!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
+        Thread{
+            var arr: Vector<opr_data> =
+                    if (global_variables_dataclass.GUI_MODE)
+                        Vector<opr_data>()
+                    else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
+                        global_variables_dataclass.DB_OPR!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
+                    else
+                        global_variables_dataclass.DB_OPR!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
 
-        table_opr_listview.adapter = table_peolot_arrayadapter(this,arr)
+            runOnUiThread {table_opr_listview.adapter = table_peolot_arrayadapter(this,arr) }
+        }.start()
         return true
     }
 
