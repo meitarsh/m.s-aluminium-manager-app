@@ -76,11 +76,9 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     /*
         drop database
      */
-    protected fun dropDB(db: SQLiteDatabase?) // subroutine to delete the entire database, including the file
+    private fun dropDB(db: SQLiteDatabase?) // subroutine to delete the entire database, including the file
     {
-        if (db == null)
-            return
-        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME)
+        db?.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME)
     }
 
     /*
@@ -204,7 +202,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     /*
         adds a single data
      */
-    protected fun add_single_data(db:SQLiteDatabase,items:HashMap<String,String>):Boolean
+    private fun add_single_data(db:SQLiteDatabase,items:HashMap<String,String>):Boolean
     {
         val values = ContentValues()
         for(item in items)

@@ -95,7 +95,6 @@ class offline_mode_service private constructor(context: Context,intent: Intent){
             grab_time(ctx)
             init_remote_databases(context)
             grab_time(ctx)
-            var i:Int
 
             start_trd()
 
@@ -277,6 +276,15 @@ class offline_mode_service private constructor(context: Context,intent: Intent){
         public fun db_sync_func(context: Context,intent: Intent)
         {
 
+            db_sync_func_without_mark()
+            mark_done(context,intent)
+        }
+
+        /*
+          inner call with sync-wait without mark
+       */
+        private fun db_sync_func_without_mark()
+        {
             try
             {
                 projects.sync_db()
@@ -289,19 +297,6 @@ class offline_mode_service private constructor(context: Context,intent: Intent){
             {
                 Log.d("offline_mode","Couldn't sync for first time for some reason")
             }
-            mark_done(context,intent)
-        }
-
-        /*
-          inner call with sync-wait without mark
-       */
-        private fun db_sync_func_without_mark()
-        {
-            projects.sync_db()
-            inventory.sync_db()
-            opr.sync_db()
-            vendor.sync_db()
-            big_table.sync_db()
         }
 
         /*
@@ -319,11 +314,7 @@ class offline_mode_service private constructor(context: Context,intent: Intent){
          */
         private fun db_sync_func()
         {
-            projects.sync_db()
-            inventory.sync_db()
-            opr.sync_db()
-            vendor.sync_db()
-            big_table.sync_db()
+            db_sync_func_without_mark()
         }
 
     } // companion end
