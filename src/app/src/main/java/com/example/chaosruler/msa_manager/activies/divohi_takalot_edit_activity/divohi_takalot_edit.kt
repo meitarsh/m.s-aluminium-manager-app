@@ -18,6 +18,8 @@ import java.util.*
 import android.content.Intent
 import android.os.Looper
 import android.support.v7.app.AppCompatActivity
+import android.view.Gravity
+import android.view.ViewGroup
 import android.widget.*
 import kotlinx.android.synthetic.main.divohi_takalot_edit.*
 import java.io.File
@@ -72,7 +74,7 @@ class divohi_takalot_edit : AppCompatActivity() {
                 var parent = divohi_takalot_edit_listview.getChildAt(requestCode) as LinearLayout
                 var button = parent.getChildAt(parent.childCount-1) as Button
                 button.isEnabled = false
-                button.setBackgroundResource(0)
+                button.background = getDrawable(R.drawable.cell_shape)
                 button.text = File(uri.path).absolutePath
                 parent.refreshDrawableState()
 

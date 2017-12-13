@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
     >
 
 
@@ -135,7 +136,7 @@
         android:id="@+id/item_divohi_takalot_edit_upload_btn"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
-        android:layout_weight="1"
+        android:layout_weight="4"
         android:background="@drawable/cell_shape"
         android:gravity="center"
         android:lines="1"

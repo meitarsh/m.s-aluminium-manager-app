@@ -8,10 +8,9 @@
     <string name="network_error">There&quot;s and error connecting to server, please try again</string>
 
     <!-- Strings related to abstracted remote database server control -->
-    <string name="REMOTE_IP_ADDR">10.0.0.7</string> <!-- IPs : 10.0.0.7 10.0.0.9  -->
+
     <string name="class_jtds_jdbc">net.sourceforge.jtds.jdbc.Driver</string>
     <string name="REMOTE_CONNECT_STRING">jdbc:jtds:sqlserver://</string>
-    <string name="REMOTE_CONNECT_OPTIONS">;progname=Android_MSA;socketKeepAlive=true;socketTimeout=5;loginTimeout=5;useNTLMv2=true;domain=DOMAIN</string>
     <string name="get_date_from_server">select getdate()</string>
 
 </resources>

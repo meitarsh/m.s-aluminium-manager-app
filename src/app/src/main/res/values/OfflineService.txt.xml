@@ -4,14 +4,11 @@
     <string name="boot_completed">android.intent.action.BOOT_COMPLETED</string>
     <string name="inent_sync_done_action_offline_service">com.example.android.offlineservice_msalum</string>
 
-    <integer name="time_to_sync_in_sec">5</integer>
-    <integer name="millis_in_sec">1000</integer> <!-- should be 1000 -->
     <string name="successfull_operation">הפעולה בוצעה בהצלחה</string>
     <string name="notificatoin_op_id">קוד הפעולה :</string>
 
     <string name="sync_btn_text">סנכרן עכשיו</string>
 
-    <integer name="inittime">10000</integer>
     <!-- strings passed as keys between activities -->
     <string name="username">username</string>
     <string name="password">password</string>
