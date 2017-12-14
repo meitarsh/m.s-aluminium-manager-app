@@ -9,8 +9,22 @@
 
     <!-- Strings related to abstracted remote database server control -->
 
+    <!-- JTDS
+
     <string name="class_jtds_jdbc">net.sourceforge.jtds.jdbc.Driver</string>
     <string name="REMOTE_CONNECT_STRING">jdbc:jtds:sqlserver://</string>
+
+    -->
+
+    <!-- Microsoft JDBC
+
+    <string name=com.microsoft.sqlserver.jdbc.SQLServerDriver</string>
+    <string name="REMOTE_CONNECT_STRING">jdbc:sqlserver://</string>
+
+    -->
+    <string name="class_jtds_jdbc">net.sourceforge.jtds.jdbc.Driver</string>
+    <string name="REMOTE_CONNECT_STRING">jdbc:jtds:sqlserver://</string>
+
     <string name="get_date_from_server">select getdate()</string>
 
 </resources>
