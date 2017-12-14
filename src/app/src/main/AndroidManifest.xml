@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.chaosruler.msa_manager">
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -130,11 +131,18 @@
             android:label="@string/edit_table_inventory"
             android:windowSoftInputMode="stateAlwaysHidden"
             />
+
         <service
             android:name=".services.offline_mode_service"
             android:enabled="true"
             android:exported="true"
-            ></service>
+            tools:ignore="ExportedService" />
+
+        <receiver android:name=".services.broadcast_reciever">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
