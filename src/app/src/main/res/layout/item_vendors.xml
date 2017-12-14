@@ -10,22 +10,27 @@
         android:id="@+id/item_vendor_id"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
         android:lines="1" />
+
     <TextView
         android:id="@+id/item_vendor_dataaraeid"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
         android:lines="1" />
+
     <EditText
         android:id="@+id/item_vendor_name"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"

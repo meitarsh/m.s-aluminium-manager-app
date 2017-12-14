@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
@@ -86,7 +87,6 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         var milpercent:String = big_item.get_MILESTONEPERCENT()?:0.toString()
         @Suppress("UNUSED_VARIABLE")
         var percentacc:String = big_item.get_PERCENTFORACCOUNT()?:0.toString()
-
 
         accountnum.text = (big_item.get_VENDOR_ID()?:"").trim()
         dataaraeid.text = (big_item.get_DATAAREAID()?:"").trim()

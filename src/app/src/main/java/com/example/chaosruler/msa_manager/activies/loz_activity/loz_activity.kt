@@ -40,7 +40,7 @@ class loz_activity : AppCompatActivity() {
                         global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
 
             runOnUiThread { loz_activity_listview.adapter = loz_activity_arrayadapter(this,arr) }
-        })
+        }).start()
 
         return true
     }

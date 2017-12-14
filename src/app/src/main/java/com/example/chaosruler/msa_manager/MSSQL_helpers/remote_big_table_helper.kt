@@ -157,6 +157,7 @@ class remote_big_table_helper
             map[VENDOR_ID] = VENDOR_ID_TYPE
             map[DATAREAID] = DATAAREAID_TYPE
             map[RECVERSION] = RECVERSION_TYPE
+            map[RECID] = RECID_TYPE
             map[PROJECTS_ID] = PROJECTS_ID_TYPE
             map[INVENTORY_ID] = INVENTORY_ID_TYPE
             map[FLAT] = FLAT_TYPE
