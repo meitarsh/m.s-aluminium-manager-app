@@ -3,6 +3,7 @@ package com.example.chaosruler.msa_manager.activies.loz_activity
 import android.content.Context
 import android.os.Looper
 import android.text.InputType
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,6 +58,7 @@ class loz_activity_arrayadapter (context: Context, arr: Vector<big_table_data>) 
         finish.isEnabled = false
 
         isFinished.isEnabled = false
+
         ahoz_bizoaa.hint = (ahoz_bizoa_str + "%").trim()
         ahoz_bizoaa.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
         haarot.hint = "No database value to grab"

@@ -49,6 +49,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -58,6 +60,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -67,6 +71,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -76,6 +82,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -85,6 +93,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -94,6 +104,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -103,6 +115,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -112,6 +126,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -121,6 +137,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -130,6 +148,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -139,6 +159,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -148,6 +170,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -157,6 +181,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="2"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
@@ -166,6 +192,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/small_margin_cells"
+                        android:layout_marginStart="@dimen/small_margin_cells"
                         android:layout_weight="1"
                         android:background="@drawable/cell_shape"
                         android:gravity="center"
