@@ -9,7 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.*
+import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_kablan_mforat.*
@@ -36,7 +36,7 @@ class kablan_mforat : Activity() {
         Thread{
             val big_table:Vector<big_table_data> =
                     if(global_variables_dataclass.GUI_MODE)
-                        Vector<big_table_data>()
+                        Vector()
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
                         global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
                     else
@@ -49,7 +49,7 @@ class kablan_mforat : Activity() {
 
     private fun spinner_populate(big_table:Vector<big_table_data>)
     {
-        adapter = ArrayAdapter<big_table_data>(this, android.R.layout.simple_spinner_item,big_table)
+        adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, big_table)
 
         activity_kablan_mforat_spinner.adapter = adapter
         activity_kablan_mforat_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener
@@ -59,8 +59,8 @@ class kablan_mforat : Activity() {
                 // upon Spinner selecting a user, update the other fields
                 val big_item:big_table_data = activity_kablan_mforat_spinner.adapter.getItem(i) as big_table_data
 
-                var peola_parcent:String = (big_item.get_PERCENTFORACCOUNT()?:0).toString()
-                var milestone_parcent:String = (big_item.get_PERCENTFORACCOUNT()?:0).toString()
+                val peola_parcent: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
+                val milestone_parcent: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
 
                 // var txtview:TextView = view as TextView
                 //  txtview.text = vendor_item.get_accountname()
@@ -74,18 +74,18 @@ class kablan_mforat : Activity() {
                 activity_kablan_mforat_kamot_kablan.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 activity_kablan_mforat_ahoz_meosher.hint = ((milestone_parcent.toDouble()).toInt().toString() + "%").trim()
                 activity_kablan_mforat_ahoz_meosher.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-                var price = (big_item.get_SALESPRICE() ?: "0").toDouble()
-                var count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
-                var parcent = milestone_parcent.toDouble()/100
+                val price = (big_item.get_SALESPRICE() ?: "0").toDouble()
+                val count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
+                val parcent = milestone_parcent.toDouble() / 100
                 activity_kablan_mforat_tashlom_sah.text = (price*count*parcent).roundToInt().toString().trim()
 
                 activity_kablan_mforat_kamot_helki.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_kamot_helki.text.isEmpty() )
                         return@OnFocusChangeListener
-                    var str = activity_kablan_mforat_kamot_helki.text.toString()
+                    val str = activity_kablan_mforat_kamot_helki.text.toString()
                     Thread({
                         Looper.prepare()
-                        var update_value: HashMap<String, String> = HashMap()
+                        val update_value: HashMap<String, String> = HashMap()
                         update_value[remote_big_table_helper.QTYFORACCOUNT] = str
                         remote_big_table_helper.push_update(big_item, update_value, baseContext)
                         big_item.set_QTYFORACCOUNT(str)
@@ -100,10 +100,10 @@ class kablan_mforat : Activity() {
                 activity_kablan_mforat_kamot_kablan.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_kamot_kablan.text.isEmpty())
                         return@OnFocusChangeListener
-                    var str = activity_kablan_mforat_kamot_kablan.text.toString()
+                    val str = activity_kablan_mforat_kamot_kablan.text.toString()
                     Thread({
                         Looper.prepare()
-                        var update_value: HashMap<String, String> = HashMap()
+                        val update_value: HashMap<String, String> = HashMap()
                         update_value[remote_big_table_helper.QTYFORACCOUNT] = str
                         remote_big_table_helper.push_update(big_item, update_value, baseContext)
                         big_item.set_QTYFORACCOUNT(str)
@@ -118,10 +118,10 @@ class kablan_mforat : Activity() {
                 activity_kablan_mforat_ahoz_meosher.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_ahoz_meosher.text.isEmpty())
                         return@OnFocusChangeListener
-                    var str = activity_kablan_mforat_ahoz_meosher.text.toString()
+                    val str = activity_kablan_mforat_ahoz_meosher.text.toString()
                     Thread({
                         Looper.prepare()
-                        var update_value: HashMap<String, String> = HashMap()
+                        val update_value: HashMap<String, String> = HashMap()
                         update_value[remote_big_table_helper.PERCENTFORACCOUNT] = str
                         remote_big_table_helper.push_update(big_item, update_value, baseContext)
                         big_item.set_PERCENTFORACCOUNT(str)
@@ -153,9 +153,9 @@ class kablan_mforat : Activity() {
         {
             val big_item:big_table_data = activity_kablan_mforat_spinner.adapter.getItem(i) as big_table_data
             var current_price = (big_item.get_SALESPRICE() ?: "0").toDouble()
-            var count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
-            var milestone_parcent:String = (big_item.get_PERCENTFORACCOUNT()?:0).toString()
-            var parcent = milestone_parcent.toDouble()/100
+            val count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
+            val milestone_parcent: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
+            val parcent = milestone_parcent.toDouble() / 100
             current_price *= count*parcent
 
             price+=current_price

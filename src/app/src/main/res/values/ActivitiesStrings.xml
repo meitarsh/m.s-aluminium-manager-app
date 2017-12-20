@@ -26,6 +26,7 @@
     <string name="delete_mismatch">הסיסמאות המוזנות לא תואמות!</string>
     <string name="delete_empty_pw">הסיסמה לא יכולה להיות ריקה!</string>
     <string name="delete_confirmed">הפעולה בוצעה בהצלחה</string>
+    <string name="icon_for_m_s_alum">Icon for M.S alum</string>
 
     <!-- String related to main activity -->
     <string name="key_sync_offline">offline_sync_key</string>
@@ -123,5 +124,7 @@
     <string name="table_chooser_opr">טבלת פעולות</string>
     <string name="table_chooser_vendor">טבלת ספקים</string>
     <string name="table_chooser_inventory">טבלת מוצרים</string>
+    <string name="activity_user_shane_sisma">שנה סיסמה</string>
+    <string name="activity_users_mehak">מחק</string>
 
 </resources>

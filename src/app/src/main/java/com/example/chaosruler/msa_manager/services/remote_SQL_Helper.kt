@@ -1,5 +1,6 @@
 package com.example.chaosruler.msa_manager.services
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.AsyncTask
 import android.preference.PreferenceManager
@@ -10,11 +11,11 @@ import java.sql.*
 import java.util.*
 import kotlin.collections.HashMap
 
-class remote_SQL_Helper()
-{
+class remote_SQL_Helper {
     companion object
     {
 
+        @SuppressLint("StaticFieldLeak")
         private lateinit var context:Context
         private var username: String = ""
         private var password: String = ""
@@ -46,11 +47,11 @@ class remote_SQL_Helper()
             context = con
             username = user
             password = pass
-            var ip:String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP), context.getString(R.string.REMOTE_IP_ADDR))
+            val ip: String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP), context.getString(R.string.REMOTE_IP_ADDR))
             try
             {
                 Class.forName(context.getString(R.string.class_jtds_jdbc))
-                var conn: Connection? = DriverManager.getConnection(
+                val conn: Connection? = DriverManager.getConnection(
                         context.getString(R.string.REMOTE_CONNECT_STRING) + ip + context.getString(R.string.REMOTE_CONNECT_OPTIONS)
                         , username,
                         password)
@@ -76,7 +77,7 @@ class remote_SQL_Helper()
          */
         fun get_all_table(db: String, table: String): Vector<HashMap<String, String>>
         {
-            var vector: Vector<HashMap<String, String>> = Vector()
+            val vector: Vector<HashMap<String, String>> = Vector()
             try
             {
                 connection!!.isReadOnly
@@ -101,7 +102,7 @@ class remote_SQL_Helper()
                 return vector
             try
             {
-                var lock = java.lang.Object()
+                val lock = java.lang.Object()
                 AsyncTask.execute(
                 {
                     var rs:ResultSet?
@@ -129,9 +130,9 @@ class remote_SQL_Helper()
                     val columnCount = rs.metaData.columnCount
                     val rs_meta = rs.metaData
                     while (rs.next()) {
-                        var map: HashMap<String, String> = HashMap()
+                        val map: HashMap<String, String> = HashMap()
                         for (i in 1..(columnCount)) {
-                            var colum_name: String = rs_meta.getColumnName(i)
+                            val colum_name: String = rs_meta.getColumnName(i)
                             try
                             {
                                 map[colum_name] = rs.getString(colum_name)
@@ -175,7 +176,7 @@ class remote_SQL_Helper()
  */
         fun select_columns_from_db_with_where(db: String, table: String, colm_to_type:HashMap<String,String>, where_column:String?,where_compare:String?): Vector<HashMap<String, String>>
         {
-            var vector: Vector<HashMap<String, String>> = Vector()
+            val vector: Vector<HashMap<String, String>> = Vector()
             try
             {
                 connection!!.isReadOnly
@@ -197,14 +198,14 @@ class remote_SQL_Helper()
                 return vector
             try
             {
-                var lock = java.lang.Object()
+                val lock = java.lang.Object()
                 AsyncTask.execute(
                         {
                             var rs:ResultSet?
                             try
                             {
-                                var qry:String = "USE [$db] SELECT "
-                                var first:Boolean = false
+                                var qry = "USE [$db] SELECT "
+                                var first = false
                                 for(column in colm_to_type)
                                 {
                                     if(first)
@@ -216,7 +217,7 @@ class remote_SQL_Helper()
                                 qry+=" FROM [dbo].[$table] "
                                 if(where_column != null && where_compare!=null)
                                 {
-                                   var item:String = if(colm_to_type.getValue(where_column) == "text" || colm_to_type.getValue(where_column) == "varchar" || colm_to_type.getValue(where_column) == "nvarchar")
+                                    val item: String = if (colm_to_type.getValue(where_column) == "text" || colm_to_type.getValue(where_column) == "varchar" || colm_to_type.getValue(where_column) == "nvarchar")
                                    {
                                        "N" + add_quotes(where_compare)
                                    }
@@ -248,10 +249,10 @@ class remote_SQL_Helper()
                             val rs_meta = rs.metaData
                             while (rs.next())
                             {
-                                var map: HashMap<String, String> = HashMap()
+                                val map: HashMap<String, String> = HashMap()
                                 for (i in 1..(columnCount))
                                 {
-                                    var colum_name: String = rs_meta.getColumnName(i)
+                                    val colum_name: String = rs_meta.getColumnName(i)
                                     try
                                     {
                                         map[colum_name] = rs.getString(colum_name)
@@ -317,8 +318,8 @@ class remote_SQL_Helper()
                 {
                     return false
                 }
-                var return_value:Boolean = false
-                var lock = java.lang.Object()
+                var return_value = false
+                val lock = java.lang.Object()
                 AsyncTask.execute { Runnable {
                     try
                     {
@@ -376,8 +377,8 @@ class remote_SQL_Helper()
         fun VectorToString(vector: Vector<HashMap<String, String>>?): String {
             if(vector == null)
                 return "Empty"
-            var str: String = ""
-            var i: Int = 0
+            var str = ""
+            var i = 0
             for (item in vector) {
                 str += "row ${++i}: "
                 for (colum in item) {
@@ -389,10 +390,11 @@ class remote_SQL_Helper()
             return str
         }
 
-        /*
+        @Suppress("unused")
+/*
             subroutine in charge to check if connection is alive
          */
-        public fun isAlive():Boolean
+        fun isAlive(): Boolean
         {
             try
             {
@@ -416,7 +418,7 @@ class remote_SQL_Helper()
             }
             if(!isvalid)
                 return false
-            var lock = java.lang.Object()
+            val lock = java.lang.Object()
             AsyncTask.execute { Runnable {
                 try
                 {
@@ -459,7 +461,7 @@ class remote_SQL_Helper()
         /*
             Attempts to reconnect with the server if connection is broke
          */
-        fun ReConnect():Boolean
+        private fun ReConnect(): Boolean
         {
             isvalid =false
             connection =null
@@ -514,7 +516,7 @@ class remote_SQL_Helper()
         {
             var command: String = "USE [$db]" +
                     " UPDATE [dbo].[$table] SET "
-            var breaker: Int = 0
+            var breaker = 0
             for (item in update_to)
             {
                 command += " [${item.key}] = ${item.value} "
@@ -540,7 +542,7 @@ class remote_SQL_Helper()
         {
             var command: String = "USE [$db]" +
                     " UPDATE [dbo].[$table] SET "
-            var breaker: Int = 0
+            var breaker = 0
             for (item in update_to)
             {
                 command += " [${item.key}] = ${item.value} "
@@ -566,7 +568,8 @@ class remote_SQL_Helper()
          */
         fun add_quotes(str:String):String = "'$str'"
 
-        /*
+        @Suppress("unused")
+/*
             looks at entire hashmap and add quotes if needed
          */
         fun nirmol_input(input:HashMap<String,String>,types:HashMap<String,String>)

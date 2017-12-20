@@ -22,14 +22,14 @@ class table_inventory_arrayadapter(context: Context, arr: Vector<inventory_data>
     {
 
         @Suppress("NAME_SHADOWING")
-        var convertView:View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_inventory,parent,false)
+        val convertView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_inventory, parent, false)
 
         val inventory: inventory_data = getItem(position)
-        var all_views = Vector<View>()
+        val all_views = Vector<View>()
 
-        var id = themer.get_view(convertView,R.id.item_inventory_id) as TextView
-        var dataaraeid = themer.get_view(convertView,R.id.item_inventory_dataaraeid) as TextView
-        var name = themer.get_view(convertView,R.id.item_inventory_name) as EditText
+        val id = themer.get_view(convertView, R.id.item_inventory_id) as TextView
+        val dataaraeid = themer.get_view(convertView, R.id.item_inventory_dataaraeid) as TextView
+        val name = themer.get_view(convertView, R.id.item_inventory_name) as EditText
 
 
 
@@ -47,10 +47,10 @@ class table_inventory_arrayadapter(context: Context, arr: Vector<inventory_data>
         name.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || name.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = name.text.toString()
+            val str = name.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_inventory_table_helper.NAME] = str
                 remote_inventory_table_helper.push_update(inventory, update_value, context)
                 inventory.set_itemname(str)

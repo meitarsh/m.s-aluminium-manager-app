@@ -23,17 +23,17 @@ class loz_activity_arrayadapter (context: Context, arr: Vector<big_table_data>) 
     {
 
         @Suppress("NAME_SHADOWING")
-        var convertView:View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_loz,parent,false)
+        val convertView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_loz, parent, false)
 
-        var bnian = themer.get_view(convertView,R.id.item_loz_bnian) as EditText
-        var koma = themer.get_view(convertView,R.id.item_loz_koma) as EditText
-        var begin = themer.get_view(convertView,R.id.item_loz_begin) as EditText
-        var finish = themer.get_view(convertView,R.id.item_loz_end) as EditText
-        var ahoz_bizoaa = themer.get_view(convertView,R.id.item_loz_ahoz_bizoaa) as EditText
-        var isFinished = themer.get_view(convertView,R.id.item_loz_isfinished) as CheckBox
-        var haarot = themer.get_view(convertView,R.id.item_loz_haarot) as EditText
+        val bnian = themer.get_view(convertView, R.id.item_loz_bnian) as EditText
+        val koma = themer.get_view(convertView, R.id.item_loz_koma) as EditText
+        val begin = themer.get_view(convertView, R.id.item_loz_begin) as EditText
+        val finish = themer.get_view(convertView, R.id.item_loz_end) as EditText
+        val ahoz_bizoaa = themer.get_view(convertView, R.id.item_loz_ahoz_bizoaa) as EditText
+        val isFinished = themer.get_view(convertView, R.id.item_loz_isfinished) as CheckBox
+        val haarot = themer.get_view(convertView, R.id.item_loz_haarot) as EditText
 
-        var all_views = Vector<View>()
+        val all_views = Vector<View>()
         all_views.add(bnian)
         all_views.add(koma)
         all_views.add(begin)
@@ -45,7 +45,7 @@ class loz_activity_arrayadapter (context: Context, arr: Vector<big_table_data>) 
 
         val big_item:big_table_data = getItem(position)
 
-        var ahoz_bizoa_str:String = big_item.get_MILESTONEPERCENT()?:0.toString()
+        val ahoz_bizoa_str: String = big_item.get_MILESTONEPERCENT() ?: 0.toString()
 
 
         bnian.hint = (big_item.get_FLAT() ?: "").trim()
@@ -66,10 +66,10 @@ class loz_activity_arrayadapter (context: Context, arr: Vector<big_table_data>) 
         bnian.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || bnian.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = bnian.text.toString()
+            val str = bnian.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.FLAT] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_FLAT(str)
@@ -83,10 +83,10 @@ class loz_activity_arrayadapter (context: Context, arr: Vector<big_table_data>) 
         koma.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || koma.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = koma.text.toString()
+            val str = koma.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.FLOOR] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_FLOOR(str)
@@ -100,10 +100,10 @@ class loz_activity_arrayadapter (context: Context, arr: Vector<big_table_data>) 
         ahoz_bizoaa.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || ahoz_bizoaa.text.isEmpty())
                 return@OnFocusChangeListener
-            var str = ahoz_bizoaa.text.toString()
+            val str = ahoz_bizoaa.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.MILESTONEPERCENT] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_MILESTONEPERCENT(str)

@@ -22,7 +22,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_loz_koma"
@@ -34,7 +35,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_loz_begin"
@@ -46,7 +48,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_loz_end"
@@ -58,7 +61,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_loz_ahoz_bizoaa"
@@ -70,7 +74,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <CheckBox
         android:id="@+id/item_loz_isfinished"
@@ -94,7 +99,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
 
 </LinearLayout>

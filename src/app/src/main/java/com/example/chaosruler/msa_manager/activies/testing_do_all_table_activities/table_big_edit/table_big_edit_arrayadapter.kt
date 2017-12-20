@@ -23,41 +23,41 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
     {
 
         @Suppress("NAME_SHADOWING")
-        var convertView:View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_big_edit,parent,false)
+        val convertView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_big_edit, parent, false)
 
-        var accountnum = themer.get_view(convertView,R.id.item_big_accountnum) as TextView
-        var dataaraeid = themer.get_view(convertView,R.id.item_big_dataaraeid) as TextView
-        var recversion = themer.get_view(convertView,R.id.item_big_recversion) as EditText
-        var recid = themer.get_view(convertView,R.id.item_big_recid) as EditText
-        var projid = themer.get_view(convertView,R.id.item_big_projid) as TextView
-        var itemid = themer.get_view(convertView,R.id.item_big_itemid) as TextView
-        var flat = themer.get_view(convertView,R.id.item_big_flat) as EditText
-        var floor = themer.get_view(convertView,R.id.item_big_floor) as EditText
-        var qty = themer.get_view(convertView,R.id.item_big_qty) as EditText
+        val accountnum = themer.get_view(convertView, R.id.item_big_accountnum) as TextView
+        val dataaraeid = themer.get_view(convertView, R.id.item_big_dataaraeid) as TextView
+        val recversion = themer.get_view(convertView, R.id.item_big_recversion) as EditText
+        val recid = themer.get_view(convertView, R.id.item_big_recid) as EditText
+        val projid = themer.get_view(convertView, R.id.item_big_projid) as TextView
+        val itemid = themer.get_view(convertView, R.id.item_big_itemid) as TextView
+        val flat = themer.get_view(convertView, R.id.item_big_flat) as EditText
+        val floor = themer.get_view(convertView, R.id.item_big_floor) as EditText
+        val qty = themer.get_view(convertView, R.id.item_big_qty) as EditText
         qty.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        var salesprice = themer.get_view(convertView,R.id.item_big_salesprice) as EditText
+        val salesprice = themer.get_view(convertView, R.id.item_big_salesprice) as EditText
         salesprice.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        var oprid = themer.get_view(convertView,R.id.item_big_oprid) as TextView
-        var milestone_percent = themer.get_view(convertView,R.id.item_big_milestone_percent) as EditText
+        val oprid = themer.get_view(convertView, R.id.item_big_oprid) as TextView
+        val milestone_percent = themer.get_view(convertView, R.id.item_big_milestone_percent) as EditText
         milestone_percent.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        var qtyforaccount = themer.get_view(convertView,R.id.item_big_qtyforaccount) as EditText
+        val qtyforaccount = themer.get_view(convertView, R.id.item_big_qtyforaccount) as EditText
         qtyforaccount.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        var percentforaccount = themer.get_view(convertView,R.id.item_big_percentforaccount) as EditText
+        val percentforaccount = themer.get_view(convertView, R.id.item_big_percentforaccount) as EditText
         percentforaccount.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        var totalsum = themer.get_view(convertView,R.id.item_big_totalsum) as EditText
+        val totalsum = themer.get_view(convertView, R.id.item_big_totalsum) as EditText
         totalsum.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        var salprog = themer.get_view(convertView,R.id.item_big_salprog) as EditText
+        val salprog = themer.get_view(convertView, R.id.item_big_salprog) as EditText
         salprog.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        var printorder = themer.get_view(convertView,R.id.item_big_printorder) as EditText
+        val printorder = themer.get_view(convertView, R.id.item_big_printorder) as EditText
         printorder.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        var itemnumber = themer.get_view(convertView,R.id.item_big_itemnumber) as EditText
+        val itemnumber = themer.get_view(convertView, R.id.item_big_itemnumber) as EditText
         itemnumber.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        var komanum = themer.get_view(convertView,R.id.item_big_komanum) as EditText
+        val komanum = themer.get_view(convertView, R.id.item_big_komanum) as EditText
         komanum.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        var diranum = themer.get_view(convertView,R.id.item_big_diranum) as EditText
+        val diranum = themer.get_view(convertView, R.id.item_big_diranum) as EditText
         diranum.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
 
-        var all_views = Vector<View>()
+        val all_views = Vector<View>()
         all_views.addElement(accountnum)
         all_views.addElement(dataaraeid)
         all_views.addElement(recversion)
@@ -111,10 +111,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         recversion.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || recversion.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = recversion.text.toString()
+            val str = recversion.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.RECVERSION] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_RECVERSION(str)
@@ -129,10 +129,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         recid.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || recid.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = recid.text.toString()
+            val str = recid.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.RECID] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_RECID(str)
@@ -146,10 +146,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         flat.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || flat.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = flat.text.toString()
+            val str = flat.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.FLAT] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_FLAT(str)
@@ -163,10 +163,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         floor.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (hasFocus || floor.text.isEmpty())
                 return@OnFocusChangeListener
-            var str = floor.text.toString()
+            val str = floor.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.FLOOR] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_FLOOR(str)
@@ -181,10 +181,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         qty.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || qty.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = qty.text.toString()
+            val str = qty.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.QTY] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_QTY(str)
@@ -198,10 +198,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         salesprice.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || salesprice.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = salesprice.text.toString()
+            val str = salesprice.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.SALESPRICE] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_SALESPRICE(str)
@@ -217,10 +217,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         milestone_percent.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || milestone_percent.text.isEmpty())
                 return@OnFocusChangeListener
-            var str = milestone_percent.text.toString()
+            val str = milestone_percent.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.MILESTONEPERCENT] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_MILESTONEPERCENT(str)
@@ -234,10 +234,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         qtyforaccount.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || qtyforaccount.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = qtyforaccount.text.toString()
+            val str = qtyforaccount.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.QTYFORACCOUNT] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_QTYFORACCOUNT(str)
@@ -251,10 +251,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         percentforaccount.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || percentforaccount.text.isEmpty())
                 return@OnFocusChangeListener
-            var str = percentforaccount.text.toString()
+            val str = percentforaccount.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.PERCENTFORACCOUNT] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_PERCENTFORACCOUNT(str)
@@ -268,10 +268,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         totalsum.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || qtyforaccount.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = totalsum.text.toString()
+            val str = totalsum.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.TOTALSUM] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_TOTALSUM(str)
@@ -286,10 +286,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         salprog.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || salprog.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = salprog.text.toString()
+            val str = salprog.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.SALPROG] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_SALPROG(str)
@@ -303,10 +303,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         printorder.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || printorder.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = printorder.text.toString()
+            val str = printorder.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.PRINTORDER] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_PRINTORDER(str)
@@ -320,10 +320,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         itemnumber.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || itemnumber.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = itemnumber.text.toString()
+            val str = itemnumber.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.ITEMNUMBER] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_ITEMNUMBER(str)
@@ -337,10 +337,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         komanum.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || komanum.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = komanum.text.toString()
+            val str = komanum.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.KOMANUM] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_KOMANUM(str)
@@ -354,10 +354,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         diranum.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || diranum.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = diranum.text.toString()
+            val str = diranum.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.DIRANUM] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_DIRANUM(str)

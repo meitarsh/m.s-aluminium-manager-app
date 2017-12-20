@@ -9,7 +9,7 @@ import java.util.*
 import kotlin.collections.HashMap
 
 
-class user_database_helper(private val con: Context) : local_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.resources.getInteger(R.integer.USER_DB_VERSION),con.getString(R.string.USER_TABLE_NAME) ) {
+class user_database_helper(con: Context) : local_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.resources.getInteger(R.integer.USER_DB_VERSION), con.getString(R.string.USER_TABLE_NAME)) {
     private val USERS_ID: String = con.getString(R.string.USER_COL_ID)
     private val PASSWORD: String = con.getString(R.string.USER_COL_PASSWORD)
 
@@ -19,7 +19,7 @@ class user_database_helper(private val con: Context) : local_SQL_Helper(con, con
      */
     init
     {
-        var vector:Vector<String> = Vector()
+        val vector: Vector<String> = Vector()
         vector.add(USERS_ID)
         vector.add(PASSWORD)
         init_vector_of_variables(vector)
@@ -33,7 +33,7 @@ class user_database_helper(private val con: Context) : local_SQL_Helper(con, con
      */
     override fun onCreate(db: SQLiteDatabase) {
 
-        var map:HashMap<String,String> = HashMap()
+        val map: HashMap<String, String> = HashMap()
         map[USERS_ID] = "text primary key"
         map[PASSWORD] = "text"
         createDB(db,map)
@@ -86,9 +86,9 @@ class user_database_helper(private val con: Context) : local_SQL_Helper(con, con
     {
         if ( username.isEmpty() || password.isEmpty())
             return
-        var everything_to_add:Vector<HashMap<String,String>> = Vector()
+        val everything_to_add: Vector<HashMap<String, String>> = Vector()
 
-        var data: HashMap<String,String> = HashMap()
+        val data: HashMap<String, String> = HashMap()
         data[USERS_ID] = username
         data[PASSWORD] = password
         everything_to_add.addElement(data)
@@ -103,7 +103,7 @@ class user_database_helper(private val con: Context) : local_SQL_Helper(con, con
         if ( username.isEmpty() || password.isEmpty())
             return false
 
-        var change_to:HashMap<String,String> = HashMap()
+        val change_to: HashMap<String, String> = HashMap()
         change_to[PASSWORD] = password
         return update_data(USERS_ID, arrayOf(username),change_to)
     }
@@ -127,8 +127,8 @@ class user_database_helper(private val con: Context) : local_SQL_Helper(con, con
      */
     fun get_entire_db():Vector<User> // subroutine to get the entire database as an iterateable vector
     {
-        var users:Vector<User> = Vector()
-        var vector:Vector<HashMap<String,String>> = get_db()
+        val users: Vector<User> = Vector()
+        val vector: Vector<HashMap<String, String>> = get_db()
         vector
                 .map { User(it[USERS_ID].toString(), it[PASSWORD].toString()) }
                 .forEach { users.addElement(it) }
@@ -144,7 +144,7 @@ class user_database_helper(private val con: Context) : local_SQL_Helper(con, con
     {
         if ( username.isEmpty())
             return null
-        var input_map = HashMap<String,String>()
+        val input_map = HashMap<String, String>()
         input_map[USERS_ID] = "'$username'"
         val vector = get_rows(input_map)
         if(vector.size > 0)

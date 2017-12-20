@@ -35,7 +35,9 @@ abstract class AppCompatPreferenceActivity : PreferenceActivity() {
 
     val supportActionBar: ActionBar?
         get() = delegate.supportActionBar
-    /*
+
+    @Suppress("unused")
+/*
            override activity to initate perference activity
         */
     fun setSupportActionBar(toolbar: Toolbar?) {

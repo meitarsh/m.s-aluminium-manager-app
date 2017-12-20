@@ -33,7 +33,8 @@ class project_data(private var projectID:String?,private var project_name:String
         */
     fun get_USERNAME():String? = this.USERNAME
 
-    /*
+    @Suppress("unused")
+/*
       set projid
    */
     fun set_projid(new_projid:String)
@@ -47,14 +48,18 @@ class project_data(private var projectID:String?,private var project_name:String
     {
         this.project_name = new_projname.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
          set dataraaid
       */
     fun set_dataareaid(new_dataareaid:String)
     {
         this.DATAAREAID = new_dataareaid.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
          set username
       */
     fun set_username(new_username:String)

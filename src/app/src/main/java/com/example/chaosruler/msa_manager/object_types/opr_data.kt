@@ -33,7 +33,8 @@ class opr_data(private var ID:String?,private var NAME:String?,private var DATAA
         */
     fun get_USERNAME():String? = this.USERNAME
 
-    /*
+    @Suppress("unused")
+/*
      set oprid
   */
     fun set_oprid(itemid:String)
@@ -47,14 +48,18 @@ class opr_data(private var ID:String?,private var NAME:String?,private var DATAA
     {
         this.NAME = name.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
          set dataraaid
       */
     fun set_dataareaid(new_dataareaid:String)
     {
         this.DATAAREAID = new_dataareaid.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
          set username
       */
     fun set_username(new_username:String)

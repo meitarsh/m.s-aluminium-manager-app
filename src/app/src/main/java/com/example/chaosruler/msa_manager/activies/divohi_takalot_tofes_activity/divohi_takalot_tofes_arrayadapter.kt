@@ -1,10 +1,12 @@
 package com.example.chaosruler.msa_manager.activies.divohi_takalot_tofes_activity
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.object_types.inventory_data
@@ -13,33 +15,31 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
 
-/**
- * Created by chaosruler on 12/10/17.
- */
+
 class divohi_takalot_tofes_arrayadapter(private var context: Activity, arr: Vector<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.item_divohi_takalot_tofes,arr.toTypedArray())
 {
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View
-    {
+    @SuppressLint("SetTextI18n")
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         @Suppress("NAME_SHADOWING")
-        var convertView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_divohi_takalot_tofes,parent,false)
+        val convertView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_divohi_takalot_tofes, parent, false)
 
-        var mispar_parit = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_mispar_parit) as TextView
-        var shem_parit = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_shem_parit) as TextView
-        var mispar_project = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_mispar_project) as TextView
-        var shem_project = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_shem_project) as TextView
-        var kamot = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_kamot) as TextView
-        var sog_takala = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_sog_takala) as TextView
-        var koma = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_koma) as TextView
-        var bnian = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_bnian) as TextView
-        var dira = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_dira) as TextView
-        var tiaor_takala = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_tiaaor_takala) as TextView
-        var peolot_ltikon = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_peolot_ltikon) as TextView
-        var peolot_monoot = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_peolot_monoot) as TextView
-        var tgovat_mnaal = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_tgovat_mnaal) as TextView
-        var alot_takala = themer.get_view(convertView,R.id.item_divohi_takalot_tofes_alot_takala) as TextView
+        val mispar_parit = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_mispar_parit) as TextView
+        val shem_parit = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_shem_parit) as TextView
+        val mispar_project = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_mispar_project) as TextView
+        val shem_project = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_shem_project) as TextView
+        val kamot = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_kamot) as TextView
+        val sog_takala = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_sog_takala) as TextView
+        val koma = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_koma) as TextView
+        val bnian = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_bnian) as TextView
+        val dira = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_dira) as TextView
+        val tiaor_takala = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_tiaaor_takala) as TextView
+        val peolot_ltikon = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_peolot_ltikon) as TextView
+        val peolot_monoot = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_peolot_monoot) as TextView
+        val tgovat_mnaal = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_tgovat_mnaal) as TextView
+        val alot_takala = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_alot_takala) as TextView
 
-        var all_txtviews = Vector<View>()
+        val all_txtviews = Vector<View>()
         all_txtviews.add(mispar_parit)
         all_txtviews.add(shem_parit)
         all_txtviews.add(mispar_project)

@@ -22,14 +22,14 @@ class table_peolot_arrayadapter(context: Context, arr: Vector<opr_data>) : Array
     {
 
         @Suppress("NAME_SHADOWING")
-        var convertView:View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_opr,parent,false)
+        val convertView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_opr, parent, false)
 
         val peolot_data: opr_data = getItem(position)
-        var all_views = Vector<View>()
+        val all_views = Vector<View>()
 
-        var id = themer.get_view(convertView,R.id.item_opr_id) as TextView
-        var dataaraeid = themer.get_view(convertView,R.id.item_opr_dataaraeid) as TextView
-        var name = themer.get_view(convertView,R.id.item_opr_name) as EditText
+        val id = themer.get_view(convertView, R.id.item_opr_id) as TextView
+        val dataaraeid = themer.get_view(convertView, R.id.item_opr_dataaraeid) as TextView
+        val name = themer.get_view(convertView, R.id.item_opr_name) as EditText
 
 
 
@@ -47,10 +47,10 @@ class table_peolot_arrayadapter(context: Context, arr: Vector<opr_data>) : Array
         name.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || name.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = name.text.toString()
+            val str = name.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_opr_table_helper.NAME] = str
                 remote_opr_table_helper.push_update(peolot_data, update_value, context)
                 peolot_data.set_oprname(str)

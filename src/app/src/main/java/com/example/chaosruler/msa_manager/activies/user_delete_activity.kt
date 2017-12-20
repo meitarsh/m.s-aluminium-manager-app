@@ -10,9 +10,9 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.User
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 import com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity
+import com.example.chaosruler.msa_manager.object_types.User
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_user_delete_activity.*
 
@@ -73,7 +73,7 @@ class user_delete_activity : Activity() {
 
         // button to activate the changing password mechanism and subroutine, in actual there's a hidden change password button and password confirm field
         // after pressing this button those fields become visible which allows the user to actually change the password
-        delete_change_password.setOnClickListener(View.OnClickListener {
+        delete_change_password.setOnClickListener({
             delete_password1_edittext.isEnabled = true
             delete_password2_edittext.visibility = View.VISIBLE
             delete_password2_textview.visibility = View.VISIBLE
@@ -82,23 +82,27 @@ class user_delete_activity : Activity() {
         // part 2 of the subroutine to change the password - the actual job
         delete_send_changes_btn.setOnClickListener(View.OnClickListener {
             val new_pass = delete_password1_edittext.text.toString() // grabs the input password
-            if (new_pass.isEmpty())
-            // checks validity
-            {
-                Toast.makeText(this@user_delete_activity, resources.getString(R.string.delete_empty_pw), Toast.LENGTH_SHORT).show() // invalid password was confirmed.
-                reset_password_fields()
-                return@OnClickListener
-            } else if (new_pass != delete_password2_edittext.text.toString())
-            // password field and password confirm field didn't match, user mistyped the password in this case
-            {
-                Toast.makeText(this@user_delete_activity, resources.getString(R.string.delete_mismatch), Toast.LENGTH_SHORT).show()
-                reset_password_fields()
-                return@OnClickListener
-            } else {
-                Toast.makeText(this@user_delete_activity, resources.getString(R.string.delete_confirmed), Toast.LENGTH_SHORT).show() // confirmed match, this is when action is sent and confirmed
-                db.update_user( (delete_spinner.selectedItem as User).get__username(), new_pass)
-                reset_password_fields()
-                return@OnClickListener
+            when {
+                new_pass.isEmpty()
+                    // checks validity
+                -> {
+                    Toast.makeText(this@user_delete_activity, resources.getString(R.string.delete_empty_pw), Toast.LENGTH_SHORT).show() // invalid password was confirmed.
+                    reset_password_fields()
+                    return@OnClickListener
+                }
+                new_pass != delete_password2_edittext.text.toString()
+                    // password field and password confirm field didn't match, user mistyped the password in this case
+                -> {
+                    Toast.makeText(this@user_delete_activity, resources.getString(R.string.delete_mismatch), Toast.LENGTH_SHORT).show()
+                    reset_password_fields()
+                    return@OnClickListener
+                }
+                else -> {
+                    Toast.makeText(this@user_delete_activity, resources.getString(R.string.delete_confirmed), Toast.LENGTH_SHORT).show() // confirmed match, this is when action is sent and confirmed
+                    db.update_user((delete_spinner.selectedItem as User).get__username(), new_pass)
+                    reset_password_fields()
+                    return@OnClickListener
+                }
             }
         })
     }
@@ -119,7 +123,7 @@ class user_delete_activity : Activity() {
             */
     override fun onBackPressed() // overridden to make sure that pressing back right now will return us to the login activity, and won't exit the app, also reloading the login activity will reload the spinner on the login activity
     {
-        val intent:Intent = Intent(this@user_delete_activity, LoginActivity::class.java)
+        val intent = Intent(this@user_delete_activity, LoginActivity::class.java)
         startActivity(intent)
         super.onBackPressed()
     }
@@ -144,9 +148,7 @@ class user_delete_activity : Activity() {
                 onBackPressed()
             }
             R.id.settings ->
-            {
                 startActivity(Intent(this@user_delete_activity, SettingsActivity::class.java))
-            }
             else ->
             {
                 return false

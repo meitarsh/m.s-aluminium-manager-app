@@ -2,9 +2,9 @@
 
     <item
         android:id="@+id/return_to_login"
-        android:title="@string/return_to_login"></item>
+        android:title="@string/return_to_login" />
 
     <item
         android:id="@+id/settings"
-        android:title="@string/settings_str"></item>
+        android:title="@string/settings_str" />
 </menu>

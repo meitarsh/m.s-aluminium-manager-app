@@ -2,7 +2,6 @@ package com.example.chaosruler.msa_manager.abstraction_classes
 
 import android.content.Context
 
-
 abstract class remote_helper
 {
 
@@ -10,7 +9,7 @@ abstract class remote_helper
         /*
         to init variables
      */
-        public abstract fun extract_variables(context: Context)
+        abstract fun extract_variables(context: Context)
         /*
         to make a type map for table
      */

@@ -34,7 +34,8 @@ class inventory_data(private var ID:String?,private var NAME:String?,private var
         */
     fun get_USERNAME():String? = this.USERNAME
 
-    /*
+    @Suppress("unused")
+/*
          set itemid
       */
     fun set_itemid(itemid:String)
@@ -48,14 +49,18 @@ class inventory_data(private var ID:String?,private var NAME:String?,private var
     {
         this.NAME = name.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
          set dataraaid
       */
     fun set_dataareaid(new_dataareaid:String)
     {
         this.DATAAREAID = new_dataareaid.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
          set username
       */
     fun set_username(new_username:String)

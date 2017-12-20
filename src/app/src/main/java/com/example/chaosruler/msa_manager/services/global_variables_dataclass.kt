@@ -10,22 +10,23 @@ class global_variables_dataclass
 {
     companion object
     {
-        public var isLocal:Boolean = true
-        public var GUI_MODE:Boolean = false
-        public var DB_BIG:local_big_table_helper? = null
-        public var projid:String? = null
+        var isLocal: Boolean = true
+        var GUI_MODE: Boolean = false
+        var DB_BIG: local_big_table_helper? = null
+        var projid: String? = null
         @SuppressLint("StaticFieldLeak")
-        public var DB_project:local_projects_table_helper? = null
+        var DB_project: local_projects_table_helper? = null
         @SuppressLint("StaticFieldLeak")
-        public var DB_OPR:local_OPR_table_helper? = null
+        var DB_OPR: local_OPR_table_helper? = null
         @SuppressLint("StaticFieldLeak")
-        public var DB_VENDOR:local_vendor_table_helper? = null
+        var DB_VENDOR: local_vendor_table_helper? = null
         @SuppressLint("StaticFieldLeak")
-        public var DB_INVENTORY:local_inventory_table_helper? = null
+        var DB_INVENTORY: local_inventory_table_helper? = null
+
         /*
             init databases for all the application
          */
-        public fun init_dbs(context: Context)
+        fun init_dbs(context: Context)
         {
             isLocal = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.local_or_not),true)
             GUI_MODE = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.gui_mode_key),false)

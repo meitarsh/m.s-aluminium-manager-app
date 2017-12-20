@@ -20,7 +20,7 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
  */
     init
     {
-        var vector: Vector<String> = Vector()
+        val vector: Vector<String> = Vector()
         vector.add(ID)
         vector.add(COMMAND)
         vector.add(USER)
@@ -32,7 +32,7 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
         */
     override fun onCreate(db: SQLiteDatabase)
     {
-        var map:HashMap<String,String> = HashMap()
+        val map: HashMap<String, String> = HashMap()
         map[ID] = "INTEGER primary key AUTOINCREMENT"
         map[COMMAND] = "text"
         map[USER] = "text"
@@ -56,12 +56,13 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
 
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
         check if command exists
      */
     fun check_command_exists(command: cache_command):Boolean
     {
-            var input_map = HashMap<String,String>()
+        val input_map = HashMap<String, String>()
             input_map[COMMAND] = "'${command.__command}'"
             input_map[USER] = "'${command.__user}'"
             return get_rows(input_map).size>0
@@ -74,7 +75,7 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
      */
     fun get_id_of_command(command: cache_command):Long
     {
-        var input_map = HashMap<String,String>()
+        val input_map = HashMap<String, String>()
         input_map[COMMAND] = "'${command.__command}'"
         input_map[USER] = "'${command.__user}'"
         if(get_rows(input_map).size <= 0)
@@ -82,14 +83,15 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
         return ((get_rows(input_map).firstElement()[ID]?:"-1").trim()).toLong()
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
         inserts a new command to db
      */
     fun insert_command(command: cache_command)
     {
-        var everything_to_add:Vector<HashMap<String,String>> = Vector()
+        val everything_to_add: Vector<HashMap<String, String>> = Vector()
 
-        var data: HashMap<String,String> = HashMap()
+        val data: HashMap<String, String> = HashMap()
         data[COMMAND] = command.__command
         data[USER] = command.__user
         everything_to_add.addElement(data)
@@ -108,13 +110,11 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
     */
     fun get_entire_db():Vector<cache_command> // subroutine to get the entire database as an iterateable vector
     {
-        var commands:Vector<cache_command> = Vector()
-        var vector:Vector<HashMap<String,String>> = get_db()
-        for(item in vector)
-        {
-            var command: cache_command = cache_command(item!![COMMAND].toString(), item[USER].toString())
-            commands.addElement(command)
-        }
+        val commands: Vector<cache_command> = Vector()
+        val vector: Vector<HashMap<String, String>> = get_db()
+        vector
+                .map { cache_command(it!![COMMAND].toString(), it[USER].toString()) }
+                .forEach { commands.addElement(it) }
         return commands
     }
 
@@ -123,9 +123,9 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
      */
     fun get_db_string():String
     {
-        var vector = get_entire_db()
-        var str: String = ""
-        var i: Int = 0
+        val vector = get_entire_db()
+        var str = ""
+        var i = 0
         for (item in vector)
         {
             str += "row ${++i}: "

@@ -33,7 +33,8 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
         */
     fun get_USERNAME():String? = this.USERNAME
 
-    /*
+    @Suppress("unused")
+/*
       set account num
    */
     fun set_accountnum(accountnum:String)
@@ -47,14 +48,18 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
     {
         this.NAME = name.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
        set dataaraid
     */
     fun set_dataareaid(new_dataareaid:String)
     {
         this.DATAAREAID = new_dataareaid.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
        set username
     */
     fun set_username(new_username:String)

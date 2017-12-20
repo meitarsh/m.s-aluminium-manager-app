@@ -3,14 +3,14 @@
 
     <item
         android:id="@+id/login_switch"
-        android:title="@string/entry1"></item>
+        android:title="@string/entry1" />
 
 
     <item
         android:id="@+id/manage_users_db"
-        android:title="@string/manage_users_db"></item>
+        android:title="@string/manage_users_db" />
 
     <item
         android:id="@+id/settings"
-        android:title="@string/settings_str"></item>
+        android:title="@string/settings_str" />
 </menu>

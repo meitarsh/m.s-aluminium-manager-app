@@ -5,10 +5,10 @@ interface table_dataclass {
     /*
         to identify it
      */
-    override public fun toString():String
+    override fun toString(): String
 
     /*
         to copy it
      */
-    public fun copy(): table_dataclass
+    fun copy(): table_dataclass
 }

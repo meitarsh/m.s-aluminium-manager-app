@@ -23,17 +23,33 @@ class themer {
          */
         fun style(context: Context):Int
         {
-            var isDark:String
-            var preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            val isDark: String
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
             isDark = preferences.getString(context.getString(R.string.style),"Light")
             return getResourceId(context, isDark, "style", context.packageName)
         }
-        /*
+
+        @Suppress("unused")
+/*
                       gets a new edit text
                */
-        public fun get_edittext(context: Context): EditText
+        fun get_edittext(context: Context): EditText
         {
-            var box = EditText(context)
+            val box = EditText(context)
+            box.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT)
+            (box.layoutParams as TableRow.LayoutParams).weight = 1.toFloat()
+            box.background = context.getDrawable(R.drawable.cell_shape)
+            box.gravity = Gravity.CENTER
+            return box
+        }
+
+        @Suppress("unused")
+/*
+                     gets textview
+              */
+        fun get_textview(context: Context): TextView
+        {
+            val box = TextView(context)
             box.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT)
             (box.layoutParams as TableRow.LayoutParams).weight = 1.toFloat()
             box.background = context.getDrawable(R.drawable.cell_shape)
@@ -42,21 +58,9 @@ class themer {
         }
 
         /*
-                     gets textview
-              */
-        public fun get_textview(context: Context): TextView
-        {
-            var box = TextView(context)
-            box.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT)
-            (box.layoutParams as TableRow.LayoutParams).weight = 1.toFloat()
-            box.background = context.getDrawable(R.drawable.cell_shape)
-            box.gravity = Gravity.CENTER
-            return box
-        }
-        /*
                             centers all views
                      */
-        public fun center_all_views(vector: Vector<View>)
+        fun center_all_views(vector: Vector<View>)
         {
             for(item in vector)
             {
@@ -64,12 +68,13 @@ class themer {
             }
         }
 
-        /*
+        @Suppress("unused")
+/*
                    gets a new checkbox
             */
-        public fun get_checkbox(context: Context): CheckBox
+        fun get_checkbox(context: Context): CheckBox
         {
-            var box = CheckBox(context)
+            val box = CheckBox(context)
             box.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.WRAP_CONTENT)
             (box.layoutParams as TableRow.LayoutParams).weight = 1.toFloat()
             box.background = context.getDrawable(R.drawable.cell_shape)
@@ -77,12 +82,13 @@ class themer {
             return box
         }
 
-        /*
+        @Suppress("unused")
+/*
                    gets box
             */
-        public fun get_button(context: Context): Button
+        fun get_button(context: Context): Button
         {
-            var box = Button(context)
+            val box = Button(context)
             box.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.WRAP_CONTENT)
             (box.layoutParams as TableRow.LayoutParams).weight = 1.toFloat()
             box.background = context.getDrawable(R.drawable.cell_shape)
@@ -97,17 +103,21 @@ class themer {
             val inputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
-        /*
+
+        @Suppress("MemberVisibilityCanPrivate")
+/*
         gets resourceid from context
         */
-        public fun getResourceId(context: Context, pVariableName: String, pResourcename: String, pPackageName: String): Int =
+        fun getResourceId(context: Context, pVariableName: String, pResourcename: String, pPackageName: String): Int =
                 context.resources.getIdentifier(pVariableName, pResourcename, pPackageName)
 
         /*
             gets a resource from context, without sending context
          */
-        public fun get_view(convertView: View,id:Int) : View = convertView.findViewById(id) // grabs the correpsonding view by id from layout
+        fun get_view(convertView: View, id: Int): View = convertView.findViewById(id) // grabs the correpsonding view by id from layout
 
+        @Suppress("unused")
+        fun <T : View> Activity.find(id: Int): T = this.findViewById(id) as T
 
     } // companion object
 }

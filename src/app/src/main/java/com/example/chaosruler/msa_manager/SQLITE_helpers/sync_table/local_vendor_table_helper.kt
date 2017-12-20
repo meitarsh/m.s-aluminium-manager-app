@@ -6,10 +6,10 @@ import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.vendor_data
-import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.object_types.big_table_data
+import com.example.chaosruler.msa_manager.object_types.vendor_data
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
@@ -26,7 +26,7 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
     SQL class
  */
     init {
-        var vector: Vector<String> = Vector()
+        val vector: Vector<String> = Vector()
         vector.add(ID)
         vector.add(NAME)
         vector.add(DATAARAEID)
@@ -41,7 +41,7 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
            on what the table schema is for creation
         */
     override fun onCreate(db: SQLiteDatabase) {
-        var map: HashMap<String, String> = HashMap()
+        val map: HashMap<String, String> = HashMap()
         map[ID] = "text primary key"
         map[NAME] = "text"
         map[USER] = "text"
@@ -57,21 +57,22 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
     {
         if(!global_variables_dataclass.isLocal)
             return
-        var server_vec = server_data_to_vector()
+        val server_vec = server_data_to_vector()
         for(item in server_vec)
         {
             add_vendor(item)
         }
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
         converts DB to vector of vendor
      */
     fun get_local_DB():Vector<vendor_data>
     {
-        var vector:Vector<vendor_data> = Vector()
+        val vector: Vector<vendor_data> = Vector()
 
-        var all_db:Vector<HashMap<String,String>> = get_db()
+        val all_db: Vector<HashMap<String, String>> = get_db()
         all_db
                 .filter {
                     @Suppress("USELESS_ELVIS_RIGHT_IS_NULL")
@@ -85,10 +86,10 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         */
     fun get_local_DB_by_projname(projid:String): Vector<vendor_data>
     {
-        var vector: Vector<vendor_data> = Vector()
+        val vector: Vector<vendor_data> = Vector()
 
-        var all_db: Vector<big_table_data> = global_variables_dataclass.DB_BIG!!.get_local_DB()
-        var vendordb : Vector<vendor_data> = global_variables_dataclass.DB_VENDOR!!.get_local_DB()
+        val all_db: Vector<big_table_data> = global_variables_dataclass.DB_BIG!!.get_local_DB()
+        val vendordb: Vector<vendor_data> = global_variables_dataclass.DB_VENDOR!!.get_local_DB()
 
 
         for(vendor in vendordb)
@@ -104,16 +105,17 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         return vector
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
            subroutine to convert server data to vector of vendor
         */
     fun server_data_to_vector():Vector<vendor_data>
     {
 
-        var server_data: Vector<java.util.HashMap<String, String>> =
+        val server_data: Vector<java.util.HashMap<String, String>> =
         if(BuildConfig.DEBUG)
         {
-            var typemap:HashMap<String,String> = remote_vendors_table_helper.define_type_map()
+            val typemap: HashMap<String, String> = remote_vendors_table_helper.define_type_map()
             remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS),typemap,context.getString(R.string.VENDORS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
         }
         else
@@ -121,7 +123,7 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
             remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS))
         }
 
-        var result_vector:Vector<vendor_data> = Vector()
+        val result_vector: Vector<vendor_data> = Vector()
         server_data.mapTo(result_vector) {
             vendor_data((it[remote_vendors_table_helper.ID]?: "").trim(),
                     (it[remote_vendors_table_helper.NAME]?: "").trim(), (it[remote_vendors_table_helper.DATAAREAID]?: "").trim(),
@@ -136,10 +138,10 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
     fun server_data_to_vector_by_projname(projid: String): Vector<vendor_data>
     {
 
-        var server_data_big: Vector<java.util.HashMap<String, String>> =
+        val server_data_big: Vector<java.util.HashMap<String, String>> =
                 if(BuildConfig.DEBUG)
                 {
-                    var typemap:HashMap<String,String> = remote_big_table_helper.define_type_map()
+                    val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
                     remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
                 }
                 else
@@ -147,17 +149,17 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
                     remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
                 }
 
-        var server_data_vendor: Vector<java.util.HashMap<String, String>> =
+        val server_data_vendor: Vector<java.util.HashMap<String, String>> =
                 if(BuildConfig.DEBUG)
                 {
-                    var typemap:HashMap<String,String> = remote_vendors_table_helper.define_type_map()
+                    val typemap: HashMap<String, String> = remote_vendors_table_helper.define_type_map()
                     remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS),typemap,context.getString(R.string.VENDORS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
                 }
                 else
                 {
                     remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS))
                 }
-        var result_vector: Vector<vendor_data> = Vector()
+        val result_vector: Vector<vendor_data> = Vector()
         for(vendor in server_data_vendor)
         {
             for (big in server_data_big)
@@ -175,14 +177,15 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         return result_vector
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
            subroutine that is in charge of getting the vendor class
            by query
         */
     fun get_vendor_by_vendor(vendor_data: vendor_data) // subroutine to get a vendor object
             : vendor_data?
     {
-        var input_map = HashMap<String,String>()
+        val input_map = HashMap<String, String>()
         input_map[ID] = "'${vendor_data.get_accountnum()}'"
         val vector = get_rows(input_map)
         if(vector.size > 0)
@@ -218,7 +221,8 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
             insert_vendor(vendor_data)
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
           checks if vendor exists, query is not that smart, gets an ENTIRE table and than checks
           if the vendor is there
 
@@ -237,9 +241,9 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
     private fun insert_vendor(vendor_data: vendor_data):Boolean // subroutine to insert a vendor to the database
     {
 
-        var everything_to_add:Vector<HashMap<String,String>> = Vector()
+        val everything_to_add: Vector<HashMap<String, String>> = Vector()
 
-        var data: HashMap<String,String> = HashMap()
+        val data: HashMap<String, String> = HashMap()
         data[ID] = (vendor_data.get_accountnum() ?: "").trim()
         data[NAME] = (vendor_data.get_accountname() ?: "").trim()
         data[DATAARAEID] = (vendor_data.get_DATAREAID() ?: "").trim()
@@ -248,21 +252,23 @@ class local_vendor_table_helper(private var context: Context) : local_SQL_Helper
         return add_data(everything_to_add)
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
       subroutine in charge of feeding information and database information to
       SQL abstraction on update queries
    */
     fun update_vendor(from:vendor_data,to:vendor_data) // subroutine to update data of a vendor that exists on the database
             : Boolean {
 
-        var change_to:HashMap<String,String> = HashMap()
+        val change_to: HashMap<String, String> = HashMap()
         change_to[NAME] = (to.get_accountname() ?: "").trim()
         change_to[DATAARAEID] = (to.get_DATAREAID() ?: "").trim()
         change_to[USER] = (to.get_USERNAME() ?: "").trim()
         return update_data(ID, arrayOf(from.get_accountnum()!!),change_to)
     }
 
-    /*
+    @Suppress("unused")
+/*
         subroutine in charge of feeding information and database information to
         SQL abstraction on delete queries
      */

@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.chaosruler.msa_manager.activies.kablan_mforat"
-    android:orientation="vertical"
-    android:focusableInTouchMode="true"
     android:clickable="true"
     android:focusable="true"
-    >
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context="com.example.chaosruler.msa_manager.activies.kablan_mforat">
 
     <!--hoza chooser -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layoutDirection="rtl"
-        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
         android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
-        android:focusableInTouchMode="true"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
         android:clickable="true"
         android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
         >
 
         <TextView
@@ -43,10 +41,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layoutDirection="rtl"
-        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
         android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
         >
         <TextView
             android:layout_width="0dp"
@@ -69,10 +67,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layoutDirection="rtl"
-        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
         android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
         >
         <TextView
             android:layout_width="0dp"
@@ -94,10 +92,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layoutDirection="rtl"
-        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
         android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
         >
         <TextView
             android:layout_width="0dp"
@@ -119,10 +117,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layoutDirection="rtl"
-        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
         android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
         >
         <TextView
             android:layout_width="0dp"
@@ -135,8 +133,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="right"
-            android:inputType="numberSigned" />
+            android:gravity="end"
+            android:inputType="numberSigned"
+            tools:ignore="LabelFor" />
 
     </LinearLayout>
 
@@ -144,10 +143,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layoutDirection="rtl"
-        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
         android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
         >
 
         <TextView
@@ -161,8 +160,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="right"
-            android:inputType="numberSigned" />
+            android:gravity="end"
+            android:inputType="numberSigned"
+            tools:ignore="LabelFor" />
 
     </LinearLayout>
 
@@ -170,10 +170,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layoutDirection="rtl"
-        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
         android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
         >
 
         <TextView
@@ -187,8 +187,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="right"
-            android:inputType="numberSigned" />
+            android:gravity="end"
+            android:inputType="numberSigned"
+            tools:ignore="LabelFor" />
 
     </LinearLayout>
 
@@ -196,10 +197,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layoutDirection="rtl"
-        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
         android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
         >
         <TextView
             android:layout_width="0dp"

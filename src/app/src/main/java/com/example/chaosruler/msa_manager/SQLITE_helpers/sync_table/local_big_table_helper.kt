@@ -5,9 +5,9 @@ import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
-import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
@@ -43,7 +43,7 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     SQL class
  */
     init {
-        var vector: Vector<String> = Vector()
+        val vector: Vector<String> = Vector()
         vector.add(ACCOUNT_NUM)
         vector.add(DATAARAEID)
         vector.add(RECVERSION)
@@ -74,7 +74,7 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         */
     override fun onCreate(db: SQLiteDatabase)
     {
-        var map: HashMap<String, String> = HashMap()
+        val map: HashMap<String, String> = HashMap()
         map[ACCOUNT_NUM] = "text"
         map[DATAARAEID] = "text"
         map[RECVERSION] = "text"
@@ -95,7 +95,7 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         map[ITEMNUMBER] = "real"
         map[KOMANUM] = "real"
         map[DIRANUM] = "real"
-        var foreign: HashMap<String, String> = HashMap()
+        val foreign: HashMap<String, String> = HashMap()
         foreign[ACCOUNT_NUM] = context.getString(R.string.LOCAL_VENDORS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_VENDORS_COLUMN_ID) + ")"
         foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID) + ")"
         foreign[OPR_ID] = context.getString(R.string.LOCAL_OPR_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_OPR_COLUMN_ID) + ")"
@@ -110,7 +110,7 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     {
         if(!global_variables_dataclass.isLocal)
             return
-        var server_vec = server_data_to_vector()
+        val server_vec = server_data_to_vector()
         for (item in server_vec)
         {
             add_big(item)
@@ -122,9 +122,9 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
      */
     fun get_local_DB(): Vector<big_table_data>
     {
-        var vector: Vector<big_table_data> = Vector()
+        val vector: Vector<big_table_data> = Vector()
 
-        var all_db: Vector<java.util.HashMap<String, String>> = get_db()
+        val all_db: Vector<java.util.HashMap<String, String>> = get_db()
         all_db
                 .filter { it[USER] != null && it[USER]?:"" == remote_SQL_Helper.getusername() }
                 .map {
@@ -149,9 +149,9 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         */
     fun get_local_DB_by_projname(projid:String): Vector<big_table_data>
     {
-        var vector: Vector<big_table_data> = Vector()
+        val vector: Vector<big_table_data> = Vector()
 
-        var all_db: Vector<java.util.HashMap<String, String>> = get_db()
+        val all_db: Vector<java.util.HashMap<String, String>> = get_db()
         all_db
                 .filter {
                     @Suppress("USELESS_ELVIS_RIGHT_IS_NULL")
@@ -174,23 +174,24 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         return vector
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
            subroutine to convert server data to vector of big
         */
     fun server_data_to_vector(): Vector<big_table_data>
     {
 
-        var server_data: Vector<java.util.HashMap<String, String>> =
+        val server_data: Vector<java.util.HashMap<String, String>> =
         if(BuildConfig.DEBUG)
         {
-            var typemap:HashMap<String,String> = remote_big_table_helper.define_type_map()
+            val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
             remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
         }
         else
         {
             remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
         }
-        var result_vector: Vector<big_table_data> = Vector()
+        val result_vector: Vector<big_table_data> = Vector()
         server_data
                 .map { it ->
                     big_table_data(it[remote_big_table_helper.VENDOR_ID]?: "",
@@ -216,17 +217,17 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     fun server_data_to_vector_by_projname(projid: String): Vector<big_table_data>
     {
 
-        var server_data: Vector<java.util.HashMap<String, String>> =
+        val server_data: Vector<java.util.HashMap<String, String>> =
                 if(BuildConfig.DEBUG)
                 {
-                    var typemap:HashMap<String,String> = remote_big_table_helper.define_type_map()
+                    val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
                     remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
                 }
                 else
                 {
                     remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
                 }
-        var result_vector: Vector<big_table_data> = Vector()
+        val result_vector: Vector<big_table_data> = Vector()
         server_data
                 .filter { it[PROJID]!=null && projid == it[PROJID]!!  }
                 .map { it ->
@@ -245,13 +246,15 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
                 .forEach { result_vector.addElement(it) }
         return result_vector
     }
-    /*
+
+    @Suppress("MemberVisibilityCanPrivate")
+/*
            subroutine that is in charge of getting the big class
            by query
         */
     fun get_big_by_big(big_table_data: big_table_data) // subroutine to get a opr object
             : big_table_data? {
-        var input_map = java.util.HashMap<String, String>()
+        val input_map = java.util.HashMap<String, String>()
         input_map[ACCOUNT_NUM] = "'${big_table_data.get_VENDOR_ID()}'"
         input_map[PROJID] = "'${big_table_data.get_PROJECT_ID()}'"
         input_map[ITEMID] = "'${big_table_data.get_INVENTORY_ID()}'"
@@ -315,7 +318,8 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
             insert_big(big_table_data)
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
           checks if big exists, query is not that smart, gets an ENTIRE table and than checks
           if the big is there
 
@@ -333,9 +337,9 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     private fun insert_big(big_table_data: big_table_data): Boolean // subroutine to insert a big to the database
     {
 
-        var everything_to_add: Vector<java.util.HashMap<String, String>> = Vector()
+        val everything_to_add: Vector<java.util.HashMap<String, String>> = Vector()
 
-        var data: java.util.HashMap<String, String> = java.util.HashMap()
+        val data: java.util.HashMap<String, String> = java.util.HashMap()
         data[DATAARAEID] = (big_table_data.get_DATAAREAID() ?: "").trim()
         data[RECVERSION] = (big_table_data.get_RECVERSION() ?: "").trim()
         data[RECID] = (big_table_data.get_RECID() ?: "").trim()
@@ -361,14 +365,15 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         return add_data(everything_to_add)
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
       subroutine in charge of feeding information and database information to
       SQL abstraction on update queries
    */
     fun update_big(from: big_table_data, to: big_table_data) // subroutine to update data of a big that exists on the database
             : Boolean {
 
-        var change_to: java.util.HashMap<String, String> = java.util.HashMap()
+        val change_to: java.util.HashMap<String, String> = java.util.HashMap()
         change_to[DATAARAEID] = (to.get_DATAAREAID() ?: "").trim()
         change_to[RECVERSION] = (to.get_RECVERSION() ?: "").trim()
         change_to[RECID] = (to.get_RECID() ?: "").trim()
@@ -389,7 +394,8 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         return update_data(arrayOf(ACCOUNT_NUM, PROJID, ITEMID, OPR_ID), arrayOf(from.get_VENDOR_ID()!!, from.get_PROJECT_ID()!!, from.get_INVENTORY_ID()!!, from.get_OPRID()!!), change_to)
     }
 
-    /*
+    @Suppress("unused")
+/*
         subroutine in charge of feeding information and database information to
         SQL abstraction on delete queries
      */

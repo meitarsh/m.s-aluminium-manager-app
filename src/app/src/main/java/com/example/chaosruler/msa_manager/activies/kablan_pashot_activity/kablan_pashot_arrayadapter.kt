@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.*
+import com.example.chaosruler.msa_manager.object_types.big_table_data
+import com.example.chaosruler.msa_manager.object_types.vendor_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
@@ -20,7 +21,7 @@ class kablan_pashot_arrayadapter(context: Context,arr: Vector<big_table_data>) :
     {
 
         @Suppress("NAME_SHADOWING")
-        var convertView:View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_kablan_pashot,parent,false)
+        val convertView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_kablan_pashot, parent, false)
 
         val hoza:TextView = themer.get_view(convertView,R.id.item_kablan_pashot_hoza) as TextView
         val peola:TextView = themer.get_view(convertView,R.id.item_kablan_pashot_peola) as TextView
@@ -32,11 +33,11 @@ class kablan_pashot_arrayadapter(context: Context,arr: Vector<big_table_data>) :
 
         hoza.text = (vendor_item.get_accountnum() ?: "").trim()
         peola.text = (vendor_item.get_accountname() ?: "").trim()
-        var parcent:String = big_item.get_PERCENTFORACCOUNT()?:0.toString().trim()
+        val parcent: String = big_item.get_PERCENTFORACCOUNT() ?: 0.toString().trim()
         ahoz.text = ((parcent.toDouble()*1).toInt().toString() + "%").trim()
         ahoz.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
 
-        var all_views = Vector<View>()
+        val all_views = Vector<View>()
         all_views.addElement(hoza)
         all_views.add(peola)
         all_views.add(ahoz)

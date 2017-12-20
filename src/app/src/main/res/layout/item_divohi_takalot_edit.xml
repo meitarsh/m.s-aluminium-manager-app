@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
-    >
+    android:layoutDirection="rtl">
 
 
     <EditText
@@ -16,7 +16,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_shem_parit"
@@ -28,7 +29,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_mispar_project"
@@ -40,7 +42,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_shem_project"
@@ -52,7 +55,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_kamot"
@@ -64,7 +68,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_sog_takala"
@@ -76,7 +81,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_koma"
@@ -88,7 +94,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_bnian"
@@ -100,7 +107,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_dira"
@@ -112,7 +120,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_tiaaor_takala"
@@ -124,7 +133,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_peolot_ltikon"
@@ -136,7 +146,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_peolot_monoot"
@@ -148,7 +159,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_tgovat_mnaal"
@@ -160,7 +172,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_divohi_takalot_edit_alot_takala"
@@ -172,7 +185,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <Button
         android:id="@+id/item_divohi_takalot_edit_upload_btn"

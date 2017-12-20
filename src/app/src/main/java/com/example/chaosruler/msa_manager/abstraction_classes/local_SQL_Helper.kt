@@ -11,14 +11,14 @@ import android.util.Log
 import java.util.*
 import kotlin.collections.HashMap
 
-abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: String, factory: SQLiteDatabase.CursorFactory?, version: Int, protected var TABLE_NAME:String) : SQLiteOpenHelper(context, DATABASE_NAME, factory, version)
+abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: String, factory: SQLiteDatabase.CursorFactory?, version: Int, private var TABLE_NAME: String) : SQLiteOpenHelper(context, DATABASE_NAME, factory, version)
 {
 
     /*
         Basic idea is to initate the vector with all the variables with a call to init_vector
         before doing SQL functions and do call onCreate with the variable types per key
      */
-    protected lateinit var vector_of_variables:Vector<String>
+    private lateinit var vector_of_variables: Vector<String>
 
     /*
         must call - inits vector that we work on later!
@@ -28,7 +28,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         vector_of_variables = vector
         try
         {
-            var db = this.writableDatabase
+            val db = this.writableDatabase
             if(!isTableExists(TABLE_NAME))
                 this.onCreate(db) // ensures this is called, android by itself will only do it if it needs to read/write the database
             //db.close()
@@ -42,9 +42,9 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     /*
     check if database exists
      */
-    fun isTableExists(tableName: String): Boolean {
+    private fun isTableExists(tableName: String): Boolean {
 
-        var mDatabase:SQLiteDatabase = readableDatabase
+        val mDatabase: SQLiteDatabase = readableDatabase
 
         val cursor = mDatabase.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '$tableName'", null)
         if (cursor != null) {
@@ -84,7 +84,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     /*
         clears all database values
      */
-    public fun clearDB()
+    fun clearDB()
     {
         this.writableDatabase.execSQL("delete from " + TABLE_NAME)
     }
@@ -95,7 +95,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
      */
     protected fun createDB(db: SQLiteDatabase ,variables: HashMap<String,String>) {
 
-        var create_statement:String = "create table IF NOT EXISTS $TABLE_NAME ("
+        var create_statement = "create table IF NOT EXISTS $TABLE_NAME ("
         for(element in vector_of_variables)
         {
             create_statement += element + " " + variables[element]
@@ -117,7 +117,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
      */
     protected fun createDB(db: SQLiteDatabase ,variables: HashMap<String,String>, foregin:HashMap<String,String>) {
 
-        var create_statement:String = "create table $TABLE_NAME ("
+        var create_statement = "create table $TABLE_NAME ("
         for(element in vector_of_variables)
         {
             create_statement += element + " " + variables[element]
@@ -134,15 +134,16 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         db.execSQL(create_statement)
 
     }
+
     /*
         subroutine gets entire database to vector of hashmap values, self colum feeder
      */
-    public fun get_db():Vector<HashMap<String,String>>
+    fun get_db(): Vector<HashMap<String, String>>
     {
-        var db:SQLiteDatabase = this.readableDatabase
-        var vector:Vector<HashMap<String,String>> = Vector()
+        val db: SQLiteDatabase = this.readableDatabase
+        val vector: Vector<HashMap<String, String>> = Vector()
 
-        var syncToken = Object()
+        val syncToken = Object()
         // to not hang the ui
         Thread({
             val c = db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
@@ -161,7 +162,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             }
             while (!c.isAfterLast)
             {
-                var small_map: HashMap<String, String> = HashMap()
+                val small_map: HashMap<String, String> = HashMap()
                 for (variable in vector_of_variables) {
                     small_map[variable] = c.getString(c.getColumnIndex(variable))
                 }
@@ -172,6 +173,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             {
                 syncToken.notify()
             }
+            c.close()
         }).start()
 
 
@@ -194,10 +196,9 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
      */
     protected fun add_data(variables: Vector<HashMap<String,String>>):Boolean
     {
-        var db:SQLiteDatabase = this.writableDatabase
-        val return_value = variables.any { add_single_data(db, it) }
+        val db: SQLiteDatabase = this.writableDatabase
         //db.close()
-        return return_value
+        return variables.any { add_single_data(db, it) }
     }
     /*
         adds a single data
@@ -217,8 +218,8 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
      */
     protected fun remove_from_db( where_clause:String,  equal_to: Array<String>) :Boolean
     {
-        var result:Boolean = false
-        var db:SQLiteDatabase = this.writableDatabase
+        var result = false
+        val db: SQLiteDatabase = this.writableDatabase
         if(db.delete(TABLE_NAME,where_clause + "=?", equal_to) >0)
             result = true
         //db.close()
@@ -229,8 +230,8 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
   */
     protected fun remove_from_db( where_clause:Array<String>,  equal_to: Array<String>) :Boolean
     {
-        var result:Boolean = false
-        var db:SQLiteDatabase = this.writableDatabase
+        var result = false
+        val db: SQLiteDatabase = this.writableDatabase
         var where_clause_arguemnt = ""
         for(item in where_clause)
         {
@@ -251,8 +252,8 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
      */
     protected fun update_data(where_clause: String, equal_to: Array<String>, update_to: HashMap<String,String>):Boolean
     {
-        var result:Boolean = false
-        var db:SQLiteDatabase = this.writableDatabase
+        var result = false
+        val db: SQLiteDatabase = this.writableDatabase
         val values = ContentValues()
         for(item in update_to)
             values.put(item.key,item.value)
@@ -267,8 +268,8 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     */
     protected fun update_data(where_clause: Array<String>, equal_to: Array<String>, update_to: HashMap<String,String>):Boolean
     {
-        var result:Boolean = false
-        var db:SQLiteDatabase = this.writableDatabase
+        var result = false
+        val db: SQLiteDatabase = this.writableDatabase
         val values = ContentValues()
         for(item in update_to)
             values.put(item.key,item.value)
@@ -289,13 +290,13 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
      */
     fun get_rows(map:HashMap<String,String>):Vector<HashMap<String,String>>
     {
-        var db:SQLiteDatabase = this.readableDatabase
-        var vector:Vector<HashMap<String,String>> = Vector()
-        var sync_token = Object()
+        val db = this.readableDatabase
+        val vector = Vector<HashMap<String, String>>()
+        val sync_token = Object()
         //to not hang the ui
         Thread({
-            var sql_query: String = "SELECT * FROM $TABLE_NAME WHERE"
-            var breaker: Int = 0
+            var sql_query = "SELECT * FROM $TABLE_NAME WHERE"
+            var breaker = 0
             for (item in map)
             {
                 sql_query += " ${item.key} = ${item.value} "
@@ -305,6 +306,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
                 else
                     break
             }
+            @Suppress("CanBeVal")
             var c:Cursor?
             try
             {
@@ -345,7 +347,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
                 try
                 {
                     while (!c.isAfterLast) {
-                        var small_map: HashMap<String, String> = HashMap()
+                        val small_map: HashMap<String, String> = HashMap()
                         for (variable in vector_of_variables) {
                             small_map[variable] = c.getString(c.getColumnIndex(variable))
                         }
@@ -362,6 +364,8 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             {
                 sync_token.notify()
             }
+            if (c != null)
+                c.close()
         }).start()
 
         synchronized(sync_token)
@@ -386,22 +390,19 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
        subroutine gets entire database to vector of hashmap values, self colum feeder
        includes sorting
     */
-    protected fun get_db(sort_by_value:String,isAscending:Boolean):Vector<HashMap<String,String>>
+    @Suppress("unused")
+    protected fun get_db(sort_by_value: String, isAscending: Boolean): Vector<HashMap<String, String>>
     {
-        var db:SQLiteDatabase = this.readableDatabase
-        var vector:Vector<HashMap<String,String>> = Vector()
+        val db: SQLiteDatabase = this.readableDatabase
+        val vector: Vector<HashMap<String, String>> = Vector()
 
-        var syncToken = Object()
+        val syncToken = Object()
         // to not hang the ui
         Thread({
-            var ascending_descending_str:String
-            if(isAscending)
-            {
-                ascending_descending_str = " ASC"
-            }
-            else
-            {
-                ascending_descending_str = " DESC"
+            val ascending_descending_str: String = if (isAscending) {
+                " ASC"
+            } else {
+                " DESC"
             }
             val c = db.query(TABLE_NAME,null,null,null,null,null,sort_by_value+ascending_descending_str)
             try
@@ -416,12 +417,10 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
                     syncToken.notify()
                 }
             }
-            while (!c.isAfterLast)
+            while (c.isAfterLast.not())
             {
-                var small_map: HashMap<String, String> = HashMap()
-                for (variable in vector_of_variables) {
-                    small_map[variable] = c.getString(c.getColumnIndex(variable))
-                }
+                val small_map: HashMap<String, String> = HashMap()
+                for (variable in vector_of_variables) small_map[variable] = c.getString(c.getColumnIndex(variable))
                 vector.addElement(small_map)
                 c.moveToNext()
             }
@@ -429,6 +428,7 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
             {
                 syncToken.notify()
             }
+            c.close()
         }).start()
 
 
@@ -450,10 +450,10 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
     /*
         replace data with another data! testing that
      */
-    public fun replace(map:HashMap<String,String>):Boolean
+    fun replace(map: HashMap<String, String>): Boolean
     {
 
-        var db = this.writableDatabase
+        val db = this.writableDatabase
         /*
         var qry = "INSERT OR REPLACE INTO $TABLE_NAME"
         var before:String = "("
@@ -475,9 +475,9 @@ abstract class local_SQL_Helper(context: Context, protected var DATABASE_NAME: S
         qry += " $before VALUES $after"
         val cursor = db.execSQL(qry)
         */
-        var cv = ContentValues()
+        val cv = ContentValues()
         map.forEach { cv.put(it.key,it.value) }
-        var count = db.replace(TABLE_NAME,null,cv)
+        val count = db.replace(TABLE_NAME, null, cv)
         db.close()
         return count > 0
 

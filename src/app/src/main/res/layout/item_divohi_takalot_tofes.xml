@@ -5,7 +5,6 @@
     android:layoutDirection="rtl"
     >
 
-
     <TextView
         android:id="@+id/item_divohi_takalot_tofes_mispar_parit"
         android:layout_width="0dp"

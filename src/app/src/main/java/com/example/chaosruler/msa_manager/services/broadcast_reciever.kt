@@ -13,9 +13,7 @@ import com.example.chaosruler.msa_manager.object_types.cache_command
 import java.util.*
 import kotlin.collections.HashMap
 
-/**
- * Created by chaosruler on 12/12/17.
- */
+
 class broadcast_reciever : BroadcastReceiver()
 {
     override fun onReceive(context: Context?, intent: Intent?)
@@ -25,7 +23,7 @@ class broadcast_reciever : BroadcastReceiver()
         {
             if (context.getString(R.string.boot_completed) == intent.action)
             {
-                var userdb:Vector<User> // grab user database to know that users password
+                val userdb: Vector<User> // grab user database to know that users password
                 try
                 {
                     userdb = user_database_helper(context).get_entire_db()
@@ -34,7 +32,7 @@ class broadcast_reciever : BroadcastReceiver()
                 {
                     return
                 }
-                var cache_database:Vector<cache_command> // grab cache vector to know // the most frequent user to login into
+                val cache_database: Vector<cache_command> // grab cache vector to know // the most frequent user to login into
                 try
                 {
                     cache_database = cache_server_commands(context).get_entire_db()
@@ -44,10 +42,11 @@ class broadcast_reciever : BroadcastReceiver()
                    return
                 }
 
-                var username_usage_hashmap : HashMap<String,Int> = HashMap()
+                val username_usage_hashmap: HashMap<String, Int> = HashMap()
                 for (cache in cache_database) // satistics username coverage
                 {
                     var current = username_usage_hashmap[cache.__user] ?: 0
+                    @Suppress("UNUSED_CHANGED_VALUE")
                     username_usage_hashmap[cache.__user] = current++
                 }
                 var username:String? = null
@@ -62,7 +61,7 @@ class broadcast_reciever : BroadcastReceiver()
                 }
                 if(userdb.size == 0) // no users == no logon
                     return
-                var pw:String =
+                val pw: String =
                 if(username==null)
                 {
                     username = userdb.firstElement().get__username()
@@ -86,7 +85,7 @@ class broadcast_reciever : BroadcastReceiver()
                     }
                 }
                 @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
-                var wait_lock:Object = Object()
+                val wait_lock = Object()
                 Thread({
                     remote_SQL_Helper.Connect(context,username,pw)
                     synchronized(wait_lock)
@@ -105,7 +104,7 @@ class broadcast_reciever : BroadcastReceiver()
                     }
                 }
                 global_variables_dataclass.init_dbs(context)
-                var service_intent = Intent(context, offline_mode_service::class.java)
+                val service_intent = Intent(context, offline_mode_service::class.java)
                 context.startService(service_intent)
 
 
@@ -114,7 +113,7 @@ class broadcast_reciever : BroadcastReceiver()
     }
 
     companion object {
-        public fun report_to_Main_Activity_Thread_syncing_is_done()
+        fun report_to_Main_Activity_Thread_syncing_is_done()
         {
             MainActivity.service_sync_done = true
         }

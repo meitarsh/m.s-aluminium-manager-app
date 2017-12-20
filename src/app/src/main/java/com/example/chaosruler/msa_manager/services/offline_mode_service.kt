@@ -1,28 +1,29 @@
 package com.example.chaosruler.msa_manager.services
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
-import android.preference.PreferenceManager
-import android.support.v4.app.NotificationCompat
-import java.lang.Thread.sleep
-import java.util.*
 import android.app.NotificationManager
 import android.app.Service
+import android.content.Context
+import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
+import android.preference.PreferenceManager
+import android.support.v4.app.NotificationCompat
 import android.util.Log
 import com.example.chaosruler.msa_manager.MSSQL_helpers.*
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.SQLITE_helpers.*
+import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
 import com.example.chaosruler.msa_manager.object_types.cache_command
+import java.lang.Thread.sleep
+import java.util.*
 
 
 /*
     service responsible for storing server commands offline and sending them whenever possible
  */
 class offline_mode_service : Service(){
+
 
     /*
     init
@@ -31,7 +32,7 @@ class offline_mode_service : Service(){
     }
     */
     inner class the_binder : Binder() {
-        @Suppress("PropertyName")
+        @Suppress("PropertyName", "unused")
         internal val service_label: offline_mode_service
             get() = this@offline_mode_service
     }
@@ -148,7 +149,7 @@ class offline_mode_service : Service(){
         private fun grab_time(context: Context)
         {
             time = ctx.resources.getInteger(R.integer.millis_in_sec).toLong()
-            var sec = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.sync_frequency),context.resources.getInteger(R.integer.time_to_sync_in_sec).toString()).toLong()
+            val sec = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.sync_frequency), context.resources.getInteger(R.integer.time_to_sync_in_sec).toString()).toLong()
             time *=sec
         }
         /*
@@ -172,46 +173,51 @@ class offline_mode_service : Service(){
             if(trd.state == Thread.State.NEW) // new thread, not started
                 trd.start()
         }
-        /*
+
+        @Suppress("unused")
+/*
             following subroutines pushes server commands to stack
          */
         fun push_add_command(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>):String
         {
 
-            var str = remote_SQL_Helper.construct_add_str(db, table, vector, map).replace("'","&quote;")
-            var username = remote_SQL_Helper.getusername()
+            val str = remote_SQL_Helper.construct_add_str(db, table, vector, map).replace("'", "&quote;")
+            val username = remote_SQL_Helper.getusername()
             return general_push_command(str, username)
         }
 
-        /*
+        @Suppress("unused")
+/*
             pushes update command
          */
         fun push_update_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>):String
         {
 
-            var str = remote_SQL_Helper.construct_update_str(db, table, where_clause, compare_to, type, update_to).replace("'","&quote;")
-            var username = remote_SQL_Helper.getusername()
+            val str = remote_SQL_Helper.construct_update_str(db, table, where_clause, compare_to, type, update_to).replace("'", "&quote;")
+            val username = remote_SQL_Helper.getusername()
             return general_push_command(str, username)
         }
 
-        /*
+        @Suppress("unused")
+/*
         removes a stored command
          */
         fun push_remove_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String):String
         {
 
-            var str = remote_SQL_Helper.construct_remove_str(db, table, where_clause, compare_to, type).replace("'","&quote;")
-            var username = remote_SQL_Helper.getusername()
+            val str = remote_SQL_Helper.construct_remove_str(db, table, where_clause, compare_to, type).replace("'", "&quote;")
+            val username = remote_SQL_Helper.getusername()
             return general_push_command(str, username)
         }
 
         /*
             pushes command with an already prepared string and its usernames
          */
-        public fun general_push_command(command:String, username:String):String
+        fun general_push_command(command: String, username: String): String
         {
 
-            var string:String = if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.local_or_not), true)) {
+            @Suppress("UnnecessaryVariable")
+            val string: String = if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.local_or_not), true)) {
                 cache.add_command_to_list(cache_command(command, username))
                 ctx.getString(R.string.successfull_operation) + ctx.getString(R.string.notificatoin_op_id) + cache.get_id_of_command(cache_command(command, username))
             } else {
@@ -223,7 +229,8 @@ class offline_mode_service : Service(){
             /*
             gets all the comand cache database to a string
          */
-        private fun get_DB_string(): String
+            @Suppress("unused")
+            private fun get_DB_string(): String
                 = cache.get_db_string()
 
         /*
@@ -238,13 +245,13 @@ class offline_mode_service : Service(){
         fun try_to_run_command()
         {
 
-            var vector = get_DB()
+            val vector = get_DB()
             Log.d("offline_mode","cache command size: " + vector.size.toString())
             for(item in vector)
             {
                 if(item.__user == remote_SQL_Helper.getusername())
                 {
-                    var result_of_query = remote_SQL_Helper.run_command(item.__command.replace("&quote;", "'"))
+                    val result_of_query = remote_SQL_Helper.run_command(item.__command.replace("&quote;", "'"))
                     Log.d("offline_mode","Query to try :" + item.__command.replace("&quote;", "'"))
                     Log.d("offline_mode","Query Result: " + result_of_query.toString())
                     if (result_of_query)
@@ -275,6 +282,7 @@ class offline_mode_service : Service(){
         /*
             build notificatoin to show on screen
          */
+        @SuppressLint("PrivateResource")
         private fun build_small_notification(string: String)
         {
             @Suppress("DEPRECATION")
@@ -282,9 +290,7 @@ class offline_mode_service : Service(){
                     .setSmallIcon(R.drawable.notification_icon_background)
                     .setContentTitle(ctx.getString(R.string.notification_title))
                     .setContentText(ctx.getString(R.string.notification_sync_successfuk) + ctx.getString(R.string.notificatoin_op_id) + string)
-            val mNotificationManager = ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
-            if(mNotificationManager!=null)
-                 mNotificationManager.notify(1,mBuilder.build())
+            (ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?)?.notify(1, mBuilder.build())
         }
 
         /*
@@ -300,7 +306,7 @@ class offline_mode_service : Service(){
         /*
             inner call with sync-wait
          */
-        public fun db_sync_func(context: Context,intent: Intent)
+        fun db_sync_func(context: Context, intent: Intent)
         {
 
             db_sync_func_without_mark()
@@ -326,10 +332,11 @@ class offline_mode_service : Service(){
             }
         }
 
-        /*
+        @Suppress("unused")
+/*
         empty one as service
          */
-        public fun sync_local()
+        fun sync_local()
         {
 
             Thread({ db_sync_func()

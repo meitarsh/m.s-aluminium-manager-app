@@ -4,86 +4,85 @@ import android.content.Context
 import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
-import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
 
+@Suppress("MemberVisibilityCanPrivate")
 class remote_big_table_helper
 {
-    companion object : remote_helper()
-    {
+    companion object : remote_helper() {
 
 
-        public var DATABASE_NAME:String = ""
-        public var TABLE_NAME:String = ""
+        var DATABASE_NAME: String = ""
+        var TABLE_NAME: String = ""
 
-        public var VENDOR_ID:String = ""
-        public var VENDOR_ID_TYPE:String = ""
+        var VENDOR_ID: String = ""
+        var VENDOR_ID_TYPE: String = ""
 
-        public var DATAREAID:String = ""
-        public var DATAAREAID_TYPE:String = ""
+        var DATAREAID: String = ""
+        var DATAAREAID_TYPE: String = ""
 
-        public var RECVERSION:String = ""
-        public var RECVERSION_TYPE:String = ""
+        var RECVERSION: String = ""
+        var RECVERSION_TYPE: String = ""
 
-        public var RECID:String = ""
-        public var RECID_TYPE:String = ""
+        var RECID: String = ""
+        var RECID_TYPE: String = ""
 
-        public var PROJECTS_ID:String = ""
-        public var PROJECTS_ID_TYPE:String = ""
+        var PROJECTS_ID: String = ""
+        var PROJECTS_ID_TYPE: String = ""
 
-        public var INVENTORY_ID:String = ""
-        public var INVENTORY_ID_TYPE:String = ""
+        var INVENTORY_ID: String = ""
+        var INVENTORY_ID_TYPE: String = ""
 
-        public var FLAT:String = ""
-        public var FLAT_TYPE:String = ""
+        var FLAT: String = ""
+        var FLAT_TYPE: String = ""
 
-        public var FLOOR:String = ""
-        public var FLOOR_TYPE:String = ""
+        var FLOOR: String = ""
+        var FLOOR_TYPE: String = ""
 
-        public var QTY:String = ""
-        public var QTY_TYPE:String = ""
+        var QTY: String = ""
+        var QTY_TYPE: String = ""
 
-        public var SALESPRICE:String = ""
-        public var SALESPRICE_TYPE:String = ""
+        var SALESPRICE: String = ""
+        var SALESPRICE_TYPE: String = ""
 
-        public var OPR_ID:String = ""
-        public var OPR_ID_TYPE:String = ""
+        var OPR_ID: String = ""
+        var OPR_ID_TYPE: String = ""
 
-        public var MILESTONEPERCENT:String = ""
-        public var MILESTONEPERCENT_TYPE:String = ""
+        var MILESTONEPERCENT: String = ""
+        var MILESTONEPERCENT_TYPE: String = ""
 
-        public var QTYFORACCOUNT:String = ""
-        public var QTYFORACCOUNT_TYPE:String = ""
+        var QTYFORACCOUNT: String = ""
+        var QTYFORACCOUNT_TYPE: String = ""
 
-        public var PERCENTFORACCOUNT:String = ""
-        public var PERCENTFORACCOUNT_TYPE:String = ""
+        var PERCENTFORACCOUNT: String = ""
+        var PERCENTFORACCOUNT_TYPE: String = ""
 
-        public var TOTALSUM:String = ""
-        public var TOTALSUM_TYPE:String = ""
+        var TOTALSUM: String = ""
+        var TOTALSUM_TYPE: String = ""
 
-        public var SALPROG:String = ""
-        public var SALPROG_TYPE:String = ""
+        var SALPROG: String = ""
+        var SALPROG_TYPE: String = ""
 
-        public var PRINTORDER:String = ""
-        public var PRINTORDER_TYPE:String = ""
+        var PRINTORDER: String = ""
+        var PRINTORDER_TYPE: String = ""
 
-        public var ITEMNUMBER:String = ""
-        public var ITEMNUMBER_TYPE:String = ""
+        var ITEMNUMBER: String = ""
+        var ITEMNUMBER_TYPE: String = ""
 
-        public var KOMANUM:String = ""
-        public var KOMANUM_TYPE:String = ""
+        var KOMANUM: String = ""
+        var KOMANUM_TYPE: String = ""
 
-        public var DIRANUM:String = ""
-        public var DIRANUM_TYPE:String = ""
+        var DIRANUM: String = ""
+        var DIRANUM_TYPE: String = ""
 
         /*
             init the variables from strings.xml
          */
-        override fun extract_variables(context: Context)
-        {
+        override fun extract_variables(context: Context) {
             TABLE_NAME = context.getString(R.string.TABLE_BIG)
             DATABASE_NAME = context.getString(R.string.DATABASE_NAME)
             VENDOR_ID = context.getString(R.string.TABLE_BIG_VENDOR_ID)
@@ -151,9 +150,8 @@ class remote_big_table_helper
         /*
             make a big table type map
          */
-        override fun define_type_map():HashMap<String,String>
-        {
-            var map:HashMap<String,String> = HashMap()
+        override fun define_type_map():HashMap<String,String> {
+            val map: HashMap<String, String> = HashMap()
             map[VENDOR_ID] = VENDOR_ID_TYPE
             map[DATAREAID] = DATAAREAID_TYPE
             map[RECVERSION] = RECVERSION_TYPE
@@ -181,30 +179,28 @@ class remote_big_table_helper
         /*
             API call
          */
-        override fun push_update(obj: table_dataclass, map: HashMap<String, String>, context: Context)
-        {
+        override fun push_update(obj: table_dataclass, map: HashMap<String, String>, context: Context) {
             if(obj is big_table_data)
                 push_update(obj,map,context)
         }
+
         /*
         push an update
          */
-        public fun push_update(obj: big_table_data, map:HashMap<String,String>, context: Context)
-        {
-            var typemap = define_type_map()
-            for(item in map)
-            {
+        fun push_update(obj: big_table_data, map: HashMap<String, String>, context: Context) {
+            val typemap = define_type_map()
+            for(item in map) {
                 if((typemap[item.key] ?: "") == "text" || (typemap[item.key] ?: "") != "varchar" || (typemap[item.key] ?: "") != "nvarchar" )
                     item.setValue("N"+remote_SQL_Helper.add_quotes(item.value))
             }
-            var where_clause:HashMap<String,String> = HashMap()
+            val where_clause: HashMap<String, String> = HashMap()
             where_clause[remote_big_table_helper.VENDOR_ID] = obj.get_VENDOR_ID() ?: ""
             where_clause[remote_big_table_helper.INVENTORY_ID] = obj.get_INVENTORY_ID() ?: ""
             where_clause[remote_big_table_helper.PROJECTS_ID] = obj.get_PROJECT_ID() ?: ""
             where_clause[remote_big_table_helper.OPR_ID] = obj.get_OPRID() ?: ""
             var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME,remote_big_table_helper.TABLE_NAME,where_clause,"varchar",map)
             query = query.replace("'","&quote;")
-            var str = offline_mode_service.general_push_command(query,remote_SQL_Helper.getusername())
+            val str = offline_mode_service.general_push_command(query, remote_SQL_Helper.getusername())
             Toast.makeText(context,str,Toast.LENGTH_SHORT).show()
         }
     } // companion end

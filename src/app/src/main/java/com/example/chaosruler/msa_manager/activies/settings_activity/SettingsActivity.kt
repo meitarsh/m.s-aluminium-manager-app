@@ -1,20 +1,13 @@
 package com.example.chaosruler.msa_manager.activies.settings_activity
 
+
 import android.annotation.TargetApi
-
-
 import android.content.Context
 import android.content.Intent
-
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
-import android.preference.ListPreference
-import android.preference.Preference
-import android.preference.PreferenceActivity
-import android.preference.PreferenceFragment
-import android.preference.PreferenceManager
-
+import android.preference.*
 import android.view.MenuItem
 import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
@@ -119,7 +112,7 @@ class SettingsActivity : AppCompatPreferenceActivity()
         /*
                restarts entire app after style change
     */
-        fun restart_app()
+        private fun restart_app()
         {
             startActivity(Intent(activity.baseContext, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }

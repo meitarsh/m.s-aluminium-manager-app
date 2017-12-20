@@ -3,18 +3,16 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.BuildConfig
-import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.project_data
-import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper
-import com.example.chaosruler.msa_manager.services.global_variables_dataclass
+import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+import com.example.chaosruler.msa_manager.object_types.project_data
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
+import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
 
-/**
- * Created by chaosruler on 12/3/17.
- */
+
 class local_projects_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME),null,context.resources.getInteger(R.integer.LOCAL_PROJECTS_TABLE_VERSION),context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME))
 {
     private var ID = context.getString(R.string.LOCAL_PROJECTS_COLUMN_ID)
@@ -27,7 +25,7 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
     */
     init
     {
-        var vector: Vector<String> = Vector()
+        val vector: Vector<String> = Vector()
         vector.add(ID)
         vector.add(NAME)
         vector.add(DATAAREAID)
@@ -42,7 +40,7 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
         */
     override fun onCreate(db: SQLiteDatabase)
     {
-        var map:HashMap<String,String> = HashMap()
+        val map: HashMap<String, String> = HashMap()
         map[ID] = "text primary key"
         map[NAME] = "text"
         map[DATAAREAID] = "text"
@@ -57,7 +55,7 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
     {
         if(!global_variables_dataclass.isLocal)
             return
-        var server_vec = server_data_to_vector()
+        val server_vec = server_data_to_vector()
         for(item in server_vec)
         {
             add_project(item)
@@ -69,8 +67,8 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
      */
     fun get_local_DB():Vector<project_data>
     {
-        var vector:Vector<project_data> = Vector()
-        var all_db:Vector<HashMap<String,String>> = get_db()
+        val vector: Vector<project_data> = Vector()
+        val all_db: Vector<HashMap<String, String>> = get_db()
         all_db
                 .filter {
                     @Suppress("USELESS_ELVIS_RIGHT_IS_NULL")
@@ -84,9 +82,9 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
                */
     fun get_local_DB_by_projname(projid:String): Vector<project_data>
     {
-        var vector: Vector<project_data> = Vector()
+        val vector: Vector<project_data> = Vector()
 
-        var projdb : Vector<project_data> = global_variables_dataclass.DB_project!!.get_local_DB()
+        val projdb: Vector<project_data> = global_variables_dataclass.DB_project!!.get_local_DB()
 
         projdb
                 .filter { (it.getProjID()?:"")==projid }
@@ -99,17 +97,17 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
         */
     fun server_data_to_vector():Vector<project_data>
     {
-        var server_data: Vector<java.util.HashMap<String, String>> =
+        val server_data: Vector<java.util.HashMap<String, String>> =
         if(BuildConfig.DEBUG)
         {
-            var typemap: java.util.HashMap<String, String> = remote_projects_table_helper.define_type_map()
+            val typemap: java.util.HashMap<String, String> = remote_projects_table_helper.define_type_map()
             remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS),typemap,context.getString(R.string.PROJECTS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
         }
         else
         {
             remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS))
         }
-        var result_vector:Vector<project_data> = Vector()
+        val result_vector: Vector<project_data> = Vector()
         server_data.mapTo(result_vector) {
             project_data((it[remote_projects_table_helper.ID]?: "").trim(),
                     (it[remote_projects_table_helper.NAME]?: "").trim(), (it[remote_projects_table_helper.DATAAREAID]?: "").trim(),
@@ -122,35 +120,36 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
             */
     fun server_data_to_vector_by_projid(projid:String):Vector<project_data>
     {
-        var server_data: Vector<java.util.HashMap<String, String>> =
+        val server_data: Vector<java.util.HashMap<String, String>> =
                 if(BuildConfig.DEBUG)
                 {
-                    var typemap: java.util.HashMap<String, String> = remote_projects_table_helper.define_type_map()
+                    val typemap: java.util.HashMap<String, String> = remote_projects_table_helper.define_type_map()
                     remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS),typemap,context.getString(R.string.PROJECTS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
                 }
                 else
                 {
                     remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS))
                 }
-        var result_vector:Vector<project_data> = Vector()
-        for(item in server_data)
-        {
-            if( (item[remote_projects_table_helper.ID]?:"") == projid  )
-                result_vector.addElement( project_data((item[remote_projects_table_helper.ID]?: "").trim(),
-                        (item[remote_projects_table_helper.NAME]?: "").trim(), (item[remote_projects_table_helper.DATAAREAID]?: "").trim(),
-                        remote_SQL_Helper.getusername().trim()))
-        }
+        val result_vector: Vector<project_data> = Vector()
+        server_data
+                .filter { (it[remote_projects_table_helper.ID] ?: "") == projid }
+                .forEach {
+                    result_vector.addElement(project_data((it[remote_projects_table_helper.ID] ?: "").trim(),
+                            (it[remote_projects_table_helper.NAME] ?: "").trim(), (it[remote_projects_table_helper.DATAAREAID] ?: "").trim(),
+                            remote_SQL_Helper.getusername().trim()))
+                }
         return result_vector
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
            subroutine that is in charge of getting the project class
            by query
         */
     fun get_project_by_project(proj: project_data) // subroutine to get a project object
             : project_data?
     {
-        var input_map = HashMap<String,String>()
+        val input_map = HashMap<String, String>()
         input_map[ID] = "'${proj.getProjID()}'"
         val vector = get_rows(input_map)
         if(vector.size > 0)
@@ -186,7 +185,8 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
             insert_project(project)
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
           checks if project exists, query is not that smart, gets an ENTIRE table and than checks
           if the project is there
 
@@ -205,9 +205,9 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
     private fun insert_project(proj: project_data):Boolean // subroutine to insert a project to the database
     {
 
-        var everything_to_add:Vector<HashMap<String,String>> = Vector()
+        val everything_to_add: Vector<HashMap<String, String>> = Vector()
 
-        var data: HashMap<String,String> = HashMap()
+        val data: HashMap<String, String> = HashMap()
         data[ID] = (proj.getProjID() ?: "").trim()
         data[NAME] = (proj.get_project_name() ?: "").trim()
         data[DATAAREAID] = (proj.get_DATAREAID() ?: "").trim()
@@ -216,21 +216,23 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
         return add_data(everything_to_add)
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
       subroutine in charge of feeding information and database information to
       SQL abstraction on update queries
    */
     fun update_project(from: project_data, to: project_data) // subroutine to update data of a project that exists on the database
             : Boolean {
 
-        var change_to:HashMap<String,String> = HashMap()
+        val change_to: HashMap<String, String> = HashMap()
         change_to[NAME] = (to.get_project_name() ?: "").trim()
         change_to[DATAAREAID] = (to.get_DATAREAID() ?: "").trim()
         change_to[USERNAME] = (to.get_USERNAME() ?: "").trim()
         return update_data(ID, arrayOf(from.getProjID()!!),change_to)
     }
 
-    /*
+    @Suppress("unused")
+/*
         subroutine in charge of feeding information and database information to
         SQL abstraction on delete queries
      */
@@ -244,8 +246,7 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
 
     fun get_project_by_id(id:String):project_data?
     {
-        var data:project_data? = get_project_by_project(project_data(id,null,null,remote_SQL_Helper.getusername()))
-        return data
+        return get_project_by_project(project_data(id, null, null, remote_SQL_Helper.getusername()))
     }
 
 

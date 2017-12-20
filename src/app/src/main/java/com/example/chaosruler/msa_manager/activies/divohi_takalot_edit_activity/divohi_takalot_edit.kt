@@ -1,16 +1,22 @@
 package com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity
 
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
-import java.util.*
-import android.content.Intent
-import android.widget.*
 import kotlinx.android.synthetic.main.divohi_takalot_edit.*
 import java.io.File
+import java.util.*
 
 
 class divohi_takalot_edit : Activity() {
@@ -25,6 +31,8 @@ class divohi_takalot_edit : Activity() {
 
 
     }
+
+
     /*
                inits table
         */
@@ -32,9 +40,9 @@ class divohi_takalot_edit : Activity() {
     {
 
         Thread({
-            var arr: Vector<big_table_data> =
+            val arr: Vector<big_table_data> =
                     if (global_variables_dataclass.GUI_MODE || global_variables_dataclass.DB_BIG == null)
-                        Vector<big_table_data>()
+                        Vector()
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
                         global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname((global_variables_dataclass.projid ?: "").trim())
                     else
@@ -59,8 +67,8 @@ class divohi_takalot_edit : Activity() {
        {
 
                 val uri = data.data
-                var parent = divohi_takalot_edit_listview.getChildAt(requestCode) as LinearLayout
-                var button = parent.getChildAt(parent.childCount-1) as Button
+           val parent = divohi_takalot_edit_listview.getChildAt(requestCode) as LinearLayout
+           val button = parent.getChildAt(parent.childCount - 1) as Button
                 button.isEnabled = false
                 button.background = getDrawable(R.drawable.cell_shape)
                 button.text = File(uri.path).absolutePath
@@ -71,5 +79,22 @@ class divohi_takalot_edit : Activity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-
+    /*
+           Dispatch remove focus from all edit texts
+        */
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            val v = currentFocus
+            if (v is EditText) {
+                val outRect = Rect()
+                v.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
+                    v.clearFocus()
+                    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(v.windowToken, 0)
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event)
+    }
 }

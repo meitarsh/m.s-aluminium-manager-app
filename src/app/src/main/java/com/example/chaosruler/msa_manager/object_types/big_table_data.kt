@@ -56,235 +56,282 @@ class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String
         if(USERNAME != null)
             USERNAME = (USERNAME?:"").trim()
     }
+
     /*
         vendor id
      */
-    public fun get_VENDOR_ID():String? = VENDOR_ID
+    fun get_VENDOR_ID(): String? = VENDOR_ID
+
     /*
       vendor dataraid
    */
-    public fun get_DATAAREAID():String? = DATAAREAID
+    fun get_DATAAREAID(): String? = DATAAREAID
+
     /*
       vendor recversion
    */
-    public fun get_RECVERSION():String? = RECVERSION
+    fun get_RECVERSION(): String? = RECVERSION
+
     /*
       vendor recid
    */
-    public fun get_RECID():String? = RECID
+    fun get_RECID(): String? = RECID
+
     /*
       vendor projectid
    */
-    public fun get_PROJECT_ID():String? = PROJECTS_ID
+    fun get_PROJECT_ID(): String? = PROJECTS_ID
+
     /*
       vendor inventory id
    */
-    public fun get_INVENTORY_ID():String? = INVENTORY_ID
+    fun get_INVENTORY_ID(): String? = INVENTORY_ID
+
     /*
       vendor flat
    */
-    public fun get_FLAT():String? = FLAT
+    fun get_FLAT(): String? = FLAT
+
     /*
       vendor floor
    */
-    public fun get_FLOOR():String? = FLOOR
+    fun get_FLOOR(): String? = FLOOR
+
     /*
       vendor qty
    */
-    public fun get_QTY():String? = QTY
+    fun get_QTY(): String? = QTY
+
     /*
       vendor salesprice
    */
-    public fun get_SALESPRICE():String? = SALESPRICE
+    fun get_SALESPRICE(): String? = SALESPRICE
+
     /*
       vendor oprid
    */
-    public fun get_OPRID():String? = OPR_ID
+    fun get_OPRID(): String? = OPR_ID
+
     /*
       vendor milestone_percent
    */
-    public fun get_MILESTONEPERCENT():String? = MILESTONEPERCENT
+    fun get_MILESTONEPERCENT(): String? = MILESTONEPERCENT
+
     /*
       vendor qtyforaccount
    */
-    public fun get_QTYFORACCOUNT():String? = QTYFORACCOUNT
+    fun get_QTYFORACCOUNT(): String? = QTYFORACCOUNT
+
     /*
       vendor percentforaccount
    */
-    public fun get_PERCENTFORACCOUNT():String? = PERCENTFORACCOUNT
+    fun get_PERCENTFORACCOUNT(): String? = PERCENTFORACCOUNT
+
     /*
       vendor totalsum
    */
-    public fun get_TOTALSUM():String? = TOTALSUM
+    fun get_TOTALSUM(): String? = TOTALSUM
+
     /*
       vendor salprog
    */
-    public fun get_SALPROG():String? = SALPROG
+    fun get_SALPROG(): String? = SALPROG
+
     /*
       vendor printorder
    */
-    public fun get_PRINTORDER():String? = PRINTORDER
+    fun get_PRINTORDER(): String? = PRINTORDER
+
     /*
       vendor itemnumber
    */
-    public fun get_ITEMNUMBER():String? = ITEMNUMBER
+    fun get_ITEMNUMBER(): String? = ITEMNUMBER
+
     /*
       vendor komanum
    */
-    public fun get_KOMANUM():String? = KOMANUM
+    fun get_KOMANUM(): String? = KOMANUM
+
     /*
       vendor diranum
    */
-    public fun get_DIRANUM():String? = DIRANUM
+    fun get_DIRANUM(): String? = DIRANUM
+
     /*
       vendor get username
    */
-    public fun get_USERNAME():String? = USERNAME
+    fun get_USERNAME(): String? = USERNAME
 
-    /*
+    @Suppress("unused")
+/*
       set vendorid
    */
-    public fun set_VENDOR_ID(string: String)
+    fun set_VENDOR_ID(string: String)
     {
             VENDOR_ID = string.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
     set dataraid
  */
-    public fun set_DATAAREAID(string: String)
+    fun set_DATAAREAID(string: String)
     {
         DATAAREAID = string.trim()
     }
+
     /*
     set recversion
  */
-    public fun set_RECVERSION(string: String)
+    fun set_RECVERSION(string: String)
     {
         RECVERSION = string.trim()
     }
+
     /*
     set recid
  */
-    public fun set_RECID(string: String)
+    fun set_RECID(string: String)
     {
         RECID = string.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
     set project id
  */
-    public fun set_PROJECT_ID(string: String)
+    fun set_PROJECT_ID(string: String)
     {
         PROJECTS_ID = string.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
     set inventory id
  */
-    public fun set_INVENTORY_ID(string: String)
+    fun set_INVENTORY_ID(string: String)
     {
         INVENTORY_ID = string.trim()
     }
+
     /*
     set flat
  */
-    public fun set_FLAT(string: String)
+    fun set_FLAT(string: String)
     {
         FLAT=string.trim()
     }
+
     /*
     set floor
  */
-    public fun set_FLOOR(string: String)
+    fun set_FLOOR(string: String)
     {
         FLOOR = string.trim()
     }
+
     /*
     set qty
  */
-    public fun set_QTY(string: String)
+    fun set_QTY(string: String)
     {
         QTY = string.trim()
     }
+
     /*
     set salesprice
  */
-    public fun set_SALESPRICE(string: String)
+    fun set_SALESPRICE(string: String)
     {
         SALESPRICE = string.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
     set oprid
  */
-    public fun set_OPRID(string: String)
+    fun set_OPRID(string: String)
     {
         OPR_ID = string.trim()
     }
+
     /*
     set milestone percent
  */
-    public fun set_MILESTONEPERCENT(string: String)
+    fun set_MILESTONEPERCENT(string: String)
     {
         MILESTONEPERCENT = string.trim()
     }
+
     /*
     set qtyforaccount
  */
-    public fun set_QTYFORACCOUNT(string: String)
+    fun set_QTYFORACCOUNT(string: String)
     {
         QTYFORACCOUNT = string.trim()
     }
+
     /*
     set percentforaccount
  */
-    public fun set_PERCENTFORACCOUNT(string: String)
+    fun set_PERCENTFORACCOUNT(string: String)
     {
         PERCENTFORACCOUNT = string.trim()
     }
+
     /*
     set totalsum
  */
-    public fun set_TOTALSUM(string: String)
+    fun set_TOTALSUM(string: String)
     {
         TOTALSUM = string.trim()
     }
+
     /*
     set salprog
  */
-    public fun set_SALPROG(string: String)
+    fun set_SALPROG(string: String)
     {
         SALPROG = string.trim()
     }
+
     /*
     set printorder
  */
-    public fun set_PRINTORDER(string: String)
+    fun set_PRINTORDER(string: String)
     {
         PRINTORDER = string.trim()
     }
+
     /*
     set itemnumber
  */
-    public fun set_ITEMNUMBER(string: String)
+    fun set_ITEMNUMBER(string: String)
     {
         ITEMNUMBER = string.trim()
     }
+
     /*
     set komanum
  */
-    public fun set_KOMANUM(string: String)
+    fun set_KOMANUM(string: String)
     {
         KOMANUM = string.trim()
     }
+
     /*
     set diranum
  */
-    public fun set_DIRANUM(string: String)
+    fun set_DIRANUM(string: String)
     {
         DIRANUM = string.trim()
     }
-    /*
+
+    @Suppress("unused")
+/*
     set username
  */
-    public fun set_USERNAME(string: String)
+    fun set_USERNAME(string: String)
     {
         USERNAME = string.trim()
     }
@@ -294,15 +341,15 @@ class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String
      */
     override fun toString(): String
     {
-        var opr = global_variables_dataclass.DB_OPR!!.get_opr_by_id((OPR_ID?:"").trim())
-        var project = global_variables_dataclass.DB_project!!.get_project_by_id((PROJECTS_ID?:"").trim())
-        var vendor = global_variables_dataclass.DB_VENDOR!!.get_vendor_by_id((VENDOR_ID?:"").trim())
-        var item = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id((INVENTORY_ID?:"").trim())
+        val opr = global_variables_dataclass.DB_OPR!!.get_opr_by_id((OPR_ID ?: "").trim())
+        val project = global_variables_dataclass.DB_project!!.get_project_by_id((PROJECTS_ID ?: "").trim())
+        val vendor = global_variables_dataclass.DB_VENDOR!!.get_vendor_by_id((VENDOR_ID ?: "").trim())
+        val item = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id((INVENTORY_ID ?: "").trim())
         return "OPR: " + (opr?.toString()?:"").trim() + " Project: " + (project?.toString()?:"").trim() + " Vendor: " + (vendor?.toString()?:"").trim() +" Inventory: " +(item?.toString()?:"").trim()
     }
 
     /*
         copies
      */
-    override public fun copy():big_table_data = big_table_data(get_VENDOR_ID(),get_DATAAREAID(),get_RECVERSION(),get_RECID(),get_PROJECT_ID(),get_INVENTORY_ID(),get_FLAT(),get_FLOOR(),get_QTY(),get_SALESPRICE(),get_OPRID(),get_MILESTONEPERCENT(),get_QTYFORACCOUNT(),get_PERCENTFORACCOUNT(),get_TOTALSUM(),get_SALPROG(),get_PRINTORDER(),get_ITEMNUMBER(),get_KOMANUM(),get_DIRANUM(),get_USERNAME())
+    override fun copy(): big_table_data = big_table_data(get_VENDOR_ID(), get_DATAAREAID(), get_RECVERSION(), get_RECID(), get_PROJECT_ID(), get_INVENTORY_ID(), get_FLAT(), get_FLOOR(), get_QTY(), get_SALESPRICE(), get_OPRID(), get_MILESTONEPERCENT(), get_QTYFORACCOUNT(), get_PERCENTFORACCOUNT(), get_TOTALSUM(), get_SALPROG(), get_PRINTORDER(), get_ITEMNUMBER(), get_KOMANUM(), get_DIRANUM(), get_USERNAME())
 }

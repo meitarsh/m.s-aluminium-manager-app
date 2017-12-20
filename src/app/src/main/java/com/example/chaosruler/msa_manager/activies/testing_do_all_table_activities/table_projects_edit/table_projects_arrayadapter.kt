@@ -22,16 +22,16 @@ class table_projects_arrayadapter(context: Context, arr: Vector<project_data>) :
     {
 
         @Suppress("NAME_SHADOWING")
-        var convertView:View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_projects,parent,false)
+        val convertView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_projects, parent, false)
 
-        var all_views = Vector<View>()
+        val all_views = Vector<View>()
 
         val proj_daa: project_data = getItem(position)
 
 
-        var id = themer.get_view(convertView,R.id.item_project_id) as TextView
-        var dataaraeid = themer.get_view(convertView,R.id.item_project_dataaraeid) as TextView
-        var name = themer.get_view(convertView,R.id.item_project_name) as EditText
+        val id = themer.get_view(convertView, R.id.item_project_id) as TextView
+        val dataaraeid = themer.get_view(convertView, R.id.item_project_dataaraeid) as TextView
+        val name = themer.get_view(convertView, R.id.item_project_name) as EditText
 
 
 
@@ -50,10 +50,10 @@ class table_projects_arrayadapter(context: Context, arr: Vector<project_data>) :
         name.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || name.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = name.text.toString()
+            val str = name.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_projects_table_helper.NAME] = str
                 remote_projects_table_helper.push_update(proj_daa, update_value, context)
                 proj_daa.set_project_name(str)

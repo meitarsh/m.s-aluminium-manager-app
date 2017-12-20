@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="rtl">
@@ -39,7 +40,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_recid"
@@ -51,7 +53,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <TextView
         android:id="@+id/item_big_projid"
@@ -87,7 +90,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_floor"
@@ -99,7 +103,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_qty"
@@ -111,7 +116,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_salesprice"
@@ -123,7 +129,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <TextView
         android:id="@+id/item_big_oprid"
@@ -135,7 +142,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_milestone_percent"
@@ -147,7 +155,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_qtyforaccount"
@@ -159,7 +168,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_percentforaccount"
@@ -171,7 +181,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_totalsum"
@@ -183,7 +194,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_salprog"
@@ -195,7 +207,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_printorder"
@@ -207,7 +220,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_itemnumber"
@@ -219,7 +233,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_komanum"
@@ -231,7 +246,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/item_big_diranum"
@@ -243,7 +259,8 @@
         android:layout_weight="1"
         android:background="@drawable/cell_shape"
         android:gravity="center"
-        android:lines="1" />
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
 
 
 </LinearLayout>

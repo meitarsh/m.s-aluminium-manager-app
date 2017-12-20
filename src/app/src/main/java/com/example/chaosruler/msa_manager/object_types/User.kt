@@ -22,7 +22,8 @@ class User(private var __username: String, private var __password: String) {
         return this.__username
     }
 
-    /*
+    @Suppress("unused")
+/*
         set username
      */
     fun set__username(username: String)
@@ -38,7 +39,8 @@ class User(private var __username: String, private var __password: String) {
         return __password
     }
 
-    /*
+    @Suppress("unused")
+/*
         set password
      */
     fun set__password(password: String)

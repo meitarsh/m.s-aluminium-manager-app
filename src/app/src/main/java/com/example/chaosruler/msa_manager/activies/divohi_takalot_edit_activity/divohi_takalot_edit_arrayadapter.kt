@@ -19,34 +19,31 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
 
-/**
- * Created by chaosruler on 12/10/17.
- */
 class divohi_takalot_edit_arrayadapter(private var context: Activity, arr: Vector<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.item_divohi_takalot_edit,arr.toTypedArray())
 {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View
     {
 
         @Suppress("NAME_SHADOWING")
-        var convertView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_divohi_takalot_edit,parent,false)
+        val convertView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_divohi_takalot_edit, parent, false)
 
-        var mispar_parit = themer.get_view(convertView,R.id.item_divohi_takalot_edit_mispar_parit) as EditText
-        var shem_parit = themer.get_view(convertView,R.id.item_divohi_takalot_edit_shem_parit) as EditText
-        var mispar_project = themer.get_view(convertView,R.id.item_divohi_takalot_edit_mispar_project) as EditText
-        var shem_project = themer.get_view(convertView,R.id.item_divohi_takalot_edit_shem_project) as EditText
-        var kamot = themer.get_view(convertView,R.id.item_divohi_takalot_edit_kamot) as EditText
-        var sog_takala = themer.get_view(convertView,R.id.item_divohi_takalot_edit_sog_takala) as EditText
-        var koma = themer.get_view(convertView,R.id.item_divohi_takalot_edit_koma) as EditText
-        var bnian = themer.get_view(convertView,R.id.item_divohi_takalot_edit_bnian) as EditText
-        var dira = themer.get_view(convertView,R.id.item_divohi_takalot_edit_dira) as EditText
-        var tiaor_takala = themer.get_view(convertView,R.id.item_divohi_takalot_edit_tiaaor_takala) as EditText
-        var peolot_ltikon = themer.get_view(convertView,R.id.item_divohi_takalot_edit_peolot_ltikon) as EditText
-        var peolot_monoot = themer.get_view(convertView,R.id.item_divohi_takalot_edit_peolot_monoot) as EditText
-        var tgovat_mnaal = themer.get_view(convertView,R.id.item_divohi_takalot_edit_tgovat_mnaal) as EditText
-        var alot_takala = themer.get_view(convertView,R.id.item_divohi_takalot_edit_alot_takala) as EditText
-        var upload_btn = themer.get_view(convertView,R.id.item_divohi_takalot_edit_upload_btn) as Button
+        val mispar_parit = themer.get_view(convertView, R.id.item_divohi_takalot_edit_mispar_parit) as EditText
+        val shem_parit = themer.get_view(convertView, R.id.item_divohi_takalot_edit_shem_parit) as EditText
+        val mispar_project = themer.get_view(convertView, R.id.item_divohi_takalot_edit_mispar_project) as EditText
+        val shem_project = themer.get_view(convertView, R.id.item_divohi_takalot_edit_shem_project) as EditText
+        val kamot = themer.get_view(convertView, R.id.item_divohi_takalot_edit_kamot) as EditText
+        val sog_takala = themer.get_view(convertView, R.id.item_divohi_takalot_edit_sog_takala) as EditText
+        val koma = themer.get_view(convertView, R.id.item_divohi_takalot_edit_koma) as EditText
+        val bnian = themer.get_view(convertView, R.id.item_divohi_takalot_edit_bnian) as EditText
+        val dira = themer.get_view(convertView, R.id.item_divohi_takalot_edit_dira) as EditText
+        val tiaor_takala = themer.get_view(convertView, R.id.item_divohi_takalot_edit_tiaaor_takala) as EditText
+        val peolot_ltikon = themer.get_view(convertView, R.id.item_divohi_takalot_edit_peolot_ltikon) as EditText
+        val peolot_monoot = themer.get_view(convertView, R.id.item_divohi_takalot_edit_peolot_monoot) as EditText
+        val tgovat_mnaal = themer.get_view(convertView, R.id.item_divohi_takalot_edit_tgovat_mnaal) as EditText
+        val alot_takala = themer.get_view(convertView, R.id.item_divohi_takalot_edit_alot_takala) as EditText
+        val upload_btn = themer.get_view(convertView, R.id.item_divohi_takalot_edit_upload_btn) as Button
 
-        var all_txtviews = Vector<View>()
+        val all_txtviews = Vector<View>()
         all_txtviews.add(mispar_parit)
         all_txtviews.add(shem_parit)
         all_txtviews.add(mispar_project)
@@ -98,10 +95,10 @@ class divohi_takalot_edit_arrayadapter(private var context: Activity, arr: Vecto
         mispar_parit.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || mispar_parit.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = mispar_parit.text.toString()
+            val str = mispar_parit.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.ITEMNUMBER] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_FLAT(str)
@@ -115,10 +112,10 @@ class divohi_takalot_edit_arrayadapter(private var context: Activity, arr: Vecto
         shem_parit.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || shem_parit.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = shem_parit.text.toString()
+            val str = shem_parit.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_inventory_table_helper.NAME] = str
                 remote_inventory_table_helper.push_update(inventory, update_value, context)
                 inventory.set_itemname(str)
@@ -132,10 +129,10 @@ class divohi_takalot_edit_arrayadapter(private var context: Activity, arr: Vecto
         shem_project.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || shem_project.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = shem_project.text.toString()
+            val str = shem_project.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_projects_table_helper.NAME] = str
                 remote_projects_table_helper.push_update(project_item, update_value, context)
                 project_item.set_project_name(str)
@@ -149,10 +146,10 @@ class divohi_takalot_edit_arrayadapter(private var context: Activity, arr: Vecto
         kamot.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || kamot.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = kamot.text.toString()
+            val str = kamot.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.QTY] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_QTY(str)
@@ -167,10 +164,10 @@ class divohi_takalot_edit_arrayadapter(private var context: Activity, arr: Vecto
         koma.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || koma.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = koma.text.toString()
+            val str = koma.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.FLOOR] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_FLOOR(str)
@@ -184,10 +181,10 @@ class divohi_takalot_edit_arrayadapter(private var context: Activity, arr: Vecto
         bnian.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || bnian.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = bnian.text.toString()
+            val str = bnian.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.FLAT] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_FLAT(str)
@@ -201,10 +198,10 @@ class divohi_takalot_edit_arrayadapter(private var context: Activity, arr: Vecto
         dira.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || dira.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = dira.text.toString()
+            val str = dira.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.DIRANUM] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_DIRANUM(str)
@@ -218,10 +215,10 @@ class divohi_takalot_edit_arrayadapter(private var context: Activity, arr: Vecto
         alot_takala.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || alot_takala.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = alot_takala.text.toString()
+            val str = alot_takala.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_big_table_helper.TOTALSUM] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_TOTALSUM(str)
@@ -234,9 +231,9 @@ class divohi_takalot_edit_arrayadapter(private var context: Activity, arr: Vecto
 
         upload_btn.setOnClickListener({
             @Suppress("NAME_SHADOWING")
-            var parent = it.parent as View
-            var listview = parent.parent as ListView
-            var index = listview.getPositionForView(parent)
+            val parent = it.parent as View
+            val listview = parent.parent as ListView
+            val index = listview.getPositionForView(parent)
             showFileChooser(index)
         })
 

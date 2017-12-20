@@ -6,10 +6,10 @@ import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.opr_data
-import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.object_types.big_table_data
+import com.example.chaosruler.msa_manager.object_types.opr_data
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
@@ -26,7 +26,7 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
     SQL class
  */
     init {
-        var vector: Vector<String> = Vector()
+        val vector: Vector<String> = Vector()
         vector.add(ID)
         vector.add(NAME)
         vector.add(DATAARAEID)
@@ -40,7 +40,7 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
            on what the table schema is for creation
         */
     override fun onCreate(db: SQLiteDatabase) {
-        var map: HashMap<String, String> = HashMap()
+        val map: HashMap<String, String> = HashMap()
         map[ID] = "text primary key"
         map[NAME] = "text"
         map[USER] = "text"
@@ -55,21 +55,22 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
     {
         if(!global_variables_dataclass.isLocal)
             return
-        var server_vec = server_data_to_vector()
+        val server_vec = server_data_to_vector()
         for(item in server_vec)
         {
             add_opr(item)
         }
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
         converts DB to vector of opr
      */
     fun get_local_DB():Vector<opr_data>
     {
-        var vector:Vector<opr_data> = Vector()
+        val vector: Vector<opr_data> = Vector()
 
-        var all_db:Vector<HashMap<String,String>> = get_db()
+        val all_db: Vector<HashMap<String, String>> = get_db()
         all_db
                 .filter {
                     @Suppress("USELESS_ELVIS_RIGHT_IS_NULL")
@@ -83,10 +84,10 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
            */
     fun get_local_DB_by_projname(projid:String): Vector<opr_data>
     {
-        var vector: Vector<opr_data> = Vector()
+        val vector: Vector<opr_data> = Vector()
 
-        var all_db: Vector<big_table_data> = global_variables_dataclass.DB_BIG!!.get_local_DB()
-        var oprdb : Vector<opr_data> = global_variables_dataclass.DB_OPR!!.get_local_DB()
+        val all_db: Vector<big_table_data> = global_variables_dataclass.DB_BIG!!.get_local_DB()
+        val oprdb: Vector<opr_data> = global_variables_dataclass.DB_OPR!!.get_local_DB()
 
 
         for(opr in oprdb)
@@ -102,22 +103,23 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
         return vector
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
            subroutine to convert server data to vector of opr
         */
     fun server_data_to_vector():Vector<opr_data>
     {
-        var server_data: Vector<java.util.HashMap<String, String>> =
+        val server_data: Vector<java.util.HashMap<String, String>> =
         if(BuildConfig.DEBUG)
         {
-            var typemap: java.util.HashMap<String, String> = remote_opr_table_helper.define_type_map()
+            val typemap: java.util.HashMap<String, String> = remote_opr_table_helper.define_type_map()
             remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_OPR),typemap,context.getString(R.string.OPR_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
         }
         else
         {
             remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_OPR))
         }
-        var result_vector:Vector<opr_data> = Vector()
+        val result_vector: Vector<opr_data> = Vector()
         server_data.mapTo(result_vector) {
             opr_data((it[remote_opr_table_helper.ID] ?: "").trim(),
                     (it[remote_opr_table_helper.NAME] ?: "").trim(), (it[remote_opr_table_helper.DATAAREAID] ?: "").trim(),
@@ -131,10 +133,10 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
     fun server_data_to_vector_by_projname(projid: String): Vector<opr_data>
     {
 
-        var server_data_big: Vector<java.util.HashMap<String, String>> =
+        val server_data_big: Vector<java.util.HashMap<String, String>> =
                 if(BuildConfig.DEBUG)
                 {
-                    var typemap:HashMap<String,String> = remote_big_table_helper.define_type_map()
+                    val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
                     remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
                 }
                 else
@@ -142,17 +144,17 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
                     remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
                 }
 
-        var server_data_opr: Vector<java.util.HashMap<String, String>> =
+        val server_data_opr: Vector<java.util.HashMap<String, String>> =
                 if(BuildConfig.DEBUG)
                 {
-                    var typemap:HashMap<String,String> = remote_opr_table_helper.define_type_map()
+                    val typemap: HashMap<String, String> = remote_opr_table_helper.define_type_map()
                     remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_OPR),typemap,context.getString(R.string.OPR_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
                 }
                 else
                 {
                     remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_OPR))
                 }
-        var result_vector: Vector<opr_data> = Vector()
+        val result_vector: Vector<opr_data> = Vector()
         for(opr in server_data_opr)
         {
             for (big in server_data_big)
@@ -169,14 +171,16 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
 
         return result_vector
     }
-    /*
+
+    @Suppress("MemberVisibilityCanPrivate")
+/*
            subroutine that is in charge of getting the opr class
            by query
         */
     fun get_opr_by_opr(opr_data: opr_data) // subroutine to get a opr object
             : opr_data?
     {
-        var input_map = HashMap<String,String>()
+        val input_map = HashMap<String, String>()
         input_map[ID] = "'${opr_data.get_oprid()}'"
         val vector = get_rows(input_map)
         if(vector.size > 0)
@@ -212,7 +216,8 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
             insert_opr(opr_data)
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
           checks if opr exists, query is not that smart, gets an ENTIRE table and than checks
           if the opr is there
 
@@ -231,9 +236,9 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
     private fun insert_opr(opr_data: opr_data):Boolean // subroutine to insert a opr to the database
     {
 
-        var everything_to_add:Vector<HashMap<String,String>> = Vector()
+        val everything_to_add: Vector<HashMap<String, String>> = Vector()
 
-        var data: HashMap<String,String> = HashMap()
+        val data: HashMap<String, String> = HashMap()
         data[ID] = (opr_data.get_oprid() ?: "").trim()
         data[NAME] = (opr_data.get_opr_name() ?: "").trim()
         data[DATAARAEID] = (opr_data.get_DATAREAID() ?: "").trim()
@@ -242,21 +247,23 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
         return add_data(everything_to_add)
     }
 
-    /*
+    @Suppress("MemberVisibilityCanPrivate")
+/*
       subroutine in charge of feeding information and database information to
       SQL abstraction on update queries
    */
     fun update_opr(from:opr_data,to:opr_data) // subroutine to update data of a opr that exists on the database
             : Boolean {
 
-        var change_to:HashMap<String,String> = HashMap()
+        val change_to: HashMap<String, String> = HashMap()
         change_to[NAME] = (to.get_opr_name() ?: "").trim()
         change_to[DATAARAEID] = (to.get_DATAREAID() ?: "").trim()
         change_to[USER] = (to.get_USERNAME() ?: "").trim()
         return update_data(ID, arrayOf((from.get_oprid()?:"").trim()),change_to)
     }
 
-    /*
+    @Suppress("unused")
+/*
         subroutine in charge of feeding information and database information to
         SQL abstraction on delete queries
      */
@@ -271,9 +278,9 @@ class local_OPR_table_helper(private var context: Context): local_SQL_Helper(con
     /*
         gets opr object by its id, else returns null
      */
-    public fun get_opr_by_id(id: String):opr_data?
+    fun get_opr_by_id(id: String): opr_data?
     {
-        var mock_obj:opr_data = opr_data(id,null,null,remote_SQL_Helper.getusername())
+        val mock_obj = opr_data(id, null, null, remote_SQL_Helper.getusername())
         return get_opr_by_opr(mock_obj)
     }
 }

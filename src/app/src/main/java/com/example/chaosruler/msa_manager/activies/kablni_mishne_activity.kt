@@ -3,7 +3,6 @@ package com.example.chaosruler.msa_manager.activies
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.kablan_pashot_activity.kablan_pashot
 import com.example.chaosruler.msa_manager.services.themer

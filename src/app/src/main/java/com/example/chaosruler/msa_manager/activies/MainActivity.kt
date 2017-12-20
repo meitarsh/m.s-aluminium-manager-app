@@ -66,7 +66,7 @@ class MainActivity : Activity()
             remote_SQL_Helper.refresh_context(baseContext)
             //startService(Intent(this, offline_mode_service::class.java))
             //offline_mode_service.init_cache(baseContext,intent)
-            var service_intent = Intent(this,offline_mode_service::class.java)
+            val service_intent = Intent(this, offline_mode_service::class.java)
             startService(service_intent)
         }).start()
     }
@@ -114,16 +114,16 @@ class MainActivity : Activity()
         main_progressBar.visibility = ProgressBar.VISIBLE
         main_progressBar.max = getString(R.string.main_progress_bar_max).toInt()
         main_progressBar.progress = 0
-        var progressStatus:Int = 0
-        var handler:Handler = Handler()
+        var progressStatus = 0
+        val handler = Handler()
         var rate = 1
         Thread(Runnable {
-            while (!service_sync_done)
+            while (service_sync_done.not())
             {
                 progressStatus += rate
                 // Update the progress bar and display the
                 //current value in the text view
-                handler.post(Runnable {
+                handler.post({
                     main_progressBar.progress = progressStatus
                 })
                 try

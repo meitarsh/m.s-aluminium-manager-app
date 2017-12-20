@@ -1,41 +1,40 @@
 package com.example.chaosruler.msa_manager.activies
 
+import android.Manifest.permission.READ_CONTACTS
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
-import android.content.pm.PackageManager
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.app.LoaderManager.LoaderCallbacks
 import android.content.CursorLoader
+import android.content.Intent
 import android.content.Loader
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.text.TextUtils
-import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.widget.ArrayAdapter
-import android.widget.TextView
-
-import java.util.ArrayList
-import android.Manifest.permission.READ_CONTACTS
-import android.content.Intent
 import android.preference.PreferenceManager
+import android.provider.ContactsContract
+import android.support.design.widget.Snackbar
+import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.User
-import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 import com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity
+import com.example.chaosruler.msa_manager.object_types.User
+import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.services.themer
-
 import kotlinx.android.synthetic.main.activity_login.*
+import java.util.*
 
 /**
  * A login screen that offers login via email/password.
@@ -96,6 +95,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         loaderManager.initLoader(0, null, this)
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     private fun mayRequestContacts(): Boolean {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true
@@ -252,6 +252,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     /**
      * Shows the progress UI and hides the login form.
      */
+    @SuppressLint("ObsoleteSdkInt")
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private fun showProgress(show: Boolean) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -328,13 +329,14 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
                 ContactsContract.CommonDataKinds.Email.IS_PRIMARY)
         val ADDRESS = 0
-        val IS_PRIMARY = 1
+        //val IS_PRIMARY = 1
     }
 
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
+    @SuppressLint("StaticFieldLeak")
     inner class UserLoginTask internal constructor(private val mEmail: String, private val mPassword: String) : AsyncTask<Void, Void, Boolean>() {
 
         override fun doInBackground(vararg params: Void): Boolean?
@@ -343,8 +345,8 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
             remote_SQL_Helper.Connect(baseContext, mEmail, mPassword)
 
-            var gui_mode_key:Boolean = PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key),false)
-            var result:Boolean =
+            val gui_mode_key: Boolean = PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key), false)
+            val result =
             if( gui_mode_key  )
                 true
             else

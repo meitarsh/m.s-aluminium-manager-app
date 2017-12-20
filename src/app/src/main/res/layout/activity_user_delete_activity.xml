@@ -38,7 +38,8 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toStartOf="@+id/delete_username_textview"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delete_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_spinner"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/delete_password1_textview"
@@ -62,7 +63,8 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/delete_password1_textview"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delete_password1_edittext" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_password1_edittext"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/delete_password2_textview"
@@ -87,7 +89,7 @@
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
-        android:text="מחק"
+        android:text="@string/activity_users_mehak"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -102,7 +104,7 @@
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
-        android:text="שנה סיסמה"
+        android:text="@string/activity_user_shane_sisma"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
