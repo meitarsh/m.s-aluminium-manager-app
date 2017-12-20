@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.User
+import com.example.chaosruler.msa_manager.object_types.User
 import java.util.*
 import kotlin.collections.HashMap
 

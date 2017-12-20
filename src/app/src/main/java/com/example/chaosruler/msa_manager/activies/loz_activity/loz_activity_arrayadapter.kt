@@ -3,7 +3,6 @@ package com.example.chaosruler.msa_manager.activies.loz_activity
 import android.content.Context
 import android.os.Looper
 import android.text.InputType
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
+import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*

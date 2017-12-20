@@ -9,16 +9,14 @@ import java.lang.Thread.sleep
 import java.util.*
 import android.app.NotificationManager
 import android.app.Service
-import android.content.BroadcastReceiver
 import android.os.Binder
 import android.os.IBinder
-import android.support.v4.content.LocalBroadcastManager
 import android.util.Log
 import com.example.chaosruler.msa_manager.MSSQL_helpers.*
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.*
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.cache_command
+import com.example.chaosruler.msa_manager.object_types.cache_command
 
 
 /*
@@ -158,11 +156,11 @@ class offline_mode_service : Service(){
          */
         private fun init_remote_databases(context: Context)
         {
-            remote_vendors_table_helper.init_variables(context)
-            remote_big_table_helper.init_variables(context)
-            remote_inventory_table_helper.init_variables(context)
-            remote_opr_table_helper.init_variables(context)
-            remote_projects_table_helper.init_variables(context)
+            remote_vendors_table_helper.extract_variables(context)
+            remote_big_table_helper.extract_variables(context)
+            remote_inventory_table_helper.extract_variables(context)
+            remote_opr_table_helper.extract_variables(context)
+            remote_projects_table_helper.extract_variables(context)
         }
         /*
             starts the sync thread

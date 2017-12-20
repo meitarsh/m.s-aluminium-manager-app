@@ -1,6 +1,5 @@
-package com.example.chaosruler.msa_manager.dataclass_for_SQL_representation
+package com.example.chaosruler.msa_manager.object_types
 
-import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 

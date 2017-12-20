@@ -10,12 +10,11 @@ abstract class remote_helper
         /*
         to init variables
      */
-        public abstract fun init_variables(context: Context)
-
+        public abstract fun extract_variables(context: Context)
         /*
         to make a type map for table
      */
-        abstract fun make_type_map(): HashMap<String, String>
+        abstract fun define_type_map(): HashMap<String, String>
 
         /*
                 pushes an update to db

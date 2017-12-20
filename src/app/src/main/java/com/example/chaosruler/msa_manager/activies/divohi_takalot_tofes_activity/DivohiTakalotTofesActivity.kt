@@ -2,11 +2,8 @@ package com.example.chaosruler.msa_manager.activies.divohi_takalot_tofes_activit
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.view.View
-import android.widget.*
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.*
+import com.example.chaosruler.msa_manager.object_types.*
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.divohi_takalot_tofes.*

@@ -6,12 +6,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.*
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.project_data
+import com.example.chaosruler.msa_manager.object_types.project_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper

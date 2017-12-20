@@ -8,8 +8,8 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 import com.example.chaosruler.msa_manager.activies.MainActivity
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.User
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.cache_command
+import com.example.chaosruler.msa_manager.object_types.User
+import com.example.chaosruler.msa_manager.object_types.cache_command
 import java.util.*
 import kotlin.collections.HashMap
 

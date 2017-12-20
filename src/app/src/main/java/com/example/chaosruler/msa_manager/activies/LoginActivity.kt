@@ -29,7 +29,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.AdapterView
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.User
+import com.example.chaosruler.msa_manager.object_types.User
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 import com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity

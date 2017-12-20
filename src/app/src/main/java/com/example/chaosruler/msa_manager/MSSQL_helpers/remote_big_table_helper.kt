@@ -4,7 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
-import com.example.chaosruler.msa_manager.dataclass_for_SQL_representation.big_table_data
+import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
@@ -82,7 +82,7 @@ class remote_big_table_helper
         /*
             init the variables from strings.xml
          */
-        override fun init_variables(context: Context)
+        override fun extract_variables(context: Context)
         {
             TABLE_NAME = context.getString(R.string.TABLE_BIG)
             DATABASE_NAME = context.getString(R.string.DATABASE_NAME)
@@ -151,7 +151,7 @@ class remote_big_table_helper
         /*
             make a big table type map
          */
-        override fun make_type_map():HashMap<String,String>
+        override fun define_type_map():HashMap<String,String>
         {
             var map:HashMap<String,String> = HashMap()
             map[VENDOR_ID] = VENDOR_ID_TYPE
@@ -191,7 +191,7 @@ class remote_big_table_helper
          */
         public fun push_update(obj: big_table_data, map:HashMap<String,String>, context: Context)
         {
-            var typemap = make_type_map()
+            var typemap = define_type_map()
             for(item in map)
             {
                 if((typemap[item.key] ?: "") == "text" || (typemap[item.key] ?: "") != "varchar" || (typemap[item.key] ?: "") != "nvarchar" )
