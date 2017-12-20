@@ -34,7 +34,6 @@ class broadcast_reciever : BroadcastReceiver()
                 {
                     return
                 }
-
                 var cache_database:Vector<cache_command> // grab cache vector to know // the most frequent user to login into
                 try
                 {
