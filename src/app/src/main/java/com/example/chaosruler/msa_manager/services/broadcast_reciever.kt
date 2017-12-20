@@ -86,6 +86,7 @@ class broadcast_reciever : BroadcastReceiver()
                         userdb[index].get__password()
                     }
                 }
+                @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
                 var wait_lock:Object = Object()
                 Thread({
                     remote_SQL_Helper.Connect(context,username,pw)
