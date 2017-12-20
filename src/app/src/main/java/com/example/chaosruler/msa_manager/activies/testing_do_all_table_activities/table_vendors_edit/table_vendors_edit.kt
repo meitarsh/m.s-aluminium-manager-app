@@ -1,5 +1,6 @@
 package com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_vendors_edit
 
+import android.app.Activity
 import android.os.Bundle
 import android.os.Looper
 import android.support.v7.app.AppCompatActivity
@@ -13,7 +14,7 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_table_vendors_edit.*
 import java.util.*
 
-class table_vendors_edit : AppCompatActivity() {
+class table_vendors_edit : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {

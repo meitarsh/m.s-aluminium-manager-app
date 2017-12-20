@@ -1,5 +1,6 @@
 package com.example.chaosruler.msa_manager.activies.divohi_takalot_tofes_activity
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -14,7 +15,7 @@ import java.util.*
 /*
     divohi takalot form activity
  */
-class DivohiTakalotTofesActivity : AppCompatActivity() {
+class DivohiTakalotTofesActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {

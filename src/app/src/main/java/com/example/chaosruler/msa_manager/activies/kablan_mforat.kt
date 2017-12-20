@@ -21,7 +21,7 @@ import java.util.*
 import kotlin.collections.HashMap
 import kotlin.math.roundToInt
 
-class kablan_mforat : AppCompatActivity() {
+class kablan_mforat : Activity() {
 
     private lateinit var adapter:ArrayAdapter<big_table_data>
     override fun onCreate(savedInstanceState: Bundle?)

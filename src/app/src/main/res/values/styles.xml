@@ -15,7 +15,6 @@
     </style>
 
     <style name="Light" parent="Theme.AppCompat.Light">
-
     </style>
 
     <style name="CodeFreak" parent="android:Theme.Material.NoActionBar">

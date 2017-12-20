@@ -1,6 +1,7 @@
 package com.example.chaosruler.msa_manager.activies.kablan_pashot_activity
 
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.InputType
@@ -14,7 +15,7 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_kablan_pashot.*
 import java.util.*
 
-class kablan_pashot : AppCompatActivity()
+class kablan_pashot : Activity()
 {
 
     override fun onCreate(savedInstanceState: Bundle?)

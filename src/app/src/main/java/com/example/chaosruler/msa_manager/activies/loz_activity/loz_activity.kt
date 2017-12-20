@@ -1,5 +1,6 @@
 package com.example.chaosruler.msa_manager.activies.loz_activity
 
+import android.app.Activity
 import android.os.Bundle
 import android.os.Looper
 import android.support.v7.app.AppCompatActivity
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_loz_activity.*
 import java.util.*
 
 
-class loz_activity : AppCompatActivity() {
+class loz_activity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {

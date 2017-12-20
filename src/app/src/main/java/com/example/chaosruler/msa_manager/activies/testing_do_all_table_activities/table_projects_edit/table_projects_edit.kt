@@ -1,5 +1,6 @@
 package com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_projects_edit
 
+import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
@@ -13,7 +14,7 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_table_projects_edit.*
 import java.util.*
 
-class table_projects_edit : AppCompatActivity() {
+class table_projects_edit : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {

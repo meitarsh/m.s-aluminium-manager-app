@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.divohi_takalot_edit.*
 import java.io.File
 
 
-class divohi_takalot_edit : AppCompatActivity() {
+class divohi_takalot_edit : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
