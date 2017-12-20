@@ -8,13 +8,14 @@
     android:layoutDirection="ltr"
     android:orientation="vertical"
     >
+
     <Button
         android:id="@+id/project_options_btn_kablni_mishne"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginTop="@dimen/button_margin_project_options"
-        android:layout_marginBottom="@dimen/button_margin_project_options"
         android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/button_margin_project_options"
+        android:layout_marginTop="100dp"
         android:background="@drawable/button_sample1"
         android:text="@string/project_options_1" />
 
