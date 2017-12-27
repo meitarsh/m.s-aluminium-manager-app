@@ -5,6 +5,7 @@ import android.content.Context
 import android.preference.PreferenceManager
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
+import kotlin.experimental.xor
 
 class global_variables_dataclass
 {
@@ -37,5 +38,19 @@ class global_variables_dataclass
             DB_VENDOR = local_vendor_table_helper(context)
             DB_project = local_projects_table_helper(context)
         }
+
+        /*
+        xors both byte arrays, encryption
+     */
+
+        fun xorWithKey(a: ByteArray, key: ByteArray): ByteArray
+        {
+            val out = ByteArray(a.size)
+            for (i in a.indices) {
+                out[i] = (a[i] xor key[i % key.size])
+            }
+            return out
+        }
+
     }
 }
