@@ -68,6 +68,7 @@ class offline_mode_service : Service(){
         /*
                 local database to store server commands with appropiate users
             */
+        @SuppressLint("StaticFieldLeak")
         private lateinit var cache: cache_server_commands
         @SuppressLint("StaticFieldLeak")
         private lateinit var inventory: local_inventory_table_helper
@@ -139,7 +140,7 @@ class offline_mode_service : Service(){
             local_intent.putExtra(context.getString(R.string.key_sync_offline),context.getString(R.string.key_sync_offline))
             LocalBroadcastManager.getInstance(context).sendBroadcast(local_intent)
             */
-            broadcast_reciever.report_to_Main_Activity_Thread_syncing_is_done()
+            global_variables_dataclass.report_to_Main_Activity_Thread_syncing_is_done()
             intent.putExtra(context.getString(R.string.key_sync_offline),context.getString(R.string.key_sync_offline))
         }
 

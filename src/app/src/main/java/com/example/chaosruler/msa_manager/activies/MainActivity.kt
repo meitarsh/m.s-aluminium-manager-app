@@ -68,6 +68,7 @@ class MainActivity : Activity()
             //offline_mode_service.init_cache(baseContext,intent)
             val service_intent = Intent(this, offline_mode_service::class.java)
             startService(service_intent)
+            Log.d("Main","Offline service started")
         }).start()
     }
 
@@ -83,6 +84,7 @@ class MainActivity : Activity()
                     else
                         global_variables_dataclass.DB_project!!.server_data_to_vector()
             runOnUiThread { on_adapter_set(projects) }
+            Log.d("Main","Spinner init done")
         }.start()
 
     }
@@ -101,7 +103,7 @@ class MainActivity : Activity()
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
             {
-
+               // Toast.makeText(baseContext,(main_spinner.adapter.getItem(position) as project_data).get_project_name(),Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -159,6 +161,7 @@ class MainActivity : Activity()
         main_textview.visibility = TextView.INVISIBLE
         main_button_choose.visibility = TextView.INVISIBLE
         main_button_download.visibility = Button.INVISIBLE
+        Log.d("Main","Everything turned invisible")
     }
     /*
                    show all views after progress is complete
@@ -169,6 +172,7 @@ class MainActivity : Activity()
         main_button_choose.visibility = Button.VISIBLE
         main_textview.visibility = TextView.VISIBLE
         main_button_download.visibility = Button.VISIBLE
+        Log.d("Main","Everything turned visible")
     }
     /*
                    creates intro text with username in it
@@ -182,6 +186,7 @@ class MainActivity : Activity()
         if(name.isEmpty())
             name = remote_SQL_Helper.getusername()
         main_textview.text = main_textview.text.toString().replace(getString(R.string.shalom),getString(R.string.shalom) + " " + name)
+        Log.d("Main","Intro Text done")
     }
     /*
                    inits buttons

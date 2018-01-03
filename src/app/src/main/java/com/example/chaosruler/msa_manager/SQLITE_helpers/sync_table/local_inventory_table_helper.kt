@@ -42,10 +42,10 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "text primary key"
-        map[NAME] = "text"
-        map[USER] = "text"
-        map[DATAARAEID] = "text"
+        map[ID] = "TEXT primary key"
+        map[NAME] = "TEXT"
+        map[USER] = "TEXT"
+        map[DATAARAEID] = "TEXT"
         createDB(db,map)
     }
 

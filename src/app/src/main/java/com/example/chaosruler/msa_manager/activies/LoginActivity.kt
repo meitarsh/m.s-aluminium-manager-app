@@ -31,8 +31,10 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 import com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity
 import com.example.chaosruler.msa_manager.object_types.User
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.services.themer
+import com.example.chaosruler.msa_manager.services.vpn_connection
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
 
@@ -49,11 +51,12 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     private var adapter: ArrayAdapter<User>? = null
     override fun onCreate(savedInstanceState: Bundle?)
     {
+        global_variables_dataclass.init_dbs(baseContext)
+        status = user_database_helper(baseContext).get_entire_db().size!=0
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        status = false // means, that we are going to login by using the spinner details
+        //status = false // means, that we are going to login by using the spinner details
         //  I am going to support it by disabling the password input in that case
         db = user_database_helper(baseContext)
         // Set up the login form.
@@ -177,6 +180,8 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             // perform the user login attempt.
 
             showProgress(true)
+            themer.hideKeyboard(baseContext,login_email)
+            themer.hideKeyboard(baseContext,login_password)
             mAuthTask = UserLoginTask(emailStr, passwordStr)
             mAuthTask!!.execute(null as Void?)
         }
@@ -197,6 +202,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.login_menu, menu)
+        onOptionsItemSelected(menu.findItem(R.id.login_switch))
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -316,6 +322,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
     override fun onLoaderReset(cursorLoader: Loader<Cursor>) = Unit
 
+
     private fun addEmailsToAutoComplete(emailAddressCollection: List<String>) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         val adapter = ArrayAdapter(this@LoginActivity,
@@ -332,6 +339,20 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         //val IS_PRIMARY = 1
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(resultCode)
+        {
+            resources.getInteger(R.integer.VPN_request_code)->
+            {
+                startService(Intent(this,vpn_connection::class.java))
+            }
+            else->
+            {
+
+            }
+        }
+    }
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
@@ -339,12 +360,12 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     @SuppressLint("StaticFieldLeak")
     inner class UserLoginTask internal constructor(private val mEmail: String, private val mPassword: String) : AsyncTask<Void, Void, Boolean>() {
 
+
         override fun doInBackground(vararg params: Void): Boolean?
         {
 
 
-            remote_SQL_Helper.Connect(baseContext, mEmail, mPassword)
-
+            remote_SQL_Helper.Connect(baseContext, mEmail, mPassword,this@LoginActivity)
             val gui_mode_key: Boolean = PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key), false)
             val result =
             if( gui_mode_key  )

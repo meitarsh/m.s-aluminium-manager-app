@@ -26,5 +26,7 @@
     <string name="REMOTE_CONNECT_STRING">jdbc:jtds:sqlserver://</string>
 
     <string name="get_date_from_server">select getdate()</string>
+    <string name="unable_to_connect_vpn">Unable to open VPN</string>
 
+    <integer name="VPN_request_code">1500</integer>
 </resources>

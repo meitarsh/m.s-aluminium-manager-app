@@ -70,6 +70,7 @@ class SettingsActivity : AppCompatPreferenceActivity()
                 || DataSyncPreferenceFragment::class.java.name == fragmentName
                 || NotificationPreferenceFragment::class.java.name == fragmentName
                 || DevelopMentSettingsPrefFragment::class.java.name == fragmentName
+                || VPNSettingsFragment::class.java.name == fragmentName
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -199,6 +200,44 @@ class SettingsActivity : AppCompatPreferenceActivity()
         }
     }
 
+
+
+    /**
+     * This fragment shows data and sync preferences only. It is used when the
+     * activity is showing a two-pane settings UI.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    class VPNSettingsFragment : PreferenceFragment() {
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            addPreferencesFromResource(R.xml.pref_vpn)
+            setHasOptionsMenu(true)
+            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
+            // to their values. When their values change, their summaries are
+            // updated to reflect the new value, per the Android Design
+            // guidelines.
+
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_connect_key)), activity.baseContext)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_ip_key)), activity.baseContext)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_port)), activity.baseContext)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_username)), activity.baseContext)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_password)),activity.baseContext)
+        }
+        /*
+                on option selected event
+         */
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            val id = item.itemId
+            if (id == android.R.id.home)
+            {
+                activity.onBackPressed()
+                return true
+            }
+            return super.onOptionsItemSelected(item)
+        }
+    }
+
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     class DevelopMentSettingsPrefFragment : PreferenceFragment() {
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -207,8 +246,9 @@ class SettingsActivity : AppCompatPreferenceActivity()
             setHasOptionsMenu(true)
 
             bindPreferenceSummaryToValue(findPreference(getString(R.string.IP)), null)
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_users_key)), activity.baseContext)
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_offline_key)), activity.baseContext)
+            bindPreferenceSummaryToValue(findPreference(context.getString(R.string.windows_auth_key)),activity.baseContext)
+          //  bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_users_key)), activity.baseContext)
+          //  bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_offline_key)), activity.baseContext)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.gui_mode_key)), activity.baseContext)
         }
         /*
@@ -250,7 +290,6 @@ class SettingsActivity : AppCompatPreferenceActivity()
 
             true
         }
-
         /**
          * Helper method to determine if the device has an extra-large screen. For
          * example, 10" tablets are extra-large.
@@ -291,6 +330,8 @@ class SettingsActivity : AppCompatPreferenceActivity()
                     return@setOnPreferenceClickListener true
                 }
                 preference.key == "gui_mode_key" -> sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,PreferenceManager.getDefaultSharedPreferences(preference.context).getBoolean(preference.key,false))
+                preference.key == "vpn_connect_key" -> sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,PreferenceManager.getDefaultSharedPreferences(preference.context).getBoolean(preference.key,false))
+                preference.key == "windows_auth_key" -> sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,PreferenceManager.getDefaultSharedPreferences(preference.context).getBoolean(preference.key,false))
                 else -> sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                         PreferenceManager
                                 .getDefaultSharedPreferences(preference.context)

@@ -15,7 +15,8 @@
         android:icon="@drawable/msalumicon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Light">
+        android:theme="@style/Light"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".activies.LoginActivity"
             android:configChanges="orientation"
@@ -139,11 +140,17 @@
             android:exported="true"
             tools:ignore="ExportedService" />
 
-        <receiver android:name=".services.broadcast_reciever">
+
+        <service android:name=".services.vpn_connection"
+            android:permission="android.permission.BIND_VPN_SERVICE">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.VpnService"/>
             </intent-filter>
-        </receiver>
+            <meta-data android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON"
+                android:value="false"/>
+        </service>
+
+
     </application>
 
 </manifest>

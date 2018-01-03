@@ -41,10 +41,10 @@ class local_projects_table_helper(private var context: Context) : local_SQL_Help
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "text primary key"
-        map[NAME] = "text"
-        map[DATAAREAID] = "text"
-        map[USERNAME] = "text"
+        map[ID] = "TEXT primary key"
+        map[NAME] = "TEXT"
+        map[DATAAREAID] = "TEXT"
+        map[USERNAME] = "TEXT"
         createDB(db,map)
     }
 

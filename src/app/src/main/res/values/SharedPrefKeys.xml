@@ -11,5 +11,12 @@
     <string name="style">style</string>
     <string name="username_key">username</string>
     <string name="gui_mode_key">gui_mode_key</string>
+    <string name="vpn_ip_key">vpn_ip</string>
+    <string name="vpn_connect_key">vpn_connect_key</string>
+    <string name="vpn_port">vpn_connect_port</string>
+    <string name="vpn_username">vpn_username</string>
+    <string name="vpn_password">vpn_password</string>
+    <string name="sql_port">pref_port</string>
+    <string name="windows_auth_key">windows_auth_key</string>
 
 </resources>

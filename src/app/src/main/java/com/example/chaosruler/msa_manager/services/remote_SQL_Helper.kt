@@ -1,6 +1,7 @@
 package com.example.chaosruler.msa_manager.services
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.os.AsyncTask
 import android.preference.PreferenceManager
@@ -11,12 +12,14 @@ import java.sql.*
 import java.util.*
 import kotlin.collections.HashMap
 
-class remote_SQL_Helper {
-    companion object
-    {
+@SuppressLint("StaticFieldLeak")
+@Suppress("unused")
+object remote_SQL_Helper {
+
 
         @SuppressLint("StaticFieldLeak")
         private lateinit var context:Context
+        private lateinit var act:Activity
         private var username: String = ""
         private var password: String = ""
         private var isvalid: Boolean = false
@@ -40,19 +43,38 @@ class remote_SQL_Helper {
         /*
             subroutine neccesery to connect to db, without this call, no DB operations can be done
          */
-        fun Connect(con:Context,user: String, pass: String): Boolean
+        fun Connect(con:Context,user: String, pass: String,act:Activity): Boolean
         {
             if (isvalid)
                 return true
             context = con
             username = user
             password = pass
+            this.act = act
+            /*
+            vpn_connection.init_vars(con)
+            if(vpn_connection.check_if_need_to_connect(con))
+            {
+                vpn_connection().prepare(act)
+                if(!vpn_connection.connect(con))
+                {
+                    Log.d("Connection",con.getString(R.string.unable_to_connect_vpn))
+                    exception = SQLException()
+                    return false
+                }
+            }
+            */
             val ip: String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP), context.getString(R.string.REMOTE_IP_ADDR))
+            val port: String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.sql_port),con.getString(R.string.default_port_num))
+            val windows_auth = if(PreferenceManager.getDefaultSharedPreferences(con).getBoolean(con.getString(R.string.windows_auth_key),false))
+                                    con.getString(R.string.REMOTE_CONNECTION_WINDOWS_AUTH)
+                                else
+                                    ""
             try
             {
                 Class.forName(context.getString(R.string.class_jtds_jdbc))
                 val conn: Connection? = DriverManager.getConnection(
-                        context.getString(R.string.REMOTE_CONNECT_STRING) + ip + context.getString(R.string.REMOTE_CONNECT_OPTIONS)
+                        context.getString(R.string.REMOTE_CONNECT_STRING) + ip + ":" + port + context.getString(R.string.REMOTE_CONNECT_OPTIONS) + windows_auth
                         , username,
                         password)
                 if (conn != null)
@@ -465,7 +487,7 @@ class remote_SQL_Helper {
         {
             isvalid =false
             connection =null
-            return Connect(context, username, password)
+            return Connect(context, username, password, act)
 
         }
         /*
@@ -583,5 +605,5 @@ class remote_SQL_Helper {
             }
         }
 
-    } // companion end!
+
 }

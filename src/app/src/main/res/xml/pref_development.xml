@@ -13,13 +13,29 @@
         android:summary="@string/pref_ip_summary"
         android:title="@string/pref_IP_address" />
 
-    <Preference android:title="@string/delete_users"
+    <EditTextPreference
+        android:defaultValue="@string/default_port_num"
+        android:key="@string/sql_port"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/port_settings_title" />
+
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:dependency="@string/IP"
+        android:key="@string/windows_auth_key"
+        android:title="@string/windows_auth_title" />
+    <!--
+    <Preference
+        android:enabled="false"
         android:key="@string/delete_users_key"
         android:summary="@string/delete_users_warning"
-        />
-    <Preference android:title="@string/delete_offline"
+        android:title="@string/delete_users" />
+    <Preference
+        android:enabled="false"
         android:key="@string/delete_offline_key"
-        />
+        android:title="@string/delete_offline" />
+        -->
     <SwitchPreference
         android:defaultValue="false"
         android:key="@string/gui_mode_key"

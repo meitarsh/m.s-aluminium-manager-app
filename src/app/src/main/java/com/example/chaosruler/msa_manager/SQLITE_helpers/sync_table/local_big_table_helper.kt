@@ -2,6 +2,7 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
@@ -75,32 +76,33 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[ACCOUNT_NUM] = "text"
-        map[DATAARAEID] = "text"
-        map[RECVERSION] = "text"
-        map[RECID] = "text"
-        map[PROJID] = "text"
-        map[ITEMID] = "text"
-        map[FLAT] = "text"
-        map[FLOOR] = "text"
-        map[QTY] = "real"
-        map[SALESPRICE] = "real"
-        map[OPR_ID] = "text"
-        map[MILESTONEPERCENTAGE] = "real"
-        map[QTYFORACCOUNT] = "real"
-        map[PERCENTFORACCOUNT] = "real"
-        map[TOTAL_SUM] = "real"
-        map[SALPROG] = "INTEGER"
-        map[PRINTORDER] = "INTEGER"
-        map[ITEMNUMBER] = "real"
-        map[KOMANUM] = "real"
-        map[DIRANUM] = "real"
+        map[ACCOUNT_NUM] = "TEXT"
+        map[DATAARAEID] = "TEXT"
+        map[RECVERSION] = "TEXT"
+        map[RECID] = "TEXT"
+        map[PROJID] = "TEXT"
+        map[ITEMID] = "TEXT"
+        map[FLAT] = "TEXT"
+        map[FLOOR] = "TEXT"
+        map[QTY] = "TEXT"
+        map[SALESPRICE] = "TEXT"
+        map[OPR_ID] = "TEXT"
+        map[MILESTONEPERCENTAGE] = "TEXT"
+        map[QTYFORACCOUNT] = "TEXT"
+        map[PERCENTFORACCOUNT] = "TEXT"
+        map[TOTAL_SUM] = "TEXT"
+        map[SALPROG] = "TEXT"
+        map[PRINTORDER] = "TEXT"
+        map[ITEMNUMBER] = "TEXT"
+        map[KOMANUM] = "TEXT"
+        map[DIRANUM] = "TEXT"
         val foreign: HashMap<String, String> = HashMap()
         foreign[ACCOUNT_NUM] = context.getString(R.string.LOCAL_VENDORS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_VENDORS_COLUMN_ID) + ")"
         foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID) + ")"
         foreign[OPR_ID] = context.getString(R.string.LOCAL_OPR_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_OPR_COLUMN_ID) + ")"
         foreign[PROJID] = context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_PROJECTS_COLUMN_ID) + ")"
-        createDB(db, map, foreign)
+        val extra = " PRIMARY KEY(${ACCOUNT_NUM}, ${ITEMID}, ${OPR_ID},${PROJID}) "
+        createDB(db, map, foreign,extra)
     }
 
     /*
@@ -312,6 +314,7 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         map[USER] = big_table_data.get_USERNAME() ?: ""
         return replace(map)
         */
+        Log.d("Big Check exists",check_big(big_table_data).toString())
         return if (check_big(big_table_data)) // checks if big exists in database
             update_big(big_table_data, big_table_data.copy()) // if it does, lets update
         else // if it doesn't lets create a new entry for the big

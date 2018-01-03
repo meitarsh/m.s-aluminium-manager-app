@@ -82,6 +82,16 @@
 
     <string name="save_data_local">לשמור העתק של הנתונים על המכשיר?</string>
 
-
+    <string name="VPN_settings">הגדרות VPN</string>
+    <string name="vpn_ip_summary">הIP שאליו נתחבר בVPN</string>
+    <string name="vpn_ip_title">כתובת IP של הVPN</string>
+    <string name="connect_vpn_title">האם להתחבר בVPN?</string>
+    <string name="vpn_port_title">פורט התחברות לVPN</string>
+    <string name="vpn_username_title">שם משתמש לVPN</string>
+    <string name="vpn_password_title">סיסמאת חיבור לVPN</string>
+    <string name="port_settings_title">הפורט אליו נתחבר</string>
+    <string name="default_port_num">1433</string>
+    <string name="vpn_port_default">10433</string>
+    <string name="windows_auth_title">אימות באמצעות ווינדוז</string>
 
 </resources>
