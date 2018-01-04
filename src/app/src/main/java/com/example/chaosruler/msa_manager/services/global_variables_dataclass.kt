@@ -8,11 +8,10 @@ import android.util.Base64
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
 import com.example.chaosruler.msa_manager.activies.MainActivity
-import java.nio.charset.Charset
-import kotlin.experimental.xor
 import java.math.BigInteger
+import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
-import java.util.*
+import kotlin.experimental.xor
 
 
 class global_variables_dataclass
@@ -57,41 +56,18 @@ class global_variables_dataclass
      */
 
         @SuppressLint("GetInstance")
-        fun xorWithKey(a: ByteArray, key: ByteArray, flag:Boolean): ByteArray
+        fun xorWithKey(a: ByteArray, key: ByteArray, flag:Boolean,con: Context): ByteArray
         {
-
+            encryption.generate_key(con)
             val new_a = to_hebrew_unicode(String(a)).toByteArray()
             val out = ByteArray(new_a.size)
             for (i in new_a.indices) {
                 out[i] = (new_a[i] xor key[i % key.size])
             }
-            //return to_hebrew_unicode(String(out)).toByteArray()
-            /*
-            val c = Cipher.getInstance("AES")
-            val key_arr = ByteArray(16)
-            for(i in 0 until key_arr.size)
-            {
-                try
-                {
-                    key_arr[i] = key[i]
-                }
-                catch (e:Exception)
-                {
-                    key_arr[i] = 0
-                }
-            }
-            val k = SecretKeySpec(key_arr, "AES")
-            if(flag)
-                c.init(Cipher.ENCRYPT_MODE, k)
-            else
-                c.init(Cipher.DECRYPT_MODE, k)
-
-            return c.doFinal(new_a)
-            */
             return if(flag)
-                Base64.decode(new_a,Base64.DEFAULT)
+                encryption.decrypt(Base64.decode(new_a,Base64.DEFAULT))
             else
-                Base64.encode(new_a,Base64.DEFAULT)
+                Base64.encode(encryption.encrypt(new_a),Base64.DEFAULT)
 
             //return new_a
         }

@@ -173,7 +173,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
                 val small_map: HashMap<String, String> = HashMap()
                 for (variable in vector_of_variables)
                 {
-                    val input_str = String(global_variables_dataclass.xorWithKey(c.getString(c.getColumnIndex(variable)).toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),true))
+                    val input_str = String(global_variables_dataclass.xorWithKey(c.getString(c.getColumnIndex(variable)).toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),true,context))
                     small_map[variable] = input_str
                 }
                 vector.addElement(small_map)
@@ -218,7 +218,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
     {
         val values = ContentValues()
         for(item in items)
-            values.put(item.key, String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false) ) )
+            values.put(item.key, String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false,context) ) )
         if(db.insertWithOnConflict(TABLE_NAME,null,values,SQLiteDatabase.CONFLICT_REPLACE)>0)
             return true
         return false
@@ -231,7 +231,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
     {
         var result = false
         for(item in equal_to)
-            equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false) )
+            equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false,context) )
         val db: SQLiteDatabase = this.writableDatabase
         if(db.delete(TABLE_NAME,where_clause + "=?", equal_to) >0)
             result = true
@@ -245,7 +245,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
     {
         var result = false
         for(item in equal_to)
-            equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false) )
+            equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false,context) )
         val db: SQLiteDatabase = this.writableDatabase
         var where_clause_arguemnt = ""
         for(item in where_clause)
@@ -269,12 +269,12 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
     {
         var result = false
         for(item in equal_to)
-            equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false) )
+            equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false,context) )
         Log.d("Equal to",equal_to[0])
         val db: SQLiteDatabase = this.writableDatabase
         val values = ContentValues()
         for(item in update_to)
-            values.put(item.key, String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false)))
+            values.put(item.key, String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false,context)))
         if(db.update(TABLE_NAME,values,where_clause + "=?", equal_to)>0)
             result = true
         //db.close()
@@ -288,11 +288,11 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
     {
         var result = false
         for(item in equal_to)
-            equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false) )
+            equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false,context) )
         val db: SQLiteDatabase = this.writableDatabase
         val values = ContentValues()
         for(item in update_to)
-            values.put(item.key, String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false)))
+            values.put(item.key, String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false,context)))
         var where_str = ""
         for(item in where_clause)
         {
@@ -313,7 +313,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
     {
         val db = this.readableDatabase
         for(item in map)
-            map[item.key] = String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false))
+            map[item.key] = String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false,context))
         val vector = Vector<HashMap<String, String>>()
         val sync_token = Object()
         //to not hang the ui
@@ -382,7 +382,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
                         val small_map: HashMap<String, String> = HashMap()
                         for (variable in vector_of_variables) {
                             val item = c.getString(c.getColumnIndex(variable))
-                            val str_item = String(global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),true))
+                            val str_item = String(global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),true,context))
                             small_map[variable] = str_item
                         }
                         vector.addElement(small_map)
@@ -462,7 +462,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
                 for (variable in vector_of_variables)
                 {
                     val item = c.getString(c.getColumnIndex(variable))
-                    val item_str = String(global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),true))
+                    val item_str = String(global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),true,context))
                     small_map[variable] = item_str
                 }
                 vector.addElement(small_map)
@@ -520,7 +520,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
         val cursor = db.execSQL(qry)
         */
         val cv = ContentValues()
-        map.forEach { cv.put(it.key,String(global_variables_dataclass.xorWithKey(it.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false)) ) }
+        map.forEach { cv.put(it.key,String(global_variables_dataclass.xorWithKey(it.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false,context)) ) }
         val count = db.replace(TABLE_NAME, null, cv)
         db.close()
         return count > 0

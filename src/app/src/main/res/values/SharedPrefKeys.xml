@@ -18,5 +18,6 @@
     <string name="vpn_password">vpn_password</string>
     <string name="sql_port">pref_port</string>
     <string name="windows_auth_key">windows_auth_key</string>
+    <string name="ENC_KEY">ENC_KEY</string>
 
 </resources>
