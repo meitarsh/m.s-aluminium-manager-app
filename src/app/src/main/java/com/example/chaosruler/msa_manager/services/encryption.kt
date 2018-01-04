@@ -10,6 +10,7 @@ import java.security.KeyStore
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
+import javax.crypto.spec.IvParameterSpec
 
 
 @Suppress("unused")
@@ -48,7 +49,7 @@ object encryption
     {
 
         val c = Cipher.getInstance("AES")
-        c.init(Cipher.ENCRYPT_MODE, secretKey!!)
+        c.init(Cipher.ENCRYPT_MODE, secretKey!!,IvParameterSpec(iv))
         return c.doFinal(a)
     }
 
@@ -56,7 +57,7 @@ object encryption
     fun decrypt(a:ByteArray): ByteArray
     {
         val c = Cipher.getInstance("AES")
-        c.init(Cipher.DECRYPT_MODE, secretKey!!)
+        c.init(Cipher.DECRYPT_MODE, secretKey!!,IvParameterSpec(iv))
         return c.doFinal(a)
     }
 
