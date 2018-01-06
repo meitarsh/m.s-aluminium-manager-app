@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[OPR]
+(
+	[opr_id] VARCHAR(50) NOT NULL PRIMARY KEY, 
+    [opr_name] TEXT NULL, 
+    [DATAARAEID] TEXT NOT NULL, 
+    [USER] TEXT NOT NULL
+)
