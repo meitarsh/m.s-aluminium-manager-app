@@ -1,0 +1,28 @@
+/*
+ * Copyright (c) 2012-2017 Arne Schwabe
+ * Distributed under the GNU GPL v2 with additional terms. For full terms see the file doc/LICENSE.txt
+ */
+
+apply plugin: 'com.android.application'
+
+repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+    maven { url 'https://maven.google.com' }
+}
+
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+}

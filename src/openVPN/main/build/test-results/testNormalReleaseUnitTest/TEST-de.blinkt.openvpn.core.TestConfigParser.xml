@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="de.blinkt.openvpn.core.TestConfigParser" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-01-08T20:59:11" hostname="chaosruler-pc" time="0.006">
+  <properties/>
+  <testcase name="testHttpProxyPass" classname="de.blinkt.openvpn.core.TestConfigParser" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="de.blinkt.openvpn.core.TestLogFileHandler" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-01-08T20:59:11" hostname="chaosruler-pc" time="0.009">
+  <properties/>
+  <testcase name="testMarschalString" classname="de.blinkt.openvpn.core.TestLogFileHandler" time="0.004"/>
+  <testcase name="testMarschalArgs" classname="de.blinkt.openvpn.core.TestLogFileHandler" time="0.001"/>
+  <testcase name="testWriteByteArray" classname="de.blinkt.openvpn.core.TestLogFileHandler" time="0.0"/>
+  <testcase name="readByteArray" classname="de.blinkt.openvpn.core.TestLogFileHandler" time="0.003"/>
+  <testcase name="testMarschal" classname="de.blinkt.openvpn.core.TestLogFileHandler" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

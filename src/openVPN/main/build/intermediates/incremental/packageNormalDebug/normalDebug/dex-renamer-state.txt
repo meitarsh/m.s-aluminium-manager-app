@@ -1,0 +1,4 @@
+#Tue Jan 09 00:36:09 IST 2018
+base.0=/home/chaosruler/Desktop/m.s-aluminium-manager-app/src/openVPN/main/build/intermediates/transforms/dexMerger/normal/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

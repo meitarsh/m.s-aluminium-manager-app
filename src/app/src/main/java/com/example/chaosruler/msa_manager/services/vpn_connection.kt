@@ -1,19 +1,13 @@
 package com.example.chaosruler.msa_manager.services
 
+
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.VpnService
-
-
 import android.preference.PreferenceManager
-import com.example.chaosruler.msa_manager.R
 import android.util.Log
-
-
-
-
-
+import com.example.chaosruler.msa_manager.R
 
 
 @Suppress("unused", "MemberVisibilityCanPrivate")
@@ -62,8 +56,14 @@ class vpn_connection : VpnService()
 
         fun connect(@Suppress("UNUSED_PARAMETER") context: Context):Boolean
         {
+            val EXTRA_NAME = "de.blinkt.openvpn.shortcutProfileName"
 
+            val shortcutIntent = Intent(Intent.ACTION_MAIN)
+            shortcutIntent.setClassName("de.blinkt.openvpn", "de.blinkt.openvpn.LaunchVPN")
+            shortcutIntent.putExtra(EXTRA_NAME,"upb ssl")
+            context.startActivity(shortcutIntent)
             return false
+
         }
     } // end COMPANION OBJECT
 

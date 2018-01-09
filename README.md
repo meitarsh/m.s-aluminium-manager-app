@@ -13,9 +13,11 @@
 
 * During release stages, release application will be uploaded to this repostiroy and the release tab.
 
-* This project depends on [Android SDK](https://developer.android.com/studio/index.html) in order to compile and run the application 
+* This project depends on [Android SDK](https://developer.android.com/studio/index.html) in order to compile and run the application
 
 * This project depends on [JTDS](http://jtds.sourceforge.net/), a 100% pure java free & open-source JDBC driver for remote MSSQL databases, JTDS is licensed under [LGPL License](https://www.gnu.org/copyleft/lesser.html), read [JTDS license](http://jtds.sourceforge.net/license.html) here, this project won't change JTDS driver functionality, but is based on it, thus is shared under free & open source license, we didn't change JTDS, thus we are free to choose to MIT as our license.
+
+* This project also depends on [ics-openVPN](https://github.com/schwabe/ics-openvpn), a port of [openVPN](https://openvpn.net/) for Android for VPN functionality,  [ics-openVPN](https://github.com/schwabe/ics-openvpn) is licensed under [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) therefore this project, if it changes ics-openVPN, must distribute its changes.
 
 ## Staff
 * Main project developer repository masters

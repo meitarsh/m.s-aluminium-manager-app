@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/chaosruler/Desktop/ics-openvpn/main/ovpnlibs/jniLibs"/></dataSet><dataSet config="normal"><source path="/home/chaosruler/Desktop/ics-openvpn/main/src/normal/jniLibs"/></dataSet><dataSet config="release"><source path="/home/chaosruler/Desktop/ics-openvpn/main/src/release/jniLibs"/></dataSet><dataSet config="normalRelease"><source path="/home/chaosruler/Desktop/ics-openvpn/main/src/normalRelease/jniLibs"/></dataSet></merger>

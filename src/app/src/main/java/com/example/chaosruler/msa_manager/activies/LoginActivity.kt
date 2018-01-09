@@ -365,6 +365,11 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         {
 
 
+            vpn_connection.init_vars(baseContext)
+            if(vpn_connection.check_if_need_to_connect(baseContext))
+            {
+                vpn_connection.connect(baseContext)
+            }
             remote_SQL_Helper.Connect(baseContext, mEmail, mPassword,this@LoginActivity)
             val gui_mode_key: Boolean = PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key), false)
             val result =

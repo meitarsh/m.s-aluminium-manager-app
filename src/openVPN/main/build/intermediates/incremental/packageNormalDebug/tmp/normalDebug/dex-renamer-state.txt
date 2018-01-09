@@ -1,0 +1,4 @@
+#Mon Jan 08 23:23:37 IST 2018
+base.0=/home/chaosruler/Desktop/ics-openvpn/main/build/intermediates/transforms/dexMerger/normal/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

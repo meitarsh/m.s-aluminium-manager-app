@@ -17,13 +17,13 @@
         android:icon="@drawable/ic_sync_black_24dp"
         android:title="@string/pref_header_data_sync" />
 
-<!--
+
     <header
         android:fragment="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity$VPNSettingsFragment"
         android:icon="@drawable/vpnkey"
         android:title="@string/VPN_settings"
         />
--->
+
     <header
         android:fragment="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity$DevelopMentSettingsPrefFragment"
         android:icon="@drawable/rsz_developmentmode"
