@@ -9,9 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/openVPN" />
-            <option value="$PROJECT_DIR$/openVPN/main" />
-            <option value="$PROJECT_DIR$/openVPN/remoteExample" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

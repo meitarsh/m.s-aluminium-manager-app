@@ -1,0 +1,1 @@
+java -jar dokka-fatjar.jar ../../src/ -output /home/chaosruler/Desktop/m.s-aluminium-manager-app/docs/javadoc/ -format markdown

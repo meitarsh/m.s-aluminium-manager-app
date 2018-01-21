@@ -1,0 +1,6 @@
+[app](../../../index.md) / [android.support.transition](../../index.md) / [R](../index.md) / [id](index.md) / [forever](.)
+
+# forever
+
+`static val forever: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`static val forever: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

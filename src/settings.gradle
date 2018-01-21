@@ -1,1 +1,1 @@
-include ':app', 'openVPN:remoteExample', 'openVPN:main'
+include ':app'

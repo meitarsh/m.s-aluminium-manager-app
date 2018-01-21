@@ -13,10 +13,24 @@ import javax.crypto.spec.IvParameterSpec
 
 
 @Suppress("unused")
+/**
+ * a Singleton object (only one instance in runtime) responsible for encryptiing and decrypting
+ * data stored in local database and local android machine
+ * https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
+ * AES 256bit was chosen for encryption protocol
+ * @author Chaosruler972
+ * @constructor no construction needed, though key Generation is a must before each and every encryption or decryption
+ * @sample generate_key(baseContext)
+ * @sample encrypt(a.toByteArray())
+ */
 object encryption
 {
     private var secretKey:SecretKey? = null
     private var iv = ByteArray(16)
+    /**
+     * this function is responsible for generatoin an AES key from the keystore per encryption/decryption, and refreshing the current one
+     * @param context a base Context, must not be null, for keyStore access
+     */
     fun generate_key(context: Context)
     {
         iv = ByteArray(16)
@@ -43,6 +57,12 @@ object encryption
         }
     }
 
+    /**
+     * This function encrypts a byteArray and returns an encrypted form of that byteArray
+     * Must call generate_key() before this function
+     * @param the byteArray to encrypt
+     * @return the encrypted form of that bytearray
+     */
     @SuppressLint("GetInstance")
     fun encrypt(a: ByteArray): ByteArray
     {
@@ -52,6 +72,12 @@ object encryption
         return c.doFinal(a)
     }
 
+    /**
+     * This function decrypts a byteArray
+     * Must call generate_key() before this function
+     * @param an encrypted byteArray
+     * @return a decrypted form of that bytearray
+     */
     @SuppressLint("GetInstance")
     fun decrypt(a:ByteArray): ByteArray
     {
