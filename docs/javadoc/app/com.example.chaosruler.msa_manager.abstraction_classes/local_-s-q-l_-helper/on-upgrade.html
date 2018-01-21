@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>local_SQL_Helper.onUpgrade - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.abstraction_classes</a>&nbsp;/&nbsp;<a href="index.html">local_SQL_Helper</a>&nbsp;/&nbsp;<a href=".">onUpgrade</a><br/>
+<br/>
+<h1>onUpgrade</h1>
+<a name="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$onUpgrade(android.database.sqlite.SQLiteDatabase, kotlin.Int, kotlin.Int)"></a>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onUpgrade</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$onUpgrade(android.database.sqlite.SQLiteDatabase, kotlin.Int, kotlin.Int)/db">db</span><span class="symbol">:</span>&nbsp;<span class="identifier">SQLiteDatabase</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$onUpgrade(android.database.sqlite.SQLiteDatabase, kotlin.Int, kotlin.Int)/oldVersion">oldVersion</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$onUpgrade(android.database.sqlite.SQLiteDatabase, kotlin.Int, kotlin.Int)/newVersion">newVersion</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>if we got a newer version in our android device than the installed version of our current database
+we will delete all entries of our current database, drop it and its scheme and recreate a new one (without the old data)</p>
+<h3>Parameters</h3>
+<p><a name="db"></a>
+<code>db</code> - an instance of the database to work with</p>
+<p><a name="newVersion"></a>
+<code>newVersion</code> - the new version number we are installing now (in integers)</p>
+<p><a name="oldVersion"></a>
+<code>oldVersion</code> - the old version number that is installed on the device</p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
+</BODY>
+</HTML>

@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>offline_mode_service - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.services</a>&nbsp;/&nbsp;<a href=".">offline_mode_service</a><br/>
+<br/>
+<h1>offline_mode_service</h1>
+<code><span class="keyword">class </span><span class="identifier">offline_mode_service</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Service</span></code>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="the_binder/index.html">the_binder</a></p>
+</td>
+<td>
+<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">the_binder</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Binder</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">offline_mode_service</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="on-bind.html">onBind</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onBind</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service$onBind(android.content.Intent)/intent">intent</span><span class="symbol">:</span>&nbsp;<span class="identifier">Intent</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">IBinder</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-start-command.html">onStartCommand</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onStartCommand</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service$onStartCommand(android.content.Intent, kotlin.Int, kotlin.Int)/intent">intent</span><span class="symbol">:</span>&nbsp;<span class="identifier">Intent</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service$onStartCommand(android.content.Intent, kotlin.Int, kotlin.Int)/flags">flags</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service$onStartCommand(android.content.Intent, kotlin.Int, kotlin.Int)/startId">startId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="db_sync_func.html">db_sync_func</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">db_sync_func</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$db_sync_func(android.content.Context, android.content.Intent)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$db_sync_func(android.content.Context, android.content.Intent)/intent">intent</span><span class="symbol">:</span>&nbsp;<span class="identifier">Intent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="general_push_command.html">general_push_command</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">general_push_command</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$general_push_command(kotlin.String, kotlin.String)/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$general_push_command(kotlin.String, kotlin.String)/username">username</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="push_add_command.html">push_add_command</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">push_add_command</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_add_command(kotlin.String, kotlin.String, java.util.Vector((kotlin.String)), java.util.HashMap((kotlin.String, )))/db">db</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_add_command(kotlin.String, kotlin.String, java.util.Vector((kotlin.String)), java.util.HashMap((kotlin.String, )))/table">table</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_add_command(kotlin.String, kotlin.String, java.util.Vector((kotlin.String)), java.util.HashMap((kotlin.String, )))/vector">vector</span><span class="symbol">:</span>&nbsp;<span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_add_command(kotlin.String, kotlin.String, java.util.Vector((kotlin.String)), java.util.HashMap((kotlin.String, )))/map">map</span><span class="symbol">:</span>&nbsp;<span class="identifier">HashMap</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="push_remove_command.html">push_remove_command</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">push_remove_command</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_remove_command(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String)/db">db</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_remove_command(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String)/table">table</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_remove_command(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String)/where_clause">where_clause</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_remove_command(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String)/compare_to">compare_to</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_remove_command(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="push_update_command.html">push_update_command</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">push_update_command</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_update_command(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String, java.util.HashMap((kotlin.String, )))/db">db</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_update_command(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String, java.util.HashMap((kotlin.String, )))/table">table</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_update_command(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String, java.util.HashMap((kotlin.String, )))/where_clause">where_clause</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_update_command(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String, java.util.HashMap((kotlin.String, )))/compare_to">compare_to</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_update_command(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String, java.util.HashMap((kotlin.String, )))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion$push_update_command(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String, java.util.HashMap((kotlin.String, )))/update_to">update_to</span><span class="symbol">:</span>&nbsp;<span class="identifier">HashMap</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="sync_local.html">sync_local</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">sync_local</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="try_to_run_command.html">try_to_run_command</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">try_to_run_command</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

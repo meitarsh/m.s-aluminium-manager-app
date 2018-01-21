@@ -1,0 +1,232 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SettingsActivity - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.activies.settings_activity</a>&nbsp;/&nbsp;<a href=".">SettingsActivity</a><br/>
+<br/>
+<h1>SettingsActivity</h1>
+<code><span class="keyword">class </span><span class="identifier">SettingsActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-app-compat-preference-activity/index.html"><span class="identifier">AppCompatPreferenceActivity</span></a></code>
+<p>A <a href="#">PreferenceActivity</a> that presents a set of application settings. On
+handset devices, settings are presented as a single list. On tablets,
+settings are split by category, with category headers shown to the left of
+the list of settings.</p>
+<p>See <a href="http://developer.android.com/design/patterns/settings.html">Android Design: Settings</a>
+for design guidelines and the <a href="http://developer.android.com/guide/topics/ui/settings.html">Settings API Guide</a>
+for more information on developing a Settings UI.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-data-sync-preference-fragment/index.html">DataSyncPreferenceFragment</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">DataSyncPreferenceFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">PreferenceFragment</span></code>
+<p>This fragment shows data and sync preferences only. It is used when the
+activity is showing a two-pane settings UI.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-develop-ment-settings-pref-fragment/index.html">DevelopMentSettingsPrefFragment</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">DevelopMentSettingsPrefFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">PreferenceFragment</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-general-preference-fragment/index.html">GeneralPreferenceFragment</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">GeneralPreferenceFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">PreferenceFragment</span></code>
+<p>This fragment shows general preferences only. It is used when the
+activity is showing a two-pane settings UI.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-notification-preference-fragment/index.html">NotificationPreferenceFragment</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">NotificationPreferenceFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">PreferenceFragment</span></code>
+<p>This fragment shows notification preferences only. It is used when the
+activity is showing a two-pane settings UI.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-v-p-n-settings-fragment/index.html">VPNSettingsFragment</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">VPNSettingsFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">PreferenceFragment</span></code>
+<p>This fragment shows data and sync preferences only. It is used when the
+activity is showing a two-pane settings UI.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">SettingsActivity</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>A <a href="#">PreferenceActivity</a> that presents a set of application settings. On
+handset devices, settings are presented as a single list. On tablets,
+settings are split by category, with category headers shown to the left of
+the list of settings.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-app-compat-preference-activity/support-action-bar.html">supportActionBar</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">supportActionBar</span><span class="symbol">: </span><span class="identifier">ActionBar</span><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="is-valid-fragment.html">isValidFragment</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">isValidFragment</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity$isValidFragment(kotlin.String)/fragmentName">fragmentName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>This method stops fragment injection in malicious applications.
+Make sure to deny any unknown fragments here.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-build-headers.html">onBuildHeaders</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onBuildHeaders</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity$onBuildHeaders(kotlin.collections.List((android.preference.PreferenceActivity.Header)))/target">target</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Header</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>{@inheritDoc}</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-create.html">onCreate</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity$onCreate(android.os.Bundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<span class="identifier">Bundle</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-is-multi-pane.html">onIsMultiPane</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onIsMultiPane</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>{@inheritDoc}</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-options-item-selected.html">onOptionsItemSelected</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onOptionsItemSelected</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity$onOptionsItemSelected(android.view.MenuItem)/item">item</span><span class="symbol">:</span>&nbsp;<span class="identifier">MenuItem</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-app-compat-preference-activity/add-content-view.html">addContentView</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addContentView</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity$addContentView(android.view.View, android.view.ViewGroup.LayoutParams)/view">view</span><span class="symbol">:</span>&nbsp;<span class="identifier">View</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity$addContentView(android.view.View, android.view.ViewGroup.LayoutParams)/params">params</span><span class="symbol">:</span>&nbsp;<span class="identifier">LayoutParams</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-app-compat-preference-activity/get-menu-inflater.html">getMenuInflater</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getMenuInflater</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MenuInflater</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-app-compat-preference-activity/invalidate-options-menu.html">invalidateOptionsMenu</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">invalidateOptionsMenu</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-app-compat-preference-activity/on-configuration-changed.html">onConfigurationChanged</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onConfigurationChanged</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity$onConfigurationChanged(android.content.res.Configuration)/newConfig">newConfig</span><span class="symbol">:</span>&nbsp;<span class="identifier">Configuration</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-app-compat-preference-activity/on-destroy.html">onDestroy</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onDestroy</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-app-compat-preference-activity/on-post-create.html">onPostCreate</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onPostCreate</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity$onPostCreate(android.os.Bundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<span class="identifier">Bundle</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-app-compat-preference-activity/on-post-resume.html">onPostResume</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onPostResume</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-app-compat-preference-activity/on-stop.html">onStop</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onStop</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-app-compat-preference-activity/on-title-changed.html">onTitleChanged</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onTitleChanged</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity$onTitleChanged(kotlin.CharSequence, kotlin.Int)/title">title</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity$onTitleChanged(kotlin.CharSequence, kotlin.Int)/color">color</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-app-compat-preference-activity/set-content-view.html">setContentView</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setContentView</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity$setContentView(kotlin.Int)/layoutResID">layoutResID</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setContentView</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity$setContentView(android.view.View)/view">view</span><span class="symbol">:</span>&nbsp;<span class="identifier">View</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setContentView</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity$setContentView(android.view.View, android.view.ViewGroup.LayoutParams)/view">view</span><span class="symbol">:</span>&nbsp;<span class="identifier">View</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity$setContentView(android.view.View, android.view.ViewGroup.LayoutParams)/params">params</span><span class="symbol">:</span>&nbsp;<span class="identifier">LayoutParams</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-app-compat-preference-activity/set-support-action-bar.html">setSupportActionBar</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setSupportActionBar</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity$setSupportActionBar(android.support.v7.widget.Toolbar)/toolbar">toolbar</span><span class="symbol">:</span>&nbsp;<span class="identifier">Toolbar</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

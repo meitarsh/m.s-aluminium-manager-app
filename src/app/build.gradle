@@ -60,7 +60,7 @@ dokka {
 
     skipEmptyPackages = true
     sourceDirs = files('src/main/java')
-    outputFormat = 'markdown'
+    outputFormat = 'html'
     outputDirectory = "/home/chaosruler/Desktop/m.s-aluminium-manager-app/docs/javadoc"
 }
 

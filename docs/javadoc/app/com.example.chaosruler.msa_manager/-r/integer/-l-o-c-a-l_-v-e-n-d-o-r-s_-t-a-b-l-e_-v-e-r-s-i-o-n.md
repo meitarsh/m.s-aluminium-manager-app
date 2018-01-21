@@ -1,6 +1,0 @@
-[app](../../../index.md) / [com.example.chaosruler.msa_manager](../../index.md) / [R](../index.md) / [integer](index.md) / [LOCAL_VENDORS_TABLE_VERSION](.)
-
-# LOCAL_VENDORS_TABLE_VERSION
-
-`static val LOCAL_VENDORS_TABLE_VERSION: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
-`static val LOCAL_VENDORS_TABLE_VERSION: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

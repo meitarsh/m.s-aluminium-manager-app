@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>local_SQL_Helper.createDB - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.abstraction_classes</a>&nbsp;/&nbsp;<a href="index.html">local_SQL_Helper</a>&nbsp;/&nbsp;<a href=".">createDB</a><br/>
+<br/>
+<h1>createDB</h1>
+<a name="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$createDB(android.database.sqlite.SQLiteDatabase, java.util.HashMap((kotlin.String, )))"></a>
+<code><span class="keyword">protected</span> <span class="keyword">fun </span><span class="identifier">createDB</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$createDB(android.database.sqlite.SQLiteDatabase, java.util.HashMap((kotlin.String, )))/db">db</span><span class="symbol">:</span>&nbsp;<span class="identifier">SQLiteDatabase</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$createDB(android.database.sqlite.SQLiteDatabase, java.util.HashMap((kotlin.String, )))/variables">variables</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Create Datbase query handler, in an abstract method</p>
+<h3>Parameters</h3>
+<p><a name="db"></a>
+<code>db</code> - an instance of the database we are going to work with</p>
+<p><a name="variables"></a>
+<code>variables</code> - a hashmap of the variables we are going to initate in our database in format of key: name of the value, value: the type</p>
+<h3>Exceptions</h3>
+<p><a name="SQLiteException"></a>
+<code>SQLiteException</code> - </p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
+<a name="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$createDB(android.database.sqlite.SQLiteDatabase, java.util.HashMap((kotlin.String, )), java.util.HashMap((kotlin.String, )), kotlin.String)"></a>
+<code><span class="keyword">protected</span> <span class="keyword">fun </span><span class="identifier">createDB</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$createDB(android.database.sqlite.SQLiteDatabase, java.util.HashMap((kotlin.String, )), java.util.HashMap((kotlin.String, )), kotlin.String)/db">db</span><span class="symbol">:</span>&nbsp;<span class="identifier">SQLiteDatabase</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$createDB(android.database.sqlite.SQLiteDatabase, java.util.HashMap((kotlin.String, )), java.util.HashMap((kotlin.String, )), kotlin.String)/variables">variables</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$createDB(android.database.sqlite.SQLiteDatabase, java.util.HashMap((kotlin.String, )), java.util.HashMap((kotlin.String, )), kotlin.String)/foregin">foregin</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$createDB(android.database.sqlite.SQLiteDatabase, java.util.HashMap((kotlin.String, )), java.util.HashMap((kotlin.String, )), kotlin.String)/extra">extra</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>an extension of the normal createDB function, it also initates foreign keys (extra is for experts, pushed at the end of the create table query)</p>
+<h3>Parameters</h3>
+<p><a name="db"></a>
+<code>db</code> - an instance of the database to work with</p>
+<p><a name="variables"></a>
+<code>variables</code> - a hashmap of the variables we are going to initate in our database in format of key: name of the value, value: the type</p>
+<p><a name="foregin"></a>
+<code>foregin</code> - a list of foreign keys with the value name being on the key and the reference in the foreign database on the value</p>
+<p><a name="extra"></a>
+<code>extra</code> - an extra added string to push at the end of the Create Table statement</p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
+</BODY>
+</HTML>

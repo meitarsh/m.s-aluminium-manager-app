@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>local_SQL_Helper.get_db - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.abstraction_classes</a>&nbsp;/&nbsp;<a href="index.html">local_SQL_Helper</a>&nbsp;/&nbsp;<a href=".">get_db</a><br/>
+<br/>
+<h1>get_db</h1>
+<a name="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$get_db()"></a>
+<code><span class="keyword">fun </span><span class="identifier">get_db</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Select * from DB_NAME query, generated to code
+function works in threadded way, opening a new thread, though this thread is blocked waiting for the results</p>
+<h3>Exceptions</h3>
+<p><a name="SQLiteException"></a>
+<code>SQLiteException</code> - IllegalStateException</p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
+<p><strong>Return</strong><br/>
+All the database in a vector of hashmap, each item in the vector represents row, each item in the inner hashmap represents a column</p>
+<a name="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$get_db(kotlin.String, kotlin.Boolean)"></a>
+<code><span class="keyword">protected</span> <span class="keyword">fun </span><span class="identifier">get_db</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$get_db(kotlin.String, kotlin.Boolean)/sort_by_value">sort_by_value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$get_db(kotlin.String, kotlin.Boolean)/isAscending">isAscending</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>a function to get the entire database (with multi threadding yet this thread is blocked until results is generated)
+only this one will sort the resuls by specified value</p>
+<h3>Parameters</h3>
+<p><a name="sort_by_value"></a>
+<code>sort_by_value</code> - what value should we sort by</p>
+<p><a name="isAscending"></a>
+<code>isAscending</code> - true=Ascending sort, false=Descending sort</p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
+<p><strong>Return</strong><br/>
+a vector that each elements represents a row, and each item in the hashtable represents a column</p>
+</BODY>
+</HTML>

@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>local_SQL_Helper.update_data - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.abstraction_classes</a>&nbsp;/&nbsp;<a href="index.html">local_SQL_Helper</a>&nbsp;/&nbsp;<a href=".">update_data</a><br/>
+<br/>
+<h1>update_data</h1>
+<a name="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$update_data(kotlin.String, kotlin.Array((kotlin.String)), java.util.HashMap((kotlin.String, )))"></a>
+<code><span class="keyword">protected</span> <span class="keyword">fun </span><span class="identifier">update_data</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$update_data(kotlin.String, kotlin.Array((kotlin.String)), java.util.HashMap((kotlin.String, )))/where_clause">where_clause</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$update_data(kotlin.String, kotlin.Array((kotlin.String)), java.util.HashMap((kotlin.String, )))/equal_to">equal_to</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$update_data(kotlin.String, kotlin.Array((kotlin.String)), java.util.HashMap((kotlin.String, )))/update_to">update_to</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>a function to update a row in the database with data</p>
+<h3>Parameters</h3>
+<p><a name="where_clause"></a>
+<code>where_clause</code> - which data should I update? field should be targetted by WHERE clause</p>
+<p><a name="equal_to"></a>
+<code>equal_to</code> - the data to compare to the targeted the row we should update...</p>
+<p><a name="update_to"></a>
+<code>update_to</code> - what should we update it to, key = value name, value = value data</p>
+<h3>Exceptions</h3>
+<p><a name="SQLiteException"></a>
+<code>SQLiteException</code> - </p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
+<p><strong>Return</strong><br/>
+if data update was succesfull</p>
+<a name="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$update_data(kotlin.Array((kotlin.String)), kotlin.Array((kotlin.String)), java.util.HashMap((kotlin.String, )))"></a>
+<code><span class="keyword">protected</span> <span class="keyword">fun </span><span class="identifier">update_data</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$update_data(kotlin.Array((kotlin.String)), kotlin.Array((kotlin.String)), java.util.HashMap((kotlin.String, )))/where_clause">where_clause</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$update_data(kotlin.Array((kotlin.String)), kotlin.Array((kotlin.String)), java.util.HashMap((kotlin.String, )))/equal_to">equal_to</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper$update_data(kotlin.Array((kotlin.String)), kotlin.Array((kotlin.String)), java.util.HashMap((kotlin.String, )))/update_to">update_to</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Similar to the reguler update_data function, only this one gets multiple parameters to find the specified row to update</p>
+<h3>Parameters</h3>
+<p><a name="where_clause"></a>
+<code>where_clause</code> - which data should I update? field should be targetted by WHERE clause</p>
+<p><a name="equal_to"></a>
+<code>equal_to</code> - the data to compare to the targeted the row we should update...</p>
+<p><a name="update_to"></a>
+<code>update_to</code> - what should we update it to, key = value name, value = value data</p>
+<h3>Exceptions</h3>
+<p><a name="SQLiteException"></a>
+<code>SQLiteException</code> - </p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
+<p><strong>Return</strong><br/>
+if data update was succesfull</p>
+</BODY>
+</HTML>

@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>remote_SQL_Helper - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.services</a>&nbsp;/&nbsp;<a href=".">remote_SQL_Helper</a><br/>
+<br/>
+<h1>remote_SQL_Helper</h1>
+<code><span class="keyword">object </span><span class="identifier">remote_SQL_Helper</span></code>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-connect.html">Connect</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">Connect</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$Connect(android.content.Context, kotlin.String, kotlin.String, android.app.Activity)/con">con</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$Connect(android.content.Context, kotlin.String, kotlin.String, android.app.Activity)/user">user</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$Connect(android.content.Context, kotlin.String, kotlin.String, android.app.Activity)/pass">pass</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$Connect(android.content.Context, kotlin.String, kotlin.String, android.app.Activity)/act">act</span><span class="symbol">:</span>&nbsp;<span class="identifier">Activity</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-disconnect.html">Disconnect</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">Disconnect</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-vector-to-string.html">VectorToString</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">VectorToString</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$VectorToString(java.util.Vector((java.util.HashMap((kotlin.String, )))))/vector">vector</span><span class="symbol">:</span>&nbsp;<span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="add_quotes.html">add_quotes</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">add_quotes</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$add_quotes(kotlin.String)/str">str</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="construct_add_str.html">construct_add_str</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">construct_add_str</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_add_str(kotlin.String, kotlin.String, java.util.Vector((kotlin.String)), java.util.HashMap((kotlin.String, )))/db">db</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_add_str(kotlin.String, kotlin.String, java.util.Vector((kotlin.String)), java.util.HashMap((kotlin.String, )))/table">table</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_add_str(kotlin.String, kotlin.String, java.util.Vector((kotlin.String)), java.util.HashMap((kotlin.String, )))/vector">vector</span><span class="symbol">:</span>&nbsp;<span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_add_str(kotlin.String, kotlin.String, java.util.Vector((kotlin.String)), java.util.HashMap((kotlin.String, )))/map">map</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="construct_remove_str.html">construct_remove_str</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">construct_remove_str</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_remove_str(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String)/db">db</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_remove_str(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String)/table">table</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_remove_str(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String)/where_clause">where_clause</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_remove_str(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String)/compare_to">compare_to</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_remove_str(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="construct_update_str.html">construct_update_str</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">construct_update_str</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_update_str(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String, java.util.HashMap((kotlin.String, )))/db">db</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_update_str(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String, java.util.HashMap((kotlin.String, )))/table">table</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_update_str(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String, java.util.HashMap((kotlin.String, )))/where_clause">where_clause</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_update_str(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String, java.util.HashMap((kotlin.String, )))/compare_to">compare_to</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_update_str(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String, java.util.HashMap((kotlin.String, )))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_update_str(kotlin.String, kotlin.String, kotlin.String, kotlin.Array((kotlin.String)), kotlin.String, java.util.HashMap((kotlin.String, )))/update_to">update_to</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="construct_update_str_multiwhere_text.html">construct_update_str_multiwhere_text</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">construct_update_str_multiwhere_text</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_update_str_multiwhere_text(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, java.util.HashMap((kotlin.String, )))/db">db</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_update_str_multiwhere_text(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, java.util.HashMap((kotlin.String, )))/table">table</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_update_str_multiwhere_text(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, java.util.HashMap((kotlin.String, )))/where_clause">where_clause</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_update_str_multiwhere_text(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, java.util.HashMap((kotlin.String, )))/all_type">all_type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$construct_update_str_multiwhere_text(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, java.util.HashMap((kotlin.String, )))/update_to">update_to</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-s-q-l-exception.html">getSQLException</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getSQLException</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">SQLException</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get_all_table.html">get_all_table</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">get_all_table</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$get_all_table(kotlin.String, kotlin.String)/db">db</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$get_all_table(kotlin.String, kotlin.String)/table">table</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="getusername.html">getusername</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getusername</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="is-alive.html">isAlive</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">isAlive</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="is-valid.html">isValid</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">isValid</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="nirmol_input.html">nirmol_input</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">nirmol_input</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$nirmol_input(java.util.HashMap((kotlin.String, )), java.util.HashMap((kotlin.String, )))/input">input</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$nirmol_input(java.util.HashMap((kotlin.String, )), java.util.HashMap((kotlin.String, )))/types">types</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="refresh_context.html">refresh_context</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">refresh_context</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$refresh_context(android.content.Context)/con">con</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="run_command.html">run_command</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">run_command</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$run_command(kotlin.String)/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="select_columns_from_db_with_where.html">select_columns_from_db_with_where</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">select_columns_from_db_with_where</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$select_columns_from_db_with_where(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, kotlin.String)/db">db</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$select_columns_from_db_with_where(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, kotlin.String)/table">table</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$select_columns_from_db_with_where(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, kotlin.String)/colm_to_type">colm_to_type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$select_columns_from_db_with_where(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, kotlin.String)/where_column">where_column</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$select_columns_from_db_with_where(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, kotlin.String)/where_compare">where_compare</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

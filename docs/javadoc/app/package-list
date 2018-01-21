@@ -1,5 +1,5 @@
-$dokka.format:markdown
-$dokka.linkExtension:md
+$dokka.format:html
+$dokka.linkExtension:html
 
 android.arch.lifecycle
 android.support.compat
