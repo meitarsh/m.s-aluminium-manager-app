@@ -10,5 +10,21 @@
 <h1>select_columns_from_db_with_where</h1>
 <a name="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$select_columns_from_db_with_where(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, kotlin.String)"></a>
 <code><span class="keyword">fun </span><span class="identifier">select_columns_from_db_with_where</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$select_columns_from_db_with_where(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, kotlin.String)/db">db</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$select_columns_from_db_with_where(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, kotlin.String)/table">table</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$select_columns_from_db_with_where(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, kotlin.String)/colm_to_type">colm_to_type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$select_columns_from_db_with_where(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, kotlin.String)/where_column">where_column</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.services.remote_SQL_Helper$select_columns_from_db_with_where(kotlin.String, kotlin.String, java.util.HashMap((kotlin.String, )), kotlin.String, kotlin.String)/where_compare">where_compare</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>simulates select * from db where ...</p>
+<h3>Parameters</h3>
+<p><a name="colm_to_type"></a>
+<code>colm_to_type</code> - what type are the colms</p>
+<p><a name="db"></a>
+<code>db</code> - the database name</p>
+<p><a name="table"></a>
+<code>table</code> - the table name</p>
+<p><a name="where_column"></a>
+<code>where_column</code> - where clause</p>
+<p><a name="where_compare"></a>
+<code>where_compare</code> - where clause data (compare to)</p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
+<p><strong>Return</strong><br/>
+a vector of hashmap represnting the results, each element represent a row, hashmap represnts col</p>
 </BODY>
 </HTML>
