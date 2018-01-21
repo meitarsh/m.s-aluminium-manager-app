@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package com.example.chaosruler.msa_manager.SQLITE_helpers
 
 import android.content.Context
@@ -8,30 +10,30 @@ import com.example.chaosruler.msa_manager.object_types.cache_command
 import java.util.*
 
 
-class cache_server_commands( context: Context) : local_SQL_Helper(context,context.getString(R.string.cache_DB_NAME),null,context.resources.getInteger(R.integer.cache_db_ver),context.getString(R.string.cache_table_name))
+class cache_server_commands(context: Context) : local_SQL_Helper(context, context.getString(R.string.cache_DB_NAME), null, context.resources.getInteger(R.integer.cache_db_ver), context.getString(R.string.cache_table_name))
 {
 
     private val ID: String = context.getString(R.string.cache_col_1)
     private val COMMAND:String = context.getString(R.string.cache_col_2)
     private val USER:String = context.getString(R.string.cache_col_3)
+
     /*
     MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
     SQL class
  */
-    init
-    {
+    init {
         val vector: Vector<String> = Vector()
         vector.add(ID)
         vector.add(COMMAND)
         vector.add(USER)
         init_vector_of_variables(vector)
     }
+
     /*
            provides info for the abstracted SQL class
            on what the table schema is for creation
         */
-    override fun onCreate(db: SQLiteDatabase)
-    {
+    override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
         map[ID] = "INTEGER primary key AUTOINCREMENT"
         map[COMMAND] = "text"
@@ -42,14 +44,10 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
     /*
         add command to list
      */
-    fun add_command_to_list(command: cache_command):Boolean
-    {
-        return if(check_command_exists(command))
-        {
+    fun add_command_to_list(command: cache_command): Boolean {
+        return if (check_command_exists(command)) {
             false
-        }
-        else
-        {
+        } else {
             insert_command(command)
             true
         }
@@ -60,12 +58,11 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
 /*
         check if command exists
      */
-    fun check_command_exists(command: cache_command):Boolean
-    {
+    fun check_command_exists(command: cache_command): Boolean {
         val input_map = HashMap<String, String>()
-            input_map[COMMAND] = "'${command.__command}'"
-            input_map[USER] = "'${command.__user}'"
-            return get_rows(input_map).size>0
+        input_map[COMMAND] = "'${command.__command}'"
+        input_map[USER] = "'${command.__user}'"
+        return get_rows(input_map).size > 0
 
 
     }
@@ -73,8 +70,7 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
     /*
         get the command id
      */
-    fun get_id_of_command(command: cache_command):Long
-    {
+    fun get_id_of_command(command: cache_command): Long {
         val input_map = HashMap<String, String>()
         input_map[COMMAND] = "'${command.__command}'"
         input_map[USER] = "'${command.__user}'"
@@ -87,8 +83,7 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
 /*
         inserts a new command to db
      */
-    fun insert_command(command: cache_command)
-    {
+    fun insert_command(command: cache_command) {
         val everything_to_add: Vector<HashMap<String, String>> = Vector()
 
         val data: HashMap<String, String> = HashMap()
@@ -97,11 +92,11 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
         everything_to_add.addElement(data)
         add_data(everything_to_add)
     }
+
     /*
         subroutine to remove command from localDB of commands
      */
-    fun remove_command(command: cache_command):Boolean
-    {
+    fun remove_command(command: cache_command): Boolean {
         return remove_from_db(arrayOf(COMMAND,USER), arrayOf(command.__command,command.__user))
     }
 
@@ -121,16 +116,13 @@ class cache_server_commands( context: Context) : local_SQL_Helper(context,contex
     /*
         gets entire DB to string
      */
-    fun get_db_string():String
-    {
+    fun get_db_string(): String {
         val vector = get_entire_db()
         var str = ""
         var i = 0
-        for (item in vector)
-        {
+        for (item in vector) {
             str += "row ${++i}: "
-            for (command in vector)
-            {
+            for (command in vector) {
                 str += "COMMAND = ${command.__command} USER = ${command.__user} "
             }
             str += "\n"
