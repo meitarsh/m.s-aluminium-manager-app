@@ -3,3 +3,13 @@
 # set_accountname
 
 `fun set_accountname(name: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+
+sets a new account name
+
+### Parameters
+
+`name` - the new account name
+
+**Author**
+Chaosruler972
+

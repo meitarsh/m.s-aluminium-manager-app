@@ -10,7 +10,7 @@
 
 ### Functions
 
-| [copy](copy.md) | `fun copy(): opr_data` |
+| [copy](copy.md) | `fun copy(): opr_data`<br>a copy constructor of the object |
 | [get_DATAREAID](get_-d-a-t-a-r-e-a-i-d.md) | `fun get_DATAREAID(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?` |
 | [get_USERNAME](get_-u-s-e-r-n-a-m-e.md) | `fun get_USERNAME(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?` |
 | [get_opr_name](get_opr_name.md) | `fun get_opr_name(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?` |
@@ -19,5 +19,5 @@
 | [set_oprid](set_oprid.md) | `fun set_oprid(itemid: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [set_oprname](set_oprname.md) | `fun set_oprname(name: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [set_username](set_username.md) | `fun set_username(new_username: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
-| [toString](to-string.md) | `fun toString(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [toString](to-string.md) | `fun toString(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>to identify the object, we must reimplement the toString funcion with identifying marks on the strings |
 

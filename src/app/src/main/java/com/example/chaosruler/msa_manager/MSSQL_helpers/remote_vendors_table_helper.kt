@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package com.example.chaosruler.msa_manager.MSSQL_helpers
 
 import android.content.Context
@@ -10,6 +12,10 @@ import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
 @Suppress("MemberVisibilityCanPrivate")
+/**
+ * a representation of the vendors table
+ * @author Chaosruler972
+ */
 class remote_vendors_table_helper {
     companion object : remote_helper()
     {
@@ -26,8 +32,10 @@ class remote_vendors_table_helper {
         var DATAAREAID_TYPE: String = ""
 
 
-        /*
-            init database variables
+        /**
+         * Inits all the variables with the data from strings.xml holding right for vendors database remote metadata
+         * @author Chaosruler972
+         * @param context a baseContext to work with
          */
         override fun extract_variables(context: Context)
         {
@@ -43,8 +51,10 @@ class remote_vendors_table_helper {
             DATAAREAID_TYPE = context.getString(R.string.VENDORS_DATAAREAID_TYPE)
         }
 
-        /*
-        make database typemap
+        /**
+         * defines a type map as a hashmap that each key is the variable name, and value is is type
+         * @author Chaosruler972
+         * @return the typemap in hashmap format
          */
         override fun define_type_map():HashMap<String,String>
         {
@@ -55,8 +65,12 @@ class remote_vendors_table_helper {
             return map
         }
 
-        /*
-            push update to db
+        /**
+         * a function to take the object dataclass and initate and take the identifying traits and he updated traits and create an update query matching that
+         * @author Chaosruler972
+         * @param context a baseContext to work with
+         * @param map a map of the variables we want to identify the object with
+         * @param vendor_data the data-object we want to update and take the data from
          */
         fun push_update(vendor_data: vendor_data, map: HashMap<String, String>, context: Context)
         {
@@ -75,8 +89,12 @@ class remote_vendors_table_helper {
         }
 
 
-        /*
-            API call
+        /**
+         * a function to take the object dataclass and initate and take the identifying traits and he updated traits and create an update query matching that
+         * @author Chaosruler972
+         * @param context a baseContext to work with
+         * @param map a map of the variables we want to identify the object with
+         * @param obj the data-object we want to update and take the data from
          */
         override fun push_update(obj: table_dataclass, map: HashMap<String, String>, context: Context) {
             if(obj is vendor_data)

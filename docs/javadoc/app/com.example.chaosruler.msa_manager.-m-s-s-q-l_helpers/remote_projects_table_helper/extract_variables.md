@@ -6,3 +6,12 @@
 
 Overrides [remote_helper.extract_variables](../../com.example.chaosruler.msa_manager.abstraction_classes/remote_helper/extract_variables.md)
 
+Inits all the variables with the data from strings.xml holding right for projects database remote metadata
+
+### Parameters
+
+`context` - a baseContext to work with
+
+**Author**
+Chaosruler972
+

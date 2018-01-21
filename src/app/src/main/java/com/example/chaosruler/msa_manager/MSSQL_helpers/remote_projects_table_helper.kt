@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package com.example.chaosruler.msa_manager.MSSQL_helpers
 
 import android.content.Context
@@ -11,6 +13,10 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
 
 @Suppress("MemberVisibilityCanPrivate")
+/**
+ * a representation of the projects table
+ * @author Chaosruler972
+ */
 class remote_projects_table_helper {
 
 
@@ -28,8 +34,10 @@ class remote_projects_table_helper {
         var DATAAREAID: String = ""
         var DATAAREAID_TYPE: String = ""
 
-        /*
-            database init variables
+        /**
+         * Inits all the variables with the data from strings.xml holding right for projects database remote metadata
+         * @author Chaosruler972
+         * @param context a baseContext to work with
          */
         override fun extract_variables(context: Context)
         {
@@ -44,8 +52,10 @@ class remote_projects_table_helper {
             DATAAREAID = context.getString(R.string.PROJECTS_DATAAREAID)
             DATAAREAID_TYPE = context.getString(R.string.PROJECTS_DATAAREAID_TYPE)
         }
-        /*
-            makes database typemap
+        /**
+         * defines a type map as a hashmap that each key is the variable name, and value is is type
+         * @author Chaosruler972
+         * @return the typemap in hashmap format
          */
         override fun define_type_map():HashMap<String,String>
         {
@@ -56,8 +66,13 @@ class remote_projects_table_helper {
             return map
         }
 
-        /*
-        pushes update to database
+
+                /**
+         * pushes an update to the database on remote call
+         * @author Chaosruler972
+         * @param project a representation of the object data class we want to push an update to
+         * @param context a baseContext to work with
+         * @param map a map of the identifying traits of what we should update on the object in the remote database
          */
         fun push_update(project: project_data, map: HashMap<String, String>, context: Context)
         {
@@ -74,8 +89,12 @@ class remote_projects_table_helper {
             val str = offline_mode_service.general_push_command(query, remote_SQL_Helper.getusername())
             Toast.makeText(context,str,Toast.LENGTH_SHORT).show()
         }
-        /*
-        API call
+        /**
+         * a function to take the object dataclass and initate and take the identifying traits and he updated traits and create an update query matching that
+         * @author Chaosruler972
+         * @param context a baseContext to work with
+         * @param map a map of the variables we want to identify the object with
+         * @param obj the data-object we want to update and take the data from
          */
         override fun push_update(obj: table_dataclass, map: HashMap<String, String>, context: Context) {
             if(obj is project_data)

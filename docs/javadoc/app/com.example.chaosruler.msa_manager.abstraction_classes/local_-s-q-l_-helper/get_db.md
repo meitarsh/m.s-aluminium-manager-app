@@ -3,4 +3,34 @@
 # get_db
 
 `fun get_db(): Vector<`[`HashMap`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html)`<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`>>`
+
+Select * from DB_NAME query, generated to code
+function works in threadded way, opening a new thread, though this thread is blocked waiting for the results
+
+### Exceptions
+
+`SQLiteException` - IllegalStateException
+
+**Author**
+Chaosruler972
+
+**Return**
+All the database in a vector of hashmap, each item in the vector represents row, each item in the inner hashmap represents a column
+
 `protected fun get_db(sort_by_value: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, isAscending: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): Vector<`[`HashMap`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html)`<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`>>`
+
+a function to get the entire database (with multi threadding yet this thread is blocked until results is generated)
+only this one will sort the resuls by specified value
+
+### Parameters
+
+`sort_by_value` - what value should we sort by
+
+`isAscending` - true=Ascending sort, false=Descending sort
+
+**Author**
+Chaosruler972
+
+**Return**
+a vector that each elements represents a row, and each item in the hashtable represents a column
+

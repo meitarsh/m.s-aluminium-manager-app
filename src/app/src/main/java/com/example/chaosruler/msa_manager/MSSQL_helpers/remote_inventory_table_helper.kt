@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package com.example.chaosruler.msa_manager.MSSQL_helpers
 
 import android.content.Context
@@ -13,6 +15,10 @@ import kotlin.collections.HashMap
 
 
 @Suppress("MemberVisibilityCanPrivate")
+/**
+ * a representation of the remote table
+ * @author Chaosruler972
+ */
 class remote_inventory_table_helper
 {
     companion object : remote_helper() {
@@ -29,8 +35,10 @@ class remote_inventory_table_helper
         var DATAAREAID: String = ""
         var DATAAREAID_TYPE: String = ""
 
-        /*
-            init database variables
+        /**
+         * Inits all the variables with the data from strings.xml holding right for remote database remote metadata
+         * @author Chaosruler972
+         * @param context a baseContext to work with
          */
         override fun extract_variables(context: Context) {
             DATABASE_NAME = context.getString(R.string.DATABASE_NAME)
@@ -46,8 +54,10 @@ class remote_inventory_table_helper
             DATAAREAID_TYPE = context.getString(R.string.INVENTORY_DATAAREAID_TYPE)
         }
 
-        /*
-            make database typemap
+        /**
+         * defines a type map as a hashmap that each key is the variable name, and value is is type
+         * @author Chaosruler972
+         * @return the typemap in hashmap format
          */
         override fun define_type_map():HashMap<String,String> {
             val map: HashMap<String, String> = HashMap()
@@ -57,15 +67,21 @@ class remote_inventory_table_helper
             return map
         }
 
-        @Suppress("unused")
-/*
-            select * from inventory
+        /**
+         * Select * from REMOTE_TABLE function
+         * @author Chaosruler972
+         * @return returns a vector of hashmap of strings, each element represents a row, hasmap items represents columns
          */
+        @Suppress("unused")
         fun select_wildcard(): Vector<HashMap<String, String>> = remote_SQL_Helper.select_columns_from_db_with_where(DATABASE_NAME, TABLE_NAME, define_type_map(), null, null)
 
 
-        /*
-        api call
+        /**
+         * pushes an update to the database on remote call
+         * @author Chaosruler972
+         * @param obj a representation of the object data class we want to push an update to
+         * @param context a baseContext to work with
+         * @param map a map of the identifying traits of what we should update on the object in the remote database
          */
         override fun push_update(obj: table_dataclass, map: HashMap<String, String>, context: Context) {
             if(obj is inventory_data)
@@ -73,8 +89,13 @@ class remote_inventory_table_helper
         }
 
 
-        /*
-            push update
+
+                /**
+         * a function to take the object dataclass and initate and take the identifying traits and he updated traits and create an update query matching that
+         * @author Chaosruler972
+         * @param context a baseContext to work with
+         * @param map a map of the variables we want to identify the object with
+         * @param inventory the data-object we want to update and take the data from
          */
         fun push_update(inventory: inventory_data, map: HashMap<String, String>, context: Context) {
             val typemap = define_type_map()

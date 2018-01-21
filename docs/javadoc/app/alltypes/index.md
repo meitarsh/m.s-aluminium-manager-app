@@ -55,7 +55,7 @@
 | [com.example.chaosruler.msa_manager.activies.kablan_pashot_activity.kablan_pashot_arrayadapter](../com.example.chaosruler.msa_manager.activies.kablan_pashot_activity/kablan_pashot_arrayadapter/index.md) |  |
 | [com.example.chaosruler.msa_manager.activies.kablni_mishne_activity](../com.example.chaosruler.msa_manager.activies/kablni_mishne_activity/index.md) |  |
 | [com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_OPR_table_helper](../com.example.chaosruler.msa_manager.-s-q-l-i-t-e_helpers.sync_table/local_-o-p-r_table_helper/index.md) |  |
-| [com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper](../com.example.chaosruler.msa_manager.abstraction_classes/local_-s-q-l_-helper/index.md) |  |
+| [com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper](../com.example.chaosruler.msa_manager.abstraction_classes/local_-s-q-l_-helper/index.md) | an abstract representation of what we define as Local table (or database) in SQLite this abstract implentation is semi-implented with all the basic functionality we need from a local database after initating constructor, we must initate init_vector_of_variables |
 | [com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper](../com.example.chaosruler.msa_manager.-s-q-l-i-t-e_helpers.sync_table/local_big_table_helper/index.md) |  |
 | [com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper](../com.example.chaosruler.msa_manager.-s-q-l-i-t-e_helpers.sync_table/local_inventory_table_helper/index.md) |  |
 | [com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_projects_table_helper](../com.example.chaosruler.msa_manager.-s-q-l-i-t-e_helpers.sync_table/local_projects_table_helper/index.md) |  |
@@ -68,7 +68,7 @@
 | [com.example.chaosruler.msa_manager.activies.project_options](../com.example.chaosruler.msa_manager.activies/project_options/index.md) |  |
 | [com.example.chaosruler.msa_manager.services.remote_SQL_Helper](../com.example.chaosruler.msa_manager.services/remote_-s-q-l_-helper/index.md) |  |
 | [com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper](../com.example.chaosruler.msa_manager.-m-s-s-q-l_helpers/remote_big_table_helper/index.md) |  |
-| [com.example.chaosruler.msa_manager.abstraction_classes.remote_helper](../com.example.chaosruler.msa_manager.abstraction_classes/remote_helper/index.md) |  |
+| [com.example.chaosruler.msa_manager.abstraction_classes.remote_helper](../com.example.chaosruler.msa_manager.abstraction_classes/remote_helper/index.md) | an abstract class that fulfiles the requirements for the application to load a remote database (MSSQL) |
 | [com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper](../com.example.chaosruler.msa_manager.-m-s-s-q-l_helpers/remote_inventory_table_helper/index.md) |  |
 | [com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper](../com.example.chaosruler.msa_manager.-m-s-s-q-l_helpers/remote_opr_table_helper/index.md) |  |
 | [com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper](../com.example.chaosruler.msa_manager.-m-s-s-q-l_helpers/remote_projects_table_helper/index.md) |  |
@@ -88,6 +88,6 @@
 | [com.example.chaosruler.msa_manager.services.themer](../com.example.chaosruler.msa_manager.services/themer/index.md) |  |
 | [com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper](../com.example.chaosruler.msa_manager.-s-q-l-i-t-e_helpers/user_database_helper/index.md) |  |
 | [com.example.chaosruler.msa_manager.activies.user_delete_activity](../com.example.chaosruler.msa_manager.activies/user_delete_activity/index.md) |  |
-| [com.example.chaosruler.msa_manager.object_types.vendor_data](../com.example.chaosruler.msa_manager.object_types/vendor_data/index.md) |  |
+| [com.example.chaosruler.msa_manager.object_types.vendor_data](../com.example.chaosruler.msa_manager.object_types/vendor_data/index.md) | a dataclass for vendor data |
 | [com.example.chaosruler.msa_manager.services.vpn_connection](../com.example.chaosruler.msa_manager.services/vpn_connection/index.md) |  |
 

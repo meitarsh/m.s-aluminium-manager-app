@@ -3,3 +3,13 @@
 # clearDB
 
 `fun clearDB(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+
+Just deletes all the database enties, keeping the schema
+
+### Exceptions
+
+`SQLiteException` -
+
+**Author**
+Chaosruler972
+

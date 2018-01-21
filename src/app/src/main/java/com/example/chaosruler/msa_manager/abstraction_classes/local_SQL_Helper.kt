@@ -12,20 +12,51 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import java.util.*
 import kotlin.collections.HashMap
 
-
-
-
+/**
+ * an abstract representation of what we define as Local table (or database) in SQLite
+ * this abstract implentation is semi-implented with all the basic functionality we need from a local database
+ * after initating constructor, we must initate init_vector_of_variables
+ * @author Chaosruler972
+ * @constructor halndles data initating on the base class level
+ * @param DATABASE_NAME the Database name we work with, will become DATABASE_NAME.db as a file in Android device
+ * @param TABLE_NAME the table name to open and query
+ * @param context baseContext to work with, must be valid at all stages
+ * @param factory should be initated to null
+ * @param version the database version we are working with on the local level, starting from 1 (integers only)
+ * @sample
+ * class cache_server_commands( context: Context) : local_SQL_Helper(context,context.getString(R.string.cache_DB_NAME),null,context.resources.getInteger(R.integer.cache_db_ver),context.getString(R.string.cache_table_name))
+ * private val ID: String = context.getString(R.string.cache_col_1)
+ * private val COMMAND:String = context.getString(R.string.cache_col_2)
+ * private val USER:String = context.getString(R.string.cache_col_3)
+ * MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
+ * SQL class
+ *
+ * init
+ * {
+ * val vector: Vector<String> = Vector()
+ * vector.add(ID)
+ * vector.add(COMMAND)
+ * vector.add(USER)
+ * init_vector_of_variables(vector)
+ * }
+ */
 abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context: Context, protected var DATABASE_NAME: String, factory: SQLiteDatabase.CursorFactory?, version: Int, private var TABLE_NAME: String) : SQLiteOpenHelper(context, DATABASE_NAME, factory, version)
 {
 
-    /*
-        Basic idea is to initate the vector with all the variables with a call to init_vector
-        before doing SQL functions and do call onCreate with the variable types per key
+    /**
+     * abstract metadata holder
+     * will hold all the table variables (by name, not type)
+     * @sample
+     * vector.add("_id")
      */
     private lateinit var vector_of_variables: Vector<String>
 
-    /*
-        must call - inits vector that we work on later!
+    /**
+     * a function to initate parameer vector_of_variables
+     * it actually gets the vector and copies it to base classes vector
+     * function is responsible for generating the table as well, will log on exception
+     * @param vector the input vector, as expected for vector_of_variables
+     * @author Chaosruler972
      */
     protected fun init_vector_of_variables(vector:Vector<String>)
     {
@@ -43,8 +74,11 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
         }
     }
 
-    /*
-    check if database exists
+    /**
+     * a function to check if table exists on database on an abstract level
+     * @param tableName the table name that we are going to check if it exists
+     * @sample isTableExists("Users")
+     * @author Chaosruler972
      */
     private fun isTableExists(tableName: String): Boolean {
 
@@ -60,13 +94,22 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
         }
         return false
     }
-    /*
-        API method abstraction
+
+    /**
+     * Function will use all the initated data to try to do "Create Table" sql query
+     * @author Chaosruler972
+     * @param db an instance of the database we are working with
+     * @exception SQLiteException
      */
     abstract override fun onCreate(db: SQLiteDatabase)
 
-    /*
-        checks if we should upgrade.. and drops and recreates
+    /**
+     * if we got a newer version in our android device than the installed version of our current database
+     * we will delete all entries of our current database, drop it and its scheme and recreate a new one (without the old data)
+     * @author Chaosruler972
+     * @param db an instance of the database to work with
+     * @param newVersion the new version number we are installing now (in integers)
+     * @param oldVersion the old version number that is installed on the device
      */
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         if (newVersion > oldVersion)
@@ -77,25 +120,32 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
     }
 
 
-    /*
-        drop database
+    /**
+     * Drops the entire database, deleting all the data and the database schema
+     * @param db an instance of our database
+     * @author Chaosruler972
      */
     private fun dropDB(db: SQLiteDatabase?) // subroutine to delete the entire database, including the file
     {
         db?.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME)
     }
 
-    /*
-        clears all database values
+    /**
+     * Just deletes all the database enties, keeping the schema
+     * @author Chaosruler972
+     * @exception SQLiteException
      */
     fun clearDB()
     {
         this.writableDatabase.execSQL("delete from " + TABLE_NAME)
     }
 
-    /*
-        subroutine to template a create table statement
-            takes parameters neccesery
+    /**
+     * Create Datbase query handler, in an abstract method
+     * @author Chaosruler972
+     * @param db an instance of the database we are going to work with
+     * @param variables a hashmap of the variables we are going to initate in our database in format of key: name of the value, value: the type
+     * @exception SQLiteException
      */
     protected fun createDB(db: SQLiteDatabase ,variables: HashMap<String,String>) {
 
@@ -114,10 +164,13 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
 
     }
 
-    /*
-        subroutine to template a create table statement
-            takes parameters neccesery
-            *with foreign key support*
+    /**
+     * an extension of the normal createDB function, it also initates foreign keys (extra is for experts, pushed at the end of the create table query)
+     * @author Chaosruler972
+     * @param db an instance of the database to work with
+     * @param variables a hashmap of the variables we are going to initate in our database in format of key: name of the value, value: the type
+     * @param foregin a list of foreign keys with the value name being on the key and the reference in the foreign database on the value
+     * @param extra an extra added string to push at the end of the Create Table statement
      */
     protected fun createDB(db: SQLiteDatabase ,variables: HashMap<String,String>, foregin:HashMap<String,String>, extra:String?) {
 
@@ -141,8 +194,12 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
 
     }
 
-    /*
-        subroutine gets entire database to vector of hashmap values, self colum feeder
+    /**
+     * Select * from DB_NAME query, generated to code
+     * function works in threadded way, opening a new thread, though this thread is blocked waiting for the results
+     * @author Chaosruler972
+     * @return All the database in a vector of hashmap, each item in the vector represents row, each item in the inner hashmap represents a column
+     * @exception SQLiteException IllegalStateException
      */
     fun get_db(): Vector<HashMap<String, String>>
     {
@@ -202,17 +259,28 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
         //db.close()
         return vector
     }
-    /*
-        subroutine that templates an add query
+
+    /**
+     * Inserts LOADS of data to the database
+     * @author Chaosruler972
+     * @param variables the data we want to add, field name will be on the key, field value is on the value, all the rows are seperated in the vector as different elements
+     * @return if at least one of the items was successfull
      */
     protected fun add_data(variables: Vector<HashMap<String,String>>):Boolean
     {
+        if(variables.size == 0)
+            return false
         val db: SQLiteDatabase = this.writableDatabase
         //db.close()
         return variables.any { add_single_data(db, it) }
     }
-    /*
-        adds a single data
+
+    /**
+     * Inserts single instance of row into the table
+     * @author Chaosruler972
+     * @param db an instance of the database we are going to work with
+     * @param items represents a row that we want to add, key = value name, value = the data itself
+     * @return if data entry was successfull
      */
     private fun add_single_data(db:SQLiteDatabase,items:HashMap<String,String>):Boolean
     {
@@ -224,8 +292,12 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
         return false
     }
 
-    /*
-        subroutine that templates remove query
+    /**
+     * Removes an entry from the database that holds true to the arguement where_clause equals (at least one of the equal_to strings)
+     * @author Chaosruler972
+     * @param where_clause the field name to compare to on each row (if that field holds true, it is deleted)
+     * @param equal_to what to compare the field name to (as in, what data it should be equal to)
+     * @return if data removed was successfull
      */
     protected fun remove_from_db( where_clause:String,  equal_to: Array<String>) :Boolean
     {
@@ -238,9 +310,14 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
         //db.close()
         return result
     }
-    /*
-     subroutine that templates remove query with two or more where clauses
-  */
+
+    /**
+     * Removes from database with multiple where clauses requirements
+     * @author Chaosruler972
+     * @param where_clause a vector that holds the multiple amounts of fields that we are going to compare by name
+     * @param equal_to the fields value to compare to
+     * @return if the data removal was successfull
+     */
     protected fun remove_from_db( where_clause:Array<String>,  equal_to: Array<String>) :Boolean
     {
         var result = false
@@ -261,9 +338,14 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
     }
 
 
-
-    /*
-        subroutine that templates update query
+    /**
+     * a function to update a row in the database with data
+     * @author Chaosruler972
+     * @param where_clause which data should I update? field should be targetted by WHERE clause
+     * @param equal_to the data to compare to the targeted the row we should update...
+     * @param update_to what should we update it to, key = value name, value = value data
+     * @return if data update was succesfull
+     * @exception SQLiteException
      */
     protected fun update_data(where_clause: String, equal_to: Array<String>, update_to: HashMap<String,String>):Boolean
     {
@@ -281,9 +363,15 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
         return result
     }
 
-    /*
-       subroutine that templates update query
-    */
+    /**
+     * Similar to the reguler update_data function, only this one gets multiple parameters to find the specified row to update
+     * @author Chaosruler972
+     * @param where_clause which data should I update? field should be targetted by WHERE clause
+     * @param equal_to the data to compare to the targeted the row we should update...
+     * @param update_to what should we update it to, key = value name, value = value data
+     * @return if data update was succesfull
+     * @exception SQLiteException
+     */
     protected fun update_data(where_clause: Array<String>, equal_to: Array<String>, update_to: HashMap<String,String>):Boolean
     {
         var result = false
@@ -306,8 +394,14 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
         //db.close()
         return result
     }
-    /*
-        subroutine to look for and get a row from the database that accepts certain conditions (ALL)
+
+    /**
+     * SELECT * FROM TABLE_NAME WHERE XXX query to kotlin code
+     * function works with multi threadding but is blocked until results is generated
+     * @author Chaosruler972
+     * @param map filter by which values? key = name, value = data
+     * @return a vector that each element represents a row and each hashtable represents all the columns (key = column name, value = data)
+     * @exception SQLiteException
      */
     fun get_rows(map:HashMap<String,String>):Vector<HashMap<String,String>>
     {
@@ -424,11 +518,14 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
     }
 
 
-
-    /*
-       subroutine gets entire database to vector of hashmap values, self colum feeder
-       includes sorting
-    */
+    /**
+     * a function to get the entire database (with multi threadding yet this thread is blocked until results is generated)
+     * only this one will sort the resuls by specified value
+     * @author Chaosruler972
+     * @param sort_by_value what value should we sort by
+     * @param isAscending true=Ascending sort, false=Descending sort
+     * @return a vector that each elements represents a row, and each item in the hashtable represents a column
+     */
     @Suppress("unused")
     protected fun get_db(sort_by_value: String, isAscending: Boolean): Vector<HashMap<String, String>>
     {
@@ -491,10 +588,16 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
         return vector
     }
 
-    /*
-        replace data with another data! testing that
+
+    /**
+     * similar to he update query, using the new db.replace API (buggy)
+     * DO NOT USE THIS FUNCTION
+     * @author Chaosruler972
+     * @param map wha should we replace by what (key = name, value=data)
+     * @return is successfull
      */
-    fun replace(map: HashMap<String, String>): Boolean
+    @Suppress("unused")
+    private fun replace(map: HashMap<String, String>): Boolean
     {
 
         val db = this.writableDatabase

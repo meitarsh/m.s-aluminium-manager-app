@@ -10,7 +10,7 @@
 
 ### Functions
 
-| [copy](copy.md) | `fun copy(): big_table_data` |
+| [copy](copy.md) | `fun copy(): big_table_data`<br>a copy constructor of the object |
 | [get_DATAAREAID](get_-d-a-t-a-a-r-e-a-i-d.md) | `fun get_DATAAREAID(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?` |
 | [get_DIRANUM](get_-d-i-r-a-n-u-m.md) | `fun get_DIRANUM(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?` |
 | [get_FLAT](get_-f-l-a-t.md) | `fun get_FLAT(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?` |
@@ -53,5 +53,5 @@
 | [set_TOTALSUM](set_-t-o-t-a-l-s-u-m.md) | `fun set_TOTALSUM(string: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [set_USERNAME](set_-u-s-e-r-n-a-m-e.md) | `fun set_USERNAME(string: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [set_VENDOR_ID](set_-v-e-n-d-o-r_-i-d.md) | `fun set_VENDOR_ID(string: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
-| [toString](to-string.md) | `fun toString(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [toString](to-string.md) | `fun toString(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>to identify the object, we must reimplement the toString funcion with identifying marks on the strings |
 

@@ -10,7 +10,7 @@
 
 ### Functions
 
-| [copy](copy.md) | `fun copy(): project_data` |
+| [copy](copy.md) | `fun copy(): project_data`<br>a copy constructor of the object |
 | [getProjID](get-proj-i-d.md) | `fun getProjID(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?` |
 | [get_DATAREAID](get_-d-a-t-a-r-e-a-i-d.md) | `fun get_DATAREAID(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?` |
 | [get_USERNAME](get_-u-s-e-r-n-a-m-e.md) | `fun get_USERNAME(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?` |
@@ -19,5 +19,5 @@
 | [set_project_name](set_project_name.md) | `fun set_project_name(new_projname: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [set_projid](set_projid.md) | `fun set_projid(new_projid: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [set_username](set_username.md) | `fun set_username(new_username: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
-| [toString](to-string.md) | `fun toString(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [toString](to-string.md) | `fun toString(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>to identify the object, we must reimplement the toString funcion with identifying marks on the strings |
 

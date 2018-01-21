@@ -3,3 +3,12 @@
 # get_accountnum
 
 `fun get_accountnum(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+
+gets the vendor account ID
+
+**Author**
+Chaosruler972
+
+**Return**
+the account id
+

@@ -10,5 +10,5 @@
 | [inventory_data](inventory_data/index.md) | `class inventory_data : `[`table_dataclass`](../com.example.chaosruler.msa_manager.abstraction_classes/table_dataclass/index.md) |
 | [opr_data](opr_data/index.md) | `class opr_data : `[`table_dataclass`](../com.example.chaosruler.msa_manager.abstraction_classes/table_dataclass/index.md) |
 | [project_data](project_data/index.md) | `class project_data : `[`table_dataclass`](../com.example.chaosruler.msa_manager.abstraction_classes/table_dataclass/index.md) |
-| [vendor_data](vendor_data/index.md) | `class vendor_data : `[`table_dataclass`](../com.example.chaosruler.msa_manager.abstraction_classes/table_dataclass/index.md) |
+| [vendor_data](vendor_data/index.md) | `class vendor_data : `[`table_dataclass`](../com.example.chaosruler.msa_manager.abstraction_classes/table_dataclass/index.md)<br>a dataclass for vendor data |
 

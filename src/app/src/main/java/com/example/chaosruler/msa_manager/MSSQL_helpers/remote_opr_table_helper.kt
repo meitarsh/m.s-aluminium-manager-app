@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package com.example.chaosruler.msa_manager.MSSQL_helpers
 
 import android.content.Context
@@ -11,6 +13,10 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
 
 @Suppress("MemberVisibilityCanPrivate")
+/**
+ * a representation of the opr table
+ * @author Chaosruler972
+ */
 class remote_opr_table_helper {
     companion object : remote_helper()
     {
@@ -29,8 +35,10 @@ class remote_opr_table_helper {
         var DATAAREAID_TYPE: String = ""
 
 
-        /*
-            init database variables
+        /**
+         * Inits all the variables with the data from strings.xml holding right for opr database remote metadata
+         * @author Chaosruler972
+         * @param context a baseContext to work with
          */
         override fun extract_variables(context: Context)
         {
@@ -46,8 +54,10 @@ class remote_opr_table_helper {
             DATAAREAID_TYPE = context.getString(R.string.OPR_DATAAREAID_TYPE)
         }
 
-        /*
-            make database typemap
+        /**
+         * defines a type map as a hashmap that each key is the variable name, and value is is type
+         * @author Chaosruler972
+         * @return the typemap in hashmap format
          */
         override fun define_type_map():HashMap<String,String>
         {
@@ -58,8 +68,12 @@ class remote_opr_table_helper {
             return map
         }
 
-        /*
-            API call
+        /**
+         * pushes an update to the database on remote call
+         * @author Chaosruler972
+         * @param obj a representation of the object data class we want to push an update to
+         * @param context a baseContext to work with
+         * @param map a map of the identifying traits of what we should update on the object in the remote database
          */
         override fun push_update(obj: table_dataclass, map: HashMap<String, String>, context: Context)
         {
@@ -67,8 +81,13 @@ class remote_opr_table_helper {
                 push_update(obj,map,context)
         }
 
-        /*
-            push update to db
+
+                /**
+         * a function to take the object dataclass and initate and take the identifying traits and he updated traits and create an update query matching that
+         * @author Chaosruler972
+         * @param context a baseContext to work with
+         * @param map a map of the variables we want to identify the object with
+         * @param opr the data-object we want to update and take the data from
          */
         fun push_update(opr: opr_data, map: HashMap<String, String>, context: Context)
         {

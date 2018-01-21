@@ -6,3 +6,11 @@
 
 Overrides [remote_helper.define_type_map](../../com.example.chaosruler.msa_manager.abstraction_classes/remote_helper/define_type_map.md)
 
+defines a type map as a hashmap that each key is the variable name, and value is is type
+
+**Author**
+Chaosruler972
+
+**Return**
+the typemap in hashmap format
+

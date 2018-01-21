@@ -3,3 +3,12 @@
 # get_accountname
 
 `fun get_accountname(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+
+gets the account name
+
+**Author**
+Chaosruler972
+
+**Return**
+the account's name
+

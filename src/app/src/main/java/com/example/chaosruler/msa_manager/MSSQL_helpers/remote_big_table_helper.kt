@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package com.example.chaosruler.msa_manager.MSSQL_helpers
 
 import android.content.Context
@@ -11,10 +13,14 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
 
 @Suppress("MemberVisibilityCanPrivate")
+/**
+ * a representation of the big table
+ * @author Chaosruler972
+ */
 class remote_big_table_helper
 {
-    companion object : remote_helper() {
 
+    companion object : remote_helper() {
 
         var DATABASE_NAME: String = ""
         var TABLE_NAME: String = ""
@@ -79,8 +85,10 @@ class remote_big_table_helper
         var DIRANUM: String = ""
         var DIRANUM_TYPE: String = ""
 
-        /*
-            init the variables from strings.xml
+        /**
+         * Inits all the variables with the data from strings.xml holding right for big database remote metadata
+         * @author Chaosruler972
+         * @param context a baseContext to work with
          */
         override fun extract_variables(context: Context) {
             TABLE_NAME = context.getString(R.string.TABLE_BIG)
@@ -147,8 +155,10 @@ class remote_big_table_helper
 
         }
 
-        /*
-            make a big table type map
+        /**
+         * defines a type map as a hashmap that each key is the variable name, and value is is type
+         * @author Chaosruler972
+         * @return the typemap in hashmap format
          */
         override fun define_type_map():HashMap<String,String> {
             val map: HashMap<String, String> = HashMap()
@@ -176,16 +186,24 @@ class remote_big_table_helper
             return map
         }
 
-        /*
-            API call
+        /**
+         * pushes an update to the database on remote call
+         * @author Chaosruler972
+         * @param obj a representation of the object data class we want to push an update to
+         * @param context a baseContext to work with
+         * @param map a map of the identifying traits of what we should update on the object in the remote database
          */
         override fun push_update(obj: table_dataclass, map: HashMap<String, String>, context: Context) {
             if(obj is big_table_data)
                 push_update(obj,map,context)
         }
 
-        /*
-        push an update
+        /**
+         * a function to take the object dataclass and initate and take the identifying traits and he updated traits and create an update query matching that
+         * @author Chaosruler972
+         * @param context a baseContext to work with
+         * @param map a map of the variables we want to identify the object with
+         * @param obj the data-object we want to update and take the data from
          */
         fun push_update(obj: big_table_data, map: HashMap<String, String>, context: Context) {
             val typemap = define_type_map()

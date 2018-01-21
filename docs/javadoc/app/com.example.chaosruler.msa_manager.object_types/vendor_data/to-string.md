@@ -6,3 +6,11 @@
 
 Overrides [table_dataclass.toString](../../com.example.chaosruler.msa_manager.abstraction_classes/table_dataclass/to-string.md)
 
+Identifies this data with the ID
+
+**Author**
+Chaosruler972
+
+**Return**
+a string with the ID of the vendor to identify it
+

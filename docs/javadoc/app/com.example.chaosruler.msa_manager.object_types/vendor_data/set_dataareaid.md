@@ -3,3 +3,13 @@
 # set_dataareaid
 
 `fun set_dataareaid(new_dataareaid: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+
+sets a dataaraeid (testing phase only)
+
+### Parameters
+
+`new_dataareaid` - the new dataaraeid
+
+**Author**
+Chaosruler972
+

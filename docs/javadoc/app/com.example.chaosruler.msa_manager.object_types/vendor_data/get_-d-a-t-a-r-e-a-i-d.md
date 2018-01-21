@@ -3,3 +3,12 @@
 # get_DATAREAID
 
 `fun get_DATAREAID(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+
+gets the daaraaeid (testing phase only)
+
+**Author**
+Chaosruler972
+
+**Return**
+the dataaraeid strings
+

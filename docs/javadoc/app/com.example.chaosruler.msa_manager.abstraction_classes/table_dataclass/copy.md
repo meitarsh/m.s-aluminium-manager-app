@@ -3,3 +3,12 @@
 # copy
 
 `abstract fun copy(): `[`table_dataclass`](index.md)
+
+a copy constructor of the object
+
+**Author**
+Chaosruler972
+
+**Return**
+a copy of this object represnetation
+
