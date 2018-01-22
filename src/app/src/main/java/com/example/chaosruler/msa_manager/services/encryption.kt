@@ -12,7 +12,7 @@ import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
 
 
-@Suppress("unused")
+
 /**
  * a Singleton object (only one instance in runtime) responsible for encryptiing and decrypting
  * data stored in local database and local android machine
@@ -23,6 +23,7 @@ import javax.crypto.spec.IvParameterSpec
  * @sample generate_key(baseContext)
  * @sample encrypt(a.toByteArray())
  */
+@Suppress("unused")
 object encryption
 {
     /**
