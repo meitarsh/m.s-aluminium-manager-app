@@ -61,10 +61,11 @@ dokka {
     skipEmptyPackages = true
     sourceDirs = files('src/main/java')
     outputFormat = 'html'
-    outputDirectory = "/home/chaosruler/Desktop/m.s-aluminium-manager-app/docs/javadoc"
+    outputDirectory = "$buildDir/../../../docs/javadoc"
 }
 task deleteUnusedDokkaAssets(type: Delete) {
     file("$rootDir/docs").listFiles().each {
+        if( it.name.contains("android")) projects.delete it
         if( it.name.contains("android.R" ) ) project.delete it
         if( it.name.contains("android.support" ) ) project.delete it
         if( it.name.contains("com.google" ) ) project.delete it

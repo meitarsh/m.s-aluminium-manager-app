@@ -20,9 +20,9 @@ import java.util.*
 
 
 /**
- *     service responsible for storing server commands offline and sending them whenever possible
- *     @author Chaosruler972
- *     @constructor a service is constructed using the android API call
+ * service responsible for storing server commands offline and sending them whenever possible
+ * @author Chaosruler972
+ * @constructor a service is constructed using the android API call
  */
 class offline_mode_service : Service(){
 
