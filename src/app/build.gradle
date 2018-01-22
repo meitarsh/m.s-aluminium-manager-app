@@ -63,5 +63,12 @@ dokka {
     outputFormat = 'html'
     outputDirectory = "/home/chaosruler/Desktop/m.s-aluminium-manager-app/docs/javadoc"
 }
-
+task deleteUnusedDokkaAssets(type: Delete) {
+    file("$rootDir/docs").listFiles().each {
+        if( it.name.contains("android.R" ) ) project.delete it
+        if( it.name.contains("android.support" ) ) project.delete it
+        if( it.name.contains("com.google" ) ) project.delete it
+        if( it.name.contains("com.crashlytics" ) ) project.delete it
+    }
+}
 
