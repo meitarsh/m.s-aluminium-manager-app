@@ -23,12 +23,37 @@ import kotlin.collections.HashMap
 object remote_SQL_Helper {
 
 
+    /**
+     * The current working context
+     * @author Chaosruler972
+     */
     @SuppressLint("StaticFieldLeak")
     private lateinit var context: Context
+    /**
+     * the last calling activity that needs that login, usually MainActivity should hold this
+     * @author Chaosruler972
+     */
     private lateinit var act: Activity
+    /**
+     * The login username
+     * @author Chaosruler972
+     */
     private var username: String = ""
+    /**
+     * The login password
+     * @author Chaosruler972
+     */
     private var password: String = ""
+    /**
+     * if connection is still valid
+     * @author Chaosruler972
+     */
     private var isvalid: Boolean = false
+    /**
+     * instance of the SQL connection from JTDS
+     * @author Chaosruler972
+     * @see net.sourceforge.jtds
+     */
     private var connection: Connection? = null
     /**
      * last exception got
@@ -141,6 +166,7 @@ object remote_SQL_Helper {
             AsyncTask.execute(
                     {
                         var rs: ResultSet?
+                        @Suppress("LiftReturnOrAssignment")
                         try {
                             rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]")
                         } catch (e: SQLTimeoutException) {

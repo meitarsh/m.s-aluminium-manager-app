@@ -40,7 +40,25 @@ import kotlin.collections.HashMap
  * init_vector_of_variables(vector)
  * }
  */
-abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context: Context, protected var DATABASE_NAME: String, factory: SQLiteDatabase.CursorFactory?, version: Int, private var TABLE_NAME: String) : SQLiteOpenHelper(context, DATABASE_NAME, factory, version)
+abstract class local_SQL_Helper(@Suppress("CanBeParameter")
+                                /**
+                                 * The context that we work with
+                                 * @author Chaosruler972
+                                 */
+                                private val context: Context,
+                                /**
+                                 * The database name (ends up being DATABASE_NAME.db as file in device)
+                                 * @author Chaosruler972
+                                 */
+                                protected var DATABASE_NAME: String,
+                                factory: SQLiteDatabase.CursorFactory?,
+                                version: Int,
+                                /**
+                                 * The table name that we are going to open
+                                 * @author Chaosruler972
+                                 */
+                                private var TABLE_NAME: String) : SQLiteOpenHelper(context,
+                                DATABASE_NAME, factory, version)
 {
 
     /**
@@ -601,27 +619,6 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter") private val context:
     {
 
         val db = this.writableDatabase
-        /*
-        var qry = "INSERT OR REPLACE INTO $TABLE_NAME"
-        var before:String = "("
-        var after:String = "("
-        var counter = 0
-        for(item in map)
-        {
-            before+=item.key
-            after+=remote_SQL_Helper.add_quotes(item.value)
-            counter++
-            if(counter < map.size)
-            {
-                before += ","
-                after += ","
-            }
-        }
-        before+=")"
-        after+=")"
-        qry += " $before VALUES $after"
-        val cursor = db.execSQL(qry)
-        */
         val cv = ContentValues()
         map.forEach { cv.put(it.key,String(global_variables_dataclass.xorWithKey(it.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false,context)) ) }
         val count = db.replace(TABLE_NAME, null, cv)

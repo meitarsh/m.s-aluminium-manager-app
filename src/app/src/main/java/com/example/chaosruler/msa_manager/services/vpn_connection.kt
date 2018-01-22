@@ -14,6 +14,7 @@ import com.example.chaosruler.msa_manager.R
 /**
  * a class representing a VPN connection
  * @author Chaosruler972
+ * @constructor since this is a service, construction is done on StartService API call
  */
 @Suppress("unused", "MemberVisibilityCanPrivate")
 class vpn_connection : VpnService()

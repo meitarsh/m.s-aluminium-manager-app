@@ -15,6 +15,7 @@ import java.util.*
  * general static class responsible for getting the right updated theme for every page based on the settings
  * of the style chosen by the user, default being Light
  * @author Chaosruler972
+ * @constructor since this is a singleton, this doesn't need to be constructed
  */
 object themer {
 

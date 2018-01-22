@@ -14,11 +14,19 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.divohi_takalot_tofes.*
 import java.util.*
 
-/*
-    divohi takalot form activity
+/**
+ *  the divohi takalot (form type) activity logic class
+ *  @author Chaosruler972
+ *  @constructor as a activity class, this is a default constructor
  */
 class DivohiTakalotTofesActivity : Activity() {
 
+    /**
+     * part of the android activity lifecycle
+     * will populate listview (or tableview)
+     * @param savedInstanceState the last state of the activity
+     * @author Chaosruler972
+     */
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
@@ -27,9 +35,12 @@ class DivohiTakalotTofesActivity : Activity() {
         if(!global_variables_dataclass.GUI_MODE && !init_table())
             finish()
     }
-    /*
-                   inits table
-            */
+    /**
+     * inits the table of the activity by getting the list of data (from server or client) and
+     * opening a new adapter for it
+     * @author Chaosruler972
+     * @return true if successfull (to be frank, always true since data testing is done)
+     */
     private fun init_table():Boolean
     {
         Thread({
@@ -48,9 +59,13 @@ class DivohiTakalotTofesActivity : Activity() {
     }
 
 
-    /*
-            Dispatch remove focus from all edit texts
-         */
+    /**
+     *    Dispatch remove focus from all edit texts
+     *    first attempt to remove soft keyboard
+     *  @author Chaosruler972
+     *  @return upon success, true
+     *  @param event the event that triggered the request to hide soft keyboard
+     */
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         if (event.action == MotionEvent.ACTION_DOWN) {
             val v = currentFocus

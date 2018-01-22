@@ -15,9 +15,21 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
 
-
+/**
+ * array adpater responsible for the logic behind the project invetory listview
+ * @author Chaosruler972
+ * @constructor the context we work with and the list of data we work with
+ */
 class table_inventory_arrayadapter(context: Context, arr: Vector<inventory_data>) : ArrayAdapter<inventory_data>(context, R.layout.item_inventory,arr.toTypedArray())
 {
+    /**
+     * inflates a view and generates it, writes the data in it and initates logic on press and edit
+     * @author Chaosruler972
+     * @param convertView the "listview" motherview
+     * @param parent the parent that holds all the views together
+     * @param position the position in the vector (auto iterate)
+     * @return the view we inflated with all the logic initated
+     */
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View
     {
 

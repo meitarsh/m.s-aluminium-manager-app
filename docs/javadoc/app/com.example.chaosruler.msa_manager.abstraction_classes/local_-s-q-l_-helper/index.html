@@ -2,7 +2,7 @@
 <HEAD>
 <meta charset="UTF-8">
 <title>local_SQL_Helper - app</title>
-<link rel="stylesheet" href="..\..\..\style.css">
+<link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
 <a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.abstraction_classes</a>&nbsp;/&nbsp;<a href=".">local_SQL_Helper</a><br/>
@@ -36,7 +36,9 @@ Chaosruler972</p>
 <p><a href="-d-a-t-a-b-a-s-e_-n-a-m-e.html">DATABASE_NAME</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">DATABASE_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+<code><span class="keyword">var </span><span class="identifier">DATABASE_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The database name (ends up being DATABASE_NAME.db as file in device)</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -157,49 +159,63 @@ we will delete all entries of our current database, drop it and its scheme and r
 <p><a href="../../com.example.chaosruler.msa_manager.-s-q-l-i-t-e_helpers/cache_server_commands/index.html">cache_server_commands</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">cache_server_commands</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code></td>
+<code><span class="keyword">class </span><span class="identifier">cache_server_commands</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code>
+<p>implenting the SQL helper on cache database (SQLITE)</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="../../com.example.chaosruler.msa_manager.-s-q-l-i-t-e_helpers.sync_table/local_-o-p-r_table_helper/index.html">local_OPR_table_helper</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">local_OPR_table_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code></td>
+<code><span class="keyword">class </span><span class="identifier">local_OPR_table_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code>
+<p>implenting the SQL helper on operation database (SQLITE)</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="../../com.example.chaosruler.msa_manager.-s-q-l-i-t-e_helpers.sync_table/local_big_table_helper/index.html">local_big_table_helper</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">local_big_table_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code></td>
+<code><span class="keyword">class </span><span class="identifier">local_big_table_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code>
+<p>implenting the SQL helper on big database (SQLITE)</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="../../com.example.chaosruler.msa_manager.-s-q-l-i-t-e_helpers.sync_table/local_inventory_table_helper/index.html">local_inventory_table_helper</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">local_inventory_table_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code></td>
+<code><span class="keyword">class </span><span class="identifier">local_inventory_table_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code>
+<p>implenting the SQL helper on inventory database (SQLITE)</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="../../com.example.chaosruler.msa_manager.-s-q-l-i-t-e_helpers.sync_table/local_projects_table_helper/index.html">local_projects_table_helper</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">local_projects_table_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code></td>
+<code><span class="keyword">class </span><span class="identifier">local_projects_table_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code>
+<p>implenting the SQL helper on projects database (SQLITE)</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="../../com.example.chaosruler.msa_manager.-s-q-l-i-t-e_helpers.sync_table/local_vendor_table_helper/index.html">local_vendor_table_helper</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">local_vendor_table_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code></td>
+<code><span class="keyword">class </span><span class="identifier">local_vendor_table_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code>
+<p>implenting the SQL helper on projects database (SQLITE)</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="../../com.example.chaosruler.msa_manager.-s-q-l-i-t-e_helpers/user_database_helper/index.html">user_database_helper</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">user_database_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code></td>
+<code><span class="keyword">class </span><span class="identifier">user_database_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">local_SQL_Helper</span></code>
+<p>implenting the SQL helper on user database (SQLITE)</p>
+</td>
 </tr>
 </tbody>
 </table>

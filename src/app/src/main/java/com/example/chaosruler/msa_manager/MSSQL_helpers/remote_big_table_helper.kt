@@ -16,73 +16,241 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 /**
  * a representation of the big table
  * @author Chaosruler972
+ * @constructor empty, this class can be used from mulitple contexts and activities
  */
 class remote_big_table_helper
 {
 
-    companion object : remote_helper() {
-
+    companion object : remote_helper()
+    {
+        /**
+         * The Database name
+         * @author Chaosruler972
+         */
         var DATABASE_NAME: String = ""
+        /**
+         * The Table name
+         * @author Chaosruler972
+         */
         var TABLE_NAME: String = ""
 
+        /**
+         * Vendor ID field name
+         * @author Chaosruler972
+         */
         var VENDOR_ID: String = ""
+        /**
+         * Vendor ID field type
+         * @author Chaosruler972
+         */
         var VENDOR_ID_TYPE: String = ""
 
+        /**
+         * Dataraeid, for testing, field name
+         * @author Chaosruler972
+         */
         var DATAREAID: String = ""
+        /**
+         * Dataraid, for testing, field type
+         * @author Chaosruler972
+         */
         var DATAAREAID_TYPE: String = ""
 
+        /**
+         * Recversion field name
+         * @author Chaosruler972
+         */
         var RECVERSION: String = ""
+        /**
+         * Recversion field type
+         * @author Chaosruler972
+         */
         var RECVERSION_TYPE: String = ""
 
+        /**
+         * RecID field name
+         * @author Chaosruler972
+         */
         var RECID: String = ""
+        /**
+         * RecID field type
+         * @author Chaosruler972
+         */
         var RECID_TYPE: String = ""
 
+        /**
+         * Project Id field name
+         * @author Chaosruler972
+         */
         var PROJECTS_ID: String = ""
+        /**
+         * Project ID field type
+         * @author Chaosruler972
+         */
         var PROJECTS_ID_TYPE: String = ""
 
+        /**
+         * Inventory ID field name
+         * @author Chaosruler972
+         */
         var INVENTORY_ID: String = ""
+        /**
+         * Inventory ID field type
+         * @author Chaosruler972
+         */
         var INVENTORY_ID_TYPE: String = ""
 
+        /**
+         * Flat field name
+         * @author Chaosruler972
+         */
         var FLAT: String = ""
+        /**
+         * Flat field type
+         * @author Chaosruler972
+         */
         var FLAT_TYPE: String = ""
 
+        /**
+         * Floor field name
+         * @author Chaosruler972
+         */
         var FLOOR: String = ""
+        /**
+         * Floor field type
+         * @author Chaosruler972
+         */
         var FLOOR_TYPE: String = ""
 
+        /**
+         * quanity field name
+         * @author Chaosruler972
+         */
         var QTY: String = ""
+        /**
+         * quanity field type
+         * @author Chaosruler972
+         */
         var QTY_TYPE: String = ""
 
+        /**
+         * Sales price field name
+         * @author Chaosruler972
+         */
         var SALESPRICE: String = ""
+        /**
+         * Sales price field type
+         * @author Chaosruler972
+         */
         var SALESPRICE_TYPE: String = ""
 
+        /**
+         * Operation ID field name
+         * @author Chaosruler972
+         */
         var OPR_ID: String = ""
+        /**
+         * Operation ID field type
+         * @author Chaosruler972
+         */
         var OPR_ID_TYPE: String = ""
 
+        /**
+         * Miles to percent convertion, field name
+         * @author Chaosruler972
+         */
         var MILESTONEPERCENT: String = ""
+        /**
+         * Miles to percent field type
+         * @author Chaosruler972
+         */
         var MILESTONEPERCENT_TYPE: String = ""
 
-        var QTYFORACCOUNT: String = ""
-        var QTYFORACCOUNT_TYPE: String = ""
 
+        /**
+         * Quanity for account field name
+         * @author Chaosruler972
+         */
+        var QTYFORACCOUNT: String = ""
+        /**
+         * Quanity for account field type
+         * @author Chaosruler972
+         */
+        var QTYFORACCOUNT_TYPE: String = ""
+        /**
+         * Percent for account field name
+         * @author Chaosruler972
+         */
         var PERCENTFORACCOUNT: String = ""
+        /**
+         * Percent for account field type
+         * @author Chaosruler972
+         */
         var PERCENTFORACCOUNT_TYPE: String = ""
 
+        /**
+         * Total sum field name
+         * @author Chaosruler972
+         */
         var TOTALSUM: String = ""
+        /**
+         * Total sum field type
+         * @author Chaosruler972
+         */
         var TOTALSUM_TYPE: String = ""
 
+        /**
+         * Sales progress field name
+         *@author Chaosruler972
+         */
         var SALPROG: String = ""
+        /**
+         * Sales progress field type
+         * @author Chaosruler972
+         */
         var SALPROG_TYPE: String = ""
 
+        /**
+         * Print order field name
+         * @author Chaosruler972
+         */
         var PRINTORDER: String = ""
+        /**
+         * print order field type
+         * @author Chaosruler972
+         */
         var PRINTORDER_TYPE: String = ""
 
+        /**
+         * Item number field name
+         * @author Chaosruler972
+         */
         var ITEMNUMBER: String = ""
+        /**
+         * Item number field type
+         * @author Chaosruler972
+         */
         var ITEMNUMBER_TYPE: String = ""
-
+        /**
+         * Koma num field name
+         * @author Chaosruler972
+         */
         var KOMANUM: String = ""
+        /**
+         * Koma num field type
+         * @author Chaosruler972
+         */
         var KOMANUM_TYPE: String = ""
 
+        /**
+         * Dira num field name
+         * @author Chaosruler972
+         */
         var DIRANUM: String = ""
+        /**
+         * Dira num field type
+         * @author Chaosruler972
+         */
         var DIRANUM_TYPE: String = ""
 
         /**

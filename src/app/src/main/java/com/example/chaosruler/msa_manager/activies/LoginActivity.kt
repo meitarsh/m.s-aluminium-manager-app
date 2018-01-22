@@ -40,15 +40,36 @@ import java.util.*
 
 /**
  * A login screen that offers login via email/password.
+ * @author Chaosruler972
+ * @constructor a default constructor for activity is a must
  */
 class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private var mAuthTask: UserLoginTask? = null
+    /**
+     * The current status of the menu (autofill or not)
+     * @author Chaosruler972
+     */
     private var status: Boolean = false
+    /**
+     * The current users database to fill the spinner on auto fill mode
+     * @author Chaosruler972
+     */
     private lateinit var db : user_database_helper
+    /**
+     * the adapter that serves for the spinner
+     * @author Chaosruler972
+     */
     private var adapter: ArrayAdapter<User>? = null
+
+    /**
+     * Activity lifecycle function, responsible for initating the spinner, the login form and
+     * generating the database as well as inflating the menu
+     * @author Chaosruler972
+     * @param savedInstanceState the last state of the activity
+     */
     override fun onCreate(savedInstanceState: Bundle?)
     {
         global_variables_dataclass.init_dbs(baseContext)
@@ -90,6 +111,11 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
         login_sign_in_button.setOnClickListener { attemptLogin() }
     }
+
+    /**
+     * reguler autocomplete of the edit text population function
+     * @author Chaosruler972
+     */
     private fun populateAutoComplete() {
         if (!mayRequestContacts()) {
             return
@@ -98,6 +124,11 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         loaderManager.initLoader(0, null, this)
     }
 
+    /**
+     * for edit text auto complete we must have contacts permission, subroutine requests that
+     * @author Chaosruler972
+     * @return if contacts request was successfull or not
+     */
     @SuppressLint("ObsoleteSdkInt")
     private fun mayRequestContacts(): Boolean {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
@@ -118,6 +149,10 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
     /**
      * Callback received when a permissions request has been completed.
+     * @author Chaosruler972
+     * @param grantResults the results of the permission grant (as an array)
+     * @param permissions the permissions requested
+     * @param requestCode the request code that we gave to invoke this function
      */
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,
                                             grantResults: IntArray) {
@@ -133,6 +168,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
+     * @author Chaosruler972
      */
     private fun attemptLogin() {
         if (mAuthTask != null) {
@@ -187,24 +223,58 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         }
     }
 
+    /**
+     * Checks if email is valid, always returns true
+     * @author Chaosruler972
+     * @return always true
+     */
     private fun isEmailValid(@Suppress("UNUSED_PARAMETER")email: String): Boolean =// return email.contains("@")
             true
 
+    /**
+     * checks if password is valid, always returns true
+     * @author Chaosruler972
+     * @return always true
+     */
     private fun isPasswordValid(@Suppress("UNUSED_PARAMETER")password: String): Boolean = true
 
+    /**
+     * get current status
+     * helps to know if spinner autofill mode is on or edit text fill mode is on
+     * @author Chaosruler972
+     * @return the status in boolean format, true is autofill, false is manual fill
+     */
     private fun get_status():Boolean
             = this.status
 
+    /**
+     * on resume we want to refresh the theme, extra procatuion, activity lifecycle function
+     * @author Chaosruler972
+     */
     override fun onResume() {
         super.onResume()
         baseContext.setTheme(themer.style(baseContext))
     }
+
+    /**
+     * responsible for inflating the menu with options
+     * @author Chaosruler972
+     * @param menu the menu we want to inflate
+     * @return always true
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.login_menu, menu)
         onOptionsItemSelected(menu.findItem(R.id.login_switch))
         return true
     }
+
+    /**
+     * handles menu items click
+     * @author Chaosruler972
+     * @param item the item we clicked
+     * @return true if item exists, false if not
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.login_switch -> {
@@ -244,6 +314,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
             }
             else -> {
+                return false
             }
         }
         return true
@@ -251,12 +322,12 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
 
 
-    /*
-        Style handling subroutine
-     */
+
 
     /**
      * Shows the progress UI and hides the login form.
+     * @author Chaosruler972
+     * @param show if we are supposed to show, true is going to show progress bar, false is going to make it disaappear
      */
     @SuppressLint("ObsoleteSdkInt")
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
@@ -294,6 +365,12 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         }
     }
 
+    /**
+     * Loads profile to cursor for login status, for manual autocomplete
+     * @param bundle the last bundle used with all the data in it (activity state)
+     * @param i the index on the database (cursor)
+     * @author Chaosruler972
+     */
     override fun onCreateLoader(i: Int, bundle: Bundle?): Loader<Cursor> {
         return CursorLoader(this,
                 // Retrieve data rows for the device user's 'profile' contact.
@@ -309,6 +386,12 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC")
     }
 
+    /**
+     * When we are done loading cursor we want to popular manual auto complete
+     * @author Chaosruler972
+     * @param cursor the cursor that we worked with to load the database of autocomplete data
+     * @param cursorLoader the cursor loader for manual autocomplete
+     */
     override fun onLoadFinished(cursorLoader: Loader<Cursor>, cursor: Cursor) {
         val emails = ArrayList<String>()
         cursor.moveToFirst()
@@ -320,9 +403,19 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         addEmailsToAutoComplete(emails)
     }
 
+    /**
+     * since we use manual autofill API we must override this, empty implentation
+     * @param cursorLoader the cursor loader if cursor was reset
+     * @author Chaosruler972
+     */
     override fun onLoaderReset(cursorLoader: Loader<Cursor>) = Unit
 
 
+    /**
+     * autocomplete e-mail address from contacts
+     * @author Chaosruler972
+     * @param emailAddressCollection the collection of email addresses possible for it
+     */
     private fun addEmailsToAutoComplete(emailAddressCollection: List<String>) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         val adapter = ArrayAdapter(this@LoginActivity,
@@ -331,14 +424,27 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         login_email.setAdapter(adapter)
     }
 
+    /**
+     * the objectified data that we load from the cursor
+     * @constructor the data itself
+     * @author Chaosruler972
+     */
     object ProfileQuery {
         val PROJECTION = arrayOf(
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
                 ContactsContract.CommonDataKinds.Email.IS_PRIMARY)
-        val ADDRESS = 0
+        const val ADDRESS = 0
         //val IS_PRIMARY = 1
     }
 
+    /**
+     * case we want to load VPN srvice, this is a result activity that will load that activity
+     * into android settings, we might not need that if we remove VPN requirements
+     * @author Chaosruler972
+     * @param data the data we want (VPN data such as IP)
+     * @param requestCode the request code, for VPN its 1500 as default
+     * @param resultCode the result (if VPN service opening succeeded)
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when(resultCode)
@@ -356,11 +462,30 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
+     * @param mEmail the email address for our login task
+     * @param mPassword the password for our login task
+     * @author Chaosruler972
+     * @constructor opens the thread and initats the login data and runs the thread
      */
     @SuppressLint("StaticFieldLeak")
-    inner class UserLoginTask internal constructor(private val mEmail: String, private val mPassword: String) : AsyncTask<Void, Void, Boolean>() {
+    inner class UserLoginTask internal constructor(
+            /**
+             * the email address for the login task (username)
+             * @author Chaosruler972
+             */
+            private val mEmail: String,
+            /**
+             * The password for the login task
+             * @author Chaosruler972
+             */
+            private val mPassword: String
+        ) : AsyncTask<Void, Void, Boolean>() {
 
-
+        /**
+         * Login task itself, communicates with server and gets login status from the parameters
+         * @author Chaosruler972
+         * @param params empty, requirements because of inheritance
+         */
         override fun doInBackground(vararg params: Void): Boolean?
         {
 
@@ -387,6 +512,11 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
         }
 
+        /**
+         * After login is complete, opens main activity on success, shows failure on failure and notifies user
+         * @param success if login was success
+         * @author Chaosruler972
+         */
         override fun onPostExecute(success: Boolean?) {
             mAuthTask = null
             showProgress(false)
@@ -414,6 +544,10 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             }
         }
 
+        /**
+         * if login was cancelled
+         * @author Chaosruler972
+         */
         override fun onCancelled() {
             mAuthTask = null
             showProgress(false)
@@ -424,8 +558,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
         /**
          * Id to identity READ_CONTACTS permission request.
+         * @author Chaosruler972
          */
-        private val REQUEST_READ_CONTACTS = 0
+        private const val REQUEST_READ_CONTACTS = 0
 
     }
 }

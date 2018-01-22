@@ -16,10 +16,30 @@ import com.example.chaosruler.msa_manager.object_types.User
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_user_delete_activity.*
 
+/**
+ * Class responsible for the logic behind the user-delete activity, the activity that handles deleting and changing password for various users
+ * @author Chaosruler
+ * @constructor as an activity, the constructor is the default constructor
+ */
 class user_delete_activity : Activity() {
 
+    /**
+     * the current working user database
+     * @author Chaosruler972
+     */
     private lateinit var db: user_database_helper
+    /**
+     * an arrayadapter containing all the current users in unencrypted form
+     * @author Chaosruler972
+     */
     private lateinit var adapter: ArrayAdapter<User>
+
+    /**
+     * android activity lifecycle function
+     * responsible for initating the database, and the adapter for the spinner and its values
+     * @author Chaosruler972
+     * @param savedInstanceState current state of activity
+     */
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
@@ -29,17 +49,21 @@ class user_delete_activity : Activity() {
         init_spinner()
         init_buttons()
     }
-    /*
-                   inits dataases
-            */
+
+    /**
+     * inits dataases
+     * @author Chaosruler972
+     */
     private fun init_dbs()
     {
         db = user_database_helper(baseContext)
         adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, db.get_entire_db())
     }
-    /*
-                   inits spinner
-            */
+
+    /**
+     *  inits spinner
+     *  @author Chaosruler972
+     */
     private fun init_spinner()
     {
         val users = db.get_entire_db()
@@ -60,9 +84,11 @@ class user_delete_activity : Activity() {
             }
         }
     }
-    /*
-                   inits buttons
-            */
+
+    /**
+     *     inits buttons
+     *  @author Chaosruler972
+     */
     private fun init_buttons()
     {
         // button to activate subroutine to delete a user from database
@@ -107,9 +133,10 @@ class user_delete_activity : Activity() {
         })
     }
 
-    /*
-                   inits reset both password fields
-            */
+    /**
+     * inits reset both password fields, makes fields invisible
+     * @author Chaosruler972
+     */
     private fun reset_password_fields() {
         // subroutine to reset the password fields to their defaults (meaning like it was when the activity first launched)
         delete_password1_edittext.isEnabled = false
@@ -118,9 +145,12 @@ class user_delete_activity : Activity() {
         delete_password2_textview.text.javaClass
         delete_send_changes_btn.visibility = View.INVISIBLE
     }
-    /*
-                   inits go back to new login activity
-            */
+
+    /**
+     *  inits go back to new login activity, android lifecycle function
+     *  will reopen mainactivity
+     *  @author Chaosruler972
+     */
     override fun onBackPressed() // overridden to make sure that pressing back right now will return us to the login activity, and won't exit the app, also reloading the login activity will reload the spinner on the login activity
     {
         val intent = Intent(this@user_delete_activity, LoginActivity::class.java)
@@ -128,18 +158,25 @@ class user_delete_activity : Activity() {
         super.onBackPressed()
     }
 
-    /*
-                   inits menu
-            */
+    /**
+     *  inits menu, inflates the top bar menu
+     *  @author Chaosruler972
+     *  @param menu the menu we want to inflate
+     *  @return always true
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         super.onCreateOptionsMenu(menu)
         val inflater = menuInflater
         inflater.inflate(R.menu.user_delete_activity_menu, menu)
         return true
     }
-    /*
-                   event handler for menu item
-            */
+
+    /**
+     * event handler for menu item
+     * @author Chaosruler972
+     * @param item the item we pressed
+     * @return if the item exists on menu, rue, else, it returns false
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
         when (item.itemId) {

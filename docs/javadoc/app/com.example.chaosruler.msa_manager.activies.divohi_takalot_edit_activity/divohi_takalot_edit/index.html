@@ -2,13 +2,16 @@
 <HEAD>
 <meta charset="UTF-8">
 <title>divohi_takalot_edit - app</title>
-<link rel="stylesheet" href="..\..\..\style.css">
+<link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
 <a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity</a>&nbsp;/&nbsp;<a href=".">divohi_takalot_edit</a><br/>
 <br/>
 <h1>divohi_takalot_edit</h1>
 <code><span class="keyword">class </span><span class="identifier">divohi_takalot_edit</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Activity</span></code>
+<p>the divohi takalot (edit type) activity logic class</p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -17,7 +20,9 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">divohi_takalot_edit</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+<code><span class="identifier">divohi_takalot_edit</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>as a activity class, this is a default constructor</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -29,21 +34,27 @@
 <p><a href="dispatch-touch-event.html">dispatchTouchEvent</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">dispatchTouchEvent</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity.divohi_takalot_edit$dispatchTouchEvent(android.view.MotionEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MotionEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">dispatchTouchEvent</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity.divohi_takalot_edit$dispatchTouchEvent(android.view.MotionEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MotionEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><pre><code><pre><code>    Dispatch remove focus from all edit texts</code></pre>
+<pre><code>    first attempt to remove soft keyboard</code></pre></code></pre></td>
 </tr>
 <tr>
 <td>
 <p><a href="on-activity-result.html">onActivityResult</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">onActivityResult</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity.divohi_takalot_edit$onActivityResult(kotlin.Int, kotlin.Int, android.content.Intent)/requestCode">requestCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity.divohi_takalot_edit$onActivityResult(kotlin.Int, kotlin.Int, android.content.Intent)/resultCode">resultCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity.divohi_takalot_edit$onActivityResult(kotlin.Int, kotlin.Int, android.content.Intent)/data">data</span><span class="symbol">:</span>&nbsp;<span class="identifier">Intent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">onActivityResult</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity.divohi_takalot_edit$onActivityResult(kotlin.Int, kotlin.Int, android.content.Intent)/requestCode">requestCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity.divohi_takalot_edit$onActivityResult(kotlin.Int, kotlin.Int, android.content.Intent)/resultCode">resultCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity.divohi_takalot_edit$onActivityResult(kotlin.Int, kotlin.Int, android.content.Intent)/data">data</span><span class="symbol">:</span>&nbsp;<span class="identifier">Intent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>after event to get the file, this function handles that</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="on-create.html">onCreate</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity.divohi_takalot_edit$onCreate(android.os.Bundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<span class="identifier">Bundle</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity.divohi_takalot_edit$onCreate(android.os.Bundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<span class="identifier">Bundle</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>part of the android activity lifecycle
+will populate listview (or tableview)</p>
+</td>
 </tr>
 </tbody>
 </table>

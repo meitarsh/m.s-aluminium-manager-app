@@ -8,14 +8,26 @@ import com.example.chaosruler.msa_manager.object_types.User
 import java.util.*
 import kotlin.collections.HashMap
 
-
-class user_database_helper(@Suppress("CanBeParameter") private val con: Context) : local_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.resources.getInteger(R.integer.USER_DB_VERSION), con.getString(R.string.USER_TABLE_NAME)) {
+/**
+ * implenting the SQL helper on user database (SQLITE)
+ * @author Chaosruler972
+ * @constructor a context to work with, the rest comes from strings.xml
+ */
+class user_database_helper(
+        /**
+         * The working context
+         * @author Chaosruler972
+         * @see Context
+         */
+        @Suppress("CanBeParameter") private val con: Context
+) : local_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.resources.getInteger(R.integer.USER_DB_VERSION), con.getString(R.string.USER_TABLE_NAME)) {
     private val USERS_ID: String = con.getString(R.string.USER_COL_ID)
     private val PASSWORD: String = con.getString(R.string.USER_COL_PASSWORD)
 
-    /*
-        MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
-        SQL class
+    /**
+     *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
+     * SQL class
+     * @author Chaosruler972
      */
     init
     {
@@ -27,9 +39,11 @@ class user_database_helper(@Suppress("CanBeParameter") private val con: Context)
 
     }
 
-    /*
-        provides info for the abstracted SQL class
-        on what the table schema is for creation
+    /**
+     * provides info for the abstracted SQL class
+     * on what the table schema is for creation
+     * @author Chaosruler972
+     * @param db an instance of database
      */
     override fun onCreate(db: SQLiteDatabase) {
 
@@ -40,11 +54,15 @@ class user_database_helper(@Suppress("CanBeParameter") private val con: Context)
     }
 
 
-    /*
-        add user mechanism
-        if user is invalid, forget about it
-        if user is valid, and it exists, update it
-        if its a new user, add a new user to table
+    /**
+     *      add user mechanism
+     * if user is invalid, forget about it
+     * if user is valid, and it exists, update it
+     * if its a new user, add a new user to table
+     * @author Chaosruler972
+     * @param password the password we need to input
+     * @param username the username we need to input
+     * @return if adding the new username was success
      */
     fun add_user(username: String, password: String) // subroutine that manages the user adding operation to the database
             : Boolean {
@@ -55,20 +73,18 @@ class user_database_helper(@Suppress("CanBeParameter") private val con: Context)
         else // if it doesn't lets create a new entry for the user
             insert_user(username, password)
         return true
-        /*
-        var map:HashMap<String,String> = HashMap()
-        map[USERS_ID] = username
-        map[PASSWORD] = password
-        return replace(map)
-        */
+
     }
 
-    /*
-        checks if user exists, query is not that smart, gets an ENTIRE table and than checks
-        if the user is there
-
-        // on update
-        will select USERNAME only
+    /**
+     *      checks if user exists, query is not that smart, gets an ENTIRE table and than checks
+     * if the user is there
+     *
+     * // on update
+     * will select USERNAME only
+     * @author Chaosruler972
+     * @param username the username we want to check if it exists
+     * @return true if user exists, false if not
      */
     fun check_user(username: String) // subroutine to check if users exists on the database
             : Boolean {
@@ -78,9 +94,12 @@ class user_database_helper(@Suppress("CanBeParameter") private val con: Context)
         return user != null
     }
 
-    /*
-        subroutine in charge of feeding schema and database information to SQL
-        abstract implentation on insert queries
+    /**
+     *   subroutine in charge of feeding schema and database information to SQL
+     * abstract implentation on insert queries
+     * @author Chaosruler972
+     * @param password the password of the user we want to enter
+     * @param username the username we want to enter
      */
     private fun insert_user(username: String, password: String) // subroutine to insert a user to the database
     {
@@ -94,9 +113,14 @@ class user_database_helper(@Suppress("CanBeParameter") private val con: Context)
         everything_to_add.addElement(data)
         add_data(everything_to_add)
     }
-    /*
-        subroutine in charge of feeding information and database information to
-        SQL abstraction on update queries
+
+    /**
+     *  subroutine in charge of feeding information and database information to
+     * SQL abstraction on update queries
+     * @author Chaosruler972
+     * @param password the password we want to update
+     * @param username the username we want to find to update its password
+     * @return if successfull, true, else false
      */
     fun update_user(username: String, password: String) // subroutine to update data of a user that exists on the database
             : Boolean {
@@ -108,9 +132,12 @@ class user_database_helper(@Suppress("CanBeParameter") private val con: Context)
         return update_data(USERS_ID, arrayOf(username),change_to)
     }
 
-    /*
-        subroutine in charge of feeding information and database information to
-        SQL abstraction on delete queries
+    /**
+     *    subroutine in charge of feeding information and database information to
+     *  SQL abstraction on delete queries
+     *  @author Chaosruler972
+     *  @param username the username we want to delete
+     *  @return if delete was successfull, returns true
      */
     fun delete_user( username: String):Boolean // subroutine to delete a user from the database (local)
     {
@@ -122,8 +149,10 @@ class user_database_helper(@Suppress("CanBeParameter") private val con: Context)
 
     }
 
-    /*
-        subroutine that converts the entire table from hashmap to vector of users
+    /**
+     *  subroutine that converts the entire table from hashmap to vector of users
+     *  @author Chaosruler972
+     *  @return a vector of all the users in the local database
      */
     fun get_entire_db():Vector<User> // subroutine to get the entire database as an iterateable vector
     {
@@ -135,9 +164,12 @@ class user_database_helper(@Suppress("CanBeParameter") private val con: Context)
         return users
     }
 
-    /*
-        subroutine that is in charge of getting the user class
-        by query
+    /**
+     *  subroutine that is in charge of getting the user class
+     *  by query
+     *  @author Chaosruler972
+     *  @param username the user we want to find
+     *  @return null if user was not found, if user was found we return a User dataclass representing it
      */
     fun get_user_by_id(username: String) // subroutine to get a User object representing a user by the user id (username)
             : User?

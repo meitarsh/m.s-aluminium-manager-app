@@ -2,13 +2,16 @@
 <HEAD>
 <meta charset="UTF-8">
 <title>cache_server_commands - app</title>
-<link rel="stylesheet" href="..\..\..\style.css">
+<link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
 <a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.SQLITE_helpers</a>&nbsp;/&nbsp;<a href=".">cache_server_commands</a><br/>
 <br/>
 <h1>cache_server_commands</h1>
 <code><span class="keyword">class </span><span class="identifier">cache_server_commands</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.abstraction_classes/local_-s-q-l_-helper/index.html"><span class="identifier">local_SQL_Helper</span></a></code>
+<p>implenting the SQL helper on cache database (SQLITE)</p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -17,7 +20,9 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">cache_server_commands</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$<init>(android.content.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span></code></td>
+<code><span class="identifier">cache_server_commands</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$<init>(android.content.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span></code>
+<p>a context to work with, the rest comes from strings.xml</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -29,7 +34,9 @@
 <p><a href="../../com.example.chaosruler.msa_manager.abstraction_classes/local_-s-q-l_-helper/-d-a-t-a-b-a-s-e_-n-a-m-e.html">DATABASE_NAME</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">DATABASE_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+<code><span class="keyword">var </span><span class="identifier">DATABASE_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The database name (ends up being DATABASE_NAME.db as file in device)</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -41,42 +48,52 @@
 <p><a href="add_command_to_list.html">add_command_to_list</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">add_command_to_list</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$add_command_to_list(com.example.chaosruler.msa_manager.object_types.cache_command)/command">command</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/cache_command/index.html"><span class="identifier">cache_command</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">add_command_to_list</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$add_command_to_list(com.example.chaosruler.msa_manager.object_types.cache_command)/command">command</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/cache_command/index.html"><span class="identifier">cache_command</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><pre><code><pre><code>    add command mechanism</code></pre></code></pre></td>
 </tr>
 <tr>
 <td>
 <p><a href="check_command_exists.html">check_command_exists</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">check_command_exists</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$check_command_exists(com.example.chaosruler.msa_manager.object_types.cache_command)/command">command</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/cache_command/index.html"><span class="identifier">cache_command</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">check_command_exists</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$check_command_exists(com.example.chaosruler.msa_manager.object_types.cache_command)/command">command</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/cache_command/index.html"><span class="identifier">cache_command</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><pre><code><pre><code>    checks if command exists, query is not that smart, gets an ENTIRE table and than checks</code></pre></code></pre></td>
 </tr>
 <tr>
 <td>
 <p><a href="get_db_string.html">get_db_string</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">get_db_string</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">get_db_string</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>subroutine that converts the entire table from hashmap to vector of commands
+and than represents them in string (development command)</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="get_entire_db.html">get_entire_db</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">get_entire_db</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/cache_command/index.html"><span class="identifier">cache_command</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">get_entire_db</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/cache_command/index.html"><span class="identifier">cache_command</span></a><span class="symbol">&gt;</span></code>
+<p>subroutine that converts the entire table from hashmap to vector of commands</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="get_id_of_command.html">get_id_of_command</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">get_id_of_command</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$get_id_of_command(com.example.chaosruler.msa_manager.object_types.cache_command)/command">command</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/cache_command/index.html"><span class="identifier">cache_command</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">get_id_of_command</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$get_id_of_command(com.example.chaosruler.msa_manager.object_types.cache_command)/command">command</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/cache_command/index.html"><span class="identifier">cache_command</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code>
+<p>gets command id of specified command</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="insert_command.html">insert_command</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">insert_command</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$insert_command(com.example.chaosruler.msa_manager.object_types.cache_command)/command">command</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/cache_command/index.html"><span class="identifier">cache_command</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">insert_command</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$insert_command(com.example.chaosruler.msa_manager.object_types.cache_command)/command">command</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/cache_command/index.html"><span class="identifier">cache_command</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>subroutine in charge of feeding schema and database information to SQL
+abstract implentation on insert queries</p>
+</td>
 </tr>
 <tr>
 <td>
@@ -84,7 +101,8 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$onCreate(android.database.sqlite.SQLiteDatabase)/db">db</span><span class="symbol">:</span>&nbsp;<span class="identifier">SQLiteDatabase</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Function will use all the initated data to try to do "Create Table" sql query</p>
+<p>provides info for the abstracted SQL class
+on what the table schema is for creation</p>
 </td>
 </tr>
 <tr>
@@ -92,7 +110,7 @@
 <p><a href="remove_command.html">remove_command</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">remove_command</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$remove_command(com.example.chaosruler.msa_manager.object_types.cache_command)/command">command</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/cache_command/index.html"><span class="identifier">cache_command</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">remove_command</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands$remove_command(com.example.chaosruler.msa_manager.object_types.cache_command)/command">command</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/cache_command/index.html"><span class="identifier">cache_command</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><pre><code><pre><code>    subroutine to remove command from localDB of commands</code></pre></code></pre></td>
 </tr>
 </tbody>
 </table>

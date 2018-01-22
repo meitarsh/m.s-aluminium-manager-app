@@ -13,8 +13,19 @@ import com.example.chaosruler.msa_manager.activies.testing_do_all_table_activiti
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_table_chooser.*
 
+/**
+ * Table chooser activity, part of the testing activity, this is a logic class
+ * @author Chaosruler972
+ * @constructor a default constructor for the activity constructor
+ */
 class table_chooser : Activity() {
 
+    /**
+     * Initates the button to choose which table
+     * part of the android activity lifecycle
+     * @author Chaosruler972
+     * @param savedInstanceState the last state of the activity
+     */
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
@@ -23,8 +34,9 @@ class table_chooser : Activity() {
         init_buttons()
     }
 
-    /*
-        init buttons
+    /**
+     * init buttons
+     * @author Chaosruler972
      */
     private fun init_buttons()
     {

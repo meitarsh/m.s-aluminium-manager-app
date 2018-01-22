@@ -9,18 +9,34 @@ import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.object_types.cache_command
 import java.util.*
 
-
+/**
+ * implenting the SQL helper on cache database (SQLITE)
+ * @author Chaosruler972
+ * @constructor a context to work with, the rest comes from strings.xml
+ */
 class cache_server_commands(context: Context) : local_SQL_Helper(context, context.getString(R.string.cache_DB_NAME), null, context.resources.getInteger(R.integer.cache_db_ver), context.getString(R.string.cache_table_name))
 {
-
+    /**
+     * a command id (raising, autoincrement) field name
+     * @author Chaosruler972
+     */
     private val ID: String = context.getString(R.string.cache_col_1)
+    /**
+     * a command field name
+     * @author Chaosruler972
+     */
     private val COMMAND:String = context.getString(R.string.cache_col_2)
+    /**
+     * calling user field name
+     * @author Chaosruler972
+     */
     private val USER:String = context.getString(R.string.cache_col_3)
 
-    /*
-    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
-    SQL class
- */
+    /**
+     *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
+     * SQL class
+     * @author Chaosruler972
+     */
     init {
         val vector: Vector<String> = Vector()
         vector.add(ID)
@@ -29,10 +45,12 @@ class cache_server_commands(context: Context) : local_SQL_Helper(context, contex
         init_vector_of_variables(vector)
     }
 
-    /*
-           provides info for the abstracted SQL class
-           on what the table schema is for creation
-        */
+    /**
+     * provides info for the abstracted SQL class
+     * on what the table schema is for creation
+     * @author Chaosruler972
+     * @param db an instance of database
+     */
     override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
         map[ID] = "INTEGER primary key AUTOINCREMENT"
@@ -41,8 +59,14 @@ class cache_server_commands(context: Context) : local_SQL_Helper(context, contex
         createDB(db,map)
     }
 
-    /*
-        add command to list
+    /**
+     *      add command mechanism
+     * if command is invalid, forget about it
+     * if command is valid, and it exists, update it
+     * if its a new command, add a new user to table
+     * @author Chaosruler972
+     * @param command the password we need to input
+     * @return if adding the new command was success
      */
     fun add_command_to_list(command: cache_command): Boolean {
         return if (check_command_exists(command)) {
@@ -54,10 +78,17 @@ class cache_server_commands(context: Context) : local_SQL_Helper(context, contex
 
     }
 
-    @Suppress("MemberVisibilityCanPrivate")
-/*
-        check if command exists
+    /**
+     *      checks if command exists, query is not that smart, gets an ENTIRE table and than checks
+     * if the command is there
+     *
+     * // on update
+     * will select command only
+     * @author Chaosruler972
+     * @param command the username we want to check if it exists
+     * @return true if command exists, false if not
      */
+    @Suppress("MemberVisibilityCanPrivate")
     fun check_command_exists(command: cache_command): Boolean {
         val input_map = HashMap<String, String>()
         input_map[COMMAND] = "'${command.__command}'"
@@ -67,8 +98,11 @@ class cache_server_commands(context: Context) : local_SQL_Helper(context, contex
 
     }
 
-    /*
-        get the command id
+    /**
+     * gets command id of specified command
+     * @author Chaosruler972
+     * @param command the username we want to grab it's id
+     * @return an id represneting the command, -1 if command doesn't exist
      */
     fun get_id_of_command(command: cache_command): Long {
         val input_map = HashMap<String, String>()
@@ -79,10 +113,14 @@ class cache_server_commands(context: Context) : local_SQL_Helper(context, contex
         return ((get_rows(input_map).firstElement()[ID]?:"-1").trim()).toLong()
     }
 
-    @Suppress("MemberVisibilityCanPrivate")
-/*
-        inserts a new command to db
+
+    /**
+     *   subroutine in charge of feeding schema and database information to SQL
+     * abstract implentation on insert queries
+     * @author Chaosruler972
+     * @param command the password of the user we want to enter
      */
+    @Suppress("MemberVisibilityCanPrivate")
     fun insert_command(command: cache_command) {
         val everything_to_add: Vector<HashMap<String, String>> = Vector()
 
@@ -93,16 +131,23 @@ class cache_server_commands(context: Context) : local_SQL_Helper(context, contex
         add_data(everything_to_add)
     }
 
-    /*
-        subroutine to remove command from localDB of commands
+
+    /**
+     *     subroutine to remove command from localDB of commands
+     *  @author Chaosruler972
+     *  @param command the command we want to delete
+     *  @return if delete was successfull, returns true
      */
     fun remove_command(command: cache_command): Boolean {
         return remove_from_db(arrayOf(COMMAND,USER), arrayOf(command.__command,command.__user))
     }
 
-    /*
-       subroutine that converts the entire table from hashmap to vector of users
-    */
+
+    /**
+     *  subroutine that converts the entire table from hashmap to vector of commands
+     *  @author Chaosruler972
+     *  @return a vector of all the commands in the local database
+     */
     fun get_entire_db():Vector<cache_command> // subroutine to get the entire database as an iterateable vector
     {
         val commands: Vector<cache_command> = Vector()
@@ -113,8 +158,11 @@ class cache_server_commands(context: Context) : local_SQL_Helper(context, contex
         return commands
     }
 
-    /*
-        gets entire DB to string
+    /**
+     *  subroutine that converts the entire table from hashmap to vector of commands
+     *  and than represents them in string (development command)
+     *  @author Chaosruler972
+     *  @return a string representing the  vector of all the commands in the local database
      */
     fun get_db_string(): String {
         val vector = get_entire_db()

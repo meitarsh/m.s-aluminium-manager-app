@@ -19,8 +19,27 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
 
-class divohi_takalot_edit_arrayadapter(private var context: Activity, arr: Vector<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.item_divohi_takalot_edit,arr.toTypedArray())
+/**
+ * Array adapter responsible for populating the listview of table for divohi takalot (edit type) activity
+ * @author Chaosruler972
+ * @constructor the context and the list of data that we want to populate
+ */
+class divohi_takalot_edit_arrayadapter(
+        /**
+         * the context of the activity we are going to work with
+         * @author Chaosruler972
+         */
+        private var context: Activity
+        , arr: Vector<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.item_divohi_takalot_edit,arr.toTypedArray())
 {
+    /**
+     * inflates a view and generates it, writes the data in it and initates logic on press and edit
+     * @author Chaosruler972
+     * @param convertView the "listview" motherview
+     * @param parent the parent that holds all the views together
+     * @param position the position in the vector (auto iterate)
+     * @return the view we inflated with all the logic initated
+     */
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View
     {
 
@@ -243,10 +262,11 @@ class divohi_takalot_edit_arrayadapter(private var context: Activity, arr: Vecto
 
     }
 
-    /*
-       shows the file chooser
-    */
-
+    /**
+     *   shows the file chooser to choose a file
+     *   @author Chaosruler972
+     *   @param code the request code we will send to activity
+     */
     private fun showFileChooser(code:Int)
     {
         val intent = Intent(Intent.ACTION_GET_CONTENT)

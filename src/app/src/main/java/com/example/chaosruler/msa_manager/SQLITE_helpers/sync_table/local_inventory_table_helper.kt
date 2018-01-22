@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 
 import android.content.Context
@@ -14,17 +16,39 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
 
-
+/**
+ * implenting the SQL helper on inventory database (SQLITE)
+ * @author Chaosruler972
+ * @constructor a context to work with, the rest comes from strings.xml
+ */
 class local_inventory_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME),null,context.resources.getInteger(R.integer.LOCAL_INVENTORY_TABLE_VERSION),context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME))
 {
+    /**
+     * The id field name
+     * @author Chaosruler972
+     */
     private val ID: String = context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID)
+    /**
+     * The name field name
+     * @author Chaosruler972
+     */
     private val NAME:String = context.getString(R.string.LOCAL_INVENTORY_COLUMN_NAME)
+    /**
+     * The dataaraeid field name
+     * @author Chaosruler972
+     */
     private val DATAARAEID:String = context.getString(R.string.LOCAL_INVENTORY_COLUMN_DATAARAEID)
+    /**
+     * The user field name
+     * @author Chaosruler972
+     */
     private val USER:String = context.getString(R.string.LOCAL_INVENTORY_COLUMN_USERNAME)
-    /*
-    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
-    SQL class
- */
+
+    /**
+     *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
+     * SQL class
+     * @author Chaosruler972
+     */
     init
     {
         val vector: Vector<String> = Vector()
@@ -35,10 +59,12 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         init_vector_of_variables(vector)
 
     }
-    /*
-           provides info for the abstracted SQL class
-           on what the table schema is for creation
-        */
+    /**
+     * provides info for the abstracted SQL class
+     * on what the table schema is for creation
+     * @author Chaosruler972
+     * @param db an instance of database
+     */
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
@@ -50,9 +76,10 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
     }
 
 
-    /*
-      adds all inventory, updates, inserts... whatever
-   */
+    /**
+     * adds all big, updates, inserts... whatever
+     * @author Chaosruler972
+     */
     fun sync_db()
     {
         if(!global_variables_dataclass.isLocal)
@@ -64,10 +91,12 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         }
     }
 
-    @Suppress("MemberVisibilityCanPrivate")
-/*
-        converts DB to vector of inventory
+    /**
+     *  converts DB to vector of inventory data
+     *  @author Chaosruler972
+     *  @return a vector of inventory table from local DB
      */
+    @Suppress("MemberVisibilityCanPrivate")
     fun get_local_DB():Vector<inventory_data>
     {
         val vector: Vector<inventory_data> = Vector()
@@ -81,9 +110,14 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
                 .forEach { vector.addElement(inventory_data((it[ID]?:"").trim(), (it[NAME]?:"").trim(), (it[DATAARAEID]?:"").trim(), (it[USER]?:"").trim())) }
         return vector
     }
-    /*
-           gets local data by projname
-        */
+
+
+    /**
+     * get local DB by project name
+     * @author Chaosruler972
+     * @return a vector of inventory table filtered by project name
+     * @param projid the project id that represents the name of the project we want to filter
+     */
     fun get_local_DB_by_projname(projid:String): Vector<inventory_data>
     {
         val vector: Vector<inventory_data> = Vector()
@@ -106,10 +140,12 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
     }
 
 
+    /**
+     *     subroutine to convert server data to vector of inventory data
+     *  @author Chaosruler972
+     *  @return a vector of inventory table from server DB
+     */
     @Suppress("MemberVisibilityCanPrivate")
-/*
-           subroutine to convert server data to vector of inventory
-        */
     fun server_data_to_vector():Vector<inventory_data>
     {
         val server_data: Vector<java.util.HashMap<String, String>> =
@@ -132,9 +168,12 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         return result_vector
     }
 
-    /*
-       subroutine to convert server data to vector of vendor by projname
-    */
+    /**
+     * server data to vector... by projid
+     * @author Chaosruler972
+     * @return a vector of inventory table filtered by project name
+     * @param projid the project id that represents the name of the project we want to filter
+     */
     fun server_data_to_vector_by_projname(projid: String): Vector<inventory_data>
     {
 
@@ -177,11 +216,14 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         return result_vector
     }
 
+    /**
+     *   subroutine that is in charge of getting the inventory class
+     * by query
+     * @author Chaosruler972
+     * @param inventory_data the inventoru data to filter by
+     * @return the inventory data from the server, null if not found
+     */
     @Suppress("MemberVisibilityCanPrivate")
-/*
-           subroutine that is in charge of getting the inventory class
-           by query
-        */
     fun get_inventory_by_inventory(inventory_data: inventory_data) // subroutine to get a inventory object
             : inventory_data?
     {
@@ -198,46 +240,50 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
     }
 
 
-    /*
-      add inventory mechanism
-      if inventory is invalid, forget about it
-      if inventory is valid, and it exists, update it
-      if its a new inventory, add a new inventory to table
-   */
+
+    /**
+     * add inventory mechanism
+     * if inventory is invalid, forget about it
+     * if inventory is valid, and it exists, update it
+     * if its a new inventory, add a new inventory to table
+     * @author Chaosruler972
+     * @param inventory_data the inventory data object to add
+     * @return if add was successfull true, else false
+     */
     fun add_inventory(inventory_data: inventory_data) // subroutine that manages the inventory adding operation to the database
             : Boolean
     {
-        /*
-        var map:HashMap<String,String> = HashMap()
-        map[ID] = inventory_data.get_itemid() ?: ""
-        map[NAME] = inventory_data.get_itemname() ?: ""
-        map[DATAARAEID] = inventory_data.get_DATAREAID() ?: ""
-        map[USER] = inventory_data.get_USERNAME() ?: ""
-        return replace(map)
-        */
         return if (check_inventory( inventory_data)) // checks if inventory exists in database
             update_inventory(inventory_data,inventory_data.copy()) // if it does, lets update
         else // if it doesn't lets create a new entry for the inventory
             insert_inventory(inventory_data)
     }
 
-    @Suppress("MemberVisibilityCanPrivate")
-/*
-          checks if inventory exists, query is not that smart, gets an ENTIRE table and than checks
-          if the user is there
 
-          // on update
-          will select USERNAME only
-       */
+    /**
+     * checks if inventory exists, query is not that smart, gets an ENTIRE table and than checks
+     * if the user is there
+     *
+     * // on update
+     * will select USERNAME only
+     * @param inventory_data the inventory to check if exists or not
+     * @return if the inventory data was found or not
+     * @author Chaosruler972
+     */
+    @Suppress("MemberVisibilityCanPrivate")
     fun check_inventory(inventory_data: inventory_data) // subroutine to check if inventory exists on the database
             : Boolean
     {
         val inventory:inventory_data? = get_inventory_by_inventory( inventory_data)
         return inventory != null
     }
-    /*
-        subroutine in charge of feeding schema and database information to SQL
-        abstract implentation on insert queries
+
+    /**
+     *  subroutine in charge of feeding schema and database information to SQL
+     * abstract implentation on insert queries
+     * @author Chaosruler972
+     * @param inventory_data the inventory table data that we want to insert
+     * @return if insertion was successfull or not
      */
     private fun insert_inventory(inventory_data: inventory_data):Boolean // subroutine to insert a inventory to the database
     {
@@ -253,11 +299,15 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         return add_data(everything_to_add)
     }
 
+    /**
+     *  subroutine in charge of feeding information and database information to
+     * SQL abstraction on update queries
+     * @author Chaosruler972
+     * @param from the source that we want to update
+     * @param to what we want to update it to
+     * @return if update was successfull or not
+     */
     @Suppress("MemberVisibilityCanPrivate")
-/*
-      subroutine in charge of feeding information and database information to
-      SQL abstraction on update queries
-   */
     fun update_inventory(from:inventory_data,to:inventory_data) // subroutine to update data of a inventory that exists on the database
             : Boolean {
 
@@ -268,11 +318,14 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         return update_data(ID, arrayOf(from.get_itemid()?:""),change_to)
     }
 
-    @Suppress("unused")
-/*
-        subroutine in charge of feeding information and database information to
-        SQL abstraction on delete queries
+    /**
+     * subroutine in charge of feeding information and database information to
+     * SQL abstraction on delete queries
+     * @author Chaosruler972
+     * @param inventory_data the source that we want to remove
+     * @return if removal was successfull or not
      */
+    @Suppress("unused")
     fun delete_inventory( inventory_data: inventory_data):Boolean // subroutine to delete a inventory from the database (local)
     {
         if ( get_inventory_by_inventory(inventory_data)==null )
@@ -280,8 +333,11 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         return remove_from_db(ID, arrayOf((inventory_data.get_itemid()?:"").trim()))
     }
 
-    /*
-        get inventory by ID
+    /**
+     * gets an inventory by ID
+     * @author Chaosruler972
+     * @param id the id that we want to filter by
+     * @return the inventory itself if found, null otheerwise
      */
     @Suppress("RedundantVisibilityModifier")
     public fun get_inventory_by_id(id: String):inventory_data?

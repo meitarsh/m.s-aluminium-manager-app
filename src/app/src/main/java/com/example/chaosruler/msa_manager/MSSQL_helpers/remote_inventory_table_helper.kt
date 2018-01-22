@@ -18,21 +18,54 @@ import kotlin.collections.HashMap
 /**
  * a representation of the remote table
  * @author Chaosruler972
+ * @constructor empty, this class can be used from mulitple contexts and activities
  */
 class remote_inventory_table_helper
 {
     companion object : remote_helper() {
 
+        /**
+         * Database name
+         * @author Chaosruler972
+         */
         var DATABASE_NAME: String = ""
+        /**
+         * Table name for inventory
+         * @author Chaosruler972
+         */
         var TABLE_NAME: String = ""
 
+        /**
+         * Inventory ID field name
+         * @author Chaosruler972
+         */
         var ID: String = ""
+        /**
+         * Inventory ID field type
+         * @author Chaosruler972
+         */
         var ID_TYPE: String = ""
 
+        /**
+         * Inventory name field name
+         * @author Chaosruler972
+         */
         var NAME: String = ""
+        /**
+         * Inventory name field type
+         * @author Chaosruler972
+         */
         var NAME_TYPE: String = ""
 
+        /**
+         * Dataraaeid field name
+         * @author Chaosruler972
+         */
         var DATAAREAID: String = ""
+        /**
+         * Dataraaeid field type
+         * @author Chaosruler972
+         */
         var DATAAREAID_TYPE: String = ""
 
         /**

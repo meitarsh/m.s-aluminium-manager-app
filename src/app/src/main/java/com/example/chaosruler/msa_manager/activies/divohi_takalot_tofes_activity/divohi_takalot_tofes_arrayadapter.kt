@@ -15,9 +15,27 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
 
-
-class divohi_takalot_tofes_arrayadapter(private var context: Activity, arr: Vector<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.item_divohi_takalot_tofes,arr.toTypedArray())
+/**
+ * Array adapter responsible for populating the listview of table for divohi takalot (form type) activity
+ * @author Chaosruler972
+ * @constructor the context and the list of data that we want to populate
+ */
+class divohi_takalot_tofes_arrayadapter(
+        /**
+         * The Activity we are working with (chose that context doesn't fulfiful yet, probably kotlin bug)
+         * @author Chaosruler972
+         */
+        private var context: Activity
+        , arr: Vector<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.item_divohi_takalot_tofes,arr.toTypedArray())
 {
+    /**
+     * inflates a view and generates it, writes the data in it and initates logic on press and edit
+     * @author Chaosruler972
+     * @param convertView the "listview" motherview
+     * @param parent the parent that holds all the views together
+     * @param position the position in the vector (auto iterate)
+     * @return the view we inflated with all the logic initated
+     */
     @SuppressLint("SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 

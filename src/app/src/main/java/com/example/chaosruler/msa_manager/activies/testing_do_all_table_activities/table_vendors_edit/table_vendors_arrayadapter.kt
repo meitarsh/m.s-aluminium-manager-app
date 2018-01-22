@@ -16,21 +16,34 @@ import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
 
 
+/**
+ * Array adapter responsible for populating the listview of table vendors
+ * @author Chaosruler972
+ * @constructor the context and the list of data that we want to populate
+ */
 class table_vendors_arrayadapter(context: Context, arr: Vector<vendor_data>) : ArrayAdapter<vendor_data>(context, R.layout.item_vendors,arr.toTypedArray())
 {
+    /**
+     * inflates a view and generates it, writes the data in it and initates logic on press and edit
+     * @author Chaosruler972
+     * @param convertView the "listview" motherview
+     * @param parent the parent that holds all the views together
+     * @param position the position in the vector (auto iterate)
+     * @return the view we inflated with all the logic initated
+     */
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View
     {
 
         @Suppress("NAME_SHADOWING")
-        var convertView:View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_vendors,parent,false)
+        val convertView:View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_vendors,parent,false)
 
-        var all_views = Vector<View>()
+        val all_views = Vector<View>()
 
         val vendor_data: vendor_data = getItem(position)
 
-        var id = themer.get_view(convertView,R.id.item_vendor_id) as TextView
-        var dataaraeid = themer.get_view(convertView,R.id.item_vendor_dataaraeid) as TextView
-        var name = themer.get_view(convertView,R.id.item_vendor_name) as EditText
+        val id = themer.get_view(convertView,R.id.item_vendor_id) as TextView
+        val dataaraeid = themer.get_view(convertView,R.id.item_vendor_dataaraeid) as TextView
+        val name = themer.get_view(convertView,R.id.item_vendor_name) as EditText
 
 
 
@@ -49,10 +62,10 @@ class table_vendors_arrayadapter(context: Context, arr: Vector<vendor_data>) : A
         name.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || name.text.isEmpty() )
                 return@OnFocusChangeListener
-            var str = name.text.toString()
+            val str = name.text.toString()
             Thread({
                 Looper.prepare()
-                var update_value: HashMap<String, String> = HashMap()
+                val update_value: HashMap<String, String> = HashMap()
                 update_value[remote_vendors_table_helper.NAME] = str
                 remote_vendors_table_helper.push_update(vendor_data, update_value, context)
                 vendor_data.set_accountname(str)

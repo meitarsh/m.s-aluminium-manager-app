@@ -25,7 +25,18 @@ import javax.crypto.spec.IvParameterSpec
  */
 object encryption
 {
+    /**
+     * The secret key representation of AES on Android API
+     * @author Chaosruler972
+     * @see javax.crypto.SecretKey
+     */
     private var secretKey:SecretKey? = null
+    /**
+     * an empty byteArray for IV initation on encrypting,decrypting, must be zeroed before each encryption/decryption to
+     * make sure that they stand stable
+     * @author Chaosruler972
+     * @see javax.crypto.Cipher
+     */
     private var iv = ByteArray(16)
     /**
      * this function is responsible for generatoin an AES key from the keystore per encryption/decryption, and refreshing the current one
@@ -60,7 +71,7 @@ object encryption
     /**
      * This function encrypts a byteArray and returns an encrypted form of that byteArray
      * Must call generate_key() before this function
-     * @param the byteArray to encrypt
+     * @param a byteArray to encrypt
      * @return the encrypted form of that bytearray
      */
     @SuppressLint("GetInstance")
@@ -75,7 +86,7 @@ object encryption
     /**
      * This function decrypts a byteArray
      * Must call generate_key() before this function
-     * @param an encrypted byteArray
+     * @param a encrypted byteArray
      * @return a decrypted form of that bytearray
      */
     @SuppressLint("GetInstance")

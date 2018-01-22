@@ -26,12 +26,17 @@ import com.example.chaosruler.msa_manager.services.themer
  * See [Android Design: Settings](http://developer.android.com/design/patterns/settings.html)
  * for design guidelines and the [Settings API Guide](http://developer.android.com/guide/topics/ui/settings.html)
  * for more information on developing a Settings UI.
+ * @author Chaosruler972
+ * @constructor default constructor for activity constructor
  */
 class SettingsActivity : AppCompatPreferenceActivity()
 {
-    /*
-           override activity to initate perference activity
-        */
+
+    /**
+     * override activity to initate perference activity
+     * @author Chaosruler972
+     * @param savedInstanceState the last state of the activity
+     */
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
@@ -43,6 +48,7 @@ class SettingsActivity : AppCompatPreferenceActivity()
     /**
      *
      * Set up the [android.app.ActionBar], if the API is available.
+     * @author Chaosruler972
      */
     private fun setupActionBar() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -50,11 +56,15 @@ class SettingsActivity : AppCompatPreferenceActivity()
 
     /**
      * {@inheritDoc}
+     * @author Chaosruler972
+     * @return true = tablet, false= phone
      */
     override fun onIsMultiPane(): Boolean = isXLargeTablet(this)
 
     /**
      * {@inheritDoc}
+     * @author Chaosruler972
+     * @param target list of headers
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     override fun onBuildHeaders(target: List<PreferenceActivity.Header>) =
@@ -63,6 +73,9 @@ class SettingsActivity : AppCompatPreferenceActivity()
     /**
      * This method stops fragment injection in malicious applications.
      * Make sure to deny any unknown fragments here.
+     * @author Chaosruler972
+     * @param fragmentName the name of the fragment we want to load
+     * @return upon success true, if no fragment name like that exists, false
      */
     override fun isValidFragment(fragmentName: String): Boolean {
         return PreferenceFragment::class.java.name == fragmentName
@@ -73,6 +86,12 @@ class SettingsActivity : AppCompatPreferenceActivity()
                 || VPNSettingsFragment::class.java.name == fragmentName
     }
 
+    /**
+     * menu options, removed because we don't want options on settings
+     * @author Chaosruler972
+     * @param item the item we clicked
+     * @return always true
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (id == android.R.id.home)
@@ -85,9 +104,17 @@ class SettingsActivity : AppCompatPreferenceActivity()
     /**
      * This fragment shows general preferences only. It is used when the
      * activity is showing a two-pane settings UI.
+     * @author Chaosruler972
+     * @constructor constructs fragment for general pereference
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    class GeneralPreferenceFragment : PreferenceFragment() {
+    class GeneralPreferenceFragment : PreferenceFragment()
+    {
+        /**
+         * Part of the activity lifecycle to generate summary to values for each preference
+         * @author Chaosruler972
+         * @param savedInstanceState the last state of the fragment
+         */
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             addPreferencesFromResource(R.xml.pref_general)
@@ -110,16 +137,22 @@ class SettingsActivity : AppCompatPreferenceActivity()
 
 
         }
-        /*
-               restarts entire app after style change
-    */
+
+        /**
+         *  restarts entire app after style change, required for visiblity of new style to show
+         *  @author Chaosruler972
+         */
         private fun restart_app()
         {
             startActivity(Intent(activity.baseContext, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
-        /*
-           on option selected event
-    */
+
+        /**
+         *  on option selected event
+         *  @param item the item we clicked
+         *  @author Chaosruler972
+         *  @return if item exists, true, else false
+         */
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
             if (id == android.R.id.home)
@@ -136,9 +169,16 @@ class SettingsActivity : AppCompatPreferenceActivity()
     /**
      * This fragment shows notification preferences only. It is used when the
      * activity is showing a two-pane settings UI.
+     * @author Chaosruler972
+     * @constructor constructs fragment for notification pereference
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     class NotificationPreferenceFragment : PreferenceFragment() {
+        /**
+         * Part of the activity lifecycle to generate summary to values for each preference
+         * @author Chaosruler972
+         * @param savedInstanceState the last state of the fragment
+         */
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             addPreferencesFromResource(R.xml.pref_notification)
@@ -152,9 +192,12 @@ class SettingsActivity : AppCompatPreferenceActivity()
             bindPreferenceSummaryToValue(findPreference(getString(R.string.notification)), null)
         }
 
-        /*
-        on option selected event
- */
+        /**
+         *  on option selected event
+         *  @param item the item we clicked
+         *  @author Chaosruler972
+         *  @return if item exists, true, else false
+         */
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
             if (id == android.R.id.home)
@@ -170,9 +213,16 @@ class SettingsActivity : AppCompatPreferenceActivity()
     /**
      * This fragment shows data and sync preferences only. It is used when the
      * activity is showing a two-pane settings UI.
+     * @author Chaosruler972
+     * @constructor constructs fragment for data sync pereference
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     class DataSyncPreferenceFragment : PreferenceFragment() {
+        /**
+         * Part of the activity lifecycle to generate summary to values for each preference
+         * @author Chaosruler972
+         * @param savedInstanceState the last state of the fragment
+         */
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             addPreferencesFromResource(R.xml.pref_data_sync)
@@ -186,8 +236,11 @@ class SettingsActivity : AppCompatPreferenceActivity()
 
 
         }
-        /*
-                on option selected event
+        /**
+         *  on option selected event
+         *  @param item the item we clicked
+         *  @author Chaosruler972
+         *  @return if item exists, true, else false
          */
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
@@ -203,11 +256,18 @@ class SettingsActivity : AppCompatPreferenceActivity()
 
 
     /**
-     * This fragment shows data and sync preferences only. It is used when the
+     * This fragment shows VPN preferences only. It is used when the
      * activity is showing a two-pane settings UI.
+     * @author Chaosruler972
+     * @constructor constructs fragment for data VPN pereference
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     class VPNSettingsFragment : PreferenceFragment() {
+        /**
+         * Part of the activity lifecycle to generate summary to values for each preference
+         * @author Chaosruler972
+         * @param savedInstanceState the last state of the fragment
+         */
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             addPreferencesFromResource(R.xml.pref_vpn)
@@ -223,8 +283,11 @@ class SettingsActivity : AppCompatPreferenceActivity()
             bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_username)), activity.baseContext)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_password)),activity.baseContext)
         }
-        /*
-                on option selected event
+        /**
+         *  on option selected event
+         *  @param item the item we clicked
+         *  @author Chaosruler972
+         *  @return if item exists, true, else false
          */
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
@@ -237,9 +300,19 @@ class SettingsActivity : AppCompatPreferenceActivity()
         }
     }
 
-
+    /**
+     * This fragment shows development-mode preferences only. It is used when the
+     * activity is showing a two-pane settings UI.
+     * @author Chaosruler972
+     * @constructor constructs fragment for development pereference
+     */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     class DevelopMentSettingsPrefFragment : PreferenceFragment() {
+        /**
+         * Part of the activity lifecycle to generate summary to values for each preference
+         * @author Chaosruler972
+         * @param savedInstanceState the last state of the fragment
+         */
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             addPreferencesFromResource(R.xml.pref_development)
@@ -251,8 +324,11 @@ class SettingsActivity : AppCompatPreferenceActivity()
           //  bindPreferenceSummaryToValue(findPreference(getString(R.string.delete_offline_key)), activity.baseContext)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.gui_mode_key)), activity.baseContext)
         }
-        /*
-                on option selected event
+        /**
+         *  on option selected event
+         *  @param item the item we clicked
+         *  @author Chaosruler972
+         *  @return if item exists, true, else false
          */
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
@@ -270,6 +346,7 @@ class SettingsActivity : AppCompatPreferenceActivity()
         /**
          * A preference value change listener that updates the preference's summary
          * to reflect its new value.
+         * @author Chaosruler972
          */
         private val sBindPreferenceSummaryToValueListener = Preference.OnPreferenceChangeListener { preference, value ->
             val stringValue = value.toString()
@@ -293,6 +370,9 @@ class SettingsActivity : AppCompatPreferenceActivity()
         /**
          * Helper method to determine if the device has an extra-large screen. For
          * example, 10" tablets are extra-large.
+         * @author Chaosruler972
+         * @param context the context we work with
+         * @return if the device is tablet or phone
          */
         private fun isXLargeTablet(context: Context): Boolean =
                 context.resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_XLARGE
@@ -305,6 +385,10 @@ class SettingsActivity : AppCompatPreferenceActivity()
          * dependent on the type of preference.
 
          * @see .sBindPreferenceSummaryToValueListener
+         * @author Chaosruler972
+         * @param context the context we work with (nullable!)
+         * @param preference the preference we want to bind summary to
+         * @return true if successfull, false if not
          */
         private fun bindPreferenceSummaryToValue(preference: Preference, context: Context?): Boolean {
             // Set the listener to watch for value changes.

@@ -2,13 +2,16 @@
 <HEAD>
 <meta charset="UTF-8">
 <title>local_inventory_table_helper - app</title>
-<link rel="stylesheet" href="..\..\..\style.css">
+<link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
 <a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table</a>&nbsp;/&nbsp;<a href=".">local_inventory_table_helper</a><br/>
 <br/>
 <h1>local_inventory_table_helper</h1>
 <code><span class="keyword">class </span><span class="identifier">local_inventory_table_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.abstraction_classes/local_-s-q-l_-helper/index.html"><span class="identifier">local_SQL_Helper</span></a></code>
+<p>implenting the SQL helper on inventory database (SQLITE)</p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -17,7 +20,9 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">local_inventory_table_helper</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$<init>(android.content.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span></code></td>
+<code><span class="identifier">local_inventory_table_helper</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$<init>(android.content.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span></code>
+<p>a context to work with, the rest comes from strings.xml</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -29,7 +34,9 @@
 <p><a href="../../com.example.chaosruler.msa_manager.abstraction_classes/local_-s-q-l_-helper/-d-a-t-a-b-a-s-e_-n-a-m-e.html">DATABASE_NAME</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">DATABASE_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+<code><span class="keyword">var </span><span class="identifier">DATABASE_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The database name (ends up being DATABASE_NAME.db as file in device)</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -41,49 +48,69 @@
 <p><a href="add_inventory.html">add_inventory</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">add_inventory</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$add_inventory(com.example.chaosruler.msa_manager.object_types.inventory_data)/inventory_data">inventory_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">add_inventory</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$add_inventory(com.example.chaosruler.msa_manager.object_types.inventory_data)/inventory_data">inventory_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>add inventory mechanism
+if inventory is invalid, forget about it
+if inventory is valid, and it exists, update it
+if its a new inventory, add a new inventory to table</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="check_inventory.html">check_inventory</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">check_inventory</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$check_inventory(com.example.chaosruler.msa_manager.object_types.inventory_data)/inventory_data">inventory_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">check_inventory</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$check_inventory(com.example.chaosruler.msa_manager.object_types.inventory_data)/inventory_data">inventory_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>checks if inventory exists, query is not that smart, gets an ENTIRE table and than checks
+if the user is there</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="delete_inventory.html">delete_inventory</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">delete_inventory</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$delete_inventory(com.example.chaosruler.msa_manager.object_types.inventory_data)/inventory_data">inventory_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">delete_inventory</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$delete_inventory(com.example.chaosruler.msa_manager.object_types.inventory_data)/inventory_data">inventory_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>subroutine in charge of feeding information and database information to
+SQL abstraction on delete queries</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="get_inventory_by_id.html">get_inventory_by_id</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">get_inventory_by_id</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$get_inventory_by_id(kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">?</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">get_inventory_by_id</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$get_inventory_by_id(kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">?</span></code>
+<p>gets an inventory by ID</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="get_inventory_by_inventory.html">get_inventory_by_inventory</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">get_inventory_by_inventory</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$get_inventory_by_inventory(com.example.chaosruler.msa_manager.object_types.inventory_data)/inventory_data">inventory_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">?</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">get_inventory_by_inventory</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$get_inventory_by_inventory(com.example.chaosruler.msa_manager.object_types.inventory_data)/inventory_data">inventory_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">?</span></code>
+<p>subroutine that is in charge of getting the inventory class
+by query</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="get_local_-d-b.html">get_local_DB</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">get_local_DB</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">get_local_DB</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">&gt;</span></code>
+<p>converts DB to vector of inventory data</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="get_local_-d-b_by_projname.html">get_local_DB_by_projname</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">get_local_DB_by_projname</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$get_local_DB_by_projname(kotlin.String)/projid">projid</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">get_local_DB_by_projname</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$get_local_DB_by_projname(kotlin.String)/projid">projid</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">&gt;</span></code>
+<p>get local DB by project name</p>
+</td>
 </tr>
 <tr>
 <td>
@@ -91,7 +118,8 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$onCreate(android.database.sqlite.SQLiteDatabase)/db">db</span><span class="symbol">:</span>&nbsp;<span class="identifier">SQLiteDatabase</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Function will use all the initated data to try to do "Create Table" sql query</p>
+<p>provides info for the abstracted SQL class
+on what the table schema is for creation</p>
 </td>
 </tr>
 <tr>
@@ -99,28 +127,35 @@
 <p><a href="server_data_to_vector.html">server_data_to_vector</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">server_data_to_vector</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">server_data_to_vector</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">&gt;</span></code><pre><code><pre><code>    subroutine to convert server data to vector of inventory data</code></pre></code></pre></td>
 </tr>
 <tr>
 <td>
 <p><a href="server_data_to_vector_by_projname.html">server_data_to_vector_by_projname</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">server_data_to_vector_by_projname</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$server_data_to_vector_by_projname(kotlin.String)/projid">projid</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">server_data_to_vector_by_projname</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$server_data_to_vector_by_projname(kotlin.String)/projid">projid</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">&gt;</span></code>
+<p>server data to vector... by projid</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="sync_db.html">sync_db</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">sync_db</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">sync_db</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>adds all big, updates, inserts... whatever</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="update_inventory.html">update_inventory</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">update_inventory</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$update_inventory(com.example.chaosruler.msa_manager.object_types.inventory_data, com.example.chaosruler.msa_manager.object_types.inventory_data)/from">from</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$update_inventory(com.example.chaosruler.msa_manager.object_types.inventory_data, com.example.chaosruler.msa_manager.object_types.inventory_data)/to">to</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">update_inventory</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$update_inventory(com.example.chaosruler.msa_manager.object_types.inventory_data, com.example.chaosruler.msa_manager.object_types.inventory_data)/from">from</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper$update_inventory(com.example.chaosruler.msa_manager.object_types.inventory_data, com.example.chaosruler.msa_manager.object_types.inventory_data)/to">to</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/inventory_data/index.html"><span class="identifier">inventory_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>subroutine in charge of feeding information and database information to
+SQL abstraction on update queries</p>
+</td>
 </tr>
 </tbody>
 </table>

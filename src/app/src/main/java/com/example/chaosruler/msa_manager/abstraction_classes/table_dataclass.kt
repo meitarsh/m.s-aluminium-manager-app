@@ -5,6 +5,7 @@ package com.example.chaosruler.msa_manager.abstraction_classes
  * represents the abstract requirements for a table data class object (object representing a row in the remote database)
  * @author Chaosruler972
  * @see object_types
+ * @constructor empty, the responsibiltiy falls to extending class
  */
 interface table_dataclass {
 

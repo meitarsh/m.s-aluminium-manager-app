@@ -12,11 +12,19 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_project_options.*
 
-
+/**
+ * Class is responsible for the logic behind the project options activity (choosing what to do inside a project)
+ * @author Chaosruler972
+ * @constructor as an activity, constructor is default constructor
+ */
 class project_options : Activity() {
 
-    /*
-        define the project name we are working on
+    /**
+     * define the project name we are working on, also refreshes the global variables to know that we chose
+     * that project (by name), on case that we didn't actually choose any project, activity automaticily closes
+     * function is part of the activity lifecycle of android activities
+     * @author Chaosruler972
+     * @param savedInstanceState the state that we opened the activity last time
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(themer.style(baseContext))
@@ -31,9 +39,11 @@ class project_options : Activity() {
         init_buttons()
 
     }
-    /*
-                   inits buttons
-            */
+
+    /**
+     * inits buttons
+     * @author Chaosruler972
+     */
     private fun init_buttons()
     {
 

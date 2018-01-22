@@ -2,13 +2,16 @@
 <HEAD>
 <meta charset="UTF-8">
 <title>local_big_table_helper - app</title>
-<link rel="stylesheet" href="..\..\..\style.css">
+<link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
 <a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table</a>&nbsp;/&nbsp;<a href=".">local_big_table_helper</a><br/>
 <br/>
 <h1>local_big_table_helper</h1>
 <code><span class="keyword">class </span><span class="identifier">local_big_table_helper</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.abstraction_classes/local_-s-q-l_-helper/index.html"><span class="identifier">local_SQL_Helper</span></a></code>
+<p>implenting the SQL helper on big database (SQLITE)</p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -17,7 +20,9 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">local_big_table_helper</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$<init>(android.content.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span></code></td>
+<code><span class="identifier">local_big_table_helper</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$<init>(android.content.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span></code>
+<p>a context to work with, the rest comes from strings.xml</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -29,7 +34,9 @@
 <p><a href="../../com.example.chaosruler.msa_manager.abstraction_classes/local_-s-q-l_-helper/-d-a-t-a-b-a-s-e_-n-a-m-e.html">DATABASE_NAME</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">DATABASE_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+<code><span class="keyword">var </span><span class="identifier">DATABASE_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The database name (ends up being DATABASE_NAME.db as file in device)</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -41,42 +48,60 @@
 <p><a href="add_big.html">add_big</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">add_big</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$add_big(com.example.chaosruler.msa_manager.object_types.big_table_data)/big_table_data">big_table_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">add_big</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$add_big(com.example.chaosruler.msa_manager.object_types.big_table_data)/big_table_data">big_table_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>add big mechanism
+if big is invalid, forget about it
+if big is valid, and it exists, update it
+if its a new opr, add a new big to table</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="check_big.html">check_big</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">check_big</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$check_big(com.example.chaosruler.msa_manager.object_types.big_table_data)/big_table_data">big_table_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">check_big</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$check_big(com.example.chaosruler.msa_manager.object_types.big_table_data)/big_table_data">big_table_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>checks if big exists, query is not that smart, gets an ENTIRE table and than checks
+if the big is there</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="delete_big.html">delete_big</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">delete_big</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$delete_big(com.example.chaosruler.msa_manager.object_types.big_table_data)/big_table_data">big_table_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">delete_big</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$delete_big(com.example.chaosruler.msa_manager.object_types.big_table_data)/big_table_data">big_table_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>subroutine in charge of feeding information and database information to
+SQL abstraction on delete queries</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="get_big_by_big.html">get_big_by_big</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">get_big_by_big</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$get_big_by_big(com.example.chaosruler.msa_manager.object_types.big_table_data)/big_table_data">big_table_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">?</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">get_big_by_big</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$get_big_by_big(com.example.chaosruler.msa_manager.object_types.big_table_data)/big_table_data">big_table_data</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">?</span></code>
+<p>subroutine that is in charge of getting the big class
+by query</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="get_local_-d-b.html">get_local_DB</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">get_local_DB</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">get_local_DB</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">&gt;</span></code>
+<p>converts DB to vector of big data</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="get_local_-d-b_by_projname.html">get_local_DB_by_projname</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">get_local_DB_by_projname</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$get_local_DB_by_projname(kotlin.String)/projid">projid</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">get_local_DB_by_projname</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$get_local_DB_by_projname(kotlin.String)/projid">projid</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">&gt;</span></code>
+<p>get local DB by project name</p>
+</td>
 </tr>
 <tr>
 <td>
@@ -84,7 +109,8 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$onCreate(android.database.sqlite.SQLiteDatabase)/db">db</span><span class="symbol">:</span>&nbsp;<span class="identifier">SQLiteDatabase</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Function will use all the initated data to try to do "Create Table" sql query</p>
+<p>provides info for the abstracted SQL class
+on what the table schema is for creation</p>
 </td>
 </tr>
 <tr>
@@ -92,28 +118,35 @@
 <p><a href="server_data_to_vector.html">server_data_to_vector</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">server_data_to_vector</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">server_data_to_vector</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">&gt;</span></code><pre><code><pre><code>    subroutine to convert server data to vector of big data</code></pre></code></pre></td>
 </tr>
 <tr>
 <td>
 <p><a href="server_data_to_vector_by_projname.html">server_data_to_vector_by_projname</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">server_data_to_vector_by_projname</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$server_data_to_vector_by_projname(kotlin.String)/projid">projid</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">server_data_to_vector_by_projname</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$server_data_to_vector_by_projname(kotlin.String)/projid">projid</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Vector</span><span class="symbol">&lt;</span><a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">&gt;</span></code>
+<p>server data to vector... by projid</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="sync_db.html">sync_db</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">sync_db</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">sync_db</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>adds all big, updates, inserts... whatever</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="update_big.html">update_big</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">update_big</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$update_big(com.example.chaosruler.msa_manager.object_types.big_table_data, com.example.chaosruler.msa_manager.object_types.big_table_data)/from">from</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$update_big(com.example.chaosruler.msa_manager.object_types.big_table_data, com.example.chaosruler.msa_manager.object_types.big_table_data)/to">to</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">update_big</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$update_big(com.example.chaosruler.msa_manager.object_types.big_table_data, com.example.chaosruler.msa_manager.object_types.big_table_data)/from">from</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">, </span><span class="identifier" id="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper$update_big(com.example.chaosruler.msa_manager.object_types.big_table_data, com.example.chaosruler.msa_manager.object_types.big_table_data)/to">to</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.chaosruler.msa_manager.object_types/big_table_data/index.html"><span class="identifier">big_table_data</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>subroutine in charge of feeding information and database information to
+SQL abstraction on update queries</p>
+</td>
 </tr>
 </tbody>
 </table>

@@ -19,15 +19,32 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Thread.sleep
 import java.util.*
 
-
+/**
+ * Class is the main activity of the application, opens after login, and describes the logic of that activity
+ * @author Chaosruler972
+ * @constructor as an activity class, it uses the default constructor
+ */
 class MainActivity : Activity()
 {
 
+    /**
+     * the current adapter of the spinner that choses the projecct we are working on
+     * @author Chaosruler972
+     */
     private lateinit var adapter: ArrayAdapter<project_data>
     companion object {
+        /**
+         * Flag to tell us when loading the project names is complete for the first time
+         * @author Chaosruler972
+         */
         var service_sync_done:Boolean = false
     }
 
+    /**
+     * Android lifecycle function, responsible for initating the spinner and call for syncing
+     * @author Chaosruler972
+     * @param savedInstanceState the last state of this activity
+     */
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
@@ -49,17 +66,20 @@ class MainActivity : Activity()
 
     }
 
-    /*
-               inits companion object
-        */
+    /**
+     *  inits companion object
+     *  @author Chaosruler972
+     */
     private fun init_companion()
     {
         global_variables_dataclass.init_dbs(baseContext)
     }
 
-    /*
-                   inits sync thread
-            */
+    /**
+     *   inits sync thread, syncs remote database with local database
+     *   obviously works in a multi threading to not block the UI thread
+     *   @author Chaosruler972
+     */
     private fun init_sync_trd()
     {
         Thread({
@@ -72,9 +92,10 @@ class MainActivity : Activity()
         }).start()
     }
 
-    /*
-               inits spinner
-        */
+    /**
+     * inits spinner, works in multi threading to not block the UI thread
+     * @author Chaosruler972
+     */
     private fun init_spinner()
     {
         Thread {
@@ -89,6 +110,11 @@ class MainActivity : Activity()
 
     }
 
+    /**
+     * after syncding is done, we are initating the spinner, this function is responsible of that
+     * @author Chaosruler972
+     * @param projects the synced known projects
+     */
     private fun on_adapter_set(projects:Vector<project_data>)
     {
         adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,projects)
@@ -108,9 +134,12 @@ class MainActivity : Activity()
 
         }
     }
-    /*
-                   inits progress view subroutine
-            */
+
+    /**
+     *   inits progress view subroutine
+     *   will show progress view until syncing is done
+     *   @author Chaosruler972
+     */
     private fun progress_subroutine()
     {
         main_progressBar.visibility = ProgressBar.VISIBLE
@@ -152,9 +181,11 @@ class MainActivity : Activity()
         }).start()
 
     }
-    /*
-                   hides all views until progress is complete
-            */
+
+    /**
+     * hides all views until progress is complete
+     * @author Chaosruler972
+     */
     private fun hide_everything()
     {
         main_spinner.visibility = Spinner.INVISIBLE
@@ -163,9 +194,11 @@ class MainActivity : Activity()
         main_button_download.visibility = Button.INVISIBLE
         Log.d("Main","Everything turned invisible")
     }
-    /*
-                   show all views after progress is complete
-            */
+
+    /**
+     * show all views after progress is complete
+     * @author Chaosruler972
+     */
     private fun show_everything()
     {
         main_spinner.visibility = Spinner.VISIBLE
@@ -174,9 +207,11 @@ class MainActivity : Activity()
         main_button_download.visibility = Button.VISIBLE
         Log.d("Main","Everything turned visible")
     }
-    /*
-                   creates intro text with username in it
-            */
+
+    /**
+     *     creates intro text with username in it
+     * @author Chaosruler972
+     */
     private fun create_intro_text()
     {
         var name = PreferenceManager.getDefaultSharedPreferences(baseContext).getString(getString(R.string.username_key), "")
@@ -188,9 +223,11 @@ class MainActivity : Activity()
         main_textview.text = main_textview.text.toString().replace(getString(R.string.shalom),getString(R.string.shalom) + " " + name)
         Log.d("Main","Intro Text done")
     }
-    /*
-                   inits buttons
-            */
+
+    /**
+     *      inits buttons
+     * @author Chaosruler972
+     */
     private fun init_buttons()
     {
         main_button_choose.setOnClickListener({
@@ -237,9 +274,11 @@ class MainActivity : Activity()
         })
     }
 
-    /*
-                   inits disconnects when done
-            */
+
+    /**
+     * inits disconnects when done, part of the android activity lifecycle
+     * @author Chaosruler972
+     */
     override fun onDestroy()
     {
         super.onDestroy()

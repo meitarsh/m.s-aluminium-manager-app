@@ -16,22 +16,54 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 /**
  * a representation of the opr table
  * @author Chaosruler972
+ * @constructor empty, this class can be used from mulitple contexts and activities
  */
 class remote_opr_table_helper {
     companion object : remote_helper()
     {
 
-
+        /**
+         * Datbase name
+         * @author Chaosruler972
+         */
         var DATABASE_NAME: String = ""
+        /**
+         * Table name for opr table
+         * @author Chaosruler972
+         */
         var TABLE_NAME: String = ""
 
+        /**
+         * Operation ID field name
+         * @author Chaosruler972
+         */
         var ID: String = ""
+        /**
+         * Operation id field type
+         * @author Chaosruler972
+         */
         var ID_TYPE: String = ""
 
+        /**
+         * Operation name field name
+         * @author Chaosruler972
+         */
         var NAME: String = ""
+        /**
+         * Operation name field type
+         * @author Chaosruler972
+         */
         var NAME_TYPE: String = ""
 
+        /**
+         * Operation dataaraeid field name
+         * @author Chaosruler972
+         */
         var DATAAREAID: String = ""
+        /**
+         * operation dataaraeid field type
+         * @author Chaosruler972
+         */
         var DATAAREAID_TYPE: String = ""
 
 

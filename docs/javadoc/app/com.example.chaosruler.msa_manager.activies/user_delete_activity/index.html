@@ -2,13 +2,16 @@
 <HEAD>
 <meta charset="UTF-8">
 <title>user_delete_activity - app</title>
-<link rel="stylesheet" href="..\..\..\style.css">
+<link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
 <a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.activies</a>&nbsp;/&nbsp;<a href=".">user_delete_activity</a><br/>
 <br/>
 <h1>user_delete_activity</h1>
 <code><span class="keyword">class </span><span class="identifier">user_delete_activity</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Activity</span></code>
+<p>Class responsible for the logic behind the user-delete activity, the activity that handles deleting and changing password for various users</p>
+<p><strong>Author</strong><br/>
+Chaosruler</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -17,7 +20,9 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">user_delete_activity</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+<code><span class="identifier">user_delete_activity</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>as an activity, the constructor is the default constructor</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -29,28 +34,38 @@
 <p><a href="on-back-pressed.html">onBackPressed</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">onBackPressed</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">onBackPressed</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>inits go back to new login activity, android lifecycle function
+will reopen mainactivity</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="on-create.html">onCreate</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.user_delete_activity$onCreate(android.os.Bundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<span class="identifier">Bundle</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.user_delete_activity$onCreate(android.os.Bundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<span class="identifier">Bundle</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>android activity lifecycle function
+responsible for initating the database, and the adapter for the spinner and its values</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="on-create-options-menu.html">onCreateOptionsMenu</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">onCreateOptionsMenu</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.user_delete_activity$onCreateOptionsMenu(android.view.Menu)/menu">menu</span><span class="symbol">:</span>&nbsp;<span class="identifier">Menu</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">onCreateOptionsMenu</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.user_delete_activity$onCreateOptionsMenu(android.view.Menu)/menu">menu</span><span class="symbol">:</span>&nbsp;<span class="identifier">Menu</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>inits menu, inflates the top bar menu</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="on-options-item-selected.html">onOptionsItemSelected</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">onOptionsItemSelected</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.user_delete_activity$onOptionsItemSelected(android.view.MenuItem)/item">item</span><span class="symbol">:</span>&nbsp;<span class="identifier">MenuItem</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">onOptionsItemSelected</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.user_delete_activity$onOptionsItemSelected(android.view.MenuItem)/item">item</span><span class="symbol">:</span>&nbsp;<span class="identifier">MenuItem</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>event handler for menu item</p>
+</td>
 </tr>
 </tbody>
 </table>

@@ -3,14 +3,123 @@ package com.example.chaosruler.msa_manager.object_types
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
-
-class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String?,private var RECVERSION:String?,private var RECID:String?
-                     ,private var PROJECTS_ID:String?,private var INVENTORY_ID:String?,private var FLAT:String?
-                     , private var FLOOR:String?, private var QTY:String? , private var SALESPRICE:String?,
-                     private var OPR_ID:String?,private var MILESTONEPERCENT:String?,private var QTYFORACCOUNT:String?,
-                     private var PERCENTFORACCOUNT:String?,private var TOTALSUM:String?,private var SALPROG:String?,private var PRINTORDER:String?,
-                     private var ITEMNUMBER:String?,private var KOMANUM:String? ,private var DIRANUM:String?,private var USERNAME:String?)
+/**
+ * a dataclass to represent big table data
+ * @author Chaosruler972
+ * @constructor all the data from the big table each column, null if no data present, non nullable is data that can't be null from db
+ */
+class big_table_data(
+        /**
+         * The vendor id field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var VENDOR_ID:String?,
+        /**
+         * the dataraeid field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var DATAAREAID:String?,
+        /**
+         * The reversion field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var RECVERSION:String?,
+        /**
+         * the recversion field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var RECID:String?,
+        /**
+         * the project id field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var PROJECTS_ID:String?,
+        /**
+         * the inventory id field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var INVENTORY_ID:String?,
+        /**
+         * the flat field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var FLAT:String?,
+        /**
+         * the floor field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var FLOOR:String?,
+        /**
+         * the quanity field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var QTY:String?,
+        /**
+         * the salesprice field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var SALESPRICE:String?,
+        /**
+         * the Operation id field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var OPR_ID:String?,
+        /**
+         * the milestone to percent field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var MILESTONEPERCENT:String?,
+        /**
+         * the quanity for account field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var QTYFORACCOUNT:String?,
+        /**
+         * the percent for account field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var PERCENTFORACCOUNT:String?,
+        /**
+         * the total sum field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var TOTALSUM:String?,
+        /**
+         * The salprog field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var SALPROG:String?,
+        /**
+         * the print order field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var PRINTORDER:String?,
+        /**
+         * the itemnumber field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var ITEMNUMBER:String?,
+        /**
+         * The koma num field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var KOMANUM:String?,
+        /**
+         * the dira num field name for local sqlite
+         * @author Chaosruler972
+         */
+        private var DIRANUM:String?,
+        /**
+         * the username that synced that data
+         * @author Chaosruler972
+         */
+        private var USERNAME:String?
+)
     : table_dataclass {
+    /**
+     * Function responisble for inflating the data from strings.xml
+     * @author Chaosruler972
+     */
     init
     {
         if(VENDOR_ID!=null)
@@ -57,287 +166,374 @@ class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String
             USERNAME = (USERNAME?:"").trim()
     }
 
-    /*
-        vendor id
+    /**
+     * returns current vendor id field name (sqlite)
+     * @return current vendor id field name (sqlite)
+     * @author Chaosruler972
      */
     fun get_VENDOR_ID(): String? = VENDOR_ID
 
-    /*
-      vendor dataraid
-   */
+    /**
+     * returns current dataraeid field name (sqlite)
+     * @author Chaosruler972
+     * @return current dataraeid field name (sqlite)
+     */
     fun get_DATAAREAID(): String? = DATAAREAID
 
-    /*
-      vendor recversion
-   */
+    /**
+     * the current recversion field name (sqlite)
+     * @author Chaosruler972
+     * @return the current recversion (sqlite)
+     */
     fun get_RECVERSION(): String? = RECVERSION
 
-    /*
-      vendor recid
-   */
+    /**
+     * the current recid field name (sqlite)
+     * @author Chaosruler972
+     * @return the current recid (sqlite)
+     */
     fun get_RECID(): String? = RECID
 
-    /*
-      vendor projectid
-   */
+    /**
+     * the current project id field name (sqlite)
+     * @author Chaosruler972
+     * @return the current project id (sqlite)
+     */
     fun get_PROJECT_ID(): String? = PROJECTS_ID
 
-    /*
-      vendor inventory id
-   */
+    /**
+     * the current inventory id field name (sqlite)
+     * @author Chaosruler972
+     * @return the current inventory id (sqlite)
+     */
     fun get_INVENTORY_ID(): String? = INVENTORY_ID
 
-    /*
-      vendor flat
-   */
+    /**
+     * the current flat field name (sqlite)
+     * @author Chaosruler972
+     * @return the current flat(sqlite)
+     */
     fun get_FLAT(): String? = FLAT
 
-    /*
-      vendor floor
-   */
+    /**
+     * the current floor field name (sqlite)
+     * @author Chaosruler972
+     * @return the current floor (sqlite)
+     */
     fun get_FLOOR(): String? = FLOOR
 
-    /*
-      vendor qty
-   */
+    /**
+     * the current qty field name (sqlite)
+     * @author Chaosruler972
+     * @return the current qty (sqlite)
+     */
     fun get_QTY(): String? = QTY
 
-    /*
-      vendor salesprice
-   */
+    /**
+     * the current sales price field name (sqlite)
+     * @author Chaosruler972
+     * @return the current sales price (sqlite)
+     */
     fun get_SALESPRICE(): String? = SALESPRICE
 
-    /*
-      vendor oprid
-   */
+    /**
+     * the current operation id field name (sqlite)
+     * @author Chaosruler972
+     * @return the current operation id (sqlite)
+     */
     fun get_OPRID(): String? = OPR_ID
 
-    /*
-      vendor milestone_percent
-   */
+    /**
+     * the current milestone percent field name (sqlite)
+     * @author Chaosruler972
+     * @return the current milestone percent (sqlite)
+     */
     fun get_MILESTONEPERCENT(): String? = MILESTONEPERCENT
 
-    /*
-      vendor qtyforaccount
-   */
+    /**
+     * the current quanity for account field name (sqlite)
+     * @author Chaosruler972
+     * @return the current quanity for account (sqlite)
+     */
     fun get_QTYFORACCOUNT(): String? = QTYFORACCOUNT
 
-    /*
-      vendor percentforaccount
-   */
+    /**
+     * the current percent for account field name (sqlite)
+     * @author Chaosruler972
+     * @return the current percent for account (sqlite)
+     */
     fun get_PERCENTFORACCOUNT(): String? = PERCENTFORACCOUNT
 
-    /*
-      vendor totalsum
-   */
+    /**
+     * the current total sum field name (sqlite)
+     * @author Chaosruler972
+     * @return the current total sum (sqlite)
+     */
     fun get_TOTALSUM(): String? = TOTALSUM
 
-    /*
-      vendor salprog
-   */
+    /**
+     * the current sale progress field name (sqlite)
+     * @author Chaosruler972
+     * @return the current sale progress (sqlite)
+     */
     fun get_SALPROG(): String? = SALPROG
 
-    /*
-      vendor printorder
-   */
+    /**
+     * the current print order field name (sqlite)
+     * @author Chaosruler972
+     * @return the current print order (sqlite)
+     */
     fun get_PRINTORDER(): String? = PRINTORDER
 
-    /*
-      vendor itemnumber
-   */
+    /**
+     * the current item number field name (sqlite)
+     * @author Chaosruler972
+     * @return the current item number (sqlite)
+     */
     fun get_ITEMNUMBER(): String? = ITEMNUMBER
 
-    /*
-      vendor komanum
-   */
+    /**
+     * the current koma num field name (sqlite)
+     * @author Chaosruler972
+     * @return the current koma num (sqlite)
+     */
     fun get_KOMANUM(): String? = KOMANUM
 
-    /*
-      vendor diranum
-   */
+    /**
+     * the current dira num field name (sqlite)
+     * @author Chaosruler972
+     * @return the current dira num (sqlite)
+     */
     fun get_DIRANUM(): String? = DIRANUM
 
-    /*
-      vendor get username
-   */
+    /**
+     * the current username that synced this data (sqlite)
+     * @author Chaosruler972
+     * @return the current user
+     */
     fun get_USERNAME(): String? = USERNAME
 
     @Suppress("unused")
-/*
-      set vendorid
-   */
+
+    /**
+     * Sets the current vendor id
+     * @author Chaosruler972
+     * @param string the new vendor id
+     */
     fun set_VENDOR_ID(string: String)
     {
             VENDOR_ID = string.trim()
     }
 
+    /**
+     * Sets the dataaraeid
+     * @author Chaosruler972
+     * @param string the new dataaraeid
+     */
     @Suppress("unused")
-/*
-    set dataraid
- */
     fun set_DATAAREAID(string: String)
     {
         DATAAREAID = string.trim()
     }
 
-    /*
-    set recversion
- */
+    /**
+     * Sets the current rec version
+     * @author Chaosruler972
+     * @param string the new rec version
+     */
     fun set_RECVERSION(string: String)
     {
         RECVERSION = string.trim()
     }
 
-    /*
-    set recid
- */
+    /**
+     * Sets the current rec id
+     * @author Chaosruler972
+     * @param string the new rec id
+     */
     fun set_RECID(string: String)
     {
         RECID = string.trim()
     }
 
+    /**
+     * Sets the current project id
+     * @author Chaosruler972
+     * @param string the new project id
+     */
     @Suppress("unused")
-/*
-    set project id
- */
     fun set_PROJECT_ID(string: String)
     {
         PROJECTS_ID = string.trim()
     }
 
+    /**
+     * Sets the current inventory id
+     * @author Chaosruler972
+     * @param string the new inventory id
+     */
     @Suppress("unused")
-/*
-    set inventory id
- */
     fun set_INVENTORY_ID(string: String)
     {
         INVENTORY_ID = string.trim()
     }
 
-    /*
-    set flat
- */
+    /**
+     * Sets the current flat
+     * @author Chaosruler972
+     * @param string the new flat
+     */
     fun set_FLAT(string: String)
     {
         FLAT=string.trim()
     }
 
-    /*
-    set floor
- */
+    /**
+     * Sets the current floor
+     * @author Chaosruler972
+     * @param string the new floor
+     */
     fun set_FLOOR(string: String)
     {
         FLOOR = string.trim()
     }
 
-    /*
-    set qty
- */
+    /**
+     * Sets the current quanity
+     * @author Chaosruler972
+     * @param string the new quanity
+     */
     fun set_QTY(string: String)
     {
         QTY = string.trim()
     }
 
-    /*
-    set salesprice
- */
+    /**
+     * Sets the current sales price
+     * @author Chaosruler972
+     * @param string the new sales price
+     */
     fun set_SALESPRICE(string: String)
     {
         SALESPRICE = string.trim()
     }
 
+    /**
+     * Sets the current operation id
+     * @author Chaosruler972
+     * @param string the new operation id
+     */
     @Suppress("unused")
-/*
-    set oprid
- */
     fun set_OPRID(string: String)
     {
         OPR_ID = string.trim()
     }
 
-    /*
-    set milestone percent
- */
+    /**
+     * Sets the current milestone percent
+     * @author Chaosruler972
+     * @param string the new milestone percent
+     */
     fun set_MILESTONEPERCENT(string: String)
     {
         MILESTONEPERCENT = string.trim()
     }
 
-    /*
-    set qtyforaccount
- */
+    /**
+     * Sets the current quanity for account
+     * @author Chaosruler972
+     * @param string the new quanity for account
+     */
     fun set_QTYFORACCOUNT(string: String)
     {
         QTYFORACCOUNT = string.trim()
     }
 
-    /*
-    set percentforaccount
- */
+    /**
+     * Sets the current percent for account
+     * @author Chaosruler972
+     * @param string the new percent for account
+     */
     fun set_PERCENTFORACCOUNT(string: String)
     {
         PERCENTFORACCOUNT = string.trim()
     }
 
-    /*
-    set totalsum
- */
+    /**
+     * Sets the current total sum
+     * @author Chaosruler972
+     * @param string the new total sum
+     */
     fun set_TOTALSUM(string: String)
     {
         TOTALSUM = string.trim()
     }
 
-    /*
-    set salprog
- */
+    /**
+     * Sets the current sale progress
+     * @author Chaosruler972
+     * @param string the new sale progress
+     */
     fun set_SALPROG(string: String)
     {
         SALPROG = string.trim()
     }
 
-    /*
-    set printorder
- */
+    /**
+     * Sets the current print order
+     * @author Chaosruler972
+     * @param string the new print order
+     */
     fun set_PRINTORDER(string: String)
     {
         PRINTORDER = string.trim()
     }
 
-    /*
-    set itemnumber
- */
+    /**
+     * Sets the current item number
+     * @author Chaosruler972
+     * @param string the new item number
+     */
     fun set_ITEMNUMBER(string: String)
     {
         ITEMNUMBER = string.trim()
     }
 
-    /*
-    set komanum
- */
+    /**
+     * Sets the current koma num
+     * @author Chaosruler972
+     * @param string the new koma num
+     */
     fun set_KOMANUM(string: String)
     {
         KOMANUM = string.trim()
     }
 
-    /*
-    set diranum
- */
+    /**
+     * Sets the current dira num
+     * @author Chaosruler972
+     * @param string the new dira num
+     */
     fun set_DIRANUM(string: String)
     {
         DIRANUM = string.trim()
     }
 
+    /**
+     * Sets the current username that synced that data
+     * @author Chaosruler972
+     * @param string the new username
+     */
     @Suppress("unused")
-/*
-    set username
- */
     fun set_USERNAME(string: String)
     {
         USERNAME = string.trim()
     }
 
-    /*
-        identifies
+    /**
+     * Identifies this data
+     * @author Chaosruler972
+     * @return a string to identify this data
      */
     override fun toString(): String
     {
@@ -348,8 +544,10 @@ class big_table_data(private var VENDOR_ID:String?,private var DATAAREAID:String
         return "OPR: " + (opr?.toString()?:"").trim() + " Project: " + (project?.toString()?:"").trim() + " Vendor: " + (vendor?.toString()?:"").trim() +" Inventory: " +(item?.toString()?:"").trim()
     }
 
-    /*
-        copies
+    /**
+     * a copy constructor
+     * @return a copy of this data class
+     * @author Chaosruler972
      */
     override fun copy(): big_table_data = big_table_data(get_VENDOR_ID(), get_DATAAREAID(), get_RECVERSION(), get_RECID(), get_PROJECT_ID(), get_INVENTORY_ID(), get_FLAT(), get_FLOOR(), get_QTY(), get_SALESPRICE(), get_OPRID(), get_MILESTONEPERCENT(), get_QTYFORACCOUNT(), get_PERCENTFORACCOUNT(), get_TOTALSUM(), get_SALPROG(), get_PRINTORDER(), get_ITEMNUMBER(), get_KOMANUM(), get_DIRANUM(), get_USERNAME())
 }

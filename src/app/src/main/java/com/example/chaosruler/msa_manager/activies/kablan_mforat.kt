@@ -17,9 +17,24 @@ import java.util.*
 import kotlin.collections.HashMap
 import kotlin.math.roundToInt
 
+/**
+ * class for the logic behind kablan mforat activity
+ * @author Chaosruler972
+ * @constructor a default constructor for an activity constructor
+ */
 class kablan_mforat : Activity() {
 
+    /**
+     * the adapter of the spinner inside the activity
+     * @author Chaosruler972
+     */
     private lateinit var adapter:ArrayAdapter<big_table_data>
+
+    /**
+     * Activity lifecycle function, initates the spinner
+     * @author Chaosruler972
+     * @param savedInstanceState the last state of the activity
+     */
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
@@ -28,9 +43,10 @@ class kablan_mforat : Activity() {
         init_spinner()
     }
 
-    /*
-                   inits spinner
-            */
+    /**
+     * inits spinner, will call the appropiate function to get the vector of data and call spinner populate function
+     * @author Chaosruler972
+     */
     private fun init_spinner()
     {
         Thread{
@@ -47,6 +63,11 @@ class kablan_mforat : Activity() {
 
     }
 
+    /**
+     * Populates spinner function, will enter data to the adapter of the spinner
+     * @author Chaosruler972
+     * @param big_table a vector of the data we want to popular (serversided or client sided by configuration)
+     */
     private fun spinner_populate(big_table:Vector<big_table_data>)
     {
         adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, big_table)
@@ -141,9 +162,11 @@ class kablan_mforat : Activity() {
         }
         compute_saah_hakol()
     }
-    /*
-                   compute sum and puts into textview and colors it
-            */
+
+    /**
+     *   compute sum and puts into textview and colors it
+     * @author Chaosruler972
+     */
     private fun compute_saah_hakol()
     {
         if(baseContext == null)

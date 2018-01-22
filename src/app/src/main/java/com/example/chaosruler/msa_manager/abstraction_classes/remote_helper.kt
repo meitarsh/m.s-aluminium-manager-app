@@ -6,6 +6,7 @@ import android.content.Context
  * an abstract class that fulfiles the requirements for the application to load a remote database (MSSQL)
  * @author Chaosruler972
  * @see remote_opr_table_helper
+ * @constructor empty, this class can be used from mulitple contexts and activities
  */
 @Suppress("KDocUnresolvedReference")
 abstract class remote_helper

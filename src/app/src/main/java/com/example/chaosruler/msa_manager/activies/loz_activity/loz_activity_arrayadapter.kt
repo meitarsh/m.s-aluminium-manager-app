@@ -16,9 +16,21 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
 
-
+/**
+ * Array adapter responsible for populating the listview of table for loz activity
+ * @author Chaosruler972
+ * @constructor the context and the list of data that we want to populate
+ */
 class loz_activity_arrayadapter (context: Context, arr: Vector<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.item_loz,arr.toTypedArray())
 {
+    /**
+     * inflates a view and generates it, writes the data in it and initates logic on press and edit
+     * @author Chaosruler972
+     * @param convertView the "listview" motherview
+     * @param parent the parent that holds all the views together
+     * @param position the position in the vector (auto iterate)
+     * @return the view we inflated with all the logic initated
+     */
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View
     {
 

@@ -15,20 +15,53 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 /**
  * a representation of the vendors table
  * @author Chaosruler972
+ * @constructor empty, this class can be used from mulitple contexts and activities
  */
 class remote_vendors_table_helper {
     companion object : remote_helper()
     {
+        /**
+         * Database name
+         * @author Chaosruler972
+         */
         var DATABASE_NAME: String = ""
+        /**
+         * Table name for vendors
+         * @author Chaosruler972
+         */
         var TABLE_NAME: String = ""
 
+        /**
+         * Vendor ID field name
+         * @author Chaosruler972
+         */
         var ID: String = ""
+        /**
+         * vendor id field type
+         * @author Chaosruler972
+         */
         var ID_TYPE: String = ""
 
+        /**
+         * vendor name field name
+         * @author Chaosruler972
+         */
         var NAME: String = ""
+        /**
+         * Vendor name field type
+         * @author Chaosruler972
+         */
         var NAME_TYPE: String = ""
 
+        /**
+         * dataaraeid for vendors, field name
+         * @author Chaosruler972
+         */
         var DATAAREAID: String = ""
+        /**
+         * Dataaraeid for vendors, field type
+         * @author Chaosruler972
+         */
         var DATAAREAID_TYPE: String = ""
 
 

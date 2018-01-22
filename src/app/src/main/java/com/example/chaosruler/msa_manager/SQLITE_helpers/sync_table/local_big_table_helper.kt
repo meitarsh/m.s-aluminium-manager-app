@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 
 import android.content.Context
@@ -13,36 +15,131 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
 import kotlin.collections.HashMap
 
-
-class local_big_table_helper(private var context: Context) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME)
+/**
+ * implenting the SQL helper on big database (SQLITE)
+ * @author Chaosruler972
+ * @constructor a context to work with, the rest comes from strings.xml
+ */
+class local_big_table_helper(
+        /**
+         * the context we are working with
+         * @author Chaosruler972
+         */
+        private var context: Context
+) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME)
 ,null,context.resources.getInteger(R.integer.LOCAL_BIG_TABLE_VERSION),context.getString(R.string.LOCAL_BIG_TABLE_NAME)) {
+    /**
+     * Account number field name
+     * @author Chaosruler972
+     */
     private var ACCOUNT_NUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_ACCOUNTNUM)
+    /**
+     * Dataaraeid field name
+     * @author Chaosruler972
+     */
     private var DATAARAEID: String = context.getString(R.string.LOCAL_BIG_COLUMN_DATAARAEID)
+    /**
+     * rec version field name
+     * @author Chaosruler972
+     */
     private var RECVERSION: String = context.getString(R.string.LOCAL_BIG_COLUMN_RECVERSION)
+    /**
+     * rec id field name
+     * @author Chaosruler972
+     */
     private var RECID: String = context.getString(R.string.LOCAL_BIG_COLUMN_RECID)
+    /**
+     * the project id field name
+     * @author Chaosruler972
+     */
     private var PROJID: String = context.getString(R.string.LOCAL_BIG_COLUMN_PROJID)
+    /**
+     * the item id field name
+     * @author Chaosruler972
+     */
     private var ITEMID: String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMID)
+    /**
+     * the flat field name
+     * @author Chaosruler972
+     */
     private var FLAT: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLAT)
+    /**
+     * floor field name
+     * @author Chaosruler972
+     */
     private var FLOOR: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLOOR)
+    /**
+     * quanity field name
+     * @author Chaosruler972
+     */
     private var QTY: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTY)
+    /**
+     * the sales price field name
+     * @author Chaosruler972
+     */
     private var SALESPRICE: String = context.getString(R.string.LOCAL_BIG_COLUMN_SALESPRICE)
+    /**
+     * the operation id field name
+     * @author Chaosruler972
+     */
     private var OPR_ID: String = context.getString(R.string.LOCAL_BIG_COLUMN_OPRID)
+    /**
+     * the miestone to percent field name
+     * @author Chaosruler972
+     */
     private var MILESTONEPERCENTAGE: String = context.getString(R.string.LOCAL_BIG_COLUMN_MILESTONEPRECENT)
+    /**
+     * the quanity for account field name
+     * @author Chaosruler972
+     */
     private var QTYFORACCOUNT: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYFORACCOUNT)
+    /**
+     * the percent for account field name
+     * @author Chaosruler972
+     */
     private var PERCENTFORACCOUNT: String = context.getString(R.string.LOCAL_BIG_COLUMN_PERCENTFORACCOUNT)
+    /**
+     * the total sum field name
+     * @author Chaosruler972
+     */
     private var TOTAL_SUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_TOTALSUM)
+    /**
+     * the sale progress field name
+     * @author Chaosruler972
+     */
     private var SALPROG: String = context.getString(R.string.LOCAL_BIG_COLUMN_SALPROG)
+    /**
+     * the print order field name
+     * @author Chaosruler972
+     */
     private var PRINTORDER: String = context.getString(R.string.LOCAL_BIG_COLUMN_printorder)
+    /**
+     * the item number field name
+     * @author Chaosruler972
+     */
     private var ITEMNUMBER: String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMNUMBER)
+    /**
+     * the koma num field name
+     * @author Chaosruler972
+     */
     private var KOMANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_KOMANUM)
+    /**
+     * the dira num field name
+     * @author Chaosruler972
+     */
     private var DIRANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_DIRANUM)
 
+    /**
+     * the username that synced this data
+     * @author Chaosruler972
+     */
     private val USER: String = context.getString(R.string.LOCAL_BIG_COLUMN_USERNAME)
 
-    /*
-    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
-    SQL class
- */
+    /**
+     *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
+     * SQL class
+     * @author Chaosruler972
+     */
     init {
         val vector: Vector<String> = Vector()
         vector.add(ACCOUNT_NUM)
@@ -69,10 +166,12 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         init_vector_of_variables(vector)
     }
 
-    /*
-           provides info for the abstracted SQL class
-           on what the table schema is for creation
-        */
+    /**
+     * provides info for the abstracted SQL class
+     * on what the table schema is for creation
+     * @author Chaosruler972
+     * @param db an instance of database
+     */
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
@@ -101,13 +200,15 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID) + ")"
         foreign[OPR_ID] = context.getString(R.string.LOCAL_OPR_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_OPR_COLUMN_ID) + ")"
         foreign[PROJID] = context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_PROJECTS_COLUMN_ID) + ")"
-        val extra = " PRIMARY KEY(${ACCOUNT_NUM}, ${ITEMID}, ${OPR_ID},${PROJID}) "
+        val extra = " PRIMARY KEY($ACCOUNT_NUM, $ITEMID, $OPR_ID,$PROJID) "
         createDB(db, map, foreign,extra)
     }
 
-    /*
-         adds all big, updates, inserts... whatever
-      */
+
+    /**
+     * adds all big, updates, inserts... whatever
+     * @author Chaosruler972
+     */
     fun sync_db()
     {
         if(!global_variables_dataclass.isLocal)
@@ -119,8 +220,11 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         }
     }
 
-    /*
-        converts DB to vector of big
+
+    /**
+     *  converts DB to vector of big data
+     *  @author Chaosruler972
+     *  @return a vector of big table from local DB
      */
     fun get_local_DB(): Vector<big_table_data>
     {
@@ -146,9 +250,13 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         return vector
     }
 
-    /*
-           get local DB by project name
-        */
+
+    /**
+     * get local DB by project name
+     * @author Chaosruler972
+     * @return a vector of big table filtered by project name
+     * @param projid the project id that represents the name of the project we want to filter
+     */
     fun get_local_DB_by_projname(projid:String): Vector<big_table_data>
     {
         val vector: Vector<big_table_data> = Vector()
@@ -176,10 +284,12 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         return vector
     }
 
+    /**
+     *     subroutine to convert server data to vector of big data
+     *  @author Chaosruler972
+     *  @return a vector of big table from server DB
+     */
     @Suppress("MemberVisibilityCanPrivate")
-/*
-           subroutine to convert server data to vector of big
-        */
     fun server_data_to_vector(): Vector<big_table_data>
     {
 
@@ -213,8 +323,12 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     }
 
 
-    /*
-        server data to vector... by projid
+
+    /**
+     * server data to vector... by projid
+     * @author Chaosruler972
+     * @return a vector of big table filtered by project name
+     * @param projid the project id that represents the name of the project we want to filter
      */
     fun server_data_to_vector_by_projname(projid: String): Vector<big_table_data>
     {
@@ -249,11 +363,15 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         return result_vector
     }
 
+
+    /**
+     *   subroutine that is in charge of getting the big class
+     * by query
+     * @author Chaosruler972
+     * @param big_table_data the big data to filter by
+     * @return the big data from the server, null if not found
+     */
     @Suppress("MemberVisibilityCanPrivate")
-/*
-           subroutine that is in charge of getting the big class
-           by query
-        */
     fun get_big_by_big(big_table_data: big_table_data) // subroutine to get a opr object
             : big_table_data? {
         val input_map = java.util.HashMap<String, String>()
@@ -280,40 +398,18 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
     }
 
 
-    /*
-      add big mechanism
-      if big is invalid, forget about it
-      if big is valid, and it exists, update it
-      if its a new opr, add a new big to table
-   */
+    /**
+     * add big mechanism
+     * if big is invalid, forget about it
+     * if big is valid, and it exists, update it
+     * if its a new opr, add a new big to table
+     * @author Chaosruler972
+     * @param big_table_data the big data object to add
+     * @return if add was successfull true, else false
+     */
     fun add_big(big_table_data: big_table_data) // subroutine that manages the big adding operation to the database
             : Boolean
     {
-        /*
-        var map:HashMap<String,String> = HashMap()
-        map[ACCOUNT_NUM] = big_table_data.get_VENDOR_ID() ?: ""
-        map[DATAARAEID] = big_table_data.get_DATAAREAID() ?: ""
-        map[RECVERSION] = big_table_data.get_RECVERSION() ?: ""
-        map[RECID] = big_table_data.get_RECID() ?: ""
-        map[PROJID] = big_table_data.get_PROJECT_ID() ?: ""
-        map[ITEMID] = big_table_data.get_INVENTORY_ID() ?: ""
-        map[FLAT] = big_table_data.get_FLAT() ?: ""
-        map[FLOOR] = big_table_data.get_FLOOR() ?: ""
-        map[QTY] = big_table_data.get_QTY() ?: ""
-        map[SALESPRICE] = big_table_data.get_SALESPRICE() ?: ""
-        map[OPR_ID] = big_table_data.get_OPRID() ?: ""
-        map[MILESTONEPERCENTAGE] = big_table_data.get_MILESTONEPERCENT() ?: ""
-        map[QTYFORACCOUNT] = big_table_data.get_QTYFORACCOUNT() ?: ""
-        map[PERCENTFORACCOUNT] = big_table_data.get_PERCENTFORACCOUNT() ?: ""
-        map[TOTAL_SUM] = big_table_data.get_TOTALSUM() ?: ""
-        map[SALPROG] = big_table_data.get_SALPROG() ?: ""
-        map[PRINTORDER] = big_table_data.get_PRINTORDER() ?: ""
-        map[ITEMNUMBER] = big_table_data.get_ITEMNUMBER() ?: ""
-        map[KOMANUM] = big_table_data.get_KOMANUM() ?: ""
-        map[DIRANUM] = big_table_data.get_DIRANUM() ?: ""
-        map[USER] = big_table_data.get_USERNAME() ?: ""
-        return replace(map)
-        */
         Log.d("Big Check exists",check_big(big_table_data).toString())
         return if (check_big(big_table_data)) // checks if big exists in database
             update_big(big_table_data, big_table_data.copy()) // if it does, lets update
@@ -321,21 +417,28 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
             insert_big(big_table_data)
     }
 
-    @Suppress("MemberVisibilityCanPrivate")
-/*
-          checks if big exists, query is not that smart, gets an ENTIRE table and than checks
-          if the big is there
 
-       */
+    /**
+     * checks if big exists, query is not that smart, gets an ENTIRE table and than checks
+     * if the big is there
+     * @param big_table_data the big to check if exists or not
+     * @return if the big data was found or not
+     * @author Chaosruler972
+     */
+    @Suppress("MemberVisibilityCanPrivate")
     fun check_big(big_table_data: big_table_data) // subroutine to check if big exists on the database
             : Boolean {
         val big: big_table_data? = get_big_by_big(big_table_data)
         return big != null
     }
 
-    /*
-        subroutine in charge of feeding schema and database information to SQL
-        abstract implentation on insert queries
+
+    /**
+     *  subroutine in charge of feeding schema and database information to SQL
+     * abstract implentation on insert queries
+     * @author Chaosruler972
+     * @param big_table_data the big table data that we want to insert
+     * @return if insertion was successfull or not
      */
     private fun insert_big(big_table_data: big_table_data): Boolean // subroutine to insert a big to the database
     {
@@ -368,11 +471,16 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         return add_data(everything_to_add)
     }
 
+
+    /**
+     *  subroutine in charge of feeding information and database information to
+     * SQL abstraction on update queries
+     * @author Chaosruler972
+     * @param from the source that we want to update
+     * @param to what we want to update it to
+     * @return if update was successfull or not
+     */
     @Suppress("MemberVisibilityCanPrivate")
-/*
-      subroutine in charge of feeding information and database information to
-      SQL abstraction on update queries
-   */
     fun update_big(from: big_table_data, to: big_table_data) // subroutine to update data of a big that exists on the database
             : Boolean {
 
@@ -397,11 +505,15 @@ class local_big_table_helper(private var context: Context) : local_SQL_Helper(co
         return update_data(arrayOf(ACCOUNT_NUM, PROJID, ITEMID, OPR_ID), arrayOf(from.get_VENDOR_ID()!!, from.get_PROJECT_ID()!!, from.get_INVENTORY_ID()!!, from.get_OPRID()!!), change_to)
     }
 
-    @Suppress("unused")
-/*
-        subroutine in charge of feeding information and database information to
-        SQL abstraction on delete queries
+
+    /**
+     * subroutine in charge of feeding information and database information to
+     * SQL abstraction on delete queries
+     * @author Chaosruler972
+     * @param big_table_data the source that we want to remove
+     * @return if removal was successfull or not
      */
+    @Suppress("unused")
     fun delete_big(big_table_data: big_table_data): Boolean // subroutine to delete a big from the database (local)
     {
         if (get_big_by_big(big_table_data) == null)

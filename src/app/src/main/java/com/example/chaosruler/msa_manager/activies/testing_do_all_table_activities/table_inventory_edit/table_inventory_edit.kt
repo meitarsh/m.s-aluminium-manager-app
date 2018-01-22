@@ -13,10 +13,18 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_table_inventory_edit.*
 import java.util.*
-
+/**
+ * table inventory logic class, for testing purposes
+ * @author Chaosruler972
+ * @constructor a default constructor for an activiy constructor
+ */
 class table_inventory_edit : Activity()
 {
-
+    /**
+     * part of the android activity lifecycle, will initate the listview by calling init_table
+     * @author Chaosruler972
+     * @param savedInstanceState the last state of the activity
+     */
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
@@ -25,7 +33,12 @@ class table_inventory_edit : Activity()
         if(!global_variables_dataclass.GUI_MODE && !init_table())
             finish()
     }
-
+    /**
+     * inits the table of the activity by getting the list of data (from server or client) and
+     * opening a new adapter for it
+     * @author Chaosruler972
+     * @return true if successfull (to be frank, always true since data testing is done)
+     */
     private fun init_table():Boolean
     {
         Thread{
@@ -43,9 +56,13 @@ class table_inventory_edit : Activity()
         return true
     }
 
-    /*
-            Dispatch remove focus from all edit texts
-         */
+    /**
+     *    Dispatch remove focus from all edit texts
+     *    first attempt to remove soft keyboard
+     *  @author Chaosruler972
+     *  @return upon success, true
+     *  @param event the event that triggered the request to hide soft keyboard
+     */
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         if (event.action == MotionEvent.ACTION_DOWN) {
             val v = currentFocus

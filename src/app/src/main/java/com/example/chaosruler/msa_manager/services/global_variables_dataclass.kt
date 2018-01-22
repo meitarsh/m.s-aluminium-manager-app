@@ -16,6 +16,7 @@ import kotlin.experimental.xor
 /**
  * a Singleton like objec that holds data true across all the activities such as settings and databases along with functions usabele across activities
  * @author Chaosruler972
+ * @constructor an empty constructor since this is a singleton
  */
 object global_variables_dataclass
 {

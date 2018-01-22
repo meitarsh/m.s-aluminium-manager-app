@@ -14,9 +14,28 @@ import org.junit.Assert.*
 import org.junit.Assert.assertTrue
 
 
-
+/**
+ * a Unit test to test local User database on SQLITE
+ * Since all local databases extend from the same class, we don't need to test them all
+ * @author Chaosruler972
+ * @see com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+ */
 @RunWith(AndroidJUnit4::class)
 class database_helper_test {
+    /**
+     * Test as follwoing:
+     * checking if user named dummy exists on empty database
+     * registering it
+     * trying to find user (should work)
+     * register again (should fail)
+     * tryin to find user (should work)
+     * change password (should work)
+     * delete user (should work)
+     * delete again (should fail)
+     * check if user exists (should fail)
+     * delete user again (should fail)
+     * @author Chaosruler972
+     */
     @Test
     fun user_database_tests() {
         val con = InstrumentationRegistry.getTargetContext()
@@ -90,7 +109,7 @@ class database_helper_test {
 
         try {
             assertNotNull("user database tests: verify user exists #$test_num$amount_str: fails\n ", db.get_user_by_id( username))
-            @SuppressWarnings("unused")val usr = db.get_user_by_id(username)
+            db.get_user_by_id(username)
             assertNotNull("user database tests: verify user exists #$test_num$amount_str: fails\n ", db.get_entire_db())
             assertTrue("user database tests: verify user exists #$test_num$amount_str: fails\n ", db.check_user(username))
             Log.d("user database tests", "verify user exists #$test_num$amount_str: success\n ")

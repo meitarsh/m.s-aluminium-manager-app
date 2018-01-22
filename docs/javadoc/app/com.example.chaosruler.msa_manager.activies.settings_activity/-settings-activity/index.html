@@ -2,7 +2,7 @@
 <HEAD>
 <meta charset="UTF-8">
 <title>SettingsActivity - app</title>
-<link rel="stylesheet" href="..\..\..\style.css">
+<link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
 <a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.example.chaosruler.msa_manager.activies.settings_activity</a>&nbsp;/&nbsp;<a href=".">SettingsActivity</a><br/>
@@ -16,6 +16,8 @@ the list of settings.</p>
 <p>See <a href="http://developer.android.com/design/patterns/settings.html">Android Design: Settings</a>
 for design guidelines and the <a href="http://developer.android.com/guide/topics/ui/settings.html">Settings API Guide</a>
 for more information on developing a Settings UI.</p>
+<p><strong>Author</strong><br/>
+Chaosruler972</p>
 <h3>Types</h3>
 <table>
 <tbody>
@@ -34,7 +36,10 @@ activity is showing a two-pane settings UI.</p>
 <p><a href="-develop-ment-settings-pref-fragment/index.html">DevelopMentSettingsPrefFragment</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">DevelopMentSettingsPrefFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">PreferenceFragment</span></code></td>
+<code><span class="keyword">class </span><span class="identifier">DevelopMentSettingsPrefFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">PreferenceFragment</span></code>
+<p>This fragment shows development-mode preferences only. It is used when the
+activity is showing a two-pane settings UI.</p>
+</td>
 </tr>
 <tr>
 <td>
@@ -62,7 +67,7 @@ activity is showing a two-pane settings UI.</p>
 </td>
 <td>
 <code><span class="keyword">class </span><span class="identifier">VPNSettingsFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">PreferenceFragment</span></code>
-<p>This fragment shows data and sync preferences only. It is used when the
+<p>This fragment shows VPN preferences only. It is used when the
 activity is showing a two-pane settings UI.</p>
 </td>
 </tr>
@@ -77,10 +82,7 @@ activity is showing a two-pane settings UI.</p>
 </td>
 <td>
 <code><span class="identifier">SettingsActivity</span><span class="symbol">(</span><span class="symbol">)</span></code>
-<p>A <a href="#">PreferenceActivity</a> that presents a set of application settings. On
-handset devices, settings are presented as a single list. On tablets,
-settings are split by category, with category headers shown to the left of
-the list of settings.</p>
+<p>default constructor for activity constructor</p>
 </td>
 </tr>
 </tbody>
@@ -124,7 +126,9 @@ Make sure to deny any unknown fragments here.</p>
 <p><a href="on-create.html">onCreate</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity$onCreate(android.os.Bundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<span class="identifier">Bundle</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity$onCreate(android.os.Bundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<span class="identifier">Bundle</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>override activity to initate perference activity</p>
+</td>
 </tr>
 <tr>
 <td>
@@ -140,7 +144,9 @@ Make sure to deny any unknown fragments here.</p>
 <p><a href="on-options-item-selected.html">onOptionsItemSelected</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">onOptionsItemSelected</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity$onOptionsItemSelected(android.view.MenuItem)/item">item</span><span class="symbol">:</span>&nbsp;<span class="identifier">MenuItem</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">onOptionsItemSelected</span><span class="symbol">(</span><span class="identifier" id="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity$onOptionsItemSelected(android.view.MenuItem)/item">item</span><span class="symbol">:</span>&nbsp;<span class="identifier">MenuItem</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>menu options, removed because we don't want options on settings</p>
+</td>
 </tr>
 </tbody>
 </table>

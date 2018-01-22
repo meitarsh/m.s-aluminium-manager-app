@@ -16,22 +16,54 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 /**
  * a representation of the projects table
  * @author Chaosruler972
+ * @constructor empty, this class can be used from mulitple contexts and activities
  */
 class remote_projects_table_helper {
 
 
     companion object : remote_helper()
     {
+        /**
+         * Database name
+         * @author Chaosruler972
+         */
         var DATABASE_NAME: String = ""
+        /**
+         * Table name for projects
+         * @author Chaosruler972
+         */
         var TABLE_NAME: String = ""
-
+        /**
+         * Project ID field name
+         * @author Chaosruler972
+         */
         var ID: String = ""
+        /**
+         * Project ID field type
+         * @author Chaosruler972
+         */
         var ID_TYPE: String = ""
 
+        /**
+         * Project name field name
+         * @author Chaosruler972
+         */
         var NAME: String = ""
+        /**
+         * project name field type
+         * @author Chaosruler972
+         */
         var NAME_TYPE: String = ""
 
+        /**
+         * Dataaraeid field name
+         * @author Chaosruler972
+         */
         var DATAAREAID: String = ""
+        /**
+         * Dataaraeid field type
+         * @author Chaosruler972
+         */
         var DATAAREAID_TYPE: String = ""
 
         /**
