@@ -43,7 +43,7 @@ Zeev Melumuian
 | Releases |  [![release](http://github-release-version.herokuapp.com/github/meitarsh/m.s-aluminium-manager-app/release.svg?style=flat)](https://github.com/meitarsh/m.s-aluminium-manager-app/releases/latest) |
 | Codecy Code Review | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1ba0470e040144e08e6a235be2940a13)](https://www.codacy.com/app/trunks_ishter/m.s-aluminium-manager-app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=meitarsh/m.s-aluminium-manager-app&amp;utm_campaign=Badge_Grade) |
 | our written API! | [![Application API](https://img.shields.io/badge/Application-API-blue.svg)](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/API) |
-| our code documentation | [![Code Doc](https://img.shields.io/badge/Code-doc-blue.svg)](http://htmlpreview.github.io/?https://github.com/meitarsh/m.s-aluminium-manager-app/blob/master/docs/javadoc/app/index.html) |
+| our code documentation | [![Code Doc](https://img.shields.io/badge/Code-doc-blue.svg)](http://htmlpreview.github.io/?https://github.com/meitarsh/m.s-aluminium-manager-app/blob/master/docs/javadoc/index.html) |
 
 ## [Software Design](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Software-Design)
 
