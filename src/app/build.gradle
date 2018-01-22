@@ -51,20 +51,16 @@ apply plugin: 'org.jetbrains.dokka'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-sourceCompatibility = 1.5
-sourceSets {
-    main.java.srcDirs += 'src/main/java'
-}
+
 dokka {
-
-
+    noStdlibLink = false
     skipEmptyPackages = true
     sourceDirs = files('src/main/java')
-    outputFormat = 'html'
+    outputFormat = 'javadoc'
     outputDirectory = "$buildDir/../../../docs/javadoc"
 }
 task deleteUnusedDokkaAssets(type: Delete) {
-    file("$rootDir/docs").listFiles().each {
+    file("$rootDir/../../docs/app").listFiles().each {
         if( it.name.contains("android")) projects.delete it
         if( it.name.contains("android.R" ) ) project.delete it
         if( it.name.contains("android.support" ) ) project.delete it
