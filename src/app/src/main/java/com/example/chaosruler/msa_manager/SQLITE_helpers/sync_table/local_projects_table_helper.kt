@@ -4,6 +4,7 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper
 import com.example.chaosruler.msa_manager.R
@@ -74,10 +75,10 @@ class local_projects_table_helper(
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "TEXT primary key"
-        map[NAME] = "TEXT"
-        map[DATAAREAID] = "TEXT"
-        map[USERNAME] = "TEXT"
+        map[ID] = "BLOB primary key"
+        map[NAME] = "BLOB"
+        map[DATAAREAID] = "BLOB"
+        map[USERNAME] = "BLOB"
         createDB(db,map)
     }
 
@@ -103,6 +104,7 @@ class local_projects_table_helper(
      */
     fun get_local_DB():Vector<project_data>
     {
+        Log.d("DB OF: ","projects")
         val vector: Vector<project_data> = Vector()
         val all_db: Vector<HashMap<String, String>> = get_db()
         all_db

@@ -4,7 +4,7 @@
     <!-- Strings related to User database control activity -->
     <string name="USER_database_filename">Users.db</string>
     <string name="USER_TABLE_NAME">Users</string>
-    <string name="USER_COL_ID">id</string>
+    <string name="USER_COL_ID">user_id</string>
     <string name="USER_COL_PASSWORD">password</string>
     <integer name="USER_DB_VERSION">3</integer>
     <string name="title_activity_login">Sign in</string>

@@ -175,26 +175,26 @@ class local_big_table_helper(
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[ACCOUNT_NUM] = "TEXT"
-        map[DATAARAEID] = "TEXT"
-        map[RECVERSION] = "TEXT"
-        map[RECID] = "TEXT"
-        map[PROJID] = "TEXT"
-        map[ITEMID] = "TEXT"
-        map[FLAT] = "TEXT"
-        map[FLOOR] = "TEXT"
-        map[QTY] = "TEXT"
-        map[SALESPRICE] = "TEXT"
-        map[OPR_ID] = "TEXT"
-        map[MILESTONEPERCENTAGE] = "TEXT"
-        map[QTYFORACCOUNT] = "TEXT"
-        map[PERCENTFORACCOUNT] = "TEXT"
-        map[TOTAL_SUM] = "TEXT"
-        map[SALPROG] = "TEXT"
-        map[PRINTORDER] = "TEXT"
-        map[ITEMNUMBER] = "TEXT"
-        map[KOMANUM] = "TEXT"
-        map[DIRANUM] = "TEXT"
+        map[ACCOUNT_NUM] = "BLOB"
+        map[DATAARAEID] = "BLOB"
+        map[RECVERSION] = "BLOB"
+        map[RECID] = "BLOB"
+        map[PROJID] = "BLOB"
+        map[ITEMID] = "BLOB"
+        map[FLAT] = "BLOB"
+        map[FLOOR] = "BLOB"
+        map[QTY] = "BLOB"
+        map[SALESPRICE] = "BLOB"
+        map[OPR_ID] = "BLOB"
+        map[MILESTONEPERCENTAGE] = "BLOB"
+        map[QTYFORACCOUNT] = "BLOB"
+        map[PERCENTFORACCOUNT] = "BLOB"
+        map[TOTAL_SUM] = "BLOB"
+        map[SALPROG] = "BLOB"
+        map[PRINTORDER] = "BLOB"
+        map[ITEMNUMBER] = "BLOB"
+        map[KOMANUM] = "BLOB"
+        map[DIRANUM] = "BLOB"
         val foreign: HashMap<String, String> = HashMap()
         foreign[ACCOUNT_NUM] = context.getString(R.string.LOCAL_VENDORS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_VENDORS_COLUMN_ID) + ")"
         foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID) + ")"
@@ -228,6 +228,7 @@ class local_big_table_helper(
      */
     fun get_local_DB(): Vector<big_table_data>
     {
+        Log.d("DB OF: ","Big")
         val vector: Vector<big_table_data> = Vector()
 
         val all_db: Vector<java.util.HashMap<String, String>> = get_db()

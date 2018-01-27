@@ -3,6 +3,7 @@ package com.example.chaosruler.msa_manager.services
 import android.annotation.SuppressLint
 import android.content.Context
 import android.security.keystore.KeyProperties
+import android.util.Base64
 import android.util.Log
 import com.example.chaosruler.msa_manager.R
 import java.security.KeyStore
@@ -46,18 +47,18 @@ object encryption
     fun generate_key(context: Context)
     {
         iv = ByteArray(16)
+        val alias = context.getString(R.string.ENC_KEY)
+        val store = KeyStore.getInstance(KeyStore.getDefaultType())
         if(secretKey==null)
         {
-            val store = KeyStore.getInstance(KeyStore.getDefaultType())
             store.load(null)
-            val alias = context.getString(R.string.ENC_KEY)
             if (store.containsAlias(alias))
             {
                 secretKey = (store.getEntry(alias, null) as KeyStore.SecretKeyEntry).secretKey
             }
             else
             {
-                val keyGen = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES)
+                val keyGen = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES,store.provider)
                 keyGen.init(256)
                 secretKey = keyGen.generateKey()
                 if(secretKey==null)
@@ -81,7 +82,7 @@ object encryption
 
         val c = Cipher.getInstance("AES")
         c.init(Cipher.ENCRYPT_MODE, secretKey!!,IvParameterSpec(iv))
-        return c.doFinal(a)
+        return Base64.encode(c.doFinal(a),Base64.DEFAULT)
     }
 
     /**
@@ -93,9 +94,10 @@ object encryption
     @SuppressLint("GetInstance")
     fun decrypt(a:ByteArray): ByteArray
     {
+        val new_a = Base64.decode(a,Base64.DEFAULT)
         val c = Cipher.getInstance("AES")
         c.init(Cipher.DECRYPT_MODE, secretKey!!,IvParameterSpec(iv))
-        return c.doFinal(a)
+        return c.doFinal(new_a)
     }
 
 }

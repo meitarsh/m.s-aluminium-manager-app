@@ -132,14 +132,28 @@ class offline_mode_service : Service(){
          * @author Chaosruler972
          */
         private var trd:Thread= Thread({
-            while (time != 0.toLong()) {
+            while (true)
+            {
                 Log.d("offline_mode","Did a trd run")
                 try {
-                    try_to_run_command()
+                    Thread({
+                        try_to_run_command()
+                    }).start()
+                }
+                catch (e:Exception)
+                {
+                    Log.d("Command","Had an exception!")
+                }
+                try
+                {
+                    Log.d("Going to sleep for ", (time/1000).toString() +" Seconds")
                     sleep(time)
-                } catch (e: InterruptedException) {
+                }
+                catch (e: InterruptedException)
+                {
                     Log.d("offline mode","retring a re-sync of everything")
                 }
+
             }
         })
 
@@ -194,7 +208,7 @@ class offline_mode_service : Service(){
         private fun grab_time(context: Context) {
             time = ctx.resources.getInteger(R.integer.millis_in_sec).toLong()
             val sec = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.sync_frequency), context.resources.getInteger(R.integer.time_to_sync_in_sec).toString()).toLong()
-            time *=sec
+            time *=sec/5
         }
 
         /**
@@ -218,7 +232,9 @@ class offline_mode_service : Service(){
             if(time == 0.toLong())
                 return
             if(trd.state == Thread.State.NEW) // new thread, not started
+            {
                 trd.start()
+            }
         }
 
         /**
@@ -318,10 +334,13 @@ class offline_mode_service : Service(){
          */
         fun try_to_run_command() {
 
+
             val vector = get_DB()
             Log.d("offline_mode","cache command size: " + vector.size.toString())
+
             for (item in vector) {
                 if (item.__user == remote_SQL_Helper.getusername()) {
+                    Log.d("Running command: ",item.__command)
                     val result_of_query = remote_SQL_Helper.run_command(item.__command.replace("&quote;", "'"))
                     Log.d("offline_mode","Query to try :" + item.__command.replace("&quote;", "'"))
                     Log.d("offline_mode","Query Result: " + result_of_query.toString())
@@ -331,6 +350,7 @@ class offline_mode_service : Service(){
                             build_small_notification(cache.get_id_of_command(item).toString())
                         cache.remove_command(item)
                     }
+
                 }
             }
 

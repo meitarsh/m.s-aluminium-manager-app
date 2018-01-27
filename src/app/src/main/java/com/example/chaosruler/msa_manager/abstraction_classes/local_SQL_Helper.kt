@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
+import java.nio.charset.Charset
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -243,12 +244,18 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 }
 
             }
+            Log.d("Results amount", c?.count.toString())
             while (c!=null && !c.isAfterLast)
             {
                 val small_map: HashMap<String, String> = HashMap()
                 for (variable in vector_of_variables)
                 {
-                    val input_str = String(global_variables_dataclass.xorWithKey(c.getString(c.getColumnIndex(variable)).toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),true,context))
+                    Log.d("About to get columns","Column $variable and its data is ${c.getString(c.getColumnIndex(variable))}")
+                    val input_str =
+                            if(variable != "id")
+                                String(global_variables_dataclass.xorWithKey(c.getString(c.getColumnIndex(variable)).toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),true,context))
+                            else
+                                c.getString(c.getColumnIndex(variable))
                     small_map[variable] = input_str
                 }
                 vector.addElement(small_map)
@@ -286,8 +293,6 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      */
     protected fun add_data(variables: Vector<HashMap<String,String>>):Boolean
     {
-        if(variables.size == 0)
-            return false
         val db: SQLiteDatabase = this.writableDatabase
         //db.close()
         return variables.any { add_single_data(db, it) }
@@ -304,7 +309,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
     {
         val values = ContentValues()
         for(item in items)
-            values.put(item.key, String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false,context) ) )
+            values.put(item.key, String(global_variables_dataclass.xorWithKey(item.value.toByteArray(Charset.forName("UTF-8")),global_variables_dataclass.get_device_id(context).toByteArray(Charset.forName("UTF-8")),false,context) ) )
         if(db.insertWithOnConflict(TABLE_NAME,null,values,SQLiteDatabase.CONFLICT_REPLACE)>0)
             return true
         return false
@@ -353,6 +358,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             result = true
         //db.close()
         return result
+
     }
 
 
@@ -424,8 +430,10 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
     fun get_rows(map:HashMap<String,String>):Vector<HashMap<String,String>>
     {
         val db = this.readableDatabase
+        /*
         for(item in map)
             map[item.key] = String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false,context))
+            */
         val vector = Vector<HashMap<String, String>>()
         val sync_token = Object()
         //to not hang the ui
@@ -438,7 +446,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             {
                 where_args.addElement(item.value)
                 where_clause+=item.key + " = ? "
-                sql_query += " ${item.key} = '${item.value}' "
+                sql_query += " ${item.key} = ${item.value} "
                 breaker++
                 if (breaker < map.size)
                 {
@@ -494,7 +502,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                         val small_map: HashMap<String, String> = HashMap()
                         for (variable in vector_of_variables) {
                             val item = c.getString(c.getColumnIndex(variable))
-                            val str_item = String(global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),true,context))
+                            val str_item = String(global_variables_dataclass.xorWithKey(item.toByteArray(Charset.forName("UTF-8")),global_variables_dataclass.get_device_id(context).toByteArray(Charset.forName("UTF-8")),true,context))
                             small_map[variable] = str_item
                         }
                         vector.addElement(small_map)
@@ -577,7 +585,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 for (variable in vector_of_variables)
                 {
                     val item = c.getString(c.getColumnIndex(variable))
-                    val item_str = String(global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),true,context))
+                    val item_str = String(global_variables_dataclass.xorWithKey(item.toByteArray(Charset.forName("UTF-8")),global_variables_dataclass.get_device_id(context).toByteArray(Charset.forName("UTF-8")),true,context))
                     small_map[variable] = item_str
                 }
                 vector.addElement(small_map)
@@ -607,24 +615,5 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
     }
 
 
-    /**
-     * similar to he update query, using the new db.replace API (buggy)
-     * DO NOT USE THIS FUNCTION
-     * @author Chaosruler972
-     * @param map wha should we replace by what (key = name, value=data)
-     * @return is successfull
-     */
-    @Suppress("unused")
-    private fun replace(map: HashMap<String, String>): Boolean
-    {
-
-        val db = this.writableDatabase
-        val cv = ContentValues()
-        map.forEach { cv.put(it.key,String(global_variables_dataclass.xorWithKey(it.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false,context)) ) }
-        val count = db.replace(TABLE_NAME, null, cv)
-        db.close()
-        return count > 0
-
-    }
 
 }

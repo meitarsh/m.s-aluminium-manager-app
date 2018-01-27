@@ -33,7 +33,7 @@ object remote_SQL_Helper {
      * the last calling activity that needs that login, usually MainActivity should hold this
      * @author Chaosruler972
      */
-    private lateinit var act: Activity
+    lateinit var act: Activity
     /**
      * The login username
      * @author Chaosruler972
@@ -67,6 +67,13 @@ object remote_SQL_Helper {
      * @return gets the username that is logged in
      */
     fun getusername(): String = username
+
+    /**
+     * password of user logged in
+     * @author Chaosruler972
+     * @return gets the password that is logged in
+     */
+    fun getpassword(): String = password
 
     /**
      * is connection online?
@@ -111,9 +118,11 @@ object remote_SQL_Helper {
             }
         }
         */
+        if(connection!=null)
+            connection!!.close()
         val ip: String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP), context.getString(R.string.REMOTE_IP_ADDR))
         val port: String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.sql_port), con.getString(R.string.default_port_num))
-        val windows_auth = if (PreferenceManager.getDefaultSharedPreferences(con).getBoolean(con.getString(R.string.windows_auth_key), false))
+        val windows_auth = if (PreferenceManager.getDefaultSharedPreferences(con).getBoolean(con.getString(R.string.windows_auth_key), true))
             con.getString(R.string.REMOTE_CONNECTION_WINDOWS_AUTH)
         else
             ""
@@ -150,14 +159,17 @@ object remote_SQL_Helper {
         try {
             connection!!.isReadOnly
         } catch (e: SQLException) {
-            if (e.errorCode == 0) {
+            return if (e.errorCode == 0) {
                 ReConnect()
+                vector
             } else {
                 Log.d("remote SQL", "EXCEPTION ${e.message}")
+                vector
             }
         } catch (e: KotlinNullPointerException) {
             ReConnect()
             Log.d("remote SQL", "EXCEPTION kotlin null pointer exception")
+            return vector
         }
         if (!isvalid)
             return vector
@@ -329,8 +341,10 @@ object remote_SQL_Helper {
         } catch (e: SQLException) {
             if (e.errorCode == 0)
                 ReConnect()
+            return false
         } catch (e: KotlinNullPointerException) {
             ReConnect()
+            return false
         }
         if (!isvalid)
             return false
@@ -380,7 +394,13 @@ object remote_SQL_Helper {
         if (isvalid) {
             isvalid = false
             if (connection != null)
-                connection!!.close()
+                try {
+                    connection!!.close()
+                }
+                catch (e:Exception)
+                {
+
+                }
         }
     }
 
@@ -414,44 +434,7 @@ object remote_SQL_Helper {
      */
     @Suppress("unused")
     fun isAlive(): Boolean {
-        try {
-            connection!!.isReadOnly
-        } catch (e: SQLException) {
-            if (e.errorCode == 0) {
-                ReConnect()
-            } else {
-                Log.d("remote SQL", "EXCEPTION ${e.message}")
-            }
-        } catch (e: KotlinNullPointerException) {
-            ReConnect()
-            Log.d("remote SQL", "EXCEPTION null pointer exception")
-        }
-        if (!isvalid)
-            return false
-        val lock = java.lang.Object()
-        AsyncTask.execute {
-            Runnable {
-                try {
-                    connection!!.prepareStatement(context.getString(R.string.get_date_from_server)).execute()
-                } catch (e: SQLException) {
-                    Log.d("remote SQL", "EXCEPTION ${e.message}")
-                }
-                synchronized(lock)
-                {
-                    lock.notify()
-                }
-            }
-        }
-
-        try {
-            synchronized(lock)
-            {
-                lock.wait()
-            }
-        } catch (e: InterruptedException) {
-            Log.d("remote SQL", "Done login sync")
-        }
-        return true
+        return !connection!!.isClosed
     }
 
     /**
@@ -459,7 +442,7 @@ object remote_SQL_Helper {
      *
      * IS CALLED ON MAINACTIVITY, ITS ENOUGH HANDLING ON THAT DEPARTMENT
      * @author Chaosruler972
-     * @param con the base context we want to refresh
+     * @param con the base context we want to refres
      */
     fun refresh_context(con: Context) {
         context = con
