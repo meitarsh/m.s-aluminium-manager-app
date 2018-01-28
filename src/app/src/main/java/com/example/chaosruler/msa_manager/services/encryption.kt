@@ -2,16 +2,14 @@ package com.example.chaosruler.msa_manager.services
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.security.keystore.KeyProperties
 import android.util.Base64
-import android.util.Log
 import com.example.chaosruler.msa_manager.R
-import java.security.KeyStore
-import javax.crypto.Cipher
-import javax.crypto.KeyGenerator
+import com.example.chaosruler.msa_manager.services.encryption.encrypt
+import com.example.chaosruler.msa_manager.services.encryption.generate_key
+import com.yakivmospan.scytale.Crypto
+import com.yakivmospan.scytale.Options
+import com.yakivmospan.scytale.Store
 import javax.crypto.SecretKey
-import javax.crypto.spec.IvParameterSpec
-
 
 
 /**
@@ -34,41 +32,23 @@ object encryption
      */
     private var secretKey:SecretKey? = null
     /**
-     * an empty byteArray for IV initation on encrypting,decrypting, must be zeroed before each encryption/decryption to
-     * make sure that they stand stable
-     * @author Chaosruler972
-     * @see javax.crypto.Cipher
-     */
-    private var iv = ByteArray(16)
-    /**
      * this function is responsible for generatoin an AES key from the keystore per encryption/decryption, and refreshing the current one
      * @param context a base Context, must not be null, for keyStore access
      */
     fun generate_key(context: Context)
     {
-        iv = ByteArray(16)
         val alias = context.getString(R.string.ENC_KEY)
-        val store = KeyStore.getInstance(KeyStore.getDefaultType())
+        val store = Store(context)
         if(secretKey==null)
         {
-            store.load(null)
-            if (store.containsAlias(alias))
-            {
-                secretKey = (store.getEntry(alias, null) as KeyStore.SecretKeyEntry).secretKey
-            }
-            else
-            {
-                val keyGen = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES,store.provider)
-                keyGen.init(256)
-                secretKey = keyGen.generateKey()
-                if(secretKey==null)
-                    Log.d("Key", "Is null")
-                val skEntry = KeyStore.SecretKeyEntry(secretKey)
-                store.setEntry(alias, skEntry,KeyStore.PasswordProtection(alias.toCharArray()))
-
+            secretKey = if(store.hasKey(alias)) {
+                store.getSymmetricKey(alias,null)
+            } else {
+                store.generateSymmetricKey(alias,null)
             }
         }
     }
+
 
     /**
      * This function encrypts a byteArray and returns an encrypted form of that byteArray
@@ -79,10 +59,8 @@ object encryption
     @SuppressLint("GetInstance")
     fun encrypt(a: ByteArray): ByteArray
     {
-
-        val c = Cipher.getInstance("AES")
-        c.init(Cipher.ENCRYPT_MODE, secretKey!!,IvParameterSpec(iv))
-        return Base64.encode(c.doFinal(a),Base64.DEFAULT)
+        val crypto = Crypto(Options.TRANSFORMATION_SYMMETRIC)
+        return Base64.encode(crypto.encrypt(String(a), secretKey!!).toByteArray(),Base64.DEFAULT)
     }
 
     /**
@@ -95,9 +73,8 @@ object encryption
     fun decrypt(a:ByteArray): ByteArray
     {
         val new_a = Base64.decode(a,Base64.DEFAULT)
-        val c = Cipher.getInstance("AES")
-        c.init(Cipher.DECRYPT_MODE, secretKey!!,IvParameterSpec(iv))
-        return c.doFinal(new_a)
+        val crypto = Crypto(Options.TRANSFORMATION_SYMMETRIC)
+        return crypto.decrypt(String(new_a), secretKey!!).toByteArray()
     }
 
 }
