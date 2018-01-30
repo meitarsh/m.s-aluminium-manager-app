@@ -6,13 +6,10 @@ import android.security.keystore.KeyProperties
 import android.util.Base64
 import android.util.Log
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.services.encryption.encrypt
-import com.example.chaosruler.msa_manager.services.encryption.generate_key
+
 import com.yakivmospan.scytale.Crypto
 import com.yakivmospan.scytale.Options
 import com.yakivmospan.scytale.Store
-import java.io.FileInputStream
-import java.io.FileOutputStream
 import java.io.IOException
 import java.nio.charset.Charset
 import javax.crypto.Cipher
@@ -54,13 +51,13 @@ object encryption
             secretKey = if(store.hasKey(alias)) {
                 val key_to_get_key = store.getSymmetricKey(alias,null)
 
-                get_key_from_file(key_to_get_key,true)
+                get_key_from_file(key_to_get_key,true,context)
             }
             else
             {
                 val key_to_get_key = store.generateSymmetricKey(alias,null)
 
-                get_key_from_file(key_to_get_key,false)
+                get_key_from_file(key_to_get_key,false,context)
             }
 
         }
@@ -73,14 +70,16 @@ object encryption
      * @param key_to_encrypt the key to encrypt our key (recursive, eh?)
      * @return an AES key to use!
      */
-    private fun get_key_from_file(key_to_encrypt: SecretKey,flag:Boolean) : SecretKey?
+    private fun get_key_from_file(key_to_encrypt: SecretKey,flag:Boolean,context: Context) : SecretKey?
     {
         if(flag) // load from file only
         {
-            val encoded = ReadFromFile("key.key") ?: return null
+            val encoded = ReadFromFile("key.key",context) ?: return null
             val new_a = Base64.decode(encoded,Base64.DEFAULT)
             val crypto = Crypto(Options.TRANSFORMATION_SYMMETRIC)
-            val decrypted_from_file = crypto.decrypt(String(new_a), key_to_encrypt).toByteArray(Charset.forName("UTF-8"))
+            val decrypted_string_from_file = crypto.decrypt(String(new_a), key_to_encrypt)
+            val decrypted_from_file = decrypted_string_from_file.hexStringToByteArray()
+            Log.d("Key length Read:",decrypted_from_file.size.toString())
             return SecretKeySpec(decrypted_from_file,0,decrypted_from_file.size,"AES")
         }
         else // generate key and save to file
@@ -90,12 +89,25 @@ object encryption
             keyGen.init(256)
             val new_key = keyGen.generateKey()
             val encoded = new_key.encoded
-            val encoded_and_encrypted_to_file =  Base64.encode(crypto.encrypt(String(encoded), key_to_encrypt).toByteArray(Charset.forName("UTF-8")),Base64.DEFAULT)
-            writeToFile(encoded_and_encrypted_to_file,"key.key")
+            Log.d("Key length Saved:",encoded.size.toString())
+            val encoded_and_encrypted_to_file =  Base64.encode(crypto.encrypt(encoded.toHex(), key_to_encrypt).toByteArray(Charset.forName("UTF-8")),Base64.DEFAULT)
+            writeToFile(encoded_and_encrypted_to_file,"key.key",context)
             return new_key
         }
     }
 
+    /**
+     * Function done specificilly to this class, to convert Hex string to ByteArray
+     * @author Chaosruler
+     * @return a Bytearray that represents this String's hexstring
+     */
+    private fun String.hexStringToByteArray() = ByteArray(this.length / 2) { this.substring(it * 2, it * 2 + 2).toInt(16).toByte() }
+
+    /**
+     * Function done specificilly to this class to convert ByteArray to HexString
+     * @return a Hexstring from this ByteArray
+     */
+    private fun ByteArray.toHex() = this.joinToString(separator = "") { it.toInt().and(0xff).toString(16).padStart(2, '0') }
 
     /**
      * Function to read data from file
@@ -103,14 +115,15 @@ object encryption
      * @param fileName the filename that we should read data from
      * @return the data that we read
      */
-    private fun ReadFromFile(fileName: String) : ByteArray?
+    private fun ReadFromFile(fileName: String,context: Context) : ByteArray?
     {
-        var byteArray:ByteArray?
+        var byteArray:ByteArray? = null
         try
         {
-            val out = FileInputStream(fileName)
-            byteArray = out.readBytes()
-            out.close()
+            context.openFileInput(fileName).use {
+                byteArray = it.readBytes()
+            }
+
         }
         catch (e:IOException)
         {
@@ -126,13 +139,13 @@ object encryption
      * @param data the data to write
      * @param fileName the filename that we should write to/open
      */
-    private fun writeToFile(data: ByteArray, fileName: String)
+    private fun writeToFile(data: ByteArray, fileName: String,context: Context)
     {
         try
         {
-            val out = FileOutputStream(fileName)
-            out.write(data)
-            out.close()
+            context.openFileOutput(fileName,Context.MODE_PRIVATE).use {
+                it.write(data)
+            }
         }
         catch (e:IOException)
         {

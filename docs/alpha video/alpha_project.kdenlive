@@ -1,0 +1,2121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mlt title="Anonymous Submission" LC_NUMERIC="en_IL" producer="main bin" version="6.4.1" root="/home/chaosruler/Desktop/m.s-aluminium-manager-app/docs/alpha video">
+ <profile frame_rate_num="25" sample_aspect_num="1" display_aspect_den="9" colorspace="709" progressive="1" description="HD 1080p 25 fps" display_aspect_num="16" frame_rate_den="1" width="1920" height="1080" sample_aspect_den="1"/>
+ <producer id="1" in="0" out="237">
+  <property name="length">238</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/1.jpg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="meta.media.width">1105</property>
+  <property name="meta.media.height">622</property>
+  <property name="mlt_service">qimage</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:duration">125</property>
+  <property name="kdenlive:file_size">37338</property>
+  <property name="kdenlive:file_hash">eda4d54b3c976e1cf0f7655d4342ede6</property>
+ </producer>
+ <producer id="2" in="0" out="309">
+  <property name="length">310</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/2.png</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="meta.media.width">1105</property>
+  <property name="meta.media.height">622</property>
+  <property name="mlt_service">qimage</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:duration">125</property>
+  <property name="kdenlive:file_size">24558</property>
+  <property name="kdenlive:file_hash">3acec863dc7911432d4037c60593a444</property>
+ </producer>
+ <producer id="3" in="0" out="625">
+  <property name="length">626</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/3.png</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="meta.media.width">1108</property>
+  <property name="meta.media.height">624</property>
+  <property name="mlt_service">qimage</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:duration">125</property>
+  <property name="kdenlive:file_size">19937</property>
+  <property name="kdenlive:file_hash">1e7654729dbf7fb8140c7daeb8db0507</property>
+ </producer>
+ <producer id="4" in="0" out="1797">
+  <property name="length">1798</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/4.png</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="meta.media.width">1113</property>
+  <property name="meta.media.height">625</property>
+  <property name="mlt_service">qimage</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:duration">125</property>
+  <property name="kdenlive:file_size">27272</property>
+  <property name="kdenlive:file_hash">85926a2bb71143049a129bd0e51fa72d</property>
+ </producer>
+ <producer id="5" in="0" out="1491">
+  <property name="length">1492</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/5.png</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="meta.media.width">1115</property>
+  <property name="meta.media.height">625</property>
+  <property name="mlt_service">qimage</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:duration">125</property>
+  <property name="kdenlive:file_size">23507</property>
+  <property name="kdenlive:file_hash">d72b59388f6bdd1c8e52ac3f45e9b9b4</property>
+ </producer>
+ <producer id="6" in="0" out="1022">
+  <property name="length">1023</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/6.png</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="meta.media.width">1112</property>
+  <property name="meta.media.height">624</property>
+  <property name="mlt_service">qimage</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:duration">125</property>
+  <property name="kdenlive:file_size">23175</property>
+  <property name="kdenlive:file_hash">3d658b46e4296fbcdbfaa44e8fe6afca</property>
+ </producer>
+ <producer id="7" in="0" out="124">
+  <property name="length">125</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/7.png</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="meta.media.width">1107</property>
+  <property name="meta.media.height">623</property>
+  <property name="mlt_service">qimage</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:duration">125</property>
+  <property name="kdenlive:file_size">15201</property>
+  <property name="kdenlive:file_hash">74c4cc95482972c35a42bb1318769417</property>
+ </producer>
+ <producer id="8" in="0" out="950">
+  <property name="length">951</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/8.png</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="meta.media.width">1113</property>
+  <property name="meta.media.height">628</property>
+  <property name="mlt_service">qimage</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:duration">125</property>
+  <property name="kdenlive:file_size">44207</property>
+  <property name="kdenlive:file_hash">1f5b809fba466f5e3fb9db62c2ce2878</property>
+ </producer>
+ <producer title="Anonymous Submission" id="9" in="0" out="1516">
+  <property name="length">00:01:00:17</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/Kazam_screencast_00000.mp4</property>
+  <property name="meta.media.nb_streams">2</property>
+  <property name="meta.media.0.stream.type">video</property>
+  <property name="meta.media.0.stream.frame_rate">30</property>
+  <property name="meta.media.0.stream.sample_aspect_ratio">1</property>
+  <property name="meta.media.0.codec.width">1920</property>
+  <property name="meta.media.0.codec.height">1080</property>
+  <property name="meta.media.0.codec.rotate">0</property>
+  <property name="meta.media.0.codec.frame_rate">30</property>
+  <property name="meta.media.0.codec.pix_fmt">yuv444p</property>
+  <property name="meta.media.0.codec.sample_aspect_ratio">1</property>
+  <property name="meta.media.0.codec.colorspace">709</property>
+  <property name="meta.media.0.codec.color_trc">1</property>
+  <property name="meta.media.0.codec.name">h264</property>
+  <property name="meta.media.0.codec.long_name">H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10</property>
+  <property name="meta.media.0.codec.bit_rate">987689</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-30T09:19:21.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">VideoHandler</property>
+  <property name="meta.media.1.stream.type">audio</property>
+  <property name="meta.media.1.codec.sample_fmt">s16p</property>
+  <property name="meta.media.1.codec.sample_rate">44100</property>
+  <property name="meta.media.1.codec.channels">1</property>
+  <property name="meta.media.1.codec.name">mp3</property>
+  <property name="meta.media.1.codec.long_name">MP3 (MPEG audio layer 3)</property>
+  <property name="meta.media.1.codec.bit_rate">120080</property>
+  <property name="meta.attr.1.stream.creation_time.markup">2018-01-30T09:19:21.000000Z</property>
+  <property name="meta.attr.1.stream.language.markup">eng</property>
+  <property name="meta.attr.1.stream.handler_name.markup">SoundHandler</property>
+  <property name="meta.attr.major_brand.markup">mp42</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">mp42mp41isomiso2</property>
+  <property name="meta.attr.creation_time.markup">2018-01-30T09:19:21.000000Z</property>
+  <property name="meta.attr.encoder.markup">x264</property>
+  <property name="seekable">1</property>
+  <property name="meta.media.sample_aspect_num">1</property>
+  <property name="meta.media.sample_aspect_den">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="audio_index">1</property>
+  <property name="video_index">0</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="meta.media.frame_rate_num">30</property>
+  <property name="meta.media.frame_rate_den">1</property>
+  <property name="meta.media.colorspace">709</property>
+  <property name="meta.media.color_trc">1</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <property name="meta.media.top_field_first">0</property>
+  <property name="meta.media.progressive">1</property>
+  <property name="kdenlive:file_size">8420733</property>
+  <property name="kdenlive:file_hash">849a9650c029dfddf3c70d0f6e054e85</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer title="Anonymous Submission" id="10" in="0" out="198">
+  <property name="length">00:00:07:24</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/end.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128033</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:32:51.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:32:51.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">161171</property>
+  <property name="kdenlive:file_hash">5413d0892b1e8d548dee51da64682b0d</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="11" in="0" out="198">
+  <property name="length">00:00:07:24</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/end.m4a.161171.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:30.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">79059</property>
+  <property name="kdenlive:file_hash">b84199c69d3cced4f6a27bb961f3a163</property>
+ </producer>
+ <producer title="Anonymous Submission" id="12" in="0" out="236">
+  <property name="length">00:00:09:12</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide1.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128010</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-25T11:01:48.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-25T11:01:48.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">186111</property>
+  <property name="kdenlive:file_hash">2c8396faef8ee59124057e1963f70ce5</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="13" in="0" out="236">
+  <property name="length">00:00:09:12</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide1.m4a.186111.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:30.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">94307</property>
+  <property name="kdenlive:file_hash">f782af38734a52774517d53e04ec8aee</property>
+ </producer>
+ <producer title="Anonymous Submission" id="14" in="0" out="308">
+  <property name="length">00:00:12:09</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide2.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128016</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-25T11:03:38.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-25T11:03:38.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">232636</property>
+  <property name="kdenlive:file_hash">65f59110f0ae152ff6dac51e0ad4962a</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="15" in="0" out="308">
+  <property name="length">00:00:12:09</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide2.m4a.232636.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:30.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">122377</property>
+  <property name="kdenlive:file_hash">ef673f893495f63d104d3a63b55e926f</property>
+ </producer>
+ <producer title="Anonymous Submission" id="16" in="0" out="286">
+  <property name="length">00:00:11:12</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide3.1.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128015</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-25T11:21:45.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-25T11:21:45.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">218643</property>
+  <property name="kdenlive:file_hash">ea6d8ade0473dbeb0e63f607f4ce4d59</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="17" in="0" out="286">
+  <property name="length">00:00:11:12</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide3.1.m4a.218643.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:30.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">114087</property>
+  <property name="kdenlive:file_hash">ba31c187c91038e1f46dff98ca3bd9b5</property>
+ </producer>
+ <producer title="Anonymous Submission" id="18" in="0" out="178">
+  <property name="length">00:00:07:04</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide3.2.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128014</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-25T11:25:27.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-25T11:25:27.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">147916</property>
+  <property name="kdenlive:file_hash">dd0a29925ce354acb0033990dbdfe1df</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="19" in="0" out="178">
+  <property name="length">00:00:07:04</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide3.2.m4a.147916.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:40.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">71002</property>
+  <property name="kdenlive:file_hash">9ba4dc5ab2c6ad6b66ed60973f6e3c80</property>
+ </producer>
+ <producer title="Anonymous Submission" id="20" in="0" out="158">
+  <property name="length">00:00:06:09</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide3.3.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128007</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-25T11:26:34.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-25T11:26:34.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">135049</property>
+  <property name="kdenlive:file_hash">dd3e964f0498bc59bf837b5ab722dd00</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="21" in="0" out="158">
+  <property name="length">00:00:06:09</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide3.3.m4a.135049.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:40.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">63319</property>
+  <property name="kdenlive:file_hash">c68dea7b611670ff5275ed8625130575</property>
+ </producer>
+ <producer title="Anonymous Submission" id="22" in="0" out="437">
+  <property name="length">00:00:17:13</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide4.1.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-25T11:37:23.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-25T11:37:23.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">316949</property>
+  <property name="kdenlive:file_hash">744c6aff2e68f53246c2b46c885e9f96</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="23" in="0" out="437">
+  <property name="length">00:00:17:13</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide4.1.m4a.316949.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:39.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">173623</property>
+  <property name="kdenlive:file_hash">3fbf74f38a510c77d5b598e497ffa6e1</property>
+ </producer>
+ <producer id="24" in="0" out="413">
+  <property name="length">00:00:16:14</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide4.2.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-25T11:42:27.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-25T11:42:27.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">301444</property>
+  <property name="kdenlive:file_hash">8dfdbfa789c52829fdf8c22ad08aaf1a</property>
+ </producer>
+ <producer title="Anonymous Submission" id="25" in="0" out="413">
+  <property name="length">00:00:16:14</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide4.2.m4a.301444.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:39.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">164325</property>
+  <property name="kdenlive:file_hash">6ecf4dc618d414e7eb038a4593e3901f</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer title="Anonymous Submission" id="26" in="0" out="362">
+  <property name="length">00:00:14:13</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide4.3.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128001</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:03:01.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:03:01.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">268164</property>
+  <property name="kdenlive:file_hash">025df1e60d553ff6ebcdf6fb98b44dd0</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="27" in="0" out="362">
+  <property name="length">00:00:14:13</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide4.3.m4a.268164.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:36.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">144151</property>
+  <property name="kdenlive:file_hash">7db1714256b3903f68d63f5f442eb9e0</property>
+ </producer>
+ <producer id="28" in="0" out="581">
+  <property name="length">00:00:23:07</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide4.4.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:09:35.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:09:35.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">410733</property>
+  <property name="kdenlive:file_hash">6ece27ac5c071498d2c6dadef291a4a3</property>
+ </producer>
+ <producer title="Anonymous Submission" id="29" in="0" out="581">
+  <property name="length">00:00:23:07</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide4.4.m4a.410733.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:35.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">230579</property>
+  <property name="kdenlive:file_hash">7eb147f8d336f9415ff271e881cb73e1</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer title="Anonymous Submission" id="30" in="0" out="611">
+  <property name="length">00:00:24:12</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide5.1.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128009</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:13:51.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:13:51.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">430428</property>
+  <property name="kdenlive:file_hash">3096a31e60b399bb54a4512a82847f1a</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="31" in="0" out="611">
+  <property name="length">00:00:24:12</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide5.1.m4a.430428.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:35.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">242657</property>
+  <property name="kdenlive:file_hash">989ccff6766815131b4931ae6ad7804c</property>
+ </producer>
+ <producer id="32" in="0" out="308">
+  <property name="length">00:00:12:09</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide5.2.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:15:13.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:15:13.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">232616</property>
+  <property name="kdenlive:file_hash">0eb82e8b3a06327f9d69ce98ddb2ccb0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="33" in="0" out="308">
+  <property name="length">00:00:12:09</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide5.2.m4a.232616.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:35.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">122377</property>
+  <property name="kdenlive:file_hash">ba40859b2964896dd3262bfc31bd4800</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer title="Anonymous Submission" id="34" in="0" out="301">
+  <property name="length">00:00:12:02</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide5.3.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:16:17.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:16:17.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">228453</property>
+  <property name="kdenlive:file_hash">2f1c29870b9f96abe2fdafe1b0a834bf</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="35" in="0" out="301">
+  <property name="length">00:00:12:02</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide5.3.m4a.228453.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:34.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">120017</property>
+  <property name="kdenlive:file_hash">ad0ca73c2ff6e8bf5b07e0ac50b70c05</property>
+ </producer>
+ <producer id="36" in="0" out="267">
+  <property name="length">00:00:10:18</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide5.4.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128013</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:17:36.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:17:36.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">205780</property>
+  <property name="kdenlive:file_hash">b8d08930420b5115ba95bc2840df98e7</property>
+ </producer>
+ <producer title="Anonymous Submission" id="37" in="0" out="267">
+  <property name="length">00:00:10:18</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide5.4.m4a.205780.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:33.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">106167</property>
+  <property name="kdenlive:file_hash">55e01fde84e1090230e7ece12ecaf8cc</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer title="Anonymous Submission" id="38" in="0" out="100">
+  <property name="length">00:00:04:01</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide6.1.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128048</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:22:12.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:22:12.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">97252</property>
+  <property name="kdenlive:file_hash">9ddf49a5058a857357acb4db67baa9a6</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="39" in="0" out="100">
+  <property name="length">00:00:04:01</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide6.1.m4a.97252.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:31.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">40503</property>
+  <property name="kdenlive:file_hash">e61bded6db14f77d8dbfa2ca14f9d451</property>
+ </producer>
+ <producer title="Anonymous Submission" id="40" in="0" out="257">
+  <property name="length">00:00:10:08</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide6.2.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:22:50.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:22:50.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">199334</property>
+  <property name="kdenlive:file_hash">2960f8752a7df7f69c7c4f1f155b573a</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="41" in="0" out="257">
+  <property name="length">00:00:10:08</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide6.2.m4a.199334.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:32.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">102206</property>
+  <property name="kdenlive:file_hash">8bb6336af4caf8be16a7545fa97e68d4</property>
+ </producer>
+ <producer title="Anonymous Submission" id="42" in="0" out="420">
+  <property name="length">00:00:16:21</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide6.3.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:24:55.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:24:55.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">305978</property>
+  <property name="kdenlive:file_hash">a7aaed6c58c114b8c4716464b8f82038</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="43" in="0" out="420">
+  <property name="length">00:00:16:21</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide6.3.m4a.305978.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:32.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">167083</property>
+  <property name="kdenlive:file_hash">d8b918fd3912632bf36efa476b0e3da2</property>
+ </producer>
+ <producer title="Anonymous Submission" id="44" in="0" out="241">
+  <property name="length">00:00:09:17</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide6.4.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128013</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:25:56.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:25:56.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">188759</property>
+  <property name="kdenlive:file_hash">a913918cd316fb75ff2af524f655dc33</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="45" in="0" out="240">
+  <property name="length">00:00:09:16</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide6.4.m4a.188759.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:32.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">95883</property>
+  <property name="kdenlive:file_hash">20f4225cb0fc927c60d10993038d7577</property>
+ </producer>
+ <producer title="Anonymous Submission" id="46" in="0" out="96">
+  <property name="length">00:00:03:22</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide7.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:26:58.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:26:58.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">94583</property>
+  <property name="kdenlive:file_hash">e4e0e0ec667ca6054f6f5a794f0998f0</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="47" in="0" out="96">
+  <property name="length">00:00:03:22</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide7.m4a.94583.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:31.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">38915</property>
+  <property name="kdenlive:file_hash">710dcbec7238c963fa81a2284029ab0a</property>
+ </producer>
+ <producer title="Anonymous Submission" id="48" in="0" out="750">
+  <property name="length">00:00:30:01</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide8.m4a</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:30:43.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:30:43.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">520406</property>
+  <property name="kdenlive:file_hash">b6ea5c6bb41be1d0dd055272583825f1</property>
+  <property name="global_feed">1</property>
+ </producer>
+ <producer id="49" in="0" out="750">
+  <property name="length">00:00:30:01</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide8.m4a.520406.proxy.mkv</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:32.000000Z</property>
+  <property name="seekable">1</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">297249</property>
+  <property name="kdenlive:file_hash">f01677bce2f00b4a16a521fb585f8f62</property>
+ </producer>
+ <playlist id="main bin">
+  <property name="kdenlive:docproperties.audiotargettrack">-1</property>
+  <property name="kdenlive:docproperties.decimalPoint">.</property>
+  <property name="kdenlive:docproperties.dirtypreviewchunks"/>
+  <property name="kdenlive:docproperties.disablepreview">0</property>
+  <property name="kdenlive:docproperties.documentid">1517308249558</property>
+  <property name="kdenlive:docproperties.enableproxy">0</property>
+  <property name="kdenlive:docproperties.generateimageproxy">0</property>
+  <property name="kdenlive:docproperties.generateproxy">0</property>
+  <property name="kdenlive:docproperties.kdenliveversion">17.12.1</property>
+  <property name="kdenlive:docproperties.position">7924</property>
+  <property name="kdenlive:docproperties.previewchunks"/>
+  <property name="kdenlive:docproperties.previewextension"/>
+  <property name="kdenlive:docproperties.previewparameters"/>
+  <property name="kdenlive:docproperties.profile">atsc_1080p_25</property>
+  <property name="kdenlive:docproperties.proxyextension">mkv</property>
+  <property name="kdenlive:docproperties.proxyimageminsize">2000</property>
+  <property name="kdenlive:docproperties.proxyminsize">1000</property>
+  <property name="kdenlive:docproperties.proxyparams">-vf yadif,scale=960:-2 -qscale 3 -vcodec mjpeg -acodec pcm_s16le</property>
+  <property name="kdenlive:docproperties.version">0.96</property>
+  <property name="kdenlive:docproperties.verticalzoom">1</property>
+  <property name="kdenlive:docproperties.videotargettrack">2</property>
+  <property name="kdenlive:docproperties.zonein">0</property>
+  <property name="kdenlive:docproperties.zoneout">100</property>
+  <property name="kdenlive:docproperties.zoom">7</property>
+  <property name="kdenlive:documentnotes"/>
+  <property name="kdenlive:clipgroups"/>
+  <property name="kdenlive:docproperties.renderaudioquality">160</property>
+  <property name="kdenlive:docproperties.rendercategory">Generic (HD for web, mobile devices...)</property>
+  <property name="kdenlive:docproperties.renderendguide">-1</property>
+  <property name="kdenlive:docproperties.renderexportaudio">0</property>
+  <property name="kdenlive:docproperties.renderguide">0</property>
+  <property name="kdenlive:docproperties.renderplay">0</property>
+  <property name="kdenlive:docproperties.renderprofile">MP4 - the dominating format (H264/AAC)</property>
+  <property name="kdenlive:docproperties.renderquality">23</property>
+  <property name="kdenlive:docproperties.renderratio">1</property>
+  <property name="kdenlive:docproperties.renderrescale">0</property>
+  <property name="kdenlive:docproperties.renderrescaleheight">180</property>
+  <property name="kdenlive:docproperties.renderrescalewidth">320</property>
+  <property name="kdenlive:docproperties.renderscanning">0</property>
+  <property name="kdenlive:docproperties.renderspeed">2</property>
+  <property name="kdenlive:docproperties.renderstartguide">-1</property>
+  <property name="kdenlive:docproperties.rendertcoverlay">0</property>
+  <property name="kdenlive:docproperties.rendertctype">0</property>
+  <property name="kdenlive:docproperties.rendertwopass">0</property>
+  <property name="kdenlive:docproperties.renderurl">alpha_long.mp4</property>
+  <property name="kdenlive:docproperties.renderzone">0</property>
+  <property name="xml_retain">1</property>
+  <entry producer="1" in="0" out="124"/>
+  <entry producer="2" in="0" out="124"/>
+  <entry producer="3" in="0" out="124"/>
+  <entry producer="4" in="0" out="124"/>
+  <entry producer="5" in="0" out="124"/>
+  <entry producer="6" in="0" out="124"/>
+  <entry producer="7" in="0" out="124"/>
+  <entry producer="8" in="0" out="124"/>
+  <entry producer="9" in="0" out="1516"/>
+  <entry producer="10" in="0" out="198"/>
+  <entry producer="11" in="0" out="198"/>
+  <entry producer="12" in="0" out="236"/>
+  <entry producer="13" in="0" out="236"/>
+  <entry producer="14" in="0" out="308"/>
+  <entry producer="15" in="0" out="308"/>
+  <entry producer="16" in="0" out="286"/>
+  <entry producer="17" in="0" out="286"/>
+  <entry producer="18" in="0" out="178"/>
+  <entry producer="19" in="0" out="178"/>
+  <entry producer="20" in="0" out="158"/>
+  <entry producer="21" in="0" out="158"/>
+  <entry producer="22" in="0" out="437"/>
+  <entry producer="23" in="0" out="437"/>
+  <entry producer="24" in="0" out="413"/>
+  <entry producer="25" in="0" out="413"/>
+  <entry producer="26" in="0" out="362"/>
+  <entry producer="27" in="0" out="362"/>
+  <entry producer="28" in="0" out="581"/>
+  <entry producer="29" in="0" out="581"/>
+  <entry producer="30" in="0" out="611"/>
+  <entry producer="31" in="0" out="611"/>
+  <entry producer="32" in="0" out="308"/>
+  <entry producer="33" in="0" out="308"/>
+  <entry producer="34" in="0" out="301"/>
+  <entry producer="35" in="0" out="301"/>
+  <entry producer="36" in="0" out="267"/>
+  <entry producer="37" in="0" out="267"/>
+  <entry producer="38" in="0" out="100"/>
+  <entry producer="39" in="0" out="100"/>
+  <entry producer="40" in="0" out="257"/>
+  <entry producer="41" in="0" out="257"/>
+  <entry producer="42" in="0" out="420"/>
+  <entry producer="43" in="0" out="420"/>
+  <entry producer="44" in="0" out="241"/>
+  <entry producer="45" in="0" out="240"/>
+  <entry producer="46" in="0" out="96"/>
+  <entry producer="47" in="0" out="96"/>
+  <entry producer="48" in="0" out="750"/>
+  <entry producer="49" in="0" out="750"/>
+ </playlist>
+ <producer id="black" in="0" out="500">
+  <property name="length">15000</property>
+  <property name="eof">pause</property>
+  <property name="resource">black</property>
+  <property name="aspect_ratio">0</property>
+  <property name="mlt_service">colour</property>
+  <property name="set.test_audio">0</property>
+ </producer>
+ <playlist id="black_track">
+  <entry producer="black" in="0" out="8045"/>
+ </playlist>
+ <producer title="Anonymous Submission" id="12_playlist1" in="0" out="236">
+  <property name="length">00:00:09:12</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide1.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">186111</property>
+  <property name="kdenlive:file_hash">2c8396faef8ee59124057e1963f70ce5</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+ </producer>
+ <producer title="Anonymous Submission" id="14_playlist1" in="0" out="308">
+  <property name="length">00:00:12:09</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide2.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">232636</property>
+  <property name="kdenlive:file_hash">65f59110f0ae152ff6dac51e0ad4962a</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128016</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-25T11:03:38.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-25T11:03:38.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="16_playlist1" in="0" out="286">
+  <property name="length">00:00:11:12</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide3.1.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">218643</property>
+  <property name="kdenlive:file_hash">ea6d8ade0473dbeb0e63f607f4ce4d59</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128015</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-25T11:21:45.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-25T11:21:45.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="18_playlist1" in="0" out="178">
+  <property name="length">00:00:07:04</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide3.2.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">147916</property>
+  <property name="kdenlive:file_hash">dd0a29925ce354acb0033990dbdfe1df</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128014</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-25T11:25:27.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-25T11:25:27.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="20_playlist1" in="0" out="158">
+  <property name="length">00:00:06:09</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide3.3.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">135049</property>
+  <property name="kdenlive:file_hash">dd3e964f0498bc59bf837b5ab722dd00</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128007</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-25T11:26:34.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-25T11:26:34.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="22_playlist1" in="0" out="437">
+  <property name="length">00:00:17:13</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide4.1.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">316949</property>
+  <property name="kdenlive:file_hash">744c6aff2e68f53246c2b46c885e9f96</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-25T11:37:23.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-25T11:37:23.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="25_playlist1" in="0" out="413">
+  <property name="length">00:00:16:14</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide4.2.m4a.301444.proxy.mkv</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">164325</property>
+  <property name="kdenlive:file_hash">6ecf4dc618d414e7eb038a4593e3901f</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:39.000000Z</property>
+ </producer>
+ <producer title="Anonymous Submission" id="26_playlist1" in="0" out="362">
+  <property name="length">00:00:14:13</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide4.3.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">268164</property>
+  <property name="kdenlive:file_hash">025df1e60d553ff6ebcdf6fb98b44dd0</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128001</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:03:01.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:03:01.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="29_playlist1" in="0" out="581">
+  <property name="length">00:00:23:07</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide4.4.m4a.410733.proxy.mkv</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">230579</property>
+  <property name="kdenlive:file_hash">7eb147f8d336f9415ff271e881cb73e1</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:35.000000Z</property>
+ </producer>
+ <producer title="Anonymous Submission" id="30_playlist1" in="0" out="611">
+  <property name="length">00:00:24:12</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide5.1.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">430428</property>
+  <property name="kdenlive:file_hash">3096a31e60b399bb54a4512a82847f1a</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128009</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:13:51.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:13:51.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="33_playlist1" in="0" out="308">
+  <property name="length">00:00:12:09</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide5.2.m4a.232616.proxy.mkv</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">122377</property>
+  <property name="kdenlive:file_hash">ba40859b2964896dd3262bfc31bd4800</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:35.000000Z</property>
+ </producer>
+ <producer title="Anonymous Submission" id="34_playlist1" in="0" out="301">
+  <property name="length">00:00:12:02</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide5.3.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">228453</property>
+  <property name="kdenlive:file_hash">2f1c29870b9f96abe2fdafe1b0a834bf</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:16:17.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:16:17.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="37_playlist1" in="0" out="267">
+  <property name="length">00:00:10:18</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide5.4.m4a.205780.proxy.mkv</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">106167</property>
+  <property name="kdenlive:file_hash">55e01fde84e1090230e7ece12ecaf8cc</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">48000</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">opus</property>
+  <property name="meta.media.0.codec.long_name">Opus</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Audio</property>
+  <property name="meta.attr.0.stream.BITSPS.markup">64000</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.12.4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T18:11:33.000000Z</property>
+ </producer>
+ <producer title="Anonymous Submission" id="38_playlist1" in="0" out="100">
+  <property name="length">00:00:04:01</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide6.1.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">97252</property>
+  <property name="kdenlive:file_hash">9ddf49a5058a857357acb4db67baa9a6</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+ </producer>
+ <producer title="Anonymous Submission" id="40_playlist1" in="0" out="257">
+  <property name="length">00:00:10:08</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide6.2.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">199334</property>
+  <property name="kdenlive:file_hash">2960f8752a7df7f69c7c4f1f155b573a</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:22:50.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:22:50.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="42_playlist1" in="0" out="420">
+  <property name="length">00:00:16:21</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide6.3.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">305978</property>
+  <property name="kdenlive:file_hash">a7aaed6c58c114b8c4716464b8f82038</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:24:55.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:24:55.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="44_playlist1" in="0" out="241">
+  <property name="length">00:00:09:17</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide6.4.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">188759</property>
+  <property name="kdenlive:file_hash">a913918cd316fb75ff2af524f655dc33</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128013</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:25:56.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:25:56.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="46_playlist1" in="0" out="96">
+  <property name="length">00:00:03:22</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide7.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">94583</property>
+  <property name="kdenlive:file_hash">e4e0e0ec667ca6054f6f5a794f0998f0</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:26:58.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:26:58.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="48_playlist1" in="0" out="750">
+  <property name="length">00:00:30:01</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/slide8.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">520406</property>
+  <property name="kdenlive:file_hash">b6ea5c6bb41be1d0dd055272583825f1</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128000</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:30:43.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:30:43.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <producer title="Anonymous Submission" id="10_playlist1" in="0" out="198">
+  <property name="length">00:00:07:24</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/projectvideo/end.m4a</property>
+  <property name="audio_index">0</property>
+  <property name="video_index">-1</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">161171</property>
+  <property name="kdenlive:file_hash">5413d0892b1e8d548dee51da64682b0d</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">audio</property>
+  <property name="meta.media.0.codec.sample_fmt">fltp</property>
+  <property name="meta.media.0.codec.sample_rate">44100</property>
+  <property name="meta.media.0.codec.channels">1</property>
+  <property name="meta.media.0.codec.name">aac</property>
+  <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+  <property name="meta.media.0.codec.bit_rate">128033</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-28T09:32:51.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+  <property name="meta.attr.major_brand.markup">3gp4</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">isom3gp4</property>
+  <property name="meta.attr.creation_time.markup">2018-01-28T09:32:51.000000Z</property>
+  <property name="meta.attr.com.android.version.markup">7.0</property>
+ </producer>
+ <playlist id="playlist1">
+  <property name="kdenlive:audio_track">1</property>
+  <property name="kdenlive:track_name">Audio 1</property>
+  <entry producer="12_playlist1" in="0" out="236"/>
+  <entry producer="14_playlist1" in="0" out="308"/>
+  <entry producer="16_playlist1" in="0" out="286"/>
+  <entry producer="18_playlist1" in="0" out="178"/>
+  <entry producer="20_playlist1" in="0" out="158"/>
+  <entry producer="22_playlist1" in="0" out="437"/>
+  <entry producer="25_playlist1" in="0" out="413"/>
+  <entry producer="26_playlist1" in="0" out="362"/>
+  <entry producer="29_playlist1" in="0" out="581"/>
+  <entry producer="30_playlist1" in="0" out="611"/>
+  <entry producer="33_playlist1" in="0" out="308"/>
+  <entry producer="34_playlist1" in="0" out="301"/>
+  <entry producer="37_playlist1" in="0" out="267"/>
+  <entry producer="38_playlist1" in="0" out="100"/>
+  <entry producer="40_playlist1" in="0" out="257"/>
+  <entry producer="42_playlist1" in="0" out="420"/>
+  <entry producer="44_playlist1" in="0" out="241"/>
+  <entry producer="46_playlist1" in="0" out="96"/>
+  <blank length="1517"/>
+  <entry producer="48_playlist1" in="0" out="750"/>
+  <entry producer="10_playlist1" in="0" out="198"/>
+ </playlist>
+ <producer title="Anonymous Submission" id="9_playlist3" in="0" out="1516">
+  <property name="length">00:01:00:17</property>
+  <property name="eof">pause</property>
+  <property name="resource">sub sources/Kazam_screencast_00000.mp4</property>
+  <property name="audio_index">1</property>
+  <property name="video_index">0</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="seekable">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:file_size">8420733</property>
+  <property name="kdenlive:file_hash">849a9650c029dfddf3c70d0f6e054e85</property>
+  <property name="global_feed">1</property>
+  <property name="xml">was here</property>
+  <property name="meta.media.nb_streams">2</property>
+  <property name="meta.media.0.stream.type">video</property>
+  <property name="meta.media.0.stream.frame_rate">30</property>
+  <property name="meta.media.0.stream.sample_aspect_ratio">1</property>
+  <property name="meta.media.0.codec.width">1920</property>
+  <property name="meta.media.0.codec.height">1080</property>
+  <property name="meta.media.0.codec.rotate">0</property>
+  <property name="meta.media.0.codec.frame_rate">30</property>
+  <property name="meta.media.0.codec.pix_fmt">yuv444p</property>
+  <property name="meta.media.0.codec.sample_aspect_ratio">1</property>
+  <property name="meta.media.0.codec.colorspace">709</property>
+  <property name="meta.media.0.codec.color_trc">1</property>
+  <property name="meta.media.0.codec.name">h264</property>
+  <property name="meta.media.0.codec.long_name">H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10</property>
+  <property name="meta.media.0.codec.bit_rate">987689</property>
+  <property name="meta.attr.0.stream.creation_time.markup">2018-01-30T09:19:21.000000Z</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.handler_name.markup">VideoHandler</property>
+  <property name="meta.media.1.stream.type">audio</property>
+  <property name="meta.media.1.codec.sample_fmt">s16p</property>
+  <property name="meta.media.1.codec.sample_rate">44100</property>
+  <property name="meta.media.1.codec.channels">1</property>
+  <property name="meta.media.1.codec.name">mp3</property>
+  <property name="meta.media.1.codec.long_name">MP3 (MPEG audio layer 3)</property>
+  <property name="meta.media.1.codec.bit_rate">120080</property>
+  <property name="meta.attr.1.stream.creation_time.markup">2018-01-30T09:19:21.000000Z</property>
+  <property name="meta.attr.1.stream.language.markup">eng</property>
+  <property name="meta.attr.1.stream.handler_name.markup">SoundHandler</property>
+  <property name="meta.attr.major_brand.markup">mp42</property>
+  <property name="meta.attr.minor_version.markup">0</property>
+  <property name="meta.attr.compatible_brands.markup">mp42mp41isomiso2</property>
+  <property name="meta.attr.creation_time.markup">2018-01-30T09:19:21.000000Z</property>
+  <property name="meta.attr.encoder.markup">x264</property>
+  <property name="meta.media.sample_aspect_num">1</property>
+  <property name="meta.media.sample_aspect_den">1</property>
+  <property name="meta.media.frame_rate_num">30</property>
+  <property name="meta.media.frame_rate_den">1</property>
+  <property name="meta.media.colorspace">709</property>
+  <property name="meta.media.color_trc">1</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <property name="meta.media.top_field_first">0</property>
+  <property name="meta.media.progressive">1</property>
+ </producer>
+ <playlist id="playlist3">
+  <property name="kdenlive:track_name">Video 1</property>
+  <entry producer="1" in="0" out="236"/>
+  <entry producer="2" in="0" out="308"/>
+  <entry producer="3" in="0" out="624"/>
+  <entry producer="4" in="0" out="1796"/>
+  <entry producer="5" in="0" out="1490"/>
+  <entry producer="6" in="0" out="1021"/>
+  <entry producer="7" in="0" out="96"/>
+  <entry producer="9_playlist3" in="0" out="1516"/>
+  <entry producer="8" in="0" out="949"/>
+ </playlist>
+ <tractor title="Anonymous Submission" id="maintractor" global_feed="1" in="0" out="8045">
+  <track producer="black_track"/>
+  <track hide="video" producer="playlist1"/>
+  <track producer="playlist3"/>
+  <transition id="transition0">
+   <property name="a_track">0</property>
+   <property name="b_track">1</property>
+   <property name="mlt_service">mix</property>
+   <property name="always_active">1</property>
+   <property name="combine">1</property>
+   <property name="internal_added">237</property>
+  </transition>
+  <transition id="transition1">
+   <property name="a_track">0</property>
+   <property name="b_track">2</property>
+   <property name="mlt_service">mix</property>
+   <property name="always_active">1</property>
+   <property name="combine">1</property>
+   <property name="internal_added">237</property>
+  </transition>
+  <transition id="transition2">
+   <property name="a_track">0</property>
+   <property name="b_track">2</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="always_active">1</property>
+   <property name="internal_added">237</property>
+  </transition>
+ </tractor>
+</mlt>
