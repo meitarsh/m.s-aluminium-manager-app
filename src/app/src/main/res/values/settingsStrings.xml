@@ -93,5 +93,6 @@
     <string name="default_port_num">1433</string>
     <string name="vpn_port_default">10433</string>
     <string name="windows_auth_title">אימות באמצעות ווינדוז</string>
+    <string name="vpn_preshared_key_itle">vpn preshared key</string>
 
 </resources>

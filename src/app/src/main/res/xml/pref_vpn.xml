@@ -22,6 +22,12 @@
         android:title="@string/vpn_port_title" />
     <EditTextPreference
         android:dependency="@string/vpn_connect_key"
+        android:key="@string/vpn_psk"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/vpn_preshared_key_itle" />
+    <EditTextPreference
+        android:dependency="@string/vpn_connect_key"
         android:key="@string/vpn_username"
         android:selectAllOnFocus="true"
         android:singleLine="true"

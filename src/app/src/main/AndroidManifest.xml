@@ -141,7 +141,7 @@
             tools:ignore="ExportedService" />
 
 
-        <service android:name=".services.vpn_connection"
+        <service android:name=".services.VPN.vpn_connection"
             android:permission="android.permission.BIND_VPN_SERVICE">
             <intent-filter>
                 <action android:name="android.net.VpnService"/>

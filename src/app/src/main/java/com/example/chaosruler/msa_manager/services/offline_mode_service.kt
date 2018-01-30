@@ -208,7 +208,7 @@ class offline_mode_service : Service(){
         private fun grab_time(context: Context) {
             time = ctx.resources.getInteger(R.integer.millis_in_sec).toLong()
             val sec = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.sync_frequency), context.resources.getInteger(R.integer.time_to_sync_in_sec).toString()).toLong()
-            time *=sec/5
+            time *=sec
         }
 
         /**

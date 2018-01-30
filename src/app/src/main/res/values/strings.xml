@@ -3,5 +3,9 @@
     <string name="app_title">מנהל משאבי הארגון מ.ש אלומיניום</string>
 
 
-
+    <!-- Messages -->
+    <string name="disconnected">מנותק</string>
+    <string name="connected">מחובר</string>
+    <string name="disconnecting">מתנתק</string>
+    <string name="connecting">מתחבר</string>
 </resources>

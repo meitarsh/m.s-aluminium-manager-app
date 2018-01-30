@@ -126,5 +126,6 @@
     <string name="table_chooser_inventory">טבלת מוצרים</string>
     <string name="activity_user_shane_sisma">שנה סיסמה</string>
     <string name="activity_users_mehak">מחק</string>
+    <string name="VPN_session_title">M.S alum App VPN Session</string>
 
 </resources>

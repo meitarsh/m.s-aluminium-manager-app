@@ -197,6 +197,9 @@ class database_helper_test {
             Log.d("user database tests", "delete #$test_num$amount_str: fails\n ")
         }
 
+        test_num++
+
+        Log.d("databasse tests","Done completing test $test_num of $amount_of_tests")
     }
 
 }

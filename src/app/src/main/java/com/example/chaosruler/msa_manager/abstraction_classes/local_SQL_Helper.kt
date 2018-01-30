@@ -300,6 +300,9 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
 
     /**
      * Inserts single instance of row into the table
+     * before inserting we check that a data that is exactly like input doesn't exist already on the database
+     * on case it does, we ignore adding and return false
+     * on conflict of data, we choose to replace
      * @author Chaosruler972
      * @param db an instance of the database we are going to work with
      * @param items represents a row that we want to add, key = value name, value = the data itself
@@ -308,8 +311,29 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
     private fun add_single_data(db:SQLiteDatabase,items:HashMap<String,String>):Boolean
     {
         val values = ContentValues()
+        var columns_vector = ""
+        val data_vector:Vector<String> = Vector()
+        var counter = 0
         for(item in items)
-            values.put(item.key, String(global_variables_dataclass.xorWithKey(item.value.toByteArray(Charset.forName("UTF-8")),global_variables_dataclass.get_device_id(context).toByteArray(Charset.forName("UTF-8")),false,context) ) )
+        {
+            counter++
+            values.put(item.key, String(global_variables_dataclass.xorWithKey(item.value.toByteArray(Charset.forName("UTF-8")), global_variables_dataclass.get_device_id(context).toByteArray(Charset.forName("UTF-8")), false, context)))
+            columns_vector += item.key + "=? "
+            if(counter != items.size)
+                columns_vector += " AND "
+            data_vector.addElement(values.getAsString(item.key))
+        }
+        val exist_data = db.query(TABLE_NAME,null,columns_vector,data_vector.toTypedArray(),null,null,null)
+        if(exist_data.count != 0)
+        {
+            Log.d("SQL","Filtered out unneeded add query")
+            return false
+        }
+        else
+        {
+            Log.d("SQL","Unfiletered, we found ${exist_data.count} Elements!")
+        }
+        exist_data.close()
         if(db.insertWithOnConflict(TABLE_NAME,null,values,SQLiteDatabase.CONFLICT_REPLACE)>0)
             return true
         return false

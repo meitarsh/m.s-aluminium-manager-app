@@ -14,6 +14,7 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 import com.example.chaosruler.msa_manager.activies.LoginActivity
+import com.example.chaosruler.msa_manager.services.encryption
 import com.example.chaosruler.msa_manager.services.themer
 
 
@@ -262,7 +263,24 @@ class SettingsActivity : AppCompatPreferenceActivity()
      * @constructor constructs fragment for data VPN pereference
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    class VPNSettingsFragment : PreferenceFragment() {
+    class VPNSettingsFragment : PreferenceFragment(),Preference.OnPreferenceChangeListener {
+
+        override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean
+        {
+            if(preference!=null && newValue!=null)
+            {
+                preference.onPreferenceChangeListener = null
+                val key = preference.key
+                val manager =  PreferenceManager.getDefaultSharedPreferences(context).edit()
+                encryption.generate_key(context)
+                manager.putString(key,String(encryption.encrypt(newValue.toString().toByteArray())))
+                manager.apply()
+                preference.onPreferenceChangeListener = this
+                return true
+            }
+            return false
+        }
+
         /**
          * Part of the activity lifecycle to generate summary to values for each preference
          * @author Chaosruler972
@@ -280,8 +298,26 @@ class SettingsActivity : AppCompatPreferenceActivity()
             bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_connect_key)), activity.baseContext)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_ip_key)), activity.baseContext)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_port)), activity.baseContext)
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_psk)), activity.baseContext)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_username)), activity.baseContext)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.vpn_password)),activity.baseContext)
+
+            /**
+             * Upon decision to use implented VPN, this is a secure way to store VPN data
+             */
+            /*
+            val vpn_ip_pref = findPreference(getString(R.string.vpn_ip_key))
+            val vpn_port_pref = findPreference(getString(R.string.vpn_port))
+            val vpn_psk_pref = findPreference(getString(R.string.vpn_psk))
+            val vpn_username_pref = findPreference(getString(R.string.vpn_username))
+            val vpn_password_pref = findPreference(getString(R.string.vpn_password))
+
+            vpn_ip_pref.onPreferenceChangeListener = this
+            vpn_port_pref.onPreferenceChangeListener = this
+            vpn_psk_pref.onPreferenceChangeListener = this
+            vpn_username_pref.onPreferenceChangeListener = this
+            vpn_password_pref.onPreferenceChangeListener = this
+            */
         }
         /**
          *  on option selected event

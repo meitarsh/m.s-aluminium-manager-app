@@ -5,6 +5,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
+import android.app.Activity
 import android.app.LoaderManager.LoaderCallbacks
 import android.content.CursorLoader
 import android.content.Intent
@@ -34,7 +35,7 @@ import com.example.chaosruler.msa_manager.object_types.User
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.services.themer
-import com.example.chaosruler.msa_manager.services.vpn_connection
+import com.example.chaosruler.msa_manager.services.VPN.vpn_connection
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
 
@@ -437,6 +438,24 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         //val IS_PRIMARY = 1
     }
 
+
+    /**
+     * Marks that VPN is already conifured
+     * @author Chaosruler972
+     */
+    fun mark_vpn_ready()
+    {
+        onActivityResult(resources.getInteger(R.integer.VPN_request_code), Activity.RESULT_OK,null)
+    }
+
+
+    /**
+     * Creates a service intent of the VPN to work with
+     * @author Chaosruler972
+     */
+    private fun getServiceIntent(): Intent {
+        return Intent(this, vpn_connection::class.java)
+    }
     /**
      * case we want to load VPN srvice, this is a result activity that will load that activity
      * into android settings, we might not need that if we remove VPN requirements
@@ -447,11 +466,12 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when(resultCode)
+        when(requestCode)
         {
             resources.getInteger(R.integer.VPN_request_code)->
             {
-                startService(Intent(this,vpn_connection::class.java))
+                if(resultCode == Activity.RESULT_OK)
+                    startService(getServiceIntent().setAction("com.example.chaosruler.msa_manager.START"))
             }
             else->
             {
@@ -490,11 +510,6 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         {
 
 
-            vpn_connection.init_vars(baseContext)
-            if(vpn_connection.check_if_need_to_connect(baseContext))
-            {
-                vpn_connection.connect(baseContext)
-            }
             remote_SQL_Helper.Connect(baseContext, mEmail, mPassword,this@LoginActivity)
             val gui_mode_key: Boolean = PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key), false)
             val result =

@@ -1,14 +1,15 @@
 package com.example.chaosruler.msa_manager.services
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
+import android.net.VpnService
 import android.os.AsyncTask
 import android.preference.PreferenceManager
 import android.util.Log
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.activies.LoginActivity
+import com.example.chaosruler.msa_manager.services.VPN.vpn_connection
 import java.sql.*
-
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -33,7 +34,7 @@ object remote_SQL_Helper {
      * the last calling activity that needs that login, usually MainActivity should hold this
      * @author Chaosruler972
      */
-    lateinit var act: Activity
+    private lateinit var act: LoginActivity
     /**
      * The login username
      * @author Chaosruler972
@@ -98,26 +99,27 @@ object remote_SQL_Helper {
      * @param pass the password of that username
      * @return if connection was successfull
      */
-    fun Connect(con: Context, user: String, pass: String, act: Activity): Boolean {
+    fun Connect(con: Context, user: String, pass: String, act: LoginActivity): Boolean {
         if (isvalid)
             return true
         context = con
         username = user
         password = pass
         this.act = act
-        /*
-        vpn_connection.init_vars(con)
+
         if(vpn_connection.check_if_need_to_connect(con))
         {
-            vpn_connection().prepare(act)
-            if(!vpn_connection.connect(con))
-            {
-                Log.d("Connection",con.getString(R.string.unable_to_connect_vpn))
-                exception = SQLException()
-                return false
-            }
+          val i = VpnService.prepare(act)
+          if(i == null)
+          {
+            act.startActivityForResult(i,act.resources.getInteger(R.integer.VPN_request_code))
+          }
+          else
+          {
+              act.mark_vpn_ready()
+          }
         }
-        */
+
         if(connection!=null)
             connection!!.close()
         val ip: String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP), context.getString(R.string.REMOTE_IP_ADDR))
@@ -606,3 +608,4 @@ object remote_SQL_Helper {
 
 
 }
+
