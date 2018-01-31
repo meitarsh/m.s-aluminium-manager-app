@@ -45,6 +45,22 @@ Zeev Melumuian
 | our written API! | [![Application API](https://img.shields.io/badge/Application-API-blue.svg)](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/API) |
 | our code documentation | [![Code Doc](https://img.shields.io/badge/Code-doc-blue.svg)](http://htmlpreview.github.io/?https://github.com/meitarsh/m.s-aluminium-manager-app/blob/master/docs/javadoc/index.html) |
 
+## Dependecies
+   * Android SDK (or Android Studio) - as an Android Application
+   * Gradle tool - to build the application, Gradle tool provides us a scripted makefile and build tools
+   * Kotlin runtime- Is responsible of exporting bytecode from our kotlin code to the ART
+      	Along with:
+	* Kotlin stdlib
+	* Kotlin android extension
+	* Kotlin Android extensions
+      
+   * JUnit - for basic java unit testing
+   * Espresso - extension for testing from JUnit to provide Android envoirment of unit testing
+   * JTDS - the JDBC (Java Database driver) we use to communicate with MSSQL server
+   * scytale - simplifies encryption and key storage using application sign to hide the key
+   * Dokka - JDOC autogeneration
+	
+
 ## [Software Design](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Software-Design)
 
 ## [Iterations](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Iterations)
