@@ -46,19 +46,17 @@ Zeev Melumuian
 | our code documentation | [![Code Doc](https://img.shields.io/badge/Code-doc-blue.svg)](http://htmlpreview.github.io/?https://github.com/meitarsh/m.s-aluminium-manager-app/blob/master/docs/javadoc/index.html) |
 
 ## Dependecies
-   * Android SDK (or Android Studio) - as an Android Application
-   * Gradle tool - to build the application, Gradle tool provides us a scripted makefile and build tools
-   * Kotlin runtime- Is responsible of exporting bytecode from our kotlin code to the ART
+   * [Android SDK](https://developer.android.com/index.html) - as an Android Application, we muse use that.
+   * [Gradle build tool](https://gradle.org/) - to build the application, Gradle tool provides us a scripted makefile and build tools.
+   * [Kotlin runtime](https://kotlinlang.org/)- Is responsible of exporting bytecode from our kotlin code to the ART.
       	Along with:
-	* Kotlin stdlib
-	* Kotlin android extension
-	* Kotlin Android extensions
-      
-   * JUnit - for basic java unit testing
-   * Espresso - extension for testing from JUnit to provide Android envoirment of unit testing
-   * JTDS - the JDBC (Java Database driver) we use to communicate with MSSQL server
-   * scytale - simplifies encryption and key storage using application sign to hide the key
-   * Dokka - JDOC autogeneration
+	* [Kotlin](https://kotlinlang.org/api/latest/jvm/stdlib/index.html) stdlib.
+	* [Kotlin](https://kotlinlang.org/docs/tutorials/android-plugin.html) android extension   .  
+   * [JUnit](http://junit.org/junit5/) - for basic java unit testing.
+   * [Espresso](https://developer.android.com/training/testing/espresso/index.html) - extension for testing from JUnit to provide Android envoirment of unit testing.
+   * [JTDS](http://jtds.sourceforge.net/) - the JDBC (Java Database driver) we use to communicate with MSSQL server.
+   * [scytale](https://github.com/yakivmospan/scytale) - simplifies encryption and key storage using application sign to hide the key.
+   * [Dokka](https://github.com/Kotlin/dokka) - JDOC auto-generation.
 	
 
 ## [Software Design](https://github.com/meitarsh/m.s-aluminium-manager-app/wiki/Software-Design)
