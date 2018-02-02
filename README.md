@@ -50,8 +50,8 @@ Zeev Melumuian
    * [Gradle build tool](https://gradle.org/) - to build the application, Gradle tool provides us a scripted makefile and build tools.
    * [Kotlin runtime](https://kotlinlang.org/)- Is responsible of exporting bytecode from our kotlin code to the ART.
       	Along with:
-	* [Kotlin](https://kotlinlang.org/api/latest/jvm/stdlib/index.html) stdlib.
-	* [Kotlin](https://kotlinlang.org/docs/tutorials/android-plugin.html) android extension   .  
+	* [Kotlin stdlib ](https://kotlinlang.org/api/latest/jvm/stdlib/index.html).
+	* [Kotlin android extension](https://kotlinlang.org/docs/tutorials/android-plugin.html).  
    * [JUnit](http://junit.org/junit5/) - for basic java unit testing.
    * [Espresso](https://developer.android.com/training/testing/espresso/index.html) - extension for testing from JUnit to provide Android envoirment of unit testing.
    * [JTDS](http://jtds.sourceforge.net/) - the JDBC (Java Database driver) we use to communicate with MSSQL server.
