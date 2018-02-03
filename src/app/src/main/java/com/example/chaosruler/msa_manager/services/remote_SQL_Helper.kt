@@ -134,6 +134,7 @@ object remote_SQL_Helper {
                     context.getString(R.string.REMOTE_CONNECT_STRING) + ip + ":" + port + context.getString(R.string.REMOTE_CONNECT_OPTIONS) + windows_auth
                     , username,
                     password)
+
             if (conn != null) {
                 isvalid = true
                 connection = conn

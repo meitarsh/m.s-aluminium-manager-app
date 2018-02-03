@@ -18,7 +18,7 @@
 
     <!-- Microsoft JDBC
 
-    <string name=com.microsoft.sqlserver.jdbc.SQLServerDriver</string>
+    <string name="class_jtds_jdbc">com.microsoft.sqlserver.jdbc.SQLServerDriver</string>
     <string name="REMOTE_CONNECT_STRING">jdbc:sqlserver://</string>
 
     -->

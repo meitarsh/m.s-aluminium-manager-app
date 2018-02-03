@@ -9,7 +9,8 @@
 
     <!-- JTDS
 
-        <string name="REMOTE_CONNECT_OPTIONS">;progname=Android_MSA;socketKeepAlive=true;socketTimeout=5;loginTimeout=5;useNTLMv2=true;domain=DOMAIN</string>
+    <string name="REMOTE_CONNECT_OPTIONS">;progname=Android_MSA;socketKeepAlive=true;socketTimeout=5;loginTimeout=5</string>
+    <string name="REMOTE_CONNECTION_WINDOWS_AUTH">;useNTLMv2=true;domain=DOMAIN</string>
 
     -->
 
@@ -18,6 +19,7 @@
     <string name="REMOTE_CONNECT_OPTIONS">;user=Administrator;password=*Niu9p2w;authentication=auto;EncryptionMethod=noEncryption;LoginTimeout=5;QueryTimeout=5;ReceiveStringParameterType=NVARCHAR;SendStringParametersAsUnicode=true;</string>
 
     -->
+
 
     <string name="REMOTE_CONNECT_OPTIONS">;progname=Android_MSA;socketKeepAlive=true;socketTimeout=5;loginTimeout=5</string>
     <string name="REMOTE_CONNECTION_WINDOWS_AUTH">;useNTLMv2=true;domain=DOMAIN</string>

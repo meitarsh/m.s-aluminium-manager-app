@@ -1,0 +1,233 @@
+-- Check for working C compiler: /home/chaosruler/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang
+-- Check for working C compiler: /home/chaosruler/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /home/chaosruler/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++
+-- Check for working CXX compiler: /home/chaosruler/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2") 
+-- Looking for assert.h
+-- Looking for assert.h - found
+-- Looking for ctype.h
+-- Looking for ctype.h - found
+-- Looking for dirent.h
+-- Looking for dirent.h - found
+-- Looking for errno.h
+-- Looking for errno.h - found
+-- Looking for fcntl.h
+-- Looking for fcntl.h - found
+-- Looking for float.h
+-- Looking for float.h - found
+-- Looking for limits.h
+-- Looking for limits.h - found
+-- Looking for malloc.h
+-- Looking for malloc.h - found
+-- Looking for memory.h
+-- Looking for memory.h - found
+-- Looking for setjmp.h
+-- Looking for setjmp.h - found
+-- Looking for signal.h
+-- Looking for signal.h - found
+-- Looking for stdarg.h
+-- Looking for stdarg.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stdio.h
+-- Looking for stdio.h - found
+-- Looking for stdlib.h
+-- Looking for stdlib.h - found
+-- Looking for string.h
+-- Looking for string.h - found
+-- Looking for strings.h
+-- Looking for strings.h - found
+-- Looking for time.h
+-- Looking for time.h - found
+-- Looking for unistd.h
+-- Looking for unistd.h - found
+-- Looking for utime.h
+-- Looking for utime.h - found
+-- Looking for sys/mman.h
+-- Looking for sys/mman.h - found
+-- Looking for sys/resource.h
+-- Looking for sys/resource.h - found
+-- Looking for sys/stat.h
+-- Looking for sys/stat.h - found
+-- Looking for sys/time.h
+-- Looking for sys/time.h - found
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for sys/wait.h
+-- Looking for sys/wait.h - found
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of short
+-- Check size of short - done
+-- Check size of int
+-- Check size of int - done
+-- Check size of long
+-- Check size of long - done
+-- Check size of long long
+-- Check size of long long - done
+-- Check size of __int16
+-- Check size of __int16 - failed
+-- Check size of __int32
+-- Check size of __int32 - failed
+-- Check size of __int64
+-- Check size of __int64 - failed
+-- Check size of void *
+-- Check size of void * - done
+-- Check size of size_t
+-- Check size of size_t - done
+-- Check size of ptrdiff_t
+-- Check size of ptrdiff_t - done
+-- Check size of intmax_t
+-- Check size of intmax_t - done
+-- Check size of uintmax_t
+-- Check size of uintmax_t - done
+-- Check size of intptr_t
+-- Check size of intptr_t - done
+-- Check size of uintptr_t
+-- Check size of uintptr_t - done
+-- Check size of float
+-- Check size of float - done
+-- Check size of double
+-- Check size of double - done
+-- Check size of long double
+-- Check size of long double - done
+-- Check size of dev_t
+-- Check size of dev_t - done
+-- Check size of fpos_t
+-- Check size of fpos_t - failed
+-- Check size of mode_t
+-- Check size of mode_t - done
+-- Check size of off_t
+-- Check size of off_t - done
+-- Check size of ssize_t
+-- Check size of ssize_t - done
+-- Check size of time_t
+-- Check size of time_t - done
+-- Looking for access
+-- Looking for access - found
+-- Looking for alloca
+-- Looking for alloca - not found
+-- Looking for atexit
+-- Looking for atexit - found
+-- Looking for atoi
+-- Looking for atoi - found
+-- Looking for atol
+-- Looking for atol - found
+-- Looking for chmod
+-- Looking for chmod - found
+-- Looking for chown
+-- Looking for chown - found
+-- Looking for clock_getcpuclockid
+-- Looking for clock_getcpuclockid - not found
+-- Looking for clock_getres
+-- Looking for clock_getres - found
+-- Looking for clock_gettime
+-- Looking for clock_gettime - found
+-- Looking for ctime
+-- Looking for ctime - found
+-- Looking for difftime
+-- Looking for difftime - found
+-- Looking for fstat
+-- Looking for fstat - found
+-- Looking for getenv
+-- Looking for getenv - found
+-- Looking for getpagesize
+-- Looking for getpagesize - not found
+-- Looking for getrusage
+-- Looking for getrusage - found
+-- Looking for gettimeofday
+-- Looking for gettimeofday - found
+-- Looking for gmtime
+-- Looking for gmtime - found
+-- Looking for isatty
+-- Looking for isatty - found
+-- Looking for localtime
+-- Looking for localtime - found
+-- Looking for longjmp
+-- Looking for longjmp - found
+-- Looking for lstat
+-- Looking for lstat - found
+-- Looking for memcmp
+-- Looking for memcmp - found
+-- Looking for memcpy
+-- Looking for memcpy - found
+-- Looking for memmove
+-- Looking for memmove - found
+-- Looking for memset
+-- Looking for memset - found
+-- Looking for mkdir
+-- Looking for mkdir - found
+-- Looking for mktime
+-- Looking for mktime - found
+-- Looking for mmap
+-- Looking for mmap - found
+-- Looking for mprotect
+-- Looking for mprotect - found
+-- Looking for munmap
+-- Looking for munmap - found
+-- Looking for qsort
+-- Looking for qsort - found
+-- Looking for raise
+-- Looking for raise - found
+-- Looking for rmdir
+-- Looking for rmdir - found
+-- Looking for setjmp
+-- Looking for setjmp - found
+-- Looking for signal
+-- Looking for signal - not found
+-- Looking for snprintf
+-- Looking for snprintf - found
+-- Looking for strcasecmp
+-- Looking for strcasecmp - found
+-- Looking for strchr
+-- Looking for strchr - found
+-- Looking for strdup
+-- Looking for strdup - found
+-- Looking for strerror
+-- Looking for strerror - found
+-- Looking for strftime
+-- Looking for strftime - found
+-- Looking for stricmp
+-- Looking for stricmp - not found
+-- Looking for strncasecmp
+-- Looking for strncasecmp - found
+-- Looking for strnicmp
+-- Looking for strnicmp - not found
+-- Looking for strrchr
+-- Looking for strrchr - found
+-- Looking for strstr
+-- Looking for strstr - found
+-- Looking for time
+-- Looking for time - found
+-- Looking for umask
+-- Looking for umask - found
+-- Looking for utime
+-- Looking for utime - found
+-- Looking for vsnprintf
+-- Looking for vsnprintf - found
+-- Check if the system is big endian
+-- Searching 16 bit integer
+-- Check size of unsigned short
+-- Check size of unsigned short - done
+-- Using unsigned short
+-- Check if the system is big endian - little endian
+-- CMAKE_BUILD_TYPE = Release
+-- The ASM compiler identification is Clang
+-- Found assembler: /home/chaosruler/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/chaosruler/Desktop/m.s-aluminium-manager-app/src/openVPN/main/.externalNativeBuild/cmake/normalRelease/armeabi-v7a
