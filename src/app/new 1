@@ -1,0 +1,142 @@
+#define Q "Q"
+#define P "P"
+#define NAME_SIZE 20
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+typedef struct
+{
+	char* name;
+	unsigned int count;
+	double price;
+}item;
+
+item* make_item(char* name, unsigned int count, double price);
+item* make_new_array(item* arr, unsigned int new_size, int oldsize);
+void swap(item* ptr1, item* ptr2);
+void write_to_file(char* filename, item* arr, int size);
+void free_item(item* item);
+
+int main(int argc, char** argv)
+{
+	if(argc!=3)
+		return -1;
+	char* filename = argv[2];
+	
+	int size = 10;
+	int index = 0;
+	item* arr = make_new_array(NULL,size,0);
+	
+	char name[NAME_SIZE];
+	unsigned int count = 0;
+	double price = 0;
+	
+	while(true)
+	{
+		int scanning_item_amount = scanf("%s %u %lf",name,&count,&price);
+		if(strcmp(name,"quit") == 0)
+			break;
+		if(scanning_item_amount == 3)
+		{
+			if(index == size)
+				arr = make_new_array(arr,size*2,size);
+			size*=2;
+			char* new_name = (char*) malloc (sizeof(char) * (strlen(name)+1));
+			strncpy(new_name,name,strlen(name)+1);
+			arr[index++] = make_item(new_name,count,price);
+		}
+	}
+	
+	
+	int i,j;
+	for(i=0; i<index; i++)
+	{
+		int max_index = i;
+		for(j=i; j<index; j++)
+		{
+			long double cmp_idx_1 = 0;
+			long double cmp_idx_2 = 0;
+			
+			if(argv[1] == Q)
+			{
+				cmp_idx_1 = (long double) arr[max_index]->count;
+				cmp_idx_2 = (long double) arr[j]->count;
+			}
+			else if(argv[1] == P)
+			{
+				cmp_idx_1 = (long double) arr[max_index]->price;
+				cmp_idx_2 = (long double) arr[j]->price;
+			}
+			if(cmp_idx_1 < cmp_idx_2)
+				max_index = j;
+		}
+		if(i!=max_index)
+			swap(arr+i,arr+max_index);
+	}
+	
+	write_to_file(filename,arr,index);
+	for(i=0; i<index; i++)
+		free_item(arr[i]);
+	free(arr);
+	return 0;
+}
+
+
+item* make_item(char* name, unsigned int count, double price)
+{
+	item* the_new_shit = (item*) malloc (sizeof(make_shit));
+	the_new_shit->name = name;
+	the_new_shit->price= price;
+	the_new_shit->count = count;
+	return the_new_shit;
+}
+
+
+item* make_new_array(item* arr, const unsigned int new_size, int oldsize)
+{
+	item* new_arr = (item*) malloc(sizeof(item) * new_size);
+	int i;
+	for(i=0; i<new_size; i++)
+		new_arr[i] = NULL;
+	for(i=0; i<oldsize; i++)
+		new_arr[i] = arr[i];
+	free(arr);
+	return make_new_array;
+}
+
+void swap(item* ptr1, item* ptr2)
+{
+	char* backup_name = ptr1->name;
+	unsigned int count = ptr1->count;
+	double price = ptr1->price;
+	ptr1->name = ptr2->name;
+	ptr1->price = ptr2->price;
+	pr1->count = ptr2->count;
+	
+	ptr2->name = backup_name;
+	ptr2->price = price;
+	ptr2->count = count;
+	
+}
+
+void free_item(item* item)
+{
+	if(item == NULL)
+		return;
+	free(item->name);
+	free(item);
+}
+
+void write_to_file(char* filename, item* arr, int size)
+{
+	FILE* fp = fopen(filename), "w+");
+	
+	for(int i=0; i<size; i++)
+	{
+		fprintf(fp,"Name: %s, price %lf, count %d\n",arr[i]->name, arr[i]->price, arr[i]->count);
+	}
+	fclose(fp);
+}
+

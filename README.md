@@ -54,7 +54,7 @@ Zeev Melumuian
 	* [Kotlin android extension](https://kotlinlang.org/docs/tutorials/android-plugin.html).  
    * [JUnit](http://junit.org/junit5/) - for basic java unit testing.
    * [Espresso](https://developer.android.com/training/testing/espresso/index.html) - extension for testing from JUnit to provide Android envoirment of unit testing.
-   * [JTDS](http://jtds.sourceforge.net/) - the JDBC (Java Database driver) we use to communicate with MSSQL server.
+   * [JTDS](http://jtds.sourceforge.net/) - the JDBC (Java Database driver) we use to communicate with MSSQL server. ([JTDS Github page](https://github.com/milesibastos/jTDS))
    * [scytale](https://github.com/yakivmospan/scytale) - simplifies encryption and key storage using application sign to hide the key.
    * [Dokka](https://github.com/Kotlin/dokka) - JDOC auto-generation.
 	
