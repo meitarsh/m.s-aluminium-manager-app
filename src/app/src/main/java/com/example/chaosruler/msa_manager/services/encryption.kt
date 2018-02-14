@@ -22,12 +22,12 @@ import javax.crypto.spec.SecretKeySpec
 /**
  * a Singleton object (only one instance in runtime) responsible for encryptiing and decrypting
  * data stored in local database and local android machine
- * https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
  * AES 256bit was chosen for encryption protocol
  * @author Chaosruler972
  * @constructor no construction needed, though key Generation is a must before each and every encryption or decryption
  * @sample generate_key(baseContext)
  * @sample encrypt(a.toByteArray())
+ * @see <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES Encryption protocol</a>
  */
 @Suppress("unused")
 object encryption

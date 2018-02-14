@@ -195,7 +195,10 @@ object remote_SQL_Helper {
                             rs = null
                         }
                         if (rs == null)
+                        {
+                            lock.notify()
                             return@execute
+                        }
                         val columnCount = rs.metaData.columnCount
                         val rs_meta = rs.metaData
                         while (rs.next()) {
@@ -294,7 +297,10 @@ object remote_SQL_Helper {
                             rs = null
                         }
                         if (rs == null)
+                        {
+                            lock.notify()
                             return@execute
+                        }
                         val columnCount = rs.metaData.columnCount
                         val rs_meta = rs.metaData
                         while (rs.next()) {
