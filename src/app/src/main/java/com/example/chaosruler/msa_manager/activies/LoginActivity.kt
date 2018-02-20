@@ -443,9 +443,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      * Marks that VPN is already conifured
      * @author Chaosruler972
      */
-    fun mark_vpn_ready()
+    fun mark_vpn_ready(intent: Intent)
     {
-        onActivityResult(resources.getInteger(R.integer.VPN_request_code), Activity.RESULT_OK,null)
+        startActivityForResult(intent,resources.getInteger(R.integer.VPN_request_code))
     }
 
 

@@ -116,7 +116,7 @@ object remote_SQL_Helper {
           }
           else
           {
-              act.mark_vpn_ready()
+              act.mark_vpn_ready(i)
           }
         }
 
