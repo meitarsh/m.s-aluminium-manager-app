@@ -60,7 +60,7 @@ class divohi_takalot_edit : Activity() {
                         global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname((global_variables_dataclass.projid ?: "").trim())
                     else
                         global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid ?: "").trim())
-
+            arr.sort()
             runOnUiThread({divohi_takalot_edit_listview.adapter = divohi_takalot_edit_arrayadapter(this, arr)
             })
 

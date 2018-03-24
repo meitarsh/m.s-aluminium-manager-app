@@ -188,17 +188,17 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <Button
-        android:id="@+id/item_divohi_takalot_edit_upload_btn"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cell_height"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="@dimen/small_margin_cells"
-        android:layout_marginStart="@dimen/small_margin_cells"
-        android:layout_weight="4"
-        android:background="@drawable/cell_shape"
-        android:gravity="center"
-        android:lines="1"
-        android:text="@string/divohi_takalot_upload" />
+    <!--<Button-->
+        <!--android:id="@+id/item_divohi_takalot_edit_upload_btn"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="@dimen/cell_height"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginEnd="@dimen/small_margin_cells"-->
+        <!--android:layout_marginStart="@dimen/small_margin_cells"-->
+        <!--android:layout_weight="4"-->
+        <!--android:background="@drawable/cell_shape"-->
+        <!--android:gravity="center"-->
+        <!--android:lines="1"-->
+        <!--android:text="@string/divohi_takalot_upload" />-->
 
 </LinearLayout>

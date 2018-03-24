@@ -70,7 +70,7 @@ class loz_activity_arrayadapter (context: Context, arr: Vector<big_table_data>) 
 
         isFinished.isEnabled = false
 
-        ahoz_bizoaa.hint = (ahoz_bizoa_str + "%").trim()
+        ahoz_bizoaa.hint = ("$ahoz_bizoa_str%").trim()
         ahoz_bizoaa.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
         haarot.hint = "No database value to grab"
         haarot.isEnabled = false
@@ -122,7 +122,7 @@ class loz_activity_arrayadapter (context: Context, arr: Vector<big_table_data>) 
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
                 themer.hideKeyboard(context,ahoz_bizoaa)
             }).start()
-            ahoz_bizoaa.hint = (str + "%").trim()
+            ahoz_bizoaa.hint = ("$str%").trim()
             ahoz_bizoaa.text.clear()
         }
 

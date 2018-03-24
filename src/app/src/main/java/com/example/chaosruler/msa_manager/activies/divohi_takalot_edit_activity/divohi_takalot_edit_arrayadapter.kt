@@ -10,10 +10,12 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper
+import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.object_types.inventory_data
+import com.example.chaosruler.msa_manager.object_types.opr_data
 import com.example.chaosruler.msa_manager.object_types.project_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
@@ -60,7 +62,8 @@ class divohi_takalot_edit_arrayadapter(
         val peolot_monoot = themer.get_view(convertView, R.id.item_divohi_takalot_edit_peolot_monoot) as EditText
         val tgovat_mnaal = themer.get_view(convertView, R.id.item_divohi_takalot_edit_tgovat_mnaal) as EditText
         val alot_takala = themer.get_view(convertView, R.id.item_divohi_takalot_edit_alot_takala) as EditText
-        val upload_btn = themer.get_view(convertView, R.id.item_divohi_takalot_edit_upload_btn) as Button
+//        val upload_btn = themer.get_view(convertView, R.id.item_divohi_takalot_edit_upload_btn) as Button
+
 
         val all_txtviews = Vector<View>()
         all_txtviews.add(mispar_parit)
@@ -77,11 +80,12 @@ class divohi_takalot_edit_arrayadapter(
         all_txtviews.add(peolot_monoot)
         all_txtviews.add(tgovat_mnaal)
         all_txtviews.add(alot_takala)
-        all_txtviews.addElement(upload_btn)
+//        all_txtviews.addElement(upload_btn)
 
         val big_item: big_table_data = getItem(position)
-        val project_item: project_data = global_variables_dataclass.DB_project!!.get_project_by_id(big_item.get_PROJECT_ID()?:"")!!
-        val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id(big_item.get_INVENTORY_ID()?:"")!!
+        val project_item: project_data = global_variables_dataclass.DB_project!!.get_local_DB().filter { it.getProjID()?:"" == big_item.get_PROJECT_ID()?:"" }[0]!!
+        val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_local_DB().filter { it.get_itemid()?:"" == big_item.get_INVENTORY_ID()?:"" }[0]!!
+        val opr: opr_data = global_variables_dataclass.DB_OPR!!.get_local_DB().filter { it.get_oprid()?:"" == big_item.get_OPRID()?:"" }[0]!!
 
         mispar_parit.hint = (big_item.get_ITEMNUMBER() ?: "").trim()
         mispar_parit.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
@@ -95,21 +99,21 @@ class divohi_takalot_edit_arrayadapter(
         sog_takala.isEnabled = false
         koma.hint = (big_item.get_FLOOR() ?: "").trim()
         bnian.hint = (big_item.get_FLAT() ?: "").trim()
-        dira.hint = (big_item.get_DIRANUM() ?: "").trim()
+        dira.hint = (big_item.get_FLAT() ?: "").trim()
         dira.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
         tiaor_takala.hint = "No value from database"
         tiaor_takala.isEnabled = false
-        peolot_ltikon.hint = "No value from database"
+        peolot_ltikon.hint = (opr.get_opr_name() ?: "").trim()
         peolot_ltikon.isEnabled = false
-        peolot_monoot.hint = "No value from database"
+        peolot_monoot.hint = (opr.get_opr_name() ?: "").trim()
         peolot_monoot.isEnabled = false
         tgovat_mnaal.hint = "No value from database"
         tgovat_mnaal.isEnabled = false
         alot_takala.hint = (big_item.get_TOTALSUM() ?: "").trim()
         alot_takala.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
 
-        upload_btn.text= context.getString(R.string.divohi_takalot_upload)
-        upload_btn.background = context.getDrawable(R.drawable.button_sample1)
+//        upload_btn.text= context.getString(R.string.divohi_takalot_upload)
+//        upload_btn.background = context.getDrawable(R.drawable.button_sample1)
 
         mispar_parit.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || mispar_parit.text.isEmpty() )
@@ -197,10 +201,10 @@ class divohi_takalot_edit_arrayadapter(
             koma.text.clear()
         }
 
-        bnian.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if(hasFocus || bnian.text.isEmpty() )
+        dira.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if(hasFocus || dira.text.isEmpty() )
                 return@OnFocusChangeListener
-            val str = bnian.text.toString()
+            val str = dira.text.toString()
             Thread({
                 Looper.prepare()
                 val update_value: HashMap<String, String> = HashMap()
@@ -208,10 +212,10 @@ class divohi_takalot_edit_arrayadapter(
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_FLAT(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                themer.hideKeyboard(context,bnian)
+                themer.hideKeyboard(context,dira)
             }).start()
-            bnian.hint = str.trim()
-            bnian.text.clear()
+            dira.hint = str.trim()
+            dira.text.clear()
         }
 
         dira.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -248,13 +252,47 @@ class divohi_takalot_edit_arrayadapter(
             alot_takala.text.clear()
         }
 
-        upload_btn.setOnClickListener({
-            @Suppress("NAME_SHADOWING")
-            val parent = it.parent as View
-            val listview = parent.parent as ListView
-            val index = listview.getPositionForView(parent)
-            showFileChooser(index)
-        })
+//        upload_btn.setOnClickListener({
+//            @Suppress("NAME_SHADOWING")
+//            val parent = it.parent as View
+//            val listview = parent.parent as ListView
+//            val index = listview.getPositionForView(parent)
+//            showFileChooser(index)
+//        })
+
+        peolot_ltikon.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if(hasFocus || peolot_ltikon.text.isEmpty() )
+                return@OnFocusChangeListener
+            val str = peolot_ltikon.text.toString()
+            Thread({
+                Looper.prepare()
+                val update_value: HashMap<String, String> = HashMap()
+                update_value[remote_opr_table_helper.NAME] = str
+                remote_opr_table_helper.push_update(opr, update_value, context)
+                opr.set_oprname(str)
+                global_variables_dataclass.DB_OPR!!.add_opr(opr)
+                themer.hideKeyboard(context,peolot_ltikon)
+            }).start()
+            peolot_ltikon.hint = str.trim()
+            peolot_ltikon.text.clear()
+        }
+
+        peolot_monoot.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if(hasFocus || peolot_monoot.text.isEmpty() )
+                return@OnFocusChangeListener
+            val str = peolot_monoot.text.toString()
+            Thread({
+                Looper.prepare()
+                val update_value: HashMap<String, String> = HashMap()
+                update_value[remote_opr_table_helper.NAME] = str
+                remote_opr_table_helper.push_update(opr, update_value, context)
+                opr.set_oprname(str)
+                global_variables_dataclass.DB_OPR!!.add_opr(opr)
+                themer.hideKeyboard(context,peolot_monoot)
+            }).start()
+            peolot_monoot.hint = str.trim()
+            peolot_monoot.text.clear()
+        }
 
         themer.center_all_views(all_txtviews)
 
@@ -267,6 +305,7 @@ class divohi_takalot_edit_arrayadapter(
      *   @author Chaosruler972
      *   @param code the request code we will send to activity
      */
+    @Suppress("unused")
     private fun showFileChooser(code:Int)
     {
         val intent = Intent(Intent.ACTION_GET_CONTENT)

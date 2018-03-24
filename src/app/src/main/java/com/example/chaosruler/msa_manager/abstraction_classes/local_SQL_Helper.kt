@@ -59,7 +59,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                                  * @author Chaosruler972
                                  */
                                 private var TABLE_NAME: String) : SQLiteOpenHelper(context,
-                                DATABASE_NAME, factory, version)
+        DATABASE_NAME, factory, version)
 {
 
     /**

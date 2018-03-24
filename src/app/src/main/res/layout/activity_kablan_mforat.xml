@@ -7,7 +7,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context="com.example.chaosruler.msa_manager.activies.kablan_mforat">
+    tools:context="com.example.chaosruler.msa_manager.activies.KablanMforat.kablan_mforat">
 
     <!--hoza chooser -->
     <LinearLayout

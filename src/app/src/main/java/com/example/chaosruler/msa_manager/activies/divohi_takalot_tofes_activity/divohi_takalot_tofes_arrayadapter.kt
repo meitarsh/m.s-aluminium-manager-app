@@ -26,7 +26,7 @@ class divohi_takalot_tofes_arrayadapter(
          * @author Chaosruler972
          */
         private var context: Activity
-        , arr: Vector<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.item_divohi_takalot_tofes,arr.toTypedArray())
+        , arr: List<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.item_divohi_takalot_tofes,arr.toTypedArray())
 {
     /**
      * inflates a view and generates it, writes the data in it and initates logic on press and edit
@@ -76,8 +76,8 @@ class divohi_takalot_tofes_arrayadapter(
 
         val big_item:big_table_data = getItem(position)
 
-        val project_item: project_data = global_variables_dataclass.DB_project!!.get_project_by_id(big_item.get_PROJECT_ID()?:"")!!
-        val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id(big_item.get_INVENTORY_ID()?:"")!!
+        val project_item: project_data = global_variables_dataclass.DB_project!!.get_local_DB().filter { it.getProjID() == big_item.get_PROJECT_ID()?:"" }[0]!!
+        val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_local_DB().filter { it.get_itemid() == big_item.get_INVENTORY_ID()?:"" }[0]!!
 
         mispar_parit.text = (big_item.get_ITEMNUMBER() ?: "").trim()
         shem_parit.text = (inventory.get_itemname() ?: "").trim()

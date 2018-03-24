@@ -2,6 +2,7 @@ package com.example.chaosruler.msa_manager.activies.kablan_pashot_activity
 
 import android.content.Context
 import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.object_types.big_table_data
+import com.example.chaosruler.msa_manager.object_types.opr_data
 import com.example.chaosruler.msa_manager.object_types.vendor_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
@@ -40,11 +42,11 @@ class kablan_pashot_arrayadapter(context: Context,arr: Vector<big_table_data>) :
         val ahoz:TextView = themer.get_view(convertView,R.id.item_kablan_pashot_ahoz_peola) as TextView
 
         val big_item:big_table_data = getItem(position)
-        val vendor_item: vendor_data = global_variables_dataclass.DB_VENDOR!!.get_vendor_by_id(big_item.get_VENDOR_ID()!!)!!
-
+        val vendor_item: vendor_data = global_variables_dataclass.DB_VENDOR!!.get_local_DB().filter { it.get_accountnum() == big_item.get_VENDOR_ID()?:"" }[0]!!
+        val opr: opr_data = global_variables_dataclass.DB_OPR!!.get_local_DB().filter { it.get_oprid() == big_item.get_OPRID()?:"" }[0]!!
 
         hoza.text = (vendor_item.get_accountnum() ?: "").trim()
-        peola.text = (vendor_item.get_accountname() ?: "").trim()
+        peola.text = (opr.get_opr_name() ?: "").trim()
         val parcent: String = big_item.get_PERCENTFORACCOUNT() ?: 0.toString().trim()
         ahoz.text = ((parcent.toDouble()*1).toInt().toString() + "%").trim()
         ahoz.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED

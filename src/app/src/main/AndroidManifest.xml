@@ -34,123 +34,109 @@
             android:configChanges="orientation"
             android:label="@string/project_options_title"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.user_delete_activity"
             android:configChanges="orientation"
             android:label="@string/delete_title"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.project_options"
             android:configChanges="orientation"
             android:label="@string/project_options_decide"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.kablni_mishne_activity"
             android:configChanges="orientation"
             android:label="@string/project_options_1"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.divohi_takalot_activity"
             android:configChanges="orientation"
             android:label="@string/project_options_2"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.loz_activity.loz_activity"
             android:label="@string/project_options_3"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
-
-
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.settings_activity.SettingsActivity"
             android:configChanges="orientation"
             android:label="@string/settings_str"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.kablan_pashot_activity.kablan_pashot"
             android:label="@string/kablan_pashot_label"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".activies.kablan_mforat"
+            android:name=".activies.KablanMforat.kablan_mforat"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
             android:label="@string/kablan_mforat_label"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.divohi_takalot_tofes_activity.DivohiTakalotTofesActivity"
             android:label="@string/divohi_takalot_tofes_str"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.divohi_takalot_edit_activity.divohi_takalot_edit"
             android:label="@string/divohi_takalot_edit_str"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_chooser"
             android:configChanges="orientation"
             android:label="@string/table_chooser_str"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_big_edit.table_big_edit"
             android:label="@string/edit_table_big"
-            android:windowSoftInputMode="stateAlwaysHidden"
-             />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_peolot_edit.table_peolot_edit"
             android:label="@string/edit_table_opr"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_projects_edit.table_projects_edit"
             android:label="@string/edit_table_proj"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_vendors_edit.table_vendors_edit"
             android:label="@string/edit_table_vendor"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_inventory_edit.table_inventory_edit"
             android:label="@string/edit_table_inventory"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <service
             android:name=".services.offline_mode_service"
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedService" />
+        <!--<service-->
+            <!--android:name=".services.VPN.vpn_connection"-->
+            <!--android:permission="android.permission.BIND_VPN_SERVICE">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.net.VpnService" />-->
+            <!--</intent-filter>-->
 
+            <!--<meta-data-->
+                <!--android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON"-->
+                <!--android:value="false" />-->
+        <!--</service>-->
 
-        <service android:name=".services.VPN.vpn_connection"
-            android:permission="android.permission.BIND_VPN_SERVICE">
-            <intent-filter>
-                <action android:name="android.net.VpnService"/>
-            </intent-filter>
-            <meta-data android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON"
-                android:value="false"/>
-        </service>
-
-
+        <activity android:name=".activies.floor_chooser.floor_chooser"
+            android:label="@string/floor_chooser_label"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

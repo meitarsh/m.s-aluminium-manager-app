@@ -345,5 +345,5 @@ class local_vendor_table_helper(
      * @param id the id that we want to filter by
      * @return the vendor itself if found, null otheerwise
      */
-    fun get_vendor_by_id(id:String):vendor_data? = get_vendor_by_vendor(vendor_data(id,null,null,remote_SQL_Helper.getusername()))
+    fun get_vendor_by_id(id:String):vendor_data? = get_local_DB().filter { it.get_accountnum()?:""==id }[0]?:null
 }

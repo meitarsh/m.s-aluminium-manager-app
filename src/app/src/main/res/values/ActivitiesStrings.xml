@@ -71,7 +71,7 @@
 
     <!-- Strings related to mforat table - kablan_mforat activity -->
     <string name="kablan_mforat_label">פירוט לקבלן</string>
-    <string name="kablan_mforat_spinner_txt">בחר קבלן</string>
+    <string name="kablan_mforat_spinner_txt">בחר דירה</string>
     <string name="kablan_mforat_kamot_hoza_txt">כמות חוזה</string>
     <string name="kablan_mforat_mehir_yehida_txt">מחיר יחידה</string>
     <string name="kablan_mforat_ahoz_peola_txt">אחוז פעולה</string>
@@ -127,5 +127,11 @@
     <string name="activity_user_shane_sisma">שנה סיסמה</string>
     <string name="activity_users_mehak">מחק</string>
     <string name="VPN_session_title">M.S alum App VPN Session</string>
+
+    <!-- Strings related to floor chooser activity -->
+    <string name="floor_chooser_label">בחירת קומה</string>
+    <string name="choose_floor_label">בחר קומה:</string>
+    <string name="floor_choose_that_floor">בחר בקומה</string>
+    <string name="no_floor_chosen_spinner_toast">קומה לא נבחרה!</string>
 
 </resources>

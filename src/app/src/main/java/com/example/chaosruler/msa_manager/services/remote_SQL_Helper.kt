@@ -107,25 +107,25 @@ object remote_SQL_Helper {
         password = pass
         this.act = act
 
-        if(vpn_connection.check_if_need_to_connect(con))
-        {
-          val i = VpnService.prepare(act)
-          if(i == null)
-          {
-            act.startActivityForResult(i,act.resources.getInteger(R.integer.VPN_request_code))
-          }
-          else
-          {
-              act.mark_vpn_ready(i)
-          }
-        }
+//        if(vpn_connection.check_if_need_to_connect(con))
+//        {
+//          val i = VpnService.prepare(act)
+//          if(i == null)
+//          {
+//            act.startActivityForResult(i,act.resources.getInteger(R.integer.VPN_request_code))
+//          }
+//          else
+//          {
+//              act.mark_vpn_ready(i)
+//          }
+//        }
 
         if(connection!=null)
             connection!!.close()
         val ip: String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP), context.getString(R.string.REMOTE_IP_ADDR))
         val port: String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.sql_port), con.getString(R.string.default_port_num))
         val windows_auth = if (PreferenceManager.getDefaultSharedPreferences(con).getBoolean(con.getString(R.string.windows_auth_key), true))
-            con.getString(R.string.REMOTE_CONNECTION_WINDOWS_AUTH)
+            ""//con.getString(R.string.REMOTE_CONNECTION_WINDOWS_AUTH)
         else
             ""
         try {
@@ -285,6 +285,7 @@ object remote_SQL_Helper {
                                 qry += "WHERE "
                                 qry += "CONVERT(${colm_to_type.getValue(where_column)},$where_column) = $item"
                             }
+                            Log.d("Query: ",qry)
                             rs = connection!!.createStatement().executeQuery(qry)
                         } catch (e: SQLTimeoutException) {
                             Log.d("remote SQL", "EXCEPTION SQL timeout exception")

@@ -1,5 +1,6 @@
 package com.example.chaosruler.msa_manager.object_types
 
+import android.util.Log
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
@@ -115,7 +116,7 @@ class big_table_data(
          */
         private var USERNAME:String?
 )
-    : table_dataclass {
+    : table_dataclass, Comparable<big_table_data> {
     /**
      * Function responisble for inflating the data from strings.xml
      * @author Chaosruler972
@@ -544,6 +545,45 @@ class big_table_data(
         return "OPR: " + (opr?.toString()?:"").trim() + " Project: " + (project?.toString()?:"").trim() + " Vendor: " + (vendor?.toString()?:"").trim() +" Inventory: " +(item?.toString()?:"").trim()
     }
 
+    /**
+     * Compare function to sort big_table_data, sorts by komanum and than by diranum
+     * @author Chaosruler972
+     * @param other the big_table_data to compare to
+     * @return 1 if I am "bigger" than other, -1 if I am smaller than other, 0 if I am exactly like the other (in koma\dira) or if those couldn't be parsed
+     */
+    override fun compareTo(other: big_table_data): Int
+    {
+        if(this.KOMANUM == null || other.KOMANUM == null)
+            return 0
+        try {
+            if(this.KOMANUM!!.toInt() < other.KOMANUM!!.toInt())
+                return -1
+            else if(this.KOMANUM!!.toInt() > other.KOMANUM!!.toInt())
+                return 1
+        }
+        catch (e: NumberFormatException)
+        {
+            Log.d("Big_table_data","Komanum is not a number!")
+            return 0
+        }
+        if(this.DIRANUM==null || other.DIRANUM==null)
+            return 0
+        try {
+            when {
+                this.DIRANUM!!.toInt() < other.DIRANUM!!.toInt() -> return -1
+                this.DIRANUM!!.toInt() > other.DIRANUM!!.toInt() -> return 1
+                this.DIRANUM!!.toInt() == other.DIRANUM!!.toInt() -> return 0
+                else -> {
+                }
+            }
+        }
+        catch (e: NumberFormatException)
+        {
+            Log.d("Big_table_data","DIRANUM is not a number!")
+            return 0
+        }
+        return 0
+    }
     /**
      * a copy constructor
      * @return a copy of this data class

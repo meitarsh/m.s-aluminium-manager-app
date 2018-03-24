@@ -103,16 +103,16 @@
                         android:text="@string/divohi_takalot_kamot"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/small_margin_cells"
-                        android:layout_marginStart="@dimen/small_margin_cells"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:text="@string/divohi_takalot_sog_takala"
-                        android:textStyle="bold" />
+                    <!--<TextView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginEnd="@dimen/small_margin_cells"-->
+                        <!--android:layout_marginStart="@dimen/small_margin_cells"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:background="@drawable/cell_shape"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="@string/divohi_takalot_sog_takala"-->
+                        <!--android:textStyle="bold" />-->
 
                     <TextView
                         android:layout_width="0dp"
@@ -125,16 +125,16 @@
                         android:text="@string/divohi_takalot_koma"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/small_margin_cells"
-                        android:layout_marginStart="@dimen/small_margin_cells"
-                        android:layout_weight="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:text="@string/divohi_takalot_bnian"
-                        android:textStyle="bold" />
+                    <!--<TextView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginEnd="@dimen/small_margin_cells"-->
+                        <!--android:layout_marginStart="@dimen/small_margin_cells"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:background="@drawable/cell_shape"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="@string/divohi_takalot_bnian"-->
+                        <!--android:textStyle="bold" />-->
 
                     <TextView
                         android:layout_width="0dp"
@@ -202,17 +202,17 @@
                         android:text="@string/divohi_takalot_alot_takala"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/divohi_takalot_edit_upload_button_label"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/small_margin_cells"
-                        android:layout_marginStart="@dimen/small_margin_cells"
-                        android:layout_weight="4"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="center"
-                        android:text="@string/divohi_takalot_upload_label"
-                        android:textStyle="bold" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/divohi_takalot_edit_upload_button_label"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginEnd="@dimen/small_margin_cells"-->
+                        <!--android:layout_marginStart="@dimen/small_margin_cells"-->
+                        <!--android:layout_weight="4"-->
+                        <!--android:background="@drawable/cell_shape"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="@string/divohi_takalot_upload_label"-->
+                        <!--android:textStyle="bold" />-->
                 </LinearLayout>
 
                 <ListView

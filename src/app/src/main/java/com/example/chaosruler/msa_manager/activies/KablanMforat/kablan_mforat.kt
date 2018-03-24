@@ -1,12 +1,14 @@
-package com.example.chaosruler.msa_manager.activies
+package com.example.chaosruler.msa_manager.activies.KablanMforat
 
 import android.app.Activity
 import android.os.Bundle
 import android.os.Looper
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.object_types.big_table_data
@@ -40,6 +42,10 @@ class kablan_mforat : Activity() {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kablan_mforat)
+        if(!global_variables_dataclass.GUI_MODE)
+            global_variables_dataclass.floor = intent.getStringExtra(getString(R.string.key_pass_main_to_options))
+        else
+            global_variables_dataclass.floor = ""
         init_spinner()
     }
 
@@ -57,7 +63,7 @@ class kablan_mforat : Activity() {
                         global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
                     else
                         global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
-
+            big_table.sort()
             runOnUiThread { spinner_populate(big_table) }
         }.start()
 
@@ -70,9 +76,12 @@ class kablan_mforat : Activity() {
      */
     private fun spinner_populate(big_table:Vector<big_table_data>)
     {
-        adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, big_table)
+        Log.d("Floor is", global_variables_dataclass.floor?:"No floor")
+        adapter = KablanArrayAdapter(this, android.R.layout.simple_spinner_item,
+                big_table.filter { it.get_FLAT() == global_variables_dataclass.floor})
 
         activity_kablan_mforat_spinner.adapter = adapter
+
         activity_kablan_mforat_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener
         {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long)
@@ -85,7 +94,7 @@ class kablan_mforat : Activity() {
 
                 // var txtview:TextView = view as TextView
                 //  txtview.text = vendor_item.get_accountname()
-
+                (view as TextView).text = big_item.get_FLAT()?:""
                 activity_kablan_mforat_kamot_hoza.text = (big_item.get_QTY() ?: "0").trim()
                 activity_kablan_mforat_yehida_price.text = (big_item.get_SALESPRICE() ?: "0").trim()
                 activity_kablan_mforat_peola_percent.text = ((peola_parcent.toDouble()).toInt().toString() + "%").trim()
