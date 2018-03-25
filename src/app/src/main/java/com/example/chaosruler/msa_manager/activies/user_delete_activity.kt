@@ -93,8 +93,8 @@ class user_delete_activity : Activity() {
     {
         // button to activate subroutine to delete a user from database
         delete_delete.setOnClickListener({
-            db.delete_user( (delete_spinner.selectedItem as User).get__username())
-            adapter.remove(delete_spinner.selectedItem as User)
+            if(db.delete_user( (delete_spinner.selectedItem as User).get__username()))
+                adapter.remove(delete_spinner.selectedItem as User)
         })
 
         // button to activate the changing password mechanism and subroutine, in actual there's a hidden change password button and password confirm field

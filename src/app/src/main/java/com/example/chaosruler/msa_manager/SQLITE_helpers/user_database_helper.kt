@@ -1,5 +1,6 @@
 package com.example.chaosruler.msa_manager.SQLITE_helpers
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
@@ -166,7 +167,8 @@ class user_database_helper(
         return users
     }
 
-    /**
+    @SuppressLint("LongLogTag")
+            /**
      *  subroutine that is in charge of getting the user class
      *  by query
      *  @author Chaosruler972
@@ -178,22 +180,11 @@ class user_database_helper(
     {
         if ( username.isEmpty())
             return null
-        val input_map = HashMap<String, String>()
-        input_map[USERS_ID] = "'$username'"
-        val vector = get_rows(input_map)
-        if(vector.size > 0)
-        {
-            return User( (vector.firstElement()[USERS_ID]?:"").trim(),(vector.firstElement()[PASSWORD]?:"").trim() )
-        }
-
-
-        /*
-        val users = get_entire_db()
-        for (user in users) {
-            if(user.get__username()!=null && user.get__username() == username)
+        val vector = get_entire_db()
+        for (user in vector) {
+            if (user.get__username() == username)
                 return user
-                */
-
+        }
         return null
     }
 

@@ -246,13 +246,18 @@ class MainActivity : Activity()
         {
             // if sync time is equal zero - meaning OFF
             main_button_sync.visibility = View.VISIBLE
-            main_button_sync.setOnClickListener { offline_mode_service.try_to_run_command() }
+            main_button_sync.setOnClickListener {
+                main_button_sync.isEnabled = false
+                offline_mode_service.try_to_run_command()
+                main_button_sync.isEnabled = true
+            }
 
 
         }
 
         main_button_download.visibility = View.VISIBLE
         main_button_download.setOnClickListener({
+            main_button_download.isEnabled = false
             offline_mode_service.db_sync_func(baseContext,intent)
             Thread({
                 while (intent.getStringExtra(baseContext.getString(R.string.key_sync_offline))==null)
@@ -269,6 +274,7 @@ class MainActivity : Activity()
                 runOnUiThread({
                     Toast.makeText(baseContext, getString(R.string.sync_done_prompt),Toast.LENGTH_SHORT).show()
                     init_spinner()
+                    main_button_download.isEnabled = true
                 })
             }).start()
         })
