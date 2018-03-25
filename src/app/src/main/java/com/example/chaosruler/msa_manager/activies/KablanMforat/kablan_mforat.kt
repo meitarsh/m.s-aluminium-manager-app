@@ -43,9 +43,9 @@ class kablan_mforat : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kablan_mforat)
         if(!global_variables_dataclass.GUI_MODE)
-            global_variables_dataclass.floor = intent.getStringExtra(getString(R.string.key_pass_main_to_options))
+            global_variables_dataclass.flat = intent.getStringExtra(getString(R.string.key_pass_main_to_options))
         else
-            global_variables_dataclass.floor = ""
+            global_variables_dataclass.flat = ""
         init_spinner()
     }
 
@@ -76,9 +76,9 @@ class kablan_mforat : Activity() {
      */
     private fun spinner_populate(big_table:Vector<big_table_data>)
     {
-        Log.d("Floor is", global_variables_dataclass.floor?:"No floor")
+        Log.d("Floor is", global_variables_dataclass.flat ?: "No flat")
         adapter = KablanArrayAdapter(this, android.R.layout.simple_spinner_item,
-                big_table.filter { it.get_FLAT() == global_variables_dataclass.floor})
+                big_table.filter { it.get_FLAT() == global_variables_dataclass.flat })
 
         activity_kablan_mforat_spinner.adapter = adapter
 

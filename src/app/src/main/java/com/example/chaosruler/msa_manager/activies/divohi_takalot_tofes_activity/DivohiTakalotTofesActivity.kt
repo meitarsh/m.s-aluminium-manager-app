@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -32,6 +33,10 @@ class DivohiTakalotTofesActivity : Activity() {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.divohi_takalot_tofes)
+        if (!global_variables_dataclass.GUI_MODE)
+            global_variables_dataclass.flat = intent.getStringExtra(getString(R.string.key_pass_main_to_options))
+        else
+            global_variables_dataclass.flat = ""
         if(!global_variables_dataclass.GUI_MODE && !init_table())
             finish()
     }
@@ -51,7 +56,11 @@ class DivohiTakalotTofesActivity : Activity() {
                         global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
                     else
                         global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
-            runOnUiThread({divohi_takalot_tofes_listview.adapter = divohi_takalot_tofes_arrayadapter(this,arr.filter { it.get_FLAT() == global_variables_dataclass.floor })})
+            runOnUiThread({
+                val filtered_list = arr.filter { it.get_FLAT() == global_variables_dataclass.flat }
+                Log.d("Divohi Takalot Tofes", "Filtered list: ${filtered_list.size} by filtering by ${global_variables_dataclass.flat}")
+                divohi_takalot_tofes_listview.adapter = divohi_takalot_tofes_arrayadapter(this, filtered_list)
+            })
         }).start()
 
         return true

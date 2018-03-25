@@ -128,7 +128,7 @@
     <string name="activity_users_mehak">מחק</string>
     <string name="VPN_session_title">M.S alum App VPN Session</string>
 
-    <!-- Strings related to floor chooser activity -->
+    <!-- Strings relatedflatloor chooser activity -->
     <string name="floor_chooser_label">בחירת קומה</string>
     <string name="choose_floor_label">בחר קומה:</string>
     <string name="floor_choose_that_floor">בחר בקומה</string>

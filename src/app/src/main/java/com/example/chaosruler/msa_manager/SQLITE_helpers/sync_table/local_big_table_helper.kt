@@ -64,7 +64,7 @@ class local_big_table_helper(
      */
     private var FLAT: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLAT)
     /**
-     * floor field name
+     * flat field name
      * @author Chaosruler972
      */
     private var FLOOR: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLOOR)

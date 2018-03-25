@@ -77,7 +77,7 @@ class floor_chooser : AppCompatActivity() {
     {
         floor_button_choose.setOnClickListener({
             val intent =
-                    if(global_variables_dataclass.floor_moving_to == 0)
+                    if (global_variables_dataclass.floor_moving_to == 0)
                         Intent(this@floor_chooser, kablan_mforat::class.java)
                 else // 1
                     Intent(this@floor_chooser, DivohiTakalotTofesActivity::class.java)

@@ -46,7 +46,7 @@ class big_table_data(
          */
         private var FLAT:String?,
         /**
-         * the floor field name for local sqlite
+         * the flat field name for local sqlite
          * @author Chaosruler972
          */
         private var FLOOR:String?,
@@ -217,9 +217,9 @@ class big_table_data(
     fun get_FLAT(): String? = FLAT
 
     /**
-     * the current floor field name (sqlite)
+     * the current flat field name (sqlite)
      * @author Chaosruler972
-     * @return the current floor (sqlite)
+     * @return the current flat (sqlite)
      */
     fun get_FLOOR(): String? = FLOOR
 
@@ -390,9 +390,9 @@ class big_table_data(
     }
 
     /**
-     * Sets the current floor
+     * Sets the current flat
      * @author Chaosruler972
-     * @param string the new floor
+     * @param string the new flat
      */
     fun set_FLOOR(string: String)
     {
