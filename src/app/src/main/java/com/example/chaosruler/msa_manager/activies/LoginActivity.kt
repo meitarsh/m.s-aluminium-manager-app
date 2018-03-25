@@ -303,11 +303,11 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
                     login_password.text.clear()
                 }
             }
-//            R.id.manage_users_db -> {
-//                val intent = Intent(this@LoginActivity, user_delete_activity::class.java)
-//                startActivity(intent)
-//                finish()
-//            }
+            R.id.manage_users_db -> {
+                val intent = Intent(this@LoginActivity, user_delete_activity::class.java)
+                startActivity(intent)
+                finish()
+            }
             R.id.settings ->
             {
                 val intent = Intent(this@LoginActivity, SettingsActivity::class.java)

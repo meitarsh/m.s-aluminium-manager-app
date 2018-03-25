@@ -350,9 +350,9 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
     {
         var result = false
         for(item in equal_to)
-            equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false,context) )
+            equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(Charset.forName("UTF-8")),global_variables_dataclass.get_device_id(context).toByteArray(Charset.forName("UTF-8")) ,false,context) )
         val db: SQLiteDatabase = this.writableDatabase
-        if(db.delete(TABLE_NAME,where_clause + "=?", equal_to) >0)
+        if(db.delete(TABLE_NAME,where_clause + " = ?", equal_to) >0)
             result = true
         //db.close()
         return result
