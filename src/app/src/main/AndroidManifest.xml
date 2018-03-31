@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/msalumicon"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -79,7 +79,8 @@
             android:configChanges="orientation"
             android:label="@string/kablan_mforat_label"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".activies.divohi_takalot_tofes_activity.DivohiTakalotTofesActivity"
             android:label="@string/divohi_takalot_tofes_str"
@@ -120,23 +121,31 @@
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedService" />
-        <!--<service-->
-            <!--android:name=".services.VPN.vpn_connection"-->
-            <!--android:permission="android.permission.BIND_VPN_SERVICE">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.net.VpnService" />-->
-            <!--</intent-filter>-->
+        <!-- <service -->
+        <!-- android:name=".services.VPN.vpn_connection" -->
+        <!-- android:permission="android.permission.BIND_VPN_SERVICE"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.net.VpnService" /> -->
+        <!-- </intent-filter> -->
 
-            <!--<meta-data-->
-                <!--android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON"-->
-                <!--android:value="false" />-->
-        <!--</service>-->
+
+        <!-- <meta-data -->
+        <!-- android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON" -->
+        <!-- android:value="false" /> -->
+        <!-- </service> -->
+
+        <activity
+            android:name=".activies.flat_chooser.flat_chooser"
+            android:configChanges="orientation"
+            android:label="@string/flat_chooser_label"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity android:name=".activies.floor_chooser.floor_chooser"
-            android:label="@string/floor_chooser_label"
-            android:windowSoftInputMode="stateAlwaysHidden"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:label="@string/choose_floor_activity_lable"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>

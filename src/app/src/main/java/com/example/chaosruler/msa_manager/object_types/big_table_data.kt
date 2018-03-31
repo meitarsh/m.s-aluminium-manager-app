@@ -572,7 +572,7 @@ class big_table_data(
             when {
                 this.DIRANUM!!.toInt() < other.DIRANUM!!.toInt() -> return -1
                 this.DIRANUM!!.toInt() > other.DIRANUM!!.toInt() -> return 1
-                this.DIRANUM!!.toInt() == other.DIRANUM!!.toInt() -> return 0
+//                this.DIRANUM!!.toInt() == other.DIRANUM!!.toInt() -> return 0
                 else -> {
                 }
             }
@@ -580,6 +580,28 @@ class big_table_data(
         catch (e: NumberFormatException)
         {
             Log.d("Big_table_data","DIRANUM is not a number!")
+            return 0
+        }
+        if (this.get_PRINTORDER() == null || other.get_PRINTORDER() == null)
+            return 0
+        try {
+            when {
+                this.get_PRINTORDER()!!.toInt() < other.get_PRINTORDER()!!.toInt() -> return -1
+                this.get_PRINTORDER()!!.toInt() > other.get_PRINTORDER()!!.toInt() -> return 1
+            }
+        } catch (e: NumberFormatException) {
+            Log.d("Big_table_data", "PRINTORDER is not a number!")
+            return 0
+        }
+        if (this.get_ITEMNUMBER() == null || other.get_ITEMNUMBER() == null)
+            return 0
+        try {
+            when {
+                this.get_ITEMNUMBER()!!.toInt() < other.get_ITEMNUMBER()!!.toInt() -> return -1
+                this.get_ITEMNUMBER()!!.toInt() > other.get_ITEMNUMBER()!!.toInt() -> return 1
+            }
+        } catch (e: NumberFormatException) {
+            Log.d("Big_table_data", "ITEMNUMBER is not a number!")
             return 0
         }
         return 0

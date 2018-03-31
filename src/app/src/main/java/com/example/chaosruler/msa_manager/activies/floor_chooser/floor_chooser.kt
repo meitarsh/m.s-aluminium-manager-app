@@ -22,6 +22,10 @@ class floor_chooser : AppCompatActivity() {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_floor_chooser)
+        if (!global_variables_dataclass.GUI_MODE)
+            global_variables_dataclass.flat = intent.getStringExtra(getString(R.string.key_pass_main_to_options))
+        else
+            global_variables_dataclass.flat = ""
         init_spinner()
         init_buttons()
     }
@@ -51,7 +55,7 @@ class floor_chooser : AppCompatActivity() {
     private fun on_adapter_set(projects: Vector<big_table_data>)
     {
         projects.sort()
-        adapter = floorArrayAdapter(this, android.R.layout.simple_spinner_item, projects.filter { global_variables_dataclass.projid!! == it.get_PROJECT_ID() })
+        adapter = floorArrayAdapter(this, android.R.layout.simple_spinner_item, projects.filter { global_variables_dataclass.projid!! == it.get_PROJECT_ID() && global_variables_dataclass.flat == it.get_FLAT() })
         floor_spinner.adapter = adapter
 
         floor_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener
@@ -67,7 +71,6 @@ class floor_chooser : AppCompatActivity() {
                 {
                     (view as TextView).text = adapter.getItem(position).get_FLOOR()
                 }
-                // Toast.makeText(baseContext,(main_spinner.adapter.getItem(position) as project_data).get_project_name(),Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -76,20 +79,25 @@ class floor_chooser : AppCompatActivity() {
     private fun init_buttons()
     {
         floor_button_choose.setOnClickListener({
+
             val intent =
                     if (global_variables_dataclass.floor_moving_to == 0)
                         Intent(this@floor_chooser, kablan_mforat::class.java)
-                else // 1
-                    Intent(this@floor_chooser, DivohiTakalotTofesActivity::class.java)
+                    else // 1
+                        Intent(this@floor_chooser, DivohiTakalotTofesActivity::class.java)
             if(!global_variables_dataclass.GUI_MODE && floor_spinner.selectedItemPosition == Spinner.INVALID_POSITION)
             {
-                Toast.makeText(baseContext,getString(R.string.no_floor_chosen_spinner_toast), Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, getString(R.string.floor_not_chosen_toast), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }
+            } else if (global_variables_dataclass.GUI_MODE)
+                global_variables_dataclass.floor = "dummy_floor"
             if(!global_variables_dataclass.GUI_MODE)
-                intent.putExtra(getString(R.string.key_pass_main_to_options),(floor_spinner.adapter.getItem(floor_spinner.selectedItemPosition) as big_table_data).get_FLAT()?:"")
+                global_variables_dataclass.floor = (floor_spinner.adapter.getItem(floor_spinner.selectedItemPosition) as big_table_data).get_FLOOR() ?: ""
             startActivity(intent)
+            finish()
         })
     }
 
 }
+
+

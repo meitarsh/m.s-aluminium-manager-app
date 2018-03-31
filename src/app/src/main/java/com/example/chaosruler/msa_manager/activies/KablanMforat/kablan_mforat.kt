@@ -42,10 +42,6 @@ class kablan_mforat : Activity() {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kablan_mforat)
-        if(!global_variables_dataclass.GUI_MODE)
-            global_variables_dataclass.flat = intent.getStringExtra(getString(R.string.key_pass_main_to_options))
-        else
-            global_variables_dataclass.flat = ""
         init_spinner()
     }
 
@@ -78,7 +74,7 @@ class kablan_mforat : Activity() {
     {
         Log.d("Floor is", global_variables_dataclass.flat ?: "No flat")
         adapter = KablanArrayAdapter(this, android.R.layout.simple_spinner_item,
-                big_table.filter { it.get_FLAT() == global_variables_dataclass.flat })
+                big_table.filter { it.get_FLAT() == global_variables_dataclass.flat && it.get_FLOOR() == global_variables_dataclass.floor })
 
         activity_kablan_mforat_spinner.adapter = adapter
 
@@ -94,7 +90,7 @@ class kablan_mforat : Activity() {
 
                 // var txtview:TextView = view as TextView
                 //  txtview.text = vendor_item.get_accountname()
-                (view as TextView).text = big_item.get_FLAT()?:""
+                (view as TextView).text = big_item.get_VENDOR_ID() ?: ""
                 activity_kablan_mforat_kamot_hoza.text = (big_item.get_QTY() ?: "0").trim()
                 activity_kablan_mforat_yehida_price.text = (big_item.get_SALESPRICE() ?: "0").trim()
                 activity_kablan_mforat_peola_percent.text = ((peola_parcent.toDouble()).toInt().toString() + "%").trim()

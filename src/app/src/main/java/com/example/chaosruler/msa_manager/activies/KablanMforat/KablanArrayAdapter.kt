@@ -14,7 +14,7 @@ class KablanArrayAdapter(context: Context, resource_id: Int, list: List<big_tabl
 {
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val textView = TextView(context)
-        textView.text = this.getItem(position).get_FLAT()?:""
+        textView.text = this.getItem(position).get_VENDOR_ID() ?: ""
         return textView
     }
 }
