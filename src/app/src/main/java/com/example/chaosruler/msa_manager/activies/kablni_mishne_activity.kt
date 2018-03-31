@@ -4,8 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.activies.KablanMforat.kablan_mforat
-import com.example.chaosruler.msa_manager.activies.floor_chooser.floor_chooser
+import com.example.chaosruler.msa_manager.activies.flat_chooser.flat_chooser
 import com.example.chaosruler.msa_manager.activies.kablan_pashot_activity.kablan_pashot
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
@@ -45,7 +44,7 @@ class kablni_mishne_activity : Activity() {
 
         kablni_mishne_pirot.setOnClickListener({
             global_variables_dataclass.floor_moving_to = 0
-            startActivity(Intent(this, floor_chooser::class.java))
+            startActivity(Intent(this, flat_chooser::class.java))
         })
     }
 }

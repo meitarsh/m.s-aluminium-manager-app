@@ -15,7 +15,6 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
 import com.example.chaosruler.msa_manager.object_types.cache_command
-import java.lang.Thread.sleep
 import java.util.*
 
 
@@ -132,29 +131,36 @@ class offline_mode_service : Service(){
          * @author Chaosruler972
          */
         private var trd:Thread= Thread({
-            while (true)
-            {
-                Log.d("offline_mode","Did a trd run")
-                try {
-                    Thread({
-                        try_to_run_command()
-                    }).start()
-                }
-                catch (e:Exception)
-                {
-                    Log.d("Command","Had an exception!")
-                }
-                try
-                {
-                    Log.d("Going to sleep for ", (time/1000).toString() +" Seconds")
-                    sleep(time)
-                }
-                catch (e: InterruptedException)
-                {
-                    Log.d("offline mode","retring a re-sync of everything")
-                }
 
-            }
+            Timer().scheduleAtFixedRate(object : TimerTask() {
+                override fun run() {
+                    try_to_run_command()
+                    Log.d("offline_mode", "Did a trd run")
+                }
+            }, 0, time)//put here time 1000 milliseconds=1 second
+//            while (true)
+//            {
+//                Log.d("offline_mode","Did a trd run")
+//                try {
+//                    Thread({
+//                        try_to_run_command()
+//                    }).start()
+//                }
+//                catch (e:Exception)
+//                {
+//                    Log.d("Command","Had an exception!")
+//                }
+//                try
+//                {
+//                    Log.d("Going to sleep for ", (time/1000).toString() +" Seconds")
+//                    sleep(time)
+//                }
+//                catch (e: InterruptedException)
+//                {
+//                    Log.d("offline mode","retring a re-sync of everything")
+//                }
+//
+//            }
         })
 
 

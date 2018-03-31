@@ -4,26 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activies.floor_chooser.floor_chooser"
     android:textDirection="rtl"
-    >
+    tools:context="com.example.chaosruler.msa_manager.activies.flat_chooser.flat_chooser">
+
 
     <Button
-        android:id="@+id/floor_button_choose"
+        android:id="@+id/flat_button_choose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="114dp"
         android:background="@drawable/button_sample1"
-        android:text="@string/choose_floor_btn_lable"
+        android:text="@string/flat_choose_that_flat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floor_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/flat_spinner"
         app:layout_constraintVertical_bias="0.896" />
 
     <Spinner
-        android:id="@+id/floor_spinner"
+        android:id="@+id/flat_spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="244dp"
@@ -34,16 +34,15 @@
         app:layout_constraintVertical_bias="0.699" />
 
     <TextView
-        android:id="@+id/floor_spinner_label"
+        android:id="@+id/flat_spinner_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="@string/floor_spinner_label"
-        app:layout_constraintBottom_toTopOf="@+id/floor_spinner"
+        android:text="@string/choose_flat_label"
+        app:layout_constraintBottom_toTopOf="@+id/flat_spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </android.support.constraint.ConstraintLayout>

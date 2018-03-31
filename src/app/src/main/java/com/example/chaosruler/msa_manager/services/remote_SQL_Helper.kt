@@ -2,13 +2,11 @@ package com.example.chaosruler.msa_manager.services
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.net.VpnService
 import android.os.AsyncTask
 import android.preference.PreferenceManager
 import android.util.Log
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.LoginActivity
-import com.example.chaosruler.msa_manager.services.VPN.vpn_connection
 import java.sql.*
 import java.util.*
 import kotlin.collections.HashMap
@@ -299,7 +297,10 @@ object remote_SQL_Helper {
                         }
                         if (rs == null)
                         {
-                            lock.notify()
+                            synchronized(lock)
+                            {
+                                lock.notify()
+                            }
                             return@execute
                         }
                         val columnCount = rs.metaData.columnCount
