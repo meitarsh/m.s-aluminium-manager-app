@@ -2,11 +2,13 @@ package com.example.chaosruler.msa_manager.services
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.net.VpnService
 import android.os.AsyncTask
 import android.preference.PreferenceManager
 import android.util.Log
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.LoginActivity
+import com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.vpn_connection
 import java.sql.*
 import java.util.*
 import kotlin.collections.HashMap
@@ -105,18 +107,14 @@ object remote_SQL_Helper {
         password = pass
         this.act = act
 
-//        if(vpn_connection.check_if_need_to_connect(con))
-//        {
-//          val i = VpnService.prepare(act)
-//          if(i == null)
-//          {
-//            act.startActivityForResult(i,act.resources.getInteger(R.integer.VPN_request_code))
-//          }
-//          else
-//          {
-//              act.mark_vpn_ready(i)
-//          }
-//        }
+        if (vpn_connection.check_if_need_to_connect(con)) {
+            val i = VpnService.prepare(act)
+            if (i == null) {
+                act.startActivityForResult(i, act.resources.getInteger(R.integer.VPN_request_code))
+            } else {
+                act.mark_vpn_ready(i)
+            }
+        }
 
         if(connection!=null)
             connection!!.close()

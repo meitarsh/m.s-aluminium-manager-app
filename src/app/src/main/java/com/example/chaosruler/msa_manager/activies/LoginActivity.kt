@@ -32,10 +32,10 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 import com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity
 import com.example.chaosruler.msa_manager.object_types.User
+import com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.vpn_connection
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.services.themer
-import com.example.chaosruler.msa_manager.services.VPN.vpn_connection
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
 
@@ -472,6 +472,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             {
                 if(resultCode == Activity.RESULT_OK)
                     startService(getServiceIntent().setAction("com.example.chaosruler.msa_manager.START"))
+//                    startService(Intent(this@LoginActivity, VPN::class.java))
             }
             else->
             {
@@ -509,7 +510,10 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         override fun doInBackground(vararg params: Void): Boolean?
         {
 
-
+//            if(VPN.VPN_Enabled(baseContext))
+//            {
+//                VPN.prepare_vpn(this@LoginActivity)
+//            }
             remote_SQL_Helper.Connect(baseContext, mEmail, mPassword,this@LoginActivity)
             val gui_mode_key: Boolean = PreferenceManager.getDefaultSharedPreferences(baseContext).getBoolean(getString(R.string.gui_mode_key), false)
             val result =

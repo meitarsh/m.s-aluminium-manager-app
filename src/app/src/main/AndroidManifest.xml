@@ -121,18 +121,32 @@
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedService" />
-        <!-- <service -->
-        <!-- android:name=".services.VPN.vpn_connection" -->
-        <!-- android:permission="android.permission.BIND_VPN_SERVICE"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.net.VpnService" /> -->
-        <!-- </intent-filter> -->
 
 
-        <!-- <meta-data -->
-        <!-- android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON" -->
-        <!-- android:value="false" /> -->
-        <!-- </service> -->
+        <service
+            android:name=".services.VPN_google_toyVPN.vpn_connection"
+            android:permission="android.permission.BIND_VPN_SERVICE"
+            tools:ignore="InnerclassSeparator">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+
+
+            <meta-data
+                android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON"
+                android:value="true" />
+        </service>
+
+        <!--<service android:name=".services.VPN"-->
+        <!--android:permission="android.permission.BIND_VPN_SERVICE">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.net.VpnService"/>-->
+        <!--</intent-filter>-->
+        <!--<meta-data android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON"-->
+        <!--android:value="true"/>-->
+        <!--</service>-->
+        <!---->
+
 
         <activity
             android:name=".activies.flat_chooser.flat_chooser"
