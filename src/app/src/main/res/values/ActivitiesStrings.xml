@@ -30,6 +30,7 @@
 
     <!-- String related to main activity -->
     <string name="key_sync_offline">offline_sync_key</string>
+    <string name="key_username">username_sync_key</string>
     <string name="main_progress_bar_max">100</string>
     <string name="main_progressbar_start">50</string>
     <string name="main_progressbar_inc_rate">5</string>

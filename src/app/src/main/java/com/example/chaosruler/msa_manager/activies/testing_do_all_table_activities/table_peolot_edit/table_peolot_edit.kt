@@ -47,9 +47,9 @@ class table_peolot_edit : Activity() {
                     if (global_variables_dataclass.GUI_MODE)
                         Vector()
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                        global_variables_dataclass.DB_OPR!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
+                        global_variables_dataclass.DB_OPR!!.get_local_DB()
                     else
-                        global_variables_dataclass.DB_OPR!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
+                        global_variables_dataclass.DB_OPR!!.server_data_to_vector()
 
             runOnUiThread {table_opr_listview.adapter = table_peolot_arrayadapter(this,arr) }
         }.start()

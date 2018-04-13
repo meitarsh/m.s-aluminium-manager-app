@@ -1,7 +1,9 @@
 package com.example.chaosruler.msa_manager.object_types
 
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+import java.util.*
 
+@Suppress("unused")
 /**
  * an object representation of a user
  * @author Chaosruler972
@@ -17,7 +19,12 @@ class User(
          * The password data
          * @author Chaosruler972
          */
-        private var __password: String
+        private var __password: String,
+
+        /**
+         * Last sync time by user
+         */
+        private var __synctime: Long
 ):table_dataclass {
 
 
@@ -73,10 +80,31 @@ class User(
     {
         this.__password = password
     }
+
+    /**
+     * gets the latest synctime in dateformat
+     * @author Chaosruler972
+     * @return the latest synctime
+     */
+    fun get_last_sync_time() : Date
+    {
+        return Date(this.__synctime)
+    }
+
+    /**
+     * sets the latest synctime
+     * @author Chaosruler972
+     */
+    fun set_last_sync_time(time: Long)
+    {
+        if (this.__synctime < time)
+            this.__synctime = time
+    }
+
     /**
      * a copy constructor
      * @return a copy of this data class
      * @author Chaosruler972
      */
-    override fun copy(): User = User(this.__username, this.__password)
+    override fun copy(): User = User(this.__username, this.__password, this.__synctime)
 }

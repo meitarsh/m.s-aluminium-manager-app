@@ -6,11 +6,14 @@ import android.net.VpnService
 import android.os.AsyncTask
 import android.preference.PreferenceManager
 import android.util.Log
+import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.LoginActivity
+import com.example.chaosruler.msa_manager.object_types.User
 import com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.vpn_connection
 import java.sql.*
 import java.util.*
+import java.util.Date
 import kotlin.collections.HashMap
 
 /**
@@ -41,6 +44,11 @@ object remote_SQL_Helper {
      */
     private var username: String = ""
     /**
+     * The current user
+     * @author Chaosruler972
+     */
+    var user: User? = null
+    /**
      * The login password
      * @author Chaosruler972
      */
@@ -61,6 +69,12 @@ object remote_SQL_Helper {
      * @author Chaosruler972
      */
     private lateinit var exception: SQLException
+
+    /**
+     * the name of the sync clumn
+     * @author Chaosruler972
+     */
+    private var sync_column: String? = null
 
     /**
      * username logged in
@@ -105,6 +119,7 @@ object remote_SQL_Helper {
         context = con
         username = user
         password = pass
+        sync_column = con.getString(R.string.moddate)
         this.act = act
 
         if (vpn_connection.check_if_need_to_connect(con)) {
@@ -179,7 +194,12 @@ object remote_SQL_Helper {
                         var rs: ResultSet?
                         @Suppress("LiftReturnOrAssignment")
                         try {
-                            rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]")
+//                            if(BuildConfig.DEBUG)
+//                                rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]")
+//                            else
+                                rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]"
+                                + " WHERE $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 05:00:00:000') ")
+
                         } catch (e: SQLTimeoutException) {
                             Log.d("remote SQL", "EXCEPTION SQL timeout")
                             rs = null
@@ -231,6 +251,15 @@ object remote_SQL_Helper {
         return vector
     }
 
+    /**
+     * gets the latest sync time of the current user
+     * @author Chaosruler972
+     * @return latest sync time of user
+     */
+    private fun get_latest_sync_time() : Date
+    {
+        return user!!.get_last_sync_time()
+    }
 
     /**
      *   simulates select * from db where ...
@@ -263,7 +292,10 @@ object remote_SQL_Helper {
                     {
                         var rs: ResultSet?
                         try {
-                            var qry = "USE [$db] SELECT "
+                            var qry = if (BuildConfig.DEBUG)
+                                "USE [$db] SELECT "
+                            else
+                                "USE [$db] SELECT "
                             var first = false
                             for (column in colm_to_type) {
                                 if (first)
@@ -278,9 +310,14 @@ object remote_SQL_Helper {
                                     "N" + add_quotes(where_compare)
                                 } else
                                     where_compare
-                                qry += "WHERE "
-                                qry += "CONVERT(${colm_to_type.getValue(where_column)},$where_column) = $item"
+                                qry += " WHERE "
+                                qry += " CONVERT(${colm_to_type.getValue(where_column)},$where_column) = $item "
                             }
+                            val where_or_not = if (where_column == null)
+                                " WHERE "
+                                else
+                                " AND "
+                            qry += "$where_or_not $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 05:00:00:000')"
                             Log.d("Query: ",qry)
                             rs = connection!!.createStatement().executeQuery(qry)
                         } catch (e: SQLTimeoutException) {
@@ -484,16 +521,16 @@ object remote_SQL_Helper {
 
         for (item in vector) {
             command += "[$item]"
-            if (item != vector.lastElement())
                 command += ","
         }
+        command += sync_column!!
         command += ") VALUES ("
 
         for (item in vector) {
             command += map[item]
-            if (item != vector.lastElement())
                 command += ","
         }
+        command += "dateadd(s,${Date().time/1000},'19700101 05:00:00:000') "
         command += ")"
         return command
     }
@@ -540,11 +577,8 @@ object remote_SQL_Helper {
         for (item in update_to) {
             command += " [${item.key}] = ${item.value} "
             breaker++
-            if (breaker < update_to.size)
-                command += " , "
-            else
-                break
         }
+        command += " [$sync_column] = dateadd(s,${Date().time/1000},'19700101 05:00:00:000') "
         command += " WHERE "
         for (item in compare_to) {
             command += "CONVERT($type,$where_clause) = $item "

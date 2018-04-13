@@ -8,6 +8,7 @@
     <string name="notificatoin_op_id">קוד הפעולה :</string>
 
     <string name="sync_btn_text">סנכרן עכשיו</string>
+    <string name="sync_started">מוריד עדכונים…</string>
 
     <!-- strings passed as keys between activities -->
     <string name="username">username</string>

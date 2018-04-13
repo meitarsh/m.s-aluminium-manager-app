@@ -5,7 +5,7 @@
 
     <!-- Network error messages strings -->
     <string name="network">network</string>
-    <string name="network_error">There&quot;s and error connecting to server, please try again</string>
+    <string name="network_error">ישנה בעית חיבור לשרת</string>
 
     <!-- Strings related to abstracted remote database server control -->
 

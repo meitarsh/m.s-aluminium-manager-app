@@ -75,39 +75,39 @@ class loz_activity_arrayadapter (context: Context, arr: Vector<big_table_data>) 
         haarot.hint = "No database value to grab"
         haarot.isEnabled = false
 
-        bnian.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if(hasFocus || bnian.text.isEmpty() )
-                return@OnFocusChangeListener
-            val str = bnian.text.toString()
-            Thread({
-                Looper.prepare()
-                val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_big_table_helper.FLAT] = str
-                remote_big_table_helper.push_update(big_item, update_value, context)
-                big_item.set_FLAT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                themer.hideKeyboard(context,bnian)
-            }).start()
-            bnian.hint = str.trim()
-            bnian.text.clear()
-        }
-
-        koma.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if(hasFocus || koma.text.isEmpty() )
-                return@OnFocusChangeListener
-            val str = koma.text.toString()
-            Thread({
-                Looper.prepare()
-                val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_big_table_helper.FLOOR] = str
-                remote_big_table_helper.push_update(big_item, update_value, context)
-                big_item.set_FLOOR(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                themer.hideKeyboard(context,koma)
-            }).start()
-            koma.hint = str.trim()
-            koma.text.clear()
-        }
+//        bnian.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+//            if(hasFocus || bnian.text.isEmpty() )
+//                return@OnFocusChangeListener
+//            val str = bnian.text.toString()
+//            Thread({
+//                Looper.prepare()
+//                val update_value: HashMap<String, String> = HashMap()
+//                update_value[remote_big_table_helper.FLAT] = str
+//                remote_big_table_helper.push_update(big_item, update_value, context)
+//                big_item.set_FLAT(str)
+//                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+//                themer.hideKeyboard(context,bnian)
+//            }).start()
+//            bnian.hint = str.trim()
+//            bnian.text.clear()
+//        }
+//
+//        koma.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+//            if(hasFocus || koma.text.isEmpty() )
+//                return@OnFocusChangeListener
+//            val str = koma.text.toString()
+//            Thread({
+//                Looper.prepare()
+//                val update_value: HashMap<String, String> = HashMap()
+//                update_value[remote_big_table_helper.FLOOR] = str
+//                remote_big_table_helper.push_update(big_item, update_value, context)
+//                big_item.set_FLOOR(str)
+//                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+//                themer.hideKeyboard(context,koma)
+//            }).start()
+//            koma.hint = str.trim()
+//            koma.text.clear()
+//        }
 
         ahoz_bizoaa.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || ahoz_bizoaa.text.isEmpty())

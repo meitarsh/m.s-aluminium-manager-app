@@ -47,9 +47,9 @@ class table_projects_edit : Activity() {
                     if (global_variables_dataclass.GUI_MODE)
                         Vector()
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                        global_variables_dataclass.DB_project!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
+                        global_variables_dataclass.DB_project!!.get_local_DB()
                     else
-                        global_variables_dataclass.DB_project!!.server_data_to_vector_by_projid((global_variables_dataclass.projid?:"").trim())
+                        global_variables_dataclass.DB_project!!.server_data_to_vector()
             runOnUiThread {table_projects_listview.adapter = table_projects_arrayadapter(this,arr) }
         }.start()
        return true

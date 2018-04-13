@@ -125,7 +125,7 @@ class user_delete_activity : Activity() {
                 }
                 else -> {
                     Toast.makeText(this@user_delete_activity, resources.getString(R.string.delete_confirmed), Toast.LENGTH_SHORT).show() // confirmed match, this is when action is sent and confirmed
-                    db.update_user((delete_spinner.selectedItem as User).get__username(), new_pass)
+                    db.update_user((delete_spinner.selectedItem as User).get__username(), new_pass, (delete_spinner.selectedItem as User).get_last_sync_time().time)
                     reset_password_fields()
                     return@OnClickListener
                 }

@@ -166,74 +166,74 @@ class divohi_takalot_edit_arrayadapter(
             shem_project.text.clear()
         }
 
-        kamot.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if(hasFocus || kamot.text.isEmpty() )
-                return@OnFocusChangeListener
-            val str = kamot.text.toString()
-            Thread({
-                Looper.prepare()
-                val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_big_table_helper.QTY] = str
-                remote_big_table_helper.push_update(big_item, update_value, context)
-                big_item.set_QTY(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                themer.hideKeyboard(context,kamot)
-            }).start()
-            kamot.hint = str.trim()
-            kamot.text.clear()
-        }
+//        kamot.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+//            if(hasFocus || kamot.text.isEmpty() )
+//                return@OnFocusChangeListener
+//            val str = kamot.text.toString()
+//            Thread({
+//                Looper.prepare()
+//                val update_value: HashMap<String, String> = HashMap()
+//                update_value[remote_big_table_helper.QTY] = str
+//                remote_big_table_helper.push_update(big_item, update_value, context)
+//                big_item.set_QTY(str)
+//                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+//                themer.hideKeyboard(context,kamot)
+//            }).start()
+//            kamot.hint = str.trim()
+//            kamot.text.clear()
+//        }
 
 
-        koma.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if(hasFocus || koma.text.isEmpty() )
-                return@OnFocusChangeListener
-            val str = koma.text.toString()
-            Thread({
-                Looper.prepare()
-                val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_big_table_helper.FLOOR] = str
-                remote_big_table_helper.push_update(big_item, update_value, context)
-                big_item.set_FLOOR(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                themer.hideKeyboard(context,koma)
-            }).start()
-            koma.hint = str.trim()
-            koma.text.clear()
-        }
+//        koma.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+//            if(hasFocus || koma.text.isEmpty() )
+//                return@OnFocusChangeListener
+//            val str = koma.text.toString()
+//            Thread({
+//                Looper.prepare()
+//                val update_value: HashMap<String, String> = HashMap()
+//                update_value[remote_big_table_helper.FLOOR] = str
+//                remote_big_table_helper.push_update(big_item, update_value, context)
+//                big_item.set_FLOOR(str)
+//                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+//                themer.hideKeyboard(context,koma)
+//            }).start()
+//            koma.hint = str.trim()
+//            koma.text.clear()
+//        }
 
-        dira.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if(hasFocus || dira.text.isEmpty() )
-                return@OnFocusChangeListener
-            val str = dira.text.toString()
-            Thread({
-                Looper.prepare()
-                val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_big_table_helper.FLAT] = str
-                remote_big_table_helper.push_update(big_item, update_value, context)
-                big_item.set_FLAT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                themer.hideKeyboard(context,dira)
-            }).start()
-            dira.hint = str.trim()
-            dira.text.clear()
-        }
-
-        dira.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if(hasFocus || dira.text.isEmpty() )
-                return@OnFocusChangeListener
-            val str = dira.text.toString()
-            Thread({
-                Looper.prepare()
-                val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_big_table_helper.DIRANUM] = str
-                remote_big_table_helper.push_update(big_item, update_value, context)
-                big_item.set_DIRANUM(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                themer.hideKeyboard(context,dira)
-            }).start()
-            dira.hint = str.trim()
-            dira.text.clear()
-        }
+//        dira.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+//            if(hasFocus || dira.text.isEmpty() )
+//                return@OnFocusChangeListener
+//            val str = dira.text.toString()
+//            Thread({
+//                Looper.prepare()
+//                val update_value: HashMap<String, String> = HashMap()
+//                update_value[remote_big_table_helper.FLAT] = str
+//                remote_big_table_helper.push_update(big_item, update_value, context)
+//                big_item.set_FLAT(str)
+//                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+//                themer.hideKeyboard(context,dira)
+//            }).start()
+//            dira.hint = str.trim()
+//            dira.text.clear()
+//        }
+//
+//        dira.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+//            if(hasFocus || dira.text.isEmpty() )
+//                return@OnFocusChangeListener
+//            val str = dira.text.toString()
+//            Thread({
+//                Looper.prepare()
+//                val update_value: HashMap<String, String> = HashMap()
+//                update_value[remote_big_table_helper.DIRANUM] = str
+//                remote_big_table_helper.push_update(big_item, update_value, context)
+//                big_item.set_DIRANUM(str)
+//                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+//                themer.hideKeyboard(context,dira)
+//            }).start()
+//            dira.hint = str.trim()
+//            dira.text.clear()
+//        }
 
         alot_takala.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || alot_takala.text.isEmpty() )

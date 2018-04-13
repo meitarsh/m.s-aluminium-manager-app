@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.media.RingtoneManager
 import android.os.Binder
 import android.os.IBinder
 import android.preference.PreferenceManager
@@ -15,9 +16,16 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
 import com.example.chaosruler.msa_manager.object_types.cache_command
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.sync.Mutex
+import kotlinx.coroutines.experimental.sync.withLock
 import java.util.*
+import java.util.concurrent.locks.Condition
+import java.util.concurrent.locks.Lock
+import java.util.concurrent.locks.ReentrantLock
 
 
+@Suppress("unused")
 /**
  * service responsible for storing server commands offline and sending them whenever possible
  * @author Chaosruler972
@@ -110,6 +118,7 @@ class offline_mode_service : Service(){
          * local BIG db instance on SQLITE
          * @author Chaosruler972
          */
+        @SuppressLint("StaticFieldLeak")
         private lateinit var big_table: local_big_table_helper
 
         /**
@@ -132,6 +141,7 @@ class offline_mode_service : Service(){
          */
         private var trd:Thread= Thread({
 
+            Thread.sleep(time)
             Timer().scheduleAtFixedRate(object : TimerTask() {
                 override fun run() {
                     try_to_run_command()
@@ -182,13 +192,12 @@ class offline_mode_service : Service(){
 
             grab_time(ctx)
             init_remote_databases(context)
-            grab_time(ctx)
 
             start_trd()
 
-            if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.local_or_not), true)) {
-                sync_local(context, intent)
-            } else
+//            if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.local_or_not), true)) {
+//                sync_local(context, intent)
+//            } else
                 mark_done(context, intent)
 
         }
@@ -376,12 +385,15 @@ class offline_mode_service : Service(){
          * @param string the string that appears on the notification
          */
         @SuppressLint("PrivateResource")
-        private fun build_small_notification(string: String) {
+        fun build_small_notification(string: String) {
+            val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
             @Suppress("DEPRECATION")
             val mBuilder = NotificationCompat.Builder(ctx)
                     .setSmallIcon(R.drawable.notification_icon_background)
                     .setContentTitle(ctx.getString(R.string.notification_title))
-                    .setContentText(ctx.getString(R.string.notification_sync_successfuk) + ctx.getString(R.string.notificatoin_op_id) + string)
+                    .setContentText(ctx.getString(R.string.notification_sync_successfuk) + " " + ctx.getString(R.string.notificatoin_op_id) + string)
+                    .setSound(alarmSound)
             (ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?)?.notify(1, mBuilder.build())
         }
 
@@ -414,14 +426,87 @@ class offline_mode_service : Service(){
          * @author Chaosruler972
          */
         private fun db_sync_func_without_mark() {
+
+            val user = remote_SQL_Helper.user!!
+            build_small_notification(ctx.getString(R.string.sync_started))
+            val done_count = IntArray(1)
+            val max_count = 5
+
+
+
+            val mtx = Mutex()
+            val lock = ReentrantLock()
+            val cond = lock.newCondition()
+
+            Log.d("syncing from time", user.get_last_sync_time().toString())
             try {
-                projects.sync_db()
-                inventory.sync_db()
-                opr.sync_db()
-                vendor.sync_db()
-                big_table.sync_db()
+                async {
+                    Log.d("db_sync","projects")
+                    projects.sync_db()
+                    Log.d("db_sync","projects done")
+                    done_syncing(mtx,done_count,max_count,lock,cond)
+                }.start()
+
+               async {
+                   Log.d("db_sync","inventory")
+                   inventory.sync_db()
+                   Log.d("db_sync","inventory done")
+                   done_syncing(mtx,done_count,max_count,lock,cond)
+               }.start()
+
+               async {
+                   Log.d("db_sync","opr")
+                   opr.sync_db()
+                   Log.d("db_sync","opr done")
+                   done_syncing(mtx,done_count,max_count,lock,cond)
+               }.start()
+
+                async {
+                    Log.d("db_sync","vendor")
+                    vendor.sync_db()
+                    Log.d("db_sync","vendor done")
+                    done_syncing(mtx,done_count,max_count,lock,cond)
+                }.start()
+
+                async {
+                    Log.d("db_sync","big_table")
+                    big_table.sync_db()
+                    Log.d("db_sync","big_table done")
+                    done_syncing(mtx,done_count,max_count,lock,cond)
+                }.start()
+
             } catch (e: Exception) {
                 Log.d("offline_mode","Couldn't sync for first time for some reason")
+            }
+            lock.lock()
+            try{
+                cond.await()
+            }
+            catch (e: InterruptedException)
+            {}
+            lock.unlock()
+            user.set_last_sync_time(Date().time)
+            remote_SQL_Helper.user = user
+            global_variables_dataclass.DB_USERS!!.update_user(user.get__username(), user.get__password(), user.get_last_sync_time().time)
+        }
+
+        @Suppress("UNUSED_PARAMETER")
+        private fun check_for_complete(count: IntArray, maxCount: Int, lock: Lock, cond: Condition)
+        {
+            Log.d("db_sync","Checking for completeness")
+            if(count[0] == maxCount)
+            {
+//                    lock.lock()
+                cond.signal()
+//                    lock.unlock()
+            }
+        }
+
+        private suspend fun done_syncing(mtx: Mutex, done_count: IntArray, max_count: Int, lock: Lock, cond: Condition)
+        {
+            mtx.withLock {
+                done_count[0]++
+                check_for_complete(done_count, max_count, lock, cond)
             }
         }
 

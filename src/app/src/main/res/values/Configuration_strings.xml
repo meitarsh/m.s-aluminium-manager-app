@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <integer name="time_to_sync_in_sec">15</integer>
+    <integer name="time_to_sync_in_sec">900</integer>
     <integer name="millis_in_sec">1000</integer> <!-- should be 1000 -->
     <integer name="inittime">10000</integer>
 
-    <string name="REMOTE_IP_ADDR">18.188.42.16</string> <!-- IPs : 10.0.0.7 10.0.0.9  -->
+    <string name="REMOTE_IP_ADDR">192.168.1.210</string> <!-- IPs : 18.188.42.16  -->
 
     <!-- JTDS
 
@@ -22,7 +22,7 @@
 
 
     <string name="REMOTE_CONNECT_OPTIONS">;progname=Android_MSA;socketKeepAlive=true;socketTimeout=5;loginTimeout=5</string>
-    <string name="REMOTE_CONNECTION_WINDOWS_AUTH">;useNTLMv2=true;domain=WIN-P7DFJG1P8H7</string>
+    <string name="REMOTE_CONNECTION_WINDOWS_AUTH">;useNTLMv2=true;domain=Msa</string>
 
 
 </resources>

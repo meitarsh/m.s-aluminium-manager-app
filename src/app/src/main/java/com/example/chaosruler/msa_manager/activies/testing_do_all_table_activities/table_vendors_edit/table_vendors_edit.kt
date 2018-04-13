@@ -47,9 +47,9 @@ class table_vendors_edit : Activity() {
                 if (global_variables_dataclass.GUI_MODE)
                     Vector()
                 else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                    global_variables_dataclass.DB_VENDOR!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
+                    global_variables_dataclass.DB_VENDOR!!.get_local_DB()
                 else
-                    global_variables_dataclass.DB_VENDOR!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
+                    global_variables_dataclass.DB_VENDOR!!.server_data_to_vector()
 
         table_vendor_listview.adapter = table_vendors_arrayadapter(this,arr)
         return true

@@ -25,6 +25,7 @@ class user_database_helper(
 ) : local_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.resources.getInteger(R.integer.USER_DB_VERSION), con.getString(R.string.USER_TABLE_NAME)) {
     private val USERS_ID: String = con.getString(R.string.USER_COL_ID)
     private val PASSWORD: String = con.getString(R.string.USER_COL_PASSWORD)
+    private val USER_LAST_SYNC: String = con.getString(R.string.USER_SYNC_TIME)
 
     /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
@@ -36,6 +37,7 @@ class user_database_helper(
         val vector: Vector<String> = Vector()
         vector.add(USERS_ID)
         vector.add(PASSWORD)
+        vector.add(USER_LAST_SYNC)
         init_vector_of_variables(vector)
 
 
@@ -52,6 +54,7 @@ class user_database_helper(
         val map: HashMap<String, String> = HashMap()
         map[USERS_ID] = "BLOB primary key"
         map[PASSWORD] = "BLOB"
+        map[USER_LAST_SYNC] = "BLOB"
         createDB(db,map)
     }
 
@@ -71,7 +74,10 @@ class user_database_helper(
         if ( username.isEmpty() || password.isEmpty())
             return false
         if (check_user( username)) // checks if user exists in database
-            update_user(username, password) // if it does, lets update its password
+        {
+            val checked_user = get_user_by_id(username)!!
+            update_user(username, password, checked_user.get_last_sync_time().time) // if it does, lets update its password
+        }
         else // if it doesn't lets create a new entry for the user
             insert_user(username, password)
         return true
@@ -112,6 +118,7 @@ class user_database_helper(
         val data: HashMap<String, String> = HashMap()
         data[USERS_ID] = username
         data[PASSWORD] = password
+        data[USER_LAST_SYNC] = 0.toString()
         everything_to_add.addElement(data)
         add_data(everything_to_add)
     }
@@ -122,15 +129,17 @@ class user_database_helper(
      * @author Chaosruler972
      * @param password the password we want to update
      * @param username the username we want to find to update its password
+     * @param time the latest time in sync
      * @return if successfull, true, else false
      */
-    fun update_user(username: String, password: String) // subroutine to update data of a user that exists on the database
+    fun update_user(username: String, password: String, time: Long) // subroutine to update data of a user that exists on the database
             : Boolean {
         if ( username.isEmpty() || password.isEmpty())
             return false
 
         val change_to: HashMap<String, String> = HashMap()
         change_to[PASSWORD] = password
+        change_to[USER_LAST_SYNC] = time.toString()
         return update_data(USERS_ID, arrayOf(username),change_to)
     }
 
@@ -162,7 +171,9 @@ class user_database_helper(
         val users: Vector<User> = Vector()
         val vector: Vector<HashMap<String, String>> = get_db()
         vector
-                .map { User(it[USERS_ID].toString(), (it[PASSWORD]?:"").trim()) }
+                .map { User(it[USERS_ID].toString(),
+                        (it[PASSWORD]?:"").trim(),
+                        (it[USER_LAST_SYNC]?:"0").trim().toLong()) }
                 .forEach { users.addElement(it) }
         return users
     }

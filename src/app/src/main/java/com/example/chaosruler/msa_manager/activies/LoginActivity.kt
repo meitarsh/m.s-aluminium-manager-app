@@ -550,7 +550,8 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             }
             else if (success!=null && success)
             {
-                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                val main_intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(main_intent)
                 finish()
             }
             else

@@ -6,6 +6,7 @@ import android.net.wifi.WifiManager
 import android.preference.PreferenceManager
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
+import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 import com.example.chaosruler.msa_manager.activies.MainActivity
 import java.math.BigInteger
 import java.nio.charset.Charset
@@ -34,6 +35,8 @@ object global_variables_dataclass
     var DB_VENDOR: local_vendor_table_helper? = null
     @SuppressLint("StaticFieldLeak")
     var DB_INVENTORY: local_inventory_table_helper? = null
+    @SuppressLint("StaticFieldLeak")
+    var DB_USERS : user_database_helper? = null
 
     /**
      * Inits all the database with an instance that can be called from all the objects
@@ -49,8 +52,7 @@ object global_variables_dataclass
         DB_OPR = local_OPR_table_helper(context)
         DB_VENDOR = local_vendor_table_helper(context)
         DB_project = local_projects_table_helper(context)
-
-
+        DB_USERS = user_database_helper(context)
     }
 
     /**

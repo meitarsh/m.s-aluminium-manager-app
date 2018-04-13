@@ -54,6 +54,7 @@ class MainActivity : Activity()
 
         if(global_variables_dataclass.isLocal && !global_variables_dataclass.GUI_MODE)
         {
+            remote_SQL_Helper.user = global_variables_dataclass.DB_USERS!!.get_user_by_id(remote_SQL_Helper.getusername())
             hide_everything()
             init_sync_trd()
             progress_subroutine()
@@ -258,7 +259,9 @@ class MainActivity : Activity()
         main_button_download.visibility = View.VISIBLE
         main_button_download.setOnClickListener({
             main_button_download.isEnabled = false
-            offline_mode_service.db_sync_func(baseContext,intent)
+            Thread({
+                offline_mode_service.db_sync_func(baseContext,intent)
+            }).start()
             Thread({
                 while (intent.getStringExtra(baseContext.getString(R.string.key_sync_offline))==null)
                 {
@@ -272,7 +275,8 @@ class MainActivity : Activity()
                 }
                 intent.removeExtra(baseContext.getString(R.string.key_sync_offline))
                 runOnUiThread({
-                    Toast.makeText(baseContext, getString(R.string.sync_done_prompt),Toast.LENGTH_SHORT).show()
+                    val str_complete = getString(R.string.sync_done_prompt)
+                    offline_mode_service.build_small_notification(str_complete)
                     init_spinner()
                     main_button_download.isEnabled = true
                 })
