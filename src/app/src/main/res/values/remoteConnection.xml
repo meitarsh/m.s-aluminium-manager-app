@@ -25,6 +25,8 @@
     <string name="class_jtds_jdbc">net.sourceforge.jtds.jdbc.Driver</string>
     <string name="REMOTE_CONNECT_STRING">jdbc:jtds:sqlserver://</string>
 
+    <integer name="VPN_HARDCODED_CONNECT_PORT">50443</integer>
+
     <string name="get_date_from_server">select getdate()</string>
     <string name="unable_to_connect_vpn">Unable to open VPN</string>
 

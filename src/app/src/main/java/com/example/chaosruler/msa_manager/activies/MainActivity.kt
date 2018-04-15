@@ -9,13 +9,16 @@ import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_chooser
 import com.example.chaosruler.msa_manager.object_types.project_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.alert
 import java.lang.Thread.sleep
 import java.util.*
 
@@ -55,17 +58,43 @@ class MainActivity : Activity()
         if(global_variables_dataclass.isLocal && !global_variables_dataclass.GUI_MODE)
         {
             remote_SQL_Helper.user = global_variables_dataclass.DB_USERS!!.get_user_by_id(remote_SQL_Helper.getusername())
-            hide_everything()
+            //hide_everything()
             init_sync_trd()
             progress_subroutine()
+            user_first_run()
         }
 
         create_intro_text()
         if(!global_variables_dataclass.GUI_MODE)
             init_spinner()
         init_buttons()
-
     }
+
+    /**
+     * method that contexts a user about his first sync and gives notification and turns app into background applications
+     * @author Chaosruler972
+     */
+    private fun user_first_run()
+    {
+        if(check_if_first_sync())
+        {
+            Log.d("sync", "first sync")
+            val sync_alert = alert(title=getString(R.string.anko_title),message = getString(R.string.anko_message_sync_time_long))
+            {
+                positiveButton(getString(R.string.anko_i_understand)) { moveTaskToBack(true) }
+            }
+            sync_alert.isCancelable = false
+            sync_alert.show()
+
+        }
+    }
+
+    /**
+     * subroutine that checks if user is syncing for the first time
+     * @author Chaosruler972
+     * @return true if user is sycning for the first time, else false
+     */
+    private fun check_if_first_sync():Boolean = remote_SQL_Helper.user!!.get_last_sync_time() <= Date(1514757600)
 
     /**
      *  inits companion object
@@ -141,7 +170,8 @@ class MainActivity : Activity()
      *   will show progress view until syncing is done
      *   @author Chaosruler972
      */
-    private fun progress_subroutine()
+    private fun
+            progress_subroutine()
     {
         main_progressBar.visibility = ProgressBar.VISIBLE
         main_progressBar.max = getString(R.string.main_progress_bar_max).toInt()
@@ -254,6 +284,12 @@ class MainActivity : Activity()
             }
 
 
+        }
+
+        if(BuildConfig.DEBUG)
+        {
+            project_options_all.visibility = Button.VISIBLE
+            project_options_all.setOnClickListener({ startActivity(Intent(this@MainActivity, table_chooser::class.java)) })
         }
 
         main_button_download.visibility = View.VISIBLE

@@ -10,8 +10,8 @@
 
     <Button
         android:id="@+id/flat_button_choose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="114dp"
         android:background="@drawable/button_sample1"
         android:text="@string/flat_choose_that_flat"

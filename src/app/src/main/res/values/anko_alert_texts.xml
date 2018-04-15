@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="anko_title">מ.ש אלומיניום</string>
+    <string name="anko_message_sync_time_long">זמני הסינכרון הם בין רבע שעה ל20 דקות, האפליקציה תעבור לרקע לזמן זה וכאשר הסינכרון יסתיים התרעה תעלה</string>
+    <string name="anko_i_understand">אני מבין</string>
+</resources>

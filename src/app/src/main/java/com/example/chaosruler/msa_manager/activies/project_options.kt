@@ -65,11 +65,7 @@ class project_options : Activity() {
                     startActivity(intent)
         })
 
-        if(BuildConfig.DEBUG)
-        {
-            project_options_all.visibility = Button.VISIBLE
-            project_options_all.setOnClickListener({ startActivity(Intent(this@project_options, table_chooser::class.java)) })
-        }
+
     }
 
     

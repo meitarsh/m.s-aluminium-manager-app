@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="ltr"
@@ -12,7 +11,7 @@
     <Spinner
         android:id="@+id/main_spinner"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="149dp"
         android:textDirection="rtl"
         app:layout_constraintBottom_toTopOf="@+id/main_progressBar"
@@ -35,8 +34,8 @@
 
     <Button
         android:id="@+id/main_button_choose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="114dp"
         android:background="@drawable/button_sample1"
         android:text="@string/main_btn_choose"
@@ -81,4 +80,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_button_choose"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/project_options_all"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/button_margin_project_options"
+        android:layout_marginTop="@dimen/button_margin_project_options"
+        android:background="@drawable/button_sample1"
+        android:text="@string/project_options_view_all"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/main_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.47" />
+
 </android.support.constraint.ConstraintLayout>

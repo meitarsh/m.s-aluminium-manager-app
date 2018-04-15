@@ -195,9 +195,9 @@ class offline_mode_service : Service(){
 
             start_trd()
 
-//            if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.local_or_not), true)) {
-//                sync_local(context, intent)
-//            } else
+            if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.local_or_not), true)) {
+                sync_local(context, intent)
+            } else
                 mark_done(context, intent)
 
         }
@@ -361,7 +361,7 @@ class offline_mode_service : Service(){
                     Log.d("offline_mode","Query Result: " + result_of_query.toString())
                     if (result_of_query) {
 
-                        if(PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.notification),false))
+                        if(PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.notification),true))
                             build_small_notification(cache.get_id_of_command(item).toString())
                         cache.remove_command(item)
                     }
@@ -385,14 +385,18 @@ class offline_mode_service : Service(){
          * @param string the string that appears on the notification
          */
         @SuppressLint("PrivateResource")
-        fun build_small_notification(string: String) {
+        fun build_small_notification(string: String, use_prefix: Boolean = true) {
             val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
+            val used_string_as_prefix = if(use_prefix)
+                ctx.getString(R.string.notification_sync_successfuk) + " " + ctx.getString(R.string.notificatoin_op_id)
+            else
+                ""
             @Suppress("DEPRECATION")
             val mBuilder = NotificationCompat.Builder(ctx)
                     .setSmallIcon(R.drawable.notification_icon_background)
                     .setContentTitle(ctx.getString(R.string.notification_title))
-                    .setContentText(ctx.getString(R.string.notification_sync_successfuk) + " " + ctx.getString(R.string.notificatoin_op_id) + string)
+                    .setContentText(used_string_as_prefix+ string)
                     .setSound(alarmSound)
             (ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?)?.notify(1, mBuilder.build())
         }
@@ -428,7 +432,8 @@ class offline_mode_service : Service(){
         private fun db_sync_func_without_mark() {
 
             val user = remote_SQL_Helper.user!!
-            build_small_notification(ctx.getString(R.string.sync_started))
+            if(PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.notification),true))
+                  build_small_notification(ctx.getString(R.string.sync_started), false)
             val done_count = IntArray(1)
             val max_count = 5
 

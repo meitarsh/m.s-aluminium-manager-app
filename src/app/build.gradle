@@ -49,6 +49,7 @@ dependencies {
     implementation 'com.yakivmospan:scytale:1.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5"
+    implementation "org.jetbrains.anko:anko:$anko_version"
 }
 
 apply plugin: 'org.jetbrains.dokka'
