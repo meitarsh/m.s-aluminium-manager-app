@@ -272,6 +272,7 @@ object remote_SQL_Helper {
      *   @return a vector of hashmap represnting the results, each element represent a row, hashmap represnts col
      */
     fun select_columns_from_db_with_where(db: String, table: String, colm_to_type: HashMap<String, String>, where_column: String?, where_compare: String?): Vector<HashMap<String, String>> {
+        Log.d("remote SQL","Started")
         val vector: Vector<HashMap<String, String>> = Vector()
         try {
             connection!!.isReadOnly

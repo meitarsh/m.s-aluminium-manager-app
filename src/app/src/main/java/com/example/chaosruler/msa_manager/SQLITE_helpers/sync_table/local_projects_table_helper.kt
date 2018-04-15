@@ -152,6 +152,7 @@ class local_projects_table_helper(
         {
             remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS))
         }
+        Log.d("projects","Synced ${server_data.count()} elements")
         val result_vector: Vector<project_data> = Vector()
         server_data.mapTo(result_vector) {
             project_data((it[remote_projects_table_helper.ID]?: "").trim(),

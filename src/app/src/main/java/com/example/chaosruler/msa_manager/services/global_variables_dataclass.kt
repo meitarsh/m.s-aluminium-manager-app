@@ -21,12 +21,14 @@ object global_variables_dataclass
 {
     var isLocal: Boolean = true
     var GUI_MODE: Boolean = false
-    var DB_BIG: local_big_table_helper? = null
+
     var projid: String? = null
     var flat: String? = null
     var floor: String? = null
     var floor_moving_to: Int = 0
-//    var flat: String? = null
+    //    var flat: String? = null
+    @SuppressLint("StaticFieldLeak")
+    var DB_BIG: local_big_table_helper? = null
     @SuppressLint("StaticFieldLeak")
     var DB_project: local_projects_table_helper? = null
     @SuppressLint("StaticFieldLeak")

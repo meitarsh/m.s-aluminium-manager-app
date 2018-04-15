@@ -13,6 +13,7 @@
     <!-- strings passed as keys between activities -->
     <string name="username">username</string>
     <string name="password">password</string>
+    <string name="notificatoin_syncing_done">סנכרון הסנתיים</string>
 
 
 </resources>
