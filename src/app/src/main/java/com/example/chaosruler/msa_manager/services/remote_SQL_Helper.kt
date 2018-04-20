@@ -135,8 +135,8 @@ object remote_SQL_Helper {
             connection!!.close()
         val ip: String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP), context.getString(R.string.REMOTE_IP_ADDR))
         val port: String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.sql_port), con.getString(R.string.default_port_num))
-        val windows_auth = if (PreferenceManager.getDefaultSharedPreferences(con).getBoolean(con.getString(R.string.windows_auth_key), true))
-            ""//con.getString(R.string.REMOTE_CONNECTION_WINDOWS_AUTH)
+        val windows_auth = if (PreferenceManager.getDefaultSharedPreferences(con).getBoolean(con.getString(R.string.windows_auth_key), false))
+            con.getString(R.string.REMOTE_CONNECTION_WINDOWS_AUTH)
         else
             ""
         try {
@@ -169,6 +169,10 @@ object remote_SQL_Helper {
      * @return a vector of the items inside this table, each element represent a row, hashmap represent cols
      */
     fun get_all_table(db: String, table: String): Vector<HashMap<String, String>> {
+        /**
+         * Depracted and removed
+         */
+        assert(false)
         val vector: Vector<HashMap<String, String>> = Vector()
         try {
             connection!!.isReadOnly
@@ -216,6 +220,7 @@ object remote_SQL_Helper {
                             return@execute
                         }
                         val columnCount = rs.metaData.columnCount
+                        Log.d("columns","For DB $db is ${columnCount.toString()}")
                         val rs_meta = rs.metaData
                         while (rs.next()) {
                             val map: HashMap<String, String> = HashMap()
@@ -256,7 +261,7 @@ object remote_SQL_Helper {
      * @author Chaosruler972
      * @return latest sync time of user
      */
-    private fun get_latest_sync_time() : Date
+    fun get_latest_sync_time() : Date
     {
         return user!!.get_last_sync_time()
     }
@@ -340,6 +345,7 @@ object remote_SQL_Helper {
                             return@execute
                         }
                         val columnCount = rs.metaData.columnCount
+                        Log.d("columns","For DB $db is ${columnCount.toString()}")
                         val rs_meta = rs.metaData
                         while (rs.next()) {
                             val map: HashMap<String, String> = HashMap()

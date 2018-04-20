@@ -153,16 +153,15 @@ class local_vendor_table_helper(
     @Suppress("MemberVisibilityCanPrivate")
     fun server_data_to_vector():Vector<vendor_data>
     {
-
+        val typemap: HashMap<String, String> = remote_vendors_table_helper.define_type_map()
         val server_data: Vector<java.util.HashMap<String, String>> =
         if(BuildConfig.DEBUG)
         {
-            val typemap: HashMap<String, String> = remote_vendors_table_helper.define_type_map()
             remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS),typemap,context.getString(R.string.VENDORS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
         }
         else
         {
-            remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS))
+            remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS),typemap,null, null)
         }
 
         val result_vector: Vector<vendor_data> = Vector()
@@ -182,27 +181,26 @@ class local_vendor_table_helper(
      */
     fun server_data_to_vector_by_projname(projid: String): Vector<vendor_data>
     {
-
+        val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
         val server_data_big: Vector<java.util.HashMap<String, String>> =
                 if(BuildConfig.DEBUG)
                 {
-                    val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
                     remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
                 }
                 else
                 {
-                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,null, null)
                 }
 
+        val vendor_typemap: HashMap<String, String> = remote_vendors_table_helper.define_type_map()
         val server_data_vendor: Vector<java.util.HashMap<String, String>> =
                 if(BuildConfig.DEBUG)
                 {
-                    val typemap: HashMap<String, String> = remote_vendors_table_helper.define_type_map()
-                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS),typemap,context.getString(R.string.VENDORS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS),vendor_typemap,context.getString(R.string.VENDORS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
                 }
                 else
                 {
-                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS))
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_VENDORS),vendor_typemap,null, null)
                 }
         val result_vector: Vector<vendor_data> = Vector()
         for(vendor in server_data_vendor)
@@ -260,7 +258,8 @@ class local_vendor_table_helper(
     fun add_vendor(vendor_data: vendor_data) // subroutine that manages the vendor adding operation to the database
             : Boolean
     {
-        return if (check_vendor( vendor_data)) // checks if vendor exists in database
+        return if (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
+                check_vendor( vendor_data)) // checks if vendor exists in database
             update_vendor(vendor_data,vendor_data.copy()) // if it does, lets update
         else // if it doesn't lets create a new entry for the vendor
             insert_vendor(vendor_data)

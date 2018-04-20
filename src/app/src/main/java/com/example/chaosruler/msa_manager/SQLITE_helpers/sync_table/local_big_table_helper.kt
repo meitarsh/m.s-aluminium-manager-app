@@ -58,21 +58,21 @@ class local_big_table_helper(
      * @author Chaosruler972
      */
     private var ITEMID: String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMID)
-//    /**
-//     * the flat field name
-//     * @author Chaosruler972
-//     */
-//    private var FLAT: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLAT)
-//    /**
-//     * flat field name
-//     * @author Chaosruler972
-//     */
-//    private var FLOOR: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLOOR)
-//    /**
-//     * quanity field name
-//     * @author Chaosruler972
-//     */
-//    private var QTY: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTY)
+    /**
+     * the flat field name
+     * @author Chaosruler972
+     */
+    private var FLAT: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLAT)
+    /**
+     * flat field name
+     * @author Chaosruler972
+     */
+    private var FLOOR: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLOOR)
+    /**
+     * quanity field name
+     * @author Chaosruler972
+     */
+    private var QTY: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTY)
     /**
      * the sales price field name
      * @author Chaosruler972
@@ -103,11 +103,11 @@ class local_big_table_helper(
      * @author Chaosruler972
      */
     private var TOTAL_SUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_TOTALSUM)
-//    /**
-//     * the sale progress field name
-//     * @author Chaosruler972
-//     */
-//    private var SALPROG: String = context.getString(R.string.LOCAL_BIG_COLUMN_SALPROG)
+    /**
+     * the sale progress field name
+     * @author Chaosruler972
+     */
+    private var SALPROG: String = context.getString(R.string.LOCAL_BIG_COLUMN_SALPROG)
     /**
      * the print order field name
      * @author Chaosruler972
@@ -118,16 +118,16 @@ class local_big_table_helper(
      * @author Chaosruler972
      */
     private var ITEMNUMBER: String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMNUMBER)
-//    /**
-//     * the koma num field name
-//     * @author Chaosruler972
-//     */
-//    private var KOMANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_KOMANUM)
-//    /**
-//     * the dira num field name
-//     * @author Chaosruler972
-//     */
-//    private var DIRANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_DIRANUM)
+    /**
+     * the koma num field name
+     * @author Chaosruler972
+     */
+    private var KOMANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_KOMANUM)
+    /**
+     * the dira num field name
+     * @author Chaosruler972
+     */
+    private var DIRANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_DIRANUM)
 
     /**
      * the username that synced this data
@@ -148,20 +148,20 @@ class local_big_table_helper(
         vector.add(RECID)
         vector.add(PROJID)
         vector.add(ITEMID)
-//        vector.add(FLAT)
-//        vector.add(FLOOR)
-//        vector.add(QTY)
+        vector.add(FLAT)
+        vector.add(FLOOR)
+        vector.add(QTY)
         vector.add(SALESPRICE)
         vector.add(OPR_ID)
         vector.add(MILESTONEPERCENTAGE)
         vector.add(QTYFORACCOUNT)
         vector.add(PERCENTFORACCOUNT)
         vector.add(TOTAL_SUM)
-//        vector.add(SALPROG)
+        vector.add(SALPROG)
         vector.add(PRINTORDER)
         vector.add(ITEMNUMBER)
-//        vector.add(KOMANUM)
-//        vector.add(DIRANUM)
+        vector.add(KOMANUM)
+        vector.add(DIRANUM)
         vector.add(USER)
         init_vector_of_variables(vector)
     }
@@ -181,20 +181,20 @@ class local_big_table_helper(
         map[RECID] = "BLOB"
         map[PROJID] = "BLOB"
         map[ITEMID] = "BLOB"
-//        map[FLAT] = "BLOB"
-//        map[FLOOR] = "BLOB"
-//        map[QTY] = "BLOB"
+        map[FLAT] = "BLOB"
+        map[FLOOR] = "BLOB"
+        map[QTY] = "BLOB"
         map[SALESPRICE] = "BLOB"
         map[OPR_ID] = "BLOB"
         map[MILESTONEPERCENTAGE] = "BLOB"
         map[QTYFORACCOUNT] = "BLOB"
         map[PERCENTFORACCOUNT] = "BLOB"
         map[TOTAL_SUM] = "BLOB"
-//        map[SALPROG] = "BLOB"
+        map[SALPROG] = "BLOB"
         map[PRINTORDER] = "BLOB"
         map[ITEMNUMBER] = "BLOB"
-//        map[KOMANUM] = "BLOB"
-//        map[DIRANUM] = "BLOB"
+        map[KOMANUM] = "BLOB"
+        map[DIRANUM] = "BLOB"
         val foreign: HashMap<String, String> = HashMap()
         foreign[ACCOUNT_NUM] = context.getString(R.string.LOCAL_VENDORS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_VENDORS_COLUMN_ID) + ")"
         foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID) + ")"
@@ -235,18 +235,28 @@ class local_big_table_helper(
         all_db
                 .filter { it[USER] != null && it[USER]?:"" == remote_SQL_Helper.getusername() }
                 .map {
-                    big_table_data((it[ACCOUNT_NUM]?:"").trim(),
-                            (it[DATAARAEID]?:"").trim(), (it[RECVERSION]?:"").trim(),
-                            (it[RECID]?:"").trim(), (it[PROJID]?:"").trim(),
-                            (it[ITEMID]?:"").trim(), "",//(it[FLAT]?:"").trim(),
-                            "","",//  (it[FLOOR]?:"").trim(), (it[QTY]?:"").trim(),
-                            (it[SALESPRICE]?:"").trim(), (it[OPR_ID]?:"").trim(),
-                            (it[MILESTONEPERCENTAGE]?:"").trim(), (it[QTYFORACCOUNT]?:"").trim(),
-                            (it[PERCENTFORACCOUNT]?:"").trim(), (it[TOTAL_SUM]?:"").trim(),
-                            (it[PRINTORDER]?:"").trim() , "",//(it[SALPROG]?:"").trim(), ,
-                            (it[ITEMNUMBER]?:"").trim(),"",// (it[KOMANUM]?:"").trim(),
-                            ""//(it[DIRANUM]?:"").trim()
-                            ,(it[USER]?:"").trim())
+                    big_table_data(
+                            (it[ACCOUNT_NUM]?:"").trim(),
+                            (it[DATAARAEID]?:"").trim(),
+                            (it[RECVERSION]?:"").trim(),
+                            (it[RECID]?:"").trim(),
+                            (it[PROJID]?:"").trim(),
+                            (it[ITEMID]?:"").trim(),
+                            (it[FLAT]?:"").trim(),
+                            (it[FLOOR]?:"").trim(),
+                            (it[QTY]?:"").trim(),
+                            (it[SALESPRICE]?:"").trim(),
+                            (it[OPR_ID]?:"").trim(),
+                            (it[MILESTONEPERCENTAGE]?:"").trim(),
+                            (it[QTYFORACCOUNT]?:"").trim(),
+                            (it[PERCENTFORACCOUNT]?:"").trim(),
+                            (it[TOTAL_SUM]?:"").trim(),
+                            (it[SALPROG]?:"").trim(),
+                            (it[PRINTORDER]?:"").trim() ,
+                            (it[ITEMNUMBER]?:"").trim(),
+                            (it[KOMANUM]?:"").trim(),
+                            (it[DIRANUM]?:"").trim(),
+                            (it[USER]?:"").trim())
                 }
                 .forEach { vector.addElement(it) }
         return vector
@@ -270,19 +280,27 @@ class local_big_table_helper(
                     (it[USER]?:null) != null && it[USER]?:"" == remote_SQL_Helper.getusername() && (it[PROJID]?:null)!=null && projid == (it[PROJID]?:null)
                 }
                 .map {
-                    big_table_data((it[ACCOUNT_NUM]?:"").trim(),
-                            (it[DATAARAEID]?:"").trim(), (it[RECVERSION]?:"").trim(),
-                            (it[RECID]?:"").trim(), (it[PROJID]?:"").trim(),
-                            (it[ITEMID]?:"").trim(), "",//(it[FLAT]?:"").trim(),
-                            "","",//(it[FLOOR]?:"").trim(), (it[QTY]?:"").trim(),
-                            (it[SALESPRICE]?:"").trim(), (it[OPR_ID]?:"").trim(),
-                            (it[MILESTONEPERCENTAGE]?:"").trim(), (it[QTYFORACCOUNT]?:"").trim(),
-                            (it[PERCENTFORACCOUNT]?:"").trim(), (it[TOTAL_SUM]?:"").trim(),
-                            "",//(it[SALPROG]?:"").trim(),
-                            (it[PRINTORDER]?:"").trim(),
+                    big_table_data(
+                            (it[ACCOUNT_NUM]?:"").trim(),
+                            (it[DATAARAEID]?:"").trim(),
+                            (it[RECVERSION]?:"").trim(),
+                            (it[RECID]?:"").trim(),
+                            (it[PROJID]?:"").trim(),
+                            (it[ITEMID]?:"").trim(),
+                            (it[FLAT]?:"").trim(),
+                            (it[FLOOR]?:"").trim(),
+                            (it[QTY]?:"").trim(),
+                            (it[SALESPRICE]?:"").trim(),
+                            (it[OPR_ID]?:"").trim(),
+                            (it[MILESTONEPERCENTAGE]?:"").trim(),
+                            (it[QTYFORACCOUNT]?:"").trim(),
+                            (it[PERCENTFORACCOUNT]?:"").trim(),
+                            (it[TOTAL_SUM]?:"").trim(),
+                            (it[SALPROG]?:"").trim(),
+                            (it[PRINTORDER]?:"").trim() ,
                             (it[ITEMNUMBER]?:"").trim(),
-                            "",//(it[KOMANUM]?:"").trim(),
-                            "",//(it[DIRANUM]?:"").trim(),
+                            (it[KOMANUM]?:"").trim(),
+                            (it[DIRANUM]?:"").trim(),
                             (it[USER]?:"").trim())
                 }
                 .forEach { vector.addElement(it) }
@@ -297,35 +315,40 @@ class local_big_table_helper(
     @Suppress("MemberVisibilityCanPrivate")
     fun server_data_to_vector(): Vector<big_table_data>
     {
-
+        val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
         val server_data: Vector<java.util.HashMap<String, String>> =
         if(BuildConfig.DEBUG)
         {
-            val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
             remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
         }
         else
         {
-            remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
+            remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,null,null)
         }
         val result_vector: Vector<big_table_data> = Vector()
         server_data
                 .map { it ->
-                    big_table_data(it[remote_big_table_helper.VENDOR_ID]?: "",
-                            it[remote_big_table_helper.DATAREAID]?: "", it[remote_big_table_helper.RECVERSION]?: "",
-                            it[remote_big_table_helper.RECID]?: "", it[remote_big_table_helper.PROJECTS_ID]?: "",
+                    big_table_data(
+                            it[remote_big_table_helper.VENDOR_ID]?: "",
+                            it[remote_big_table_helper.DATAREAID]?: "",
+                            it[remote_big_table_helper.RECVERSION]?: "",
+                            it[remote_big_table_helper.RECID]?: "",
+                            it[remote_big_table_helper.PROJECTS_ID]?: "",
                             it[remote_big_table_helper.INVENTORY_ID]?: "",
-                            "",//it[remote_big_table_helper.FLAT]?: "",
-                            "",//it[remote_big_table_helper.FLOOR]?: "",
-                            "",//it[remote_big_table_helper.QTY]?: "",
-                            it[remote_big_table_helper.SALESPRICE]?: "", it[remote_big_table_helper.OPR_ID]?: "",
-                            it[remote_big_table_helper.MILESTONEPERCENT]?: "", it[remote_big_table_helper.QTYFORACCOUNT]?: "",
-                            it[remote_big_table_helper.PERCENTFORACCOUNT]?: "", it[remote_big_table_helper.TOTALSUM]?: "",
-                            "",//it[remote_big_table_helper.SALPROG]?: "",
+                            it[remote_big_table_helper.FLAT]?: "",
+                            it[remote_big_table_helper.FLOOR]?: "",
+                            it[remote_big_table_helper.QTY]?: "",
+                            it[remote_big_table_helper.SALESPRICE]?: "",
+                            it[remote_big_table_helper.OPR_ID]?: "",
+                            it[remote_big_table_helper.MILESTONEPERCENT]?: "",
+                            it[remote_big_table_helper.QTYFORACCOUNT]?: "",
+                            it[remote_big_table_helper.PERCENTFORACCOUNT]?: "",
+                            it[remote_big_table_helper.TOTALSUM]?: "",
+                            it[remote_big_table_helper.SALPROG]?: "",
                             it[remote_big_table_helper.PRINTORDER]?: "",
                             it[remote_big_table_helper.ITEMNUMBER]?: "",
-                            "",//it[remote_big_table_helper.KOMANUM]?: "",
-                            "",//it[remote_big_table_helper.DIRANUM]?: "",
+                            it[remote_big_table_helper.KOMANUM]?: "",
+                            it[remote_big_table_helper.DIRANUM]?: "",
                             remote_SQL_Helper.getusername())
                 }
                 .forEach { result_vector.addElement(it) }
@@ -343,35 +366,41 @@ class local_big_table_helper(
     fun server_data_to_vector_by_projname(projid: String): Vector<big_table_data>
     {
 
+        val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
         val server_data: Vector<java.util.HashMap<String, String>> =
                 if(BuildConfig.DEBUG)
                 {
-                    val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
                     remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
                 }
                 else
                 {
-                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,null,null)
                 }
         val result_vector: Vector<big_table_data> = Vector()
         server_data
                 .filter { it[PROJID]!=null && projid == it[PROJID]!!  }
                 .map { it ->
-                    big_table_data(it[remote_big_table_helper.VENDOR_ID]?: "",
-                            it[remote_big_table_helper.DATAREAID]?: "", it[remote_big_table_helper.RECVERSION]?: "",
-                            it[remote_big_table_helper.RECID]?: "", it[remote_big_table_helper.PROJECTS_ID]?: "",
+                    big_table_data(
+                            it[remote_big_table_helper.VENDOR_ID]?: "",
+                            it[remote_big_table_helper.DATAREAID]?: "",
+                            it[remote_big_table_helper.RECVERSION]?: "",
+                            it[remote_big_table_helper.RECID]?: "",
+                            it[remote_big_table_helper.PROJECTS_ID]?: "",
                             it[remote_big_table_helper.INVENTORY_ID]?: "",
-                            "",//it[remote_big_table_helper.FLAT]?: "",
-                            "",//it[remote_big_table_helper.FLOOR]?: "",
-                            "",//it[remote_big_table_helper.QTY]?: "",
-                            it[remote_big_table_helper.SALESPRICE]?: "", it[remote_big_table_helper.OPR_ID]?: "",
-                            it[remote_big_table_helper.MILESTONEPERCENT]?: "", it[remote_big_table_helper.QTYFORACCOUNT]?: "",
-                            it[remote_big_table_helper.PERCENTFORACCOUNT]?: "", it[remote_big_table_helper.TOTALSUM]?: "",
-                            "",//it[remote_big_table_helper.SALPROG]?: "",
+                            it[remote_big_table_helper.FLAT]?: "",
+                            it[remote_big_table_helper.FLOOR]?: "",
+                            it[remote_big_table_helper.QTY]?: "",
+                            it[remote_big_table_helper.SALESPRICE]?: "",
+                            it[remote_big_table_helper.OPR_ID]?: "",
+                            it[remote_big_table_helper.MILESTONEPERCENT]?: "",
+                            it[remote_big_table_helper.QTYFORACCOUNT]?: "",
+                            it[remote_big_table_helper.PERCENTFORACCOUNT]?: "",
+                            it[remote_big_table_helper.TOTALSUM]?: "",
+                            it[remote_big_table_helper.SALPROG]?: "",
                             it[remote_big_table_helper.PRINTORDER]?: "",
                             it[remote_big_table_helper.ITEMNUMBER]?: "",
-                            "",//it[remote_big_table_helper.KOMANUM]?: "",
-                            "",//it[remote_big_table_helper.DIRANUM]?: "",
+                            it[remote_big_table_helper.KOMANUM]?: "",
+                            it[remote_big_table_helper.DIRANUM]?: "",
                             remote_SQL_Helper.getusername())
                 }
                 .forEach { result_vector.addElement(it) }
@@ -396,20 +425,29 @@ class local_big_table_helper(
         input_map[OPR_ID] = "'${big_table_data.get_OPRID()}'"
         val vector = get_rows(input_map)
         if (vector.size > 0) {
-                return big_table_data(vector.firstElement()[ACCOUNT_NUM]?:"",
-                        vector.firstElement()[DATAARAEID]?:"", vector.firstElement()[RECVERSION]?:"",
-                        vector.firstElement()[RECID]?:"", vector.firstElement()[PROJID]?:"",
-                        vector.firstElement()[ITEMID]?:"", "",//vector.firstElement()[FLAT]?:"",
-                        ""//vector.firstElement()[FLOOR]?:""
-                        , "",//vector.firstElement()[QTY]?:"",
-                        vector.firstElement()[SALESPRICE]?:"", vector.firstElement()[OPR_ID]?:"",
-                        vector.firstElement()[MILESTONEPERCENTAGE]?:"", vector.firstElement()[QTYFORACCOUNT]?:"",
-                        vector.firstElement()[PERCENTFORACCOUNT]?:"", vector.firstElement()[TOTAL_SUM]?:"",
-                        "",//vector.firstElement()[SALPROG]?:"",
+                return big_table_data(
+                        vector.firstElement()[ACCOUNT_NUM]?:"",
+                        vector.firstElement()[DATAARAEID]?:"",
+                        vector.firstElement()[RECVERSION]?:"",
+                        vector.firstElement()[RECID]?:"",
+                        vector.firstElement()[PROJID]?:"",
+                        vector.firstElement()[ITEMID]?:"",
+                        vector.firstElement()[FLAT]?:"",
+                        vector.firstElement()[FLOOR]?:"",
+                        vector.firstElement()[QTY]?:"",
+                        vector.firstElement()[SALESPRICE]?:"",
+                        vector.firstElement()[OPR_ID]?:"",
+                        vector.firstElement()[MILESTONEPERCENTAGE]?:"",
+                        vector.firstElement()[QTYFORACCOUNT]?:"",
+                        vector.firstElement()[PERCENTFORACCOUNT]?:"",
+                        vector.firstElement()[TOTAL_SUM]?:"",
+                        vector.firstElement()[SALPROG]?:"",
                         vector.firstElement()[PRINTORDER]?:"",
-                        vector.firstElement()[ITEMNUMBER]?:"", "",//vector.firstElement()[KOMANUM]?:"",
-                        "",//vector.firstElement()[DIRANUM]?:"",
-                        vector.firstElement()[USER]?:"")
+                        vector.firstElement()[ITEMNUMBER]?:"",
+                        vector.firstElement()[KOMANUM]?:"",
+                        vector.firstElement()[DIRANUM]?:"",
+                        vector.firstElement()[USER]?:""
+                )
         }
 
         return null
@@ -429,7 +467,8 @@ class local_big_table_helper(
             : Boolean
     {
         Log.d("Big Check exists",check_big(big_table_data).toString())
-        return if (check_big(big_table_data)) // checks if big exists in database
+        return if (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
+                check_big(big_table_data)) // checks if big exists in database
             update_big(big_table_data, big_table_data.copy()) // if it does, lets update
         else // if it doesn't lets create a new entry for the big
             insert_big(big_table_data)
@@ -467,19 +506,19 @@ class local_big_table_helper(
         data[DATAARAEID] = (big_table_data.get_DATAAREAID() ?: "").trim()
         data[RECVERSION] = (big_table_data.get_RECVERSION() ?: "").trim()
         data[RECID] = (big_table_data.get_RECID() ?: "").trim()
-//        data[FLAT] = (big_table_data.get_FLAT() ?: "").trim()
-//        data[FLOOR] = (big_table_data.get_FLOOR() ?: "").trim()
-//        data[QTY] = (big_table_data.get_QTY() ?: "").trim()
+        data[FLAT] = (big_table_data.get_FLAT() ?: "").trim()
+        data[FLOOR] = (big_table_data.get_FLOOR() ?: "").trim()
+        data[QTY] = (big_table_data.get_QTY() ?: "").trim()
         data[SALESPRICE] = (big_table_data.get_SALESPRICE() ?: "").trim()
         data[MILESTONEPERCENTAGE] = (big_table_data.get_MILESTONEPERCENT() ?: "").trim()
         data[QTYFORACCOUNT] = (big_table_data.get_QTYFORACCOUNT() ?: "").trim()
         data[PERCENTFORACCOUNT] = (big_table_data.get_PERCENTFORACCOUNT() ?: "").trim()
         data[TOTAL_SUM] = (big_table_data.get_TOTALSUM() ?: "").trim()
-//        data[SALPROG] = (big_table_data.get_SALPROG() ?: "").trim()
+        data[SALPROG] = (big_table_data.get_SALPROG() ?: "").trim()
         data[PRINTORDER] = (big_table_data.get_PRINTORDER() ?: "").trim()
         data[ITEMNUMBER] = (big_table_data.get_ITEMNUMBER() ?: "").trim()
-//        data[KOMANUM] = (big_table_data.get_KOMANUM() ?: "").trim()
-//        data[DIRANUM] = (big_table_data.get_DIRANUM() ?: "").trim()
+        data[KOMANUM] = (big_table_data.get_KOMANUM() ?: "").trim()
+        data[DIRANUM] = (big_table_data.get_DIRANUM() ?: "").trim()
         data[USER] = (big_table_data.get_USERNAME() ?: "").trim()
         data[ACCOUNT_NUM] = (big_table_data.get_VENDOR_ID() ?: "").trim()
         data[PROJID] = (big_table_data.get_PROJECT_ID() ?: "").trim()
@@ -506,19 +545,19 @@ class local_big_table_helper(
         change_to[DATAARAEID] = (to.get_DATAAREAID() ?: "").trim()
         change_to[RECVERSION] = (to.get_RECVERSION() ?: "").trim()
         change_to[RECID] = (to.get_RECID() ?: "").trim()
-//        change_to[FLAT] = (to.get_FLAT() ?: "").trim()
-//        change_to[FLOOR] = (to.get_FLOOR() ?: "").trim()
-//        change_to[QTY] = (to.get_QTY() ?: "").trim()
+        change_to[FLAT] = (to.get_FLAT() ?: "").trim()
+        change_to[FLOOR] = (to.get_FLOOR() ?: "").trim()
+        change_to[QTY] = (to.get_QTY() ?: "").trim()
         change_to[SALESPRICE] = (to.get_SALESPRICE() ?: "").trim()
         change_to[MILESTONEPERCENTAGE] = (to.get_MILESTONEPERCENT() ?: "").trim()
         change_to[QTYFORACCOUNT] = (to.get_QTYFORACCOUNT() ?: "").trim()
         change_to[PERCENTFORACCOUNT] = (to.get_PERCENTFORACCOUNT() ?: "").trim()
         change_to[TOTAL_SUM] = (to.get_TOTALSUM() ?: "").trim()
-//        change_to[SALPROG] = (to.get_SALPROG() ?: "").trim()
+        change_to[SALPROG] = (to.get_SALPROG() ?: "").trim()
         change_to[PRINTORDER] = (to.get_PRINTORDER() ?: "").trim()
         change_to[ITEMNUMBER] = (to.get_ITEMNUMBER() ?: "").trim()
-//        change_to[KOMANUM] = (to.get_KOMANUM() ?: "").trim()
-//        change_to[DIRANUM] = (to.get_DIRANUM() ?: "").trim()
+        change_to[KOMANUM] = (to.get_KOMANUM() ?: "").trim()
+        change_to[DIRANUM] = (to.get_DIRANUM() ?: "").trim()
         change_to[USER] = (to.get_USERNAME() ?: "").trim()
         return update_data(arrayOf(ACCOUNT_NUM, PROJID, ITEMID, OPR_ID), arrayOf(from.get_VENDOR_ID()!!, from.get_PROJECT_ID()!!, from.get_INVENTORY_ID()!!, from.get_OPRID()!!), change_to)
     }

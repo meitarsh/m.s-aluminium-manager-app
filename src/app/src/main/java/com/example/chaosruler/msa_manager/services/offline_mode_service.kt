@@ -145,7 +145,8 @@ class offline_mode_service : Service(){
             Thread.sleep(time)
             Timer().scheduleAtFixedRate(object : TimerTask() {
                 override fun run() {
-                    try_to_run_command()
+                    if(remote_SQL_Helper.get_latest_sync_time().time > 0.toLong())
+                        try_to_run_command()
                     Log.d("offline_mode", "Did a trd run")
                 }
             }, 0, time)//put here time 1000 milliseconds=1 second

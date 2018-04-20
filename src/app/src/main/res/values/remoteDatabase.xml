@@ -9,10 +9,11 @@
     <string name="TABLE_PROJECTS">PROJTABLE</string>
     <string name="TABLE_VENDORS">VENDTABLE</string>
     <string name="TABLE_OPR">ROUTEOPRTABLE</string>
-    <string name="TABLE_BIG">SALPROJKABLANCONSTRUCTION50011</string>
+    <string name="TABLE_BIG">SALPROJOFERKABLANCONSTRUC50068</string>
 
 
     <string name="moddate">MODIFIEDDATETIME</string>
+
 
     <!-- TABLE INVENTORY -->
     <string name="INVENTORY_ID">ITEMID</string>
@@ -84,16 +85,16 @@
     <string name="TABLE_BIG_INVENTORY_ID_TYPE">nvarchar</string>
 
 
-    <!--<string name="TABLE_BIG_FLAT">FLAT</string>-->
-    <!--<string name="TABLE_BIG_FLAT_TYPE">nvarchar</string>-->
+    <string name="TABLE_BIG_FLAT">STRDIRA</string>
+    <string name="TABLE_BIG_FLAT_TYPE">nvarchar</string>
 
 
-    <!--<string name="TABLE_BIG_FLOOR">FLOOR</string>-->
-    <!--<string name="TABLE_BIG_FLOOR_TYPE">nvarchar</string>-->
+    <string name="TABLE_BIG_FLOOR">STRKOMA</string>
+    <string name="TABLE_BIG_FLOOR_TYPE">nvarchar</string>
 
 
-    <!--<string name="TABLE_BIG_QTY">QTY</string>-->
-    <!--<string name="TABLE_BIG_QTY_TYPE">real</string>-->
+    <string name="TABLE_BIG_QTY">TOTAL</string> <!-- Used to be QTY -->
+    <string name="TABLE_BIG_QTY_TYPE">real</string>
 
 
     <string name="TABLE_BIG_SALESPRICE">SALESPRICE</string>
@@ -119,8 +120,8 @@
     <string name="TABLE_BIG_TOTALSUM_TYPE">real</string>
 
 
-    <!--<string name="TABLE_BIG_SALPROG">SALPROG</string>-->
-    <!--<string name="TABLE_BIG_SALPROG_TYPE">tinyint</string>-->
+    <string name="TABLE_BIG_SALPROG">SALPROGKABLANEXPORCONTRACT</string> <!-- used to be SALPROG -->
+    <string name="TABLE_BIG_SALPROG_TYPE">tinyint</string>
 
 
     <string name="TABLE_BIG_PRINTORDER">PRINTORDER</string>
@@ -131,10 +132,10 @@
     <string name="TABLE_BIG_ITEMNUMBER_TYPE">real</string>
 
 
-    <!--<string name="TABLE_BIG_KOMANUM">KOMANUM</string>-->
-    <!--<string name="TABLE_BIG_KOMANUM_TYPE">real</string>-->
+    <string name="TABLE_BIG_KOMANUM">NUMKOMA</string>
+    <string name="TABLE_BIG_KOMANUM_TYPE">real</string>
 
 
-    <!--<string name="TABLE_BIG_DIRANUM">DIRANUM</string>-->
-    <!--<string name="TABLE_BIG_DIRANUM_TYPE">real</string>-->
+    <string name="TABLE_BIG_DIRANUM">BINYAN</string>
+    <string name="TABLE_BIG_DIRANUM_TYPE">real</string>
 </resources>

@@ -142,15 +142,15 @@ class local_projects_table_helper(
      */
     fun server_data_to_vector():Vector<project_data>
     {
+        val typemap: java.util.HashMap<String, String> = remote_projects_table_helper.define_type_map()
         val server_data: Vector<java.util.HashMap<String, String>> =
         if(BuildConfig.DEBUG)
         {
-            val typemap: java.util.HashMap<String, String> = remote_projects_table_helper.define_type_map()
             remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS),typemap,context.getString(R.string.PROJECTS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
         }
         else
         {
-            remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS))
+            remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS),typemap,null, null)
         }
         Log.d("projects","Synced ${server_data.count()} elements")
         val result_vector: Vector<project_data> = Vector()
@@ -170,15 +170,15 @@ class local_projects_table_helper(
      */
     fun server_data_to_vector_by_projid(projid:String):Vector<project_data>
     {
+        val typemap: java.util.HashMap<String, String> = remote_projects_table_helper.define_type_map()
         val server_data: Vector<java.util.HashMap<String, String>> =
                 if(BuildConfig.DEBUG)
                 {
-                    val typemap: java.util.HashMap<String, String> = remote_projects_table_helper.define_type_map()
                     remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS),typemap,context.getString(R.string.PROJECTS_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
                 }
                 else
                 {
-                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS))
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_PROJECTS),typemap,null, null)
                 }
         val result_vector: Vector<project_data> = Vector()
         server_data
@@ -227,7 +227,8 @@ class local_projects_table_helper(
     fun add_project(project: project_data) // subroutine that manages the project adding operation to the database
             : Boolean
     {
-        return if (check_project( project)) // checks if project exists in database
+        return if (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
+                check_project( project)) // checks if project exists in database
             update_project(project,project.copy()) // if it does, lets update
         else // if it doesn't lets create a new entry for the project
             insert_project(project)

@@ -57,7 +57,8 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         val percentforaccount = themer.get_view(convertView, R.id.item_big_percentforaccount) as EditText
         percentforaccount.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
         val totalsum = themer.get_view(convertView, R.id.item_big_totalsum) as EditText
-        totalsum.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
+        totalsum.isEnabled = false
+//        totalsum.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
         val salprog = themer.get_view(convertView, R.id.item_big_salprog) as EditText
         salprog.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
         val printorder = themer.get_view(convertView, R.id.item_big_printorder) as EditText
@@ -155,57 +156,57 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
             recid.text.clear()
         }
 
-//        flat.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-//            if(hasFocus || flat.text.isEmpty() )
-//                return@OnFocusChangeListener
-//            val str = flat.text.toString()
-//            Thread({
-//                Looper.prepare()
-//                val update_value: HashMap<String, String> = HashMap()
-//                update_value[remote_big_table_helper.FLAT] = str
-//                remote_big_table_helper.push_update(big_item, update_value, context)
-//                big_item.set_FLAT(str)
-//                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-//                themer.hideKeyboard(context,flat)
-//            }).start()
-//            flat.hint = str.trim()
-//            flat.text.clear()
-//        }
-//
-//        floor.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-//            if (hasFocus || floor.text.isEmpty())
-//                return@OnFocusChangeListener
-//            val str = floor.text.toString()
-//            Thread({
-//                Looper.prepare()
-//                val update_value: HashMap<String, String> = HashMap()
-//                update_value[remote_big_table_helper.FLOOR] = str
-//                remote_big_table_helper.push_update(big_item, update_value, context)
-//                big_item.set_FLOOR(str)
-//                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-//                themer.hideKeyboard(context,floor)
-//            }).start()
-//
-//            floor.hint = str.trim()
-//            floor.text.clear()
-//        }
-//
-//        qty.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-//            if(hasFocus || qty.text.isEmpty() )
-//                return@OnFocusChangeListener
-//            val str = qty.text.toString()
-//            Thread({
-//                Looper.prepare()
-//                val update_value: HashMap<String, String> = HashMap()
-//                update_value[remote_big_table_helper.QTY] = str
-//                remote_big_table_helper.push_update(big_item, update_value, context)
-//                big_item.set_QTY(str)
-//                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-//                themer.hideKeyboard(context,qty)
-//            }).start()
-//            qty.hint = str.trim()
-//            qty.text.clear()
-//        }
+        flat.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if(hasFocus || flat.text.isEmpty() )
+                return@OnFocusChangeListener
+            val str = flat.text.toString()
+            Thread({
+                Looper.prepare()
+                val update_value: HashMap<String, String> = HashMap()
+                update_value[remote_big_table_helper.FLAT] = str
+                remote_big_table_helper.push_update(big_item, update_value, context)
+                big_item.set_FLAT(str)
+                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                themer.hideKeyboard(context,flat)
+            }).start()
+            flat.hint = str.trim()
+            flat.text.clear()
+        }
+
+        floor.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus || floor.text.isEmpty())
+                return@OnFocusChangeListener
+            val str = floor.text.toString()
+            Thread({
+                Looper.prepare()
+                val update_value: HashMap<String, String> = HashMap()
+                update_value[remote_big_table_helper.FLOOR] = str
+                remote_big_table_helper.push_update(big_item, update_value, context)
+                big_item.set_FLOOR(str)
+                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                themer.hideKeyboard(context,floor)
+            }).start()
+
+            floor.hint = str.trim()
+            floor.text.clear()
+        }
+
+        qty.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if(hasFocus || qty.text.isEmpty() )
+                return@OnFocusChangeListener
+            val str = qty.text.toString()
+            Thread({
+                Looper.prepare()
+                val update_value: HashMap<String, String> = HashMap()
+                update_value[remote_big_table_helper.QTY] = str
+                remote_big_table_helper.push_update(big_item, update_value, context)
+                big_item.set_QTY(str)
+                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                themer.hideKeyboard(context,qty)
+            }).start()
+            qty.hint = str.trim()
+            qty.text.clear()
+        }
 
         salesprice.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || salesprice.text.isEmpty() )
@@ -255,6 +256,8 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
                 big_item.set_QTYFORACCOUNT(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
                 themer.hideKeyboard(context,qtyforaccount)
+                totalsum.setText(big_item.totalSumCompute().toString())
+                update_total_sum(totalsum, big_item)
             }).start()
             qtyforaccount.hint = str.trim()
             qtyforaccount.text.clear()
@@ -272,45 +275,49 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
                 big_item.set_PERCENTFORACCOUNT(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
                 themer.hideKeyboard(context,percentforaccount)
+                totalsum.setText(big_item.totalSumCompute().toString())
+                update_total_sum(totalsum, big_item)
             }).start()
             percentforaccount.hint = (str + "%").trim()
             percentforaccount.text.clear()
         }
 
-        totalsum.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if(hasFocus || qtyforaccount.text.isEmpty() )
-                return@OnFocusChangeListener
-            val str = totalsum.text.toString()
-            Thread({
-                Looper.prepare()
-                val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_big_table_helper.TOTALSUM] = str
-                remote_big_table_helper.push_update(big_item, update_value, context)
-                big_item.set_TOTALSUM(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                themer.hideKeyboard(context,totalsum)
-            }).start()
-            totalsum.hint = str.trim()
-            totalsum.text.clear()
-        }
-
-
-//        salprog.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-//            if(hasFocus || salprog.text.isEmpty() )
+//        totalsum.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+//            if(hasFocus || qtyforaccount.text.isEmpty() )
 //                return@OnFocusChangeListener
-//            val str = salprog.text.toString()
+//            val str = totalsum.text.toString()
 //            Thread({
 //                Looper.prepare()
 //                val update_value: HashMap<String, String> = HashMap()
-//                update_value[remote_big_table_helper.SALPROG] = str
+//                update_value[remote_big_table_helper.TOTALSUM] = str
 //                remote_big_table_helper.push_update(big_item, update_value, context)
-//                big_item.set_SALPROG(str)
+//                big_item.set_TOTALSUM(str)
 //                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-//                themer.hideKeyboard(context,salprog)
+//                themer.hideKeyboard(context,totalsum)
 //            }).start()
-//            salprog.hint = str.trim()
-//            salprog.text.clear()
+//            totalsum.hint = str.trim()
+//            totalsum.text.clear()
 //        }
+
+
+        salprog.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if(hasFocus || salprog.text.isEmpty() )
+                return@OnFocusChangeListener
+            val str = salprog.text.toString()
+            Thread({
+                Looper.prepare()
+                val update_value: HashMap<String, String> = HashMap()
+                update_value[remote_big_table_helper.SALPROG] = str
+                remote_big_table_helper.push_update(big_item, update_value, context)
+                big_item.set_SALPROG(str)
+                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                themer.hideKeyboard(context,salprog)
+                totalsum.setText(big_item.totalSumCompute().toString())
+                update_total_sum(totalsum, big_item)
+            }).start()
+            salprog.hint = str.trim()
+            salprog.text.clear()
+        }
 
         printorder.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || printorder.text.isEmpty() )
@@ -346,39 +353,39 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
             itemnumber.text.clear()
         }
 
-//        komanum.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-//            if(hasFocus || komanum.text.isEmpty() )
-//                return@OnFocusChangeListener
-//            val str = komanum.text.toString()
-//            Thread({
-//                Looper.prepare()
-//                val update_value: HashMap<String, String> = HashMap()
-//                update_value[remote_big_table_helper.KOMANUM] = str
-//                remote_big_table_helper.push_update(big_item, update_value, context)
-//                big_item.set_KOMANUM(str)
-//                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-//                themer.hideKeyboard(context,komanum)
-//            }).start()
-//            komanum.hint = str.trim()
-//            komanum.text.clear()
-//        }
-//
-//        diranum.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-//            if(hasFocus || diranum.text.isEmpty() )
-//                return@OnFocusChangeListener
-//            val str = diranum.text.toString()
-//            Thread({
-//                Looper.prepare()
-//                val update_value: HashMap<String, String> = HashMap()
-//                update_value[remote_big_table_helper.DIRANUM] = str
-//                remote_big_table_helper.push_update(big_item, update_value, context)
-//                big_item.set_DIRANUM(str)
-//                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-//                themer.hideKeyboard(context,diranum)
-//            }).start()
-//            diranum.hint = str.trim()
-//            diranum.text.clear()
-//        }
+        komanum.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if(hasFocus || komanum.text.isEmpty() )
+                return@OnFocusChangeListener
+            val str = komanum.text.toString()
+            Thread({
+                Looper.prepare()
+                val update_value: HashMap<String, String> = HashMap()
+                update_value[remote_big_table_helper.KOMANUM] = str
+                remote_big_table_helper.push_update(big_item, update_value, context)
+                big_item.set_KOMANUM(str)
+                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                themer.hideKeyboard(context,komanum)
+            }).start()
+            komanum.hint = str.trim()
+            komanum.text.clear()
+        }
+
+        diranum.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if(hasFocus || diranum.text.isEmpty() )
+                return@OnFocusChangeListener
+            val str = diranum.text.toString()
+            Thread({
+                Looper.prepare()
+                val update_value: HashMap<String, String> = HashMap()
+                update_value[remote_big_table_helper.DIRANUM] = str
+                remote_big_table_helper.push_update(big_item, update_value, context)
+                big_item.set_DIRANUM(str)
+                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                themer.hideKeyboard(context,diranum)
+            }).start()
+            diranum.hint = str.trim()
+            diranum.text.clear()
+        }
 
 
         themer.center_all_views(all_views)
@@ -386,5 +393,20 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
         return convertView
 
 
+    }
+
+    private fun update_total_sum(totalsum:EditText, big_item : big_table_data) {
+        val str = totalsum.text.toString()
+        Thread({
+            Looper.prepare()
+            val update_value: HashMap<String, String> = HashMap()
+            update_value[remote_big_table_helper.TOTALSUM] = str
+            remote_big_table_helper.push_update(big_item, update_value, context)
+            big_item.set_TOTALSUM(str)
+            global_variables_dataclass.DB_BIG!!.add_big(big_item)
+//            themer.hideKeyboard(context, totalsum)
+        }).start()
+        totalsum.hint = str.trim()
+        totalsum.text.clear()
     }
 }

@@ -606,6 +606,14 @@ class big_table_data(
         }
         return 0
     }
+
+    /**
+     * Compute total SUM
+     * @return total sum
+     */
+    fun totalSumCompute() : Double =(PERCENTFORACCOUNT?:"0").toDouble()*(QTYFORACCOUNT?:"0").toDouble()*(SALESPRICE?:"0").toDouble()*0.01
+
+
     /**
      * a copy constructor
      * @return a copy of this data class

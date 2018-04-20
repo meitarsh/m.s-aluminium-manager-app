@@ -150,15 +150,15 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
     @Suppress("MemberVisibilityCanPrivate")
     fun server_data_to_vector():Vector<inventory_data>
     {
+        val typemap: java.util.HashMap<String, String> = remote_inventory_table_helper.define_type_map()
         val server_data: Vector<java.util.HashMap<String, String>> =
         if(BuildConfig.DEBUG)
         {
-            val typemap: java.util.HashMap<String, String> = remote_inventory_table_helper.define_type_map()
             remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_INVENTORY),typemap,context.getString(R.string.INVENTORY_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
         }
         else
         {
-            remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_INVENTORY))
+            remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_INVENTORY),typemap,null, null)
         }
         val result_vector: Vector<inventory_data> = Vector()
         server_data.mapTo(result_vector) {
@@ -178,27 +178,26 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
      */
     fun server_data_to_vector_by_projname(projid: String): Vector<inventory_data>
     {
-
+        val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
         val server_data_big: Vector<java.util.HashMap<String, String>> =
                 if(BuildConfig.DEBUG)
                 {
-                    val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
                     remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
                 }
                 else
                 {
-                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG))
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,null, null)
                 }
 
+        val invent_typemap: HashMap<String, String> = remote_inventory_table_helper.define_type_map()
         val server_data_inventory: Vector<java.util.HashMap<String, String>> =
                 if(BuildConfig.DEBUG)
                 {
-                    val typemap: HashMap<String, String> = remote_inventory_table_helper.define_type_map()
-                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_INVENTORY),typemap,context.getString(R.string.INVENTORY_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_INVENTORY),invent_typemap,context.getString(R.string.INVENTORY_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
                 }
                 else
                 {
-                    remote_SQL_Helper.get_all_table(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_INVENTORY))
+                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_INVENTORY),invent_typemap,null, null)
                 }
         val result_vector: Vector<inventory_data> = Vector()
         for(inventory in server_data_inventory)
@@ -255,7 +254,8 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
     fun add_inventory(inventory_data: inventory_data) // subroutine that manages the inventory adding operation to the database
             : Boolean
     {
-        return if (check_inventory( inventory_data)) // checks if inventory exists in database
+        return if (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
+                check_inventory( inventory_data)) // checks if inventory exists in database
             update_inventory(inventory_data,inventory_data.copy()) // if it does, lets update
         else // if it doesn't lets create a new entry for the inventory
             insert_inventory(inventory_data)

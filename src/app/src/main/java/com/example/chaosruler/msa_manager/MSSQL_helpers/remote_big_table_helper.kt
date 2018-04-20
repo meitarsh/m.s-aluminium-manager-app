@@ -100,38 +100,38 @@ class remote_big_table_helper
          */
         var INVENTORY_ID_TYPE: String = ""
 
-//        /**
-//         * Flat field name
-//         * @author Chaosruler972
-//         */
-//        var FLAT: String = ""
-//        /**
-//         * Flat field type
-//         * @author Chaosruler972
-//         */
-//        var FLAT_TYPE: String = ""
-//
-//        /**
-//         * Floor field name
-//         * @author Chaosruler972
-//         */
-//        var FLOOR: String = ""
-//        /**
-//         * Floor field type
-//         * @author Chaosruler972
-//         */
-//        var FLOOR_TYPE: String = ""
-//
-//        /**
-//         * quanity field name
-//         * @author Chaosruler972
-//         */
-//        var QTY: String = ""
-//        /**
-//         * quanity field type
-//         * @author Chaosruler972
-//         */
-//        var QTY_TYPE: String = ""
+        /**
+         * Flat field name
+         * @author Chaosruler972
+         */
+        var FLAT: String = ""
+        /**
+         * Flat field type
+         * @author Chaosruler972
+         */
+        var FLAT_TYPE: String = ""
+
+        /**
+         * Floor field name
+         * @author Chaosruler972
+         */
+        var FLOOR: String = ""
+        /**
+         * Floor field type
+         * @author Chaosruler972
+         */
+        var FLOOR_TYPE: String = ""
+
+        /**
+         * quanity field name
+         * @author Chaosruler972
+         */
+        var QTY: String = ""
+        /**
+         * quanity field type
+         * @author Chaosruler972
+         */
+        var QTY_TYPE: String = ""
 
         /**
          * Sales price field name
@@ -203,12 +203,12 @@ class remote_big_table_helper
          * Sales progress field name
          *@author Chaosruler972
          */
-//        var SALPROG: String = ""
-//        /**
-//         * Sales progress field type
-//         * @author Chaosruler972
-//         */
-//        var SALPROG_TYPE: String = ""
+        var SALPROG: String = ""
+        /**
+         * Sales progress field type
+         * @author Chaosruler972
+         */
+        var SALPROG_TYPE: String = ""
 
         /**
          * Print order field name
@@ -235,23 +235,23 @@ class remote_big_table_helper
          * Koma num field name
          * @author Chaosruler972
          */
-//        var KOMANUM: String = ""
-//        /**
-//         * Koma num field type
-//         * @author Chaosruler972
-//         */
-//        var KOMANUM_TYPE: String = ""
-//
-//        /**
-//         * Dira num field name
-//         * @author Chaosruler972
-//         */
-//        var DIRANUM: String = ""
-//        /**
-//         * Dira num field type
-//         * @author Chaosruler972
-//         */
-//        var DIRANUM_TYPE: String = ""
+        var KOMANUM: String = ""
+        /**
+         * Koma num field type
+         * @author Chaosruler972
+         */
+        var KOMANUM_TYPE: String = ""
+
+        /**
+         * Dira num field name
+         * @author Chaosruler972
+         */
+        var DIRANUM: String = ""
+        /**
+         * Dira num field type
+         * @author Chaosruler972
+         */
+        var DIRANUM_TYPE: String = ""
 
         /**
          * Inits all the variables with the data from strings.xml holding right for big database remote metadata
@@ -279,14 +279,14 @@ class remote_big_table_helper
             INVENTORY_ID = context.getString(R.string.TABLE_BIG_INVENTORY_ID)
             INVENTORY_ID_TYPE = context.getString(R.string.TABLE_BIG_INVENTORY_ID_TYPE)
 
-//            FLAT = context.getString(R.string.TABLE_BIG_FLAT)
-//            FLAT_TYPE = context.getString(R.string.TABLE_BIG_FLAT_TYPE)
-//
-//            FLOOR = context.getString(R.string.TABLE_BIG_FLOOR)
-//            FLOOR_TYPE = context.getString(R.string.TABLE_BIG_FLOOR_TYPE)
-//
-//            QTY = context.getString(R.string.TABLE_BIG_QTY)
-//            QTY_TYPE = context.getString(R.string.TABLE_BIG_QTY_TYPE)
+            FLAT = context.getString(R.string.TABLE_BIG_FLAT)
+            FLAT_TYPE = context.getString(R.string.TABLE_BIG_FLAT_TYPE)
+
+            FLOOR = context.getString(R.string.TABLE_BIG_FLOOR)
+            FLOOR_TYPE = context.getString(R.string.TABLE_BIG_FLOOR_TYPE)
+
+            QTY = context.getString(R.string.TABLE_BIG_QTY)
+            QTY_TYPE = context.getString(R.string.TABLE_BIG_QTY_TYPE)
 
             SALESPRICE = context.getString(R.string.TABLE_BIG_SALESPRICE)
             SALESPRICE_TYPE = context.getString(R.string.TABLE_BIG_SALESPRICE_TYPE)
@@ -306,8 +306,8 @@ class remote_big_table_helper
             TOTALSUM = context.getString(R.string.TABLE_BIG_TOTALSUM)
             TOTALSUM_TYPE = context.getString(R.string.TABLE_BIG_TOTALSUM_TYPE)
 
-//            SALPROG = context.getString(R.string.TABLE_BIG_SALPROG)
-//            SALPROG_TYPE = context.getString(R.string.TABLE_BIG_SALPROG_TYPE)
+            SALPROG = context.getString(R.string.TABLE_BIG_SALPROG)
+            SALPROG_TYPE = context.getString(R.string.TABLE_BIG_SALPROG_TYPE)
 
             PRINTORDER = context.getString(R.string.TABLE_BIG_PRINTORDER)
             PRINTORDER_TYPE = context.getString(R.string.TABLE_BIG_PRINTORDER_TYPE)
@@ -315,11 +315,11 @@ class remote_big_table_helper
             ITEMNUMBER = context.getString(R.string.TABLE_BIG_ITEMNUMBER)
             ITEMNUMBER_TYPE = context.getString(R.string.TABLE_BIG_ITEMNUMBER_TYPE)
 
-//            KOMANUM = context.getString(R.string.TABLE_BIG_KOMANUM)
-//            KOMANUM_TYPE = context.getString(R.string.TABLE_BIG_KOMANUM_TYPE)
-//
-//            DIRANUM = context.getString(R.string.TABLE_BIG_DIRANUM)
-//            DIRANUM_TYPE = context.getString(R.string.TABLE_BIG_DIRANUM_TYPE)
+            KOMANUM = context.getString(R.string.TABLE_BIG_KOMANUM)
+            KOMANUM_TYPE = context.getString(R.string.TABLE_BIG_KOMANUM_TYPE)
+
+            DIRANUM = context.getString(R.string.TABLE_BIG_DIRANUM)
+            DIRANUM_TYPE = context.getString(R.string.TABLE_BIG_DIRANUM_TYPE)
 
         }
 
@@ -336,20 +336,20 @@ class remote_big_table_helper
             map[RECID] = RECID_TYPE
             map[PROJECTS_ID] = PROJECTS_ID_TYPE
             map[INVENTORY_ID] = INVENTORY_ID_TYPE
-//            map[FLAT] = FLAT_TYPE
-//            map[FLOOR] = FLOOR_TYPE
-//            map[QTY] = QTY_TYPE
+            map[FLAT] = FLAT_TYPE
+            map[FLOOR] = FLOOR_TYPE
+            map[QTY] = QTY_TYPE
             map[SALESPRICE] = SALESPRICE_TYPE
             map[OPR_ID] = OPR_ID_TYPE
             map[MILESTONEPERCENT] = MILESTONEPERCENT_TYPE
             map[QTYFORACCOUNT] = QTYFORACCOUNT_TYPE
             map[PERCENTFORACCOUNT] = PERCENTFORACCOUNT_TYPE
             map[TOTALSUM] = TOTALSUM_TYPE
-//            map[SALPROG] = SALPROG_TYPE
+            map[SALPROG] = SALPROG_TYPE
             map[PRINTORDER] = PRINTORDER_TYPE
             map[ITEMNUMBER] = ITEMNUMBER_TYPE
-//            map[KOMANUM] = KOMANUM_TYPE
-//            map[DIRANUM] = DIRANUM_TYPE
+            map[KOMANUM] = KOMANUM_TYPE
+            map[DIRANUM] = DIRANUM_TYPE
             // n = 18
             return map
         }

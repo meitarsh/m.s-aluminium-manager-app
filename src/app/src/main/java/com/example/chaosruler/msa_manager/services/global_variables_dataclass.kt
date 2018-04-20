@@ -102,7 +102,7 @@ object global_variables_dataclass
             /**
      * Converts a string to hebrew (unicode)
      * @author Chaosruler972
-     * @param str the string to convert
+     * @param str the string to convertStrEncoding
      * @return a converted string with UTF8 this time
      */
     fun to_hebrew_unicode(str: String): String {
@@ -128,7 +128,7 @@ object global_variables_dataclass
         for (c in charsets) {
             val charset = Charset.forName(c)
             if (charset != null) {
-                if (value == convert(convert(value, charset.name(), probe), probe, charset.name())) {
+                if (value == convertStrEncoding(convertStrEncoding(value, charset.name(), probe), probe, charset.name())) {
                     return c
                 }
             }
@@ -139,17 +139,17 @@ object global_variables_dataclass
     /**
      * Converts a string from encoding a to encoding B
      * @author Chaosruler972
-     * @param value the string to convert
+     * @param value the string to convertStrEncoding
      * @param fromEncoding the current encoding
      * @param toEncoding the desired encoding
      * @return the resulting string after convertion
      */
-    private fun convert(value: String, fromEncoding: String, toEncoding: String): String = String(value.toByteArray(charset(fromEncoding)), Charset.forName(toEncoding))
+    private fun convertStrEncoding(value: String, fromEncoding: String, toEncoding: String): String = String(value.toByteArray(charset(fromEncoding)), Charset.forName(toEncoding))
 
     /**
      * Converts string to its hexadecimal representation (per byte)
      * @author Chaosruler972
-     * @param arg the string to convert
+     * @param arg the string to convertStrEncoding
      * @return the converted string to hexadecimal format
      */
     @Suppress("unused")
