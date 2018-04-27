@@ -114,7 +114,11 @@ class big_table_data(
          * the username that synced that data
          * @author Chaosruler972
          */
-        private var USERNAME:String?
+        private var USERNAME:String?,
+        /**
+         * get partial qty
+         */
+        private var QTYINPARTIALACC:String?
 )
     : table_dataclass, Comparable<big_table_data> {
     /**
@@ -165,6 +169,8 @@ class big_table_data(
             DIRANUM = (DIRANUM?:"").trim()
         if(USERNAME != null)
             USERNAME = (USERNAME?:"").trim()
+        if(QTYINPARTIALACC != null)
+            QTYINPARTIALACC = (QTYINPARTIALACC?:"").trim()
     }
 
     /**
@@ -228,7 +234,28 @@ class big_table_data(
      * @author Chaosruler972
      * @return the current qty (sqlite)
      */
-    fun get_QTY(): String? = QTY
+    fun get_QTY(): String? =
+            try {
+                QTY!!.toDouble().toInt().toString()
+            }
+            catch (e: Exception)
+            {
+                QTY
+            }
+
+    /**
+     * the current qty field name (sqlite) in parital
+     * @author Chaosruler972
+     * @return the current qty (sqlite) in partial
+     */
+    fun get_QTYINPARTIALACC(): String? =
+            try {
+                QTYINPARTIALACC!!.toDouble().toInt().toString()
+            }
+            catch (e: Exception)
+            {
+                QTYINPARTIALACC
+            }
 
     /**
      * the current sales price field name (sqlite)
@@ -256,7 +283,13 @@ class big_table_data(
      * @author Chaosruler972
      * @return the current quanity for account (sqlite)
      */
-    fun get_QTYFORACCOUNT(): String? = QTYFORACCOUNT
+    fun get_QTYFORACCOUNT(): String? = try {
+        QTYFORACCOUNT!!.toDouble().toInt().toString()
+    }
+    catch (e: Exception)
+    {
+        QTYFORACCOUNT
+    }
 
     /**
      * the current percent for account field name (sqlite)
@@ -291,7 +324,13 @@ class big_table_data(
      * @author Chaosruler972
      * @return the current item number (sqlite)
      */
-    fun get_ITEMNUMBER(): String? = ITEMNUMBER
+    fun get_ITEMNUMBER(): String? = try {
+        ITEMNUMBER!!.toDouble().toInt().toString()
+    }
+    catch (e: Exception)
+    {
+        ITEMNUMBER
+    }
 
     /**
      * the current koma num field name (sqlite)
@@ -305,7 +344,10 @@ class big_table_data(
      * @author Chaosruler972
      * @return the current dira num (sqlite)
      */
-    fun get_DIRANUM(): String? = DIRANUM
+    fun get_DIRANUM(): String? = if(DIRANUM == "קרקע")
+        0.toString()
+    else
+        DIRANUM
 
     /**
      * the current username that synced this data (sqlite)
@@ -407,6 +449,16 @@ class big_table_data(
     fun set_QTY(string: String)
     {
         QTY = string.trim()
+    }
+
+    /**
+     * Sets the quanity in partial
+     * @author Chaosruler972
+     * @param string the new quanity
+     */
+    fun set_QTYINPARTIALACC(string: String)
+    {
+        QTYINPARTIALACC = string.trim()
     }
 
     /**
@@ -538,11 +590,12 @@ class big_table_data(
      */
     override fun toString(): String
     {
-        val opr = global_variables_dataclass.DB_OPR!!.get_opr_by_id((OPR_ID ?: "").trim())
-        val project = global_variables_dataclass.DB_project!!.get_project_by_id((PROJECTS_ID ?: "").trim())
-        val vendor = global_variables_dataclass.DB_VENDOR!!.get_vendor_by_id((VENDOR_ID ?: "").trim())
-        val item = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id((INVENTORY_ID ?: "").trim())
-        return "OPR: " + (opr?.toString()?:"").trim() + " Project: " + (project?.toString()?:"").trim() + " Vendor: " + (vendor?.toString()?:"").trim() +" Inventory: " +(item?.toString()?:"").trim()
+        return "OPR: " + (OPR_ID?.toString()?:"").trim() + " Project: " + (PROJECTS_ID?.toString()?:"").trim() + " Vendor: " + (VENDOR_ID?.toString()?:"").trim() +" Inventory: " +(INVENTORY_ID?.toString()?:"").trim()
+//        val opr = global_variables_dataclass.DB_OPR!!.get_opr_by_id((OPR_ID ?: "").trim())
+//        val project = global_variables_dataclass.DB_project!!.get_project_by_id((PROJECTS_ID ?: "").trim())
+//        val vendor = global_variables_dataclass.DB_VENDOR!!.get_vendor_by_id((VENDOR_ID ?: "").trim())
+//        val item = global_variables_dataclass.DB_INVENTORY!!.get_inventory_by_id((INVENTORY_ID ?: "").trim())
+//        return "OPR: " + (opr?.toString()?:"").trim() + " Project: " + (project?.toString()?:"").trim() + " Vendor: " + (vendor?.toString()?:"").trim() +" Inventory: " +(item?.toString()?:"").trim()
     }
 
     /**
@@ -553,12 +606,12 @@ class big_table_data(
      */
     override fun compareTo(other: big_table_data): Int
     {
-        if(this.KOMANUM == null || other.KOMANUM == null)
+        if(this.FLOOR == null || other.FLOOR == null)
             return 0
         try {
-            if(this.KOMANUM!!.toInt() < other.KOMANUM!!.toInt())
+            if(this.get_FLOOR()!!.toInt() < other.get_FLOOR()!!.toInt())
                 return -1
-            else if(this.KOMANUM!!.toInt() > other.KOMANUM!!.toInt())
+            else if(this.get_FLOOR()!!.toInt() > other.get_FLOOR()!!.toInt())
                 return 1
         }
         catch (e: NumberFormatException)
@@ -570,8 +623,8 @@ class big_table_data(
             return 0
         try {
             when {
-                this.DIRANUM!!.toInt() < other.DIRANUM!!.toInt() -> return -1
-                this.DIRANUM!!.toInt() > other.DIRANUM!!.toInt() -> return 1
+                this.get_DIRANUM()!!.toInt() < other.get_DIRANUM()!!.toInt() -> return -1
+                this.get_DIRANUM()!!.toInt() > other.get_DIRANUM()!!.toInt() -> return 1
 //                this.DIRANUM!!.toInt() == other.DIRANUM!!.toInt() -> return 0
                 else -> {
                 }
@@ -619,5 +672,5 @@ class big_table_data(
      * @return a copy of this data class
      * @author Chaosruler972
      */
-    override fun copy(): big_table_data = big_table_data(get_VENDOR_ID(), get_DATAAREAID(), get_RECVERSION(), get_RECID(), get_PROJECT_ID(), get_INVENTORY_ID(), get_FLAT(), get_FLOOR(), get_QTY(), get_SALESPRICE(), get_OPRID(), get_MILESTONEPERCENT(), get_QTYFORACCOUNT(), get_PERCENTFORACCOUNT(), get_TOTALSUM(), get_SALPROG(), get_PRINTORDER(), get_ITEMNUMBER(), get_KOMANUM(), get_DIRANUM(), get_USERNAME())
+    override fun copy(): big_table_data = big_table_data(get_VENDOR_ID(), get_DATAAREAID(), get_RECVERSION(), get_RECID(), get_PROJECT_ID(), get_INVENTORY_ID(), get_FLAT(), get_FLOOR(), get_QTY(), get_SALESPRICE(), get_OPRID(), get_MILESTONEPERCENT(), get_QTYFORACCOUNT(), get_PERCENTFORACCOUNT(), get_TOTALSUM(), get_SALPROG(), get_PRINTORDER(), get_ITEMNUMBER(), get_KOMANUM(), get_DIRANUM(), get_USERNAME(), get_QTYINPARTIALACC())
 }

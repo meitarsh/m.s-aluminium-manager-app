@@ -1,5 +1,7 @@
 package com.example.chaosruler.msa_manager.abstraction_classes
 
+import android.content.AsyncQueryHandler
+import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -230,37 +232,42 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
         Thread({
             @Suppress("CanBeVal")
             var c:Cursor? = null
+            val start = Date().time;
             try
             {
                 c = db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
                 c.moveToFirst()
+                val end_qry = Date().time
+                Log.d("SQL", "QUERIED $TABLE_NAME for ${end_qry-start} ms")
             }
             catch (e: Exception)
             {
-                Log.d("Local SQL helper","Failed for some reason with DB $DATABASE_NAME ${e.message}" )
+                Log.d("local_sql","Failed for some reason with DB $DATABASE_NAME ${e.message}" )
                 synchronized(syncToken)
                 {
                     syncToken.notify()
                 }
 
             }
-            Log.d("Results amount", c?.count.toString())
+            Log.d("results_amount", "For table ${TABLE_NAME} " +  c?.count.toString())
             while (c!=null && !c.isAfterLast)
+
             {
                 val small_map: HashMap<String, String> = HashMap()
                 for (variable in vector_of_variables)
                 {
                     Log.d("About to get columns","Column $variable and its data is ${c.getString(c.getColumnIndex(variable))}")
-                    val input_str =
-                            if(variable != "id")
-                                String(global_variables_dataclass.xorWithKey(c.getString(c.getColumnIndex(variable)).toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),true,context))
-                            else
-                                c.getString(c.getColumnIndex(variable))
-                    small_map[variable] = input_str
+                        val input_str =
+                                if (variable != "id")
+                                    String(global_variables_dataclass.xorWithKey(c.getString(c.getColumnIndex(variable)).toByteArray(), global_variables_dataclass.get_device_id(context).toByteArray(), true, context))
+                                else
+                                    c.getString(c.getColumnIndex(variable))
+                        small_map[variable] = input_str
                 }
                 vector.addElement(small_map)
                 c.moveToNext()
             }
+            Log.d("SQL", "Ended SQL iteration over $TABLE_NAME for ${Date().time - start} ms")
             synchronized(syncToken)
             {
                 syncToken.notify()
@@ -291,11 +298,11 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      * @param variables the data we want to add, field name will be on the key, field value is on the value, all the rows are seperated in the vector as different elements
      * @return if at least one of the items was successfull
      */
-    protected fun add_data(variables: Vector<HashMap<String,String>>):Boolean
+    protected fun add_data(variables: Vector<HashMap<String,String>>, check_input: Boolean = true):Boolean
     {
         val db: SQLiteDatabase = this.writableDatabase
         //db.close()
-        return variables.any { add_single_data(db, it) }
+        return variables.any { add_single_data(db, it, check_input) }
     }
 
     /**
@@ -308,7 +315,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      * @param items represents a row that we want to add, key = value name, value = the data itself
      * @return if data entry was successfull
      */
-    private fun add_single_data(db:SQLiteDatabase,items:HashMap<String,String>):Boolean
+    private fun add_single_data(db:SQLiteDatabase,items:HashMap<String,String>, check_input: Boolean = true):Boolean
     {
         val values = ContentValues()
         var columns_vector = ""
@@ -323,17 +330,16 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 columns_vector += " AND "
             data_vector.addElement(values.getAsString(item.key))
         }
-        val exist_data = db.query(TABLE_NAME,null,columns_vector,data_vector.toTypedArray(),null,null,null)
-        if(exist_data.count != 0)
-        {
-            Log.d("SQL","Filtered out unneeded add query")
-            return false
+        if(check_input) {
+            val exist_data = db.query(TABLE_NAME, null, columns_vector, data_vector.toTypedArray(), null, null, null)
+            if (exist_data.count != 0) {
+                Log.d("SQL", "Filtered out unneeded add query")
+                return false
+            } else {
+                Log.d("SQL", "Unfiletered, we found ${exist_data.count} Elements!")
+            }
+            exist_data.close()
         }
-        else
-        {
-            Log.d("SQL","Unfiletered, we found ${exist_data.count} Elements!")
-        }
-        exist_data.close()
         if(db.insertWithOnConflict(TABLE_NAME,null,values,SQLiteDatabase.CONFLICT_REPLACE)>0)
             return true
         return false
@@ -482,11 +488,14 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             }
             @Suppress("CanBeVal")
             var c:Cursor?
+            val start = Date().time;
             try
             {
                 Log.d("SQL raw query",sql_query)
                 //c = db.rawQuery(sql_query, null)
                 c = db.query(TABLE_NAME,null,where_clause,where_args.toTypedArray(),null,null,null)
+                val end_qry = Date().time
+                Log.d("SQL", "QUERIED $TABLE_NAME for ${end_qry-start} ms")
             }
             catch (e:SQLException)
             {
@@ -537,6 +546,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 {
                     Log.d("local","Couldn't grab SQL table")
                 }
+                Log.d("SQL", "Ended SQL iteration over $TABLE_NAME for ${Date().time - start} ms")
             }
             synchronized(sync_token)
             {
@@ -581,7 +591,6 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
     {
         val db: SQLiteDatabase = this.readableDatabase
         val vector: Vector<HashMap<String, String>> = Vector()
-
         val syncToken = Object()
         // to not hang the ui
         Thread({
@@ -590,7 +599,10 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             } else {
                 " DESC"
             }
+            val start = Date().time;
             val c = db.query(TABLE_NAME,null,null,null,null,null,sort_by_value+ascending_descending_str)
+            val end_qry = Date().time
+            Log.d("SQL", "QUERIED $TABLE_NAME for ${end_qry-start} ms")
             try
             {
                 c.moveToFirst()
@@ -615,6 +627,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 vector.addElement(small_map)
                 c.moveToNext()
             }
+            Log.d("SQL", "Ended SQL iteration over $TABLE_NAME for ${Date().time - start} ms")
             synchronized(syncToken)
             {
                 syncToken.notify()
@@ -638,6 +651,15 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
         return vector
     }
 
+    fun beginTrans()
+    {
+        readableDatabase.beginTransaction()
+    }
+
+    fun endTrans()
+    {
+        readableDatabase.endTransaction()
+    }
 
 
 }

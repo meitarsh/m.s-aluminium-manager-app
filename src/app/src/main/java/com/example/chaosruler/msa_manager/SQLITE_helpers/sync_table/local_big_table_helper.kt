@@ -12,6 +12,7 @@ import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
+import java.nio.charset.Charset
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -136,6 +137,12 @@ class local_big_table_helper(
     private val USER: String = context.getString(R.string.LOCAL_BIG_COLUMN_USERNAME)
 
     /**
+     * QTY in partial
+     * @author Chaosruler972
+     */
+    private val QTYINPARTIALACC: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYINPARTIALACC)
+
+    /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
      * SQL class
      * @author Chaosruler972
@@ -163,6 +170,7 @@ class local_big_table_helper(
         vector.add(KOMANUM)
         vector.add(DIRANUM)
         vector.add(USER)
+        vector.add(QTYINPARTIALACC)
         init_vector_of_variables(vector)
     }
 
@@ -175,26 +183,29 @@ class local_big_table_helper(
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[ACCOUNT_NUM] = "BLOB"
-        map[DATAARAEID] = "BLOB"
-        map[RECVERSION] = "BLOB"
-        map[RECID] = "BLOB"
-        map[PROJID] = "BLOB"
-        map[ITEMID] = "BLOB"
-        map[FLAT] = "BLOB"
-        map[FLOOR] = "BLOB"
-        map[QTY] = "BLOB"
-        map[SALESPRICE] = "BLOB"
-        map[OPR_ID] = "BLOB"
-        map[MILESTONEPERCENTAGE] = "BLOB"
-        map[QTYFORACCOUNT] = "BLOB"
-        map[PERCENTFORACCOUNT] = "BLOB"
-        map[TOTAL_SUM] = "BLOB"
-        map[SALPROG] = "BLOB"
-        map[PRINTORDER] = "BLOB"
-        map[ITEMNUMBER] = "BLOB"
-        map[KOMANUM] = "BLOB"
-        map[DIRANUM] = "BLOB"
+        val type = "TEXT"
+        map[ACCOUNT_NUM] = type
+        map[DATAARAEID] = type
+        map[RECVERSION] = type
+        map[RECID] = type
+        map[PROJID] = type
+        map[ITEMID] = type
+        map[FLAT] = type
+        map[FLOOR] = type
+        map[QTY] = type
+        map[SALESPRICE] = type
+        map[OPR_ID] = type
+        map[MILESTONEPERCENTAGE] = type
+        map[QTYFORACCOUNT] = type
+        map[PERCENTFORACCOUNT] = type
+        map[TOTAL_SUM] = type
+        map[SALPROG] = type
+        map[PRINTORDER] = type
+        map[ITEMNUMBER] = type
+        map[KOMANUM] = type
+        map[DIRANUM] = type
+        map[USER] = type
+        map[QTYINPARTIALACC] = type
         val foreign: HashMap<String, String> = HashMap()
         foreign[ACCOUNT_NUM] = context.getString(R.string.LOCAL_VENDORS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_VENDORS_COLUMN_ID) + ")"
         foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID) + ")"
@@ -256,7 +267,9 @@ class local_big_table_helper(
                             (it[ITEMNUMBER]?:"").trim(),
                             (it[KOMANUM]?:"").trim(),
                             (it[DIRANUM]?:"").trim(),
-                            (it[USER]?:"").trim())
+                            (it[USER]?:"").trim(),
+                            (it[QTYINPARTIALACC]?:"").trim()
+                    )
                 }
                 .forEach { vector.addElement(it) }
         return vector
@@ -273,12 +286,20 @@ class local_big_table_helper(
     {
         val vector: Vector<big_table_data> = Vector()
 
+//        val where_statement = HashMap<String, String>()
+//        where_statement[PROJID] = "A"
+//        val projid_enc = global_variables_dataclass.xorWithKey(
+//                projid.toByteArray(Charset.forName("UTF-8")),
+//                global_variables_dataclass.get_device_id(context).toByteArray(Charset.forName("UTF-8")),
+//                false,
+//                context
+//        ).toString(Charset.forName("UTF-8"))
+//        where_statement[PROJID] = where_statement[PROJID]!!.replace("A", projid_enc)
+//        Log.d("big_table",where_statement[PROJID]!!)
+
         val all_db: Vector<java.util.HashMap<String, String>> = get_db()
-        all_db
-                .filter {
-                    @Suppress("USELESS_ELVIS_RIGHT_IS_NULL")
-                    (it[USER]?:null) != null && it[USER]?:"" == remote_SQL_Helper.getusername() && (it[PROJID]?:null)!=null && projid == (it[PROJID]?:null)
-                }
+        Log.d("DB_BIG","Count : ${all_db.size.toString()}")
+        all_db.filter { (it[PROJID]?:"") == projid }
                 .map {
                     big_table_data(
                             (it[ACCOUNT_NUM]?:"").trim(),
@@ -301,7 +322,9 @@ class local_big_table_helper(
                             (it[ITEMNUMBER]?:"").trim(),
                             (it[KOMANUM]?:"").trim(),
                             (it[DIRANUM]?:"").trim(),
-                            (it[USER]?:"").trim())
+                            (it[USER]?:"").trim(),
+                            it[QTYINPARTIALACC]?:"".trim()
+                    )
                 }
                 .forEach { vector.addElement(it) }
         return vector
@@ -328,6 +351,7 @@ class local_big_table_helper(
         val result_vector: Vector<big_table_data> = Vector()
         server_data
                 .map { it ->
+                    Log.d("result", it.toString())
                     big_table_data(
                             it[remote_big_table_helper.VENDOR_ID]?: "",
                             it[remote_big_table_helper.DATAREAID]?: "",
@@ -349,7 +373,9 @@ class local_big_table_helper(
                             it[remote_big_table_helper.ITEMNUMBER]?: "",
                             it[remote_big_table_helper.KOMANUM]?: "",
                             it[remote_big_table_helper.DIRANUM]?: "",
-                            remote_SQL_Helper.getusername())
+                            remote_SQL_Helper.getusername(),
+                            it[remote_big_table_helper.QTYINPARTIALACC]?:""
+                    )
                 }
                 .forEach { result_vector.addElement(it) }
         return result_vector
@@ -401,7 +427,9 @@ class local_big_table_helper(
                             it[remote_big_table_helper.ITEMNUMBER]?: "",
                             it[remote_big_table_helper.KOMANUM]?: "",
                             it[remote_big_table_helper.DIRANUM]?: "",
-                            remote_SQL_Helper.getusername())
+                            remote_SQL_Helper.getusername(),
+                            it[remote_big_table_helper.QTYINPARTIALACC]?:""
+                    )
                 }
                 .forEach { result_vector.addElement(it) }
         return result_vector
@@ -446,7 +474,8 @@ class local_big_table_helper(
                         vector.firstElement()[ITEMNUMBER]?:"",
                         vector.firstElement()[KOMANUM]?:"",
                         vector.firstElement()[DIRANUM]?:"",
-                        vector.firstElement()[USER]?:""
+                        vector.firstElement()[USER]?:"",
+                        vector.firstElement()[QTYINPARTIALACC]?:""
                 )
         }
 
@@ -471,7 +500,10 @@ class local_big_table_helper(
                 check_big(big_table_data)) // checks if big exists in database
             update_big(big_table_data, big_table_data.copy()) // if it does, lets update
         else // if it doesn't lets create a new entry for the big
+        {
+            Log.d("Insert big", "Inserting directly")
             insert_big(big_table_data)
+        }
     }
 
 
@@ -524,8 +556,9 @@ class local_big_table_helper(
         data[PROJID] = (big_table_data.get_PROJECT_ID() ?: "").trim()
         data[ITEMID] = (big_table_data.get_INVENTORY_ID() ?: "").trim()
         data[OPR_ID] = (big_table_data.get_OPRID() ?: "").trim()
+        data[QTYINPARTIALACC] = (big_table_data.get_QTYINPARTIALACC() ?: "" ).trim()
         everything_to_add.addElement(data)
-        return add_data(everything_to_add)
+        return add_data(everything_to_add, false)
     }
 
 
@@ -559,6 +592,7 @@ class local_big_table_helper(
         change_to[KOMANUM] = (to.get_KOMANUM() ?: "").trim()
         change_to[DIRANUM] = (to.get_DIRANUM() ?: "").trim()
         change_to[USER] = (to.get_USERNAME() ?: "").trim()
+        change_to[QTYINPARTIALACC] = (to.get_QTYINPARTIALACC() ?: "" ).trim()
         return update_data(arrayOf(ACCOUNT_NUM, PROJID, ITEMID, OPR_ID), arrayOf(from.get_VENDOR_ID()!!, from.get_PROJECT_ID()!!, from.get_INVENTORY_ID()!!, from.get_OPRID()!!), change_to)
     }
 

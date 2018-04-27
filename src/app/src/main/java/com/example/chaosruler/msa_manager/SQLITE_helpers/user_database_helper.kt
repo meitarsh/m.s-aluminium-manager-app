@@ -52,9 +52,9 @@ class user_database_helper(
     override fun onCreate(db: SQLiteDatabase) {
 
         val map: HashMap<String, String> = HashMap()
-        map[USERS_ID] = "BLOB primary key"
-        map[PASSWORD] = "BLOB"
-        map[USER_LAST_SYNC] = "BLOB"
+        map[USERS_ID] = "TEXT primary key"
+        map[PASSWORD] = "TEXT"
+        map[USER_LAST_SYNC] = "TEXT"
         createDB(db,map)
     }
 

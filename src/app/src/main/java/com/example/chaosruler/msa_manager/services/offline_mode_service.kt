@@ -15,6 +15,7 @@ import com.example.chaosruler.msa_manager.MSSQL_helpers.*
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
+import com.example.chaosruler.msa_manager.object_types.User
 import com.example.chaosruler.msa_manager.object_types.cache_command
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.sync.Mutex
@@ -26,7 +27,7 @@ import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
 
-@Suppress("unused")
+@Suppress("unused", "PLATFORM_CLASS_MAPPED_TO_KOTLIN")
 /**
  * service responsible for storing server commands offline and sending them whenever possible
  * @author Chaosruler972
@@ -100,6 +101,7 @@ class offline_mode_service : Service(){
          */
         @SuppressLint("StaticFieldLeak")
         private lateinit var projects: local_projects_table_helper
+
 
         /**
          * local OPR db instance on SQLITE
@@ -440,48 +442,76 @@ class offline_mode_service : Service(){
             val user = remote_SQL_Helper.user!!
             build_small_notification(ctx.getString(R.string.sync_started), false)
             val done_count = IntArray(1)
-            val max_count = 5
+            val max_count = 4
 
 
 
             val mtx = Mutex()
             val lock = Object()
 
+            async {
+                load_dbs()
+                synchronized(lock)
+                {
+                    lock.notify()
+                }
+                build_small_notification("האפליקציה מוכנה לעבודה", false)
+            }.start()
+
             Log.d("syncing from time", user.get_last_sync_time().toString())
             try {
                 async {
                     Log.d("db_sync","projects")
+//                    projects.beginTrans()
                     projects.sync_db()
+//                    projects.endTrans()
                     Log.d("db_sync","projects done")
-                    done_syncing(mtx,done_count,max_count, lock)
+                    done_syncing(mtx,done_count,max_count, lock, user)
+
                 }.start()
 
-               async {
-                   Log.d("db_sync","inventory")
-                   inventory.sync_db()
-                   Log.d("db_sync","inventory done")
-                   done_syncing(mtx,done_count,max_count, lock)
-               }.start()
+//               async {
+//                   Log.d("db_sync","inventory")
+//                   inventory.beginTrans()
+//                   inventory.sync_db()
+//                   inventory.endTrans()
+//                   Log.d("db_sync","inventory done")
+//                   if(global_variables_dataclass.db_inv_vec.size == 0)
+//                    global_variables_dataclass.db_inv_vec = inventory.get_local_DB()
+//                   Log.d("inventory","${global_variables_dataclass.db_inv_vec}")
+//                   done_syncing(mtx,done_count,max_count, lock)
+//
+//
+//               }.start()
 
                async {
                    Log.d("db_sync","opr")
+//                   opr.beginTrans()
                    opr.sync_db()
+//                   opr.endTrans()
                    Log.d("db_sync","opr done")
-                   done_syncing(mtx,done_count,max_count, lock)
+                   done_syncing(mtx,done_count,max_count, lock, user)
+
                }.start()
 
                 async {
                     Log.d("db_sync","vendor")
+//                    vendor.beginTrans()
                     vendor.sync_db()
+//                    vendor.endTrans()
                     Log.d("db_sync","vendor done")
-                    done_syncing(mtx,done_count,max_count, lock)
+                    done_syncing(mtx,done_count,max_count, lock, user)
+
                 }.start()
 
                 async {
                     Log.d("db_sync","big_table")
+//                    big_table.beginTrans()
                     big_table.sync_db()
+//                    big_table.endTrans()
                     Log.d("db_sync","big_table done")
-                    done_syncing(mtx,done_count,max_count, lock)
+                    done_syncing(mtx,done_count,max_count, lock, user)
+
                 }.start()
 
             } catch (e: Exception) {
@@ -496,32 +526,38 @@ class offline_mode_service : Service(){
                 catch (e: InterruptedException){}
             }
             Log.d("offline_sync","after sync after lock")
-            Log.d("offline_sync","Project DB has ${global_variables_dataclass.DB_project!!.get_local_DB().count()} elements")
-             build_small_notification(ctx.getString(R.string.notificatoin_syncing_done), false)
-            user.set_last_sync_time(Date().time)
-            remote_SQL_Helper.user = user
-            global_variables_dataclass.DB_USERS!!.update_user(user.get__username(), user.get__password(), user.get_last_sync_time().time)
+            Log.d("offline_sync","Project DB has ${global_variables_dataclass.db_project_vec.count()} elements")
+
         }
 
         @Suppress("UNUSED_PARAMETER")
-        private fun check_for_complete(count: IntArray, maxCount: Int, lock: Object)
+        private fun check_for_complete(count: IntArray, maxCount: Int, lock: Object, user: User, is_sync : Boolean)
         {
-            Log.d("db_sync", "Checking for completeness, num is ${count[0]}, max is $maxCount")
+            Log.d("db_sync", "Checking for completeness, num is ${count[0]}, max is $maxCount for $is_sync on synced")
             if (count[0] == maxCount) {
-                Log.d("db_sync", "before signal")
-                synchronized(lock)
-                {
-                    lock.notify()
+                if(is_sync) {
+                    build_small_notification(ctx.getString(R.string.notificatoin_syncing_done), false)
+                    user.set_last_sync_time(Date().time)
+                    remote_SQL_Helper.user = user
+                    global_variables_dataclass.DB_USERS!!.update_user(user.get__username(), user.get__password(), user.get_last_sync_time().time)
                 }
-                Log.d("db_sync", "signal done")
+                else
+                {
+                    synchronized(lock)
+                    {
+                        lock.notify()
+                    }
+                }
             }
         }
 
-        private suspend fun done_syncing(mtx: Mutex, done_count: IntArray, max_count: Int, lock: Object)
+        private suspend fun done_syncing(mtx: Mutex, done_count: IntArray, max_count: Int, lock: Object, user: User, is_sync : Boolean = true)
         {
             mtx.withLock {
+                Log.d("db_sync","Called with $is_sync")
                 done_count[0]++
-                check_for_complete(done_count, max_count, lock)
+
+                check_for_complete(done_count, max_count, lock, user, is_sync)
             }
         }
 
@@ -542,6 +578,56 @@ class offline_mode_service : Service(){
          */
         private fun db_sync_func() {
             db_sync_func_without_mark()
+        }
+
+        private fun load_dbs()
+        {
+            val mtx = Mutex()
+            val lock = Object()
+            val max_count = 4
+            val done_count = IntArray(1)
+            val user = remote_SQL_Helper.user!!
+
+            async {
+                Log.d("load", "Started syncing projects")
+                global_variables_dataclass.db_project_vec = projects.get_local_DB()
+                Log.d("load", "${global_variables_dataclass.db_project_vec}")
+                done_syncing(mtx,done_count,max_count, lock, user, false)
+            }.start()
+
+            async {
+                Log.d("load", "Started syncing opr")
+                global_variables_dataclass.db_opr_vec = opr.get_local_DB()
+                Log.d("load", "${global_variables_dataclass.db_opr_vec}")
+                done_syncing(mtx,done_count,max_count, lock, user, false)
+
+            }.start()
+
+            async {
+                Log.d("load", "Started syncing vendor")
+                global_variables_dataclass.db_vendor_vec = vendor.get_local_DB()
+                Log.d("load", "${global_variables_dataclass.db_vendor_vec}")
+                done_syncing(mtx,done_count,max_count, lock, user, false)
+
+            }.start()
+
+            async {
+                Log.d("load", "Started syncing big")
+                global_variables_dataclass.db_big_vec = big_table.get_local_DB()
+                Log.d("load", "${global_variables_dataclass.db_big_vec}")
+                done_syncing(mtx,done_count,max_count, lock, user, false)
+            }.start()
+
+
+            synchronized(lock)
+            {
+                try {
+                    lock.wait()
+                }
+                catch (e: InterruptedException){}
+            }
+            Log.d("load", "Loading dbs is done")
+
         }
 
     } // companion end

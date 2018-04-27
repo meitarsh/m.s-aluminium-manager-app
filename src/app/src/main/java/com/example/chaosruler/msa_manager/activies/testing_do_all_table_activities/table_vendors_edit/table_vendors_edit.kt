@@ -47,7 +47,7 @@ class table_vendors_edit : Activity() {
                 if (global_variables_dataclass.GUI_MODE)
                     Vector()
                 else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                    global_variables_dataclass.DB_VENDOR!!.get_local_DB()
+                    global_variables_dataclass.db_vendor_vec
                 else
                     global_variables_dataclass.DB_VENDOR!!.server_data_to_vector()
 

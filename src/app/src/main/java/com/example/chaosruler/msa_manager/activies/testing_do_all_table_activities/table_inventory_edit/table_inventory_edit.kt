@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -42,15 +43,17 @@ class table_inventory_edit : Activity()
     private fun init_table():Boolean
     {
         Thread{
-            val arr: Vector<inventory_data> =
-                    if (global_variables_dataclass.GUI_MODE)
-                        Vector()
-                    else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                        global_variables_dataclass.DB_INVENTORY!!.get_local_DB()
-                    else
-                        global_variables_dataclass.DB_INVENTORY!!.server_data_to_vector()
+            val arr: Vector<inventory_data> = Vector()
+//                    if (global_variables_dataclass.GUI_MODE)
+//                        Vector()
+//                    else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
+//                        global_variables_dataclass.db_inv_vec
+//                    else
+//                        global_variables_dataclass.DB_INVENTORY!!.server_data_to_vector()
 
-            runOnUiThread {             table_inventory_listview.adapter = table_inventory_arrayadapter(this,arr)
+            Log.d("inventory_size",arr.size.toString())
+            runOnUiThread {
+                table_inventory_listview.adapter = table_inventory_arrayadapter(this,arr)
             }
         }.start()
         return true

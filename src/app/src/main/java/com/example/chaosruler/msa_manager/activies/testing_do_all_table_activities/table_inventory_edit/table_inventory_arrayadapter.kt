@@ -66,7 +66,7 @@ class table_inventory_arrayadapter(context: Context, arr: Vector<inventory_data>
                 update_value[remote_inventory_table_helper.NAME] = str
                 remote_inventory_table_helper.push_update(inventory, update_value, context)
                 inventory.set_itemname(str)
-                global_variables_dataclass.DB_INVENTORY!!.add_inventory(inventory)
+//                global_variables_dataclass.DB_INVENTORY!!.add_inventory(inventory)
                 themer.hideKeyboard(context,name)
             }).start()
             name.hint = str.trim()

@@ -76,11 +76,17 @@ class divohi_takalot_tofes_arrayadapter(
 
         val big_item:big_table_data = getItem(position)
 
-        val project_item: project_data = global_variables_dataclass.DB_project!!.get_local_DB().filter { it.getProjID() == big_item.get_PROJECT_ID()?:"" }[0]!!
-        val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_local_DB().filter { it.get_itemid() == big_item.get_INVENTORY_ID()?:"" }[0]!!
+        val project_item: project_data = try {
+            global_variables_dataclass.db_project_vec.filter { it.getProjID() == big_item.get_PROJECT_ID()?:"" }[0]!!
+        }
+        catch (e: IndexOutOfBoundsException)
+        {
+            project_data("","","","")
+        }
+//        val inventory: inventory_data = global_variables_dataclass.db_inv_vec.filter { it.get_itemid() == big_item.get_INVENTORY_ID()?:"" }[0]!!
 
         mispar_parit.text = (big_item.get_ITEMNUMBER() ?: "").trim()
-        shem_parit.text = (inventory.get_itemname() ?: "").trim()
+//        shem_parit.text = (inventory.get_itemname() ?: "").trim()
         mispar_project.text = (project_item.getProjID() ?: "").trim()
         shem_project.text = (project_item.get_project_name() ?: "").trim()
         kamot.text = (big_item.get_QTY() ?: "").trim()

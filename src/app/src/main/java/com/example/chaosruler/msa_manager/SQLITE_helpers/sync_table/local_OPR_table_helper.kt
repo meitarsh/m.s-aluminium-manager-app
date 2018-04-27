@@ -73,10 +73,10 @@ class local_OPR_table_helper(
      */
     override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "BLOB primary key"
-        map[NAME] = "BLOB"
-        map[USER] = "BLOB"
-        map[DATAARAEID] = "BLOB"
+        map[ID] = "TEXT primary key"
+        map[NAME] = "TEXT"
+        map[USER] = "TEXT"
+        map[DATAARAEID] = "TEXT"
         createDB(db, map)
     }
 
@@ -127,8 +127,8 @@ class local_OPR_table_helper(
     {
         val vector: Vector<opr_data> = Vector()
 
-        val all_db: Vector<big_table_data> = global_variables_dataclass.DB_BIG!!.get_local_DB()
-        val oprdb: Vector<opr_data> = global_variables_dataclass.DB_OPR!!.get_local_DB()
+        val all_db: Vector<big_table_data> = global_variables_dataclass.db_big_vec
+        val oprdb: Vector<opr_data> = global_variables_dataclass.db_opr_vec
 
 
         for(opr in oprdb)
@@ -300,7 +300,7 @@ class local_OPR_table_helper(
         data[DATAARAEID] = (opr_data.get_DATAREAID() ?: "").trim()
         data[USER] = (opr_data.get_USERNAME() ?: "").trim()
         everything_to_add.addElement(data)
-        return add_data(everything_to_add)
+        return add_data(everything_to_add, false)
     }
 
     /**

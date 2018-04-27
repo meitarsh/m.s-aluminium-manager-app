@@ -84,15 +84,6 @@
     <string name="TABLE_BIG_INVENTORY_ID">ITEMID</string>
     <string name="TABLE_BIG_INVENTORY_ID_TYPE">nvarchar</string>
 
-
-    <string name="TABLE_BIG_FLAT">STRDIRA</string>
-    <string name="TABLE_BIG_FLAT_TYPE">nvarchar</string>
-
-
-    <string name="TABLE_BIG_FLOOR">STRKOMA</string>
-    <string name="TABLE_BIG_FLOOR_TYPE">nvarchar</string>
-
-
     <string name="TABLE_BIG_QTY">TOTAL</string> <!-- Used to be QTY -->
     <string name="TABLE_BIG_QTY_TYPE">real</string>
 
@@ -110,6 +101,9 @@
 
     <string name="TABLE_BIG_QTYFORACCOUNT">QTYFORACCOUNTKABLAN</string>
     <string name="TABLE_BIG_QTYFORACCOUNT_TYPE">real</string>
+
+    <string name="TABLE_BIG_QTYINPARTIALACC">QTYINPARTIALACC</string>
+    <string name="TABLE_BIG_QTYINPARTIALACC_TYPE">real</string>
 
 
     <string name="TABLE_BIG_PERCENTFORACCOUNT">PERCENTFORACCOUNT</string>
@@ -136,6 +130,13 @@
     <string name="TABLE_BIG_KOMANUM_TYPE">real</string>
 
 
-    <string name="TABLE_BIG_DIRANUM">BINYAN</string>
+    <string name="TABLE_BIG_DIRANUM">STRDIRA</string>
     <string name="TABLE_BIG_DIRANUM_TYPE">real</string>
+
+    <string name="TABLE_BIG_FLAT">BINYAN</string>
+    <string name="TABLE_BIG_FLAT_TYPE">nvarchar</string>
+
+
+    <string name="TABLE_BIG_FLOOR">STRKOMA</string>
+    <string name="TABLE_BIG_FLOOR_TYPE">nvarchar</string>
 </resources>

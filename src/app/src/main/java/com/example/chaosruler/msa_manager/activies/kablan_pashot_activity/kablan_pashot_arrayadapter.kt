@@ -42,8 +42,22 @@ class kablan_pashot_arrayadapter(context: Context,arr: Vector<big_table_data>) :
         val ahoz:TextView = themer.get_view(convertView,R.id.item_kablan_pashot_ahoz_peola) as TextView
 
         val big_item:big_table_data = getItem(position)
-        val vendor_item: vendor_data = global_variables_dataclass.DB_VENDOR!!.get_local_DB().filter { it.get_accountnum() == big_item.get_VENDOR_ID()?:"" }[0]!!
-        val opr: opr_data = global_variables_dataclass.DB_OPR!!.get_local_DB().filter { it.get_oprid() == big_item.get_OPRID()?:"" }[0]!!
+        val vendor_item: vendor_data = try {
+            global_variables_dataclass.db_vendor_vec.filter { it.get_accountnum() == big_item.get_VENDOR_ID()?:"" }[0]
+        }
+        catch (e: IndexOutOfBoundsException)
+        {
+            vendor_data("","err","","")
+        }
+
+        val opr: opr_data =
+                try {
+                    global_variables_dataclass.db_opr_vec.filter { it.get_oprid() == big_item.get_OPRID()?:"" }[0]!!
+                }
+                catch (e:IndexOutOfBoundsException)
+                {
+                    opr_data("","err","","")
+                }
 
         hoza.text = (vendor_item.get_accountnum() ?: "").trim()
         peola.text = (opr.get_opr_name() ?: "").trim()

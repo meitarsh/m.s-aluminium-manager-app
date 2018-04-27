@@ -203,15 +203,16 @@ object remote_SQL_Helper {
 //                            else
                                 rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]"
                                 + " WHERE $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 05:00:00:000') ")
-
+                                Log.d("remote","USE [$db] SELECT * FROM [dbo].[$table]"
+                                        + " WHERE $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 05:00:00:000') ")
                         } catch (e: SQLTimeoutException) {
-                            Log.d("remote SQL", "EXCEPTION SQL timeout")
+                            Log.d("remote", "EXCEPTION SQL timeout")
                             rs = null
                         } catch (e: SQLException) {
-                            Log.d("remote SQL", "EXCEPTION ${e.message}")
+                            Log.d("remote", "EXCEPTION ${e.message}")
                             rs = null
                         } catch (e: KotlinNullPointerException) {
-                            Log.d("remote SQL", "EXCEPTION kotlin null pointer exception")
+                            Log.d("remote", "EXCEPTION kotlin null pointer exception")
                             rs = null
                         }
                         if (rs == null)
@@ -324,7 +325,7 @@ object remote_SQL_Helper {
                                 else
                                 " AND "
                             qry += "$where_or_not $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 05:00:00:000')"
-                            Log.d("Query: ",qry)
+                            Log.d("rsql: ",qry)
                             rs = connection!!.createStatement().executeQuery(qry)
                         } catch (e: SQLTimeoutException) {
                             Log.d("remote SQL", "EXCEPTION SQL timeout exception")
@@ -345,9 +346,11 @@ object remote_SQL_Helper {
                             return@execute
                         }
                         val columnCount = rs.metaData.columnCount
-                        Log.d("columns","For DB $db is ${columnCount.toString()}")
+                        Log.d("rsql","For DB $db is ${columnCount.toString()}")
                         val rs_meta = rs.metaData
+                        var count = 0
                         while (rs.next()) {
+                            count++
                             val map: HashMap<String, String> = HashMap()
                             for (i in 1..(columnCount)) {
                                 val colum_name: String = rs_meta.getColumnName(i)
@@ -359,6 +362,7 @@ object remote_SQL_Helper {
                             }
                             vector.addElement(map)
                         }
+                        Log.d("rsql", "Count for $table is $count")
                         synchronized(lock)
                         {
                             lock.notify()

@@ -61,7 +61,16 @@ class MainActivity : Activity()
             //hide_everything()
             init_sync_trd()
             progress_subroutine()
-            user_first_run()
+            val tasked: Boolean = user_first_run()
+            if(!tasked)
+            {
+                val sync_alert = alert(title=getString(R.string.anko_title),message = getString(R.string.moved_to_task_for_dataload))
+                {
+                    positiveButton(getString(R.string.anko_i_understand)) { moveTaskToBack(true) }
+                }
+                sync_alert.isCancelable = false
+                sync_alert.show()
+            }
         }
 
         create_intro_text()
@@ -74,7 +83,7 @@ class MainActivity : Activity()
      * method that contexts a user about his first sync and gives notification and turns app into background applications
      * @author Chaosruler972
      */
-    private fun user_first_run()
+    private fun user_first_run() : Boolean
     {
         if(check_if_first_sync())
         {
@@ -85,8 +94,9 @@ class MainActivity : Activity()
             }
             sync_alert.isCancelable = false
             sync_alert.show()
-
+            return true
         }
+        return false
     }
 
     /**
@@ -131,7 +141,7 @@ class MainActivity : Activity()
         Thread {
             val projects =
                     if (global_variables_dataclass.isLocal)
-                        global_variables_dataclass.DB_project!!.get_local_DB()
+                        global_variables_dataclass.db_project_vec
                     else
                         global_variables_dataclass.DB_project!!.server_data_to_vector()
             runOnUiThread { on_adapter_set(projects) }
@@ -262,7 +272,7 @@ class MainActivity : Activity()
     private fun init_buttons()
     {
         main_button_choose.setOnClickListener({
-            val intent = Intent(this@MainActivity, project_options::class.java)
+            val intent = Intent(this@MainActivity, ProjectOptions2Activity::class.java)
             if(!global_variables_dataclass.GUI_MODE && main_spinner.selectedItemPosition == Spinner.INVALID_POSITION)
             {
                 Toast.makeText(baseContext,getString(R.string.no_project_chosen),Toast.LENGTH_SHORT).show()

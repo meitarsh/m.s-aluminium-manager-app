@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activies.project_chooser_fragments.KablaniMishneFragment"
+    android:layoutDirection="ltr"
+    android:orientation="vertical"
+    >
+
+    <Button
+        android:id="@+id/frag_kablni_mishne_pshot"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/height_text_buttons"
+        android:background="@drawable/button_sample1"
+        android:text="@string/kablni_mishne_tavla_pshota" />
+
+    <Button
+        android:id="@+id/frag_kablni_mishne_ntonim_hodshiim"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/height_text_buttons"
+        android:background="@drawable/button_sample1"
+        android:text="@string/kablni_mishne_hodshiim"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/frag_kablni_mishne_pirot"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/height_text_buttons"
+        android:background="@drawable/button_sample1"
+        android:text="@string/kablni_mishne_pirot" />
+
+</TableLayout>

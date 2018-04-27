@@ -121,8 +121,6 @@
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedService" />
-
-
         <service
             android:name=".services.VPN_google_toyVPN.vpn_connection"
             android:permission="android.permission.BIND_VPN_SERVICE"
@@ -131,22 +129,20 @@
                 <action android:name="android.net.VpnService" />
             </intent-filter>
 
-
             <meta-data
                 android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON"
                 android:value="true" />
         </service>
 
-        <!--<service android:name=".services.VPN"-->
-        <!--android:permission="android.permission.BIND_VPN_SERVICE">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.net.VpnService"/>-->
-        <!--</intent-filter>-->
-        <!--<meta-data android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON"-->
-        <!--android:value="true"/>-->
-        <!--</service>-->
-        <!---->
-
+        <!-- <service android:name=".services.VPN" -->
+        <!-- android:permission="android.permission.BIND_VPN_SERVICE"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.net.VpnService"/> -->
+        <!-- </intent-filter> -->
+        <!-- <meta-data android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON" -->
+        <!-- android:value="true"/> -->
+        <!-- </service> -->
+        <!--  -->
 
         <activity
             android:name=".activies.flat_chooser.flat_chooser"
@@ -154,12 +150,23 @@
             android:label="@string/flat_chooser_label"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <activity android:name=".activies.floor_chooser.floor_chooser"
+        <activity
+            android:name=".activies.floor_chooser.floor_chooser"
             android:configChanges="orientation"
             android:label="@string/choose_floor_activity_lable"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activies.ProjectOptions2Activity"
+            android:configChanges="orientation"
+            android:label="@string/project_options_decide"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <activity android:name=".activies.flat_and_floor_chooser"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>

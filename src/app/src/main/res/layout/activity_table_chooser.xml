@@ -55,5 +55,6 @@
         android:layout_marginBottom="@dimen/table_chooser_vertical"
         android:layout_marginTop="@dimen/table_chooser_vertical"
         android:background="@drawable/button_sample1"
-        android:text="@string/table_chooser_inventory" />
+        android:text="@string/table_chooser_inventory"
+        android:visibility="invisible" />
 </TableLayout>

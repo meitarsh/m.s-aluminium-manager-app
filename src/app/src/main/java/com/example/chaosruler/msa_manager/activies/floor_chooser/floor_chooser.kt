@@ -39,9 +39,9 @@ class floor_chooser : AppCompatActivity() {
         Thread {
             val projects =
                     if (global_variables_dataclass.isLocal)
-                        global_variables_dataclass.DB_BIG!!.get_local_DB()
+                        global_variables_dataclass.db_big_vec
                     else
-                        global_variables_dataclass.DB_BIG!!.server_data_to_vector()
+                        global_variables_dataclass.db_big_vec
             runOnUiThread { on_adapter_set(projects) }
         }.start()
 

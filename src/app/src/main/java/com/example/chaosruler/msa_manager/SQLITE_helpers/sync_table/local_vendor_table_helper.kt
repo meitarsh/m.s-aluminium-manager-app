@@ -74,10 +74,10 @@ class local_vendor_table_helper(
      */
     override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "BLOB primary key"
-        map[NAME] = "BLOB"
-        map[USER] = "BLOB"
-        map[DATAARAEID] = "BLOB"
+        map[ID] = "TEXT primary key"
+        map[NAME] = "TEXT"
+        map[USER] = "TEXT"
+        map[DATAARAEID] = "TEXT"
         createDB(db, map)
     }
 
@@ -128,8 +128,8 @@ class local_vendor_table_helper(
     {
         val vector: Vector<vendor_data> = Vector()
 
-        val all_db: Vector<big_table_data> = global_variables_dataclass.DB_BIG!!.get_local_DB()
-        val vendordb: Vector<vendor_data> = global_variables_dataclass.DB_VENDOR!!.get_local_DB()
+        val all_db: Vector<big_table_data> = global_variables_dataclass.db_big_vec
+        val vendordb: Vector<vendor_data> = global_variables_dataclass.db_vendor_vec
 
 
         for(vendor in vendordb)
@@ -300,7 +300,7 @@ class local_vendor_table_helper(
         data[DATAARAEID] = (vendor_data.get_DATAREAID() ?: "").trim()
         data[USER] = (vendor_data.get_USERNAME() ?: "").trim()
         everything_to_add.addElement(data)
-        return add_data(everything_to_add)
+        return add_data(everything_to_add, false)
     }
 
     /**

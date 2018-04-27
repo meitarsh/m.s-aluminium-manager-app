@@ -51,6 +51,7 @@
     <string name="LOCAL_BIG_COLUMN_OPRID">oprid</string>
     <string name="LOCAL_BIG_COLUMN_MILESTONEPRECENT">milestoneprecent</string>
     <string name="LOCAL_BIG_COLUMN_QTYFORACCOUNT">qtyforaccount</string>
+    <string name="LOCAL_BIG_COLUMN_QTYINPARTIALACC">qtyinpartial</string>
     <string name="LOCAL_BIG_COLUMN_PERCENTFORACCOUNT">percentdialog</string>
     <string name="LOCAL_BIG_COLUMN_TOTALSUM">totalsum</string>
     <string name="LOCAL_BIG_COLUMN_SALPROG">salprog</string>

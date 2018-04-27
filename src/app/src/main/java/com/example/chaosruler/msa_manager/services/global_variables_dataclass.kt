@@ -8,9 +8,11 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 import com.example.chaosruler.msa_manager.activies.MainActivity
+import com.example.chaosruler.msa_manager.object_types.*
 import java.math.BigInteger
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
+import java.util.*
 
 /**
  * a Singleton like objec that holds data true across all the activities such as settings and databases along with functions usabele across activities
@@ -29,14 +31,19 @@ object global_variables_dataclass
     //    var flat: String? = null
     @SuppressLint("StaticFieldLeak")
     var DB_BIG: local_big_table_helper? = null
+    var db_big_vec : Vector<big_table_data> = Vector()
     @SuppressLint("StaticFieldLeak")
     var DB_project: local_projects_table_helper? = null
+    var db_project_vec : Vector<project_data> = Vector()
     @SuppressLint("StaticFieldLeak")
     var DB_OPR: local_OPR_table_helper? = null
+    var db_opr_vec : Vector<opr_data> = Vector()
     @SuppressLint("StaticFieldLeak")
     var DB_VENDOR: local_vendor_table_helper? = null
-    @SuppressLint("StaticFieldLeak")
-    var DB_INVENTORY: local_inventory_table_helper? = null
+    var db_vendor_vec : Vector<vendor_data> = Vector()
+//    @SuppressLint("StaticFieldLeak")
+//    var DB_INVENTORY: local_inventory_table_helper? = null
+//    var db_inv_vec : Vector<inventory_data> = Vector()
     @SuppressLint("StaticFieldLeak")
     var DB_USERS : user_database_helper? = null
 
@@ -50,7 +57,7 @@ object global_variables_dataclass
         GUI_MODE = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.gui_mode_key), false)
 
         DB_BIG = local_big_table_helper(context)
-        DB_INVENTORY = local_inventory_table_helper(context)
+//        DB_INVENTORY = local_inventory_table_helper(context)
         DB_OPR = local_OPR_table_helper(context)
         DB_VENDOR = local_vendor_table_helper(context)
         DB_project = local_projects_table_helper(context)

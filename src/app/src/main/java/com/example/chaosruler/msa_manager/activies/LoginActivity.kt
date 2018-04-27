@@ -552,6 +552,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             {
                 val main_intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(main_intent)
+                db.close()
                 finish()
             }
             else

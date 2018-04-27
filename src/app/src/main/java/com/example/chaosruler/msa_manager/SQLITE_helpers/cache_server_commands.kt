@@ -55,8 +55,8 @@ class cache_server_commands(context: Context) : local_SQL_Helper(context, contex
     override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
         map[ID] = "INTEGER primary key AUTOINCREMENT"
-        map[COMMAND] = "BLOB"
-        map[USER] = "BLOB"
+        map[COMMAND] = "TEXT"
+        map[USER] = "TEXT"
         createDB(db,map)
     }
 

@@ -35,7 +35,7 @@
         android:layout_weight="1"
         android:background="@drawable/button_sample1"
         android:text="place holder"
-        android:visibility="visible"
+        android:visibility="gone"
         tools:ignore="HardcodedText" />
 
     <Button

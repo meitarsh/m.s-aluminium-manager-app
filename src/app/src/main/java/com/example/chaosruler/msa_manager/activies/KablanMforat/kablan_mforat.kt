@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.object_types.big_table_data
+import com.example.chaosruler.msa_manager.object_types.vendor_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_kablan_mforat.*
@@ -52,14 +53,16 @@ class kablan_mforat : Activity() {
     private fun init_spinner()
     {
         Thread{
+
             val big_table:Vector<big_table_data> =
                     if(global_variables_dataclass.GUI_MODE)
                         Vector()
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                        global_variables_dataclass.DB_BIG!!.get_local_DB_by_projname((global_variables_dataclass.projid?:"").trim())
+                        Vector(global_variables_dataclass.db_big_vec.filter { it.get_PROJECT_ID() == global_variables_dataclass.projid  && it.get_FLOOR() == global_variables_dataclass.floor && it.get_FLAT() == global_variables_dataclass.flat})
                     else
-                        global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
+                        Vector(global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim()).filter { it.get_FLAT() == global_variables_dataclass.flat && it.get_FLOOR() == global_variables_dataclass.floor })
             big_table.sort()
+            Log.d("Kablan","Looking for ${global_variables_dataclass.flat} in $big_table")
             runOnUiThread { spinner_populate(big_table) }
         }.start()
 
@@ -74,7 +77,7 @@ class kablan_mforat : Activity() {
     {
         Log.d("Floor is", global_variables_dataclass.flat ?: "No flat")
         adapter = KablanArrayAdapter(this, android.R.layout.simple_spinner_item,
-                big_table.filter { it.get_FLAT() == global_variables_dataclass.flat && it.get_FLOOR() == global_variables_dataclass.floor })
+                big_table)
 
         activity_kablan_mforat_spinner.adapter = adapter
 
@@ -87,14 +90,19 @@ class kablan_mforat : Activity() {
 
                 val peola_parcent: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
                 val milestone_parcent: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
-
+                val vendor_data : vendor_data = try {
+                    global_variables_dataclass.db_vendor_vec.filter { it.get_accountnum() == big_item.get_VENDOR_ID() }[0]!!
+                }
+                catch (e: Exception) {
+                    vendor_data("", "", "", "")
+                }
                 // var txtview:TextView = view as TextView
                 //  txtview.text = vendor_item.get_accountname()
-                (view as TextView).text = big_item.get_VENDOR_ID() ?: ""
+                (view as TextView).text = vendor_data.get_accountname() ?: ""
                 activity_kablan_mforat_kamot_hoza.text = (big_item.get_QTY() ?: "0").trim()
                 activity_kablan_mforat_yehida_price.text = (big_item.get_SALESPRICE() ?: "0").trim()
                 activity_kablan_mforat_peola_percent.text = ((peola_parcent.toDouble()).toInt().toString() + "%").trim()
-                activity_kablan_mforat_kamot_helki.hint = (big_item.get_QTYFORACCOUNT() ?: "0").trim()
+                activity_kablan_mforat_kamot_helki.hint = (big_item.get_QTYINPARTIALACC() ?: "0").trim()
                 activity_kablan_mforat_kamot_helki.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 activity_kablan_mforat_kamot_kablan.hint = (big_item.get_QTYFORACCOUNT() ?: "0").trim()
                 activity_kablan_mforat_kamot_kablan.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED

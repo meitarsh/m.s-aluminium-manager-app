@@ -69,10 +69,10 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "BLOB primary key"
-        map[NAME] = "BLOB"
-        map[USER] = "BLOB"
-        map[DATAARAEID] = "BLOB"
+        map[ID] = "TEXT primary key"
+        map[NAME] = "TEXT"
+        map[USER] = "TEXT"
+        map[DATAARAEID] = "TEXT"
         createDB(db,map)
     }
 
@@ -102,8 +102,8 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
     {
         Log.d("DB OF: ","Inventory")
         val vector: Vector<inventory_data> = Vector()
-
         val all_db: Vector<HashMap<String, String>> = get_db()
+        Log.d("inventory","All db size ${all_db.size.toString()}")
         all_db
                 .filter {
                     @Suppress("USELESS_ELVIS_RIGHT_IS_NULL")
@@ -124,20 +124,20 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
     {
         val vector: Vector<inventory_data> = Vector()
 
-        val all_db: Vector<big_table_data> = global_variables_dataclass.DB_BIG!!.get_local_DB()
-        val inventorydb: Vector<inventory_data> = global_variables_dataclass.DB_INVENTORY!!.get_local_DB()
+        val all_db: Vector<big_table_data> = global_variables_dataclass.db_big_vec
+//        val inventorydb: Vector<inventory_data> = global_variables_dataclass.db_inv_vec
 
 
-        for(inventory in inventorydb)
-        {
-            for (big in all_db)
-            {
-                if((big.get_PROJECT_ID()?:"") == projid && (big.get_INVENTORY_ID()?:"") == (inventory.get_itemid()?:"1")  ) {
-                    vector.addElement(inventory)
-                    break
-                }
-            }
-        }
+//        for(inventory in inventorydb)
+//        {
+//            for (big in all_db)
+//            {
+//                if((big.get_PROJECT_ID()?:"") == projid && (big.get_INVENTORY_ID()?:"") == (inventory.get_itemid()?:"1")  ) {
+//                    vector.addElement(inventory)
+//                    break
+//                }
+//            }
+//        }
         return vector
     }
 
@@ -298,7 +298,7 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         data[DATAARAEID] = (inventory_data.get_DATAREAID() ?: "").trim()
         data[USER] = (inventory_data.get_USERNAME() ?: "").trim()
         everything_to_add.addElement(data)
-        return add_data(everything_to_add)
+        return add_data(everything_to_add, false)
     }
 
     /**

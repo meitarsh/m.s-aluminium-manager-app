@@ -47,11 +47,12 @@ class table_big_edit : Activity() {
                     if (global_variables_dataclass.GUI_MODE)
                         Vector()
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                        global_variables_dataclass.DB_BIG!!.get_local_DB()
+                        global_variables_dataclass.db_big_vec
                     else
                         global_variables_dataclass.DB_BIG!!.server_data_to_vector()
 
-            runOnUiThread {             big_activity_listview.adapter = table_big_edit_arrayadapter(this,arr)
+            runOnUiThread {
+                big_activity_listview.adapter = table_big_edit_arrayadapter(this,arr)
             }
         }.start()
         return true

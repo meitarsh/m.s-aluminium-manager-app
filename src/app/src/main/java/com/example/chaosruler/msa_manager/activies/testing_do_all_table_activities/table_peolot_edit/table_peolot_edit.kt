@@ -47,7 +47,7 @@ class table_peolot_edit : Activity() {
                     if (global_variables_dataclass.GUI_MODE)
                         Vector()
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                        global_variables_dataclass.DB_OPR!!.get_local_DB()
+                        global_variables_dataclass.db_opr_vec
                     else
                         global_variables_dataclass.DB_OPR!!.server_data_to_vector()
 

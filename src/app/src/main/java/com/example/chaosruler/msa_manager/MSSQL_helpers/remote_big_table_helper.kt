@@ -134,6 +134,17 @@ class remote_big_table_helper
         var QTY_TYPE: String = ""
 
         /**
+         * QTYINPARTIALACC field name
+         * @author Chaosruler972
+         */
+        var QTYINPARTIALACC: String = ""
+        /**
+         * QTYINPARTIALACC field type
+         * @author Chaosruler972
+         */
+        var QTYINPARTIALACC_TYPE: String = ""
+
+        /**
          * Sales price field name
          * @author Chaosruler972
          */
@@ -321,6 +332,9 @@ class remote_big_table_helper
             DIRANUM = context.getString(R.string.TABLE_BIG_DIRANUM)
             DIRANUM_TYPE = context.getString(R.string.TABLE_BIG_DIRANUM_TYPE)
 
+            QTYINPARTIALACC = context.getString(R.string.TABLE_BIG_QTYINPARTIALACC)
+            QTYINPARTIALACC_TYPE = context.getString(R.string.TABLE_BIG_QTYFORACCOUNT_TYPE)
+
         }
 
         /**
@@ -350,6 +364,7 @@ class remote_big_table_helper
             map[ITEMNUMBER] = ITEMNUMBER_TYPE
             map[KOMANUM] = KOMANUM_TYPE
             map[DIRANUM] = DIRANUM_TYPE
+            map[QTYINPARTIALACC] = QTYINPARTIALACC_TYPE
             // n = 18
             return map
         }

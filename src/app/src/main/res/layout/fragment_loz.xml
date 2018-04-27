@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activies.project_chooser_fragments.LozFragment"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="horizontal"
+    >
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="horizontal|vertical"
+        tools:ignore="UselessParent">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:isScrollContainer="true"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            android:scrollbars="horizontal|vertical">
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cell_height"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:isScrollContainer="true"
+                android:layoutDirection="rtl"
+                android:scrollbars="horizontal|vertical">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/loz_activity_bnian_str"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/loz_activity_koma_str"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/loz_activity_begin_str"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/loz_activity_end_str"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/loz_activity_ahoz_bizoa_str"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/loz_activity_isFinished"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/loz_activity_haarot"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+            <ListView
+                android:id="@+id/frag_loz_activity_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:isScrollContainer="true"
+                android:layoutDirection="rtl"
+                android:scrollbars="horizontal|vertical"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
+
+</LinearLayout>

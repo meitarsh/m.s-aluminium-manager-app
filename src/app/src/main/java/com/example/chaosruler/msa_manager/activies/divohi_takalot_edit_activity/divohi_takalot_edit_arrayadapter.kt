@@ -83,13 +83,24 @@ class divohi_takalot_edit_arrayadapter(
 //        all_txtviews.addElement(upload_btn)
 
         val big_item: big_table_data = getItem(position)
-        val project_item: project_data = global_variables_dataclass.DB_project!!.get_local_DB().filter { it.getProjID()?:"" == big_item.get_PROJECT_ID()?:"" }[0]!!
-        val inventory: inventory_data = global_variables_dataclass.DB_INVENTORY!!.get_local_DB().filter { it.get_itemid()?:"" == big_item.get_INVENTORY_ID()?:"" }[0]!!
-        val opr: opr_data = global_variables_dataclass.DB_OPR!!.get_local_DB().filter { it.get_oprid()?:"" == big_item.get_OPRID()?:"" }[0]!!
-
+        val project_item: project_data = try {
+            global_variables_dataclass.db_project_vec.filter { it.getProjID()?:"" == big_item.get_PROJECT_ID()?:"" }[0]!!
+        }
+        catch (e: IndexOutOfBoundsException)
+        {
+            project_data("","","","")
+        }
+//        val inventory: inventory_data = global_variables_dataclass.db_inv_vec.filter { it.get_itemid() == big_item.get_INVENTORY_ID() }[0]
+        val opr: opr_data = try {
+            global_variables_dataclass.db_opr_vec.filter{ it.get_oprid()?:"" == big_item.get_OPRID()?:"" }[0]!!
+        }
+        catch (e : IndexOutOfBoundsException)
+        {
+            opr_data("","","","")
+        }
         mispar_parit.hint = (big_item.get_ITEMNUMBER() ?: "").trim()
         mispar_parit.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        shem_parit.hint = (inventory.get_itemname() ?: "").trim()
+//        shem_parit.hint = (inventory.get_itemname() ?: "").trim()
         mispar_project.hint = (project_item.getProjID() ?: "").trim()
         mispar_project.isEnabled = false
         shem_project.hint = (project_item.get_project_name() ?: "").trim()
@@ -132,22 +143,22 @@ class divohi_takalot_edit_arrayadapter(
             mispar_parit.text.clear()
         }
 
-        shem_parit.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if(hasFocus || shem_parit.text.isEmpty() )
-                return@OnFocusChangeListener
-            val str = shem_parit.text.toString()
-            Thread({
-                Looper.prepare()
-                val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_inventory_table_helper.NAME] = str
-                remote_inventory_table_helper.push_update(inventory, update_value, context)
-                inventory.set_itemname(str)
-                global_variables_dataclass.DB_INVENTORY!!.add_inventory(inventory)
-                themer.hideKeyboard(context,shem_parit)
-            }).start()
-            shem_parit.hint = str.trim()
-            shem_parit.text.clear()
-        }
+//        shem_parit.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+//            if(hasFocus || shem_parit.text.isEmpty() )
+//                return@OnFocusChangeListener
+//            val str = shem_parit.text.toString()
+//            Thread({
+//                Looper.prepare()
+//                val update_value: HashMap<String, String> = HashMap()
+//                update_value[remote_inventory_table_helper.NAME] = str
+//                remote_inventory_table_helper.push_update(inventory, update_value, context)
+//                inventory.set_itemname(str)
+//                global_variables_dataclass.DB_INVENTORY!!.add_inventory(inventory)
+//                themer.hideKeyboard(context,shem_parit)
+//            }).start()
+//            shem_parit.hint = str.trim()
+//            shem_parit.text.clear()
+//        }
 
         shem_project.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || shem_project.text.isEmpty() )

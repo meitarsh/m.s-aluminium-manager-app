@@ -75,10 +75,10 @@ class local_projects_table_helper(
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "BLOB primary key"
-        map[NAME] = "BLOB"
-        map[DATAAREAID] = "BLOB"
-        map[USERNAME] = "BLOB"
+        map[ID] = "TEXT primary key"
+        map[NAME] = "TEXT"
+        map[DATAAREAID] = "TEXT"
+        map[USERNAME] = "TEXT"
         createDB(db,map)
     }
 
@@ -127,7 +127,7 @@ class local_projects_table_helper(
     {
         val vector: Vector<project_data> = Vector()
 
-        val projdb: Vector<project_data> = global_variables_dataclass.DB_project!!.get_local_DB()
+        val projdb: Vector<project_data> = global_variables_dataclass.db_project_vec
 
         projdb
                 .filter { (it.getProjID()?:"")==projid }
@@ -269,7 +269,7 @@ class local_projects_table_helper(
         data[DATAAREAID] = (proj.get_DATAREAID() ?: "").trim()
         data[USERNAME] = (proj.get_USERNAME() ?: "").trim()
         everything_to_add.addElement(data)
-        return add_data(everything_to_add)
+        return add_data(everything_to_add, false)
     }
 
     /**
