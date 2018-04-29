@@ -43,7 +43,7 @@ class divohi_takalot_tofes_arrayadapter(
         val convertView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_divohi_takalot_tofes, parent, false)
 
         val mispar_parit = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_mispar_parit) as TextView
-        val shem_parit = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_shem_parit) as TextView
+//        val shem_parit = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_shem_parit) as TextView
         val mispar_project = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_mispar_project) as TextView
         val shem_project = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_shem_project) as TextView
         val kamot = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_kamot) as TextView
@@ -59,7 +59,7 @@ class divohi_takalot_tofes_arrayadapter(
 
         val all_txtviews = Vector<View>()
         all_txtviews.add(mispar_parit)
-        all_txtviews.add(shem_parit)
+//        all_txtviews.add(shem_parit)
         all_txtviews.add(mispar_project)
         all_txtviews.add(shem_project)
         all_txtviews.add(kamot)

@@ -144,37 +144,37 @@ class offline_mode_service : Service(){
          */
         private var trd:Thread= Thread({
 
-            Thread.sleep(time)
-            Timer().scheduleAtFixedRate(object : TimerTask() {
-                override fun run() {
-                    if(remote_SQL_Helper.get_latest_sync_time().time > 0.toLong())
-                        try_to_run_command()
-                    Log.d("offline_mode", "Did a trd run")
-                }
-            }, 0, time)//put here time 1000 milliseconds=1 second
-//            while (true)
-//            {
-//                Log.d("offline_mode","Did a trd run")
-//                try {
-//                    Thread({
+//            Thread.sleep(time)
+//            Timer().scheduleAtFixedRate(object : TimerTask() {
+//                override fun run() {
+//                    if(remote_SQL_Helper.get_latest_sync_time().time > 0.toLong())
 //                        try_to_run_command()
-//                    }).start()
+//                    Log.d("offline_mode", "Did a trd run")
 //                }
-//                catch (e:Exception)
-//                {
-//                    Log.d("Command","Had an exception!")
-//                }
-//                try
-//                {
-//                    Log.d("Going to sleep for ", (time/1000).toString() +" Seconds")
-//                    sleep(time)
-//                }
-//                catch (e: InterruptedException)
-//                {
-//                    Log.d("offline mode","retring a re-sync of everything")
-//                }
-//
-//            }
+//            }, 0, time)//put here time 1000 milliseconds=1 second
+            while (true)
+            {
+                Log.d("offline_mode","Did a trd run")
+                try {
+                    Thread({
+                        try_to_run_command()
+                    }).start()
+                }
+                catch (e:Exception)
+                {
+                    Log.d("Command","Had an exception!")
+                }
+                try
+                {
+                    Log.d("Going to sleep for ", (time/1000).toString() +" Seconds")
+                    Thread.sleep(time)
+                }
+                catch (e: InterruptedException)
+                {
+                    Log.d("offline mode","retring a re-sync of everything")
+                }
+
+            }
         })
 
 

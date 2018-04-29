@@ -622,7 +622,9 @@ object remote_SQL_Helper {
             if (breaker < update_to.size)
                 command += " , "
             else
-                break
+            {
+                command += " , [${context.getString(R.string.moddate)}] = dateadd(s,${Date().time/1000},'19700101 05:00:00:000') "
+            }
         }
         command += " WHERE "
         var where_counter = 0

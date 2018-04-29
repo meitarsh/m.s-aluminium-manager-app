@@ -303,7 +303,13 @@ class big_table_data(
      * @author Chaosruler972
      * @return the current total sum (sqlite)
      */
-    fun get_TOTALSUM(): String? = TOTALSUM
+    fun get_TOTALSUM(): String? = try{
+        TOTALSUM!!.toDouble().toInt().toString()
+    }
+    catch (e: Exception)
+    {
+        TOTALSUM
+    }
 
     /**
      * the current sale progress field name (sqlite)

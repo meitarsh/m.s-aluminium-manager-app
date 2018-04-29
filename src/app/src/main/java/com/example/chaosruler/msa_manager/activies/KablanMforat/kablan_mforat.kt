@@ -193,7 +193,8 @@ class kablan_mforat : Activity() {
             val milestone_parcent: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
             val parcent = milestone_parcent.toDouble() / 100
             current_price *= count*parcent
-
+            Log.d("Kablan",current_price.toString() + "," + count.toString() + "," + milestone_parcent.toString() + "," + parcent.toString())
+            Log.d("Kablan",current_price.toString())
             price+=current_price
         }
         if(price>0)
