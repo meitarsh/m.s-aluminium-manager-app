@@ -31,7 +31,7 @@ class local_big_table_helper(
 ,null,context.resources.getInteger(R.integer.LOCAL_BIG_TABLE_VERSION),context.getString(R.string.LOCAL_BIG_TABLE_NAME)) {
     /**
      * Account number field name
-     * @author Chaosruler972
+     * @author Chaosruler972TABLE_BIG_SYNC
      */
     private var ACCOUNT_NUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_ACCOUNTNUM)
     /**

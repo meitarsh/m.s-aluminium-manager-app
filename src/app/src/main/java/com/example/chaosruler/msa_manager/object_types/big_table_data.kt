@@ -276,7 +276,14 @@ class big_table_data(
      * @author Chaosruler972
      * @return the current milestone percent (sqlite)
      */
-    fun get_MILESTONEPERCENT(): String? = MILESTONEPERCENT
+    fun get_MILESTONEPERCENT(): String? =
+            try {
+                MILESTONEPERCENT!!.toDouble().toInt().toString()
+            }
+            catch (e: Exception)
+            {
+                MILESTONEPERCENT
+            }
 
     /**
      * the current quanity for account field name (sqlite)

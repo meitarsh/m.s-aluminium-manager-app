@@ -39,20 +39,20 @@ class loz_activity_arrayadapter (context: Context, arr: Vector<big_table_data>) 
 
         val bnian = themer.get_view(convertView, R.id.item_loz_bnian) as EditText
         val koma = themer.get_view(convertView, R.id.item_loz_koma) as EditText
-        val begin = themer.get_view(convertView, R.id.item_loz_begin) as EditText
-        val finish = themer.get_view(convertView, R.id.item_loz_end) as EditText
+//        val begin = themer.get_view(convertView, R.id.item_loz_begin) as EditText
+//        val finish = themer.get_view(convertView, R.id.item_loz_end) as EditText
         val ahoz_bizoaa = themer.get_view(convertView, R.id.item_loz_ahoz_bizoaa) as EditText
-        val isFinished = themer.get_view(convertView, R.id.item_loz_isfinished) as CheckBox
-        val haarot = themer.get_view(convertView, R.id.item_loz_haarot) as EditText
+//        val isFinished = themer.get_view(convertView, R.id.item_loz_isfinished) as CheckBox
+//        val haarot = themer.get_view(convertView, R.id.item_loz_haarot) as EditText
 
         val all_views = Vector<View>()
         all_views.add(bnian)
         all_views.add(koma)
-        all_views.add(begin)
-        all_views.add(finish)
+//        all_views.add(begin)
+//        all_views.add(finish)
         all_views.add(ahoz_bizoaa)
-        all_views.add(isFinished)
-        all_views.add(haarot)
+//        all_views.add(isFinished)
+//        all_views.add(haarot)
 
 
         val big_item:big_table_data = getItem(position)
@@ -63,17 +63,17 @@ class loz_activity_arrayadapter (context: Context, arr: Vector<big_table_data>) 
         bnian.hint = (big_item.get_FLAT() ?: "").trim()
 
         koma.hint = (big_item.get_FLOOR() ?:  "").trim()
-        begin.hint = ("No database value to grab").trim()
-        begin.isEnabled = false
-        finish.hint = "No database value to grab"
-        finish.isEnabled = false
-
-        isFinished.isEnabled = false
+//        begin.hint = ("No database value to grab").trim()
+//        begin.isEnabled = false
+//        finish.hint = "No database value to grab"
+//        finish.isEnabled = false
+//
+//        isFinished.isEnabled = false
 
         ahoz_bizoaa.hint = ("$ahoz_bizoa_str%").trim()
         ahoz_bizoaa.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        haarot.hint = "No database value to grab"
-        haarot.isEnabled = false
+//        haarot.hint = "No database value to grab"
+//        haarot.isEnabled = false
 
 //        bnian.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
 //            if(hasFocus || bnian.text.isEmpty() )

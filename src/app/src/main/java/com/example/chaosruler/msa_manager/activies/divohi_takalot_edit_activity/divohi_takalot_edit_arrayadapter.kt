@@ -53,14 +53,14 @@ class divohi_takalot_edit_arrayadapter(
         val mispar_project = themer.get_view(convertView, R.id.item_divohi_takalot_edit_mispar_project) as EditText
         val shem_project = themer.get_view(convertView, R.id.item_divohi_takalot_edit_shem_project) as EditText
         val kamot = themer.get_view(convertView, R.id.item_divohi_takalot_edit_kamot) as EditText
-        val sog_takala = themer.get_view(convertView, R.id.item_divohi_takalot_edit_sog_takala) as EditText
+//        val sog_takala = themer.get_view(convertView, R.id.item_divohi_takalot_edit_sog_takala) as EditText
         val koma = themer.get_view(convertView, R.id.item_divohi_takalot_edit_koma) as EditText
         val bnian = themer.get_view(convertView, R.id.item_divohi_takalot_edit_bnian) as EditText
         val dira = themer.get_view(convertView, R.id.item_divohi_takalot_edit_dira) as EditText
-        val tiaor_takala = themer.get_view(convertView, R.id.item_divohi_takalot_edit_tiaaor_takala) as EditText
-        val peolot_ltikon = themer.get_view(convertView, R.id.item_divohi_takalot_edit_peolot_ltikon) as EditText
-        val peolot_monoot = themer.get_view(convertView, R.id.item_divohi_takalot_edit_peolot_monoot) as EditText
-        val tgovat_mnaal = themer.get_view(convertView, R.id.item_divohi_takalot_edit_tgovat_mnaal) as EditText
+//        val tiaor_takala = themer.get_view(convertView, R.id.item_divohi_takalot_edit_tiaaor_takala) as EditText
+//        val peolot_ltikon = themer.get_view(convertView, R.id.item_divohi_takalot_edit_peolot_ltikon) as EditText
+//        val peolot_monoot = themer.get_view(convertView, R.id.item_divohi_takalot_edit_peolot_monoot) as EditText
+//        val tgovat_mnaal = themer.get_view(convertView, R.id.item_divohi_takalot_edit_tgovat_mnaal) as EditText
         val alot_takala = themer.get_view(convertView, R.id.item_divohi_takalot_edit_alot_takala) as EditText
 //        val upload_btn = themer.get_view(convertView, R.id.item_divohi_takalot_edit_upload_btn) as Button
 
@@ -71,14 +71,14 @@ class divohi_takalot_edit_arrayadapter(
         all_txtviews.add(mispar_project)
         all_txtviews.add(shem_project)
         all_txtviews.add(kamot)
-        all_txtviews.add(sog_takala)
+//        all_txtviews.add(sog_takala)
         all_txtviews.add(koma)
         all_txtviews.add(bnian)
         all_txtviews.add(dira)
-        all_txtviews.add(tiaor_takala)
-        all_txtviews.add(peolot_ltikon)
-        all_txtviews.add(peolot_monoot)
-        all_txtviews.add(tgovat_mnaal)
+//        all_txtviews.add(tiaor_takala)
+//        all_txtviews.add(peolot_ltikon)
+//        all_txtviews.add(peolot_monoot)
+//        all_txtviews.add(tgovat_mnaal)
         all_txtviews.add(alot_takala)
 //        all_txtviews.addElement(upload_btn)
 
@@ -91,13 +91,15 @@ class divohi_takalot_edit_arrayadapter(
             project_data("","","","")
         }
 //        val inventory: inventory_data = global_variables_dataclass.db_inv_vec.filter { it.get_itemid() == big_item.get_INVENTORY_ID() }[0]
-        val opr: opr_data = try {
-            global_variables_dataclass.db_opr_vec.filter{ it.get_oprid()?:"" == big_item.get_OPRID()?:"" }[0]!!
-        }
-        catch (e : IndexOutOfBoundsException)
-        {
-            opr_data("","","","")
-        }
+
+
+//        val opr: opr_data = try {
+//            global_variables_dataclass.db_opr_vec.filter{ it.get_oprid()?:"" == big_item.get_OPRID()?:"" }[0]!!
+//        }
+//        catch (e : IndexOutOfBoundsException)
+//        {
+//            opr_data("","","","")
+//        }
         mispar_parit.hint = (big_item.get_ITEMNUMBER() ?: "").trim()
         mispar_parit.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
 //        shem_parit.hint = (inventory.get_itemname() ?: "").trim()
@@ -106,20 +108,20 @@ class divohi_takalot_edit_arrayadapter(
         shem_project.hint = (project_item.get_project_name() ?: "").trim()
         kamot.hint = (big_item.get_QTY() ?: "").trim()
         kamot.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        sog_takala.hint = "No value from database"
-        sog_takala.isEnabled = false
+//        sog_takala.hint = "No value from database"
+//        sog_takala.isEnabled = false
         koma.hint = (big_item.get_FLOOR() ?: "").trim()
         bnian.hint = (big_item.get_FLAT() ?: "").trim()
         dira.hint = (big_item.get_FLAT() ?: "").trim()
         dira.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-        tiaor_takala.hint = "No value from database"
-        tiaor_takala.isEnabled = false
-        peolot_ltikon.hint = (opr.get_opr_name() ?: "").trim()
-        peolot_ltikon.isEnabled = false
-        peolot_monoot.hint = (opr.get_opr_name() ?: "").trim()
-        peolot_monoot.isEnabled = false
-        tgovat_mnaal.hint = "No value from database"
-        tgovat_mnaal.isEnabled = false
+//        tiaor_takala.hint = "No value from database"
+//        tiaor_takala.isEnabled = false
+//        peolot_ltikon.hint = (opr.get_opr_name() ?: "").trim()
+//        peolot_ltikon.isEnabled = false
+//        peolot_monoot.hint = (opr.get_opr_name() ?: "").trim()
+//        peolot_monoot.isEnabled = false
+//        tgovat_mnaal.hint = "No value from database"
+//        tgovat_mnaal.isEnabled = false
         alot_takala.hint = (big_item.get_TOTALSUM() ?: "").trim()
         alot_takala.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
 
@@ -270,40 +272,40 @@ class divohi_takalot_edit_arrayadapter(
 //            val index = listview.getPositionForView(parent)
 //            showFileChooser(index)
 //        })
-
-        peolot_ltikon.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if(hasFocus || peolot_ltikon.text.isEmpty() )
-                return@OnFocusChangeListener
-            val str = peolot_ltikon.text.toString()
-            Thread({
-                Looper.prepare()
-                val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_opr_table_helper.NAME] = str
-                remote_opr_table_helper.push_update(opr, update_value, context)
-                opr.set_oprname(str)
-                global_variables_dataclass.DB_OPR!!.add_opr(opr)
-                themer.hideKeyboard(context,peolot_ltikon)
-            }).start()
-            peolot_ltikon.hint = str.trim()
-            peolot_ltikon.text.clear()
-        }
-
-        peolot_monoot.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if(hasFocus || peolot_monoot.text.isEmpty() )
-                return@OnFocusChangeListener
-            val str = peolot_monoot.text.toString()
-            Thread({
-                Looper.prepare()
-                val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_opr_table_helper.NAME] = str
-                remote_opr_table_helper.push_update(opr, update_value, context)
-                opr.set_oprname(str)
-                global_variables_dataclass.DB_OPR!!.add_opr(opr)
-                themer.hideKeyboard(context,peolot_monoot)
-            }).start()
-            peolot_monoot.hint = str.trim()
-            peolot_monoot.text.clear()
-        }
+//
+//        peolot_ltikon.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+//            if(hasFocus || peolot_ltikon.text.isEmpty() )
+//                return@OnFocusChangeListener
+//            val str = peolot_ltikon.text.toString()
+//            Thread({
+//                Looper.prepare()
+//                val update_value: HashMap<String, String> = HashMap()
+//                update_value[remote_opr_table_helper.NAME] = str
+//                remote_opr_table_helper.push_update(opr, update_value, context)
+//                opr.set_oprname(str)
+//                global_variables_dataclass.DB_OPR!!.add_opr(opr)
+//                themer.hideKeyboard(context,peolot_ltikon)
+//            }).start()
+//            peolot_ltikon.hint = str.trim()
+//            peolot_ltikon.text.clear()
+//        }
+//
+//        peolot_monoot.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+//            if(hasFocus || peolot_monoot.text.isEmpty() )
+//                return@OnFocusChangeListener
+//            val str = peolot_monoot.text.toString()
+//            Thread({
+//                Looper.prepare()
+//                val update_value: HashMap<String, String> = HashMap()
+//                update_value[remote_opr_table_helper.NAME] = str
+//                remote_opr_table_helper.push_update(opr, update_value, context)
+//                opr.set_oprname(str)
+//                global_variables_dataclass.DB_OPR!!.add_opr(opr)
+//                themer.hideKeyboard(context,peolot_monoot)
+//            }).start()
+//            peolot_monoot.hint = str.trim()
+//            peolot_monoot.text.clear()
+//        }
 
         themer.center_all_views(all_txtviews)
 

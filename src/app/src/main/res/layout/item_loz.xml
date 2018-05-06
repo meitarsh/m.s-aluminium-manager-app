@@ -38,31 +38,31 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <EditText
-        android:id="@+id/item_loz_begin"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cell_height"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="@dimen/small_margin_cells"
-        android:layout_marginStart="@dimen/small_margin_cells"
-        android:layout_weight="1"
-        android:background="@drawable/cell_shape"
-        android:gravity="center"
-        android:lines="1"
-        tools:ignore="LabelFor,TextFields" />
+    <!--<EditText-->
+        <!--android:id="@+id/item_loz_begin"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="@dimen/cell_height"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginEnd="@dimen/small_margin_cells"-->
+        <!--android:layout_marginStart="@dimen/small_margin_cells"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@drawable/cell_shape"-->
+        <!--android:gravity="center"-->
+        <!--android:lines="1"-->
+        <!--tools:ignore="LabelFor,TextFields" />-->
 
-    <EditText
-        android:id="@+id/item_loz_end"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cell_height"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="@dimen/small_margin_cells"
-        android:layout_marginStart="@dimen/small_margin_cells"
-        android:layout_weight="1"
-        android:background="@drawable/cell_shape"
-        android:gravity="center"
-        android:lines="1"
-        tools:ignore="LabelFor,TextFields" />
+    <!--<EditText-->
+        <!--android:id="@+id/item_loz_end"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="@dimen/cell_height"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginEnd="@dimen/small_margin_cells"-->
+        <!--android:layout_marginStart="@dimen/small_margin_cells"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@drawable/cell_shape"-->
+        <!--android:gravity="center"-->
+        <!--android:lines="1"-->
+        <!--tools:ignore="LabelFor,TextFields" />-->
 
     <EditText
         android:id="@+id/item_loz_ahoz_bizoaa"
@@ -77,30 +77,30 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <CheckBox
-        android:id="@+id/item_loz_isfinished"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cell_height"
-        android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/small_margin_cells"
-        android:layout_marginStart="@dimen/small_margin_cells"
-        android:layout_weight="1"
-        android:background="@drawable/cell_shape"
-        android:gravity="center"
-        android:lines="1" />
+    <!--<CheckBox-->
+        <!--android:id="@+id/item_loz_isfinished"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="@dimen/cell_height"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginEnd="@dimen/small_margin_cells"-->
+        <!--android:layout_marginStart="@dimen/small_margin_cells"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@drawable/cell_shape"-->
+        <!--android:gravity="center"-->
+        <!--android:lines="1" />-->
 
-    <EditText
-        android:id="@+id/item_loz_haarot"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cell_height"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="@dimen/small_margin_cells"
-        android:layout_marginStart="@dimen/small_margin_cells"
-        android:layout_weight="1"
-        android:background="@drawable/cell_shape"
-        android:gravity="center"
-        android:lines="1"
-        tools:ignore="LabelFor,TextFields" />
+    <!--<EditText-->
+        <!--android:id="@+id/item_loz_haarot"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="@dimen/cell_height"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginEnd="@dimen/small_margin_cells"-->
+        <!--android:layout_marginStart="@dimen/small_margin_cells"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@drawable/cell_shape"-->
+        <!--android:gravity="center"-->
+        <!--android:lines="1"-->
+        <!--tools:ignore="LabelFor,TextFields" />-->
 
 
 </LinearLayout>

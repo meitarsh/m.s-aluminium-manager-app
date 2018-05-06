@@ -264,6 +264,14 @@ class remote_big_table_helper
          */
         var DIRANUM_TYPE: String = ""
 
+
+        /**
+         * Syncs to this table too...
+         * @author Chaosruler972
+         */
+       var TABLE_SECOND_SYNC_NAME: String = ""
+
+
         /**
          * Inits all the variables with the data from strings.xml holding right for big database remote metadata
          * @author Chaosruler972
@@ -335,6 +343,7 @@ class remote_big_table_helper
             QTYINPARTIALACC = context.getString(R.string.TABLE_BIG_QTYINPARTIALACC)
             QTYINPARTIALACC_TYPE = context.getString(R.string.TABLE_BIG_QTYFORACCOUNT_TYPE)
 
+            TABLE_SECOND_SYNC_NAME = context.getString(R.string.TABLE_BIG_SYNC)
         }
 
         /**
@@ -402,6 +411,13 @@ class remote_big_table_helper
             var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME,remote_big_table_helper.TABLE_NAME,where_clause,"varchar",map)
             query = query.replace("'","&quote;")
             val str = offline_mode_service.general_push_command(query, remote_SQL_Helper.getusername())
+
+            /*
+                Input hack in order to sync between two tables, not tested and not necceserily
+                stable at the very idea of it
+             */
+            val query_second = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME,remote_big_table_helper.TABLE_SECOND_SYNC_NAME,where_clause,"varchar",map)
+            offline_mode_service.general_push_command(query_second, remote_SQL_Helper.getusername())
             Toast.makeText(context,str,Toast.LENGTH_SHORT).show()
         }
     } // companion end

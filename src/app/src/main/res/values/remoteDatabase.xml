@@ -9,7 +9,10 @@
     <string name="TABLE_PROJECTS">PROJTABLE</string>
     <string name="TABLE_VENDORS">VENDTABLE</string>
     <string name="TABLE_OPR">ROUTEOPRTABLE</string>
+
+    <!-- Both should be updated before production -->
     <string name="TABLE_BIG">SALPROJOFERKABLANCONSTRUC50068</string>
+    <string name="TABLE_BIG_SYNC">SALPROJCONSTRUCTIONONACCOUNT</string>
 
 
     <string name="moddate">MODIFIEDDATETIME</string>
