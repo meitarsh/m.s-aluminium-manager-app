@@ -530,6 +530,15 @@ class offline_mode_service : Service(){
 
         }
 
+        /**
+         * Checks if we completed the number of threads required
+         * @author Chaosruler972
+         * @param count how many threads completed so far
+         * @param maxCount how many threads should be completed
+         * @param lock the cv to release after condition calues
+         * @param user the user that requested the syncing service (for printing requirements)
+         * @param is_sync if threads are syncing threads (results in different reward when complete)
+         */
         @Suppress("UNUSED_PARAMETER")
         private fun check_for_complete(count: IntArray, maxCount: Int, lock: Object, user: User, is_sync : Boolean)
         {
@@ -551,6 +560,15 @@ class offline_mode_service : Service(){
             }
         }
 
+        /**
+         * Flag when done syncing on threads
+         * @author Chaosruler972
+         * @param mtx the mutex to lock/unlock for cv
+         * done_count an array that increses until it reaches max_count, then it stops, array has only one element (need to be a pointer)
+         * max_count when done_count should stop counting (number of threads)
+         * lock cv to unlock
+         * is_sync if the threads we are using are synchronizing threads (affects completion rewards)
+         */
         private suspend fun done_syncing(mtx: Mutex, done_count: IntArray, max_count: Int, lock: Object, user: User, is_sync : Boolean = true)
         {
             mtx.withLock {
@@ -580,6 +598,10 @@ class offline_mode_service : Service(){
             db_sync_func_without_mark()
         }
 
+        /**
+         * Loads all the databases to memory
+         * @author Chaosruler972
+         */
         private fun load_dbs()
         {
             val mtx = Mutex()

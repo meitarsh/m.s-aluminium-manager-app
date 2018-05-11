@@ -423,6 +423,12 @@ class remote_big_table_helper
             Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
         }
 
+        /**
+         * Normalizes a map to remove all keys that can't be used on second sync table
+         * @author Chaosruler972
+         * @param map the source hashmap, with the relevent data
+         * @return a normalized map, which fits the new table and can't break the query
+         */
         fun normalize_map_for_sync_db(map: HashMap<String, String>): HashMap<String, String> {
             @Suppress("UNCHECKED_CAST")
 
@@ -440,6 +446,12 @@ class remote_big_table_helper
             return clone
         }
 
+        /**
+         * Function that removed key from map if it exists
+         * @author Chaosruler972
+         * @param map the map to remove key from
+         * @param key the key to remove from map
+         */
         fun remove_key_if_exists(map: HashMap<String, String>, key: String) {
             if (map.containsKey(key))
                 map.remove(key)
