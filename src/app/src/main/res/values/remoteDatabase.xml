@@ -13,7 +13,9 @@
     <!-- Both should be updated before production -->
     <string name="TABLE_BIG">SALPROJOFERKABLANCONSTRUC50068</string>
     <string name="TABLE_BIG_SYNC">SALPROJCONSTRUCTIONONACCOUNT</string>
-
+    <!-- SalProjKablanConstructionOnAccount
+         is this the table I need to sync with?!
+    -->
 
     <string name="moddate">MODIFIEDDATETIME</string>
 

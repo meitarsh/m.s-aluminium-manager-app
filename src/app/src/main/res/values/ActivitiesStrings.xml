@@ -143,5 +143,6 @@
     <string name="choose_floor_activity_lable">בחירת קומה</string>
     <string name="choose_flooat_and_flat_label">בחר בקומה ובבניין</string>
     <string name="moved_to_task_for_dataload">האפליקציה טוענת את הנתונים ותעבור לרקע (למשך כ2 דקות), אנא המתן לקבלת התראה לפני תחילת עבודה.</string>
+    <string name="flat_and_floor_chooser_label">בחירת קומה ובניין</string>
 
 </resources>

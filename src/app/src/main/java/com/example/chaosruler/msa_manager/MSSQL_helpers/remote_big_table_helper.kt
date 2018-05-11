@@ -21,8 +21,7 @@ import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 class remote_big_table_helper
 {
 
-    companion object : remote_helper()
-    {
+    companion object : remote_helper() {
         /**
          * The Database name
          * @author Chaosruler972
@@ -269,7 +268,7 @@ class remote_big_table_helper
          * Syncs to this table too...
          * @author Chaosruler972
          */
-       var TABLE_SECOND_SYNC_NAME: String = ""
+        var TABLE_SECOND_SYNC_NAME: String = ""
 
 
         /**
@@ -351,7 +350,7 @@ class remote_big_table_helper
          * @author Chaosruler972
          * @return the typemap in hashmap format
          */
-        override fun define_type_map():HashMap<String,String> {
+        override fun define_type_map(): HashMap<String, String> {
             val map: HashMap<String, String> = HashMap()
             map[VENDOR_ID] = VENDOR_ID_TYPE
             map[DATAREAID] = DATAAREAID_TYPE
@@ -386,8 +385,8 @@ class remote_big_table_helper
          * @param map a map of the identifying traits of what we should update on the object in the remote database
          */
         override fun push_update(obj: table_dataclass, map: HashMap<String, String>, context: Context) {
-            if(obj is big_table_data)
-                push_update(obj,map,context)
+            if (obj is big_table_data)
+                push_update(obj, map, context)
         }
 
         /**
@@ -399,26 +398,52 @@ class remote_big_table_helper
          */
         fun push_update(obj: big_table_data, map: HashMap<String, String>, context: Context) {
             val typemap = define_type_map()
-            for(item in map) {
-                if((typemap[item.key] ?: "") == "text" || (typemap[item.key] ?: "") != "varchar" || (typemap[item.key] ?: "") != "nvarchar" )
-                    item.setValue("N"+remote_SQL_Helper.add_quotes(item.value))
+            for (item in map) {
+                if ((typemap[item.key] ?: "") == "text" || (typemap[item.key]
+                                ?: "") != "varchar" || (typemap[item.key] ?: "") != "nvarchar")
+                    item.setValue("N" + remote_SQL_Helper.add_quotes(item.value))
             }
             val where_clause: HashMap<String, String> = HashMap()
             where_clause[remote_big_table_helper.VENDOR_ID] = obj.get_VENDOR_ID() ?: ""
             where_clause[remote_big_table_helper.INVENTORY_ID] = obj.get_INVENTORY_ID() ?: ""
             where_clause[remote_big_table_helper.PROJECTS_ID] = obj.get_PROJECT_ID() ?: ""
             where_clause[remote_big_table_helper.OPR_ID] = obj.get_OPRID() ?: ""
-            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME,remote_big_table_helper.TABLE_NAME,where_clause,"varchar",map)
-            query = query.replace("'","&quote;")
+            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME, remote_big_table_helper.TABLE_NAME, where_clause, "varchar", map)
+            query = query.replace("'", "&quote;")
             val str = offline_mode_service.general_push_command(query, remote_SQL_Helper.getusername())
 
             /*
                 Input hack in order to sync between two tables, not tested and not necceserily
                 stable at the very idea of it
              */
-            val query_second = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME,remote_big_table_helper.TABLE_SECOND_SYNC_NAME,where_clause,"varchar",map)
+            where_clause.remove(remote_big_table_helper.VENDOR_ID)
+
+            val query_second = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME, remote_big_table_helper.TABLE_SECOND_SYNC_NAME, where_clause, "varchar", normalize_map_for_sync_db(map))
             offline_mode_service.general_push_command(query_second, remote_SQL_Helper.getusername())
-            Toast.makeText(context,str,Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
         }
+
+        fun normalize_map_for_sync_db(map: HashMap<String, String>): HashMap<String, String> {
+            @Suppress("UNCHECKED_CAST")
+
+
+            val clone = map.clone() as HashMap<String, String>
+            remove_key_if_exists(map, remote_big_table_helper.MILESTONEPERCENT)
+            remove_key_if_exists(map, remote_big_table_helper.QTYINPARTIALACC)
+            remove_key_if_exists(map, remote_big_table_helper.PERCENTFORACCOUNT)
+            remove_key_if_exists(map, remote_big_table_helper.TOTALSUM)
+            remove_key_if_exists(map, remote_big_table_helper.SALPROG)
+            remove_key_if_exists(map, remote_big_table_helper.KOMANUM)
+            remove_key_if_exists(map, remote_big_table_helper.DIRANUM)
+            remove_key_if_exists(map, remote_big_table_helper.FLAT)
+            remove_key_if_exists(map, remote_big_table_helper.FLOOR)
+            return clone
+        }
+
+        fun remove_key_if_exists(map: HashMap<String, String>, key: String) {
+            if (map.containsKey(key))
+                map.remove(key)
+        }
+
     } // companion end
 }

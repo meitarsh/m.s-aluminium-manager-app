@@ -2,7 +2,6 @@ package com.example.chaosruler.msa_manager.object_types
 
 import android.util.Log
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
-import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
 /**
  * a dataclass to represent big table data
@@ -262,7 +261,12 @@ class big_table_data(
      * @author Chaosruler972
      * @return the current sales price (sqlite)
      */
-    fun get_SALESPRICE(): String? = SALESPRICE
+    fun get_SALESPRICE(): String? =
+            try {
+                SALESPRICE!!.toDouble().toInt().toString()
+            } catch (e: Exception) {
+                SALESPRICE
+            }
 
     /**
      * the current operation id field name (sqlite)
@@ -303,7 +307,12 @@ class big_table_data(
      * @author Chaosruler972
      * @return the current percent for account (sqlite)
      */
-    fun get_PERCENTFORACCOUNT(): String? = PERCENTFORACCOUNT
+    fun get_PERCENTFORACCOUNT(): String? =
+            try {
+                PERCENTFORACCOUNT!!.toDouble().toInt().toString()
+            } catch (e: Exception) {
+                PERCENTFORACCOUNT
+            }
 
     /**
      * the current total sum field name (sqlite)
@@ -350,7 +359,12 @@ class big_table_data(
      * @author Chaosruler972
      * @return the current koma num (sqlite)
      */
-    fun get_KOMANUM(): String? = KOMANUM
+    fun get_KOMANUM(): String? =
+            try {
+                KOMANUM!!.toDouble().toInt().toString()
+            } catch (e: Exception) {
+                KOMANUM
+            }
 
     /**
      * the current dira num field name (sqlite)
