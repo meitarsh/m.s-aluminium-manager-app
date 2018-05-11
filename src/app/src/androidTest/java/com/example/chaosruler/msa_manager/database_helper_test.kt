@@ -140,7 +140,7 @@ class database_helper_test {
         try {
             assertNull("user database tests: verify user doesn't exist #$test_num$amount_str: fails\n ", db.get_user_by_id( username))
             assertNotNull("user database tests: verify user doesn't exist #$test_num$amount_str: fails\n ", db.get_entire_db())
-            val usr = User(username, password)
+            val usr = User(username, password, 0)
             assertFalse("user database tests: verify user doesn't exist #$test_num$amount_str: fails\n ", db.get_entire_db().contains(usr))
             assertFalse("user database tests: verify user doesn't exist #$test_num$amount_str: fails\n ", db.check_user( username))
             Log.d("user database tests", "verify user doesn't exist #$test_num$amount_str: success\n ")
@@ -169,7 +169,7 @@ class database_helper_test {
 
         test_num++
         try {
-            assertTrue("user database tests: update password #$test_num$amount_str: fails\n ", db.update_user(username, password2))
+            assertTrue("user database tests: update password #$test_num$amount_str: fails\n ", db.update_user(username, password2, 0))
             Log.d("user database tests", "update password #$test_num$amount_str: success\n ")
         } catch (e: AssertionError) {
             Log.d("user database tests", "update password #$test_num$amount_str: fails\n ")

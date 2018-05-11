@@ -502,6 +502,7 @@ object remote_SQL_Helper {
      */
     fun refresh_context(con: Context) {
         context = con
+        sync_column = con.getString(R.string.moddate)
     }
 
     /**
