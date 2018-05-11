@@ -12,7 +12,7 @@
 
     <!-- Both should be updated before production -->
     <string name="TABLE_BIG">SALPROJOFERKABLANCONSTRUC50068</string>
-    <string name="TABLE_BIG_SYNC">SALPROJCONSTRUCTIONONACCOUNT</string>
+    <string name="TABLE_BIG_SYNC">SalProjKablanConstructionOnAccount</string>
 
 
     <string name="moddate">MODIFIEDDATETIME</string>

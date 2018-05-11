@@ -2,7 +2,6 @@ package com.example.chaosruler.msa_manager.activies.kablan_pashot_activity
 
 import android.content.Context
 import android.text.InputType
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,7 +55,8 @@ class kablan_pashot_arrayadapter(context: Context,arr: Vector<big_table_data>) :
                 }
                 catch (e:IndexOutOfBoundsException)
                 {
-                    opr_data("","err","","")
+                    // hack for testing case, since database weirdly doesn't have this data
+                    opr_data("", "No Value from database", "", "")
                 }
 
         hoza.text = (vendor_item.get_accountnum() ?: "").trim()

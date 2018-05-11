@@ -1,5 +1,6 @@
 package com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_big_edit
 
+import android.app.Activity
 import android.content.Context
 import android.os.Looper
 import android.text.InputType
@@ -21,7 +22,7 @@ import java.util.*
  * @author Chaosruler972
  * @constructor the context we work with and the list of data we work with
  */
-class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.item_big_edit,arr.toTypedArray())
+class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>, private val act: Activity) : ArrayAdapter<big_table_data>(context, R.layout.item_big_edit, arr.toTypedArray())
 {
     /**
      * inflates a view and generates it, writes the data in it and initates logic on press and edit
@@ -256,8 +257,11 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
                 big_item.set_QTYFORACCOUNT(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
                 themer.hideKeyboard(context,qtyforaccount)
-                totalsum.setText(big_item.totalSumCompute().toString())
-                update_total_sum(totalsum, big_item)
+                act.runOnUiThread {
+                    update_total_sum(totalsum, big_item)
+                    totalsum.setText(big_item.totalSumCompute().toString())
+                }
+
             }).start()
             qtyforaccount.hint = str.trim()
             qtyforaccount.text.clear()
@@ -275,8 +279,10 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
                 big_item.set_PERCENTFORACCOUNT(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
                 themer.hideKeyboard(context,percentforaccount)
-                totalsum.setText(big_item.totalSumCompute().toString())
-                update_total_sum(totalsum, big_item)
+                act.runOnUiThread {
+                    totalsum.setText(big_item.totalSumCompute().toString())
+                    update_total_sum(totalsum, big_item)
+                }
             }).start()
             percentforaccount.hint = (str + "%").trim()
             percentforaccount.text.clear()
@@ -312,8 +318,11 @@ class table_big_edit_arrayadapter (context: Context, arr: Vector<big_table_data>
                 big_item.set_SALPROG(str)
                 global_variables_dataclass.DB_BIG!!.add_big(big_item)
                 themer.hideKeyboard(context,salprog)
-                totalsum.setText(big_item.totalSumCompute().toString())
-                update_total_sum(totalsum, big_item)
+                act.runOnUiThread {
+                    totalsum.setText(big_item.totalSumCompute().toString())
+                    update_total_sum(totalsum, big_item)
+                }
+
             }).start()
             salprog.hint = str.trim()
             salprog.text.clear()

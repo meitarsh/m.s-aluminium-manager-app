@@ -100,22 +100,32 @@
         <activity
             android:name=".activies.testing_do_all_table_activities.table_big_edit.table_big_edit"
             android:label="@string/edit_table_big"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_peolot_edit.table_peolot_edit"
             android:label="@string/edit_table_opr"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_projects_edit.table_projects_edit"
             android:label="@string/edit_table_proj"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_vendors_edit.table_vendors_edit"
             android:label="@string/edit_table_vendor"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_inventory_edit.table_inventory_edit"
             android:label="@string/edit_table_inventory"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <service
@@ -166,6 +176,7 @@
             android:theme="@android:style/Theme.NoTitleBar" />
 
         <activity android:name=".activies.flat_and_floor_chooser"
+            android:label="@string/flat_and_floor_chooser_label"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             />
