@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.example.chaosruler.msa_manager</OriginalElement>
+  <nodes>
+    <node x="2065.0" y="5448.0">com.example.chaosruler.msa_manager.object_types.cache_command</node>
+    <node x="722.75" y="777.0">com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper</node>
+    <node x="5237.00909090909" y="1564.0">com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_projects_table_helper</node>
+    <node x="8652.0" y="6840.0">com.example.chaosruler.msa_manager.services.themer</node>
+    <node x="6464.0" y="8375.0">com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity.divohi_takalot_edit_arrayadapter</node>
+    <node x="4549.0" y="5322.0">com.example.chaosruler.msa_manager.object_types.inventory_data</node>
+    <node x="0.0" y="8109.0">com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity.VPNSettingsFragment</node>
+    <node x="4536.00909090909" y="1564.0">com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_vendor_table_helper</node>
+    <node x="7428.0" y="6840.0">com.example.chaosruler.msa_manager.activies.MainActivity</node>
+    <node x="3441.0" y="8936.0">com.example.chaosruler.msa_manager.activies.project_options</node>
+    <node x="4083.0" y="8936.0">com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_inventory_edit.table_inventory_arrayadapter</node>
+    <node x="5703.0" y="8375.0">com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_big_edit.table_big_edit_arrayadapter</node>
+    <node x="6567.00909090909" y="1207.0">com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper</node>
+    <node x="3854.0" y="8121.0">com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.vpn_connection.Connection</node>
+    <node x="5515.0" y="5322.0">com.example.chaosruler.msa_manager.object_types.vendor_data</node>
+    <node x="5481.0" y="8936.0">com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_projects_edit.table_projects_arrayadapter</node>
+    <node x="7191.0" y="8375.0">com.example.chaosruler.msa_manager.activies.divohi_takalot_tofes_activity.DivohiTakalotTofesActivity</node>
+    <node x="2207.009090909091" y="2087.0">com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper.Companion</node>
+    <node x="2448.0" y="5301.0">com.example.chaosruler.msa_manager.object_types.opr_data</node>
+    <node x="1722.0" y="8375.0">com.example.chaosruler.msa_manager.activies.project_chooser_fragments.divohi_takalot_fragment</node>
+    <node x="2844.0" y="8130.0">com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity.NotificationPreferenceFragment</node>
+    <node x="2405.0" y="8647.0">com.example.chaosruler.msa_manager.activies.project_chooser_fragments.KablaniMishneFragment.Companion</node>
+    <node x="2341.0" y="8375.0">com.example.chaosruler.msa_manager.activies.project_chooser_fragments.KablaniMishneFragment</node>
+    <node x="5188.0" y="8375.0">com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity.divohi_takalot_edit</node>
+    <node x="1475.009090909091" y="2885.0">com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper.Companion</node>
+    <node x="7341.0" y="5672.0">com.example.chaosruler.msa_manager.activies.LoginActivity.Companion</node>
+    <node x="8736.0" y="8375.0">com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_vendors_edit.table_vendors_edit</node>
+    <node x="545.0" y="8109.0">com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity.GeneralPreferenceFragment</node>
+    <node x="0.0" y="8936.0">com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_peolot_edit.table_peolot_edit</node>
+    <node x="1196.0" y="903.0">com.example.chaosruler.msa_manager.abstraction_classes.remote_helper</node>
+    <node x="4128.0" y="8375.0">com.example.chaosruler.msa_manager.activies.floor_chooser.floor_chooser</node>
+    <node x="589.0" y="9202.0">com.example.chaosruler.msa_manager.database_helper_test</node>
+    <node x="8100.0" y="8936.0">com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_peolot_edit.table_peolot_arrayadapter</node>
+    <node x="3079.5" y="8647.0">com.example.chaosruler.msa_manager.activies.project_chooser_fragments.LozFragment.Companion</node>
+    <node x="7706.0" y="8375.0">com.example.chaosruler.msa_manager.activies.loz_activity.loz_activity</node>
+    <node x="6586.0" y="7869.0">com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.VPN_conn_helper.Companion</node>
+    <node x="3579.0" y="8375.0">com.example.chaosruler.msa_manager.activies.KablanMforat.kablan_mforat</node>
+    <node x="957.0" y="5860.0">com.example.chaosruler.msa_manager.services.offline_mode_service.the_binder</node>
+    <node x="7024.0" y="7406.0">com.example.chaosruler.msa_manager.services.VPN.Companion</node>
+    <node x="5769.50909090909" y="0.0">com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper</node>
+    <node x="5902.00909090909" y="1564.0">com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_OPR_table_helper</node>
+    <node x="2770.0" y="8936.0">com.example.chaosruler.msa_manager.activies.kablni_mishne_activity</node>
+    <node x="8721.0" y="8936.0">com.example.chaosruler.msa_manager.activies.floor_chooser.floorArrayAdapter</node>
+    <node x="2960.0" y="8375.0">com.example.chaosruler.msa_manager.activies.project_chooser_fragments.LozFragment</node>
+    <node x="7500.5" y="7658.0">com.example.chaosruler.msa_manager.activies.MainActivity.Companion</node>
+    <node x="1928.0" y="777.0">com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper</node>
+    <node x="1159.0" y="8375.0">com.example.chaosruler.msa_manager.activies.ProjectOptions2Activity</node>
+    <node x="4786.0" y="8936.0">com.example.chaosruler.msa_manager.activies.kablan_pashot_activity.kablan_pashot_arrayadapter</node>
+    <node x="7287.00909090909" y="1711.0">com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands</node>
+    <node x="3106.0" y="8936.0">com.example.chaosruler.msa_manager.activies.divohi_takalot_activity</node>
+    <node x="3567.5" y="4370.0">com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass</node>
+    <node x="639.0" y="8375.0">com.example.chaosruler.msa_manager.activies.user_delete_activity</node>
+    <node x="6292.0" y="6840.0">com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.VPN_conn_helper</node>
+    <node x="6149.0" y="7953.5">com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.VPN_conn_helper.OnEstablishListener</node>
+    <node x="3702.0" y="6840.0">com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.vpn_connection</node>
+    <node x="6149.0" y="8936.0">com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_vendors_edit.table_vendors_arrayadapter</node>
+    <node x="0.0" y="5062.0">com.example.chaosruler.msa_manager.services.offline_mode_service.Companion</node>
+    <node x="677.75" y="4370.0">com.example.chaosruler.msa_manager.services.offline_mode_service</node>
+    <node x="3054.0090909090904" y="2906.0">com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper.Companion</node>
+    <node x="3412.0090909090904" y="777.0">com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper</node>
+    <node x="0.0" y="8375.0">com.example.chaosruler.msa_manager.services.encryption</node>
+    <node x="5043.0" y="5301.0">com.example.chaosruler.msa_manager.object_types.project_data</node>
+    <node x="515.0" y="8936.0">com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_big_edit.table_big_edit</node>
+    <node x="3364.0" y="8142.5">com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.vpn_connection.Companion</node>
+    <node x="6862.5" y="4370.0">com.example.chaosruler.msa_manager.activies.LoginActivity</node>
+    <node x="1030.0" y="8936.0">com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_projects_edit.table_projects_edit</node>
+    <node x="6940.0" y="5566.0">com.example.chaosruler.msa_manager.activies.LoginActivity.UserLoginTask</node>
+    <node x="22.5" y="777.0">com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper</node>
+    <node x="1186.5" y="8605.0">com.example.chaosruler.msa_manager.activies.ProjectOptions2Activity.SectionsPagerAdapter</node>
+    <node x="0.0" y="9202.0">com.example.chaosruler.msa_manager.activies.flat_chooser.flatArrayAdapter</node>
+    <node x="7055.0" y="6840.0">com.example.chaosruler.msa_manager.services.VPN</node>
+    <node x="732.0" y="2906.0">com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper.Companion</node>
+    <node x="4853.0" y="6840.0">com.example.chaosruler.msa_manager.services.remote_SQL_Helper</node>
+    <node x="970.0" y="9202.0">com.example.chaosruler.msa_manager.encryption_test</node>
+    <node x="8221.0" y="8375.0">com.example.chaosruler.msa_manager.activies.kablan_pashot_activity.kablan_pashot</node>
+    <node x="1359.25" y="6840.0">com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity</node>
+    <node x="1229.25" y="7617.0">com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity</node>
+    <node x="7477.0" y="8936.0">com.example.chaosruler.msa_manager.activies.KablanMforat.KablanArrayAdapter</node>
+    <node x="6626.0" y="5587.0">com.example.chaosruler.msa_manager.activies.LoginActivity.ProfileQuery</node>
+    <node x="2349.0" y="8130.0">com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity.DataSyncPreferenceFragment</node>
+    <node x="2888.0" y="4566.0">com.example.chaosruler.msa_manager.object_types.big_table_data</node>
+    <node x="1040.0" y="8130.0">com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity.DevelopMentSettingsPrefFragment</node>
+    <node x="2060.0" y="8936.0">com.example.chaosruler.msa_manager.activies.divohi_takalot_tofes_activity.divohi_takalot_tofes_arrayadapter</node>
+    <node x="1545.0" y="8936.0">com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_inventory_edit.table_inventory_edit</node>
+    <node x="1787.0" y="8647.0">com.example.chaosruler.msa_manager.activies.project_chooser_fragments.divohi_takalot_fragment.Companion</node>
+    <node x="4658.0" y="8375.0">com.example.chaosruler.msa_manager.activies.flat_chooser.flat_chooser</node>
+    <node x="1535.0" y="8109.0">com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity.Companion</node>
+    <node x="1746.0" y="5406.0">com.example.chaosruler.msa_manager.object_types.User</node>
+    <node x="7843.00909090909" y="1690.0">com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper</node>
+    <node x="2627.259090909091" y="0.0">com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper</node>
+    <node x="7939.0" y="6840.0">com.example.chaosruler.msa_manager.activies.flat_and_floor_chooser</node>
+    <node x="6817.0" y="8936.0">com.example.chaosruler.msa_manager.activies.loz_activity.loz_activity_arrayadapter</node>
+    <node x="3762.0" y="8936.0">com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_chooser</node>
+    <node x="6012.0" y="4370.0">com.example.chaosruler.msa_manager.services.global_variables_dataclass</node>
+    <node x="0.0" y="2906.0">com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper.Companion</node>
+    <node x="3811.0090909090904" y="1564.0">com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.chaosruler.msa_manager.activies.project_chooser_fragments.KablaniMishneFragment.Companion" target="com.example.chaosruler.msa_manager.activies.project_chooser_fragments.KablaniMishneFragment">
+      <point x="0.0" y="-68.5" />
+      <point x="0.0" y="111.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper.Companion" target="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper">
+      <point x="-178.0" y="-300.0" />
+      <point x="0.0" y="236.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper.Companion" target="com.example.chaosruler.msa_manager.abstraction_classes.remote_helper">
+      <point x="178.0" y="-300.0" />
+      <point x="1266.0" y="2067.0" />
+      <point x="1409.6" y="2067.0" />
+      <point x="-142.4000000000001" y="110.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.object_types.vendor_data" target="com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass">
+      <point x="0.0" y="-300.5" />
+      <point x="5741.0" y="4526.0" />
+      <point x="3829.3571428571427" y="4526.0" />
+      <point x="120.85714285714266" y="68.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_OPR_table_helper" target="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper">
+      <point x="0.0" y="-426.5" />
+      <point x="0.0" y="573.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.object_types.big_table_data" target="com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass">
+      <point x="0.0" y="-1056.5" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.services.offline_mode_service.Companion" target="com.example.chaosruler.msa_manager.services.offline_mode_service">
+      <point x="0.0" y="-866.5" />
+      <point x="468.5" y="5037.0" />
+      <point x="788.25" y="5037.0" />
+      <point x="-110.5" y="321.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.object_types.cache_command" target="com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass">
+      <point x="0.0" y="-174.5" />
+      <point x="2246.5" y="4536.0" />
+      <point x="3627.9285714285716" y="4536.0" />
+      <point x="-80.57142857142844" y="68.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper.Companion" target="com.example.chaosruler.msa_manager.abstraction_classes.remote_helper">
+      <point x="-206.75" y="-1119.0" />
+      <point x="2413.759090909091" y="2057.0" />
+      <point x="1694.3999999999999" y="2057.0" />
+      <point x="142.39999999999986" y="110.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_projects_table_helper" target="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper">
+      <point x="0.0" y="-426.5" />
+      <point x="5559.50909090909" y="1187.0" />
+      <point x="6094.50909090909" y="1187.0" />
+      <point x="-130.0" y="573.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.object_types.User" target="com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass">
+      <point x="0.0" y="-216.5" />
+      <point x="1895.5" y="4526.0" />
+      <point x="3587.6428571428573" y="4526.0" />
+      <point x="-120.85714285714266" y="68.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.project_chooser_fragments.divohi_takalot_fragment.Companion" target="com.example.chaosruler.msa_manager.activies.project_chooser_fragments.divohi_takalot_fragment">
+      <point x="0.0" y="-68.5" />
+      <point x="0.0" y="111.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper.Companion" target="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper">
+      <point x="206.75" y="-1119.0" />
+      <point x="0.0" y="1013.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper.Companion" target="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper">
+      <point x="178.0" y="-300.0" />
+      <point x="0.0" y="236.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands" target="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper">
+      <point x="0.0" y="-279.5" />
+      <point x="7555.00909090909" y="1177.0" />
+      <point x="6484.50909090909" y="1177.0" />
+      <point x="260.0" y="573.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.ProjectOptions2Activity.SectionsPagerAdapter" target="com.example.chaosruler.msa_manager.activies.ProjectOptions2Activity">
+      <point x="0.0" y="-90.0" />
+      <point x="0.0" y="90.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.VPN_conn_helper.Companion" target="com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.VPN_conn_helper">
+      <point x="0.0" y="-131.5" />
+      <point x="6782.5" y="7844.0" />
+      <point x="6709.0" y="7844.0" />
+      <point x="139.0" y="489.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper.Companion" target="com.example.chaosruler.msa_manager.abstraction_classes.remote_helper">
+      <point x="-178.0" y="-321.0" />
+      <point x="1653.009090909091" y="2067.0" />
+      <point x="1552.0" y="2067.0" />
+      <point x="0.0" y="110.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper" target="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper">
+      <point x="0.0" y="-783.5" />
+      <point x="6917.00909090909" y="1187.0" />
+      <point x="6354.50909090909" y="1187.0" />
+      <point x="130.0" y="573.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.VPN_conn_helper.OnEstablishListener" target="com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.VPN_conn_helper">
+      <point x="0.0" y="-47.0" />
+      <point x="6357.5" y="7844.0" />
+      <point x="6431.0" y="7844.0" />
+      <point x="-139.0" y="489.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.project_chooser_fragments.LozFragment.Companion" target="com.example.chaosruler.msa_manager.activies.project_chooser_fragments.LozFragment">
+      <point x="0.0" y="-68.5" />
+      <point x="0.0" y="111.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity.DevelopMentSettingsPrefFragment" target="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity">
+      <point x="0.0" y="-89.5" />
+      <point x="1277.5" y="8089.0" />
+      <point x="1542.1666666666667" y="8089.0" />
+      <point x="-62.58333333333326" y="216.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper.Companion" target="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper">
+      <point x="178.0" y="-321.0" />
+      <point x="2009.009090909091" y="2067.0" />
+      <point x="2110.5" y="2067.0" />
+      <point x="0.0" y="236.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.object_types.inventory_data" target="com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass">
+      <point x="0.0" y="-300.5" />
+      <point x="4786.0" y="4546.0" />
+      <point x="3748.785714285714" y="4546.0" />
+      <point x="40.28571428571422" y="68.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity.GeneralPreferenceFragment" target="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity">
+      <point x="0.0" y="-110.5" />
+      <point x="782.5" y="8079.0" />
+      <point x="1417.0" y="8079.0" />
+      <point x="-187.75" y="216.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_vendor_table_helper" target="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper">
+      <point x="0.0" y="-426.5" />
+      <point x="4876.50909090909" y="1177.0" />
+      <point x="5964.50909090909" y="1177.0" />
+      <point x="-260.0" y="573.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.services.VPN.Companion" target="com.example.chaosruler.msa_manager.services.VPN">
+      <point x="0.0" y="-278.5" />
+      <point x="0.0" y="258.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity.NotificationPreferenceFragment" target="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity">
+      <point x="0.0" y="-89.5" />
+      <point x="3081.5" y="8069.0" />
+      <point x="1917.666666666667" y="8069.0" />
+      <point x="312.91666666666697" y="216.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity.VPNSettingsFragment" target="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity">
+      <point x="0.0" y="-110.5" />
+      <point x="262.5" y="8069.0" />
+      <point x="1291.8333333333333" y="8069.0" />
+      <point x="-312.91666666666674" y="216.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity.DataSyncPreferenceFragment" target="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity">
+      <point x="0.0" y="-89.5" />
+      <point x="2586.5" y="8079.0" />
+      <point x="1792.5" y="8079.0" />
+      <point x="187.75" y="216.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper" target="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper">
+      <point x="0.0" y="-426.5" />
+      <point x="4163.50909090909" y="1167.0" />
+      <point x="5834.50909090909" y="1167.0" />
+      <point x="-390.0" y="573.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.MainActivity.Companion" target="com.example.chaosruler.msa_manager.activies.MainActivity">
+      <point x="0.0" y="-68.5" />
+      <point x="0.0" y="384.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity.Companion" target="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity">
+      <point x="0.0" y="-110.5" />
+      <point x="1932.0" y="8089.0" />
+      <point x="1667.3333333333335" y="8089.0" />
+      <point x="62.583333333333485" y="216.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.vpn_connection.Connection" target="com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.vpn_connection">
+      <point x="0.0" y="-90.0" />
+      <point x="4331.0" y="8096.0" />
+      <point x="4096.5" y="8096.0" />
+      <point x="131.5" y="615.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.services.offline_mode_service.the_binder" target="com.example.chaosruler.msa_manager.services.offline_mode_service">
+      <point x="0.0" y="-68.5" />
+      <point x="1329.0" y="5037.0" />
+      <point x="1009.25" y="5037.0" />
+      <point x="110.5" y="321.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.object_types.project_data" target="com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass">
+      <point x="0.0" y="-321.5" />
+      <point x="5269.0" y="4536.0" />
+      <point x="3789.0714285714284" y="4536.0" />
+      <point x="80.57142857142844" y="68.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper" target="com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper">
+      <point x="0.0" y="-300.5" />
+      <point x="8068.50909090909" y="1167.0" />
+      <point x="6614.50909090909" y="1167.0" />
+      <point x="390.0" y="573.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper.Companion" target="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper">
+      <point x="-178.0" y="-300.0" />
+      <point x="910.0" y="2047.0" />
+      <point x="898.75" y="2047.0" />
+      <point x="0.0" y="236.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.object_types.opr_data" target="com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass">
+      <point x="0.0" y="-321.5" />
+      <point x="2658.0" y="4546.0" />
+      <point x="3668.214285714286" y="4546.0" />
+      <point x="-40.28571428571422" y="68.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.LoginActivity.UserLoginTask" target="com.example.chaosruler.msa_manager.activies.LoginActivity">
+      <point x="0.0" y="-153.0" />
+      <point x="0.0" y="573.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.vpn_connection.Companion" target="com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.vpn_connection">
+      <point x="0.0" y="-68.5" />
+      <point x="3599.0" y="8096.0" />
+      <point x="3833.5" y="8096.0" />
+      <point x="-131.5" y="615.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper.Companion" target="com.example.chaosruler.msa_manager.abstraction_classes.remote_helper">
+      <point x="-178.0" y="-300.0" />
+      <point x="3232.0090909090904" y="2047.0" />
+      <point x="1836.8" y="2047.0" />
+      <point x="284.79999999999995" y="110.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity" target="com.example.chaosruler.msa_manager.activies.settings_activity.AppCompatPreferenceActivity">
+      <point x="0.0" y="-216.0" />
+      <point x="0.0" y="363.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper.Companion" target="com.example.chaosruler.msa_manager.abstraction_classes.remote_helper">
+      <point x="178.0" y="-300.0" />
+      <point x="534.0" y="2057.0" />
+      <point x="1267.2" y="2057.0" />
+      <point x="-284.79999999999995" y="110.5" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.LoginActivity.ProfileQuery" target="com.example.chaosruler.msa_manager.activies.LoginActivity">
+      <point x="0.0" y="-132.0" />
+      <point x="6773.0" y="5541.0" />
+      <point x="6951.833333333333" y="5541.0" />
+      <point x="-178.66666666666697" y="573.0" />
+    </edge>
+    <edge source="com.example.chaosruler.msa_manager.activies.LoginActivity.Companion" target="com.example.chaosruler.msa_manager.activies.LoginActivity">
+      <point x="0.0" y="-47.0" />
+      <point x="7438.0" y="5541.0" />
+      <point x="7309.166666666667" y="5541.0" />
+      <point x="178.66666666666697" y="573.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.10000000000000005" x="3211.3333333333326" y="7082.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
