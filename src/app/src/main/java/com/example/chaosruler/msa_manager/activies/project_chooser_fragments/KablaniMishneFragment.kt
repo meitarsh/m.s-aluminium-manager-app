@@ -16,19 +16,24 @@ import com.example.chaosruler.msa_manager.activies.kablan_pashot_activity.kablan
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 /**
- * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
  * to handle interaction events.
  * Use the [KablaniMishneFragment.newInstance] factory method to
  * create an instance of this fragment.
- *
+ * @author Chaosruler972
  */
 class KablaniMishneFragment : Fragment() {
 
+    /**
+     * Creates the view of the fragment
+     * @author Chaosruler972
+     * @param inflater the layout inflater that I can use
+     * @param container the viewgroup to add our view into
+     * @param savedInstanceState our last state
+     * @return a view of this fragment
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -53,6 +58,12 @@ class KablaniMishneFragment : Fragment() {
 
 
     companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @return A new instance of fragment KablaniMishneFragment.
+         */
         @JvmStatic
         fun newInstance() = KablaniMishneFragment()
     }

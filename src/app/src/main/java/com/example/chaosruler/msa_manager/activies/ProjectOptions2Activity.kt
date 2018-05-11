@@ -30,15 +30,20 @@ import kotlinx.android.synthetic.main.fragment_project_options2.view.*
 class ProjectOptions2Activity : AppCompatActivity() {
 
     /**
-     * The [android.support.v4.view.PagerAdapter] that will provide
      * fragments for each of the sections. We use a
      * {@link FragmentPagerAdapter} derivative, which will keep every
      * loaded fragment in memory. If this becomes too memory intensive, it
      * may be best to switch to a
      * [android.support.v4.app.FragmentStatePagerAdapter].
+     * @author Chaosruler972
      */
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
 
+    /**
+     * Creates the project options activity in a fragment style way
+     * @author Chaosruler972
+     * @param savedInstanceState last saved state
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
@@ -76,9 +81,18 @@ class ProjectOptions2Activity : AppCompatActivity() {
     /**
      * A [FragmentPagerAdapter] that returns a fragment corresponding to
      * one of the sections/tabs/pages.
+     * @author Chaosruler972
+     * @param fm fragment manager to inflate with fragments and use to switch between fragments
      */
     inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
+        /**
+         * Gets the right fragment by its index
+         * @author Chaosruler972
+         * @param position the index position of said fragment
+         * @return the corresponding fragment that should be there
+         * @throws IndexOutOfBoundsException when sending a number equal or more to getCount()
+         */
         override fun getItem(position: Int): Fragment {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
@@ -87,10 +101,15 @@ class ProjectOptions2Activity : AppCompatActivity() {
                 0 -> KablaniMishneFragment.newInstance()
                 1 -> divohi_takalot_fragment.newInstance()
                 2 -> LozFragment.newInstance()
-                else -> KablaniMishneFragment.newInstance()
+                else -> throw IndexOutOfBoundsException("No fragments available there")
             }
         }
 
+        /**
+         * How many fragments should be in our activity?
+         * @author Chaosruler972
+         * @return the amount of fragments maximum possible
+         */
         override fun getCount(): Int {
             // Show 3 total pages.
             return 3

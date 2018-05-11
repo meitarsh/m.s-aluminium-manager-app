@@ -40,6 +40,7 @@ object encryption
     private var secretKey:SecretKey? = null
     /**
      * this function is responsible for generatoin an AES key from the keystore per encryption/decryption, and refreshing the current one
+     * @author Chaosruler972
      * @param context a base Context, must not be null, for keyStore access
      */
     fun generate_key(context: Context)
@@ -105,6 +106,7 @@ object encryption
 
     /**
      * Function done specificilly to this class to convert ByteArray to HexString
+     * @author Chaosruler972
      * @return a Hexstring from this ByteArray
      */
     private fun ByteArray.toHex() = this.joinToString(separator = "") { it.toInt().and(0xff).toString(16).padStart(2, '0') }
@@ -155,6 +157,7 @@ object encryption
     /**
      * This function encrypts a byteArray and returns an encrypted form of that byteArray
      * Must call generate_key() before this function
+     * @author Chaosruler972
      * @param a byteArray to encrypt
      * @return the encrypted form of that bytearray
      */
@@ -172,6 +175,7 @@ object encryption
     /**
      * This function decrypts a byteArray
      * Must call generate_key() before this function
+     * @author Chaosruler972
      * @param a encrypted byteArray
      * @return a decrypted form of that bytearray
      */

@@ -17,6 +17,7 @@ import kotlin.collections.HashMap
 @Suppress("MemberVisibilityCanPrivate")
 /**
  * a representation of the remote table
+ * REMOVED FROM USE
  * @author Chaosruler972
  * @constructor empty, this class can be used from mulitple contexts and activities
  */

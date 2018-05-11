@@ -20,14 +20,41 @@ import kotlin.collections.HashMap
 
 class flat_and_floor_chooser : AppCompatActivity() {
 
+    /**
+     * Stored flat upon choosing
+     * @author Chaosruler972
+     */
     private var flat: Int = 0
+
+    /**
+     * Stored floor upon choosing
+     * @author Chaosruler972
+     */
     private var floor: Int = 0
 
+    /**
+     * the flat adapter that containing all the flat choices
+     * @author Chaosruler972
+     */
     private lateinit var flat_adapter: ArrayAdapter<String>
+
+    /**
+     * The floor adapter containing all the floor options
+     * @author Chaosruler972
+     */
     private lateinit var floor_adapter: ArrayAdapter<String>
 
+    /**
+     * The Projects vector that we compute first, for filtering purposes
+     * @author Chaosruler972
+     */
     private lateinit var vec_proj: List<big_table_data>
 
+    /**
+     * Creates the activity and gives funcionality for the buttons
+     * @author Chaosruler972
+     * @param savedInstanceState the last state
+     */
     override fun onCreate(savedInstanceState: Bundle?)
     {
         setTheme(themer.style(baseContext))
@@ -40,6 +67,10 @@ class flat_and_floor_chooser : AppCompatActivity() {
     }
 
 
+    /**
+     * Creates funcionality to the buttons
+     * @author Chaosruler972
+     */
     private fun init_button()
     {
         global_variables_dataclass.flat = flat.toString()
@@ -65,6 +96,10 @@ class flat_and_floor_chooser : AppCompatActivity() {
         }
     }
 
+    /**
+     * Creates a spinner for the floor values in a threadded way
+     * @author Chaosruler972
+     */
     private fun init_floor_spinner()
     {
         Thread {
@@ -78,8 +113,10 @@ class flat_and_floor_chooser : AppCompatActivity() {
     }
 
 
-
-
+    /**
+     * Creates a spinner for the flat values in a threadded way
+     * @author Chaosruler972
+     */
     private fun init_flat_spinner()
     {
         Thread {
@@ -166,6 +203,13 @@ class flat_and_floor_chooser : AppCompatActivity() {
 
     }
 
+    /**
+     * Filters a list of big table data by making data appearing only once
+     * @author Chaosruler972
+     * @param list the list to filter
+     * @param flat_flag true means we will filter all the flats that it will appear only once, false means it will filter all the floors that they will appear only once
+     * @return a filtered vector as required
+     */
     private fun distinct_flat_floor(list: List<big_table_data>, flat_flag: Boolean) : Vector<String>
     {
         val rv : Vector<String> = Vector()

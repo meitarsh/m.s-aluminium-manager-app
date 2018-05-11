@@ -14,10 +14,23 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_flat_chooser.*
 import java.util.*
 
+/**
+ * Class flat chooser, to choose a flat from project
+ * @author Chaosruler972
+ */
 class flat_chooser : AppCompatActivity() {
 
+    /**
+     * The adapter of big table to populate
+     * @author Chaosruler972
+     */
     private lateinit var adapter: ArrayAdapter<big_table_data>
 
+    /**
+     * Creates the activity for the class
+     * @author Chaosruler972
+     * @param savedInstanceState the last state
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
@@ -68,6 +81,10 @@ class flat_chooser : AppCompatActivity() {
 
     }
 
+    /**
+     * Inits button for the class
+     * @author Chaosruler972
+     */
     private fun init_buttons() {
         flat_button_choose.setOnClickListener({
             val intent = Intent(this@flat_chooser, floor_chooser::class.java)

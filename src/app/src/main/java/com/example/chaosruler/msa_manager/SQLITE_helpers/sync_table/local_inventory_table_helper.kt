@@ -19,6 +19,7 @@ import kotlin.collections.HashMap
 
 /**
  * implenting the SQL helper on inventory database (SQLITE)
+ * REMOVED FROM USE
  * @author Chaosruler972
  * @constructor a context to work with, the rest comes from strings.xml
  */
@@ -120,10 +121,11 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
      * @return a vector of inventory table filtered by project name
      * @param projid the project id that represents the name of the project we want to filter
      */
-    fun get_local_DB_by_projname(projid:String): Vector<inventory_data>
+    fun get_local_DB_by_projname(@Suppress("UNUSED_PARAMETER") projid:String): Vector<inventory_data>
     {
         val vector: Vector<inventory_data> = Vector()
 
+        @Suppress("UNUSED_VARIABLE")
         val all_db: Vector<big_table_data> = global_variables_dataclass.db_big_vec
 //        val inventorydb: Vector<inventory_data> = global_variables_dataclass.db_inv_vec
 

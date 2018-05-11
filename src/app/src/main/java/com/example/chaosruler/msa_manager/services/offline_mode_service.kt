@@ -247,6 +247,7 @@ class offline_mode_service : Service(){
 
         /**
          *  grab time from settings
+         *  @author Chaosruler972
          *  @param context the context to work with
          *  @author Chaosruler972
          */
@@ -291,7 +292,6 @@ class offline_mode_service : Service(){
          * @param vector the data
          * @return the stringified form of the SQL request
          */
-        @Suppress("unused")
         fun push_add_command(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>): String {
 
             val str = remote_SQL_Helper.construct_add_str(db, table, vector, map).replace("'", "&quote;")
@@ -310,7 +310,6 @@ class offline_mode_service : Service(){
          * @param where_clause what field should we compare
          * @return the stringified form of the SQL request
          */
-        @Suppress("unused")
         fun push_update_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>): String {
 
             val str = remote_SQL_Helper.construct_update_str(db, table, where_clause, compare_to, type, update_to).replace("'", "&quote;")
@@ -328,7 +327,6 @@ class offline_mode_service : Service(){
          * @param where_clause what field should we compare
          * @return the stringified form of the SQL request
          */
-        @Suppress("unused")
         fun push_remove_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String): String {
 
             val str = remote_SQL_Helper.construct_remove_str(db, table, where_clause, compare_to, type).replace("'", "&quote;")
@@ -362,7 +360,6 @@ class offline_mode_service : Service(){
          * @author Chaosruler972
          * @return string to represent entire DB
          */
-        @Suppress("unused")
         private fun get_DB_string(): String = cache.get_db_string()
 
 

@@ -404,6 +404,12 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
 
     }
 
+    /**
+     * Function that updates the total sum value with the required values
+     * @param totalsum the edittext to edit
+     * @param big_item the big item to use to edit the total sum, for computation purposes
+     * @author Chaosruler972
+     */
     private fun update_total_sum(totalsum:EditText, big_item : big_table_data) {
         val str = totalsum.text.toString()
         Thread({

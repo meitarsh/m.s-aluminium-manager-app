@@ -62,7 +62,6 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
      * @author Chaosruler972
      * @param accountnum the new id
      */
-    @Suppress("unused")
     fun set_accountnum(accountnum:String)
     {
         this.ID = accountnum.trim()
@@ -84,7 +83,6 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
      * @author Chaosruler972
      * @param new_dataareaid the new dataaraeid
      */
-    @Suppress("unused")
     fun set_dataareaid(new_dataareaid:String)
     {
         this.DATAAREAID = new_dataareaid.trim()
@@ -95,7 +93,6 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
      * @author Chaosruler972
      * @param new_username the new username that synced that data
      */
-    @Suppress("unused")
     fun set_username(new_username:String)
     {
         this.USERNAME = new_username.trim()

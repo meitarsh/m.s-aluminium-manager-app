@@ -14,10 +14,23 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_floor_chooser.*
 import java.util.*
 
+/**
+ * Floor chooser for projects
+ * @author Chaosruler972
+ */
 class floor_chooser : AppCompatActivity() {
 
+    /**
+     * Populating array adapter of big table data
+     * @author Chaosruler972
+     */
     private lateinit var adapter: ArrayAdapter<big_table_data>
 
+    /**
+     * initates the activity
+     * @author Chaosruler972
+     * @param savedInstanceState last state
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
@@ -76,6 +89,10 @@ class floor_chooser : AppCompatActivity() {
 
     }
 
+    /**
+     * Inits the button for the activity
+     * @author Chaosruler972
+     */
     private fun init_buttons()
     {
         floor_button_choose.setOnClickListener({

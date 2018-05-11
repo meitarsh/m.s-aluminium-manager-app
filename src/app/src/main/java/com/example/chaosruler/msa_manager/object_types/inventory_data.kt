@@ -4,6 +4,7 @@ import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 
 /**
  * Inventory data-class
+ * REMOVED FROM USE
  * @author Chaosruler972
  * @constructor all the data from inventory table
  */
@@ -74,7 +75,6 @@ class inventory_data(
      * @author Chaosruler972
      * @param itemid the new item id
      */
-    @Suppress("unused")
     fun set_itemid(itemid:String)
     {
         this.ID = itemid.trim()
@@ -94,7 +94,6 @@ class inventory_data(
      * @author Chaosruler972
      * @param new_dataareaid the new dataaraeid
      */
-    @Suppress("unused")
     fun set_dataareaid(new_dataareaid:String)
     {
         this.DATAAREAID = new_dataareaid.trim()
@@ -105,7 +104,6 @@ class inventory_data(
      * @author Chaosruler972
      * @param new_username the new username
      */
-    @Suppress("unused")
     fun set_username(new_username:String)
     {
         this.USERNAME = new_username.trim()

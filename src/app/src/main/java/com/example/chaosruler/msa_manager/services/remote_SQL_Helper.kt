@@ -23,7 +23,6 @@ import kotlin.collections.HashMap
  * @constructor constructed automaticily, but should call connect() before operations
  */
 @SuppressLint("StaticFieldLeak")
-@Suppress("unused")
 object remote_SQL_Helper {
 
 

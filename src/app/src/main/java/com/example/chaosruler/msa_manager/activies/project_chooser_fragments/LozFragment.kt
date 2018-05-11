@@ -19,16 +19,22 @@ import java.util.*
 
 
 /**
- * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
  * to handle interaction events.
  * Use the [LozFragment.newInstance] factory method to
  * create an instance of this fragment.
- *
+ * @author Chaosruler972
  */
 class LozFragment : Fragment() {
 
-
+    /**
+     * Creates the view of the fragment
+     * @author Chaosruler972
+     * @param inflater the layout inflater that I can use
+     * @param container the viewgroup to add our view into
+     * @param savedInstanceState our last state
+     * @return a view of this fragment
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -61,7 +67,6 @@ class LozFragment : Fragment() {
          *
          * @return A new instance of fragment LozFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() = LozFragment()
     }

@@ -11,6 +11,7 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
 /**
  * Drop down view to list items with their flat place
+ * @author Chaosruler972
  */
 class KablanArrayAdapter(context: Context, resource_id: Int, list: List<big_table_data> ) : ArrayAdapter<big_table_data>(context, resource_id, list)
 {

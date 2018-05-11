@@ -21,31 +21,107 @@ import java.util.*
  */
 object global_variables_dataclass
 {
+    /**
+     * A boolean value that tells me if database is stored locally or not, if it's not all calls are remote
+     * @author Chaosruler972
+     */
     var isLocal: Boolean = true
+    /**
+     * a boolean value that tells me if I should load any database values, aka GUI mode (in case we don't)
+     * @author Chaosruler972
+     */
     var GUI_MODE: Boolean = false
 
+    /**
+     * The projid chosen by the user is stored here from the MainActivity, throughout all the flow it's retrieved from here
+     * @author Chaosruler972
+     */
     var projid: String? = null
+
+    /**
+     * The chosen flat (if any) is stored here for specific activities that requires it
+     * @author Chaosruler972
+     */
     var flat: String? = null
+    /**
+     * The chosen floor (if any) is stored here for specific activiies that require it
+     * @author Chaosruler972
+     */
     var floor: String? = null
+    /**
+     * a integer value for the aforementioned specific activies that tell me which activity was it
+     * for flow integration purposes only
+     * @author Chaosruler972
+     */
     var floor_moving_to: Int = 0
-    //    var flat: String? = null
+
+    /**
+     * A locally loaded database of db_big
+     * @author Chaosruler972
+     */
     @SuppressLint("StaticFieldLeak")
     var DB_BIG: local_big_table_helper? = null
+    /**
+     * A locally loaded vector of db_big when loaded to memory
+     * @author Chaosruler972
+     */
     var db_big_vec : Vector<big_table_data> = Vector()
     @SuppressLint("StaticFieldLeak")
+    /**
+     * A locally loaded database of project
+     * @author Chaosruler972
+     */
     var DB_project: local_projects_table_helper? = null
+    /**
+     * A locally loaded vector of project when loaded to memory
+     * @author Chaosruler972
+     */
     var db_project_vec : Vector<project_data> = Vector()
+    /**
+     * A locally loaded database of OPR
+     * @author Chaosruler972
+     */
     @SuppressLint("StaticFieldLeak")
     var DB_OPR: local_OPR_table_helper? = null
+    /**
+     * A locally loaded vector of opr when loaded to memory
+     * @author Chaosruler972
+     */
     var db_opr_vec : Vector<opr_data> = Vector()
+    /**
+     * A locally loaded database of vendor
+     * @author Chaosruler972
+     */
     @SuppressLint("StaticFieldLeak")
     var DB_VENDOR: local_vendor_table_helper? = null
+    /**
+     * A locally loaded vector of vendor when loaded to memory
+     * @author Chaosruler972
+     */
+
+    // Following values were removed, but are still available for documentation purposes only
     var db_vendor_vec : Vector<vendor_data> = Vector()
-//    @SuppressLint("StaticFieldLeak")
-//    var DB_INVENTORY: local_inventory_table_helper? = null
-//    var db_inv_vec : Vector<inventory_data> = Vector()
+    /**
+     * A locally loaded database of inventory
+     * Removed from use
+     * @author Chaosruler972
+     */
+    @SuppressLint("StaticFieldLeak")
+    var DB_INVENTORY: local_inventory_table_helper? = null
+    /**
+     * A locally loaded vector of inventory when loaded to memory
+     * removed from use
+     * @author Chaosruler972
+     */
+    var db_inv_vec : Vector<inventory_data> = Vector()
+
+    /**
+     * A locally loaded database of users
+     * @author Chaosruler972
+     */
     @SuppressLint("StaticFieldLeak")
     var DB_USERS : user_database_helper? = null
+    // Users is loaded only once, therefore we don't need a vector to store that
 
     /**
      * Inits all the database with an instance that can be called from all the objects

@@ -383,7 +383,6 @@ class big_table_data(
      */
     fun get_USERNAME(): String? = USERNAME
 
-    @Suppress("unused")
 
     /**
      * Sets the current vendor id
@@ -442,7 +441,6 @@ class big_table_data(
      * @author Chaosruler972
      * @param string the new inventory id
      */
-    @Suppress("unused")
     fun set_INVENTORY_ID(string: String)
     {
         INVENTORY_ID = string.trim()
@@ -503,7 +501,6 @@ class big_table_data(
      * @author Chaosruler972
      * @param string the new operation id
      */
-    @Suppress("unused")
     fun set_OPRID(string: String)
     {
         OPR_ID = string.trim()
@@ -604,7 +601,6 @@ class big_table_data(
      * @author Chaosruler972
      * @param string the new username
      */
-    @Suppress("unused")
     fun set_USERNAME(string: String)
     {
         USERNAME = string.trim()

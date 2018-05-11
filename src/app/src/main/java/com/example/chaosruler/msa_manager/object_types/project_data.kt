@@ -76,7 +76,6 @@ class project_data(
      * @author Chaosruler972
      * @param new_projid the new project id
      */
-    @Suppress("unused")
     fun set_projid(new_projid:String)
     {
         this.projectID = new_projid.trim()
@@ -96,7 +95,6 @@ class project_data(
      * @author Chaosruler972
      * @param new_dataareaid the new dataaraeid
      */
-    @Suppress("unused")
     fun set_dataareaid(new_dataareaid:String)
     {
         this.DATAAREAID = new_dataareaid.trim()
@@ -107,7 +105,6 @@ class project_data(
      * @author Chaosruler972
      * @param new_username the new username
      */
-    @Suppress("unused")
     fun set_username(new_username:String)
     {
         this.USERNAME = new_username.trim()

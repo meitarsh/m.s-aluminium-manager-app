@@ -19,15 +19,22 @@ import kotlinx.android.synthetic.main.fragment_divohi_takalot_fragment.*
 
 
 /**
- * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
  * to handle interaction events.
  * Use the [divohi_takalot_fragment.newInstance] factory method to
  * create an instance of this fragment.
- *
+ * @author Chaosruler972
  */
 class divohi_takalot_fragment : Fragment() {
 
+    /**
+     * Creates the view of the fragment
+     * @author Chaosruler972
+     * @param inflater the layout inflater that I can use
+     * @param container the viewgroup to add our view into
+     * @param savedInstanceState our last state
+     * @return a view of this fragment
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -54,11 +61,8 @@ class divohi_takalot_fragment : Fragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
          * @return A new instance of fragment divohi_takalot_fragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() = divohi_takalot_fragment()
     }

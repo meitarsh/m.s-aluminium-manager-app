@@ -54,7 +54,6 @@ class User(
      * @author Chaosruler972
      * @param username the new username
      */
-    @Suppress("unused")
     fun set__username(username: String)
     {
         this.__username = username
@@ -75,7 +74,6 @@ class User(
      * @author Chaosruler972
      * @param password the new password
      */
-    @Suppress("unused")
     fun set__password(password: String)
     {
         this.__password = password
