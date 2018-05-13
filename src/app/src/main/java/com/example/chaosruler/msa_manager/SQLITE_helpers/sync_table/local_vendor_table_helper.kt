@@ -15,6 +15,7 @@ import com.example.chaosruler.msa_manager.object_types.vendor_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
+import java.util.Locale.filter
 import kotlin.collections.HashMap
 
 /**
@@ -62,7 +63,6 @@ class local_vendor_table_helper(
         vector.add(DATAARAEID)
         vector.add(USER)
         init_vector_of_variables(vector)
-
 
     }
 
@@ -344,5 +344,5 @@ class local_vendor_table_helper(
      * @param id the id that we want to filter by
      * @return the vendor itself if found, null otheerwise
      */
-    fun get_vendor_by_id(id:String):vendor_data? = get_local_DB().filter { it.get_accountnum()?:""==id }[0]?:null
+    fun get_vendor_by_id(id:String):vendor_data? = get_vendor_by_vendor(vendor_data(id,"","",""))
 }

@@ -3,13 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activies.project_chooser_fragments.LozFragment"
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="horizontal"
     >
-
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,7 +28,8 @@
             android:isScrollContainer="true"
             android:layoutDirection="rtl"
             android:orientation="vertical"
-            android:scrollbars="horizontal|vertical">
+            android:scrollbars="horizontal|vertical"
+            >
 
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -41,7 +40,8 @@
                 android:focusableInTouchMode="true"
                 android:isScrollContainer="true"
                 android:layoutDirection="rtl"
-                android:scrollbars="horizontal|vertical">
+                android:scrollbars="horizontal|vertical"
+                >
 
 
                 <TextView
@@ -53,7 +53,7 @@
 
                     android:background="@drawable/cell_shape"
                     android:gravity="center"
-                    android:text="@string/loz_activity_bnian_str"
+                    android:text="@string/salproj_projectid_label"
                     android:textStyle="bold" />
 
                 <TextView
@@ -65,7 +65,7 @@
 
                     android:background="@drawable/cell_shape"
                     android:gravity="center"
-                    android:text="@string/loz_activity_koma_str"
+                    android:text="@string/salproj_dataaraeid_label"
                     android:textStyle="bold" />
 
                 <TextView
@@ -77,7 +77,7 @@
 
                     android:background="@drawable/cell_shape"
                     android:gravity="center"
-                    android:text="@string/loz_activity_begin_str"
+                    android:text="@string/salproj_startdate_label"
                     android:textStyle="bold" />
 
                 <TextView
@@ -89,7 +89,7 @@
 
                     android:background="@drawable/cell_shape"
                     android:gravity="center"
-                    android:text="@string/loz_activity_end_str"
+                    android:text="@string/salproj_enddate_label_2"
                     android:textStyle="bold" />
 
                 <TextView
@@ -101,7 +101,7 @@
 
                     android:background="@drawable/cell_shape"
                     android:gravity="center"
-                    android:text="@string/loz_activity_ahoz_bizoa_str"
+                    android:text="@string/salproj_enddate_label"
                     android:textStyle="bold" />
 
                 <TextView
@@ -113,7 +113,7 @@
 
                     android:background="@drawable/cell_shape"
                     android:gravity="center"
-                    android:text="@string/loz_activity_isFinished"
+                    android:text="@string/salproj_isfinished_label"
                     android:textStyle="bold" />
 
                 <TextView
@@ -125,27 +125,62 @@
 
                     android:background="@drawable/cell_shape"
                     android:gravity="center"
-                    android:text="@string/loz_activity_haarot"
+                    android:text="@string/salproj_haarot_label"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/salproj_koma_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/salproj_bnian_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/salproj_ahozbizoaa_label"
+                    android:textStyle="bold" />
+
 
             </LinearLayout>
 
 
             <ListView
-                android:id="@+id/frag_loz_activity_listview"
+                android:id="@+id/table_salproj_listview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
                 android:clickable="true"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:isScrollContainer="true"
                 android:layoutDirection="rtl"
                 android:scrollbars="horizontal|vertical"
-                android:textAlignment="center" />
+                />
         </LinearLayout>
 
 
     </HorizontalScrollView>
-
 </LinearLayout>

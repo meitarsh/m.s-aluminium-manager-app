@@ -88,6 +88,7 @@ object global_variables_dataclass
      * @author Chaosruler972
      */
     var db_opr_vec : Vector<opr_data> = Vector()
+
     /**
      * A locally loaded database of vendor
      * @author Chaosruler972
@@ -98,9 +99,21 @@ object global_variables_dataclass
      * A locally loaded vector of vendor when loaded to memory
      * @author Chaosruler972
      */
-
-    // Following values were removed, but are still available for documentation purposes only
     var db_vendor_vec : Vector<vendor_data> = Vector()
+
+    /**
+     * A locally loaded database of vendor
+     * @author Chaosruler972
+     */
+    @SuppressLint("StaticFieldLeak")
+    var DB_SALPROJ: local_salprojluz_table_helper? = null
+    /**
+     * A locally loaded vector of vendor when loaded to memory
+     * @author Chaosruler972
+     */
+    var db_salproj_vec : Vector<salprojluz_data> = Vector()
+
+    // Following were removed from production
     /**
      * A locally loaded database of inventory
      * Removed from use
@@ -138,6 +151,7 @@ object global_variables_dataclass
         DB_VENDOR = local_vendor_table_helper(context)
         DB_project = local_projects_table_helper(context)
         DB_USERS = user_database_helper(context)
+        DB_SALPROJ = local_salprojluz_table_helper(context)
     }
 
     /**

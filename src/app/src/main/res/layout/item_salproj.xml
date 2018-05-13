@@ -2,86 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/cell_height"
-    android:layout_centerHorizontal="true"
-    android:layout_centerInParent="true"
-    android:layout_centerVertical="true"
-    android:layout_gravity="center_horizontal"
-    android:gravity="center_horizontal"
-    android:layoutDirection="rtl"
-    android:orientation="horizontal">
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl">
 
 
-    <EditText
-        android:id="@+id/item_loz_bnian"
+    <TextView
+        android:id="@+id/item_salproj_projid"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="@dimen/small_margin_cells"
-        android:layout_marginStart="@dimen/small_margin_cells"
-        android:layout_weight="1"
-        android:background="@drawable/cell_shape"
-        android:gravity="center"
-        android:lines="1"
-        tools:ignore="LabelFor,TextFields" />
-
-    <EditText
-        android:id="@+id/item_loz_koma"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cell_height"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="@dimen/small_margin_cells"
-        android:layout_marginStart="@dimen/small_margin_cells"
-        android:layout_weight="1"
-        android:background="@drawable/cell_shape"
-        android:gravity="center"
-        android:lines="1"
-        tools:ignore="LabelFor,TextFields" />
-
-    <EditText
-        android:id="@+id/item_loz_begin"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cell_height"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="@dimen/small_margin_cells"
-        android:layout_marginStart="@dimen/small_margin_cells"
-        android:layout_weight="1"
-        android:background="@drawable/cell_shape"
-        android:gravity="center"
-        android:lines="1"
-        tools:ignore="LabelFor,TextFields" />
-
-    <EditText
-        android:id="@+id/item_loz_end"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cell_height"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="@dimen/small_margin_cells"
-        android:layout_marginStart="@dimen/small_margin_cells"
-        android:layout_weight="1"
-        android:background="@drawable/cell_shape"
-        android:gravity="center"
-        android:lines="1"
-        tools:ignore="LabelFor,TextFields" />
-
-    <EditText
-        android:id="@+id/item_loz_ahoz_bizoaa"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cell_height"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="@dimen/small_margin_cells"
-        android:layout_marginStart="@dimen/small_margin_cells"
-        android:layout_weight="1"
-        android:background="@drawable/cell_shape"
-        android:gravity="center"
-        android:lines="1"
-        tools:ignore="LabelFor,TextFields" />
-
-    <CheckBox
-        android:id="@+id/item_loz_isfinished"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cell_height"
-        android:layout_gravity="center"
         android:layout_marginEnd="@dimen/small_margin_cells"
         android:layout_marginStart="@dimen/small_margin_cells"
         android:layout_weight="1"
@@ -89,8 +18,8 @@
         android:gravity="center"
         android:lines="1" />
 
-    <EditText
-        android:id="@+id/item_loz_haarot"
+    <TextView
+        android:id="@+id/item_salproj_dataaraeid"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -101,6 +30,110 @@
         android:gravity="center"
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
+
+    <TextView
+        android:id="@+id/item_salproj_startdate"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_salproj_finishdate"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
+
+    <TextView
+        android:id="@+id/item_salproj_fsiumbpoal"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
+
+    <TextView
+        android:id="@+id/item_salproj_isfinished"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_salproj_notes"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_salproj_koma"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
+
+    <TextView
+        android:id="@+id/item_salproj_bnian"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
+
+    <TextView
+        android:id="@+id/item_salproj_percentexc"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
+
+
+
 
 
 </LinearLayout>

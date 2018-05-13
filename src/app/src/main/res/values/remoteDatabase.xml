@@ -9,6 +9,7 @@
     <string name="TABLE_PROJECTS">PROJTABLE</string>
     <string name="TABLE_VENDORS">VENDTABLE</string>
     <string name="TABLE_OPR">ROUTEOPRTABLE</string>
+    <string name="TABLE_SALPROJLUZ">SALPROJLUZ</string>
 
     <!-- Both should be updated before production -->
     <string name="TABLE_BIG">SALPROJOFERKABLANCONSTRUC50068</string>
@@ -144,4 +145,36 @@
 
     <string name="TABLE_BIG_FLOOR">STRKOMA</string>
     <string name="TABLE_BIG_FLOOR_TYPE">nvarchar</string>
+    
+    <!-- TABLE_SALPROJLUZ -->
+    <string name="TABLE_SALPROJLUZ_STARTDATE">STARTDATE</string>
+    <string name="TABLE_SALPROJLUZ_STARTDATE_TYPE">datetime</string>
+    
+    <string name="TABLE_SALPROJLUZ_FINISHDATE">FINISHDATE</string>
+    <string name="TABLE_SALPROJLUZ_FINISHDATE_TYPE">datetime</string>
+
+    <string name="TABLE_SALPROJLUZ_siumbefoal">siumbefoal</string>
+    <string name="TABLE_SALPROJLUZ_siumbefoal_TYPE">datetime</string>
+
+    <string name="TABLE_SALPROJLUZ_FINISHED">FINISHED</string>
+    <string name="TABLE_SALPROJLUZ_FINISHED_TYPE">int</string>
+
+    <string name="TABLE_SALPROJLUZ_NOTES">NOTES</string>
+    <string name="TABLE_SALPROJLUZ_NOTES_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJLUZ_PROJID">PROJID</string>
+    <string name="TABLE_SALPROJLUZ_PROJID_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJLUZ_KOMA">KOMA</string>
+    <string name="TABLE_SALPROJLUZ_KOMA_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJLUZ_BUILDING">BUILDING</string>
+    <string name="TABLE_SALPROJLUZ_BUILDING_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJLUZ_PERCENTEXC">percentexc</string>
+    <string name="TABLE_SALPROJLUZ_PERCENTEXC_TYPE">numeric</string>
+
+    <string name="TABLE_SALPROJLUZ_DATAAREAID">DATAAREAID</string>
+    <string name="TABLE_SALPROJLUZ_DATAAREAID_TYPE">nvarchar</string>
+
 </resources>

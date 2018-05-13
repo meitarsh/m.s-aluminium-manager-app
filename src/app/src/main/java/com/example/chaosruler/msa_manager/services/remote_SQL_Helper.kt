@@ -226,7 +226,9 @@ object remote_SQL_Helper {
                             val map: HashMap<String, String> = HashMap()
                             for (i in 1..(columnCount)) {
                                 val colum_name: String = rs_meta.getColumnName(i)
-                                try {
+
+                                try
+                                {
                                     map[colum_name] = rs.getString(colum_name)
                                 } catch (e: Exception) {
                                     map[colum_name] = ""
@@ -353,10 +355,18 @@ object remote_SQL_Helper {
                             val map: HashMap<String, String> = HashMap()
                             for (i in 1..(columnCount)) {
                                 val colum_name: String = rs_meta.getColumnName(i)
-                                try {
-                                    map[colum_name] = rs.getString(colum_name)
-                                } catch (e: Exception) {
-                                    map[colum_name] = ""
+                                if(colm_to_type[colum_name] == "datetime")
+                                {
+                                    val date = rs.getDate(colum_name)
+                                    map[colum_name] = date.time.toString()
+                                }
+                                else
+                                {
+                                    try {
+                                        map[colum_name] = rs.getString(colum_name)
+                                    } catch (e: Exception) {
+                                        map[colum_name] = ""
+                                    }
                                 }
                             }
                             vector.addElement(map)

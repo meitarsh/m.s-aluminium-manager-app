@@ -145,4 +145,17 @@
     <string name="moved_to_task_for_dataload">האפליקציה טוענת את הנתונים ותעבור לרקע (למשך כ2 דקות), אנא המתן לקבלת התראה לפני תחילת עבודה.</string>
     <string name="flat_and_floor_chooser_label">בחירת קומה ובניין</string>
 
+    <!-- Strings related to salproj labels -->
+    <string name="salproj_ahozbizoaa_label">אחוז ביצוע</string>
+    <string name="salproj_bnian_label">בניין</string>
+    <string name="salproj_startdate_label">תאריך התחלה</string>
+    <string name="salproj_koma_label">קומה</string>
+    <string name="salproj_haarot_label">הערות</string>
+    <string name="salproj_isfinished_label">האם הסתיים</string>
+    <string name="salproj_enddate_label">תאריך סוף מעשי</string>
+    <string name="salproj_enddate_label_2">תאריך סוף</string>
+    <string name="salproj_dataaraeid_label">DATAARAEID</string>
+    <string name="salproj_projectid_label">קוד פרויקט</string>
+    <string name="table_chooser_salproj_label">טבלת לוז</string>
+
 </resources>

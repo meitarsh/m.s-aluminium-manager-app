@@ -78,4 +78,3 @@ task dokka(overwrite: true, type: org.jetbrains.dokka.gradle.DokkaAndroidTask) {
     //No default documentation link to kotlin-stdlib
     noStdlibLink = false
 }
-

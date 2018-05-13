@@ -74,7 +74,7 @@ class remote_projects_table_helper {
         override fun extract_variables(context: Context)
         {
             TABLE_NAME = context.getString(R.string.TABLE_PROJECTS)
-            DATABASE_NAME = context.getString(R.string.DATABASE_NAME)
+            DATABASE_NAME
             ID = context.getString(R.string.PROJECTS_ID)
             ID_TYPE = context.getString(R.string.PROJECTS_ID_TYPE)
 

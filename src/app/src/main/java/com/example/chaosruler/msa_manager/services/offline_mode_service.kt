@@ -125,6 +125,13 @@ class offline_mode_service : Service(){
         private lateinit var big_table: local_big_table_helper
 
         /**
+         * local BIG db instance on SQLITE
+         * @author Chaosruler972
+         */
+        @SuppressLint("StaticFieldLeak")
+        private lateinit var salproj_table: local_salprojluz_table_helper
+
+        /**
          * Context we work with for strings.xml values extraction
          * @author Chaosruler972
          */
@@ -219,6 +226,7 @@ class offline_mode_service : Service(){
             opr = local_OPR_table_helper(context)
             vendor = local_vendor_table_helper(context)
             big_table = local_big_table_helper(context)
+            salproj_table = local_salprojluz_table_helper(context)
 
             grab_time(ctx)
             init_remote_databases(context)
@@ -265,6 +273,7 @@ class offline_mode_service : Service(){
         private fun init_remote_databases(context: Context) {
             remote_vendors_table_helper.extract_variables(context)
             remote_big_table_helper.extract_variables(context)
+            remote_salprojluz_table_helper.extract_variables(context)
             remote_inventory_table_helper.extract_variables(context)
             remote_opr_table_helper.extract_variables(context)
             remote_projects_table_helper.extract_variables(context)
@@ -439,7 +448,7 @@ class offline_mode_service : Service(){
             val user = remote_SQL_Helper.user!!
             build_small_notification(ctx.getString(R.string.sync_started), false)
             val done_count = IntArray(1)
-            val max_count = 4
+            val max_count = 5
 
 
 
@@ -507,6 +516,16 @@ class offline_mode_service : Service(){
                     big_table.sync_db()
 //                    big_table.endTrans()
                     Log.d("db_sync","big_table done")
+                    done_syncing(mtx,done_count,max_count, lock, user)
+
+                }.start()
+
+                async {
+                    Log.d("db_sync","salproj_table")
+//                    big_table.beginTrans()
+                    salproj_table.sync_db()
+//                    big_table.endTrans()
+                    Log.d("db_sync","salproj_table done")
                     done_syncing(mtx,done_count,max_count, lock, user)
 
                 }.start()
@@ -603,7 +622,7 @@ class offline_mode_service : Service(){
         {
             val mtx = Mutex()
             val lock = Object()
-            val max_count = 4
+            val max_count = 5
             val done_count = IntArray(1)
             val user = remote_SQL_Helper.user!!
 
@@ -637,6 +656,12 @@ class offline_mode_service : Service(){
                 done_syncing(mtx,done_count,max_count, lock, user, false)
             }.start()
 
+            async {
+                Log.d("load", "Started syncing salproj")
+                global_variables_dataclass.db_salproj_vec = salproj_table.get_local_DB()
+                Log.d("load", "${global_variables_dataclass.db_big_vec}")
+                done_syncing(mtx,done_count,max_count, lock, user, false)
+            }.start()
 
             synchronized(lock)
             {

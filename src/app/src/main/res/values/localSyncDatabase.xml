@@ -27,6 +27,23 @@
     <string name="LOCAL_OPR_COLUMN_DATAARAEID">dataaraeid</string>
     <string name="LOCAL_OPR_COLUMN_USERNAME">username</string>
 
+    <!-- Local SALPROJLUZ table strings -->
+    <string name="LOCAL_SALPROJLUZ_TABLE_NAME">salprojluz</string>
+    <integer name="LOCAL_SALPROJLUZ_TABLE_VERSION">5</integer>
+
+    <string name="LOCAL_SALPROJLUZ_COLUMN_ID">projid</string>
+    <string name="LOCAL_SALPROJLUZ_COLUMN_STARTDATE">startdate</string>
+    <string name="LOCAL_SALPROJLUZ_COLUMN_FINISHDATE">finishdate</string>
+    <string name="LOCAL_SALPROJLUZ_COLUMN_SIUMBPOAL">fsiumbpoal</string>
+    <string name="LOCAL_SALPROJLUZ_COLUMN_ISFINISHED">isfinished</string>
+    <string name="LOCAL_SALPROJLUZ_COLUMN_NOTES">notes</string>
+    <string name="LOCAL_SALPROJLUZ_COLUMN_KOMA">koma</string>
+    <string name="LOCAL_SALPROJLUZ_COLUMN_BUILDING">building</string>
+    <string name="LOCAL_SALPROJLUZ_COLUMN_PERCENTEXC">percentexc</string>
+    <string name="LOCAL_SALPROJLUZ_COLUMN_DATAARAEID">dataaraeid</string>
+    <string name="LOCAL_SALPROJLUZ_COLUMN_USERNAME">username</string>
+
+
     <!-- Local inventory table strings -->
     <string name="LOCAL_INVENTORY_TABLE_NAME">inventory</string>
     <integer name="LOCAL_INVENTORY_TABLE_VERSION">5</integer>

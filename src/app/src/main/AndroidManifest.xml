@@ -87,8 +87,8 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.divohi_takalot_edit_activity.divohi_takalot_edit"
-            android:label="@string/divohi_takalot_edit_str"
             android:configChanges="orientation"
+            android:label="@string/divohi_takalot_edit_str"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
@@ -99,32 +99,32 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_big_edit.table_big_edit"
-            android:label="@string/edit_table_big"
             android:configChanges="orientation"
+            android:label="@string/edit_table_big"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_peolot_edit.table_peolot_edit"
-            android:label="@string/edit_table_opr"
             android:configChanges="orientation"
+            android:label="@string/edit_table_opr"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_projects_edit.table_projects_edit"
-            android:label="@string/edit_table_proj"
             android:configChanges="orientation"
+            android:label="@string/edit_table_proj"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_vendors_edit.table_vendors_edit"
-            android:label="@string/edit_table_vendor"
             android:configChanges="orientation"
+            android:label="@string/edit_table_vendor"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activies.testing_do_all_table_activities.table_inventory_edit.table_inventory_edit"
-            android:label="@string/edit_table_inventory"
             android:configChanges="orientation"
+            android:label="@string/edit_table_inventory"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
@@ -174,12 +174,12 @@
             android:label="@string/project_options_decide"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
-
-        <activity android:name=".activies.flat_and_floor_chooser"
-            android:label="@string/flat_and_floor_chooser_label"
+        <activity
+            android:name=".activies.flat_and_floor_chooser"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            />
+            android:label="@string/flat_and_floor_chooser_label"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activies.testing_do_all_table_activities.table_salproj_edit.table_salrpoj_edit"></activity>
     </application>
 
 </manifest>
