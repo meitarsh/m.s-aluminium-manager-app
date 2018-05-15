@@ -10,6 +10,7 @@
     <string name="TABLE_VENDORS">VENDTABLE</string>
     <string name="TABLE_OPR">ROUTEOPRTABLE</string>
     <string name="TABLE_SALPROJLUZ">SALPROJLUZ</string>
+    <string name="TABLE_SALPROJBAKARA">SALPROJBAKARA</string>
 
     <!-- Both should be updated before production -->
     <string name="TABLE_BIG">SALPROJOFERKABLANCONSTRUC50068</string>
@@ -176,5 +177,54 @@
 
     <string name="TABLE_SALPROJLUZ_DATAAREAID">DATAAREAID</string>
     <string name="TABLE_SALPROJLUZ_DATAAREAID_TYPE">nvarchar</string>
+
+    <!-- Table Salprojbakara -->
+    <string name="TABLE_SALPROJBAKARA_PROJID">PROJID</string>
+    <string name="TABLE_SALPROJBAKARA_PROJID_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJBAKARA_ITEMID">ITEMID</string>
+    <string name="TABLE_SALPROJBAKARA_ITEMID_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJBAKARA_DATAAREAID">DATAAREAID</string>
+    <string name="TABLE_SALPROJBAKARA_DATAAREAID_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJBAKARA_QTY">QTY</string>
+    <string name="TABLE_SALPROJBAKARA_QTY_TYPE">numeric</string>
+
+    <string name="TABLE_SALPROJBAKARA_KOMA">KOMA</string>
+    <string name="TABLE_SALPROJBAKARA_KOMA_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJBAKARA_BINYAN">BINYAN</string>
+    <string name="TABLE_SALPROJBAKARA_BINYAN_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJBAKARA_DIRA">DIRA</string>
+    <string name="TABLE_SALPROJBAKARA_DIRA_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJBAKARA_TEUR">TEUR</string>
+    <string name="TABLE_SALPROJBAKARA_TEUR_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJBAKARA_MUMLATZ">MUMLATZ</string>
+    <string name="TABLE_SALPROJBAKARA_MUMLATZ_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJBAKARA_MONAAT">MONAAT</string>
+    <string name="TABLE_SALPROJBAKARA_MONAAT_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJBAKARA_TGUVA">TGUVA</string>
+    <string name="TABLE_SALPROJBAKARA_TGUVA_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJBAKARA_SUG">SUG</string>
+    <string name="TABLE_SALPROJBAKARA_SUG_TYPE">int</string>
+
+    <string name="TABLE_SALPROJBAKARA_ALUT">ALUT</string>
+    <string name="TABLE_SALPROJBAKARA_ALUT_TYPE">numeric</string>
+
+    <string name="TABLE_SALPROJBAKARA_ITEMTXT">ITEMTXT</string>
+    <string name="TABLE_SALPROJBAKARA_ITEMTXT_TYPE">nvarchar</string>
+
+    <string name="TABLE_SALPROJBAKARA_RECVERSION">RECVERSION</string>
+    <string name="TABLE_SALPROJBAKARA_RECVERSION_TYPE">int</string>
+
+    <string name="TABLE_SALPROJBAKARA_RECID">RECID</string>
+    <string name="TABLE_SALPROJBAKARA_RECID_TYPE">bigint</string>
 
 </resources>

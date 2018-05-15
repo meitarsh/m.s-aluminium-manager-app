@@ -77,4 +77,45 @@
     <string name="LOCAL_BIG_COLUMN_KOMANUM">komanum</string>
     <string name="LOCAL_BIG_COLUMN_DIRANUM">diranum</string>
     <string name="LOCAL_BIG_COLUMN_USERNAME">username</string>
+
+
+    <!-- Table Salprojbakara -->
+
+    <string name="LOCAL_SALPROJBAKARA_TABLE_NAME">Salprojbakara</string>
+    <integer name="LOCAL_SALPROJBAKARA_TABLE_VERSION">5</integer>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_PROJID">PROJID</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_ITEMID">ITEMID</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_DATAAREAID">DATAAREAID</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_QTY">QTY</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_KOMA">KOMA</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_BINYAN">BINYAN</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_DIRA">DIRA</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_TEUR">TEUR</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_MUMLATZ">MUMLATZ</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_MONAAT">MONAAT</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_TGUVA">TGUVA</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_SUG">SUG</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_ALUT">ALUT</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_ITEMTXT">ITEMTXT</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_RECVERSION">RECVERSION</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_RECID">RECID</string>
+
+    <string name="LOCAL_SALPROJBAKARA_COLUMN_USERNAME">username</string>
+
 </resources>

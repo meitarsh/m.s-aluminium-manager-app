@@ -3,7 +3,6 @@
 package com.example.chaosruler.msa_manager.MSSQL_helpers
 
 import android.content.Context
-import android.content.SearchRecentSuggestionsProvider
 import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
@@ -214,7 +213,8 @@ class remote_salprojluz_table_helper
                 }
             }
             val where_clause: HashMap<String, String> = HashMap()
-            where_clause[remote_vendors_table_helper.ID] = (salprojluz_data.get_projid() ?: "").trim()
+            where_clause[remote_salprojluz_table_helper.ID] = (salprojluz_data.get_projid()
+                    ?: "").trim()
             var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_salprojluz_table_helper.DATABASE_NAME,remote_salprojluz_table_helper.TABLE_NAME,where_clause,"varchar",map)
             query = query.replace("'","&quote;")
             val str = offline_mode_service.general_push_command(query, remote_SQL_Helper.getusername())

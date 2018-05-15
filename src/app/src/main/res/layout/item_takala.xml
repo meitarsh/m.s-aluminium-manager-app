@@ -6,8 +6,20 @@
     android:layoutDirection="rtl">
 
 
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_mispar_parit"
+    <TextView
+        android:id="@+id/item_takala_projid"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_takala_itemid"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -19,8 +31,20 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_shem_parit"
+    <TextView
+        android:id="@+id/item_takala_dataaraeid"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_takala_qty"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -32,8 +56,8 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_mispar_project"
+    <TextView
+        android:id="@+id/item_takala_koma"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -45,8 +69,32 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_shem_project"
+    <TextView
+        android:id="@+id/item_takala_binyan"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_takala_dira"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/item_takala_teeur"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -58,8 +106,8 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_kamot"
+    <TextView
+        android:id="@+id/item_takala_mumlatz"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -71,8 +119,8 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_sog_takala"
+    <TextView
+        android:id="@+id/item_takala_munaat"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -84,8 +132,8 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_koma"
+    <TextView
+        android:id="@+id/item_takala_tguva"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -97,8 +145,8 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_bnian"
+    <TextView
+        android:id="@+id/item_takala_sug"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -110,8 +158,8 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_dira"
+    <TextView
+        android:id="@+id/item_takala_alut"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -123,8 +171,8 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_tiaaor_takala"
+    <TextView
+        android:id="@+id/item_takala_itemtxt"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -136,8 +184,8 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_peolot_ltikon"
+    <TextView
+        android:id="@+id/item_takala_recversion"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -149,8 +197,8 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_peolot_monoot"
+    <TextView
+        android:id="@+id/item_takala_recid"
         android:layout_width="0dp"
         android:layout_height="@dimen/cell_height"
         android:layout_gravity="center_horizontal"
@@ -161,44 +209,5 @@
         android:gravity="center"
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
-
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_tgovat_mnaal"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cell_height"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="@dimen/small_margin_cells"
-        android:layout_marginStart="@dimen/small_margin_cells"
-        android:layout_weight="1"
-        android:background="@drawable/cell_shape"
-        android:gravity="center"
-        android:lines="1"
-        tools:ignore="LabelFor,TextFields" />
-
-    <EditText
-        android:id="@+id/item_divohi_takalot_edit_alot_takala"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cell_height"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="@dimen/small_margin_cells"
-        android:layout_marginStart="@dimen/small_margin_cells"
-        android:layout_weight="1"
-        android:background="@drawable/cell_shape"
-        android:gravity="center"
-        android:lines="1"
-        tools:ignore="LabelFor,TextFields" />
-
-    <!--<Button-->
-        <!--android:id="@+id/item_divohi_takalot_edit_upload_btn"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="@dimen/cell_height"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_marginEnd="@dimen/small_margin_cells"-->
-        <!--android:layout_marginStart="@dimen/small_margin_cells"-->
-        <!--android:layout_weight="4"-->
-        <!--android:background="@drawable/cell_shape"-->
-        <!--android:gravity="center"-->
-        <!--android:lines="1"-->
-        <!--android:text="@string/divohi_takalot_upload" />-->
 
 </LinearLayout>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="horizontal">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="horizontal|vertical"
+        tools:ignore="UselessParent">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:isScrollContainer="true"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            android:scrollbars="horizontal|vertical">
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cell_height"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:isScrollContainer="true"
+                android:layoutDirection="rtl"
+                android:scrollbars="horizontal|vertical">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_projid_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_itemid_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_dataaraeid_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_qty_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_koma_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_binyan_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_dira_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_teeur_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_mumlatz_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_munaat_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_tguva_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_sug_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_alut_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_shem_parit_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_shem_girsa_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/takala_edit_activity_mispar_girsa_label"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+            <ListView
+                android:id="@+id/table_takala_edit_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:isScrollContainer="true"
+                android:layoutDirection="rtl"
+                android:scrollbars="horizontal|vertical" />
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
+</LinearLayout>

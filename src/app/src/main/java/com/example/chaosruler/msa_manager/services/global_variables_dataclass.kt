@@ -102,16 +102,29 @@ object global_variables_dataclass
     var db_vendor_vec : Vector<vendor_data> = Vector()
 
     /**
-     * A locally loaded database of vendor
+     * A locally loaded database of salprojluz
      * @author Chaosruler972
      */
     @SuppressLint("StaticFieldLeak")
     var DB_SALPROJ: local_salprojluz_table_helper? = null
     /**
-     * A locally loaded vector of vendor when loaded to memory
+     * A locally loaded vector of salprojluz when loaded to memory
      * @author Chaosruler972
      */
     var db_salproj_vec : Vector<salprojluz_data> = Vector()
+
+
+    /**
+     * A locally loaded database of salprojtakala
+     * @author Chaosruler972
+     */
+    @SuppressLint("StaticFieldLeak")
+    var DB_SALPROJTAKALA: local_salprojtakala_table_helper? = null
+    /**
+     * A locally loaded vector of takala data when loaded to memory
+     * @author Chaosruler972
+     */
+    var db_salprojtakala_vec: Vector<takala_data> = Vector()
 
     // Following were removed from production
     /**
@@ -152,6 +165,7 @@ object global_variables_dataclass
         DB_project = local_projects_table_helper(context)
         DB_USERS = user_database_helper(context)
         DB_SALPROJ = local_salprojluz_table_helper(context)
+        DB_SALPROJTAKALA = local_salprojtakala_table_helper(context)
     }
 
     /**

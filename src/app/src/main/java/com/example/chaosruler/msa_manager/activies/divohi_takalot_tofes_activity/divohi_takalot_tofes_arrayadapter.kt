@@ -9,8 +9,8 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.object_types.big_table_data
-import com.example.chaosruler.msa_manager.object_types.inventory_data
 import com.example.chaosruler.msa_manager.object_types.project_data
+import com.example.chaosruler.msa_manager.object_types.takala_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
@@ -43,34 +43,34 @@ class divohi_takalot_tofes_arrayadapter(
         val convertView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_divohi_takalot_tofes, parent, false)
 
         val mispar_parit = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_mispar_parit) as TextView
-//        val shem_parit = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_shem_parit) as TextView
+        val shem_parit = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_shem_parit) as TextView
         val mispar_project = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_mispar_project) as TextView
         val shem_project = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_shem_project) as TextView
         val kamot = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_kamot) as TextView
-//        val sog_takala = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_sog_takala) as TextView
+        val sog_takala = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_sog_takala) as TextView
         val koma = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_koma) as TextView
         val bnian = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_bnian) as TextView
         val dira = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_dira) as TextView
-//        val tiaor_takala = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_tiaaor_takala) as TextView
-//        val peolot_ltikon = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_peolot_ltikon) as TextView
-//        val peolot_monoot = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_peolot_monoot) as TextView
-//        val tgovat_mnaal = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_tgovat_mnaal) as TextView
+        val tiaor_takala = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_tiaaor_takala) as TextView
+        val peolot_ltikon = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_peolot_ltikon) as TextView
+        val peolot_monoot = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_peolot_monoot) as TextView
+        val tgovat_mnaal = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_tgovat_mnaal) as TextView
         val alot_takala = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_alot_takala) as TextView
 
         val all_txtviews = Vector<View>()
         all_txtviews.add(mispar_parit)
-//        all_txtviews.add(shem_parit)
+        all_txtviews.add(shem_parit)
         all_txtviews.add(mispar_project)
         all_txtviews.add(shem_project)
         all_txtviews.add(kamot)
-//        all_txtviews.add(sog_takala)
+        all_txtviews.add(sog_takala)
         all_txtviews.add(koma)
         all_txtviews.add(bnian)
         all_txtviews.add(dira)
-//        all_txtviews.add(tiaor_takala)
-//        all_txtviews.add(peolot_ltikon)
-//        all_txtviews.add(peolot_monoot)
-//        all_txtviews.add(tgovat_mnaal)
+        all_txtviews.add(tiaor_takala)
+        all_txtviews.add(peolot_ltikon)
+        all_txtviews.add(peolot_monoot)
+        all_txtviews.add(tgovat_mnaal)
         all_txtviews.add(alot_takala)
 
 
@@ -83,21 +83,29 @@ class divohi_takalot_tofes_arrayadapter(
         {
             project_data("","","","")
         }
+        val takala_data: takala_data = try {
+            global_variables_dataclass.db_salprojtakala_vec.filter {
+                it.get_projid() ?: "" == big_item.get_PROJECT_ID() ?: ""
+                        && it.get_ITEMID() ?: "" == big_item.get_INVENTORY_ID() ?: ""
+            }[0]!!
+        } catch (e: IndexOutOfBoundsException) {
+            takala_data("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
+        }
 //        val inventory: inventory_data = global_variables_dataclass.db_inv_vec.filter { it.get_itemid() == big_item.get_INVENTORY_ID()?:"" }[0]!!
 
         mispar_parit.text = (big_item.get_ITEMNUMBER() ?: "").trim()
-//        shem_parit.text = (inventory.get_itemname() ?: "").trim()
+        shem_parit.text = (takala_data.get_ITEMTXT() ?: "").trim()
         mispar_project.text = (project_item.getProjID() ?: "").trim()
         shem_project.text = (project_item.get_project_name() ?: "").trim()
         kamot.text = (big_item.get_QTY() ?: "").trim()
-//        sog_takala.text = "No value from database"
+        sog_takala.text = (takala_data.get_SUG() ?: "").trim()
         koma.text = (big_item.get_FLOOR() ?: "").trim()
         bnian.text = (big_item.get_FLAT() ?: "").trim()
         dira.text = (big_item.get_DIRANUM() ?: "").trim()
-//        tiaor_takala.text = "No value from database"
-//        peolot_ltikon.text = "No value from database"
-//        peolot_monoot.text = "No value from database"
-//        tgovat_mnaal.text = "No value from database"
+        tiaor_takala.text = (takala_data.get_TGUVA() ?: "").trim()
+        peolot_ltikon.text = (takala_data.get_MUMLATZ() ?: "").trim()
+        peolot_monoot.text = (takala_data.get_MONAAT() ?: "").trim()
+        tgovat_mnaal.text = (takala_data.get_TGUVA() ?: "").trim()
         alot_takala.text = (big_item.get_TOTALSUM() ?: "").trim()
 
 

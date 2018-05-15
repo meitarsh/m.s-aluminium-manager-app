@@ -8,10 +8,8 @@
     <string name="connected">מחובר</string>
     <string name="disconnecting">מתנתק</string>
     <string name="connecting">מתחבר</string>
-    <string name="title_activity_project_options2">ProjectOptions2Activity</string>
 
     <string name="action_settings">Settings</string>
-
 
 
 </resources>

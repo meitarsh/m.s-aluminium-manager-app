@@ -47,6 +47,7 @@
     <string name="key_pass_main_to_options">projname</string>
 
     <!-- Strings related to project menu options -->
+    <string name="title_activity_project_options2">בחירת אופציות בפרויקט</string>
     <string name="project_options_1">קבלני משנה</string>
     <string name="project_options_2">דיווחי תקלות</string>
     <string name="project_options_3">לו\"ז</string>
@@ -158,4 +159,23 @@
     <string name="salproj_projectid_label">קוד פרויקט</string>
     <string name="table_chooser_salproj_label">טבלת לוז</string>
 
+
+    <!-- Strings related to takala labels -->
+    <string name="takala_edit_activity_projid_label">מספר פרויקט</string>
+    <string name="takala_edit_activity_itemid_label">מספר פריט</string>
+    <string name="takala_edit_activity_dataaraeid_label">מזהה פרויקטים</string>
+    <string name="takala_edit_activity_qty_label">כמות</string>
+    <string name="takala_edit_activity_koma_label">קומה</string>
+    <string name="takala_edit_activity_binyan_label">בניין</string>
+    <string name="takala_edit_activity_dira_label">דירה</string>
+    <string name="takala_edit_activity_mumlatz_label">מומלץ</string>
+    <string name="takala_edit_activity_tguva_label">תגובה</string>
+    <string name="takala_edit_activity_sug_label">סוג</string>
+    <string name="takala_edit_activity_alut_label">עלות</string>
+    <string name="takala_edit_activity_shem_parit_label">שם פריט</string>
+    <string name="takala_edit_activity_shem_girsa_label">שם גירסה</string>
+    <string name="takala_edit_activity_mispar_girsa_label">מספר גירסה</string>
+    <string name="takala_edit_activity_teeur_label">תיאור</string>
+    <string name="takala_edit_activity_munaat_label">מונעת</string>
+    <string name="table_chooser_takala_label">טבלת תקלות</string>
 </resources>

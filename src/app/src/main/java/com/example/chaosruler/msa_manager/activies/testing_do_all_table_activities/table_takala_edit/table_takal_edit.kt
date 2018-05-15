@@ -1,4 +1,4 @@
-package com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_salproj_edit
+package com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_takala_edit
 
 import android.content.Context
 import android.graphics.Rect
@@ -8,17 +8,17 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.salprojluz_data
+import com.example.chaosruler.msa_manager.object_types.takala_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
-import kotlinx.android.synthetic.main.activity_table_salrpoj_edit.*
+import kotlinx.android.synthetic.main.activity_table_takal_edit.*
 import java.util.*
 
 /**
- * Display salproj data
+ * Table takala activity
  * @author Chaosruler972
  */
-class table_salrpoj_edit : AppCompatActivity() {
+class table_takal_edit : AppCompatActivity() {
 
     /**
      * Activity to display data
@@ -28,9 +28,8 @@ class table_salrpoj_edit : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_table_salrpoj_edit)
-        if(!global_variables_dataclass.GUI_MODE && !init_table())
-            finish()
+        setContentView(R.layout.activity_table_takal_edit)
+        init_table()
     }
 
     /**
@@ -39,17 +38,16 @@ class table_salrpoj_edit : AppCompatActivity() {
      * @author Chaosruler972
      * @return true if successfull (to be frank, always true since data testing is done)
      */
-    private fun init_table():Boolean
-    {
-        val arr: Vector<salprojluz_data> =
+    private fun init_table(): Boolean {
+        val arr: Vector<takala_data> =
                 if (global_variables_dataclass.GUI_MODE)
                     Vector()
                 else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                    global_variables_dataclass.db_salproj_vec
+                    global_variables_dataclass.db_salprojtakala_vec
                 else
-                    global_variables_dataclass.DB_SALPROJ!!.server_data_to_vector()
+                    global_variables_dataclass.DB_SALPROJTAKALA!!.server_data_to_vector()
 
-        table_salproj_listview.adapter = table_salproj_arrayadapter(this,arr)
+        table_takala_edit_listview.adapter = table_takala_arrayadapter(this, arr)
         return true
     }
 
@@ -75,4 +73,5 @@ class table_salrpoj_edit : AppCompatActivity() {
         }
         return super.dispatchTouchEvent(event)
     }
+
 }

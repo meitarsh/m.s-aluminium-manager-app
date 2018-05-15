@@ -179,7 +179,16 @@
             android:configChanges="orientation"
             android:label="@string/flat_and_floor_chooser_label"
             android:screenOrientation="portrait" />
-        <activity android:name=".activies.testing_do_all_table_activities.table_salproj_edit.table_salrpoj_edit"></activity>
+        <activity
+            android:name=".activies.testing_do_all_table_activities.table_salproj_edit.table_salrpoj_edit"
+            android:configChanges="orientation"
+            android:label="@string/table_chooser_salproj_label"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activies.testing_do_all_table_activities.table_takala_edit.table_takal_edit"
+            android:configChanges="orientation"
+            android:label="@string/table_chooser_takala_label"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>
