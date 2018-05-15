@@ -17,6 +17,8 @@ com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.tabl
 com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_inventory_edit
 com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_peolot_edit
 com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_projects_edit
+com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_salproj_edit
+com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_takala_edit
 com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_vendors_edit
 com.example.chaosruler.msa_manager.object_types
 com.example.chaosruler.msa_manager.services
