@@ -38,4 +38,8 @@ class cache_command(
      * @return a copy of this dataclass
      */
     override fun copy(): cache_command = cache_command(this.__command,this.__user)
+
+    override fun to_hashmap(): HashMap<String, String> {
+        return HashMap()
+    }
 }

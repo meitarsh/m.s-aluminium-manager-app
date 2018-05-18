@@ -1,5 +1,6 @@
 package com.example.chaosruler.msa_manager.object_types
 
+import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 
 /**
@@ -111,4 +112,17 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
      * @return a copy of this object
      */
     override fun copy(): vendor_data = vendor_data(this.ID, this.NAME, this.DATAAREAID, this.USERNAME)
+
+    /**
+     * creates vendor data into hashmap
+     * @return vendor data hashmap
+     * @author Chaosruler972
+     */
+    override fun to_hashmap(): HashMap<String, String> {
+        val map = HashMap<String, String>()
+        map[remote_vendors_table_helper.ID] = ID?:""
+        map[remote_vendors_table_helper.DATAAREAID] = DATAAREAID?:""
+        map[remote_vendors_table_helper.NAME] = NAME?:""
+        return map
+    }
 }

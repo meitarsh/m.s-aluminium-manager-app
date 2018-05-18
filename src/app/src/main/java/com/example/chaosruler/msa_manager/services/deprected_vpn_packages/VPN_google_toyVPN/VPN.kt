@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.example.chaosruler.msa_manager.services
+package com.example.chaosruler.msa_manager.services.deprected_vpn_packages.VPN_google_toyVPN
 
 import android.annotation.SuppressLint
 import android.app.Activity

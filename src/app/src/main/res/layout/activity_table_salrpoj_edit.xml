@@ -164,6 +164,30 @@
                     android:text="@string/salproj_ahozbizoaa_label"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/table_salprojluz_recid_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/small_margin_cells"
+                    android:layout_marginStart="@dimen/small_margin_cells"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/table_salprojluz_recversion_label"
+                    android:textStyle="bold" />
+
 
             </LinearLayout>
 

@@ -50,7 +50,8 @@ class table_salproj_arrayadapter(context: Context, arr: Vector<salprojluz_data>)
         val koma = themer.get_view(convertView,R.id.item_salproj_koma) as TextView
         val bnian = themer.get_view(convertView,R.id.item_salproj_bnian) as TextView
         val percentexc = themer.get_view(convertView,R.id.item_salproj_percentexc) as TextView
-
+        val recid = themer.get_view(convertView, R.id.item_salproj_recid) as TextView
+        val recversion = themer.get_view(convertView, R.id.item_salproj_recversion) as TextView
 
         all_views.addElement(id)
         all_views.addElement(dataaraeid)
@@ -62,6 +63,8 @@ class table_salproj_arrayadapter(context: Context, arr: Vector<salprojluz_data>)
         all_views.addElement(koma)
         all_views.addElement(bnian)
         all_views.addElement(percentexc)
+        all_views.addElement(recid)
+        all_views.addElement(recversion)
 
 
         id.text = (salprojluz_data.get_projid()?:"").trim()
@@ -79,6 +82,8 @@ class table_salproj_arrayadapter(context: Context, arr: Vector<salprojluz_data>)
         koma.text = (salprojluz_data.get_koma()?:"").trim()
         bnian.text = (salprojluz_data.get_building()?:"").trim()
         percentexc.text = (salprojluz_data.get_percentexc()?:"0").trim()+"%"
+        recid.text = (salprojluz_data.get_recid()?:"").trim()
+        recversion.text = (salprojluz_data.get_recversion()?:"").trim()
 
         themer.center_all_views(all_views)
 

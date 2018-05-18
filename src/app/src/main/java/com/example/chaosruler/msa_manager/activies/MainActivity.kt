@@ -321,8 +321,8 @@ class MainActivity : Activity()
                 }
                 intent.removeExtra(baseContext.getString(R.string.key_sync_offline))
                 runOnUiThread({
-                    val str_complete = getString(R.string.sync_done_prompt)
-                    offline_mode_service.build_small_notification(str_complete)
+//                    val str_complete = getString(R.string.sync_done_prompt)
+//                    offline_mode_service.build_small_notification(str_complete)
                     init_spinner()
                     main_button_download.isEnabled = true
                 })

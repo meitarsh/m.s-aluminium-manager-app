@@ -10,7 +10,7 @@ import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.LoginActivity
 import com.example.chaosruler.msa_manager.object_types.User
-import com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.vpn_connection
+import com.example.chaosruler.msa_manager.services.deprected_vpn_packages.VPN_google_toyVPN.vpn_connection
 import java.sql.*
 import java.util.*
 import java.util.Date
@@ -201,9 +201,9 @@ object remote_SQL_Helper {
 //                                rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]")
 //                            else
                                 rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]"
-                                + " WHERE $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 05:00:00:000') ")
+                                + " WHERE $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 00:00:00:000') ")
                                 Log.d("remote","USE [$db] SELECT * FROM [dbo].[$table]"
-                                        + " WHERE $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 05:00:00:000') ")
+                                        + " WHERE $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 00:00:00:000') ")
                         } catch (e: SQLTimeoutException) {
                             Log.d("remote", "EXCEPTION SQL timeout")
                             rs = null
@@ -325,8 +325,8 @@ object remote_SQL_Helper {
                                 " WHERE "
                                 else
                                 " AND "
-                            qry += "$where_or_not $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 05:00:00:000')"
-                            Log.d("rsql: ",qry)
+                            qry += "$where_or_not $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 00:00:00:000')"
+                            Log.d("rsql_qry: ",qry)
                             rs = connection!!.createStatement().executeQuery(qry)
                         } catch (e: SQLTimeoutException) {
                             Log.d("remote SQL", "EXCEPTION SQL timeout exception")
@@ -371,7 +371,7 @@ object remote_SQL_Helper {
                             }
                             vector.addElement(map)
                         }
-                        Log.d("rsql", "Count for $table is $count")
+                        Log.d("rsql_res", "Count for $table is $count")
                         synchronized(lock)
                         {
                             lock.notify()
@@ -423,6 +423,7 @@ object remote_SQL_Helper {
             AsyncTask.execute {
                 Runnable {
                     try {
+                        Log.d("rsql_exec", command)
                         return_value = connection!!.prepareStatement(command).executeUpdate() >= 0
                     } catch (e: SQLTimeoutException) {
                         Log.d("remote SQL", "Timed out! command: $command")
@@ -551,7 +552,7 @@ object remote_SQL_Helper {
             command += map[item]
                 command += ","
         }
-        command += "dateadd(s,${Date().time/1000},'19700101 05:00:00:000') "
+        command += "dateadd(s,${Date().time/1000},'19700101 00:00:00:000') "
         command += ")"
         return command
     }
@@ -599,7 +600,7 @@ object remote_SQL_Helper {
             command += " [${item.key}] = ${item.value} "
             breaker++
         }
-        command += " [$sync_column] = dateadd(s,${Date().time/1000},'19700101 05:00:00:000') "
+        command += " [$sync_column] = dateadd(s,${Date().time/1000},'19700101 00:00:00:000') "
         command += " WHERE "
         for (item in compare_to) {
             command += "CONVERT($type,$where_clause) = $item "
@@ -622,7 +623,7 @@ object remote_SQL_Helper {
      *  @param all_type whats the type of all our data that we compare
      *  @return a string of the MSSQL command to update that specified data
      */
-    fun construct_update_str_multiwhere_text(db: String, table: String, where_clause: HashMap<String, String>, all_type: String, update_to: HashMap<String, String>): String {
+    fun construct_update_str_multiwhere_text(db: String, table: String, where_clause: HashMap<String, String>, all_type: String, update_to: HashMap<String, String>, complete_map: HashMap<String, String>): String {
         var command: String = "USE [$db]" +
                 " UPDATE [dbo].[$table] SET "
         var breaker = 0
@@ -633,7 +634,7 @@ object remote_SQL_Helper {
                 command += " , "
             else
             {
-                command += " , [${context.getString(R.string.moddate)}] = dateadd(s,${Date().time/1000},'19700101 05:00:00:000') "
+                command += " , [${context.getString(R.string.moddate)}] = dateadd(s,${Date().time/1000},'19700101 00:00:00:000') "
             }
         }
         command += " WHERE "
@@ -644,6 +645,30 @@ object remote_SQL_Helper {
             if (where_counter < where_clause.size)
                 command += " AND "
         }
+        command += " IF @@ROWCOUNT=0 "
+        command += " INSERT INTO $table("
+        breaker = 0
+        for( item in complete_map)
+        {
+            command += item.key
+            breaker++
+            if( breaker < complete_map.size)
+                command += " , "
+            else
+                command += " , ${context.getString(R.string.moddate)} "
+        }
+        command += ") values( "
+        breaker = 0
+        for(item in complete_map)
+        {
+            command += " ${item.value} "
+            breaker++
+            if( breaker < complete_map.size)
+                command += " , "
+            else
+                command += " , dateadd(s,${Date().time/1000},'19700101 00:00:00:000') "
+        }
+        command += " ) "
         return command
     }
 

@@ -70,7 +70,7 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "TEXT primary key"
+        map[ID] = "TEXT "
         map[NAME] = "TEXT"
         map[USER] = "TEXT"
         map[DATAARAEID] = "TEXT"
@@ -256,11 +256,12 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
     fun add_inventory(inventory_data: inventory_data) // subroutine that manages the inventory adding operation to the database
             : Boolean
     {
-        return if (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
-                check_inventory( inventory_data)) // checks if inventory exists in database
-            update_inventory(inventory_data,inventory_data.copy()) // if it does, lets update
-        else // if it doesn't lets create a new entry for the inventory
-            insert_inventory(inventory_data)
+        val res =  (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
+                update_inventory(inventory_data,inventory_data.copy())) // checks if inventory exists in database
+             // if it does, lets update
+        if(!res) // if it doesn't lets create a new entry for the inventory
+            return insert_inventory(inventory_data)
+        return res
     }
 
 

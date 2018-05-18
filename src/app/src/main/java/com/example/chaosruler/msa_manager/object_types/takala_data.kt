@@ -1,5 +1,6 @@
 package com.example.chaosruler.msa_manager.object_types
 
+import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_takala_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 
 /**
@@ -402,5 +403,26 @@ class takala_data(
     override fun copy(): takala_data = takala_data(PROJID, ITEMID, DATAAREAID, QTY,
             KOMA, BINYAN, DIRA, TEUR, MUMLATZ, MONAAT,
             TGUVA, SUG, ALUT, ITEMTXT, RECVERSION, RECID, USERNAME)
+
+    override fun to_hashmap(): HashMap<String, String> {
+        val map = HashMap<String, String>()
+        map[remote_takala_table_helper.KOMA] = KOMA?:""
+        map[remote_takala_table_helper.BINYAN] = BINYAN?:""
+        map[remote_takala_table_helper.DIRA] = DIRA?:""
+        map[remote_takala_table_helper.TEUR] = TEUR?:""
+        map[remote_takala_table_helper.MUMLATZ] = MUMLATZ?:""
+        map[remote_takala_table_helper.MONAAT] = MONAAT?:""
+        map[remote_takala_table_helper.TGUVA] = TGUVA?:""
+        map[remote_takala_table_helper.SUG] = SUG?:""
+        map[remote_takala_table_helper.ALUT] = ALUT?:""
+        map[remote_takala_table_helper.ITEMTXT] = ITEMTXT?:""
+        map[remote_takala_table_helper.RECVERSION] = RECVERSION?:""
+        map[remote_takala_table_helper.RECID] = RECID?:""
+        map[remote_takala_table_helper.ID] = PROJID?:""
+        map[remote_takala_table_helper.ITEMID] = ITEMID?:""
+        map[remote_takala_table_helper.DATAAREAID] = DATAAREAID?:""
+        map[remote_takala_table_helper.QTY] = QTY?:""
+        return map
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.chaosruler.msa_manager.object_types
 
+import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_salprojluz_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 
 /**
@@ -57,6 +58,17 @@ class salprojluz_data(
          * @author Chaosruler972
          */
         private var DATAARAEID: String?,
+
+        /**
+         * RECID
+         * @author Chaosruler972
+         */
+        private var RECID: String?,
+        /**
+         * RECVERSOIN
+         * @author Chaosruler972
+         */
+        private var RECVERSOIN: String?,
         /**
          * username
          * @author Chaosruler972
@@ -86,6 +98,10 @@ class salprojluz_data(
             USERNAME = (USERNAME?:"").trim()
         if(PERCENTEXC != null)
             PERCENTEXC = (PERCENTEXC?:"").trim()
+        if(RECID != null)
+            RECID = (RECID?:"").trim()
+        if(RECVERSOIN != null)
+            RECVERSOIN = (RECVERSOIN?:"").trim()
     }
 
     /**
@@ -283,6 +299,40 @@ class salprojluz_data(
     }
 
     /**
+     * recid getter
+     * @author Chaosruler972
+     * @return the record id
+     */
+    fun get_recid() = RECID
+
+    /**
+     * recid setter
+     * @author Chaosruler972
+     * @param recid the new recid
+     */
+    fun set_recid(recid: String)
+    {
+        RECID = recid
+    }
+
+    /**
+     * rec version getter
+     * @author Chaosruler972
+     * @return the record version
+     */
+    fun get_recversion() = RECVERSOIN
+
+    /**
+     * rec version setter
+     * @author Chaosruler972
+     * @param recversion the new rec version
+     */
+    fun set_recversion(recversion: String)
+    {
+        RECVERSOIN = recversion
+    }
+
+    /**
      * Stringifies Salrpojluz
      * @author Chaosruler972
      * @return String data that represents this salrpojluz
@@ -299,7 +349,25 @@ class salprojluz_data(
      */
     override fun copy(): salprojluz_data = salprojluz_data(
         PROJID, STARTDATE, FINISHDATE, IS_FINISHED, SIUM_BPOAL,
-            NOTES, KOMA, BUILDING, PERCENTEXC, DATAARAEID, USERNAME
+            NOTES, KOMA, BUILDING, PERCENTEXC, DATAARAEID,RECID, RECVERSOIN, USERNAME
     )
 
+    override fun to_hashmap(): HashMap<String, String> {
+        val map = HashMap<String, String>()
+        map[remote_salprojluz_table_helper.ID] = PROJID?:""
+        map[remote_salprojluz_table_helper.STARTDATE] = STARTDATE?:""
+        map[remote_salprojluz_table_helper.FINISHDATE] = FINISHDATE?:""
+        map[remote_salprojluz_table_helper.IS_FINISHED] = if (IS_FINISHED)
+            "255"
+                else
+            "0"
+        map[remote_salprojluz_table_helper.SIUMBPOAL] = SIUM_BPOAL?:""
+        map[remote_salprojluz_table_helper.NOTES] = NOTES?:""
+        map[remote_salprojluz_table_helper.KOMA] = KOMA?:""
+        map[remote_salprojluz_table_helper.BUILDING] = BUILDING?:""
+        map[remote_salprojluz_table_helper.PERCENTEXC] = PERCENTEXC?:""
+        map[remote_salprojluz_table_helper.RECID] = RECID?:""
+        map[remote_salprojluz_table_helper.RECVERION] = RECVERSOIN?:""
+        return map
+    }
 }

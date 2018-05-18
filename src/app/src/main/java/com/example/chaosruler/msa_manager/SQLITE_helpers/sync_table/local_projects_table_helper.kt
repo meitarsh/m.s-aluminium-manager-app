@@ -75,7 +75,7 @@ class local_projects_table_helper(
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "TEXT primary key"
+        map[ID] = "TEXT "
         map[NAME] = "TEXT"
         map[DATAAREAID] = "TEXT"
         map[USERNAME] = "TEXT"
@@ -227,11 +227,12 @@ class local_projects_table_helper(
     fun add_project(project: project_data) // subroutine that manages the project adding operation to the database
             : Boolean
     {
-        return if (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
-                check_project( project)) // checks if project exists in database
-            update_project(project,project.copy()) // if it does, lets update
-        else // if it doesn't lets create a new entry for the project
-            insert_project(project)
+        val res =  (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
+                update_project(project,project.copy())) // checks if project exists in database
+             // if it does, lets update
+        if(!res) // if it doesn't lets create a new entry for the project
+            return insert_project(project)
+        return res
     }
 
     /**

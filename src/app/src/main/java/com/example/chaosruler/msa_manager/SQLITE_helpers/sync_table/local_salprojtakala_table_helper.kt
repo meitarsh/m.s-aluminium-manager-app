@@ -153,8 +153,8 @@ class local_salprojtakala_table_helper(private var context: Context) :
      */
     override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "TEXT NOT NULL "
-        map[ITEMID] = "TEXT NOT NULL "
+        map[ID] = "TEXT "
+        map[ITEMID] = "TEXT "
         map[DATAAREAID] = "TEXT"
         map[QTY] = "TEXT"
         map[KOMA] = "INTEGER"
@@ -171,9 +171,9 @@ class local_salprojtakala_table_helper(private var context: Context) :
         map[RECVERSION] = "TEXT"
         map[RECID] = "TEXT"
         map[USERNAME] = "TEXT"
-        val empty_hashmap = HashMap<String, String>()
-        val extra = " , PRIMARY KEY ($ID, $ITEMID) "
-        createDB(db, map, empty_hashmap, extra)
+//        val empty_hashmap = HashMap<String, String>()
+//        val extra = " , PRIMARY KEY ($ID, $ITEMID) "
+        createDB(db, map)
     }
 
     /**
@@ -305,6 +305,7 @@ class local_salprojtakala_table_helper(private var context: Context) :
         if (!global_variables_dataclass.isLocal)
             return
         val server_vec = server_data_to_vector()
+        Log.d("salprojtakala_local","Got from server ${server_vec.size} items")
         for (item in server_vec) {
             add_takala(item)
         }
@@ -364,11 +365,18 @@ class local_salprojtakala_table_helper(private var context: Context) :
      */
     fun add_takala(takala_data: takala_data) // subroutine that manages the vendor adding operation to the database
             : Boolean {
-        return if (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
-                check_takala(takala_data)) // checks if vendor exists in database
-            update_takala(takala_data, takala_data.copy()) // if it does, lets update
-        else // if it doesn't lets create a new entry for the vendor
+        val res = (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
+                update_takala(takala_data, takala_data.copy())) // checks if vendor exists in database
+        return if(!res) {
+            Log.d("Takala_database","Inserted")
             insert_takala(takala_data)
+        }
+        else
+        {
+            Log.d("Takala_database","Updated")
+            res
+
+        }
     }
 
 
@@ -403,7 +411,7 @@ class local_salprojtakala_table_helper(private var context: Context) :
 
         val data: HashMap<String, String> = HashMap()
         data[ID] = (takala_data.get_projid() ?: "")
-        data[ITEMID] = (takala_data.get_projid() ?: "")
+        data[ITEMID] = (takala_data.get_ITEMID() ?: "")
         data[DATAAREAID] = (takala_data.get_DATAAREAID() ?: "")
         data[QTY] = (takala_data.get_QTY() ?: "")
         data[KOMA] = (takala_data.get_KOMA() ?: "")
@@ -449,10 +457,10 @@ class local_salprojtakala_table_helper(private var context: Context) :
         change_to[ALUT] = (to.get_ALUT() ?: "")
         change_to[ITEMTXT] = (to.get_ITEMTXT() ?: "")
         change_to[RECVERSION] = (to.get_RECVERSION() ?: "")
-        change_to[RECID] = (to.get_RECID() ?: "")
         change_to[USERNAME] = (to.get_USERNAME())
-        return update_data(arrayOf(ID, ITEMID), arrayOf(from.get_projid() ?: "", from.get_ITEMID()
-                ?: ""), change_to)
+        change_to[ID] = from.get_projid()?:""
+        change_to[ITEMID] = to.get_projid()?:""
+        return update_data(RECID, arrayOf(from.get_RECID()?:""), change_to)
     }
 
     /**
@@ -467,8 +475,7 @@ class local_salprojtakala_table_helper(private var context: Context) :
     {
         if (get_takala_by_takala(takala_data) == null)
             return false
-        return remove_from_db(arrayOf(ID, ITEMID), arrayOf((takala_data.get_projid()
-                ?: "").trim(), (takala_data.get_ITEMID() ?: "").trim()))
+        return remove_from_db(RECID, arrayOf(takala_data.get_RECID()?:""))
     }
 
     /**

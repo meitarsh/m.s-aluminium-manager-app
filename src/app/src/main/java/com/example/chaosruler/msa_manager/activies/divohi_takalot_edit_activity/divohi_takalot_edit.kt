@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.object_types.big_table_data
+import com.example.chaosruler.msa_manager.object_types.takala_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.divohi_takalot_edit.*
@@ -53,14 +54,14 @@ class divohi_takalot_edit : Activity() {
     {
 
         Thread({
-            val arr: Vector<big_table_data> =
+            val arr: Vector<takala_data> =
                     if (global_variables_dataclass.GUI_MODE || global_variables_dataclass.DB_BIG == null)
                         Vector()
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                        Vector(global_variables_dataclass.db_big_vec.filter { it.get_PROJECT_ID() == global_variables_dataclass.projid })
+                        Vector(global_variables_dataclass.db_salprojtakala_vec.filter { it.get_projid() == global_variables_dataclass.projid })
                     else
-                        global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid ?: "").trim())
-            arr.sort()
+                        global_variables_dataclass.DB_SALPROJTAKALA!!.server_data_to_vector_by_projname((global_variables_dataclass.projid ?: "").trim())
+//            arr.sort()
             runOnUiThread({divohi_takalot_edit_listview.adapter = divohi_takalot_edit_arrayadapter(this, arr)
             })
 

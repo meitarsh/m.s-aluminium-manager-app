@@ -268,4 +268,15 @@ object global_variables_dataclass
         return String.format("%040x", BigInteger(1, arg.toByteArray()/*YOUR_CHARSET?*/))
     }
 
+    /**
+     * converts time from date.time.time to MSSQL time object string
+     * @author Chaosruler972
+     * @param time time form date.time.time
+     * @return String of MSSQL date time
+     */
+    fun time_to_mssql_time(time: Long) : String
+    {
+        return "dateadd(s,${time},'19700101 00:00:00:000')"
+    }
+
 }

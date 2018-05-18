@@ -288,6 +288,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 Log.d("Local SQL helper","sync done with $DATABASE_NAME")
             }
         }
+        Log.d("local_sql_count","For table $TABLE_NAME I got ${vector.size}")
         //db.close()
         return vector
     }
@@ -476,7 +477,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             {
                 where_args.addElement(item.value)
                 where_clause+=item.key + " = ? "
-                sql_query += " ${item.key} = ${item.value} "
+                sql_query += " ${item.key} = '${global_variables_dataclass.xorWithKey(item.value.toByteArray(Charset.forName("UTF-8")), global_variables_dataclass.get_device_id(context).toByteArray(), false, context)}' "
                 breaker++
                 if (breaker < map.size)
                 {
@@ -491,11 +492,11 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             val start = Date().time;
             try
             {
-                Log.d("SQL raw query",sql_query)
+                Log.d("SQL_raw_query",sql_query)
                 //c = db.rawQuery(sql_query, null)
                 c = db.query(TABLE_NAME,null,where_clause,where_args.toTypedArray(),null,null,null)
                 val end_qry = Date().time
-                Log.d("SQL", "QUERIED $TABLE_NAME for ${end_qry-start} ms")
+                Log.d("SQL_raw_query", "QUERIED $TABLE_NAME for ${end_qry-start} ms")
             }
             catch (e:SQLException)
             {

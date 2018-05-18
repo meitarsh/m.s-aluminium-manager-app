@@ -350,20 +350,14 @@ class remote_takala_table_helper {
          */
         fun push_update(takala_data: takala_data, map: HashMap<String, String>, context: Context) {
             val typemap = remote_takala_table_helper.define_type_map()
-            for (item in map) {
-                if ((typemap[item.key] ?: "") == "text" || (typemap[item.key]
-                                ?: "") != "varchar" || (typemap[item.key] ?: "") != "nvarchar")
-                    item.setValue("N" + remote_SQL_Helper.add_quotes(item.value))
-                else if ((typemap[item.key] ?: "") == "datetime") {
-                    item.setValue("dateadd(s,${item.value.toLong() / 1000},'19700101 05:00:00:000')")
-                }
-            }
+            normalize_hashmap(map, typemap)
             val where_clause: HashMap<String, String> = HashMap()
-            where_clause[remote_takala_table_helper.ID] = (takala_data.get_projid() ?: "").trim()
-            where_clause[remote_takala_table_helper.ITEMID] = (takala_data.get_ITEMID()
-                    ?: "").trim()
-
-            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_takala_table_helper.DATABASE_NAME, remote_takala_table_helper.TABLE_NAME, where_clause, "varchar", map)
+            where_clause[remote_takala_table_helper.RECID] = (takala_data.get_RECID() ?: "").trim()
+            val all_map = takala_data.to_hashmap()
+            normalize_hashmap(all_map, typemap)
+            for(item in map)
+                all_map[item.key] = item.value
+            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_takala_table_helper.DATABASE_NAME, remote_takala_table_helper.TABLE_NAME, where_clause, "varchar", map, all_map)
             query = query.replace("'", "&quote;")
             val str = offline_mode_service.general_push_command(query, remote_SQL_Helper.getusername())
             Toast.makeText(context, str, Toast.LENGTH_SHORT).show()

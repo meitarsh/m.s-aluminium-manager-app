@@ -206,13 +206,13 @@ class local_big_table_helper(
         map[DIRANUM] = type
         map[USER] = type
         map[QTYINPARTIALACC] = type
-        val foreign: HashMap<String, String> = HashMap()
-        foreign[ACCOUNT_NUM] = context.getString(R.string.LOCAL_VENDORS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_VENDORS_COLUMN_ID) + ")"
-        foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID) + ")"
-        foreign[OPR_ID] = context.getString(R.string.LOCAL_OPR_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_OPR_COLUMN_ID) + ")"
-        foreign[PROJID] = context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_PROJECTS_COLUMN_ID) + ")"
-        val extra = " PRIMARY KEY($ACCOUNT_NUM, $ITEMID, $OPR_ID,$PROJID) "
-        createDB(db, map, foreign,extra)
+//        val foreign: HashMap<String, String> = HashMap()
+//        foreign[ACCOUNT_NUM] = context.getString(R.string.LOCAL_VENDORS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_VENDORS_COLUMN_ID) + ")"
+//        foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID) + ")"
+//        foreign[OPR_ID] = context.getString(R.string.LOCAL_OPR_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_OPR_COLUMN_ID) + ")"
+//        foreign[PROJID] = context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_PROJECTS_COLUMN_ID) + ")"
+//        val extra = " PRIMARY KEY($ACCOUNT_NUM, $ITEMID, $OPR_ID,$PROJID) "
+        createDB(db, map)
     }
 
 
@@ -496,14 +496,15 @@ class local_big_table_helper(
             : Boolean
     {
         Log.d("Big Check exists",check_big(big_table_data).toString())
-        return if (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
-                check_big(big_table_data)) // checks if big exists in database
-            update_big(big_table_data, big_table_data.copy()) // if it does, lets update
-        else // if it doesn't lets create a new entry for the big
+        val res = (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
+                update_big(big_table_data, big_table_data.copy())) // checks if big exists in database
+             // if it does, lets update
+        if(!res) // if it doesn't lets create a new entry for the big
         {
             Log.d("Insert big", "Inserting directly")
-            insert_big(big_table_data)
+            return insert_big(big_table_data)
         }
+        return res
     }
 
 
@@ -576,8 +577,6 @@ class local_big_table_helper(
 
         val change_to: java.util.HashMap<String, String> = java.util.HashMap()
         change_to[DATAARAEID] = (to.get_DATAAREAID() ?: "").trim()
-        change_to[RECVERSION] = (to.get_RECVERSION() ?: "").trim()
-        change_to[RECID] = (to.get_RECID() ?: "").trim()
         change_to[FLAT] = (to.get_FLAT() ?: "").trim()
         change_to[FLOOR] = (to.get_FLOOR() ?: "").trim()
         change_to[QTY] = (to.get_QTY() ?: "").trim()
@@ -593,7 +592,12 @@ class local_big_table_helper(
         change_to[DIRANUM] = (to.get_DIRANUM() ?: "").trim()
         change_to[USER] = (to.get_USERNAME() ?: "").trim()
         change_to[QTYINPARTIALACC] = (to.get_QTYINPARTIALACC() ?: "" ).trim()
-        return update_data(arrayOf(ACCOUNT_NUM, PROJID, ITEMID, OPR_ID), arrayOf(from.get_VENDOR_ID()!!, from.get_PROJECT_ID()!!, from.get_INVENTORY_ID()!!, from.get_OPRID()!!), change_to)
+        change_to[ACCOUNT_NUM] = (to.get_VENDOR_ID()?: "").trim()
+        change_to[PROJID] = (to.get_PROJECT_ID()?:"").trim()
+        change_to[ITEMID] = (to.get_INVENTORY_ID() ?:"").trim()
+        change_to[OPR_ID] = (to.get_OPRID()?:"").trim()
+        change_to[RECVERSION] = (to.get_RECVERSION()?:"").trim()
+        return update_data(RECID, arrayOf(from.get_RECID()?:""), change_to)
     }
 
 
@@ -609,7 +613,7 @@ class local_big_table_helper(
     {
         if (get_big_by_big(big_table_data) == null)
             return false
-        return remove_from_db(arrayOf(ACCOUNT_NUM, PROJID, ITEMID, OPR_ID), arrayOf((big_table_data.get_VENDOR_ID()?:"").trim(), (big_table_data.get_PROJECT_ID()?:"").trim(), (big_table_data.get_INVENTORY_ID()?:"").trim(), (big_table_data.get_OPRID()?:"").trim()))
+        return remove_from_db(RECID, arrayOf(big_table_data.get_RECID()?:""))
 
     }
 }

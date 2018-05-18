@@ -26,7 +26,7 @@ class divohi_takalot_tofes_arrayadapter(
          * @author Chaosruler972
          */
         private var context: Activity
-        , arr: List<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.item_divohi_takalot_tofes,arr.toTypedArray())
+        , arr: List<takala_data>) : ArrayAdapter<takala_data>(context, R.layout.item_divohi_takalot_tofes,arr.toTypedArray())
 {
     /**
      * inflates a view and generates it, writes the data in it and initates logic on press and edit
@@ -50,7 +50,7 @@ class divohi_takalot_tofes_arrayadapter(
         val sog_takala = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_sog_takala) as TextView
         val koma = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_koma) as TextView
         val bnian = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_bnian) as TextView
-        val dira = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_dira) as TextView
+//        val dira = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_dira) as TextView
         val tiaor_takala = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_tiaaor_takala) as TextView
         val peolot_ltikon = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_peolot_ltikon) as TextView
         val peolot_monoot = themer.get_view(convertView, R.id.item_divohi_takalot_tofes_peolot_monoot) as TextView
@@ -66,7 +66,7 @@ class divohi_takalot_tofes_arrayadapter(
         all_txtviews.add(sog_takala)
         all_txtviews.add(koma)
         all_txtviews.add(bnian)
-        all_txtviews.add(dira)
+//        all_txtviews.add(dira)
         all_txtviews.add(tiaor_takala)
         all_txtviews.add(peolot_ltikon)
         all_txtviews.add(peolot_monoot)
@@ -74,39 +74,29 @@ class divohi_takalot_tofes_arrayadapter(
         all_txtviews.add(alot_takala)
 
 
-        val big_item:big_table_data = getItem(position)
-
-        val project_item: project_data = try {
-            global_variables_dataclass.db_project_vec.filter { it.getProjID() == big_item.get_PROJECT_ID()?:"" }[0]!!
+        val takala_data:takala_data = getItem(position)
+        val project_data: project_data = try {
+            global_variables_dataclass.db_project_vec.filter { it.getProjID() == takala_data.get_projid() }[0]
         }
-        catch (e: IndexOutOfBoundsException)
+        catch (e: Exception)
         {
-            project_data("","","","")
+            project_data(takala_data.get_projid(),"",takala_data.get_DATAAREAID(),"")
         }
-        val takala_data: takala_data = try {
-            global_variables_dataclass.db_salprojtakala_vec.filter {
-                it.get_projid() ?: "" == big_item.get_PROJECT_ID() ?: ""
-                        && it.get_ITEMID() ?: "" == big_item.get_INVENTORY_ID() ?: ""
-            }[0]!!
-        } catch (e: IndexOutOfBoundsException) {
-            takala_data("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
-        }
-//        val inventory: inventory_data = global_variables_dataclass.db_inv_vec.filter { it.get_itemid() == big_item.get_INVENTORY_ID()?:"" }[0]!!
 
-        mispar_parit.text = (big_item.get_ITEMNUMBER() ?: "").trim()
+
+        mispar_parit.text = (takala_data.get_ITEMID() ?: "").trim()
         shem_parit.text = (takala_data.get_ITEMTXT() ?: "").trim()
-        mispar_project.text = (project_item.getProjID() ?: "").trim()
-        shem_project.text = (project_item.get_project_name() ?: "").trim()
-        kamot.text = (big_item.get_QTY() ?: "").trim()
+        mispar_project.text = (takala_data.get_projid() ?: "").trim()
+        shem_project.text = (project_data.get_project_name() ?: "").trim()
+        kamot.text = (takala_data.get_QTY() ?: "").trim()
         sog_takala.text = (takala_data.get_SUG() ?: "").trim()
-        koma.text = (big_item.get_FLOOR() ?: "").trim()
-        bnian.text = (big_item.get_FLAT() ?: "").trim()
-        dira.text = (big_item.get_DIRANUM() ?: "").trim()
-        tiaor_takala.text = (takala_data.get_TGUVA() ?: "").trim()
+        koma.text = (takala_data.get_KOMA() ?: "").trim()
+        bnian.text = (takala_data.get_DIRA() ?: "").trim()
+        tiaor_takala.text = (takala_data.get_TEUR() ?: "").trim()
         peolot_ltikon.text = (takala_data.get_MUMLATZ() ?: "").trim()
         peolot_monoot.text = (takala_data.get_MONAAT() ?: "").trim()
         tgovat_mnaal.text = (takala_data.get_TGUVA() ?: "").trim()
-        alot_takala.text = (big_item.get_TOTALSUM() ?: "").trim()
+        alot_takala.text = (takala_data.get_ALUT() ?: "").trim()
 
 
         themer.center_all_views(all_txtviews)

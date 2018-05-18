@@ -8,6 +8,7 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.object_types.big_table_data
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
@@ -398,27 +399,25 @@ class remote_big_table_helper
          */
         fun push_update(obj: big_table_data, map: HashMap<String, String>, context: Context) {
             val typemap = define_type_map()
-            for (item in map) {
-                if ((typemap[item.key] ?: "") == "text" || (typemap[item.key]
-                                ?: "") != "varchar" || (typemap[item.key] ?: "") != "nvarchar")
-                    item.setValue("N" + remote_SQL_Helper.add_quotes(item.value))
-            }
+            normalize_hashmap(map, typemap)
             val where_clause: HashMap<String, String> = HashMap()
-            where_clause[remote_big_table_helper.VENDOR_ID] = obj.get_VENDOR_ID() ?: ""
-            where_clause[remote_big_table_helper.INVENTORY_ID] = obj.get_INVENTORY_ID() ?: ""
-            where_clause[remote_big_table_helper.PROJECTS_ID] = obj.get_PROJECT_ID() ?: ""
-            where_clause[remote_big_table_helper.OPR_ID] = obj.get_OPRID() ?: ""
-            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME, remote_big_table_helper.TABLE_NAME, where_clause, "varchar", map)
+            where_clause[remote_big_table_helper.RECID] = obj.get_RECID() ?: ""
+            val all_hashmap = obj.to_hashmap()
+            normalize_hashmap(all_hashmap, typemap)
+            for(item in map)
+                all_hashmap[item.key] = item.value
+
+            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME, remote_big_table_helper.TABLE_NAME, where_clause, "varchar", map, all_hashmap)
             query = query.replace("'", "&quote;")
+
+
             val str = offline_mode_service.general_push_command(query, remote_SQL_Helper.getusername())
 
             /*
                 Input hack in order to sync between two tables, not tested and not necceserily
                 stable at the very idea of it
              */
-            where_clause.remove(remote_big_table_helper.VENDOR_ID)
-
-            val query_second = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME, remote_big_table_helper.TABLE_SECOND_SYNC_NAME, where_clause, "varchar", normalize_map_for_sync_db(map))
+            val query_second = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME, remote_big_table_helper.TABLE_SECOND_SYNC_NAME, where_clause, "varchar", normalize_map_for_sync_db(map), all_hashmap)
             offline_mode_service.general_push_command(query_second, remote_SQL_Helper.getusername())
             Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
         }

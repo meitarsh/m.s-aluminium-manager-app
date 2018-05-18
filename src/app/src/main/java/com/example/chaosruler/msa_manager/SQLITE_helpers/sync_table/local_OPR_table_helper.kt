@@ -73,7 +73,7 @@ class local_OPR_table_helper(
      */
     override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "TEXT primary key"
+        map[ID] = "TEXT "
         map[NAME] = "TEXT"
         map[USER] = "TEXT"
         map[DATAARAEID] = "TEXT"
@@ -256,11 +256,12 @@ class local_OPR_table_helper(
             : Boolean
     {
 
-        return if (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
-                check_opr( opr_data)) // checks if opr exists in database
-            update_opr(opr_data,opr_data.copy()) // if it does, lets update
-        else // if it doesn't lets create a new entry for the opr
-            insert_opr(opr_data)
+        val res =  (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
+                update_opr(opr_data,opr_data.copy())) // checks if opr exists in database
+             // if it does, lets update
+        if(!res) // if it doesn't lets create a new entry for the opr
+            return insert_opr(opr_data)
+        return res
     }
 
     /**

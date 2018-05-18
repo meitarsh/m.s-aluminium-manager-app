@@ -134,7 +134,7 @@
             android:exported="true"
             tools:ignore="ExportedService" />
         <service
-            android:name=".services.VPN_google_toyVPN.vpn_connection"
+            android:name="com.example.chaosruler.msa_manager.services.deprected_vpn_packages.VPN_google_toyVPN.vpn_connection"
             android:permission="android.permission.BIND_VPN_SERVICE"
             tools:ignore="InnerclassSeparator">
             <intent-filter>

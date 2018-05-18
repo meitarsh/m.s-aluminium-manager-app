@@ -86,6 +86,18 @@ class local_salprojluz_table_helper(
     private val DATAARAEID = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_DATAARAEID)
 
     /**
+     * recid
+     * @author Chaosruler972
+     */
+    private val RECID = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_RECID)
+
+    /**
+     * recversion
+     * @author Chaosruler972
+     */
+    private val RECVERSION = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_RECVERSION)
+
+    /**
      * username
      * @author Chaosruler972
      */
@@ -104,6 +116,8 @@ class local_salprojluz_table_helper(
         vector.add(DATAARAEID)
         vector.add(USERNAME)
         vector.add(PERCENTEXC)
+        vector.add(RECID)
+        vector.addElement(RECVERSION)
         init_vector_of_variables(vector)
     }
 
@@ -115,7 +129,7 @@ class local_salprojluz_table_helper(
      */
     override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "TEXT primary key"
+        map[ID] = "TEXT "
         map[STARTDATE] = "TEXT"
         map[FINISHDATE] = "TEXT"
         map[SIUMBPOAL] = "TEXT"
@@ -126,6 +140,8 @@ class local_salprojluz_table_helper(
         map[DATAARAEID] = "TEXT"
         map[USERNAME] = "TEXT"
         map[PERCENTEXC] = "TEXT"
+        map[RECID] = "TEXT"
+        map[RECVERSION] = "TEXT"
         createDB(db, map)
     }
 
@@ -150,7 +166,7 @@ class local_salprojluz_table_helper(
                         it[ID]?:"",it[STARTDATE]?:"",it[FINISHDATE]?:"",
                         ((it[IS_FINISHED]?:"0") == "0"), it[SIUMBPOAL]?:"",it[NOTES]?:"",
                         it[KOMA]?:"",it[BUILDING]?:"",it[PERCENTEXC]?:"",
-                        it[DATAARAEID]?:"",it[USERNAME]?:""
+                        it[DATAARAEID]?:"",it[RECID]?:"", it[RECVERSION]?:"",it[USERNAME]?:""
                 )) }
         return vector
     }
@@ -187,6 +203,8 @@ class local_salprojluz_table_helper(
                         (it[remote_salprojluz_table_helper.BUILDING]?:""),
                         (it[remote_salprojluz_table_helper.PERCENTEXC]?:""),
                         (it[remote_salprojluz_table_helper.DATAAREAID]?:""),
+                        (it[remote_salprojluz_table_helper.RECID]?:""),
+                        (it[remote_salprojluz_table_helper.RECVERION]?:""),
                         remote_SQL_Helper.getusername()
                 )
         }
@@ -224,6 +242,8 @@ class local_salprojluz_table_helper(
                     (it[remote_salprojluz_table_helper.KOMA]?:""),
                     (it[remote_salprojluz_table_helper.BUILDING]?:""),
                     (it[remote_salprojluz_table_helper.PERCENTEXC]?:""),
+                    (it[remote_salprojluz_table_helper.RECID]?:""),
+                    (it[remote_salprojluz_table_helper.RECVERION]?:""),
                     (it[remote_salprojluz_table_helper.DATAAREAID]?:""),
                     remote_SQL_Helper.getusername()
             )
@@ -275,6 +295,8 @@ class local_salprojluz_table_helper(
                     (it[KOMA]?:""),
                     (it[BUILDING]?:""),
                     (it[PERCENTEXC]?:""),
+                    (it[RECID]?:""),
+                    (it[RECVERSION]?:""),
                     (it[DATAARAEID]?:""),
                     remote_SQL_Helper.getusername()
             )
@@ -297,11 +319,12 @@ class local_salprojluz_table_helper(
     fun add_salprojluz(salprojluz_data: salprojluz_data) // subroutine that manages the vendor adding operation to the database
             : Boolean
     {
-        return if (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
-                check_salproj(salprojluz_data)) // checks if vendor exists in database
-            update_salproj(salprojluz_data,salprojluz_data.copy()) // if it does, lets update
-        else // if it doesn't lets create a new entry for the vendor
-            insert_salproj(salprojluz_data)
+        val res = (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
+                update_salproj(salprojluz_data,salprojluz_data.copy())) // checks if vendor exists in database
+           // if it does, lets update
+        if(!res)
+            return insert_salproj(salprojluz_data)
+        return res
     }
 
     /**
@@ -347,6 +370,8 @@ class local_salprojluz_table_helper(
         data[BUILDING] = (salprojluz_data.get_building()?:"")
         data[DATAARAEID] = (salprojluz_data.get_dataaraeid()?:"")
         data[PERCENTEXC] = (salprojluz_data.get_percentexc()?:"")
+        data[RECID] = (salprojluz_data.get_recid()?:"")
+        data[RECVERSION] = (salprojluz_data.get_recversion()?:"")
         data[USERNAME] = remote_SQL_Helper.getusername()
         everything_to_add.addElement(data)
         return add_data(everything_to_add, false)
@@ -378,8 +403,9 @@ class local_salprojluz_table_helper(
         change_to[DATAARAEID] = (to.get_dataaraeid()?:"")
         change_to[USERNAME] = (to.get_username()?:"")
         change_to[PERCENTEXC] = (to.get_percentexc()?:"")
+        change_to[ID] = (to.get_projid()?:"")
 
-        return update_data(ID, arrayOf(from.get_projid()!!),change_to)
+        return update_data(RECID, arrayOf(from.get_recid()!!),change_to)
     }
 
     /**
@@ -394,7 +420,7 @@ class local_salprojluz_table_helper(
     {
         if ( get_salproj_by_salproj(salprojluz_data)==null )
             return false
-        return remove_from_db(ID, arrayOf((salprojluz_data.get_projid()?:"").trim()))
+        return remove_from_db(RECID, arrayOf((salprojluz_data.get_recid()?:"").trim()))
 
     }
 
@@ -404,5 +430,5 @@ class local_salprojluz_table_helper(
      * @param id the id that we want to filter by
      * @return the vendor itself if found, null otheerwise
      */
-    fun get_salproj_by_id(id:String):salprojluz_data? = get_salproj_by_salproj(salprojluz_data(id,"","",false,"","","","","","",""))
+    fun get_salproj_by_id(id:String):salprojluz_data? = get_salproj_by_salproj(salprojluz_data(id,"","",false,"","","","","","","","",""))
 }

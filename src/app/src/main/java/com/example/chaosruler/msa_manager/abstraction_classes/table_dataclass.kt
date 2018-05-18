@@ -22,4 +22,11 @@ interface table_dataclass {
      * @return a copy of this object represnetation
      */
     fun copy(): table_dataclass
+
+    /**
+     * to hashma
+     * @author Chaosruler972
+     * @return hashmap of this dataclass
+     */
+    fun to_hashmap(): HashMap<String, String>
 }

@@ -644,14 +644,14 @@ class offline_mode_service : Service(){
             async {
                 Log.d("load", "Started syncing projects")
                 global_variables_dataclass.db_project_vec = projects.get_local_DB()
-                Log.d("load", "${global_variables_dataclass.db_project_vec}")
+                Log.d("load", "${global_variables_dataclass.db_project_vec.size}")
                 done_syncing(mtx,done_count,max_count, lock, user, false)
             }.start()
 
             async {
                 Log.d("load", "Started syncing opr")
                 global_variables_dataclass.db_opr_vec = opr.get_local_DB()
-                Log.d("load", "${global_variables_dataclass.db_opr_vec}")
+                Log.d("load", "${global_variables_dataclass.db_opr_vec.size}")
                 done_syncing(mtx,done_count,max_count, lock, user, false)
 
             }.start()
@@ -659,7 +659,7 @@ class offline_mode_service : Service(){
             async {
                 Log.d("load", "Started syncing vendor")
                 global_variables_dataclass.db_vendor_vec = vendor.get_local_DB()
-                Log.d("load", "${global_variables_dataclass.db_vendor_vec}")
+                Log.d("load", "${global_variables_dataclass.db_vendor_vec.size}")
                 done_syncing(mtx,done_count,max_count, lock, user, false)
 
             }.start()
@@ -667,21 +667,21 @@ class offline_mode_service : Service(){
             async {
                 Log.d("load", "Started syncing big")
                 global_variables_dataclass.db_big_vec = big_table.get_local_DB()
-                Log.d("load", "${global_variables_dataclass.db_big_vec}")
+                Log.d("load", "${global_variables_dataclass.db_big_vec.size}")
                 done_syncing(mtx,done_count,max_count, lock, user, false)
             }.start()
 
             async {
                 Log.d("load", "Started syncing salproj")
                 global_variables_dataclass.db_salproj_vec = salproj_table.get_local_DB()
-                Log.d("load", "${global_variables_dataclass.db_salproj_vec}")
+                Log.d("load", "${global_variables_dataclass.db_salproj_vec.size}")
                 done_syncing(mtx, done_count, max_count, lock, user, false)
             }.start()
 
             async {
-                Log.d("load", "Started syncing salproj")
+                Log.d("load", "Started syncing salproj baka")
                 global_variables_dataclass.db_salprojtakala_vec = takala_table.get_local_DB()
-                Log.d("load", "salproj bakara ${global_variables_dataclass.db_salprojtakala_vec}")
+                Log.d("load", "salproj bakara ${global_variables_dataclass.db_salprojtakala_vec.size}")
                 done_syncing(mtx,done_count,max_count, lock, user, false)
             }.start()
 

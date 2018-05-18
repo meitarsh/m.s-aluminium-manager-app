@@ -22,4 +22,4 @@ com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.tabl
 com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_vendors_edit
 com.example.chaosruler.msa_manager.object_types
 com.example.chaosruler.msa_manager.services
-com.example.chaosruler.msa_manager.services.VPN_google_toyVPN
+com.example.chaosruler.msa_manager.services.deprected_vpn_packages.VPN_google_toyVPN

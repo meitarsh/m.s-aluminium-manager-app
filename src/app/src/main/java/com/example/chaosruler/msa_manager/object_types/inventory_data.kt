@@ -1,5 +1,6 @@
 package com.example.chaosruler.msa_manager.object_types
 
+import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 
 /**
@@ -122,4 +123,12 @@ class inventory_data(
      * @author Chaosruler972
      */
     override fun copy(): inventory_data = inventory_data(this.ID, this.NAME, this.DATAAREAID, this.USERNAME)
+
+    override fun to_hashmap(): HashMap<String, String> {
+        val map = HashMap<String, String>()
+        map[remote_inventory_table_helper.ID] = ID?:""
+        map[remote_inventory_table_helper.DATAAREAID] = DATAAREAID?:""
+        map[remote_inventory_table_helper.NAME] = NAME?:""
+        return map
+    }
 }

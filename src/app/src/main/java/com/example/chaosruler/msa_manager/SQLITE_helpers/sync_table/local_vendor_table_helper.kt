@@ -74,7 +74,7 @@ class local_vendor_table_helper(
      */
     override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "TEXT primary key"
+        map[ID] = "TEXT "
         map[NAME] = "TEXT"
         map[USER] = "TEXT"
         map[DATAARAEID] = "TEXT"
@@ -258,11 +258,11 @@ class local_vendor_table_helper(
     fun add_vendor(vendor_data: vendor_data) // subroutine that manages the vendor adding operation to the database
             : Boolean
     {
-        return if (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
-                check_vendor( vendor_data)) // checks if vendor exists in database
-            update_vendor(vendor_data,vendor_data.copy()) // if it does, lets update
-        else // if it doesn't lets create a new entry for the vendor
-            insert_vendor(vendor_data)
+        val res = (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
+                update_vendor(vendor_data,vendor_data.copy())) // checks if vendor exists in database
+        if (!res)
+                return insert_vendor(vendor_data)
+        return res
     }
 
     /**

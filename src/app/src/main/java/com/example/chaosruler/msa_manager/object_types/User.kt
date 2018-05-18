@@ -2,6 +2,7 @@ package com.example.chaosruler.msa_manager.object_types
 
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import java.util.*
+import kotlin.collections.HashMap
 
 @Suppress("unused")
 /**
@@ -105,4 +106,8 @@ class User(
      * @author Chaosruler972
      */
     override fun copy(): User = User(this.__username, this.__password, this.__synctime)
+
+    override fun to_hashmap(): HashMap<String, String> {
+        return HashMap()
+    }
 }

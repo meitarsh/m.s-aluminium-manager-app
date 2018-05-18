@@ -178,6 +178,12 @@
     <string name="TABLE_SALPROJLUZ_DATAAREAID">DATAAREAID</string>
     <string name="TABLE_SALPROJLUZ_DATAAREAID_TYPE">nvarchar</string>
 
+    <string name="TABLE_SALPROJLUZ_RECID">RECID</string>
+    <string name="TABLE_SALPROJLUZ_RECID_TYPE">bigint</string>
+
+    <string name="TABLE_SALPROJLUZ_RECVERSION">RECVERSION</string>
+    <string name="TABLE_SALPROJLUZ_RECVERSION_TYPE">int</string>
+
     <!-- Table Salprojbakara -->
     <string name="TABLE_SALPROJBAKARA_PROJID">PROJID</string>
     <string name="TABLE_SALPROJBAKARA_PROJID_TYPE">nvarchar</string>

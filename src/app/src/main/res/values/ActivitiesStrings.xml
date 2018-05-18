@@ -158,7 +158,8 @@
     <string name="salproj_dataaraeid_label">DATAARAEID</string>
     <string name="salproj_projectid_label">קוד פרויקט</string>
     <string name="table_chooser_salproj_label">טבלת לוז</string>
-
+    <string name="table_salprojluz_recid_label">מזהה רכיב</string>
+    <string name="table_salprojluz_recversion_label">מזהה גרסא</string>
 
     <!-- Strings related to takala labels -->
     <string name="takala_edit_activity_projid_label">מספר פרויקט</string>
@@ -178,4 +179,5 @@
     <string name="takala_edit_activity_teeur_label">תיאור</string>
     <string name="takala_edit_activity_munaat_label">מונעת</string>
     <string name="table_chooser_takala_label">טבלת תקלות</string>
+
 </resources>

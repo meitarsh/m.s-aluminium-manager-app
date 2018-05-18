@@ -1,6 +1,7 @@
 package com.example.chaosruler.msa_manager.object_types
 
 import android.util.Log
+import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 
 /**
@@ -696,4 +697,28 @@ class big_table_data(
      * @author Chaosruler972
      */
     override fun copy(): big_table_data = big_table_data(get_VENDOR_ID(), get_DATAAREAID(), get_RECVERSION(), get_RECID(), get_PROJECT_ID(), get_INVENTORY_ID(), get_FLAT(), get_FLOOR(), get_QTY(), get_SALESPRICE(), get_OPRID(), get_MILESTONEPERCENT(), get_QTYFORACCOUNT(), get_PERCENTFORACCOUNT(), get_TOTALSUM(), get_SALPROG(), get_PRINTORDER(), get_ITEMNUMBER(), get_KOMANUM(), get_DIRANUM(), get_USERNAME(), get_QTYINPARTIALACC())
+
+    override fun to_hashmap(): HashMap<String, String> {
+        val map =  HashMap<String, String>()
+        map[remote_big_table_helper.VENDOR_ID] = VENDOR_ID?:""
+        map[remote_big_table_helper.FLAT] = FLAT?:""
+        map[remote_big_table_helper.INVENTORY_ID] = INVENTORY_ID?:""
+        map[remote_big_table_helper.PROJECTS_ID] = PROJECTS_ID?:""
+        map[remote_big_table_helper.RECID] = RECID?:""
+        map[remote_big_table_helper.RECVERSION] = RECVERSION?:""
+        map[remote_big_table_helper.DATAREAID] = DATAAREAID?:""
+        map[remote_big_table_helper.FLOOR] = FLOOR?:""
+        map[remote_big_table_helper.DIRANUM] = DIRANUM?:""
+        map[remote_big_table_helper.KOMANUM] = KOMANUM?:""
+        map[remote_big_table_helper.SALPROG] = SALPROG?:""
+        map[remote_big_table_helper.SALESPRICE] = SALESPRICE?:""
+        map[remote_big_table_helper.TOTALSUM] = TOTALSUM?:""
+        map[remote_big_table_helper.QTYINPARTIALACC] = QTYINPARTIALACC?:""
+        map[remote_big_table_helper.MILESTONEPERCENT] = MILESTONEPERCENT?:""
+        map[remote_big_table_helper.QTYFORACCOUNT] = QTYFORACCOUNT?:""
+        map[remote_big_table_helper.ITEMNUMBER] = ITEMNUMBER?:""
+        map[remote_big_table_helper.OPR_ID] = OPR_ID?:""
+        map[remote_big_table_helper.PRINTORDER] = PRINTORDER?:""
+        return map
+    }
 }

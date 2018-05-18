@@ -42,7 +42,8 @@
     <string name="LOCAL_SALPROJLUZ_COLUMN_PERCENTEXC">percentexc</string>
     <string name="LOCAL_SALPROJLUZ_COLUMN_DATAARAEID">dataaraeid</string>
     <string name="LOCAL_SALPROJLUZ_COLUMN_USERNAME">username</string>
-
+    <string name="LOCAL_SALPROJLUZ_COLUMN_RECID">recid</string>
+    <string name="LOCAL_SALPROJLUZ_COLUMN_RECVERSION">recversion</string>
 
     <!-- Local inventory table strings -->
     <string name="LOCAL_INVENTORY_TABLE_NAME">inventory</string>

@@ -133,13 +133,16 @@ class remote_inventory_table_helper
          */
         fun push_update(inventory: inventory_data, map: HashMap<String, String>, context: Context) {
             val typemap = define_type_map()
-            for(item in map) {
-                if((typemap[item.key] ?: "") == "text" || (typemap[item.key] ?: "") != "varchar" || (typemap[item.key] ?: "") != "nvarchar" )
-                    item.setValue("N"+remote_SQL_Helper.add_quotes(item.value))
-            }
+           normalize_hashmap(map, typemap)
             val where_clause: HashMap<String, String> = HashMap()
             where_clause[remote_inventory_table_helper.ID] = inventory.get_itemid() ?: ""
-            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_inventory_table_helper.DATABASE_NAME,remote_inventory_table_helper.TABLE_NAME,where_clause,"varchar",map)
+
+            val all_map = inventory.to_hashmap()
+            normalize_hashmap(all_map, typemap)
+            for(item in map)
+                all_map[item.key] = item.value
+
+            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_inventory_table_helper.DATABASE_NAME,remote_inventory_table_helper.TABLE_NAME,where_clause,"varchar", map, all_map)
             query = query.replace("'","&quote;")
             val str = offline_mode_service.general_push_command(query, remote_SQL_Helper.getusername())
             Toast.makeText(context,str, Toast.LENGTH_SHORT).show()

@@ -32,7 +32,7 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 import com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity
 import com.example.chaosruler.msa_manager.object_types.User
-import com.example.chaosruler.msa_manager.services.VPN_google_toyVPN.vpn_connection
+import com.example.chaosruler.msa_manager.services.deprected_vpn_packages.VPN_google_toyVPN.vpn_connection
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.services.themer

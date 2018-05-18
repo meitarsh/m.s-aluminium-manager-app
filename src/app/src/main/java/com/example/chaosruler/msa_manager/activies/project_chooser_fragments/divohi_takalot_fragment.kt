@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.activies.divohi_takalot_tofes_activity.DivohiTakalotTofesActivity
 import com.example.chaosruler.msa_manager.activies.flat_and_floor_chooser
 import com.example.chaosruler.msa_manager.activies.flat_chooser.flat_chooser
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
@@ -50,7 +51,7 @@ class divohi_takalot_fragment : Fragment() {
 
         form_btn.setOnClickListener {
             global_variables_dataclass.floor_moving_to = 1
-            startActivity(Intent(activity, flat_and_floor_chooser::class.java))
+            startActivity(Intent(activity, DivohiTakalotTofesActivity::class.java))
         }
         return tree_height
     }

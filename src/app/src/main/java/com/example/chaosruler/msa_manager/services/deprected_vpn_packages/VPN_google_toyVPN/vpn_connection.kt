@@ -1,6 +1,6 @@
 @file:Suppress("MemberVisibilityCanBePrivate", "DEPRECATION")
 
-package com.example.chaosruler.msa_manager.services.VPN_google_toyVPN
+package com.example.chaosruler.msa_manager.services.deprected_vpn_packages.VPN_google_toyVPN
 
 
 import android.app.Notification

@@ -32,7 +32,7 @@ class divohi_takalot_edit_arrayadapter(
          * @author Chaosruler972
          */
         private var context: Activity
-        , arr: Vector<big_table_data>) : ArrayAdapter<big_table_data>(context, R.layout.item_divohi_takalot_edit,arr.toTypedArray())
+        , arr: Vector<takala_data>) : ArrayAdapter<takala_data>(context, R.layout.item_divohi_takalot_edit,arr.toTypedArray())
 {
     /**
      * inflates a view and generates it, writes the data in it and initates logic on press and edit
@@ -56,7 +56,7 @@ class divohi_takalot_edit_arrayadapter(
         val sog_takala = themer.get_view(convertView, R.id.item_divohi_takalot_edit_sog_takala) as EditText
         val koma = themer.get_view(convertView, R.id.item_divohi_takalot_edit_koma) as EditText
         val bnian = themer.get_view(convertView, R.id.item_divohi_takalot_edit_bnian) as EditText
-        val dira = themer.get_view(convertView, R.id.item_divohi_takalot_edit_dira) as EditText
+//        val dira = themer.get_view(convertView, R.id.item_divohi_takalot_edit_dira) as EditText
         val tiaor_takala = themer.get_view(convertView, R.id.item_divohi_takalot_edit_tiaaor_takala) as EditText
         val peolot_ltikon = themer.get_view(convertView, R.id.item_divohi_takalot_edit_peolot_ltikon) as EditText
         val peolot_monoot = themer.get_view(convertView, R.id.item_divohi_takalot_edit_peolot_monoot) as EditText
@@ -74,7 +74,7 @@ class divohi_takalot_edit_arrayadapter(
         all_txtviews.add(sog_takala)
         all_txtviews.add(koma)
         all_txtviews.add(bnian)
-        all_txtviews.add(dira)
+//        all_txtviews.add(dira)
         all_txtviews.add(tiaor_takala)
         all_txtviews.add(peolot_ltikon)
         all_txtviews.add(peolot_monoot)
@@ -82,21 +82,13 @@ class divohi_takalot_edit_arrayadapter(
         all_txtviews.add(alot_takala)
 //        all_txtviews.addElement(upload_btn)
 
-        val big_item: big_table_data = getItem(position)
+        val takala_data: takala_data = getItem(position)
         val project_item: project_data = try {
-            global_variables_dataclass.db_project_vec.filter { it.getProjID()?:"" == big_item.get_PROJECT_ID()?:"" }[0]!!
+            global_variables_dataclass.db_project_vec.filter { it.getProjID()?:"" == takala_data.get_projid()?:"" }[0]!!
         }
         catch (e: IndexOutOfBoundsException)
         {
             project_data("","","","")
-        }
-        val takala_data: takala_data = try {
-            global_variables_dataclass.db_salprojtakala_vec.filter {
-                it.get_projid() ?: "" == big_item.get_PROJECT_ID() ?: ""
-                        && it.get_ITEMID() ?: "" == big_item.get_INVENTORY_ID() ?: ""
-            }[0]!!
-        } catch (e: IndexOutOfBoundsException) {
-            takala_data("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
         }
 //        val inventory: inventory_data = global_variables_dataclass.db_inv_vec.filter { it.get_itemid() == big_item.get_INVENTORY_ID() }[0]
 
@@ -108,20 +100,20 @@ class divohi_takalot_edit_arrayadapter(
 //        {
 //            opr_data("","","","")
 //        }
-        mispar_parit.hint = (big_item.get_ITEMNUMBER() ?: "").trim()
+        mispar_parit.hint = (takala_data.get_ITEMID() ?: "").trim()
         mispar_parit.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
         shem_parit.hint = (takala_data.get_ITEMTXT() ?: "").trim()
         mispar_project.hint = (project_item.getProjID() ?: "").trim()
         mispar_project.isEnabled = false
         shem_project.hint = (project_item.get_project_name() ?: "").trim()
-        kamot.hint = (big_item.get_QTY() ?: "").trim()
+        kamot.hint = (takala_data.get_QTY() ?: "").trim()
         kamot.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
         sog_takala.hint = (takala_data.get_SUG() ?: "").trim()
         sog_takala.isEnabled = false
-        koma.hint = (big_item.get_FLOOR() ?: "").trim()
-        bnian.hint = (big_item.get_FLAT() ?: "").trim()
-        dira.hint = (big_item.get_FLAT() ?: "").trim()
-        dira.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
+        koma.hint = (takala_data.get_KOMA() ?: "").trim()
+        bnian.hint = (takala_data.get_BINYAN() ?: "").trim()
+//        dira.hint = (big_item.get_FLAT() ?: "").trim()
+//        dira.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
         tiaor_takala.hint = (takala_data.get_TEUR() ?: "").trim()
         tiaor_takala.isEnabled = false
         peolot_ltikon.hint = (takala_data.get_MUMLATZ() ?: "").trim()
@@ -130,7 +122,7 @@ class divohi_takalot_edit_arrayadapter(
         peolot_monoot.isEnabled = false
         tgovat_mnaal.hint = (takala_data.get_TGUVA() ?: "").trim()
         tgovat_mnaal.isEnabled = false
-        alot_takala.hint = (big_item.get_TOTALSUM() ?: "").trim()
+        alot_takala.hint = (takala_data.get_ALUT() ?: "").trim()
         alot_takala.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
 
 //        upload_btn.text= context.getString(R.string.divohi_takalot_upload)
@@ -143,10 +135,10 @@ class divohi_takalot_edit_arrayadapter(
             Thread({
                 Looper.prepare()
                 val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_big_table_helper.ITEMNUMBER] = str
-                remote_big_table_helper.push_update(big_item, update_value, context)
-                big_item.set_FLAT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                update_value[remote_takala_table_helper.ITEMID] = str
+                remote_takala_table_helper.push_update(takala_data, update_value, context)
+                takala_data.set_BINYAN(str)
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
                 themer.hideKeyboard(context,mispar_parit)
             }).start()
             mispar_parit.hint = str.trim()
@@ -194,10 +186,10 @@ class divohi_takalot_edit_arrayadapter(
             Thread({
                 Looper.prepare()
                 val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_big_table_helper.QTY] = str
-                remote_big_table_helper.push_update(big_item, update_value, context)
-                big_item.set_QTY(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                update_value[remote_takala_table_helper.QTY] = str
+                remote_takala_table_helper.push_update(takala_data, update_value, context)
+                takala_data.set_QTY(str)
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
                 themer.hideKeyboard(context, kamot)
             }).start()
             kamot.hint = str.trim()
@@ -212,33 +204,33 @@ class divohi_takalot_edit_arrayadapter(
             Thread({
                 Looper.prepare()
                 val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_big_table_helper.FLOOR] = str
-                remote_big_table_helper.push_update(big_item, update_value, context)
-                big_item.set_FLOOR(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                update_value[remote_takala_table_helper.KOMA] = str
+                remote_takala_table_helper.push_update(takala_data, update_value, context)
+                takala_data.set_KOMA(str)
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
                 themer.hideKeyboard(context, koma)
             }).start()
             koma.hint = str.trim()
             koma.text.clear()
         }
 
-        dira.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (hasFocus || dira.text.isEmpty())
+        bnian.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus || bnian.text.isEmpty())
                 return@OnFocusChangeListener
-            val str = dira.text.toString()
+            val str = bnian.text.toString()
             Thread({
                 Looper.prepare()
                 val update_value: HashMap<String, String> = HashMap()
-                update_value[remote_big_table_helper.FLAT] = str
-                remote_big_table_helper.push_update(big_item, update_value, context)
-                big_item.set_FLAT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                themer.hideKeyboard(context, dira)
+                update_value[remote_takala_table_helper.BINYAN] = str
+                remote_takala_table_helper.push_update(takala_data, update_value, context)
+                takala_data.set_BINYAN(str)
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
+                themer.hideKeyboard(context, bnian)
             }).start()
-            dira.hint = str.trim()
-            dira.text.clear()
+            bnian.hint = str.trim()
+            bnian.text.clear()
         }
-//
+
 
         alot_takala.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if(hasFocus || alot_takala.text.isEmpty() )

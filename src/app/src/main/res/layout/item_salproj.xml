@@ -132,6 +132,32 @@
         android:lines="1"
         tools:ignore="LabelFor,TextFields" />
 
+    <TextView
+        android:id="@+id/item_salproj_recid"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
+
+    <TextView
+        android:id="@+id/item_salproj_recversion"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/small_margin_cells"
+        android:layout_marginStart="@dimen/small_margin_cells"
+        android:layout_weight="1"
+        android:background="@drawable/cell_shape"
+        android:gravity="center"
+        android:lines="1"
+        tools:ignore="LabelFor,TextFields" />
+
 
 
 

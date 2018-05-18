@@ -127,10 +127,32 @@ class remote_salprojluz_table_helper
          */
         var DATAAREAID: String = ""
         /**
-         * Dataaraeid field type
+         * Dataaraeid type
          * @author Chaosruler972
          */
         var DATAAREAID_TYPE: String = ""
+        /**
+         * Record id
+         * @author Chaosruler972
+         */
+        var RECID: String = ""
+        /**
+         * RECID type
+         * @author Chaosruler972
+         */
+        var RECID_TYPE: String = ""
+        /**
+         * RECVERSION
+         * @author Chaosruler972
+         */
+        var RECVERION: String= ""
+        /**
+         * Recversion TYPE
+         * @author Chaosruler972
+         */
+        var RECVERSION_TYPE: String = ""
+
+
 
 
         /**
@@ -171,6 +193,13 @@ class remote_salprojluz_table_helper
 
             PERCENTEXC = context.getString(R.string.TABLE_SALPROJLUZ_PERCENTEXC)
             PERCENTEXC_TYPE = context.getString(R.string.TABLE_SALPROJLUZ_PERCENTEXC_TYPE)
+
+            RECID = context.getString(R.string.TABLE_SALPROJLUZ_RECID)
+            RECID_TYPE = context.getString(R.string.TABLE_SALPROJLUZ_RECID_TYPE)
+
+            RECVERION = context.getString(R.string.TABLE_SALPROJLUZ_RECVERSION)
+            RECVERSION_TYPE = context.getString(R.string.TABLE_SALPROJLUZ_RECVERSION_TYPE)
+
         }
         /**
          * Defines table typemap
@@ -189,6 +218,8 @@ class remote_salprojluz_table_helper
             hashmap[KOMA] = KOMA_TYPE
             hashmap[BUILDING] = BUILDING_TYPE
             hashmap[PERCENTEXC] = PERCENTEXC_TYPE
+            hashmap[RECID] = RECID_TYPE
+            hashmap[RECVERION] = RECVERSION_TYPE
             return hashmap
         }
 
@@ -203,19 +234,15 @@ class remote_salprojluz_table_helper
         fun push_update(salprojluz_data: salprojluz_data, map: HashMap<String, String>, context: Context)
         {
             val typemap = remote_salprojluz_table_helper.define_type_map()
-            for(item in map)
-            {
-                if((typemap[item.key] ?: "") == "text" || (typemap[item.key] ?: "") != "varchar" || (typemap[item.key] ?: "") != "nvarchar"  )
-                    item.setValue("N"+ remote_SQL_Helper.add_quotes(item.value))
-                else if((typemap[item.key]?:"") == "datetime")
-                {
-                    item.setValue("dateadd(s,${item.value.toLong()/1000},'19700101 05:00:00:000')")
-                }
-            }
+            normalize_hashmap(map, typemap)
             val where_clause: HashMap<String, String> = HashMap()
-            where_clause[remote_salprojluz_table_helper.ID] = (salprojluz_data.get_projid()
+            where_clause[remote_salprojluz_table_helper.RECID] = (salprojluz_data.get_recid()
                     ?: "").trim()
-            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_salprojluz_table_helper.DATABASE_NAME,remote_salprojluz_table_helper.TABLE_NAME,where_clause,"varchar",map)
+            val all_map = salprojluz_data.to_hashmap()
+            normalize_hashmap(all_map, typemap)
+            for(item in map)
+                all_map[item.key] = item.value
+            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_salprojluz_table_helper.DATABASE_NAME,remote_salprojluz_table_helper.TABLE_NAME,where_clause,"varchar",map, all_map)
             query = query.replace("'","&quote;")
             val str = offline_mode_service.general_push_command(query, remote_SQL_Helper.getusername())
             Toast.makeText(context,str, Toast.LENGTH_SHORT).show()
