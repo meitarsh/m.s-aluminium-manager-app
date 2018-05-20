@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.activies.divohi_takalot_new_takala_activity.NewTakala
 import com.example.chaosruler.msa_manager.activies.divohi_takalot_tofes_activity.DivohiTakalotTofesActivity
 import com.example.chaosruler.msa_manager.activies.flat_and_floor_chooser
 import com.example.chaosruler.msa_manager.activies.flat_chooser.flat_chooser
@@ -41,6 +42,8 @@ class divohi_takalot_fragment : Fragment() {
         // Inflate the layout for this fragment
         val tree_height = inflater.inflate(R.layout.fragment_divohi_takalot_fragment, container, false)
 
+        val add_btn = themer.get_view(tree_height, R.id.frag_divohi_takalot_add_new)
+
         val edit_btn = themer.get_view(tree_height, R.id.frag_divohi_takalot_edit)
 
         val form_btn = themer.get_view(tree_height, R.id.frag_divohi_takalot_form)
@@ -53,6 +56,11 @@ class divohi_takalot_fragment : Fragment() {
             global_variables_dataclass.floor_moving_to = 1
             startActivity(Intent(activity, DivohiTakalotTofesActivity::class.java))
         }
+
+        add_btn.setOnClickListener {
+            startActivity(Intent(activity, NewTakala::class.java))
+        }
+
         return tree_height
     }
 

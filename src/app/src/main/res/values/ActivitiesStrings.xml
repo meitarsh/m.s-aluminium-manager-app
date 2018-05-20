@@ -180,4 +180,18 @@
     <string name="takala_edit_activity_munaat_label">מונעת</string>
     <string name="table_chooser_takala_label">טבלת תקלות</string>
 
+
+    <!-- Strings related to new takala labels -->
+    <string name="new_takala_projid_label">שם הפרויקט</string>
+    <string name="new_takala_itemid">מספר מוצר</string>
+    <string name="new_takala_teeur_label">תיאור התקלה</string>
+    <string name="new_takala_tguva">תגובה</string>
+    <string name="_0">0</string>
+    <string name="new_takala_kamut_lable">כמות</string>
+    <string name="new_takala_alut_label">עלות</string>
+    <string name="new_takala_send_label">שלח</string>
+    <string name="add_new_takala_label">הוספת תקלה חדשה</string>
+    <string name="takala_nosfa_success">תקלה נוספה בהצלחה</string>
+
+
 </resources>

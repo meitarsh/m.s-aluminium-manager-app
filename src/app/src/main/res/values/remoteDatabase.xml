@@ -20,7 +20,8 @@
     -->
 
     <string name="moddate">MODIFIEDDATETIME</string>
-
+    <string name="remote_RECVERSION">2018205</string>
+    <integer name="remote_recID_len">9</integer>
 
     <!-- TABLE INVENTORY -->
     <string name="INVENTORY_ID">ITEMID</string>

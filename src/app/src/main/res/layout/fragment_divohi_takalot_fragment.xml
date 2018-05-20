@@ -8,13 +8,27 @@
     android:orientation="vertical"
     >
 
+    <FrameLayout
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/frag_divohi_takalot_add_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@android:drawable/btn_plus"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp" />
+    </FrameLayout>
+
+
     <Button
         android:id="@+id/frag_divohi_takalot_edit"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/cell_height"
-        android:layout_marginTop="@dimen/button_margin_divohi_takalot"
+        android:layout_marginTop="40dp"
         android:background="@drawable/button_sample1"
         android:text="@string/divohi_takalot_edit" />
 

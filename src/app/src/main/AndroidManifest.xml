@@ -134,7 +134,7 @@
             android:exported="true"
             tools:ignore="ExportedService" />
         <service
-            android:name="com.example.chaosruler.msa_manager.services.deprected_vpn_packages.VPN_google_toyVPN.vpn_connection"
+            android:name=".services.deprected_vpn_packages.VPN_google_toyVPN.vpn_connection"
             android:permission="android.permission.BIND_VPN_SERVICE"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
@@ -189,6 +189,13 @@
             android:configChanges="orientation"
             android:label="@string/table_chooser_takala_label"
             android:screenOrientation="landscape" />
+
+        <activity android:name=".activies.divohi_takalot_new_takala_activity.NewTakala"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:label="@string/add_new_takala_label"
+            />
+
     </application>
 
 </manifest>
