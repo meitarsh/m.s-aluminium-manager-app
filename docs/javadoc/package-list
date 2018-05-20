@@ -5,6 +5,7 @@ com.example.chaosruler.msa_manager.abstraction_classes
 com.example.chaosruler.msa_manager.activies
 com.example.chaosruler.msa_manager.activies.KablanMforat
 com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity
+com.example.chaosruler.msa_manager.activies.divohi_takalot_new_takala_activity
 com.example.chaosruler.msa_manager.activies.divohi_takalot_tofes_activity
 com.example.chaosruler.msa_manager.activies.flat_chooser
 com.example.chaosruler.msa_manager.activies.floor_chooser
