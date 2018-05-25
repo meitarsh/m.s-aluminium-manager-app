@@ -281,7 +281,7 @@ class salprojluz_data(
      */
     fun get_percentexc() =
             try {
-                (PERCENTEXC!!.toDouble()*100).toInt().toString()
+                (PERCENTEXC!!.toDouble()).toInt().toString()
             }
             catch (e: Exception)
             {

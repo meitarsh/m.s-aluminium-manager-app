@@ -38,29 +38,33 @@
 
 
     <!--mispar mozar -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
         android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
         >
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/activity_kablan_mforat_mispar_mozar_label" />
 
-
-        <TextView
+        <Spinner
             android:id="@+id/activity_kablan_mforat_mispar_mozar"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
+            android:layout_weight="2" />
 
     </LinearLayout>
+
 
     <!--kamot hoza -->
     <LinearLayout

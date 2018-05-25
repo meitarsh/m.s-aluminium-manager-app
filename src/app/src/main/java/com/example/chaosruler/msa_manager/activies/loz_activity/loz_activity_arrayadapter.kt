@@ -15,6 +15,7 @@ import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.object_types.salprojluz_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -89,6 +90,7 @@ class loz_activity_arrayadapter (context: Context, arr: Vector<salprojluz_data>)
     private fun stringToDateString(string: String) : String
     {
         val d = Date(string.toLong())
-        return d.toString()
+        val fmtOut = SimpleDateFormat("dd-MM-yyyy")
+        return fmtOut.format(d)
     }
 }

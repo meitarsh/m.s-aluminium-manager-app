@@ -1,6 +1,7 @@
 package com.example.chaosruler.msa_manager.activies.KablanMforat
 
 import android.content.Context
+import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -17,13 +18,9 @@ class KablanArrayAdapter(context: Context, resource_id: Int, list: List<big_tabl
 {
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val textView = TextView(context)
-        val vendor_data : vendor_data = try {
-            global_variables_dataclass.db_vendor_vec.filter { it.get_accountnum() == this.getItem(position).get_VENDOR_ID() }[0]!!
-        }
-        catch (e: Exception) {
-            vendor_data("", "", "", "")
-        }
-        textView.text = vendor_data.get_accountname() ?: ""
+        val big_table_data = getItem(position)
+        textView.text = big_table_data.get_INVENTORY_ID() ?: ""
+        textView.setTextColor(Color.BLACK)
         return textView
     }
 }
