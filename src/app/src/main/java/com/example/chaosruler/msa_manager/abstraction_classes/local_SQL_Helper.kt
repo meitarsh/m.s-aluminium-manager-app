@@ -235,7 +235,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             val start = Date().time;
             try
             {
-                c = db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
+                c = db.rawQuery("SELECT DISTINCT * FROM " + TABLE_NAME, null)
                 c.moveToFirst()
                 val end_qry = Date().time
                 Log.d("SQL", "QUERIED $TABLE_NAME for ${end_qry-start} ms")
@@ -469,7 +469,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
         val sync_token = Object()
         //to not hang the ui
         Thread({
-            var sql_query = "SELECT * FROM $TABLE_NAME WHERE"
+            var sql_query = "SELECT DISTINCT * FROM $TABLE_NAME WHERE"
             var breaker = 0
             val where_args:Vector<String> = Vector()
             var where_clause = ""

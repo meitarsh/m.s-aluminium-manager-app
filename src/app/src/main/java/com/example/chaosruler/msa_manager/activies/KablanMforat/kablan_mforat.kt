@@ -99,6 +99,7 @@ class kablan_mforat : Activity() {
                 // var txtview:TextView = view as TextView
                 //  txtview.text = vendor_item.get_accountname()
                 (view as TextView).text = vendor_data.get_accountname() ?: ""
+                activity_kablan_mforat_mispar_mozar.text = (big_item.get_INVENTORY_ID() ?: "0").trim()
                 activity_kablan_mforat_kamot_hoza.text = (big_item.get_QTY() ?: "0").trim()
                 activity_kablan_mforat_yehida_price.text = (big_item.get_SALESPRICE() ?: "0").trim()
                 activity_kablan_mforat_peola_percent.text = ((peola_parcent.toDouble()).toInt().toString() + "%").trim()

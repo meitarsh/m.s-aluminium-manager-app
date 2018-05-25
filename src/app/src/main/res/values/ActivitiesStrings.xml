@@ -82,6 +82,7 @@
     <string name="kablan_mforat_ahoz_meosher_txt">אחוז מאושר</string>
     <string name="kablan_mforat_saah_tashlom_txt">סהכ לתשלום</string>
     <string name="kablan_mforat_saah_hakol_txt">סהכ כל הפרויקטים</string>
+    <string name="activity_kablan_mforat_mispar_mozar_label">מספר מוצר</string>
 
 
     <!-- Strings related to loz activity -->

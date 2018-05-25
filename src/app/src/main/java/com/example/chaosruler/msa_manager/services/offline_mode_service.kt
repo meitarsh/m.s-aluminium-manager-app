@@ -194,7 +194,7 @@ class offline_mode_service : Service(){
          * @param string the string that appears on the notification
          */
         @SuppressLint("PrivateResource")
-        fun build_small_notification(string: String, use_prefix: Boolean = true) {
+        private fun build_small_notification(string: String, use_prefix: Boolean = true) {
             val send_notification = PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(ctx.getString(R.string.notification),true)
             if (!send_notification)
                 return
@@ -576,7 +576,7 @@ class offline_mode_service : Service(){
             Log.d("db_sync", "Checking for completeness, num is ${count[0]}, max is $maxCount for $is_sync on synced")
             if (count[0] == maxCount) {
                 if(is_sync) {
-                    build_small_notification(ctx.getString(R.string.notificatoin_syncing_done), false)
+//                    build_small_notification(ctx.getString(R.string.notificatoin_syncing_done), false)
                     user.set_last_sync_time(Date().time)
                     remote_SQL_Helper.user = user
                     global_variables_dataclass.DB_USERS!!.update_user(user.get__username(), user.get__password(), user.get_last_sync_time().time)
