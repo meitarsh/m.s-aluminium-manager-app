@@ -62,7 +62,7 @@ class kablan_mforat : Activity() {
                     if(global_variables_dataclass.GUI_MODE)
                         Vector()
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                        Vector(global_variables_dataclass.db_big_vec.filter { it.get_PROJECT_ID() == global_variables_dataclass.projid  && it.get_FLOOR() == global_variables_dataclass.floor && it.get_FLAT() == global_variables_dataclass.flat && it.get_QTYFORACCOUNT()?.toDouble()!! <= it.get_QTY()?.toDouble()!! && it.get_PERCENTFORACCOUNT()?.toDouble()!! <= it.get_MILESTONEPERCENT()?.toDouble()!!})
+                        Vector(global_variables_dataclass.db_big_vec.filter { it.get_PROJECT_ID() == global_variables_dataclass.projid  && it.get_FLOOR() == global_variables_dataclass.floor && it.get_FLAT() == global_variables_dataclass.flat})
                     else
                         Vector(global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim()).filter { it.get_FLAT() == global_variables_dataclass.flat && it.get_FLOOR() == global_variables_dataclass.floor })
             big_table.sort()
@@ -154,6 +154,12 @@ class kablan_mforat : Activity() {
                     if(hasFocus || activity_kablan_mforat_kamot_kablan.text.isEmpty())
                         return@OnFocusChangeListener
                     val str = activity_kablan_mforat_kamot_kablan.text.toString()
+                    if(big_item.get_QTY() != null && big_item.get_QTY()!!.toInt() < str.toInt() )
+                    {
+                        activity_kablan_mforat_kamot_kablan.text.clear()
+                        Log.d("kablan_mforat","op cancelled")
+                        return@OnFocusChangeListener
+                    }
                     Thread({
                         Looper.prepare()
                         val update_value: HashMap<String, String> = HashMap()
@@ -179,12 +185,18 @@ class kablan_mforat : Activity() {
                     if(hasFocus || activity_kablan_mforat_ahoz_meosher.text.isEmpty())
                         return@OnFocusChangeListener
                     val str = activity_kablan_mforat_ahoz_meosher.text.toString()
+                    if(big_item.get_MILESTONEPERCENT()!=null && big_item.get_MILESTONEPERCENT()!!.toInt() < str.toInt())
+                    {
+                        activity_kablan_mforat_ahoz_meosher.text.clear()
+                        Log.d("kablan_mforat","op cancelled")
+                        return@OnFocusChangeListener
+                    }
                     Thread({
                         Looper.prepare()
                         val update_value: HashMap<String, String> = HashMap()
-                        update_value[remote_big_table_helper.MILESTONEPERCENT] = str
+                        update_value[remote_big_table_helper.PERCENTFORACCOUNT] = str
                         remote_big_table_helper.push_update(big_item, update_value, baseContext)
-                        big_item.set_MILESTONEPERCENT(str)
+                        big_item.set_PERCENTFORACCOUNT(str)
                         global_variables_dataclass.DB_BIG!!.add_big(big_item)
                         themer.hideKeyboard(baseContext,activity_kablan_mforat_ahoz_meosher)
                         Thread { compute_saah_hakol(big_table) }.run()
