@@ -193,6 +193,7 @@
     <string name="new_takala_send_label">שלח</string>
     <string name="add_new_takala_label">הוספת תקלה חדשה</string>
     <string name="takala_nosfa_success">תקלה נוספה בהצלחה</string>
+    <string name="add_new_takala_menu_lable">הוסף תקלה חדשה</string>
 
 
 </resources>

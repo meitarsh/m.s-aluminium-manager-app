@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -18,13 +20,18 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.divohi_takalot_edit.*
 import java.io.File
 import java.util.*
+import android.view.MenuInflater
+import android.view.MenuItem
+import com.example.chaosruler.msa_manager.activies.MainActivity
+import com.example.chaosruler.msa_manager.activies.divohi_takalot_new_takala_activity.NewTakala
+
 
 /**
  *  the divohi takalot (edit type) activity logic class
  *  @author Chaosruler972
  *  @constructor as a activity class, this is a default constructor
  */
-class divohi_takalot_edit : Activity() {
+class divohi_takalot_edit : AppCompatActivity() {
 
     /**
      * part of the android activity lifecycle
@@ -39,10 +46,40 @@ class divohi_takalot_edit : Activity() {
         setContentView(R.layout.divohi_takalot_edit)
         if(!global_variables_dataclass.GUI_MODE && !init_table())
             finish()
-
-
     }
 
+    /**
+     * Inits a menu on this activity
+     * @author Chaosruler972
+     * @param menu the menu to inflate
+     * @return on success
+     */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean
+    {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.takalot_edit_menu, menu)
+        return true
+    }
+
+    /**
+     * Selects a menu item
+     * @author Chaosruler972
+     * @param item the item selected
+     * @return on success
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.add_new_takala -> {
+                val aboutIntent = Intent(this@divohi_takalot_edit, NewTakala::class.java)
+                startActivity(aboutIntent)
+            }
+            else ->
+            {
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     /**
      * inits the table of the activity by getting the list of data (from server or client) and

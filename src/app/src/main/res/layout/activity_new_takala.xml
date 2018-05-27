@@ -31,7 +31,7 @@
         android:id="@+id/new_takala_itemid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="384dp"
+        android:layout_marginBottom="396dp"
         android:ems="10"
         android:hint="@string/new_takala_itemid"
         android:inputType="text"
@@ -44,7 +44,7 @@
         android:id="@+id/new_takala_teeur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="308dp"
+        android:layout_marginBottom="332dp"
         android:ems="10"
         android:hint="@string/new_takala_teeur_label"
         android:inputType="text"
@@ -57,7 +57,7 @@
         android:id="@+id/new_takala_mumlatz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="232dp"
+        android:layout_marginBottom="276dp"
         android:ems="10"
         android:hint="@string/new_takala_mumlatz_label"
         android:inputType="text"
@@ -70,7 +70,7 @@
         android:id="@+id/new_takala_tgova"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="164dp"
+        android:layout_marginBottom="208dp"
         android:ems="10"
         android:hint="@string/new_takala_tguva"
         android:inputType="text"
@@ -91,7 +91,7 @@
         app:layout_constraintHorizontal_bias="0.319"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_takala_tgova"
-        app:layout_constraintVertical_bias="0.547"
+        app:layout_constraintVertical_bias="0.366"
         tools:ignore="LabelFor" />
 
     <TextView
@@ -105,7 +105,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/new_takala_kamot"
         app:layout_constraintTop_toBottomOf="@+id/new_takala_tgova"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintVertical_bias="0.058" />
 
     <TextView
         android:id="@+id/textView3"
@@ -115,10 +115,10 @@
         android:text="@string/new_takala_alut_label"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/new_takala_alut"
         app:layout_constraintTop_toBottomOf="@+id/new_takala_tgova"
-        app:layout_constraintVertical_bias="0.562" />
+        app:layout_constraintVertical_bias="0.351" />
 
     <EditText
         android:id="@+id/new_takala_kamot"
@@ -144,8 +144,8 @@
         android:text="@string/new_takala_send_label"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_takala_alut" />
+        app:layout_constraintTop_toBottomOf="@+id/new_takala_alut"
+        app:layout_constraintVertical_bias="0.698" />
 
 </android.support.constraint.ConstraintLayout>

@@ -16,6 +16,7 @@ import com.example.chaosruler.msa_manager.object_types.vendor_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_kablan_mforat.*
+import org.jetbrains.anko.runOnUiThread
 import java.util.*
 import kotlin.collections.HashMap
 import kotlin.math.roundToInt
@@ -61,7 +62,7 @@ class kablan_mforat : Activity() {
                     if(global_variables_dataclass.GUI_MODE)
                         Vector()
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                        Vector(global_variables_dataclass.db_big_vec.filter { it.get_PROJECT_ID() == global_variables_dataclass.projid  && it.get_FLOOR() == global_variables_dataclass.floor && it.get_FLAT() == global_variables_dataclass.flat})
+                        Vector(global_variables_dataclass.db_big_vec.filter { it.get_PROJECT_ID() == global_variables_dataclass.projid  && it.get_FLOOR() == global_variables_dataclass.floor && it.get_FLAT() == global_variables_dataclass.flat && it.get_QTYFORACCOUNT()?.toDouble()!! <= it.get_QTY()?.toDouble()!! && it.get_PERCENTFORACCOUNT()?.toDouble()!! <= it.get_MILESTONEPERCENT()?.toDouble()!!})
                     else
                         Vector(global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim()).filter { it.get_FLAT() == global_variables_dataclass.flat && it.get_FLOOR() == global_variables_dataclass.floor })
             big_table.sort()
@@ -113,7 +114,6 @@ class kablan_mforat : Activity() {
             {
                 // upon Spinner selecting a user, update the other fields
                 val big_item:big_table_data = activity_kablan_mforat_mispar_mozar.adapter.getItem(position) as big_table_data
-
                 val peola_parcent: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
                 val milestone_parcent: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
                 (view as TextView).text = big_item.get_INVENTORY_ID() ?: ""
@@ -128,8 +128,8 @@ class kablan_mforat : Activity() {
                 activity_kablan_mforat_ahoz_meosher.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 val price = (big_item.get_SALESPRICE() ?: "0").toDouble()
                 val count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
-                val parcent = milestone_parcent.toDouble() / 100
-                activity_kablan_mforat_tashlom_sah.text = (price*count*parcent).roundToInt().toString().trim()
+                val parcent = peola_parcent.toDouble()
+                activity_kablan_mforat_tashlom_sah.text = (price*count*parcent*0.01).roundToInt().toString().trim()
 
                 activity_kablan_mforat_kamot_helki.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_kamot_helki.text.isEmpty() )
@@ -138,12 +138,13 @@ class kablan_mforat : Activity() {
                     Thread({
                         Looper.prepare()
                         val update_value: HashMap<String, String> = HashMap()
-                        update_value[remote_big_table_helper.QTYFORACCOUNT] = str
+                        update_value[remote_big_table_helper.QTYINPARTIALACC] = str
                         remote_big_table_helper.push_update(big_item, update_value, baseContext)
-                        big_item.set_QTYFORACCOUNT(str)
+                        big_item.set_QTYINPARTIALACC(str)
                         global_variables_dataclass.DB_BIG!!.add_big(big_item)
                         themer.hideKeyboard(baseContext,activity_kablan_mforat_kamot_helki)
                         Thread { compute_saah_hakol(big_table) }.run()
+
                     }).start()
                     activity_kablan_mforat_kamot_helki.hint = str.trim()
                     activity_kablan_mforat_kamot_helki.text.clear()
@@ -162,6 +163,13 @@ class kablan_mforat : Activity() {
                         global_variables_dataclass.DB_BIG!!.add_big(big_item)
                         themer.hideKeyboard(baseContext,activity_kablan_mforat_kamot_kablan)
                         Thread { compute_saah_hakol(big_table) }.run()
+                        runOnUiThread {
+                            val peola_parcent_local: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
+                            val price_local = (big_item.get_SALESPRICE() ?: "0").toDouble()
+                            val count_local = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
+                            val parcent_local = peola_parcent_local.toDouble()
+                            activity_kablan_mforat_tashlom_sah.text = (price_local*count_local*parcent_local*0.01).roundToInt().toString().trim()
+                        }
                     }).start()
                     activity_kablan_mforat_kamot_kablan.hint = str.trim()
                     activity_kablan_mforat_kamot_kablan.text.clear()
@@ -174,9 +182,9 @@ class kablan_mforat : Activity() {
                     Thread({
                         Looper.prepare()
                         val update_value: HashMap<String, String> = HashMap()
-                        update_value[remote_big_table_helper.PERCENTFORACCOUNT] = str
+                        update_value[remote_big_table_helper.MILESTONEPERCENT] = str
                         remote_big_table_helper.push_update(big_item, update_value, baseContext)
-                        big_item.set_PERCENTFORACCOUNT(str)
+                        big_item.set_MILESTONEPERCENT(str)
                         global_variables_dataclass.DB_BIG!!.add_big(big_item)
                         themer.hideKeyboard(baseContext,activity_kablan_mforat_ahoz_meosher)
                         Thread { compute_saah_hakol(big_table) }.run()
@@ -259,8 +267,8 @@ class kablan_mforat : Activity() {
                 var current_price = (big_item.get_SALESPRICE() ?: "0").toDouble()
                 val count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
                 val milestone_parcent: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
-                val parcent = milestone_parcent.toDouble() / 100
-                current_price *= count * parcent
+                val parcent = milestone_parcent.toDouble()
+                current_price *= count * parcent*0.01
                 Log.d("Kablan", current_price.toString() + "," + count.toString() + "," + milestone_parcent.toString() + "," + parcent.toString())
                 Log.d("Kablan", current_price.toString())
                 price += current_price

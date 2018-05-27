@@ -18,7 +18,8 @@
             android:layout_gravity="end"
             android:background="@android:drawable/btn_plus"
             android:paddingLeft="40dp"
-            android:paddingRight="40dp" />
+            android:paddingRight="40dp"
+            android:visibility="gone" />
     </FrameLayout>
 
 
