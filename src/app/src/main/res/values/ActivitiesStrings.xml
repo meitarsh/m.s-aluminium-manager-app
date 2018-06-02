@@ -76,10 +76,10 @@
     <string name="kablan_mforat_spinner_txt">בחר קבלן</string>
     <string name="kablan_mforat_kamot_hoza_txt">כמות חוזה</string>
     <string name="kablan_mforat_mehir_yehida_txt">מחיר יחידה</string>
-    <string name="kablan_mforat_ahoz_peola_txt">אחוז פעולה</string>
+    <string name="kablan_mforat_ahoz_peola_txt">אחוז פעולה למיילסטון</string>
     <string name="kablan_mforat_kamot_lzorah_helki_txt">כמות לצורך חלקי</string>
     <string name="kablan_mforat_kamot_lzorah_heshbon_kablan_txt">כמות לצורך חשבון קבלן</string>
-    <string name="kablan_mforat_ahoz_meosher_txt">אחוז מאושר</string>
+    <string name="kablan_mforat_ahoz_meosher_txt">אחוז פעולה לקבלן</string>
     <string name="kablan_mforat_saah_tashlom_txt">סהכ לתשלום</string>
     <string name="kablan_mforat_saah_hakol_txt">סהכ כל הפרויקטים</string>
     <string name="activity_kablan_mforat_mispar_mozar_label">בחר מספר מוצר</string>
@@ -194,6 +194,7 @@
     <string name="add_new_takala_label">הוספת תקלה חדשה</string>
     <string name="takala_nosfa_success">תקלה נוספה בהצלחה</string>
     <string name="add_new_takala_menu_lable">הוסף תקלה חדשה</string>
+    <string name="kablan_mforat_oprid_label">פעולה</string>
 
 
 </resources>

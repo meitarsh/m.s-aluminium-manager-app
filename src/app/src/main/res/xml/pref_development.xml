@@ -21,7 +21,7 @@
         android:title="@string/port_settings_title" />
 
     <CheckBoxPreference
-        android:defaultValue="false"
+        android:defaultValue="@bool/default_windows_auth"
         android:dependency="@string/IP"
         android:key="@string/windows_auth_key"
         android:title="@string/windows_auth_title" />

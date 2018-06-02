@@ -5,24 +5,10 @@
     <integer name="millis_in_sec">1000</integer> <!-- should be 1000 -->
     <integer name="inittime">10000</integer>
 
-    <string name="REMOTE_IP_ADDR">192.168.1.210</string> <!-- IPs : 18.188.42.16  -->
+    <!-- Finalized remote IP address -->
+    <string name="REMOTE_IP_ADDR">0.0.0.0</string>
 
-    <!-- JTDS
 
-    <string name="REMOTE_CONNECT_OPTIONS">;progname=Android_MSA;socketKeepAlive=true;socketTimeout=5;loginTimeout=5</string>
-    <string name="REMOTE_CONNECTION_WINDOWS_AUTH">;useNTLMv2=true;domain=DOMAIN</string>
-
-    -->
-
-    <!-- JDBC
-
-    <string name="REMOTE_CONNECT_OPTIONS">;user=Administrator;password=*Niu9p2w;authentication=auto;EncryptionMethod=noEncryption;LoginTimeout=5;QueryTimeout=5;ReceiveStringParameterType=NVARCHAR;SendStringParametersAsUnicode=true;</string>
-
-    -->
-
-    <!--
-        ;ssl=request
-    -->
     <string name="REMOTE_CONNECT_OPTIONS">;progname=Android_MSA;socketKeepAlive=true;loginTimeout=5;socketKeepAlive=true</string>
     <string name="REMOTE_CONNECTION_WINDOWS_AUTH">;useNTLMv2=true;domain=Msa</string>
 

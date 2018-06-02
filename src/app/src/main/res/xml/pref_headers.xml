@@ -24,9 +24,5 @@
         <!--android:title="@string/VPN_settings" />-->
 
 
-    <header
-        android:fragment="com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity$DevelopMentSettingsPrefFragment"
-        android:icon="@drawable/rsz_developmentmode"
-        android:title="@string/development_title"
-        />
+
 </preference-headers>

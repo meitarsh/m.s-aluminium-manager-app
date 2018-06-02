@@ -30,7 +30,22 @@ class opr_data(
          */
         private var USERNAME:String?
     )
-    : table_dataclass {
+    : table_dataclass, Comparable<opr_data> {
+
+    /**
+     * Compares this opr data to another
+     * @author Chaosruler972
+     * @param other the other opr data
+     * @return 0 if equal, else -1
+     */
+    override fun compareTo(other: opr_data): Int
+    {
+        return if(this.get_oprid()?.toLowerCase() == other.get_oprid()?.toLowerCase())
+            0
+        else
+            -1
+    }
+
     /**
      * Function responisble for inflating the data from strings.xml
      * @author Chaosruler972

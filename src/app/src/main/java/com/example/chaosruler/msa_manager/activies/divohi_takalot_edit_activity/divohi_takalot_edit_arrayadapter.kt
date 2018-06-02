@@ -88,18 +88,8 @@ class divohi_takalot_edit_arrayadapter(
         }
         catch (e: IndexOutOfBoundsException)
         {
-            project_data("","","","")
+            project_data(takala_data.get_projid()?:"",takala_data.get_projid()?:"","","")
         }
-//        val inventory: inventory_data = global_variables_dataclass.db_inv_vec.filter { it.get_itemid() == big_item.get_INVENTORY_ID() }[0]
-
-
-//        val opr: opr_data = try {
-//            global_variables_dataclass.db_opr_vec.filter{ it.get_oprid()?:"" == big_item.get_OPRID()?:"" }[0]!!
-//        }
-//        catch (e : IndexOutOfBoundsException)
-//        {
-//            opr_data("","","","")
-//        }
         mispar_parit.hint = (takala_data.get_ITEMID() ?: "").trim()
         mispar_parit.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
         shem_parit.hint = (takala_data.get_ITEMTXT() ?: "").trim()

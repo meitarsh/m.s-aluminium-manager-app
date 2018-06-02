@@ -134,7 +134,8 @@ object remote_SQL_Helper {
             connection!!.close()
         val ip: String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.IP), context.getString(R.string.REMOTE_IP_ADDR))
         val port: String = PreferenceManager.getDefaultSharedPreferences(con).getString(con.getString(R.string.sql_port), con.getString(R.string.default_port_num))
-        val windows_auth = if (PreferenceManager.getDefaultSharedPreferences(con).getBoolean(con.getString(R.string.windows_auth_key), false))
+
+        val windows_auth = if (con.resources.getBoolean(R.bool.default_windows_auth))
             con.getString(R.string.REMOTE_CONNECTION_WINDOWS_AUTH)
         else
             ""
@@ -287,10 +288,10 @@ object remote_SQL_Helper {
             if (e.errorCode == 0) {
                 ReConnect()
             }
-            Log.d("remote SQL", "EXCEPTION ${e.message}")
+            Log.d("remote_SQL", "EXCEPTION ${e.message}")
         } catch (e: KotlinNullPointerException) {
             ReConnect()
-            Log.d("remote SQL", "EXCEPTION kotlin null pointer exception")
+            Log.d("remote_SQL", "EXCEPTION kotlin null pointer exception")
         }
         if (!isvalid)
             return vector
@@ -326,16 +327,16 @@ object remote_SQL_Helper {
                                 else
                                 " AND "
                             qry += "$where_or_not $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 00:00:00:000')"
-                            Log.d("rsql_qry: ",qry)
+                            Log.d("remote_SQL",qry)
                             rs = connection!!.createStatement().executeQuery(qry)
                         } catch (e: SQLTimeoutException) {
-                            Log.d("remote SQL", "EXCEPTION SQL timeout exception")
+                            Log.d("remote_SQL", "EXCEPTION SQL timeout exception")
                             rs = null
                         } catch (e: SQLException) {
-                            Log.d("remote SQL", "EXCEPTION ${e.message}")
+                            Log.d("remote_SQL", "EXCEPTION ${e.message}")
                             rs = null
                         } catch (e: KotlinNullPointerException) {
-                            Log.d("remote SQL", "EXCEPTION kotlin null pointer exception")
+                            Log.d("remote_SQL", "EXCEPTION kotlin null pointer exception")
                             rs = null
                         }
                         if (rs == null)
@@ -347,7 +348,7 @@ object remote_SQL_Helper {
                             return@execute
                         }
                         val columnCount = rs.metaData.columnCount
-                        Log.d("rsql","For DB $db is ${columnCount.toString()}")
+                        Log.d("remote_SQL","For DB $db is ${columnCount.toString()}")
                         val rs_meta = rs.metaData
                         var count = 0
                         while (rs.next()) {
@@ -371,7 +372,7 @@ object remote_SQL_Helper {
                             }
                             vector.addElement(map)
                         }
-                        Log.d("rsql_res", "Count for $table is $count")
+                        Log.d("remote_SQL", "Count for $table is $count")
                         synchronized(lock)
                         {
                             lock.notify()
@@ -383,11 +384,11 @@ object remote_SQL_Helper {
                     lock.wait()
                 }
             } catch (e: InterruptedException) {
-                Log.d("remote SQL", "done syncing table")
+                Log.d("remote_SQL", "done syncing table")
             }
 
         } catch (e: SQLException) {
-            Log.d("remote SQL", "EXCEPTION ${e.message}")
+            Log.d("remote_SQL", "EXCEPTION ${e.message}")
             exception = e
 
         }

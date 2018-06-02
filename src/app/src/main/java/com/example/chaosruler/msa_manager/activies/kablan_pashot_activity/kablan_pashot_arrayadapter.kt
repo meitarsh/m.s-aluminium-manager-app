@@ -2,6 +2,7 @@ package com.example.chaosruler.msa_manager.activies.kablan_pashot_activity
 
 import android.content.Context
 import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,12 +52,13 @@ class kablan_pashot_arrayadapter(context: Context,arr: Vector<big_table_data>) :
 
         val opr: opr_data =
                 try {
-                    global_variables_dataclass.db_opr_vec.filter { it.get_oprid() == big_item.get_OPRID()?:"" }[0]!!
+                    val index = global_variables_dataclass.db_opr_vec.indexOf(opr_data(big_item.get_OPRID()?:"", "","",""))
+                    global_variables_dataclass.db_opr_vec[index]
                 }
                 catch (e:IndexOutOfBoundsException)
                 {
                     // hack for testing case, since database weirdly doesn't have this data
-                    opr_data("", "No Value from database", "", "")
+                    opr_data("", big_item.get_OPRID()?:"", "", "")
                 }
 
         hoza.text = (vendor_item.get_accountnum() ?: "").trim()
