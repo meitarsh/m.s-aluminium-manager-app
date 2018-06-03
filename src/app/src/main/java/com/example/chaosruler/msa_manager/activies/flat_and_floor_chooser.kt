@@ -219,6 +219,7 @@ class flat_and_floor_chooser : AppCompatActivity() {
                 data.get_FLAT()
             else
                 data.get_FLOOR()
+//            Log.d("flat_floor","got ${if (flat_flag) "flat" else "floor"} $key")
             if(key != null) {
                 if (!rv.contains(key))
                     rv.addElement(key)

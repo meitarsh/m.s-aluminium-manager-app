@@ -226,9 +226,11 @@ class local_salprojtakala_table_helper(private var context: Context) :
     fun server_data_to_vector(): Vector<takala_data> {
         val typemap: HashMap<String, String> = remote_takala_table_helper.define_type_map()
         val server_data: Vector<java.util.HashMap<String, String>> =
-                if (BuildConfig.DEBUG) {
+                if (BuildConfig.DEBUG)
+                {
                     remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_SALPROJBAKARA), typemap, context.getString(R.string.TABLE_SALPROJBAKARA_DATAAREAID), context.getString(R.string.DATAAREAID_DEVELOP))
-                } else {
+                } else
+                {
                     remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_SALPROJBAKARA), typemap, null, null)
                 }
 

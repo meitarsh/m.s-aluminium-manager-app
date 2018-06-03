@@ -21,6 +21,10 @@ import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.sync.Mutex
 import kotlinx.coroutines.experimental.sync.withLock
 import java.util.*
+import android.support.v4.content.ContextCompat.startActivity
+import com.example.chaosruler.msa_manager.activies.MainActivity
+
+
 
 
 @Suppress("unused", "PLATFORM_CLASS_MAPPED_TO_KOTLIN")
@@ -67,8 +71,9 @@ class offline_mode_service : Service(){
      */
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        if(intent!=null)
-            init_cache(baseContext,intent)
+        if(intent!=null) {
+            init_cache(baseContext, intent)
+        }
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -254,6 +259,9 @@ class offline_mode_service : Service(){
 
             global_variables_dataclass.report_to_Main_Activity_Thread_syncing_is_done()
             intent.putExtra(context.getString(R.string.key_sync_offline),context.getString(R.string.key_sync_offline))
+//            val main_intent = Intent(context, MainActivity::class.java)
+//            main_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//            context.startActivity(main_intent)
         }
 
 

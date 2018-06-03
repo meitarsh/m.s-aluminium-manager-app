@@ -59,14 +59,17 @@ class MainActivity : Activity()
         {
             remote_SQL_Helper.user = global_variables_dataclass.DB_USERS!!.get_user_by_id(remote_SQL_Helper.getusername())
             //hide_everything()
-            init_sync_trd()
-            progress_subroutine()
             val tasked: Boolean = user_first_run()
+            init_sync_trd(tasked)
+            progress_subroutine()
+
             if(!tasked)
             {
                 val sync_alert = alert(title=getString(R.string.anko_title),message = getString(R.string.moved_to_task_for_dataload))
                 {
-                    positiveButton(getString(R.string.anko_i_understand)) { moveTaskToBack(true) }
+                    positiveButton(getString(R.string.anko_i_understand)) {
+//                        moveTaskToBack(true)
+                    }
                 }
                 sync_alert.isCancelable = false
                 sync_alert.show()
@@ -120,13 +123,14 @@ class MainActivity : Activity()
      *   obviously works in a multi threading to not block the UI thread
      *   @author Chaosruler972
      */
-    private fun init_sync_trd()
+    private fun init_sync_trd(boolean: Boolean = false)
     {
         Thread({
             remote_SQL_Helper.refresh_context(baseContext)
             //startService(Intent(this, offline_mode_service::class.java))
             //offline_mode_service.init_cache(baseContext,intent)
             val service_intent = Intent(this, offline_mode_service::class.java)
+            intent.putExtra(getString(R.string.first_time_service),boolean)
             startService(service_intent)
             Log.d("Main","Offline service started")
         }).start()

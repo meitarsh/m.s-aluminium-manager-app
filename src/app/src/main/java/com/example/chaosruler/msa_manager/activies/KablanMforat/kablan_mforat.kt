@@ -134,8 +134,8 @@ class kablan_mforat : Activity() {
                 activity_kablan_mforat_kamot_hoza.text = (big_item.get_QTY() ?: "0").trim()
                 activity_kablan_mforat_yehida_price.text = (big_item.get_SALESPRICE() ?: "0").trim()
                 activity_kablan_mforat_peola_percent.text = ((big_item.get_MILESTONEPERCENT()?:"0").toInt()).toString() + "%"
-                activity_kablan_mforat_kamot_helki.hint = (big_item.get_QTYINPARTIALACC() ?: "0").trim()
-                activity_kablan_mforat_kamot_helki.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
+//                activity_kablan_mforat_kamot_helki.hint = (big_item.get_QTYINPARTIALACC() ?: "0").trim()
+//                activity_kablan_mforat_kamot_helki.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 activity_kablan_mforat_kamot_kablan.hint = (big_item.get_QTYFORACCOUNT() ?: "0").trim()
                 activity_kablan_mforat_kamot_kablan.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 activity_kablan_mforat_ahoz_meosher.hint = ((percentforaccount.toDouble()).toInt().toString() + "%").trim() // ((big_item.get_MILESTONEPERCENT()?:"0").toInt()).toString() + "%"
@@ -146,24 +146,24 @@ class kablan_mforat : Activity() {
                 val parcent = percentforaccount.toDouble()
                 activity_kablan_mforat_tashlom_sah.text = (price*count*parcent*0.01).roundToInt().toString().trim()
 
-                activity_kablan_mforat_kamot_helki.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-                    if(hasFocus || activity_kablan_mforat_kamot_helki.text.isEmpty() )
-                        return@OnFocusChangeListener
-                    val str = activity_kablan_mforat_kamot_helki.text.toString()
-                    Thread({
-                        Looper.prepare()
-                        val update_value: HashMap<String, String> = HashMap()
-                        update_value[remote_big_table_helper.QTYINPARTIALACC] = str
-                        remote_big_table_helper.push_update(big_item, update_value, baseContext)
-                        big_item.set_QTYINPARTIALACC(str)
-                        global_variables_dataclass.DB_BIG!!.add_big(big_item)
-                        themer.hideKeyboard(baseContext,activity_kablan_mforat_kamot_helki)
-                        Thread { compute_saah_hakol(big_table) }.run()
-
-                    }).start()
-                    activity_kablan_mforat_kamot_helki.hint = str.trim()
-                    activity_kablan_mforat_kamot_helki.text.clear()
-                }
+//                activity_kablan_mforat_kamot_helki.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+//                    if(hasFocus || activity_kablan_mforat_kamot_helki.text.isEmpty() )
+//                        return@OnFocusChangeListener
+//                    val str = activity_kablan_mforat_kamot_helki.text.toString()
+//                    Thread({
+//                        Looper.prepare()
+//                        val update_value: HashMap<String, String> = HashMap()
+//                        update_value[remote_big_table_helper.QTYINPARTIALACC] = str
+//                        remote_big_table_helper.push_update(big_item, update_value, baseContext)
+//                        big_item.set_QTYINPARTIALACC(str)
+//                        global_variables_dataclass.DB_BIG!!.add_big(big_item)
+//                        themer.hideKeyboard(baseContext,activity_kablan_mforat_kamot_helki)
+//                        Thread { compute_saah_hakol(big_table) }.run()
+//
+//                    }).start()
+//                    activity_kablan_mforat_kamot_helki.hint = str.trim()
+//                    activity_kablan_mforat_kamot_helki.text.clear()
+//                }
 
                 activity_kablan_mforat_kamot_kablan.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_kamot_kablan.text.isEmpty())

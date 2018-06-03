@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="DATABASE_NAME">AluminiumTest</string>
 
+
+    <!-- Copy of release file without aforementioned resource names -->
 
     <!-- Remote Database names and Table names -->
     <string name="DATAAREAID_DEVELOP">mz11</string>
-    <string name="DATABASE_NAME">Aluminum</string>
     <string name="TABLE_INVENTORY">INVENTTABLE</string>
     <string name="TABLE_PROJECTS">PROJTABLE</string>
     <string name="TABLE_VENDORS">VENDTABLE</string>
@@ -13,7 +15,7 @@
     <string name="TABLE_SALPROJBAKARA">SALPROJBAKARA</string>
 
     <!-- Both should be updated before production -->
-    <string name="TABLE_BIG">SALPROJOFERKABLANCONSTRUC50068</string>
+    <string name="TABLE_BIG">OFERKABLANCONSTRUCTIONONA50052</string>
     <string name="TABLE_BIG_SYNC">SALPROJCONSTRUCTIONONACCOUNT</string>
     <!-- SalProjKablanConstructionOnAccount
          is this the table I need to sync with?!
@@ -92,7 +94,7 @@
     <string name="TABLE_BIG_INVENTORY_ID">ITEMID</string>
     <string name="TABLE_BIG_INVENTORY_ID_TYPE">nvarchar</string>
 
-    <string name="TABLE_BIG_QTY">TOTAL</string> <!-- Used to be QTY -->
+    <string name="TABLE_BIG_QTY">QTY</string> <!-- Used to be QTY -->
     <string name="TABLE_BIG_QTY_TYPE">real</string>
 
 
@@ -107,10 +109,10 @@
     <string name="TABLE_BIG_MILESTONEPERCENT">MILESTONEPERCENT</string>
     <string name="TABLE_BIG_MILESTONEPERCENT_TYPE">real</string>
 
-    <string name="TABLE_BIG_QTYFORACCOUNT">QTYFORACCOUNTKABLAN</string>
+    <string name="TABLE_BIG_QTYFORACCOUNT">QTYFORACCOUNT</string>
     <string name="TABLE_BIG_QTYFORACCOUNT_TYPE">real</string>
 
-    <string name="TABLE_BIG_QTYINPARTIALACC">QTYINPARTIALACC</string>
+    <string name="TABLE_BIG_QTYINPARTIALACC">QTYFORACCOUNT</string>
     <string name="TABLE_BIG_QTYINPARTIALACC_TYPE">real</string>
 
 
@@ -122,7 +124,7 @@
     <string name="TABLE_BIG_TOTALSUM_TYPE">real</string>
 
 
-    <string name="TABLE_BIG_SALPROG">SALPROGKABLANEXPORCONTRACT</string> <!-- used to be SALPROG -->
+    <string name="TABLE_BIG_SALPROG">SALPROG</string> <!-- used to be SALPROG -->
     <string name="TABLE_BIG_SALPROG_TYPE">tinyint</string>
 
 
@@ -134,24 +136,24 @@
     <string name="TABLE_BIG_ITEMNUMBER_TYPE">real</string>
 
 
-    <string name="TABLE_BIG_KOMANUM">NUMKOMA</string>
-    <string name="TABLE_BIG_KOMANUM_TYPE">real</string>
+    <string name="TABLE_BIG_KOMANUM">KOMANUM</string>
+    <string name="TABLE_BIG_KOMANUM_TYPE">nvarchar</string>
 
 
-    <string name="TABLE_BIG_DIRANUM">STRDIRA</string>
+    <string name="TABLE_BIG_DIRANUM">DIRANUM</string>
     <string name="TABLE_BIG_DIRANUM_TYPE">real</string>
 
-    <string name="TABLE_BIG_FLAT">BINYAN</string>
+    <string name="TABLE_BIG_FLAT">FLAT</string>
     <string name="TABLE_BIG_FLAT_TYPE">nvarchar</string>
 
 
-    <string name="TABLE_BIG_FLOOR">STRKOMA</string>
+    <string name="TABLE_BIG_FLOOR">FLOOR</string>
     <string name="TABLE_BIG_FLOOR_TYPE">nvarchar</string>
-    
+
     <!-- TABLE_SALPROJLUZ -->
     <string name="TABLE_SALPROJLUZ_STARTDATE">STARTDATE</string>
     <string name="TABLE_SALPROJLUZ_STARTDATE_TYPE">datetime</string>
-    
+
     <string name="TABLE_SALPROJLUZ_FINISHDATE">FINISHDATE</string>
     <string name="TABLE_SALPROJLUZ_FINISHDATE_TYPE">datetime</string>
 
@@ -233,5 +235,4 @@
 
     <string name="TABLE_SALPROJBAKARA_RECID">RECID</string>
     <string name="TABLE_SALPROJBAKARA_RECID_TYPE">bigint</string>
-
 </resources>

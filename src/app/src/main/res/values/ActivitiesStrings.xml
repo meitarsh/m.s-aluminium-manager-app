@@ -195,6 +195,7 @@
     <string name="takala_nosfa_success">תקלה נוספה בהצלחה</string>
     <string name="add_new_takala_menu_lable">הוסף תקלה חדשה</string>
     <string name="kablan_mforat_oprid_label">פעולה</string>
+    <string name="first_time_service">first_time</string>
 
 
 </resources>

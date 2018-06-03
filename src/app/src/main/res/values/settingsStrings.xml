@@ -69,7 +69,7 @@
     <string name="pref_txt_notification">התראות דלוקות</string>
     <string name="pref_txt_notification_summary">התראות ישלחו בכל פעם שיהיה סנכרון מוצלח של מסד הנתונים</string>
 
-
+    <bool name="default_windows_auth">false</bool>
 
     <string name="delete_users">מחק את טבלת המשתמשים</string>
     <string name="delete_users_warning">דורש הפעלה מחדש של האפליקציה</string>

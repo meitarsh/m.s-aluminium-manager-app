@@ -169,30 +169,30 @@
     </LinearLayout>
 
     <!--kamot helki -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
-        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/kablan_mforat_kamot_lzorah_helki_txt" />
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"-->
+        <!--android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"-->
+        <!--android:layoutDirection="rtl"-->
+        <!--android:orientation="horizontal"-->
+        <!--&gt;-->
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="@string/kablan_mforat_kamot_lzorah_helki_txt" />-->
 
-        <EditText
-            android:id="@+id/activity_kablan_mforat_kamot_helki"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:inputType="numberSigned"
-            tools:ignore="LabelFor" />
+        <!--<EditText-->
+            <!--android:id="@+id/activity_kablan_mforat_kamot_helki"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="end"-->
+            <!--android:inputType="numberSigned"-->
+            <!--tools:ignore="LabelFor" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
     <!--kamot kablan -->
     <LinearLayout

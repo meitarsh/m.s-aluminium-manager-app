@@ -220,14 +220,27 @@ class big_table_data(
      * @author Chaosruler972
      * @return the current flat(sqlite)
      */
-    fun get_FLAT(): String? = FLAT
+    fun get_FLAT(): String? =
+            try {
+                FLAT!!.toDouble().toInt().toString()
+            }
+            catch (e: Exception)
+            {
+                FLAT
+            }
 
     /**
      * the current flat field name (sqlite)
      * @author Chaosruler972
      * @return the current flat (sqlite)
      */
-    fun get_FLOOR(): String? = FLOOR
+    fun get_FLOOR(): String? = try {
+        FLOOR!!.toDouble().toInt().toString()
+    }
+    catch (e: Exception)
+    {
+        FLOOR
+    }
 
     /**
      * the current qty field name (sqlite)
@@ -375,7 +388,14 @@ class big_table_data(
     fun get_DIRANUM(): String? = if(DIRANUM == "קרקע")
         0.toString()
     else
-        DIRANUM
+        try {
+            DIRANUM!!.toDouble().toInt().toString()
+        }
+        catch (e: Exception)
+        {
+            DIRANUM
+        }
+
 
     /**
      * the current username that synced this data (sqlite)

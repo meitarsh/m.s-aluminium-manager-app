@@ -348,6 +348,9 @@ class local_big_table_helper(
         {
             remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,null,null)
         }
+        Log.d("local_big",server_data.size.toString())
+        for(item in server_data)
+            Log.d("local_big",server_data.toString())
         val result_vector: Vector<big_table_data> = Vector()
         server_data
                 .map { it ->

@@ -6,7 +6,7 @@
     <integer name="inittime">10000</integer>
 
     <!-- Finalized remote IP address -->
-    <string name="REMOTE_IP_ADDR">0.0.0.0</string>
+    <string name="REMOTE_IP_ADDR">192.168.1.210</string>
 
 
     <string name="REMOTE_CONNECT_OPTIONS">;progname=Android_MSA;socketKeepAlive=true;loginTimeout=5;socketKeepAlive=true</string>
