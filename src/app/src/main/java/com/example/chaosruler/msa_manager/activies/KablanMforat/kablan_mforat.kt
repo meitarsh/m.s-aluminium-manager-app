@@ -5,7 +5,6 @@ import android.app.Activity
 import android.os.Bundle
 import android.os.Looper
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -18,7 +17,6 @@ import com.example.chaosruler.msa_manager.object_types.vendor_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_kablan_mforat.*
-import org.jetbrains.anko.runOnUiThread
 import java.util.*
 import kotlin.collections.HashMap
 import kotlin.math.roundToInt
@@ -66,10 +64,10 @@ class kablan_mforat : Activity() {
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
                         Vector(global_variables_dataclass.db_big_vec.filter { it.get_PROJECT_ID() == global_variables_dataclass.projid  && it.get_FLOOR() == global_variables_dataclass.floor && it.get_FLAT() == global_variables_dataclass.flat})
                     else
-                        Vector(global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim()).filter { it.get_FLAT() == global_variables_dataclass.flat && it.get_FLOOR() == global_variables_dataclass.floor })
+                        Vector(global_variables_dataclass.DB_BIG!!.server_data_to_vector<big_table_data>().filter { it.get_FLAT() == global_variables_dataclass.flat && it.get_FLOOR() == global_variables_dataclass.floor })
             big_table.sort()
-            Log.d("Kablan", "Chose ${big_table.size} out of ${global_variables_dataclass.db_big_vec.size}")
-            Log.d("Kablan","Looking for ${global_variables_dataclass.flat} in $big_table")
+            global_variables_dataclass.log("Kablan", "Chose ${big_table.size} out of ${global_variables_dataclass.db_big_vec.size}")
+            global_variables_dataclass.log("Kablan", "Looking for ${global_variables_dataclass.flat} in $big_table")
             runOnUiThread { spinner_populate(big_table) }
         }.start()
 
@@ -82,7 +80,7 @@ class kablan_mforat : Activity() {
      */
     private fun spinner_populate(big_table:Vector<big_table_data>)
     {
-        Log.d("Floor is", global_variables_dataclass.flat ?: "No flat")
+        global_variables_dataclass.log("Floor is", global_variables_dataclass.flat ?: "No flat")
         adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item,
                 filter_vendor_list(big_table))
 
@@ -124,7 +122,7 @@ class kablan_mforat : Activity() {
                 }
                 catch (e: Exception)
                 {
-                    Log.d("kablan_mforat","Fell on error ${e.toString()}")
+                    global_variables_dataclass.log("kablan_mforat", "Fell on error ${e.toString()}")
                     opr_data("",big_item.get_OPRID()?:"","","")
                 }
 
@@ -172,7 +170,7 @@ class kablan_mforat : Activity() {
                     if(big_item.get_QTY() != null && big_item.get_QTY()!!.toInt() < str.toInt() )
                     {
                         activity_kablan_mforat_kamot_kablan.text.clear()
-                        Log.d("kablan_mforat","op cancelled")
+                        global_variables_dataclass.log("kablan_mforat", "op cancelled")
                         return@OnFocusChangeListener
                     }
                     Thread({
@@ -181,7 +179,7 @@ class kablan_mforat : Activity() {
                         update_value[remote_big_table_helper.QTYFORACCOUNT] = str
                         remote_big_table_helper.push_update(big_item, update_value, baseContext)
                         big_item.set_QTYFORACCOUNT(str)
-                        global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                        global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                         themer.hideKeyboard(baseContext,activity_kablan_mforat_kamot_kablan)
                         Thread { compute_saah_hakol(big_table) }.run()
                         runOnUiThread {
@@ -203,7 +201,7 @@ class kablan_mforat : Activity() {
                     if(big_item.get_MILESTONEPERCENT()!=null && big_item.get_MILESTONEPERCENT()!!.toInt() < str.toInt())
                     {
                         activity_kablan_mforat_ahoz_meosher.text.clear()
-                        Log.d("kablan_mforat","op cancelled")
+                        global_variables_dataclass.log("kablan_mforat", "op cancelled")
                         return@OnFocusChangeListener
                     }
                     Thread({
@@ -212,7 +210,7 @@ class kablan_mforat : Activity() {
                         update_value[remote_big_table_helper.PERCENTFORACCOUNT] = str
                         remote_big_table_helper.push_update(big_item, update_value, baseContext)
                         big_item.set_PERCENTFORACCOUNT(str)
-                        global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                        global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                         themer.hideKeyboard(baseContext,activity_kablan_mforat_ahoz_meosher)
                         Thread { compute_saah_hakol(big_table) }.run()
                     }).start()
@@ -224,7 +222,7 @@ class kablan_mforat : Activity() {
         }
         Thread{
             compute_saah_hakol(big_table)
-        }.run()
+        }.start()
     }
 
     /**
@@ -296,8 +294,8 @@ class kablan_mforat : Activity() {
                 val percentforaccount: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
                 val parcent = percentforaccount.toDouble()
                 current_price *= count * parcent*0.01
-                Log.d("Kablan", current_price.toString() + "," + count.toString() + "," + percentforaccount.toString() + "," + parcent.toString())
-                Log.d("Kablan", current_price.toString())
+                global_variables_dataclass.log("Kablan", current_price.toString() + "," + count.toString() + "," + percentforaccount.toString() + "," + parcent.toString())
+                global_variables_dataclass.log("Kablan", current_price.toString())
                 price += current_price
             }
         runOnUiThread {

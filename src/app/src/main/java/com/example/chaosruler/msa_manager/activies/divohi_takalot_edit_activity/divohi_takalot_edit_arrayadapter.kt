@@ -10,11 +10,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
-import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_takala_table_helper
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.object_types.project_data
 import com.example.chaosruler.msa_manager.object_types.takala_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
@@ -128,7 +126,7 @@ class divohi_takalot_edit_arrayadapter(
                 update_value[remote_takala_table_helper.ITEMID] = str
                 remote_takala_table_helper.push_update(takala_data, update_value, context)
                 takala_data.set_BINYAN(str)
-                global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_to_table(takala_data)
                 themer.hideKeyboard(context,mispar_parit)
             }).start()
             mispar_parit.hint = str.trim()
@@ -145,7 +143,7 @@ class divohi_takalot_edit_arrayadapter(
                 update_value[remote_takala_table_helper.ITEMTXT] = str
                 remote_takala_table_helper.push_update(takala_data, update_value, context)
                 takala_data.set_ITEMTXT(str)
-                global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_to_table(takala_data)
                 themer.hideKeyboard(context, shem_parit)
             }).start()
             shem_parit.hint = str.trim()
@@ -162,7 +160,7 @@ class divohi_takalot_edit_arrayadapter(
                 update_value[remote_projects_table_helper.NAME] = str
                 remote_projects_table_helper.push_update(project_item, update_value, context)
                 project_item.set_project_name(str)
-                global_variables_dataclass.DB_project!!.add_project(project_item)
+                global_variables_dataclass.DB_project!!.add_to_table(project_item)
                 themer.hideKeyboard(context,shem_project)
             }).start()
             shem_project.hint = str.trim()
@@ -179,7 +177,7 @@ class divohi_takalot_edit_arrayadapter(
                 update_value[remote_takala_table_helper.QTY] = str
                 remote_takala_table_helper.push_update(takala_data, update_value, context)
                 takala_data.set_QTY(str)
-                global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_to_table(takala_data)
                 themer.hideKeyboard(context, kamot)
             }).start()
             kamot.hint = str.trim()
@@ -197,7 +195,7 @@ class divohi_takalot_edit_arrayadapter(
                 update_value[remote_takala_table_helper.KOMA] = str
                 remote_takala_table_helper.push_update(takala_data, update_value, context)
                 takala_data.set_KOMA(str)
-                global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_to_table(takala_data)
                 themer.hideKeyboard(context, koma)
             }).start()
             koma.hint = str.trim()
@@ -214,7 +212,7 @@ class divohi_takalot_edit_arrayadapter(
                 update_value[remote_takala_table_helper.BINYAN] = str
                 remote_takala_table_helper.push_update(takala_data, update_value, context)
                 takala_data.set_BINYAN(str)
-                global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_to_table(takala_data)
                 themer.hideKeyboard(context, bnian)
             }).start()
             bnian.hint = str.trim()
@@ -232,7 +230,7 @@ class divohi_takalot_edit_arrayadapter(
                 update_value[remote_takala_table_helper.ALUT] = str
                 remote_takala_table_helper.push_update(takala_data, update_value, context)
                 takala_data.set_ALUT(str)
-                global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_to_table(takala_data)
                 themer.hideKeyboard(context,alot_takala)
             }).start()
             alot_takala.hint = str.trim()
@@ -257,7 +255,7 @@ class divohi_takalot_edit_arrayadapter(
                 update_value[remote_takala_table_helper.MUMLATZ] = str
                 remote_takala_table_helper.push_update(takala_data, update_value, context)
                 takala_data.set_MUMLATZ(str)
-                global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_to_table(takala_data)
                 themer.hideKeyboard(context, peolot_ltikon)
             }).start()
             peolot_ltikon.hint = str.trim()
@@ -274,7 +272,7 @@ class divohi_takalot_edit_arrayadapter(
                 update_value[remote_takala_table_helper.MONAAT] = str
                 remote_takala_table_helper.push_update(takala_data, update_value, context)
                 takala_data.set_MONAAT(str)
-                global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_to_table(takala_data)
                 themer.hideKeyboard(context, peolot_monoot)
             }).start()
             peolot_monoot.hint = str.trim()

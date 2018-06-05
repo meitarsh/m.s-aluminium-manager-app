@@ -2,6 +2,7 @@ package com.example.chaosruler.msa_manager.object_types
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
 /**
  * a dataclass for vendor data
@@ -13,6 +14,8 @@ import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
  */
 class vendor_data(private var ID:String?,private var NAME:String?,private var DATAAREAID:String?,private var USERNAME:String?)
     : table_dataclass {
+
+
     /**
      * inits everything to null and trims the strings
      * @author Chaosruler972
@@ -28,6 +31,13 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
         if(USERNAME!=null)
             USERNAME=(USERNAME?:"").trim()
     }
+
+    /**
+     * returns a key hashmap
+     * @author Chaosruler972
+     * @return a key hashmap
+     */
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_VENDOR!!.ID, ID!!)
 
     /**
      * gets the vendor account ID
@@ -120,9 +130,23 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
      */
     override fun to_hashmap(): HashMap<String, String> {
         val map = HashMap<String, String>()
-        map[remote_vendors_table_helper.ID] = ID?:""
-        map[remote_vendors_table_helper.DATAAREAID] = DATAAREAID?:""
-        map[remote_vendors_table_helper.NAME] = NAME?:""
+        map[remote_vendors_table_helper.ID] = get_accountnum() ?: ""
+        map[remote_vendors_table_helper.DATAAREAID] = get_DATAREAID() ?: ""
+        map[remote_vendors_table_helper.NAME] = get_accountname() ?: ""
         return map
+    }
+
+    /**
+     * to local sql hashmap
+     * @author Chaosruler972
+     * @return local sql hashmap
+     */
+    override fun to_sql_hashmap(): HashMap<String, String> {
+        val data: HashMap<String, String> = HashMap()
+        data[global_variables_dataclass.DB_VENDOR!!.ID] = (get_accountnum() ?: "").trim()
+        data[global_variables_dataclass.DB_VENDOR!!.NAME] = (get_accountname() ?: "").trim()
+        data[global_variables_dataclass.DB_VENDOR!!.DATAARAEID] = (get_DATAREAID() ?: "").trim()
+        data[global_variables_dataclass.DB_VENDOR!!.USER] = (get_USERNAME() ?: "").trim()
+        return data
     }
 }

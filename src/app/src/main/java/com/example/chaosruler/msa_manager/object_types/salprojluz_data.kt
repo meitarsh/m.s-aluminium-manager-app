@@ -2,6 +2,7 @@ package com.example.chaosruler.msa_manager.object_types
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_salprojluz_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
 /**
  * Dataclass to represent salprojluz
@@ -76,6 +77,12 @@ class salprojluz_data(
         private var USERNAME: String?
 ) : table_dataclass
 {
+    /**
+     * converts to key hashmap
+     * @author Chaosruler972
+     * @return key hashmap
+     */
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_SALPROJ!!.ID, RECID!!)
 
     init {
         if(PROJID != null)
@@ -354,7 +361,7 @@ class salprojluz_data(
 
     override fun to_hashmap(): HashMap<String, String> {
         val map = HashMap<String, String>()
-        map[remote_salprojluz_table_helper.ID] = PROJID?:""
+        map[remote_salprojluz_table_helper.ID] = get_projid() ?: ""
         map[remote_salprojluz_table_helper.STARTDATE] = STARTDATE?:""
         map[remote_salprojluz_table_helper.FINISHDATE] = FINISHDATE?:""
         map[remote_salprojluz_table_helper.IS_FINISHED] = if (IS_FINISHED)
@@ -362,12 +369,37 @@ class salprojluz_data(
                 else
             "0"
         map[remote_salprojluz_table_helper.SIUMBPOAL] = SIUM_BPOAL?:""
-        map[remote_salprojluz_table_helper.NOTES] = NOTES?:""
-        map[remote_salprojluz_table_helper.KOMA] = KOMA?:""
-        map[remote_salprojluz_table_helper.BUILDING] = BUILDING?:""
-        map[remote_salprojluz_table_helper.PERCENTEXC] = PERCENTEXC?:""
-        map[remote_salprojluz_table_helper.RECID] = RECID?:""
-        map[remote_salprojluz_table_helper.RECVERION] = RECVERSOIN?:""
+        map[remote_salprojluz_table_helper.NOTES] = get_notes() ?: ""
+        map[remote_salprojluz_table_helper.KOMA] = get_koma() ?: ""
+        map[remote_salprojluz_table_helper.BUILDING] = get_building() ?: ""
+        map[remote_salprojluz_table_helper.PERCENTEXC] = get_percentexc() ?: ""
+        map[remote_salprojluz_table_helper.RECID] = get_recid() ?: ""
+        map[remote_salprojluz_table_helper.RECVERION] = get_recversion() ?: ""
+        return map
+    }
+
+    /**
+     * to local sql hashmap
+     * @author Chaosruler972
+     * @return local sql hashmap
+     */
+    override fun to_sql_hashmap(): HashMap<String, String> {
+        val map = HashMap<String, String>()
+        map[global_variables_dataclass.DB_SALPROJ!!.ID] = get_projid() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.STARTDATE] = STARTDATE ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.FINISHDATE] = FINISHDATE ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.IS_FINISHED] = if (IS_FINISHED)
+            "255"
+        else
+            "0"
+        map[global_variables_dataclass.DB_SALPROJ!!.SIUMBPOAL] = SIUM_BPOAL ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.NOTES] = get_notes() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.KOMA] = get_koma() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.BUILDING] = get_building() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.PERCENTEXC] = get_percentexc() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.RECID] = get_recid() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.RECVERSION] = get_recversion() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.USERNAME] = get_username() ?: ""
         return map
     }
 }

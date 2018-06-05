@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -14,6 +13,7 @@ import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_table_inventory_edit.*
 import java.util.*
+
 /**
  * table inventory logic class, for testing purposes
  * @author Chaosruler972
@@ -51,7 +51,7 @@ class table_inventory_edit : Activity()
 //                    else
 //                        global_variables_dataclass.DB_INVENTORY!!.server_data_to_vector()
 
-            Log.d("inventory_size",arr.size.toString())
+            global_variables_dataclass.log("inventory_size", arr.size.toString())
             runOnUiThread {
                 table_inventory_listview.adapter = table_inventory_arrayadapter(this,arr)
             }

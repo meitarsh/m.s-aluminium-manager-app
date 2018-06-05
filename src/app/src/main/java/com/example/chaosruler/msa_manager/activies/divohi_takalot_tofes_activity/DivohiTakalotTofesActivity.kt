@@ -8,8 +8,6 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.R.id.divohi_takalot_tofes_listview
-import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.object_types.takala_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
@@ -52,7 +50,7 @@ class DivohiTakalotTofesActivity : Activity() {
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
                         Vector(global_variables_dataclass.db_salprojtakala_vec.filter { it.get_projid() == global_variables_dataclass.projid })
                     else
-                        global_variables_dataclass.DB_SALPROJTAKALA!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
+                        global_variables_dataclass.DB_SALPROJTAKALA!!.server_data_to_vector<takala_data>()
             runOnUiThread({
 //                val filtered_list = arr.filter { it.get_BINYAN() == global_variables_dataclass.flat && it.get_KOMA() == global_variables_dataclass.floor }
                 divohi_takalot_tofes_listview.adapter = divohi_takalot_tofes_arrayadapter(this, arr)

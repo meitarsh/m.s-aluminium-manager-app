@@ -3,7 +3,6 @@ package com.example.chaosruler.msa_manager.activies.flat_chooser
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.widget.*
 import com.example.chaosruler.msa_manager.R
@@ -45,7 +44,7 @@ class flat_chooser : AppCompatActivity() {
      */
     private fun init_spinner() {
         Thread {
-            Log.d("DB_BIG", global_variables_dataclass.DB_BIG.toString())
+            global_variables_dataclass.log("DB_BIG", global_variables_dataclass.DB_BIG.toString())
             val projects =
                     if (global_variables_dataclass.isLocal)
                         global_variables_dataclass.db_big_vec

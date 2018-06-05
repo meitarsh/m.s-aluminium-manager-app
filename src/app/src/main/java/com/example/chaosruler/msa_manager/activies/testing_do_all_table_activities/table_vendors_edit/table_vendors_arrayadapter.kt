@@ -69,7 +69,7 @@ class table_vendors_arrayadapter(context: Context, arr: Vector<vendor_data>) : A
                 update_value[remote_vendors_table_helper.NAME] = str
                 remote_vendors_table_helper.push_update(vendor_data, update_value, context)
                 vendor_data.set_accountname(str)
-                global_variables_dataclass.DB_VENDOR!!.add_vendor(vendor_data)
+                global_variables_dataclass.DB_VENDOR!!.add_to_table(vendor_data)
                 themer.hideKeyboard(context,name)
             }).start()
             name.hint = str.trim()

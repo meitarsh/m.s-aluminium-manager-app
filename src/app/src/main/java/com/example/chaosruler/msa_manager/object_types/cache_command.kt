@@ -21,6 +21,24 @@ class cache_command(
         val __user: String) : table_dataclass
 {
 
+    /**
+     * to local sql hashmap
+     * @author Chaosruler972
+     * @return local sql hashmap
+     */
+    override fun to_sql_hashmap(): HashMap<String, String> {
+        return HashMap()
+    }
+
+    /**
+     * to key pair
+     * @author Chaosruler972
+     * @return key of the data
+     */
+    override fun to_key_hashmap(): Pair<String, String> {
+        return Pair("id", __command)
+    }
+
 
     /**
      * identifies this command dataclass

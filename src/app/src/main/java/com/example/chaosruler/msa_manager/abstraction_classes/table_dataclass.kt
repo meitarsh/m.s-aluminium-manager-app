@@ -24,9 +24,34 @@ interface table_dataclass {
     fun copy(): table_dataclass
 
     /**
-     * to hashma
+     * to hashmap
      * @author Chaosruler972
      * @return hashmap of this dataclass
      */
     fun to_hashmap(): HashMap<String, String>
+
+    /**
+     * to hashmap only on keys
+     * @author Chaosruler972
+     * return hashmap of only key and values
+     */
+    fun to_key_hashmap(): Pair<String, String>
+
+    /**
+     * to hashmap only non keys
+     * @author Chaosruler972
+     * return hashmap of only non-key and values
+     */
+    fun to_non_key_hashmap(): HashMap<String, String> {
+        val map = to_hashmap()
+        map.remove(to_key_hashmap().first)
+        return map
+    }
+
+    /**
+     * to local table dataclass
+     * @author Chaosruler972
+     * @return hashmap of local dataclass
+     */
+    fun to_sql_hashmap(): HashMap<String, String>
 }

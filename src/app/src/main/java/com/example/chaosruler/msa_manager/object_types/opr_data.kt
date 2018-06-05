@@ -2,6 +2,7 @@ package com.example.chaosruler.msa_manager.object_types
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
 /**
  * operation data-class
@@ -31,6 +32,13 @@ class opr_data(
         private var USERNAME:String?
     )
     : table_dataclass, Comparable<opr_data> {
+
+    /**
+     * converts to key hashmap
+     * @author Chaosruler972
+     * @return key hashmap
+     */
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_OPR!!.ID, ID!!)
 
     /**
      * Compares this opr data to another
@@ -144,9 +152,23 @@ class opr_data(
 
     override fun to_hashmap(): HashMap<String, String> {
         val map = HashMap<String, String>()
-        map[remote_opr_table_helper.ID] = ID?:""
-        map[remote_opr_table_helper.DATAAREAID] = DATAAREAID?:""
-        map[remote_opr_table_helper.NAME] = NAME?:""
+        map[remote_opr_table_helper.ID] = get_oprid() ?: ""
+        map[remote_opr_table_helper.DATAAREAID] = get_DATAREAID() ?: ""
+        map[remote_opr_table_helper.NAME] = get_opr_name() ?: ""
+        return map
+    }
+
+    /**
+     * to local sql hashmap
+     * @author Chaosruler972
+     * @return local sql hashmap
+     */
+    override fun to_sql_hashmap(): HashMap<String, String> {
+        val map = HashMap<String, String>()
+        map[global_variables_dataclass.DB_OPR!!.ID] = get_oprid() ?: ""
+        map[global_variables_dataclass.DB_OPR!!.DATAARAEID] = get_DATAREAID() ?: ""
+        map[global_variables_dataclass.DB_OPR!!.NAME] = get_opr_name() ?: ""
+        map[global_variables_dataclass.DB_OPR!!.USER] = get_USERNAME() ?: ""
         return map
     }
 

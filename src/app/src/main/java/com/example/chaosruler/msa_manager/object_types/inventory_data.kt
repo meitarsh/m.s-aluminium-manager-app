@@ -2,6 +2,7 @@ package com.example.chaosruler.msa_manager.object_types
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
 /**
  * Inventory data-class
@@ -31,6 +32,15 @@ class inventory_data(
          */
         private var USERNAME:String?)
     : table_dataclass {
+
+
+    /**
+     * converts inventory to key hashamp
+     * @author Chaosruler972
+     * @return key hashmap of inventory
+     */
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_INVENTORY!!.ID, ID!!)
+
     /**
      * Function responisble for inflating the data from strings.xml
      * @author Chaosruler972
@@ -126,9 +136,23 @@ class inventory_data(
 
     override fun to_hashmap(): HashMap<String, String> {
         val map = HashMap<String, String>()
-        map[remote_inventory_table_helper.ID] = ID?:""
-        map[remote_inventory_table_helper.DATAAREAID] = DATAAREAID?:""
-        map[remote_inventory_table_helper.NAME] = NAME?:""
+        map[remote_inventory_table_helper.ID] = get_itemid() ?: ""
+        map[remote_inventory_table_helper.DATAAREAID] = get_DATAREAID() ?: ""
+        map[remote_inventory_table_helper.NAME] = get_itemname() ?: ""
+        return map
+    }
+
+    /**
+     * to local sql hashmap
+     * @author Chaosruler972
+     * @return local sql hashmap
+     */
+    override fun to_sql_hashmap(): HashMap<String, String> {
+        val map = HashMap<String, String>()
+        map[global_variables_dataclass.DB_INVENTORY!!.ID] = get_itemid() ?: ""
+        map[global_variables_dataclass.DB_INVENTORY!!.DATAARAEID] = get_DATAREAID() ?: ""
+        map[global_variables_dataclass.DB_INVENTORY!!.NAME] = get_itemname() ?: ""
+        map[global_variables_dataclass.DB_INVENTORY!!.USER] = get_USERNAME() ?: ""
         return map
     }
 }

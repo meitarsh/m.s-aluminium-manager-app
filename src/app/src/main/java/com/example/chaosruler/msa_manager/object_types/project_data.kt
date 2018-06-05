@@ -2,6 +2,7 @@ package com.example.chaosruler.msa_manager.object_types
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
 /**
  * project data-class
@@ -32,6 +33,14 @@ class project_data(
         private var USERNAME:String?
 )
     : table_dataclass {
+
+    /**
+     * converts to key hashmap
+     * @author Chaosruler972
+     * @return key hashmap
+     */
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_project!!.ID, projectID!!)
+
     /**
      * Function responisble for inflating the data from strings.xml
      * @author Chaosruler972
@@ -126,9 +135,23 @@ class project_data(
 
     override fun to_hashmap(): HashMap<String, String> {
         val map = HashMap<String, String>()
-        map[remote_projects_table_helper.ID] = projectID?:""
-        map[remote_projects_table_helper.NAME] = project_name?:""
-        map[remote_projects_table_helper.DATAAREAID] = DATAAREAID?:""
+        map[remote_projects_table_helper.ID] = getProjID() ?: ""
+        map[remote_projects_table_helper.NAME] = get_project_name() ?: ""
+        map[remote_projects_table_helper.DATAAREAID] = get_DATAREAID() ?: ""
+        return map
+    }
+
+    /**
+     * to local sql hashmap
+     * @author Chaosruler972
+     * @return local sql hashmap
+     */
+    override fun to_sql_hashmap(): HashMap<String, String> {
+        val map = HashMap<String, String>()
+        map[global_variables_dataclass.DB_project!!.ID] = getProjID() ?: ""
+        map[global_variables_dataclass.DB_project!!.NAME] = get_project_name() ?: ""
+        map[global_variables_dataclass.DB_project!!.DATAAREAID] = get_DATAREAID() ?: ""
+        map[global_variables_dataclass.DB_project!!.USER] = get_USERNAME() ?: ""
         return map
     }
 }

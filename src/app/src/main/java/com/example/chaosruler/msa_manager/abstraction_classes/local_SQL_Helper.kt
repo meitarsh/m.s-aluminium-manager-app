@@ -1,7 +1,5 @@
 package com.example.chaosruler.msa_manager.abstraction_classes
 
-import android.content.AsyncQueryHandler
-import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -9,7 +7,6 @@ import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import java.nio.charset.Charset
 import java.util.*
@@ -91,7 +88,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
         }
         catch (e:SQLiteException)
         {
-            Log.d("Local SQL Exception","DB $DATABASE_NAME was not created yet")
+            global_variables_dataclass.log("Local SQL Exception", "DB $DATABASE_NAME was not created yet")
         }
     }
 
@@ -238,36 +235,40 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 c = db.rawQuery("SELECT DISTINCT * FROM " + TABLE_NAME, null)
                 c.moveToFirst()
                 val end_qry = Date().time
-                Log.d("SQL", "QUERIED $TABLE_NAME for ${end_qry-start} ms")
+                global_variables_dataclass.log("SQL", "QUERIED $TABLE_NAME for ${end_qry - start} ms")
             }
             catch (e: Exception)
             {
-                Log.d("local_sql","Failed for some reason with DB $DATABASE_NAME ${e.message}" )
+                global_variables_dataclass.log("local_sql", "Failed for some reason with DB $DATABASE_NAME ${e.message}")
                 synchronized(syncToken)
                 {
                     syncToken.notify()
                 }
 
             }
-            Log.d("results_amount", "For table ${TABLE_NAME} " +  c?.count.toString())
+            global_variables_dataclass.log("results_amount", "For table ${TABLE_NAME} " + c?.count.toString())
             while (c!=null && !c.isAfterLast)
 
             {
                 val small_map: HashMap<String, String> = HashMap()
                 for (variable in vector_of_variables)
                 {
-                    Log.d("About to get columns","Column $variable and its data is ${c.getString(c.getColumnIndex(variable))}")
+                    global_variables_dataclass.log("About to get columns", "Column $variable and its data is ${c.getString(c.getColumnIndex(variable))}")
                         val input_str =
-                                if (variable != "id")
-                                    String(global_variables_dataclass.xorWithKey(c.getString(c.getColumnIndex(variable)).toByteArray(), global_variables_dataclass.get_device_id(context).toByteArray(), true, context))
-                                else
-                                    c.getString(c.getColumnIndex(variable))
+                                try {
+                                    if (variable != "id")
+                                        String(global_variables_dataclass.xorWithKey(c.getString(c.getColumnIndex(variable)).toByteArray(), global_variables_dataclass.get_device_id(context).toByteArray(), true, context))
+                                    else
+                                        c.getString(c.getColumnIndex(variable))
+                                } catch (e: IllegalStateException) {
+                                    ""
+                                }
                         small_map[variable] = input_str
                 }
                 vector.addElement(small_map)
                 c.moveToNext()
             }
-            Log.d("SQL", "Ended SQL iteration over $TABLE_NAME for ${Date().time - start} ms")
+            global_variables_dataclass.log("SQL", "Ended SQL iteration over $TABLE_NAME for ${Date().time - start} ms")
             synchronized(syncToken)
             {
                 syncToken.notify()
@@ -285,10 +286,10 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
 
             } catch (e: InterruptedException)
             {
-                Log.d("Local SQL helper","sync done with $DATABASE_NAME")
+                global_variables_dataclass.log("Local SQL helper", "sync done with $DATABASE_NAME")
             }
         }
-        Log.d("local_sql_count","For table $TABLE_NAME I got ${vector.size}")
+        global_variables_dataclass.log("local_sql_count", "For table $TABLE_NAME I got ${vector.size}")
         //db.close()
         return vector
     }
@@ -299,11 +300,17 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      * @param variables the data we want to add, field name will be on the key, field value is on the value, all the rows are seperated in the vector as different elements
      * @return if at least one of the items was successfull
      */
-    protected fun add_data(variables: Vector<HashMap<String,String>>, check_input: Boolean = true):Boolean
+    fun add_data(variables: Vector<HashMap<String, String>>, check_input: Boolean = true): Boolean
     {
         val db: SQLiteDatabase = this.writableDatabase
         //db.close()
-        return variables.any { add_single_data(db, it, check_input) }
+        global_variables_dataclass.log("local_sql", "got request to add ${variables.toString()} to table $TABLE_NAME")
+        var result = false
+        for (item in variables) {
+            if (add_single_data(db, item, check_input))
+                result = true
+        }
+        return result
     }
 
     /**
@@ -334,10 +341,10 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
         if(check_input) {
             val exist_data = db.query(TABLE_NAME, null, columns_vector, data_vector.toTypedArray(), null, null, null)
             if (exist_data.count != 0) {
-                Log.d("SQL", "Filtered out unneeded add query")
+                global_variables_dataclass.log("SQL", "Filtered out unneeded add query")
                 return false
             } else {
-                Log.d("SQL", "Unfiletered, we found ${exist_data.count} Elements!")
+                global_variables_dataclass.log("SQL", "Unfiletered, we found ${exist_data.count} Elements!")
             }
             exist_data.close()
         }
@@ -353,7 +360,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      * @param equal_to what to compare the field name to (as in, what data it should be equal to)
      * @return if data removed was successfull
      */
-    protected fun remove_from_db( where_clause:String,  equal_to: Array<String>) :Boolean
+    fun remove_from_db(where_clause: String, equal_to: Array<String>): Boolean
     {
         var result = false
         for(item in equal_to)
@@ -402,12 +409,12 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      * @return if data update was succesfull
      * @exception SQLiteException
      */
-    protected fun update_data(where_clause: String, equal_to: Array<String>, update_to: HashMap<String,String>):Boolean
+    fun update_data(where_clause: String, equal_to: Array<String>, update_to: HashMap<String, String>): Boolean
     {
         var result = false
         for(item in equal_to)
             equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false,context) )
-        Log.d("Equal to",equal_to[0])
+        global_variables_dataclass.log("Equal to", equal_to[0])
         val db: SQLiteDatabase = this.writableDatabase
         val values = ContentValues()
         for(item in update_to)
@@ -427,7 +434,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      * @return if data update was succesfull
      * @exception SQLiteException
      */
-    protected fun update_data(where_clause: Array<String>, equal_to: Array<String>, update_to: HashMap<String,String>):Boolean
+    fun update_data(where_clause: Array<String>, equal_to: Array<String>, update_to: HashMap<String, String>): Boolean
     {
         var result = false
         for(item in equal_to)
@@ -443,7 +450,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             if(item != where_clause.last())
                 where_str+=" AND "
         }
-        Log.d("Equal to",equal_to[0])
+        global_variables_dataclass.log("Equal to", equal_to[0])
         if(db.update(TABLE_NAME,values,where_str, equal_to)>0)
             result = true
         //db.close()
@@ -492,15 +499,15 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             val start = Date().time;
             try
             {
-                Log.d("SQL_raw_query",sql_query)
+                global_variables_dataclass.log("SQL_raw_query", sql_query)
                 //c = db.rawQuery(sql_query, null)
                 c = db.query(TABLE_NAME,null,where_clause,where_args.toTypedArray(),null,null,null)
                 val end_qry = Date().time
-                Log.d("SQL_raw_query", "QUERIED $TABLE_NAME for ${end_qry-start} ms")
+                global_variables_dataclass.log("SQL_raw_query", "QUERIED $TABLE_NAME for ${end_qry - start} ms")
             }
             catch (e:SQLException)
             {
-                Log.d("Local SQL helper","SQL Exception $DATABASE_NAME ${e.message}")
+                global_variables_dataclass.log("Local SQL helper", "SQL Exception $DATABASE_NAME ${e.message}")
                 synchronized(sync_token)
                 {
                     sync_token.notify()
@@ -509,7 +516,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             }
             catch (e:IllegalStateException)
             {
-                Log.d("Local SQL helper","Illegal State ${e.message}")
+                global_variables_dataclass.log("Local SQL helper", "Illegal State ${e.message}")
                 synchronized(sync_token)
                 {
                     sync_token.notify()
@@ -522,7 +529,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             }
             catch (e: Exception)
             {
-                Log.d("Local SQL helper","Error syncing ${e.message}")
+                global_variables_dataclass.log("Local SQL helper", "Error syncing ${e.message}")
                 synchronized(sync_token)
                 {
                     sync_token.notify()
@@ -545,9 +552,9 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 }
                 catch (e:IllegalStateException)
                 {
-                    Log.d("local","Couldn't grab SQL table")
+                    global_variables_dataclass.log("local", "Couldn't grab SQL table")
                 }
-                Log.d("SQL", "Ended SQL iteration over $TABLE_NAME for ${Date().time - start} ms")
+                global_variables_dataclass.log("SQL", "Ended SQL iteration over $TABLE_NAME for ${Date().time - start} ms")
             }
             synchronized(sync_token)
             {
@@ -556,7 +563,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
 
             if (c != null)
             {
-                Log.d("Where Query",c.count.toString())
+                global_variables_dataclass.log("Where Query", c.count.toString())
                 c.close()
             }
         }).start()
@@ -569,7 +576,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             }
             catch (e:InterruptedException)
             {
-                Log.d("Local SQL helper","sync done with $DATABASE_NAME")
+                global_variables_dataclass.log("Local SQL helper", "sync done with $DATABASE_NAME")
             }
         }
 
@@ -603,14 +610,14 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             val start = Date().time;
             val c = db.query(TABLE_NAME,null,null,null,null,null,sort_by_value+ascending_descending_str)
             val end_qry = Date().time
-            Log.d("SQL", "QUERIED $TABLE_NAME for ${end_qry-start} ms")
+            global_variables_dataclass.log("SQL", "QUERIED $TABLE_NAME for ${end_qry - start} ms")
             try
             {
                 c.moveToFirst()
             }
             catch (e: Exception)
             {
-                Log.d("Local SQL helper","SQL Error with $DATABASE_NAME ${e.message}")
+                global_variables_dataclass.log("Local SQL helper", "SQL Error with $DATABASE_NAME ${e.message}")
                 synchronized(syncToken)
                 {
                     syncToken.notify()
@@ -628,7 +635,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 vector.addElement(small_map)
                 c.moveToNext()
             }
-            Log.d("SQL", "Ended SQL iteration over $TABLE_NAME for ${Date().time - start} ms")
+            global_variables_dataclass.log("SQL", "Ended SQL iteration over $TABLE_NAME for ${Date().time - start} ms")
             synchronized(syncToken)
             {
                 syncToken.notify()
@@ -645,7 +652,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
 
             } catch (e: InterruptedException)
             {
-                Log.d("Local SQL helper","sync done with $DATABASE_NAME")
+                global_variables_dataclass.log("Local SQL helper", "sync done with $DATABASE_NAME")
             }
         }
         //db.close()

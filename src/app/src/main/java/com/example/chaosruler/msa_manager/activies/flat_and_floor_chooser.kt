@@ -1,22 +1,18 @@
 package com.example.chaosruler.msa_manager.activies
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.*
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.KablanMforat.kablan_mforat
 import com.example.chaosruler.msa_manager.activies.divohi_takalot_tofes_activity.DivohiTakalotTofesActivity
-import com.example.chaosruler.msa_manager.activies.flat_chooser.flatArrayAdapter
-import com.example.chaosruler.msa_manager.activies.floor_chooser.floorArrayAdapter
 import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_flat_and_floor_chooser.*
 import java.util.*
-import kotlin.collections.HashMap
 
 class flat_and_floor_chooser : AppCompatActivity() {
 
@@ -120,15 +116,15 @@ class flat_and_floor_chooser : AppCompatActivity() {
     private fun init_flat_spinner()
     {
         Thread {
-            Log.d("flat_floor", "Searching for projid ${global_variables_dataclass.projid}")
+            global_variables_dataclass.log("flat_floor", "Searching for projid ${global_variables_dataclass.projid}")
             val projects =
                     if (global_variables_dataclass.isLocal)
                         global_variables_dataclass.db_big_vec.filter { it.get_PROJECT_ID() == global_variables_dataclass.projid }
                     else
-                        global_variables_dataclass.DB_BIG!!.server_data_to_vector().filter { it.get_PROJECT_ID() == global_variables_dataclass.projid }
-            Log.d("found_projects", "${projects.size.toString()} from ${global_variables_dataclass.db_big_vec.size}")
+                        global_variables_dataclass.DB_BIG!!.server_data_to_vector<big_table_data>().filter { it.get_PROJECT_ID() == global_variables_dataclass.projid }
+            global_variables_dataclass.log("found_projects", "${projects.size.toString()} from ${global_variables_dataclass.db_big_vec.size}")
             vec_proj = projects
-            Log.d("flat_floor","Got ${vec_proj.size} elements for project ${global_variables_dataclass.projid}")
+            global_variables_dataclass.log("flat_floor", "Got ${vec_proj.size} elements for project ${global_variables_dataclass.projid}")
             runOnUiThread { on_adapter_set_flat() }
         }.start()
     }
@@ -162,7 +158,7 @@ class flat_and_floor_chooser : AppCompatActivity() {
                 }
                 flat = (flat_adapter.getItem(position)).toInt()
                 global_variables_dataclass.flat = flat.toString()
-                Log.d("flat_floor","Flat was chosen to be $flat")
+                global_variables_dataclass.log("flat_floor", "Flat was chosen to be $flat")
                 floor_flat_floor_spinner.visibility = Spinner.VISIBLE
                 floor_flat_floor_spinner_label.visibility = Spinner.VISIBLE
                 init_floor_spinner()
@@ -219,8 +215,8 @@ class flat_and_floor_chooser : AppCompatActivity() {
                 data.get_FLAT()
             else
                 data.get_FLOOR()
-//            Log.d("flat_floor","got ${if (flat_flag) "flat" else "floor"} $key")
-            if(key != null) {
+//            global_variables_dataclass.log("flat_floor","got ${if (flat_flag) "flat" else "floor"} $key")
+            if (key != null && !key.isEmpty()) {
                 if (!rv.contains(key))
                     rv.addElement(key)
             }

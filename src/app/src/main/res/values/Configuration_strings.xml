@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <bool name="print_logs_on_production">false</bool>
     <integer name="time_to_sync_in_sec">900</integer>
     <integer name="millis_in_sec">1000</integer> <!-- should be 1000 -->
     <integer name="inittime">10000</integer>

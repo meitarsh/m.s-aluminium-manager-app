@@ -132,7 +132,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.RECVERSION] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_RECVERSION(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,recversion)
             }).start()
 
@@ -150,7 +150,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.RECID] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_RECID(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,recid)
             }).start()
             recid.hint = str.trim()
@@ -167,7 +167,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.FLAT] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_FLAT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,flat)
             }).start()
             flat.hint = str.trim()
@@ -184,7 +184,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.FLOOR] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_FLOOR(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,floor)
             }).start()
 
@@ -202,7 +202,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.QTY] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_QTY(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,qty)
             }).start()
             qty.hint = str.trim()
@@ -219,7 +219,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.SALESPRICE] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_SALESPRICE(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,salesprice)
             }).start()
             salesprice.hint = str.trim()
@@ -238,7 +238,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.MILESTONEPERCENT] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_MILESTONEPERCENT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,milestone_percent)
             }).start()
             milestone_percent.hint = (str + "%").trim()
@@ -255,7 +255,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.QTYFORACCOUNT] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_QTYFORACCOUNT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,qtyforaccount)
                 act.runOnUiThread {
                     update_total_sum(totalsum, big_item)
@@ -277,7 +277,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.PERCENTFORACCOUNT] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_PERCENTFORACCOUNT(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,percentforaccount)
                 act.runOnUiThread {
                     totalsum.setText(big_item.totalSumCompute().toString())
@@ -316,7 +316,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.SALPROG] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_SALPROG(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,salprog)
                 act.runOnUiThread {
                     totalsum.setText(big_item.totalSumCompute().toString())
@@ -338,7 +338,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.PRINTORDER] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_PRINTORDER(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,printorder)
             }).start()
             printorder.hint = str.trim()
@@ -355,7 +355,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.ITEMNUMBER] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_ITEMNUMBER(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,itemnumber)
             }).start()
             itemnumber.hint = str.trim()
@@ -372,7 +372,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.KOMANUM] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_KOMANUM(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,komanum)
             }).start()
             komanum.hint = str.trim()
@@ -389,7 +389,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 update_value[remote_big_table_helper.DIRANUM] = str
                 remote_big_table_helper.push_update(big_item, update_value, context)
                 big_item.set_DIRANUM(str)
-                global_variables_dataclass.DB_BIG!!.add_big(big_item)
+                global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,diranum)
             }).start()
             diranum.hint = str.trim()
@@ -418,7 +418,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
             update_value[remote_big_table_helper.TOTALSUM] = str
             remote_big_table_helper.push_update(big_item, update_value, context)
             big_item.set_TOTALSUM(str)
-            global_variables_dataclass.DB_BIG!!.add_big(big_item)
+            global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
 //            themer.hideKeyboard(context, totalsum)
         }).start()
         totalsum.hint = str.trim()

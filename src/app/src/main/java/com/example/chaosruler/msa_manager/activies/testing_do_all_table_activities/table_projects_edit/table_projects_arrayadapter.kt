@@ -69,7 +69,7 @@ class table_projects_arrayadapter(context: Context, arr: Vector<project_data>) :
                 update_value[remote_projects_table_helper.NAME] = str
                 remote_projects_table_helper.push_update(proj_daa, update_value, context)
                 proj_daa.set_project_name(str)
-                global_variables_dataclass.DB_project!!.add_project(proj_daa)
+                global_variables_dataclass.DB_project!!.add_to_table(proj_daa)
                 themer.hideKeyboard(context,name)
             }).start()
             name.hint = str.trim()

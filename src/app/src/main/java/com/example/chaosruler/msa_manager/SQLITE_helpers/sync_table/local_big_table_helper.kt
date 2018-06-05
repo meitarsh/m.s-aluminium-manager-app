@@ -4,15 +4,12 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.util.Log
-import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.syncable
 import com.example.chaosruler.msa_manager.object_types.big_table_data
-import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
-import java.nio.charset.Charset
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -27,120 +24,187 @@ class local_big_table_helper(
          * @author Chaosruler972
          */
         private var context: Context
-) : local_SQL_Helper(context,context.getString(R.string.LOCAL_SYNC_DATABASE_NAME)
+
+) : syncable, local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_DATABASE_NAME)
 ,null,context.resources.getInteger(R.integer.LOCAL_BIG_TABLE_VERSION),context.getString(R.string.LOCAL_BIG_TABLE_NAME)) {
+
+
     /**
      * Account number field name
      * @author Chaosruler972TABLE_BIG_SYNC
      */
-    private var ACCOUNT_NUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_ACCOUNTNUM)
+    var ACCOUNT_NUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_ACCOUNTNUM)
     /**
      * Dataaraeid field name
      * @author Chaosruler972
      */
-    private var DATAARAEID: String = context.getString(R.string.LOCAL_BIG_COLUMN_DATAARAEID)
+    var DATAARAEID: String = context.getString(R.string.LOCAL_BIG_COLUMN_DATAARAEID)
     /**
      * rec version field name
      * @author Chaosruler972
      */
-    private var RECVERSION: String = context.getString(R.string.LOCAL_BIG_COLUMN_RECVERSION)
+    var RECVERSION: String = context.getString(R.string.LOCAL_BIG_COLUMN_RECVERSION)
     /**
      * rec id field name
      * @author Chaosruler972
      */
-    private var RECID: String = context.getString(R.string.LOCAL_BIG_COLUMN_RECID)
+    val RECID: String = context.getString(R.string.LOCAL_BIG_COLUMN_RECID)
     /**
      * the project id field name
      * @author Chaosruler972
      */
-    private var PROJID: String = context.getString(R.string.LOCAL_BIG_COLUMN_PROJID)
+    var PROJID: String = context.getString(R.string.LOCAL_BIG_COLUMN_PROJID)
     /**
      * the item id field name
      * @author Chaosruler972
      */
-    private var ITEMID: String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMID)
+    var ITEMID: String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMID)
     /**
      * the flat field name
      * @author Chaosruler972
      */
-    private var FLAT: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLAT)
+    var FLAT: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLAT)
     /**
      * flat field name
      * @author Chaosruler972
      */
-    private var FLOOR: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLOOR)
+    var FLOOR: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLOOR)
     /**
      * quanity field name
      * @author Chaosruler972
      */
-    private var QTY: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTY)
+    var QTY: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTY)
     /**
      * the sales price field name
      * @author Chaosruler972
      */
-    private var SALESPRICE: String = context.getString(R.string.LOCAL_BIG_COLUMN_SALESPRICE)
+    var SALESPRICE: String = context.getString(R.string.LOCAL_BIG_COLUMN_SALESPRICE)
     /**
      * the operation id field name
      * @author Chaosruler972
      */
-    private var OPR_ID: String = context.getString(R.string.LOCAL_BIG_COLUMN_OPRID)
+    var OPR_ID: String = context.getString(R.string.LOCAL_BIG_COLUMN_OPRID)
     /**
      * the miestone to percent field name
      * @author Chaosruler972
      */
-    private var MILESTONEPERCENTAGE: String = context.getString(R.string.LOCAL_BIG_COLUMN_MILESTONEPRECENT)
+    var MILESTONEPERCENTAGE: String = context.getString(R.string.LOCAL_BIG_COLUMN_MILESTONEPRECENT)
     /**
      * the quanity for account field name
      * @author Chaosruler972
      */
-    private var QTYFORACCOUNT: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYFORACCOUNT)
+    var QTYFORACCOUNT: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYFORACCOUNT)
     /**
      * the percent for account field name
      * @author Chaosruler972
      */
-    private var PERCENTFORACCOUNT: String = context.getString(R.string.LOCAL_BIG_COLUMN_PERCENTFORACCOUNT)
+    var PERCENTFORACCOUNT: String = context.getString(R.string.LOCAL_BIG_COLUMN_PERCENTFORACCOUNT)
     /**
      * the total sum field name
      * @author Chaosruler972
      */
-    private var TOTAL_SUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_TOTALSUM)
+    var TOTAL_SUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_TOTALSUM)
     /**
      * the sale progress field name
      * @author Chaosruler972
      */
-    private var SALPROG: String = context.getString(R.string.LOCAL_BIG_COLUMN_SALPROG)
+    var SALPROG: String = context.getString(R.string.LOCAL_BIG_COLUMN_SALPROG)
     /**
      * the print order field name
      * @author Chaosruler972
      */
-    private var PRINTORDER: String = context.getString(R.string.LOCAL_BIG_COLUMN_printorder)
+    var PRINTORDER: String = context.getString(R.string.LOCAL_BIG_COLUMN_printorder)
     /**
      * the item number field name
      * @author Chaosruler972
      */
-    private var ITEMNUMBER: String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMNUMBER)
+    var ITEMNUMBER: String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMNUMBER)
     /**
      * the koma num field name
      * @author Chaosruler972
      */
-    private var KOMANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_KOMANUM)
+    var KOMANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_KOMANUM)
     /**
      * the dira num field name
      * @author Chaosruler972
      */
-    private var DIRANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_DIRANUM)
+    var DIRANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_DIRANUM)
 
     /**
      * the username that synced this data
      * @author Chaosruler972
      */
-    private val USER: String = context.getString(R.string.LOCAL_BIG_COLUMN_USERNAME)
+    override var USER: String = context.getString(R.string.LOCAL_BIG_COLUMN_USERNAME)
 
     /**
      * QTY in partial
      * @author Chaosruler972
      */
     private val QTYINPARTIALACC: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYINPARTIALACC)
+
+
+    override var REMOTE_DATABASE_NAME: String = context.getString(R.string.DATABASE_NAME)
+    override var REMOTE_TABLE_NAME: String = context.getString(R.string.TABLE_BIG)
+    override var REMOTE_DATAARAEID_KEY: String = context.getString(R.string.TABLE_BIG_DATAAREAID)
+    override var REMOTE_DATAARAEID_VAL: String = context.getString(R.string.DATAAREAID_DEVELOP)
+
+    override fun get_remote_typemap(): HashMap<String, String> = remote_big_table_helper.define_type_map()
+
+
+    override fun hashmap_to_table_dataclass_local(hashMap: HashMap<String, String>): big_table_data {
+        return big_table_data(
+                (hashMap[ACCOUNT_NUM] ?: "").trim(),
+                (hashMap[DATAARAEID] ?: "").trim(),
+                (hashMap[RECVERSION] ?: "").trim(),
+                (hashMap[RECID] ?: "").trim(),
+                (hashMap[PROJID] ?: "").trim(),
+                (hashMap[ITEMID] ?: "").trim(),
+                (hashMap[FLAT] ?: "").trim(),
+                (hashMap[FLOOR] ?: "").trim(),
+                (hashMap[QTY] ?: "").trim(),
+                (hashMap[SALESPRICE] ?: "").trim(),
+                (hashMap[OPR_ID] ?: "").trim(),
+                (hashMap[MILESTONEPERCENTAGE] ?: "").trim(),
+                (hashMap[QTYFORACCOUNT] ?: "").trim(),
+                (hashMap[PERCENTFORACCOUNT] ?: "").trim(),
+                (hashMap[TOTAL_SUM] ?: "").trim(),
+                (hashMap[SALPROG] ?: "").trim(),
+                (hashMap[PRINTORDER] ?: "").trim(),
+                (hashMap[ITEMNUMBER] ?: "").trim(),
+                (hashMap[KOMANUM] ?: "").trim(),
+                (hashMap[DIRANUM] ?: "").trim(),
+                (hashMap[USER] ?: "").trim(),
+                (hashMap[QTYINPARTIALACC] ?: "").trim()
+        )
+    }
+
+    override fun hashmap_to_table_dataclass_remote(hashMap: HashMap<String, String>): big_table_data {
+        return big_table_data(
+                hashMap[remote_big_table_helper.VENDOR_ID] ?: "",
+                hashMap[remote_big_table_helper.DATAREAID] ?: "",
+                hashMap[remote_big_table_helper.RECVERSION] ?: "",
+                hashMap[remote_big_table_helper.RECID] ?: "",
+                hashMap[remote_big_table_helper.PROJECTS_ID] ?: "",
+                hashMap[remote_big_table_helper.INVENTORY_ID] ?: "",
+                hashMap[remote_big_table_helper.FLAT] ?: "",
+                hashMap[remote_big_table_helper.FLOOR] ?: "",
+                hashMap[remote_big_table_helper.QTY] ?: "",
+                hashMap[remote_big_table_helper.SALESPRICE] ?: "",
+                hashMap[remote_big_table_helper.OPR_ID] ?: "",
+                hashMap[remote_big_table_helper.MILESTONEPERCENT] ?: "",
+                hashMap[remote_big_table_helper.QTYFORACCOUNT] ?: "",
+                hashMap[remote_big_table_helper.PERCENTFORACCOUNT] ?: "",
+                hashMap[remote_big_table_helper.TOTALSUM] ?: "",
+                hashMap[remote_big_table_helper.SALPROG] ?: "",
+                hashMap[remote_big_table_helper.PRINTORDER] ?: "",
+                hashMap[remote_big_table_helper.ITEMNUMBER] ?: "",
+                hashMap[remote_big_table_helper.KOMANUM] ?: "",
+                hashMap[remote_big_table_helper.DIRANUM] ?: "",
+                remote_SQL_Helper.getusername(),
+                hashMap[remote_big_table_helper.QTYINPARTIALACC] ?: ""
+        )
+    }
+
 
     /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
@@ -170,7 +234,7 @@ class local_big_table_helper(
         vector.add(KOMANUM)
         vector.add(DIRANUM)
         vector.add(USER)
-        vector.add(QTYINPARTIALACC)
+//        vector.add(QTYINPARTIALACC)
         init_vector_of_variables(vector)
     }
 
@@ -187,7 +251,7 @@ class local_big_table_helper(
         map[ACCOUNT_NUM] = type
         map[DATAARAEID] = type
         map[RECVERSION] = type
-        map[RECID] = type
+        map[RECID] = "$type PRIMARY KEY"
         map[PROJID] = type
         map[ITEMID] = type
         map[FLAT] = type
@@ -205,7 +269,7 @@ class local_big_table_helper(
         map[KOMANUM] = type
         map[DIRANUM] = type
         map[USER] = type
-        map[QTYINPARTIALACC] = type
+//        map[QTYINPARTIALACC] = type
 //        val foreign: HashMap<String, String> = HashMap()
 //        foreign[ACCOUNT_NUM] = context.getString(R.string.LOCAL_VENDORS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_VENDORS_COLUMN_ID) + ")"
 //        foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID) + ")"
@@ -216,407 +280,5 @@ class local_big_table_helper(
     }
 
 
-    /**
-     * adds all big, updates, inserts... whatever
-     * @author Chaosruler972
-     */
-    fun sync_db()
-    {
-        if(!global_variables_dataclass.isLocal)
-            return
-        val server_vec = server_data_to_vector()
-        for (item in server_vec)
-        {
-            add_big(item)
-        }
-    }
 
-
-    /**
-     *  converts DB to vector of big data
-     *  @author Chaosruler972
-     *  @return a vector of big table from local DB
-     */
-    fun get_local_DB(): Vector<big_table_data>
-    {
-        Log.d("DB OF: ","Big")
-        val vector: Vector<big_table_data> = Vector()
-
-        val all_db: Vector<java.util.HashMap<String, String>> = get_db()
-        all_db
-                .filter { it[USER] != null && it[USER]?:"" == remote_SQL_Helper.getusername() }
-                .map {
-                    big_table_data(
-                            (it[ACCOUNT_NUM]?:"").trim(),
-                            (it[DATAARAEID]?:"").trim(),
-                            (it[RECVERSION]?:"").trim(),
-                            (it[RECID]?:"").trim(),
-                            (it[PROJID]?:"").trim(),
-                            (it[ITEMID]?:"").trim(),
-                            (it[FLAT]?:"").trim(),
-                            (it[FLOOR]?:"").trim(),
-                            (it[QTY]?:"").trim(),
-                            (it[SALESPRICE]?:"").trim(),
-                            (it[OPR_ID]?:"").trim(),
-                            (it[MILESTONEPERCENTAGE]?:"").trim(),
-                            (it[QTYFORACCOUNT]?:"").trim(),
-                            (it[PERCENTFORACCOUNT]?:"").trim(),
-                            (it[TOTAL_SUM]?:"").trim(),
-                            (it[SALPROG]?:"").trim(),
-                            (it[PRINTORDER]?:"").trim() ,
-                            (it[ITEMNUMBER]?:"").trim(),
-                            (it[KOMANUM]?:"").trim(),
-                            (it[DIRANUM]?:"").trim(),
-                            (it[USER]?:"").trim(),
-                            (it[QTYINPARTIALACC]?:"").trim()
-                    )
-                }
-                .forEach { vector.addElement(it) }
-        return vector
-    }
-
-
-    /**
-     * get local DB by project name
-     * @author Chaosruler972
-     * @return a vector of big table filtered by project name
-     * @param projid the project id that represents the name of the project we want to filter
-     */
-    fun get_local_DB_by_projname(projid:String): Vector<big_table_data>
-    {
-        val vector: Vector<big_table_data> = Vector()
-
-//        val where_statement = HashMap<String, String>()
-//        where_statement[PROJID] = "A"
-//        val projid_enc = global_variables_dataclass.xorWithKey(
-//                projid.toByteArray(Charset.forName("UTF-8")),
-//                global_variables_dataclass.get_device_id(context).toByteArray(Charset.forName("UTF-8")),
-//                false,
-//                context
-//        ).toString(Charset.forName("UTF-8"))
-//        where_statement[PROJID] = where_statement[PROJID]!!.replace("A", projid_enc)
-//        Log.d("big_table",where_statement[PROJID]!!)
-
-        val all_db: Vector<java.util.HashMap<String, String>> = get_db()
-        Log.d("DB_BIG","Count : ${all_db.size.toString()}")
-        all_db.filter { (it[PROJID]?:"") == projid }
-                .map {
-                    big_table_data(
-                            (it[ACCOUNT_NUM]?:"").trim(),
-                            (it[DATAARAEID]?:"").trim(),
-                            (it[RECVERSION]?:"").trim(),
-                            (it[RECID]?:"").trim(),
-                            (it[PROJID]?:"").trim(),
-                            (it[ITEMID]?:"").trim(),
-                            (it[FLAT]?:"").trim(),
-                            (it[FLOOR]?:"").trim(),
-                            (it[QTY]?:"").trim(),
-                            (it[SALESPRICE]?:"").trim(),
-                            (it[OPR_ID]?:"").trim(),
-                            (it[MILESTONEPERCENTAGE]?:"").trim(),
-                            (it[QTYFORACCOUNT]?:"").trim(),
-                            (it[PERCENTFORACCOUNT]?:"").trim(),
-                            (it[TOTAL_SUM]?:"").trim(),
-                            (it[SALPROG]?:"").trim(),
-                            (it[PRINTORDER]?:"").trim() ,
-                            (it[ITEMNUMBER]?:"").trim(),
-                            (it[KOMANUM]?:"").trim(),
-                            (it[DIRANUM]?:"").trim(),
-                            (it[USER]?:"").trim(),
-                            it[QTYINPARTIALACC]?:"".trim()
-                    )
-                }
-                .forEach { vector.addElement(it) }
-        return vector
-    }
-
-    /**
-     *     subroutine to convert server data to vector of big data
-     *  @author Chaosruler972
-     *  @return a vector of big table from server DB
-     */
-    @Suppress("MemberVisibilityCanPrivate")
-    fun server_data_to_vector(): Vector<big_table_data>
-    {
-        val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
-        val server_data: Vector<java.util.HashMap<String, String>> =
-        if(BuildConfig.DEBUG)
-        {
-            remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
-        }
-        else
-        {
-            remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,null,null)
-        }
-        Log.d("local_big",server_data.size.toString())
-        for(item in server_data)
-            Log.d("local_big",server_data.toString())
-        val result_vector: Vector<big_table_data> = Vector()
-        server_data
-                .map { it ->
-                    Log.d("result", it.toString())
-                    big_table_data(
-                            it[remote_big_table_helper.VENDOR_ID]?: "",
-                            it[remote_big_table_helper.DATAREAID]?: "",
-                            it[remote_big_table_helper.RECVERSION]?: "",
-                            it[remote_big_table_helper.RECID]?: "",
-                            it[remote_big_table_helper.PROJECTS_ID]?: "",
-                            it[remote_big_table_helper.INVENTORY_ID]?: "",
-                            it[remote_big_table_helper.FLAT]?: "",
-                            it[remote_big_table_helper.FLOOR]?: "",
-                            it[remote_big_table_helper.QTY]?: "",
-                            it[remote_big_table_helper.SALESPRICE]?: "",
-                            it[remote_big_table_helper.OPR_ID]?: "",
-                            it[remote_big_table_helper.MILESTONEPERCENT]?: "",
-                            it[remote_big_table_helper.QTYFORACCOUNT]?: "",
-                            it[remote_big_table_helper.PERCENTFORACCOUNT]?: "",
-                            it[remote_big_table_helper.TOTALSUM]?: "",
-                            it[remote_big_table_helper.SALPROG]?: "",
-                            it[remote_big_table_helper.PRINTORDER]?: "",
-                            it[remote_big_table_helper.ITEMNUMBER]?: "",
-                            it[remote_big_table_helper.KOMANUM]?: "",
-                            it[remote_big_table_helper.DIRANUM]?: "",
-                            remote_SQL_Helper.getusername(),
-                            it[remote_big_table_helper.QTYINPARTIALACC]?:""
-                    )
-                }
-                .forEach { result_vector.addElement(it) }
-        return result_vector
-    }
-
-
-
-    /**
-     * server data to vector... by projid
-     * @author Chaosruler972
-     * @return a vector of big table filtered by project name
-     * @param projid the project id that represents the name of the project we want to filter
-     */
-    fun server_data_to_vector_by_projname(projid: String): Vector<big_table_data>
-    {
-
-        val typemap: HashMap<String, String> = remote_big_table_helper.define_type_map()
-        val server_data: Vector<java.util.HashMap<String, String>> =
-                if(BuildConfig.DEBUG)
-                {
-                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,context.getString(R.string.TABLE_BIG_DATAAREAID),context.getString(R.string.DATAAREAID_DEVELOP))
-                }
-                else
-                {
-                    remote_SQL_Helper.select_columns_from_db_with_where(context.getString(R.string.DATABASE_NAME), context.getString(R.string.TABLE_BIG),typemap,null,null)
-                }
-        val result_vector: Vector<big_table_data> = Vector()
-        server_data
-                .filter { it[PROJID]!=null && projid == it[PROJID]!!  }
-                .map { it ->
-                    big_table_data(
-                            it[remote_big_table_helper.VENDOR_ID]?: "",
-                            it[remote_big_table_helper.DATAREAID]?: "",
-                            it[remote_big_table_helper.RECVERSION]?: "",
-                            it[remote_big_table_helper.RECID]?: "",
-                            it[remote_big_table_helper.PROJECTS_ID]?: "",
-                            it[remote_big_table_helper.INVENTORY_ID]?: "",
-                            it[remote_big_table_helper.FLAT]?: "",
-                            it[remote_big_table_helper.FLOOR]?: "",
-                            it[remote_big_table_helper.QTY]?: "",
-                            it[remote_big_table_helper.SALESPRICE]?: "",
-                            it[remote_big_table_helper.OPR_ID]?: "",
-                            it[remote_big_table_helper.MILESTONEPERCENT]?: "",
-                            it[remote_big_table_helper.QTYFORACCOUNT]?: "",
-                            it[remote_big_table_helper.PERCENTFORACCOUNT]?: "",
-                            it[remote_big_table_helper.TOTALSUM]?: "",
-                            it[remote_big_table_helper.SALPROG]?: "",
-                            it[remote_big_table_helper.PRINTORDER]?: "",
-                            it[remote_big_table_helper.ITEMNUMBER]?: "",
-                            it[remote_big_table_helper.KOMANUM]?: "",
-                            it[remote_big_table_helper.DIRANUM]?: "",
-                            remote_SQL_Helper.getusername(),
-                            it[remote_big_table_helper.QTYINPARTIALACC]?:""
-                    )
-                }
-                .forEach { result_vector.addElement(it) }
-        return result_vector
-    }
-
-
-    /**
-     *   subroutine that is in charge of getting the big class
-     * by query
-     * @author Chaosruler972
-     * @param big_table_data the big data to filter by
-     * @return the big data from the server, null if not found
-     */
-    @Suppress("MemberVisibilityCanPrivate")
-    fun get_big_by_big(big_table_data: big_table_data) // subroutine to get a opr object
-            : big_table_data? {
-        val input_map = java.util.HashMap<String, String>()
-        input_map[ACCOUNT_NUM] = "'${big_table_data.get_VENDOR_ID()}'"
-        input_map[PROJID] = "'${big_table_data.get_PROJECT_ID()}'"
-        input_map[ITEMID] = "'${big_table_data.get_INVENTORY_ID()}'"
-        input_map[OPR_ID] = "'${big_table_data.get_OPRID()}'"
-        val vector = get_rows(input_map)
-        if (vector.size > 0) {
-                return big_table_data(
-                        vector.firstElement()[ACCOUNT_NUM]?:"",
-                        vector.firstElement()[DATAARAEID]?:"",
-                        vector.firstElement()[RECVERSION]?:"",
-                        vector.firstElement()[RECID]?:"",
-                        vector.firstElement()[PROJID]?:"",
-                        vector.firstElement()[ITEMID]?:"",
-                        vector.firstElement()[FLAT]?:"",
-                        vector.firstElement()[FLOOR]?:"",
-                        vector.firstElement()[QTY]?:"",
-                        vector.firstElement()[SALESPRICE]?:"",
-                        vector.firstElement()[OPR_ID]?:"",
-                        vector.firstElement()[MILESTONEPERCENTAGE]?:"",
-                        vector.firstElement()[QTYFORACCOUNT]?:"",
-                        vector.firstElement()[PERCENTFORACCOUNT]?:"",
-                        vector.firstElement()[TOTAL_SUM]?:"",
-                        vector.firstElement()[SALPROG]?:"",
-                        vector.firstElement()[PRINTORDER]?:"",
-                        vector.firstElement()[ITEMNUMBER]?:"",
-                        vector.firstElement()[KOMANUM]?:"",
-                        vector.firstElement()[DIRANUM]?:"",
-                        vector.firstElement()[USER]?:"",
-                        vector.firstElement()[QTYINPARTIALACC]?:""
-                )
-        }
-
-        return null
-    }
-
-
-    /**
-     * add big mechanism
-     * if big is invalid, forget about it
-     * if big is valid, and it exists, update it
-     * if its a new opr, add a new big to table
-     * @author Chaosruler972
-     * @param big_table_data the big data object to add
-     * @return if add was successfull true, else false
-     */
-    fun add_big(big_table_data: big_table_data) // subroutine that manages the big adding operation to the database
-            : Boolean
-    {
-        Log.d("Big Check exists",check_big(big_table_data).toString())
-        val res = (remote_SQL_Helper.get_latest_sync_time().time > 0.toLong() &&
-                update_big(big_table_data, big_table_data.copy())) // checks if big exists in database
-             // if it does, lets update
-        if(!res) // if it doesn't lets create a new entry for the big
-        {
-            Log.d("Insert big", "Inserting directly")
-            return insert_big(big_table_data)
-        }
-        return res
-    }
-
-
-    /**
-     * checks if big exists, query is not that smart, gets an ENTIRE table and than checks
-     * if the big is there
-     * @param big_table_data the big to check if exists or not
-     * @return if the big data was found or not
-     * @author Chaosruler972
-     */
-    @Suppress("MemberVisibilityCanPrivate")
-    fun check_big(big_table_data: big_table_data) // subroutine to check if big exists on the database
-            : Boolean {
-        val big: big_table_data? = get_big_by_big(big_table_data)
-        return big != null
-    }
-
-
-    /**
-     *  subroutine in charge of feeding schema and database information to SQL
-     * abstract implentation on insert queries
-     * @author Chaosruler972
-     * @param big_table_data the big table data that we want to insert
-     * @return if insertion was successfull or not
-     */
-    private fun insert_big(big_table_data: big_table_data): Boolean // subroutine to insert a big to the database
-    {
-
-        val everything_to_add: Vector<java.util.HashMap<String, String>> = Vector()
-
-        val data: java.util.HashMap<String, String> = java.util.HashMap()
-        data[DATAARAEID] = (big_table_data.get_DATAAREAID() ?: "").trim()
-        data[RECVERSION] = (big_table_data.get_RECVERSION() ?: "").trim()
-        data[RECID] = (big_table_data.get_RECID() ?: "").trim()
-        data[FLAT] = (big_table_data.get_FLAT() ?: "").trim()
-        data[FLOOR] = (big_table_data.get_FLOOR() ?: "").trim()
-        data[QTY] = (big_table_data.get_QTY() ?: "").trim()
-        data[SALESPRICE] = (big_table_data.get_SALESPRICE() ?: "").trim()
-        data[MILESTONEPERCENTAGE] = (big_table_data.get_MILESTONEPERCENT() ?: "").trim()
-        data[QTYFORACCOUNT] = (big_table_data.get_QTYFORACCOUNT() ?: "").trim()
-        data[PERCENTFORACCOUNT] = (big_table_data.get_PERCENTFORACCOUNT() ?: "").trim()
-        data[TOTAL_SUM] = (big_table_data.get_TOTALSUM() ?: "").trim()
-        data[SALPROG] = (big_table_data.get_SALPROG() ?: "").trim()
-        data[PRINTORDER] = (big_table_data.get_PRINTORDER() ?: "").trim()
-        data[ITEMNUMBER] = (big_table_data.get_ITEMNUMBER() ?: "").trim()
-        data[KOMANUM] = (big_table_data.get_KOMANUM() ?: "").trim()
-        data[DIRANUM] = (big_table_data.get_DIRANUM() ?: "").trim()
-        data[USER] = (big_table_data.get_USERNAME() ?: "").trim()
-        data[ACCOUNT_NUM] = (big_table_data.get_VENDOR_ID() ?: "").trim()
-        data[PROJID] = (big_table_data.get_PROJECT_ID() ?: "").trim()
-        data[ITEMID] = (big_table_data.get_INVENTORY_ID() ?: "").trim()
-        data[OPR_ID] = (big_table_data.get_OPRID() ?: "").trim()
-        data[QTYINPARTIALACC] = (big_table_data.get_QTYINPARTIALACC() ?: "" ).trim()
-        everything_to_add.addElement(data)
-        return add_data(everything_to_add, false)
-    }
-
-
-    /**
-     *  subroutine in charge of feeding information and database information to
-     * SQL abstraction on update queries
-     * @author Chaosruler972
-     * @param from the source that we want to update
-     * @param to what we want to update it to
-     * @return if update was successfull or not
-     */
-    @Suppress("MemberVisibilityCanPrivate")
-    fun update_big(from: big_table_data, to: big_table_data) // subroutine to update data of a big that exists on the database
-            : Boolean {
-
-        val change_to: java.util.HashMap<String, String> = java.util.HashMap()
-        change_to[DATAARAEID] = (to.get_DATAAREAID() ?: "").trim()
-        change_to[FLAT] = (to.get_FLAT() ?: "").trim()
-        change_to[FLOOR] = (to.get_FLOOR() ?: "").trim()
-        change_to[QTY] = (to.get_QTY() ?: "").trim()
-        change_to[SALESPRICE] = (to.get_SALESPRICE() ?: "").trim()
-        change_to[MILESTONEPERCENTAGE] = (to.get_MILESTONEPERCENT() ?: "").trim()
-        change_to[QTYFORACCOUNT] = (to.get_QTYFORACCOUNT() ?: "").trim()
-        change_to[PERCENTFORACCOUNT] = (to.get_PERCENTFORACCOUNT() ?: "").trim()
-        change_to[TOTAL_SUM] = (to.get_TOTALSUM() ?: "").trim()
-        change_to[SALPROG] = (to.get_SALPROG() ?: "").trim()
-        change_to[PRINTORDER] = (to.get_PRINTORDER() ?: "").trim()
-        change_to[ITEMNUMBER] = (to.get_ITEMNUMBER() ?: "").trim()
-        change_to[KOMANUM] = (to.get_KOMANUM() ?: "").trim()
-        change_to[DIRANUM] = (to.get_DIRANUM() ?: "").trim()
-        change_to[USER] = (to.get_USERNAME() ?: "").trim()
-        change_to[QTYINPARTIALACC] = (to.get_QTYINPARTIALACC() ?: "" ).trim()
-        change_to[ACCOUNT_NUM] = (to.get_VENDOR_ID()?: "").trim()
-        change_to[PROJID] = (to.get_PROJECT_ID()?:"").trim()
-        change_to[ITEMID] = (to.get_INVENTORY_ID() ?:"").trim()
-        change_to[OPR_ID] = (to.get_OPRID()?:"").trim()
-        change_to[RECVERSION] = (to.get_RECVERSION()?:"").trim()
-        return update_data(RECID, arrayOf(from.get_RECID()?:""), change_to)
-    }
-
-
-    /**
-     * subroutine in charge of feeding information and database information to
-     * SQL abstraction on delete queries
-     * @author Chaosruler972
-     * @param big_table_data the source that we want to remove
-     * @return if removal was successfull or not
-     */
-    @Suppress("unused")
-    fun delete_big(big_table_data: big_table_data): Boolean // subroutine to delete a big from the database (local)
-    {
-        if (get_big_by_big(big_table_data) == null)
-            return false
-        return remove_from_db(RECID, arrayOf(big_table_data.get_RECID()?:""))
-
-    }
 }

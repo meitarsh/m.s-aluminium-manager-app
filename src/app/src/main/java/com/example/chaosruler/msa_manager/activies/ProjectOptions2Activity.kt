@@ -1,23 +1,12 @@
 package com.example.chaosruler.msa_manager.activies
 
-import android.os.Build
+import android.os.Bundle
 import android.support.design.widget.TabLayout
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
-
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
-import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.app.AppCompatActivity
 import com.example.chaosruler.msa_manager.BuildConfig
-
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.project_chooser_fragments.KablaniMishneFragment
 import com.example.chaosruler.msa_manager.activies.project_chooser_fragments.LozFragment
@@ -25,7 +14,6 @@ import com.example.chaosruler.msa_manager.activies.project_chooser_fragments.div
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_project_options2.*
-import kotlinx.android.synthetic.main.fragment_project_options2.view.*
 
 class ProjectOptions2Activity : AppCompatActivity() {
 
@@ -60,7 +48,7 @@ class ProjectOptions2Activity : AppCompatActivity() {
         {
 //            val dbg_proj_id = "00315"
 //            global_variables_dataclass.projid = dbg_proj_id
-//            Log.d("projid","Changed to $dbg_proj_id (${global_variables_dataclass.projid})")
+//            global_variables_dataclass.log("projid","Changed to $dbg_proj_id (${global_variables_dataclass.projid})")
         }
 
 //        setSupportActionBar(toolbar)

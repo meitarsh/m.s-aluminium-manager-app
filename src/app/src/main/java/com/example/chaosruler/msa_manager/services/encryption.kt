@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.security.keystore.KeyProperties
 import android.util.Base64
-import android.util.Log
 import com.example.chaosruler.msa_manager.R
-
+import com.example.chaosruler.msa_manager.services.encryption.encrypt
+import com.example.chaosruler.msa_manager.services.encryption.generate_key
 import com.yakivmospan.scytale.Crypto
 import com.yakivmospan.scytale.Options
 import com.yakivmospan.scytale.Store
@@ -80,7 +80,7 @@ object encryption
             val crypto = Crypto(Options.TRANSFORMATION_SYMMETRIC)
             val decrypted_string_from_file = crypto.decrypt(String(new_a), key_to_encrypt)
             val decrypted_from_file = decrypted_string_from_file.hexStringToByteArray()
-            Log.d("Key length Read:",decrypted_from_file.size.toString())
+            global_variables_dataclass.log("Key length Read:", decrypted_from_file.size.toString())
             return SecretKeySpec(decrypted_from_file,0,decrypted_from_file.size,"AES")
         }
         else // generate key and save to file
@@ -90,7 +90,7 @@ object encryption
             keyGen.init(256)
             val new_key = keyGen.generateKey()
             val encoded = new_key.encoded
-            Log.d("Key length Saved:",encoded.size.toString())
+            global_variables_dataclass.log("Key length Saved:", encoded.size.toString())
             val encoded_and_encrypted_to_file =  Base64.encode(crypto.encrypt(encoded.toHex(), key_to_encrypt).toByteArray(Charset.forName("UTF-8")),Base64.DEFAULT)
             writeToFile(encoded_and_encrypted_to_file,"key.key",context)
             return new_key
@@ -130,7 +130,7 @@ object encryption
         catch (e:IOException)
         {
             byteArray = null
-            Log.d("Encryption","Saving to file IO Exception")
+            global_variables_dataclass.log("Encryption", "Saving to file IO Exception")
         }
         return byteArray
     }
@@ -151,7 +151,7 @@ object encryption
         }
         catch (e:IOException)
         {
-            Log.d("Encryption","Saving to file IO Exception")
+            global_variables_dataclass.log("Encryption", "Saving to file IO Exception")
         }
     }
     /**

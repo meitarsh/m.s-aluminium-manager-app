@@ -67,7 +67,7 @@ class table_peolot_arrayadapter(context: Context, arr: Vector<opr_data>) : Array
                 update_value[remote_opr_table_helper.NAME] = str
                 remote_opr_table_helper.push_update(peolot_data, update_value, context)
                 peolot_data.set_oprname(str)
-                global_variables_dataclass.DB_OPR!!.add_opr(peolot_data)
+                global_variables_dataclass.DB_OPR!!.add_to_table(peolot_data)
                 themer.hideKeyboard(context,name)
             }).start()
             name.hint = str.trim()

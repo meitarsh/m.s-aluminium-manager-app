@@ -4,10 +4,10 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.util.Log
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.object_types.cache_command
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import java.util.*
 
 /**
@@ -126,7 +126,7 @@ class cache_server_commands(context: Context) : local_SQL_Helper(context, contex
         val everything_to_add: Vector<HashMap<String, String>> = Vector()
 
         val data: HashMap<String, String> = HashMap()
-        Log.d("Going to add command:",command.__command)
+        global_variables_dataclass.log("Going to add command:", command.__command)
         data[COMMAND] = command.__command
         data[USER] = command.__user
         everything_to_add.addElement(data)
@@ -152,7 +152,7 @@ class cache_server_commands(context: Context) : local_SQL_Helper(context, contex
      */
     fun get_entire_db():Vector<cache_command> // subroutine to get the entire database as an iterateable vector
     {
-        Log.d("DB OF: ","Cache")
+        global_variables_dataclass.log("DB OF: ", "Cache")
         val commands: Vector<cache_command> = Vector()
         val vector: Vector<HashMap<String, String>> = get_db()
         vector

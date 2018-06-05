@@ -2,6 +2,7 @@ package com.example.chaosruler.msa_manager.object_types
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_takala_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
 /**
  * Takala dataclass
@@ -94,6 +95,13 @@ class takala_data(
          */
         private var USERNAME: String
 ) : table_dataclass {
+
+    /**
+     * returns a key hashmap
+     * @author Chaosruler972
+     * @return a key hashmap
+     */
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_SALPROJTAKALA!!.ID, RECID!!)
 
     /**
      * Projid getter
@@ -406,23 +414,50 @@ class takala_data(
 
     override fun to_hashmap(): HashMap<String, String> {
         val map = HashMap<String, String>()
-        map[remote_takala_table_helper.KOMA] = KOMA?:""
-        map[remote_takala_table_helper.BINYAN] = BINYAN?:""
-        map[remote_takala_table_helper.DIRA] = DIRA?:""
-        map[remote_takala_table_helper.TEUR] = TEUR?:""
-        map[remote_takala_table_helper.MUMLATZ] = MUMLATZ?:""
-        map[remote_takala_table_helper.MONAAT] = MONAAT?:""
-        map[remote_takala_table_helper.TGUVA] = TGUVA?:""
-        map[remote_takala_table_helper.SUG] = SUG?:""
-        map[remote_takala_table_helper.ALUT] = ALUT?:""
-        map[remote_takala_table_helper.ITEMTXT] = ITEMTXT?:""
-        map[remote_takala_table_helper.RECVERSION] = RECVERSION?:""
-        map[remote_takala_table_helper.RECID] = RECID?:""
-        map[remote_takala_table_helper.ID] = PROJID?:""
-        map[remote_takala_table_helper.ITEMID] = ITEMID?:""
-        map[remote_takala_table_helper.DATAAREAID] = DATAAREAID?:""
-        map[remote_takala_table_helper.QTY] = QTY?:""
+        map[remote_takala_table_helper.KOMA] = get_KOMA() ?: ""
+        map[remote_takala_table_helper.BINYAN] = get_BINYAN() ?: ""
+        map[remote_takala_table_helper.DIRA] = get_DIRA() ?: ""
+        map[remote_takala_table_helper.TEUR] = get_TEUR() ?: ""
+        map[remote_takala_table_helper.MUMLATZ] = get_MUMLATZ() ?: ""
+        map[remote_takala_table_helper.MONAAT] = get_MONAAT() ?: ""
+        map[remote_takala_table_helper.TGUVA] = get_TGUVA() ?: ""
+        map[remote_takala_table_helper.SUG] = get_SUG() ?: ""
+        map[remote_takala_table_helper.ALUT] = get_ALUT() ?: ""
+        map[remote_takala_table_helper.ITEMTXT] = get_ITEMTXT() ?: ""
+        map[remote_takala_table_helper.RECVERSION] = get_RECVERSION() ?: ""
+        map[remote_takala_table_helper.RECID] = get_RECID() ?: ""
+        map[remote_takala_table_helper.ID] = get_projid() ?: ""
+        map[remote_takala_table_helper.ITEMID] = get_ITEMID() ?: ""
+        map[remote_takala_table_helper.DATAAREAID] = get_DATAAREAID() ?: ""
+        map[remote_takala_table_helper.QTY] = get_QTY() ?: ""
         return map
+    }
+
+    /**
+     * to local sql hashmap
+     * @author Chaosruler972
+     * @return local sql hashmap
+     */
+    override fun to_sql_hashmap(): HashMap<String, String> {
+        val data: HashMap<String, String> = HashMap()
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.ID] = (get_projid() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.ITEMID] = (get_ITEMID() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.DATAAREAID] = (get_DATAAREAID() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.QTY] = (get_QTY() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.KOMA] = (get_KOMA() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.BINYAN] = (get_BINYAN() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.DIRA] = (get_DIRA() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.TEUR] = (get_TEUR() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.MUMLATZ] = (get_MUMLATZ() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.MONAAT] = (get_MONAAT() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.TGUVA] = (get_TGUVA() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.SUG] = (get_SUG() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.ALUT] = (get_ALUT() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.ITEMTXT] = (get_ITEMTXT() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.RECVERSION] = (get_RECVERSION() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.RECID] = (get_RECID() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.USERNAME] = (get_USERNAME())
+        return data
     }
 
 }

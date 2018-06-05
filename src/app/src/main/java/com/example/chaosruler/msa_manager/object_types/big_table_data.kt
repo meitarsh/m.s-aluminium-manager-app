@@ -1,8 +1,8 @@
 package com.example.chaosruler.msa_manager.object_types
 
-import android.util.Log
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
 /**
  * a dataclass to represent big table data
@@ -121,6 +121,17 @@ class big_table_data(
         private var QTYINPARTIALACC:String?
 )
     : table_dataclass, Comparable<big_table_data> {
+
+
+    /**
+     * Only gets keys
+     * @author Chaosruler972
+     * @return a pair of key value of the key
+     */
+    override fun to_key_hashmap(): Pair<String, String> {
+        return Pair(global_variables_dataclass.DB_BIG!!.RECID, RECID!!)
+    }
+
     /**
      * Function responisble for inflating the data from strings.xml
      * @author Chaosruler972
@@ -660,7 +671,7 @@ class big_table_data(
         }
         catch (e: NumberFormatException)
         {
-            Log.d("Big_table_data","Komanum is not a number!")
+            global_variables_dataclass.log("Big_table_data", "Komanum is not a number!")
             return 0
         }
         if(this.DIRANUM==null || other.DIRANUM==null)
@@ -676,7 +687,7 @@ class big_table_data(
         }
         catch (e: NumberFormatException)
         {
-            Log.d("Big_table_data","DIRANUM is not a number!")
+            global_variables_dataclass.log("Big_table_data", "DIRANUM is not a number!")
             return 0
         }
         if (this.get_PRINTORDER() == null || other.get_PRINTORDER() == null)
@@ -687,7 +698,7 @@ class big_table_data(
                 this.get_PRINTORDER()!!.toInt() > other.get_PRINTORDER()!!.toInt() -> return 1
             }
         } catch (e: NumberFormatException) {
-            Log.d("Big_table_data", "PRINTORDER is not a number!")
+            global_variables_dataclass.log("Big_table_data", "PRINTORDER is not a number!")
             return 0
         }
         if (this.get_ITEMNUMBER() == null || other.get_ITEMNUMBER() == null)
@@ -698,7 +709,7 @@ class big_table_data(
                 this.get_ITEMNUMBER()!!.toInt() > other.get_ITEMNUMBER()!!.toInt() -> return 1
             }
         } catch (e: NumberFormatException) {
-            Log.d("Big_table_data", "ITEMNUMBER is not a number!")
+            global_variables_dataclass.log("Big_table_data", "ITEMNUMBER is not a number!")
             return 0
         }
         return 0
@@ -720,25 +731,55 @@ class big_table_data(
 
     override fun to_hashmap(): HashMap<String, String> {
         val map =  HashMap<String, String>()
-        map[remote_big_table_helper.VENDOR_ID] = VENDOR_ID?:""
-        map[remote_big_table_helper.FLAT] = FLAT?:""
-        map[remote_big_table_helper.INVENTORY_ID] = INVENTORY_ID?:""
-        map[remote_big_table_helper.PROJECTS_ID] = PROJECTS_ID?:""
-        map[remote_big_table_helper.RECID] = RECID?:""
-        map[remote_big_table_helper.RECVERSION] = RECVERSION?:""
-        map[remote_big_table_helper.DATAREAID] = DATAAREAID?:""
-        map[remote_big_table_helper.FLOOR] = FLOOR?:""
-        map[remote_big_table_helper.DIRANUM] = DIRANUM?:""
-        map[remote_big_table_helper.KOMANUM] = KOMANUM?:""
-        map[remote_big_table_helper.SALPROG] = SALPROG?:""
-        map[remote_big_table_helper.SALESPRICE] = SALESPRICE?:""
-        map[remote_big_table_helper.TOTALSUM] = TOTALSUM?:""
-        map[remote_big_table_helper.QTYINPARTIALACC] = QTYINPARTIALACC?:""
-        map[remote_big_table_helper.MILESTONEPERCENT] = MILESTONEPERCENT?:""
-        map[remote_big_table_helper.QTYFORACCOUNT] = QTYFORACCOUNT?:""
-        map[remote_big_table_helper.ITEMNUMBER] = ITEMNUMBER?:""
-        map[remote_big_table_helper.OPR_ID] = OPR_ID?:""
-        map[remote_big_table_helper.PRINTORDER] = PRINTORDER?:""
+        map[remote_big_table_helper.VENDOR_ID] = get_VENDOR_ID() ?: ""
+        map[remote_big_table_helper.FLAT] = get_FLAT() ?: ""
+        map[remote_big_table_helper.INVENTORY_ID] = get_INVENTORY_ID() ?: ""
+        map[remote_big_table_helper.PROJECTS_ID] = get_PROJECT_ID() ?: ""
+        map[remote_big_table_helper.RECID] = get_RECID() ?: ""
+        map[remote_big_table_helper.RECVERSION] = get_RECVERSION() ?: ""
+        map[remote_big_table_helper.DATAREAID] = get_DATAAREAID() ?: ""
+        map[remote_big_table_helper.FLOOR] = get_FLOOR() ?: ""
+        map[remote_big_table_helper.DIRANUM] = get_DIRANUM() ?: ""
+        map[remote_big_table_helper.KOMANUM] = get_KOMANUM() ?: ""
+        map[remote_big_table_helper.SALPROG] = get_SALPROG() ?: ""
+        map[remote_big_table_helper.SALESPRICE] = get_SALESPRICE() ?: ""
+        map[remote_big_table_helper.TOTALSUM] = get_TOTALSUM() ?: ""
+//        map[remote_big_table_helper.QTYINPARTIALACC] = get_QTYINPARTIALACC()?:""
+        map[remote_big_table_helper.MILESTONEPERCENT] = get_MILESTONEPERCENT() ?: ""
+        map[remote_big_table_helper.QTYFORACCOUNT] = get_QTYFORACCOUNT() ?: ""
+        map[remote_big_table_helper.ITEMNUMBER] = get_ITEMNUMBER() ?: ""
+        map[remote_big_table_helper.OPR_ID] = get_OPRID() ?: ""
+        map[remote_big_table_helper.PRINTORDER] = get_PRINTORDER() ?: ""
+        return map
+    }
+
+    /**
+     * to local sql hashmap
+     * @author Chaosruler972
+     * @return local sql hashmap
+     */
+    override fun to_sql_hashmap(): HashMap<String, String> {
+        val map = HashMap<String, String>()
+        map[global_variables_dataclass.DB_BIG!!.ACCOUNT_NUM] = get_VENDOR_ID() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.FLAT] = get_FLAT() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.ITEMID] = get_INVENTORY_ID() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.PROJID] = get_PROJECT_ID() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.RECID] = get_RECID() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.RECVERSION] = get_RECVERSION() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.DATAARAEID] = get_DATAAREAID() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.FLOOR] = get_FLOOR() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.DIRANUM] = get_DIRANUM() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.KOMANUM] = get_KOMANUM() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.SALPROG] = get_SALPROG() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.SALESPRICE] = get_SALESPRICE() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.TOTAL_SUM] = get_TOTALSUM() ?: ""
+//        map[global_variables_dataclass.DB_BIG!!.] = get_QTYINPARTIALACC()?:""
+        map[global_variables_dataclass.DB_BIG!!.MILESTONEPERCENTAGE] = get_MILESTONEPERCENT() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.QTYFORACCOUNT] = get_QTYFORACCOUNT() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.ITEMNUMBER] = get_ITEMNUMBER() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.OPR_ID] = get_OPRID() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.PRINTORDER] = get_PRINTORDER() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.USER] = get_USERNAME() ?: ""
         return map
     }
 }

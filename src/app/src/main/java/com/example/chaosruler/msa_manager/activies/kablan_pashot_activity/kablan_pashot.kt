@@ -53,7 +53,7 @@ class kablan_pashot : Activity()
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
                         Vector(global_variables_dataclass.db_big_vec.filter { it.get_PROJECT_ID() == global_variables_dataclass.projid })
                     else
-                        global_variables_dataclass.DB_BIG!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
+                        global_variables_dataclass.DB_BIG!!.server_data_to_vector<big_table_data>()
 
             runOnUiThread({kablan_pashot_listview.adapter = kablan_pashot_arrayadapter(baseContext, arr)
             })

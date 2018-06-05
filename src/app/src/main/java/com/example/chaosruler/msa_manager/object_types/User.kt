@@ -28,6 +28,12 @@ class User(
         private var __synctime: Long
 ):table_dataclass {
 
+    /**
+     * to key hahsmap
+     * @author Chaosruler972
+     * @return a key hashmap
+     */
+    override fun to_key_hashmap(): Pair<String, String> = Pair("user_id", __username)
 
 
     /**
@@ -108,6 +114,15 @@ class User(
     override fun copy(): User = User(this.__username, this.__password, this.__synctime)
 
     override fun to_hashmap(): HashMap<String, String> {
+        return HashMap()
+    }
+
+    /**
+     * to local sql hashmap
+     * @author Chaosruler972
+     * @return local sql hashmap
+     */
+    override fun to_sql_hashmap(): HashMap<String, String> {
         return HashMap()
     }
 }

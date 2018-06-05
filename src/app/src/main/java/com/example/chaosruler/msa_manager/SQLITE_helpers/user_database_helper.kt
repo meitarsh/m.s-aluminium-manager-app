@@ -3,10 +3,10 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers
 import android.annotation.SuppressLint
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.util.Log
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.object_types.User
+import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -167,7 +167,7 @@ class user_database_helper(
      */
     fun get_entire_db():Vector<User> // subroutine to get the entire database as an iterateable vector
     {
-        Log.d("DB OF: ","Users")
+        global_variables_dataclass.log("DB OF: ", "Users")
         val users: Vector<User> = Vector()
         val vector: Vector<HashMap<String, String>> = get_db()
         vector

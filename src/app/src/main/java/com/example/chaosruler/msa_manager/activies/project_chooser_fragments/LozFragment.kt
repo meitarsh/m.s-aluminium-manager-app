@@ -1,17 +1,13 @@
 package com.example.chaosruler.msa_manager.activies.project_chooser_fragments
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.loz_activity.loz_activity_arrayadapter
-import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.object_types.salprojluz_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
@@ -49,7 +45,7 @@ class LozFragment : Fragment() {
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
                         Vector(global_variables_dataclass.db_salproj_vec.filter { it.get_projid() == global_variables_dataclass.projid })
                     else
-                        global_variables_dataclass.DB_SALPROJ!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
+                        global_variables_dataclass.DB_SALPROJ!!.server_data_to_vector<salprojluz_data>()
 
                 activity?.runOnUiThread {
                     listview.adapter = loz_activity_arrayadapter(act,arr)

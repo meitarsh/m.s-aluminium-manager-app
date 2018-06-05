@@ -75,6 +75,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     {
         global_variables_dataclass.init_dbs(baseContext)
         status = user_database_helper(baseContext).get_entire_db().size!=0
+        global_variables_dataclass.print_in_prod = baseContext.resources.getBoolean(R.bool.print_logs_on_production)
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

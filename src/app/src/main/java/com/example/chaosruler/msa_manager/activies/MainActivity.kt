@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
-import android.util.Log
 import android.view.View
 import android.widget.*
 import com.example.chaosruler.msa_manager.BuildConfig
@@ -60,6 +59,7 @@ class MainActivity : Activity()
             remote_SQL_Helper.user = global_variables_dataclass.DB_USERS!!.get_user_by_id(remote_SQL_Helper.getusername())
             //hide_everything()
             val tasked: Boolean = user_first_run()
+            global_variables_dataclass.first_time_use = tasked
             init_sync_trd(tasked)
             progress_subroutine()
 
@@ -90,10 +90,12 @@ class MainActivity : Activity()
     {
         if(check_if_first_sync())
         {
-            Log.d("sync", "first sync")
+            global_variables_dataclass.log("sync", "first sync")
             val sync_alert = alert(title=getString(R.string.anko_title),message = getString(R.string.anko_message_sync_time_long))
             {
-                positiveButton(getString(R.string.anko_i_understand)) { moveTaskToBack(true) }
+                positiveButton(getString(R.string.anko_i_understand)) {
+                    //                    moveTaskToBack(true)
+                }
             }
             sync_alert.isCancelable = false
             sync_alert.show()
@@ -132,7 +134,7 @@ class MainActivity : Activity()
             val service_intent = Intent(this, offline_mode_service::class.java)
             intent.putExtra(getString(R.string.first_time_service),boolean)
             startService(service_intent)
-            Log.d("Main","Offline service started")
+            global_variables_dataclass.log("Main", "Offline service started")
         }).start()
     }
 
@@ -149,7 +151,7 @@ class MainActivity : Activity()
                     else
                         global_variables_dataclass.DB_project!!.server_data_to_vector()
             runOnUiThread { on_adapter_set(projects) }
-            Log.d("Main","Spinner init done")
+            global_variables_dataclass.log("Main", "Spinner init done")
         }.start()
 
     }
@@ -209,7 +211,7 @@ class MainActivity : Activity()
                 }
                 catch (e: InterruptedException)
                 {
-                    Log.d("Main Activity","Syncing still")
+                    global_variables_dataclass.log("Main Activity", "Syncing still")
                 }
 
                 if(progressStatus>=getString(R.string.main_progress_bar_max).toInt() )
@@ -237,7 +239,7 @@ class MainActivity : Activity()
         main_textview.visibility = TextView.INVISIBLE
         main_button_choose.visibility = TextView.INVISIBLE
         main_button_download.visibility = Button.INVISIBLE
-        Log.d("Main","Everything turned invisible")
+        global_variables_dataclass.log("Main", "Everything turned invisible")
     }
 
     /**
@@ -250,7 +252,7 @@ class MainActivity : Activity()
         main_button_choose.visibility = Button.VISIBLE
         main_textview.visibility = TextView.VISIBLE
         main_button_download.visibility = Button.VISIBLE
-        Log.d("Main","Everything turned visible")
+        global_variables_dataclass.log("Main", "Everything turned visible")
     }
 
     /**
@@ -266,7 +268,7 @@ class MainActivity : Activity()
         if(name.isEmpty())
             name = remote_SQL_Helper.getusername()
         main_textview.text = main_textview.text.toString().replace(getString(R.string.shalom),getString(R.string.shalom) + " " + name)
-        Log.d("Main","Intro Text done")
+        global_variables_dataclass.log("Main", "Intro Text done")
     }
 
     /**
@@ -299,7 +301,6 @@ class MainActivity : Activity()
 
 
         }
-
         if(BuildConfig.DEBUG)
         {
             project_options_all.visibility = Button.VISIBLE
@@ -320,7 +321,7 @@ class MainActivity : Activity()
                     }
                     catch (e:InterruptedException)
                     {
-                        Log.d("main_trd","Woke up")
+                        global_variables_dataclass.log("main_trd", "Woke up")
                     }
                 }
                 intent.removeExtra(baseContext.getString(R.string.key_sync_offline))

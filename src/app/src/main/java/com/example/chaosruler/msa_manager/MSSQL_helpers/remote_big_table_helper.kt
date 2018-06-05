@@ -8,7 +8,6 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.object_types.big_table_data
-import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
@@ -373,7 +372,7 @@ class remote_big_table_helper
             map[ITEMNUMBER] = ITEMNUMBER_TYPE
             map[KOMANUM] = KOMANUM_TYPE
             map[DIRANUM] = DIRANUM_TYPE
-            map[QTYINPARTIALACC] = QTYINPARTIALACC_TYPE
+//            map[QTYINPARTIALACC] = QTYINPARTIALACC_TYPE
             // n = 18
             return map
         }

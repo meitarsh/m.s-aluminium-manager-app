@@ -7,23 +7,20 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.big_table_data
+import com.example.chaosruler.msa_manager.activies.divohi_takalot_new_takala_activity.NewTakala
 import com.example.chaosruler.msa_manager.object_types.takala_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.divohi_takalot_edit.*
 import java.io.File
 import java.util.*
-import android.view.MenuInflater
-import android.view.MenuItem
-import com.example.chaosruler.msa_manager.activies.MainActivity
-import com.example.chaosruler.msa_manager.activies.divohi_takalot_new_takala_activity.NewTakala
 
 
 /**
@@ -97,7 +94,7 @@ class divohi_takalot_edit : AppCompatActivity() {
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
                         Vector(global_variables_dataclass.db_salprojtakala_vec.filter { it.get_projid() == global_variables_dataclass.projid })
                     else
-                        global_variables_dataclass.DB_SALPROJTAKALA!!.server_data_to_vector_by_projname((global_variables_dataclass.projid ?: "").trim())
+                        global_variables_dataclass.DB_SALPROJTAKALA!!.server_data_to_vector<takala_data>()
 //            arr.sort()
             runOnUiThread({divohi_takalot_edit_listview.adapter = divohi_takalot_edit_arrayadapter(this, arr)
             })

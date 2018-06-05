@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.wifi.WifiManager
 import android.preference.PreferenceManager
+import android.util.Log
+import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
@@ -21,6 +23,61 @@ import java.util.*
  */
 object global_variables_dataclass
 {
+
+    /**
+     * Inner log level class
+     * @author Chaosruler972
+     */
+    enum class LogLevel {
+        ASSERT, DEBUG, ERROR, INFO, VERBOSE, WARN, WTF, MAX
+    }
+
+    /**
+     * Logs to file/ostream
+     * @author Chaosruler972
+     * @param tag the tag
+     * @param message the message
+     */
+    fun log(tag: Any, message: Any, debug_level: LogLevel = LogLevel.INFO, forced: Boolean = false) {
+        val should_print_log = BuildConfig.DEBUG or print_in_prod
+        if (should_print_log or forced) {
+            assert(debug_level < LogLevel.MAX)
+            when (debug_level) {
+                LogLevel.ASSERT -> {
+                    if (tag != message)
+                        assert(tag == message)
+                }
+                LogLevel.DEBUG -> {
+                    Log.d(tag as String, message as String)
+                }
+                LogLevel.INFO -> {
+                    Log.i(tag as String, message as String)
+                }
+                LogLevel.WARN -> {
+                    Log.w(tag as String, message as String)
+                }
+                LogLevel.ERROR -> {
+                    Log.e(tag as String, message as String)
+                }
+                LogLevel.VERBOSE -> {
+                    Log.v(tag as String, message as String)
+                }
+                LogLevel.WTF -> {
+                    Log.wtf(tag as String, message as String)
+                }
+                else -> {
+                    assert(false)
+                }
+            }
+
+        }
+    }
+
+    /**
+     * a boolean value that tells me if I should print in production
+     * @author Chaosruler972
+     */
+    var print_in_prod: Boolean = false
     /**
      * A boolean value that tells me if database is stored locally or not, if it's not all calls are remote
      * @author Chaosruler972
@@ -55,6 +112,11 @@ object global_variables_dataclass
      */
     var floor_moving_to: Int = 0
 
+    /**
+     * First time app use
+     * @author Chaosruler972
+     */
+    var first_time_use = false
     /**
      * A locally loaded database of db_big
      * @author Chaosruler972
@@ -220,9 +282,9 @@ object global_variables_dataclass
 
         //WINDOWS-1255
         // UTF-8
-        // Log.d("Char unicoded", toHex(str))
+        // log("Char unicoded", toHex(str))
         val charSet = "UTF-8"
-        // Log.d("Result after decode:",String(str.toByteArray(charset = Charset.forName(charSet)),Charset.forName(charSet)))
+        // log("Result after decode:",String(str.toByteArray(charset = Charset.forName(charSet)),Charset.forName(charSet)))
         return String(str.toByteArray(charset = Charset.forName(charSet)), Charset.forName(charSet))
     }
 
@@ -278,5 +340,6 @@ object global_variables_dataclass
     {
         return "dateadd(s,${time},'19700101 00:00:00:000')"
     }
+
 
 }

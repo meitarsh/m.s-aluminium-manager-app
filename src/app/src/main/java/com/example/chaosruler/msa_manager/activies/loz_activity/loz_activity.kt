@@ -8,7 +8,6 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.big_table_data
 import com.example.chaosruler.msa_manager.object_types.salprojluz_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
@@ -51,7 +50,7 @@ class loz_activity : Activity() {
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
                         global_variables_dataclass.db_salproj_vec
                     else
-                        global_variables_dataclass.DB_SALPROJ!!.server_data_to_vector_by_projname((global_variables_dataclass.projid?:"").trim())
+                        global_variables_dataclass.DB_SALPROJ!!.server_data_to_vector<salprojluz_data>()
 
             runOnUiThread { loz_activity_listview.adapter = loz_activity_arrayadapter(this,arr) }
         }).start()

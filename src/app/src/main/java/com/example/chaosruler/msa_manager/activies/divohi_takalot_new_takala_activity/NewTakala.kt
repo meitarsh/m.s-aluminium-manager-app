@@ -1,7 +1,7 @@
 package com.example.chaosruler.msa_manager.activies.divohi_takalot_new_takala_activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -112,7 +112,7 @@ class NewTakala : AppCompatActivity() {
 
             remote_takala_table_helper.push_update(takala_data,empty_hashmap, baseContext)
             global_variables_dataclass.db_salprojtakala_vec.addElement(takala_data)
-            global_variables_dataclass.DB_SALPROJTAKALA!!.add_takala(takala_data)
+            global_variables_dataclass.DB_SALPROJTAKALA!!.add_to_table(takala_data)
             Toast.makeText(baseContext, getString(R.string.takala_nosfa_success), Toast.LENGTH_SHORT).show()
 
             new_takala_itemid.setText("")
