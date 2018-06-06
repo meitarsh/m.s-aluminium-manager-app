@@ -364,7 +364,12 @@ class big_table_data(
      * @author Chaosruler972
      * @return the current print order (sqlite)
      */
-    fun get_PRINTORDER(): String? = PRINTORDER
+    fun get_PRINTORDER(): String? =
+            try {
+                PRINTORDER!!.toDouble().toInt().toString()
+            } catch (e: Exception) {
+                PRINTORDER
+            }
 
     /**
      * the current item number field name (sqlite)

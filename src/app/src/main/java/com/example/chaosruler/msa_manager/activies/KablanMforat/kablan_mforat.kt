@@ -62,12 +62,12 @@ class kablan_mforat : Activity() {
                     if(global_variables_dataclass.GUI_MODE)
                         Vector()
                     else if (!global_variables_dataclass.GUI_MODE && global_variables_dataclass.isLocal)
-                        Vector(global_variables_dataclass.db_big_vec.filter { it.get_PROJECT_ID() == global_variables_dataclass.projid  && it.get_FLOOR() == global_variables_dataclass.floor && it.get_FLAT() == global_variables_dataclass.flat})
+                        Vector(global_variables_dataclass.db_big_vec.filter { it.get_PROJECT_ID() == global_variables_dataclass.projid && it.get_FLAT() == global_variables_dataclass.flat })
                     else
                         Vector(global_variables_dataclass.DB_BIG!!.server_data_to_vector<big_table_data>().filter { it.get_FLAT() == global_variables_dataclass.flat && it.get_FLOOR() == global_variables_dataclass.floor })
             big_table.sort()
             global_variables_dataclass.log("Kablan", "Chose ${big_table.size} out of ${global_variables_dataclass.db_big_vec.size}")
-            global_variables_dataclass.log("Kablan", "Looking for ${global_variables_dataclass.flat} in $big_table")
+            global_variables_dataclass.log("Kablan", "Looking for ${global_variables_dataclass.floor} in $big_table")
             runOnUiThread { spinner_populate(big_table) }
         }.start()
 
@@ -128,7 +128,7 @@ class kablan_mforat : Activity() {
 
 
                 val percentforaccount: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
-                (view as TextView).text = big_item.get_INVENTORY_ID() ?: ""
+                (view as TextView).text = big_item.get_INVENTORY_ID() + " " + big_item.get_OPRID()
                 activity_kablan_mforat_kamot_hoza.text = (big_item.get_QTY() ?: "0").trim()
                 activity_kablan_mforat_yehida_price.text = (big_item.get_SALESPRICE() ?: "0").trim()
                 activity_kablan_mforat_peola_percent.text = ((big_item.get_MILESTONEPERCENT()?:"0").toInt()).toString() + "%"
@@ -136,12 +136,20 @@ class kablan_mforat : Activity() {
 //                activity_kablan_mforat_kamot_helki.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 activity_kablan_mforat_kamot_kablan.hint = (big_item.get_QTYFORACCOUNT() ?: "0").trim()
                 activity_kablan_mforat_kamot_kablan.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-                activity_kablan_mforat_ahoz_meosher.hint = ((percentforaccount.toDouble()).toInt().toString() + "%").trim() // ((big_item.get_MILESTONEPERCENT()?:"0").toInt()).toString() + "%"
+                val percentforaccount_checker_double = if (percentforaccount.isEmpty())
+                    0.0
+                else
+                    percentforaccount.toDouble()
+                activity_kablan_mforat_ahoz_meosher.hint = ((percentforaccount_checker_double).toInt().toString() + "%").trim() // ((big_item.get_MILESTONEPERCENT()?:"0").toInt()).toString() + "%"
                 activity_kablan_mforat_ahoz_meosher.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 activity_kablan_mforat_oprname.text = (opr.get_opr_name()?:"").trim()
                 val price = (big_item.get_SALESPRICE() ?: "0").toDouble()
                 val count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
-                val parcent = percentforaccount.toDouble()
+                val percentforaccount_checker = if (percentforaccount.isEmpty())
+                    "0"
+                else
+                    percentforaccount
+                val parcent = percentforaccount_checker.toDouble()
                 activity_kablan_mforat_tashlom_sah.text = (price*count*parcent*0.01).roundToInt().toString().trim()
 
 //                activity_kablan_mforat_kamot_helki.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -292,7 +300,10 @@ class kablan_mforat : Activity() {
                 var current_price = (big_item.get_SALESPRICE() ?: "0").toDouble()
                 val count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
                 val percentforaccount: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
-                val parcent = percentforaccount.toDouble()
+                val parcent = if (percentforaccount.isEmpty())
+                    0.0
+                else
+                    percentforaccount.toDouble()
                 current_price *= count * parcent*0.01
                 global_variables_dataclass.log("Kablan", current_price.toString() + "," + count.toString() + "," + percentforaccount.toString() + "," + parcent.toString())
                 global_variables_dataclass.log("Kablan", current_price.toString())

@@ -14,19 +14,20 @@ import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_flat_and_floor_chooser.*
 import java.util.*
 
+
 class flat_and_floor_chooser : AppCompatActivity() {
 
     /**
      * Stored flat upon choosing
      * @author Chaosruler972
      */
-    private var flat: Int = 0
+    private var flat: String = ""
 
     /**
      * Stored floor upon choosing
      * @author Chaosruler972
      */
-    private var floor: Int = 0
+    private var floor: String = ""
 
     /**
      * the flat adapter that containing all the flat choices
@@ -69,8 +70,8 @@ class flat_and_floor_chooser : AppCompatActivity() {
      */
     private fun init_button()
     {
-        global_variables_dataclass.flat = flat.toString()
-        global_variables_dataclass.floor = floor.toString()
+        global_variables_dataclass.flat = flat
+        global_variables_dataclass.floor = floor
 
         floot_flat_choose_btn.setOnClickListener {
             val intent =
@@ -156,7 +157,7 @@ class flat_and_floor_chooser : AppCompatActivity() {
                 {
                     (view as TextView).text = flat_adapter.getItem(position)
                 }
-                flat = (flat_adapter.getItem(position)).toInt()
+                flat = flat_adapter.getItem(position)
                 global_variables_dataclass.flat = flat.toString()
                 global_variables_dataclass.log("flat_floor", "Flat was chosen to be $flat")
                 floor_flat_floor_spinner.visibility = Spinner.VISIBLE
@@ -191,7 +192,7 @@ class flat_and_floor_chooser : AppCompatActivity() {
                 {
                     (view as TextView).text = floor_adapter.getItem(position)
                 }
-                floor = (floor_adapter.getItem(position)?:"0").toInt()
+                floor = floor_adapter.getItem(position)
                 floot_flat_choose_btn.visibility = Button.VISIBLE
                 floot_flat_choose_btn.isEnabled = true
             }

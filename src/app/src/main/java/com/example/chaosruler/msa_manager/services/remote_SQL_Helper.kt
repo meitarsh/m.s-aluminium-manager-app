@@ -298,7 +298,7 @@ object remote_SQL_Helper {
             var rs: ResultSet?
             try {
                 var qry = if (BuildConfig.DEBUG)
-                    "USE [$db] SELECT DISTINCT "
+                    "USE [$db] SELECT DISTINCT TOP 1000 "
                 else
                     "USE [$db] SELECT DISTINCT "
                 var first = false

@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.object_types.big_table_data
-import com.example.chaosruler.msa_manager.object_types.vendor_data
-import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 
 /**
  * Drop down view to list items with their flat place
@@ -19,7 +17,7 @@ class KablanArrayAdapter(context: Context, resource_id: Int, list: List<big_tabl
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val textView = TextView(context)
         val big_table_data = getItem(position)
-        textView.text = big_table_data.get_INVENTORY_ID() ?: ""
+        textView.text = big_table_data.get_INVENTORY_ID() + " " + big_table_data.get_OPRID()
         textView.setTextColor(Color.BLACK)
         return textView
     }

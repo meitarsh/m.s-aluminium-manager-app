@@ -2,7 +2,6 @@ package com.example.chaosruler.msa_manager.activies.kablan_pashot_activity
 
 import android.content.Context
 import android.text.InputType
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,7 +63,11 @@ class kablan_pashot_arrayadapter(context: Context,arr: Vector<big_table_data>) :
         hoza.text = (vendor_item.get_accountnum() ?: "").trim()
         peola.text = (opr.get_opr_name() ?: "").trim()
         val parcent: String = big_item.get_PERCENTFORACCOUNT() ?: 0.toString().trim()
-        ahoz.text = ((parcent.toDouble()*1).toInt().toString() + "%").trim()
+        val parcent_checker = if (parcent.isEmpty())
+            "0"
+        else
+            parcent
+        ahoz.text = (((parcent_checker).toDouble()).toInt().toString() + "%").trim()
         ahoz.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
 
         val all_views = Vector<View>()
