@@ -120,6 +120,7 @@ class local_salprojtakala_table_helper(private var context: Context) :
      */
     val USERNAME = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_USERNAME)
 
+    override var filtering_mz11_enabled: Boolean = context.resources.getBoolean(R.bool.filtering_mz11_enabled)
 
     override var USER: String = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_USERNAME)
 

@@ -101,6 +101,7 @@ class local_salprojluz_table_helper(
      */
     val USERNAME = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_USERNAME)
 
+    override var filtering_mz11_enabled: Boolean = context.resources.getBoolean(R.bool.filtering_mz11_enabled)
 
     override var USER: String = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_USERNAME)
 

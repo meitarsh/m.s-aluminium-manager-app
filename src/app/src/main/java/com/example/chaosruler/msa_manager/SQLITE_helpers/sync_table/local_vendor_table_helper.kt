@@ -44,6 +44,9 @@ class local_vendor_table_helper(
      * The username field name
      * @author Chaosruler972
      */
+
+    override var filtering_mz11_enabled: Boolean = context.resources.getBoolean(R.bool.filtering_mz11_enabled)
+
     override var USER: String = context.getString(R.string.LOCAL_VENDORS_COLUMN_USERNAME)
 
     override var REMOTE_DATABASE_NAME: String = context.getString(R.string.DATABASE_NAME)

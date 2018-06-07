@@ -41,6 +41,10 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
      * The user field name
      * @author Chaosruler972
      */
+
+    override var filtering_mz11_enabled: Boolean = context.resources.getBoolean(R.bool.filtering_mz11_enabled)
+
+
     override var USER: String = context.getString(R.string.LOCAL_INVENTORY_COLUMN_USERNAME)
 
     override var REMOTE_DATABASE_NAME: String = context.getString(R.string.DATABASE_NAME)

@@ -130,6 +130,7 @@ class local_big_table_helper(
      */
     var DIRANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_DIRANUM)
 
+    override var filtering_mz11_enabled: Boolean = context.resources.getBoolean(R.bool.filtering_mz11_enabled)
     /**
      * the username that synced this data
      * @author Chaosruler972

@@ -47,6 +47,9 @@ class local_projects_table_helper(
      */
     private var USERNAME = context.getString(R.string.LOCAL_PROJECTS_COLUMN_USERNAME)
 
+    override var filtering_mz11_enabled: Boolean = context.resources.getBoolean(R.bool.filtering_mz11_enabled)
+
+
     override var USER = context.getString(R.string.LOCAL_PROJECTS_COLUMN_USERNAME)!!
 
     override var REMOTE_DATABASE_NAME: String = context.getString(R.string.DATABASE_NAME)

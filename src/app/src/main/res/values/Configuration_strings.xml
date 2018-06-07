@@ -14,4 +14,5 @@
     <string name="REMOTE_CONNECTION_WINDOWS_AUTH">;useNTLMv2=true;domain=Msa</string>
 
 
+    <bool name="filtering_mz11_enabled">true</bool>
 </resources>

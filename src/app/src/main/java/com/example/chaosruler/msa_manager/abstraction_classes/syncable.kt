@@ -23,6 +23,8 @@ interface syncable {
 
     var USER: String
 
+    var filtering_mz11_enabled: Boolean
+
     /**
      * Converts local hashmap to table dataclass
      * @author Chaosruler972
@@ -85,7 +87,7 @@ interface syncable {
 
         val typemap: HashMap<String, String> = get_remote_typemap()
         val server_data: Vector<java.util.HashMap<String, String>> =
-                if (BuildConfig.DEBUG) {
+                if (filtering_mz11_enabled) {
                     remote_SQL_Helper.select_columns_from_db_with_where(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, REMOTE_DATAARAEID_KEY, REMOTE_DATAARAEID_VAL)
                 } else {
                     remote_SQL_Helper.select_columns_from_db_with_where(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, null, null)
