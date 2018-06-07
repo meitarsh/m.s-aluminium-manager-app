@@ -787,4 +787,9 @@ class big_table_data(
         map[global_variables_dataclass.DB_BIG!!.USER] = get_USERNAME() ?: ""
         return map
     }
+
+    override fun toUserName(): String
+    {
+        return get_USERNAME()!!
+    }
 }

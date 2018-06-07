@@ -252,7 +252,7 @@ class local_big_table_helper(
         map[ACCOUNT_NUM] = type
         map[DATAARAEID] = type
         map[RECVERSION] = type
-        map[RECID] = "$type PRIMARY KEY"
+        map[RECID] = type
         map[PROJID] = type
         map[ITEMID] = type
         map[FLAT] = type
@@ -270,14 +270,15 @@ class local_big_table_helper(
         map[KOMANUM] = type
         map[DIRANUM] = type
         map[USER] = type
+
 //        map[QTYINPARTIALACC] = type
-//        val foreign: HashMap<String, String> = HashMap()
+        val foreign: HashMap<String, String> = HashMap()
 //        foreign[ACCOUNT_NUM] = context.getString(R.string.LOCAL_VENDORS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_VENDORS_COLUMN_ID) + ")"
 //        foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID) + ")"
 //        foreign[OPR_ID] = context.getString(R.string.LOCAL_OPR_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_OPR_COLUMN_ID) + ")"
 //        foreign[PROJID] = context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_PROJECTS_COLUMN_ID) + ")"
-//        val extra = " PRIMARY KEY($ACCOUNT_NUM, $ITEMID, $OPR_ID,$PROJID) "
-        createDB(db, map)
+        val extra = " PRIMARY KEY($RECID, $USER) "
+        createDB(db, map, foreign, extra)
     }
 
 

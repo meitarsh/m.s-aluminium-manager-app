@@ -460,4 +460,9 @@ class takala_data(
         return data
     }
 
+    override fun toUserName(): String
+    {
+        return get_USERNAME()
+    }
+
 }

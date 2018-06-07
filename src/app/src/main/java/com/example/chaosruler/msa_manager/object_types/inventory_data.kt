@@ -155,4 +155,9 @@ class inventory_data(
         map[global_variables_dataclass.DB_INVENTORY!!.USER] = get_USERNAME() ?: ""
         return map
     }
+
+    override fun toUserName(): String
+    {
+        return get_USERNAME()!!
+    }
 }

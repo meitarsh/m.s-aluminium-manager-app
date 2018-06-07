@@ -221,11 +221,11 @@ class local_salprojtakala_table_helper(private var context: Context) :
         map[ALUT] = "TEXT"
         map[ITEMTXT] = "TEXT"
         map[RECVERSION] = "TEXT"
-        map[RECID] = "TEXT PRIMARY KEY"
+        map[RECID] = "TEXT "
         map[USERNAME] = "TEXT"
-//        val empty_hashmap = HashMap<String, String>()
-//        val extra = " , PRIMARY KEY ($ID, $ITEMID) "
-        createDB(db, map)
+        val empty_hashmap = HashMap<String, String>()
+        val extra = " , PRIMARY KEY ($RECID, $USERNAME) "
+        createDB(db, map, empty_hashmap, extra)
     }
 
 }

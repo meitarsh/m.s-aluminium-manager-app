@@ -54,4 +54,11 @@ interface table_dataclass {
      * @return hashmap of local dataclass
      */
     fun to_sql_hashmap(): HashMap<String, String>
+
+    /**
+     * to Username
+     * @author Chaosruler972
+     * @return a username of this class
+     */
+    fun toUserName() : String
 }

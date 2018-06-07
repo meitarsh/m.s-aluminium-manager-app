@@ -11,6 +11,7 @@ import com.example.chaosruler.msa_manager.abstraction_classes.syncable
 import com.example.chaosruler.msa_manager.object_types.salprojluz_data
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
+import kotlin.collections.HashMap
 
 
 /**
@@ -179,9 +180,10 @@ class local_salprojluz_table_helper(
         map[DATAARAEID] = "TEXT"
         map[USERNAME] = "TEXT"
         map[PERCENTEXC] = "TEXT"
-        map[RECID] = "TEXT PRIMARY KEY"
+        map[RECID] = "TEXT "
         map[RECVERSION] = "TEXT"
-        createDB(db, map)
+        val extra = " PRIMARY KEY($RECID, $USER) "
+        createDB(db, map, HashMap(), extra)
     }
 
 }

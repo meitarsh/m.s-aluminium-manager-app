@@ -149,4 +149,9 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
         data[global_variables_dataclass.DB_VENDOR!!.USER] = (get_USERNAME() ?: "").trim()
         return data
     }
+
+    override fun toUserName(): String
+    {
+        return get_USERNAME()!!
+    }
 }

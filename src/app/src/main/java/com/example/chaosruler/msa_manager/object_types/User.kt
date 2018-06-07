@@ -125,4 +125,9 @@ class User(
     override fun to_sql_hashmap(): HashMap<String, String> {
         return HashMap()
     }
+
+    override fun toUserName(): String
+    {
+        return get__username()
+    }
 }

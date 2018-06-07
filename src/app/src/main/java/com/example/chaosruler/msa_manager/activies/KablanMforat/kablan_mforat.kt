@@ -175,7 +175,7 @@ class kablan_mforat : Activity() {
                     if(hasFocus || activity_kablan_mforat_kamot_kablan.text.isEmpty())
                         return@OnFocusChangeListener
                     val str = activity_kablan_mforat_kamot_kablan.text.toString()
-                    if(big_item.get_QTY() != null && big_item.get_QTY()!!.toInt() < str.toInt() )
+                    if(big_item.get_QTY() != null && !big_item.get_QTY()!!.isEmpty() && big_item.get_QTY()!!.toInt() < str.toInt() )
                     {
                         activity_kablan_mforat_kamot_kablan.text.clear()
                         global_variables_dataclass.log("kablan_mforat", "op cancelled")
@@ -194,7 +194,10 @@ class kablan_mforat : Activity() {
                             val peola_parcent_local: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
                             val price_local = (big_item.get_SALESPRICE() ?: "0").toDouble()
                             val count_local = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
-                            val parcent_local = peola_parcent_local.toDouble()
+                            val parcent_local = if(peola_parcent_local.isEmpty())
+                                0.0
+                            else
+                                peola_parcent_local.toDouble()
                             activity_kablan_mforat_tashlom_sah.text = (price_local*count_local*parcent_local*0.01).roundToInt().toString().trim()
                         }
                     }).start()
@@ -206,7 +209,7 @@ class kablan_mforat : Activity() {
                     if(hasFocus || activity_kablan_mforat_ahoz_meosher.text.isEmpty())
                         return@OnFocusChangeListener
                     val str = activity_kablan_mforat_ahoz_meosher.text.toString()
-                    if(big_item.get_MILESTONEPERCENT()!=null && big_item.get_MILESTONEPERCENT()!!.toInt() < str.toInt())
+                    if(big_item.get_MILESTONEPERCENT()!=null && !big_item.get_MILESTONEPERCENT()!!.isEmpty() && big_item.get_MILESTONEPERCENT()!!.toInt() < str.toInt())
                     {
                         activity_kablan_mforat_ahoz_meosher.text.clear()
                         global_variables_dataclass.log("kablan_mforat", "op cancelled")
@@ -314,7 +317,13 @@ class kablan_mforat : Activity() {
                 activity_kablan_mforat_saah_hakol.setTextColor(getColor(R.color.green))
             else // <= 0
                 activity_kablan_mforat_saah_hakol.setTextColor(getColor(R.color.red))
-            activity_kablan_mforat_saah_hakol.text = price.toInt().toString().trim()
+            try {
+                activity_kablan_mforat_saah_hakol.text = price.toInt().toString().trim()
+            }
+            catch (e: NumberFormatException)
+            {
+                activity_kablan_mforat_saah_hakol.text = "0"
+            }
         }
     }
 

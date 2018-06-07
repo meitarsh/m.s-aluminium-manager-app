@@ -402,4 +402,9 @@ class salprojluz_data(
         map[global_variables_dataclass.DB_SALPROJ!!.USERNAME] = get_username() ?: ""
         return map
     }
+
+    override fun toUserName(): String
+    {
+        return get_username()!!
+    }
 }

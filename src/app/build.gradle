@@ -15,10 +15,11 @@ android {
         applicationId "com.example.chaosruler.msa_manager"
         minSdkVersion 23
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 75
+        versionName '0.75'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
+        versionNameSuffix 'Final'
     }
     buildTypes {
         release {
@@ -48,7 +49,7 @@ dependencies {
     //implementation 'com.microsoft.sqlserver:mssql-jdbc:6.3.6.jre8-preview'
     implementation 'com.yakivmospan:scytale:1.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5'
     implementation "org.jetbrains.anko:anko:$anko_version"
 }
 

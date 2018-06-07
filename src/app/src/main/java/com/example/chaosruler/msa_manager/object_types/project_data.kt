@@ -154,4 +154,9 @@ class project_data(
         map[global_variables_dataclass.DB_project!!.USER] = get_USERNAME() ?: ""
         return map
     }
+
+    override fun toUserName(): String
+    {
+        return get_USERNAME()!!
+    }
 }

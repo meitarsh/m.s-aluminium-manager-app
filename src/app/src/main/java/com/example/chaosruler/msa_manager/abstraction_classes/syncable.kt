@@ -185,7 +185,7 @@ interface syncable {
     }
 
 
-    abstract fun update_data(where_clause: String, equal_to: Array<String>, update_to: HashMap<String, String>): Boolean
+    abstract fun update_data(where_clause: Array<String>, equal_to: Array<String>, update_to: HashMap<String, String>): Boolean
 
     /**
      *  subroutine in charge of feeding information and database information to
@@ -200,11 +200,11 @@ interface syncable {
             : Boolean {
 
 
-        val change_to = to.to_non_key_hashmap()
+        val change_to = to.to_sql_hashmap()
         val keys = from.to_key_hashmap()
         change_to["username"] = remote_SQL_Helper.getusername()
-
-        return update_data(keys.first, arrayOf(keys.second), change_to)
+        change_to.remove(keys.first)
+        return update_data(arrayOf(keys.first,USER), arrayOf(keys.second, from.toUserName()), change_to)
     }
 
     /**

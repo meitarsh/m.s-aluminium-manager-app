@@ -60,4 +60,9 @@ class cache_command(
     override fun to_hashmap(): HashMap<String, String> {
         return HashMap()
     }
+
+    override fun toUserName(): String
+    {
+        return __user!!
+    }
 }

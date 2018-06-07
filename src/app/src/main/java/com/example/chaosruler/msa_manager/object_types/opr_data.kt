@@ -172,4 +172,9 @@ class opr_data(
         return map
     }
 
+    override fun toUserName(): String
+    {
+        return get_USERNAME()!!
+    }
+
 }

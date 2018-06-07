@@ -99,11 +99,12 @@ class local_projects_table_helper(
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "TEXT PRIMARY KEY "
+        map[ID] = "TEXT  "
         map[NAME] = "TEXT"
         map[DATAAREAID] = "TEXT"
         map[USERNAME] = "TEXT"
-        createDB(db,map)
+        val extra = " PRIMARY KEY($ID, $USER) "
+        createDB(db,map, HashMap(), extra)
     }
 
 
