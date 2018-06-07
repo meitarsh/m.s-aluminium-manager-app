@@ -119,4 +119,16 @@
 
     <string name="LOCAL_SALPROJBAKARA_COLUMN_USERNAME">username</string>
 
+    <!-- Local table salprojmng -->
+
+    <string name="LOCAL_SALPROJMANG_TABLE_NAME">SALPROJMANG</string>
+    <integer name="LOCAL_SALPROJMANG_TABLE_VERSION">5</integer>
+
+    <string name="LOCAL_SALPROJMNG_COLUMN_PROJID">PROJID</string>
+    <string name="LOCAL_SALPROJMNG_COLUMN_USERID">USERID</string>
+    <string name="LOCAL_SALPROJMNG_COLUMN_DATAAREAID">DATAAREAID</string>
+    <string name="LOCAL_SALPROJMNG_COLUMN_RECVERSION">RECVERSION</string>
+    <string name="LOCAL_SALPROJMNG_COLUMN_RECID">RECID</string>
+    <string name="LOCAL_SALPROJMNG_COLUMN_USERNAME">username</string>
+
 </resources>

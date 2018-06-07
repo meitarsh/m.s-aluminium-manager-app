@@ -12,13 +12,26 @@ import com.example.chaosruler.msa_manager.object_types.big_table_data
  * Drop down view to list items with their flat place
  * @author Chaosruler972
  */
-class KablanArrayAdapter(context: Context, resource_id: Int, list: List<big_table_data> ) : ArrayAdapter<big_table_data>(context, resource_id, list)
+class KablanArrayAdapter_Inventory_Id(context: Context, resource_id: Int, list: List<big_table_data> ) : ArrayAdapter<big_table_data>(context, resource_id, list)
 {
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val textView = TextView(context)
         val big_table_data = getItem(position)
-        textView.text = big_table_data.get_INVENTORY_ID() + " " + big_table_data.get_OPRID()
+        textView.text = big_table_data.get_INVENTORY_ID()
         textView.setTextColor(Color.BLACK)
         return textView
     }
 }
+
+
+class KablanArrayAdapter_Opr(context: Context, resource_id: Int, list: List<big_table_data> ) : ArrayAdapter<big_table_data>(context, resource_id, list)
+{
+    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val textView = TextView(context)
+        val big_table_data = getItem(position)
+        textView.text = big_table_data.get_OPRID()
+        textView.setTextColor(Color.BLACK)
+        return textView
+    }
+}
+

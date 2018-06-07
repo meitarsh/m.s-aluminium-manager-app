@@ -36,6 +36,8 @@ class kablan_mforat : Activity() {
 
     private lateinit var adapter2:ArrayAdapter<big_table_data>
 
+    private lateinit var adapter3:ArrayAdapter<big_table_data>
+
     private var chosen_vendor_id: String = ""
     /**
      * Activity lifecycle function, initates the spinner
@@ -91,14 +93,14 @@ class kablan_mforat : Activity() {
         {
             override fun onNothingSelected(parent: AdapterView<*>?)
             {
-                adapter2 = KablanArrayAdapter(baseContext, android.R.layout.simple_spinner_item, Vector() )
+                adapter2 = KablanArrayAdapter_Inventory_Id(baseContext, android.R.layout.simple_spinner_item, Vector() )
                 activity_kablan_mforat_mispar_mozar.adapter = adapter2
 
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 chosen_vendor_id = adapter1.getItem(position).get_accountnum()?:""
-                adapter2 = KablanArrayAdapter(baseContext, android.R.layout.simple_spinner_item, filter_out_big_by_db(big_table))
+                adapter2 = KablanArrayAdapter_Inventory_Id(baseContext, android.R.layout.simple_spinner_item, filter_out_big_by_db(big_table))
                 activity_kablan_mforat_mispar_mozar.adapter = adapter2
 
             }
@@ -113,22 +115,26 @@ class kablan_mforat : Activity() {
             @SuppressLint("SetTextI18n")
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
             {
-                // upon Spinner selecting a user, update the other fields
                 val big_item:big_table_data = activity_kablan_mforat_mispar_mozar.adapter.getItem(position) as big_table_data
-                val opr: opr_data = try {
+                (view as TextView).text = big_item.get_INVENTORY_ID()?:""
+                adapter3 = KablanArrayAdapter_Opr(baseContext, android.R.layout.simple_spinner_item, get_all_inventory_unique(big_item.get_INVENTORY_ID()?:""))
+            }
 
-                    val index = global_variables_dataclass.db_opr_vec.indexOf(opr_data(big_item.get_OPRID()?:"", "","",""))
-                    global_variables_dataclass.db_opr_vec[index]
-                }
-                catch (e: Exception)
-                {
-                    global_variables_dataclass.log("kablan_mforat", "Fell on error ${e.toString()}")
-                    opr_data("",big_item.get_OPRID()?:"","","")
-                }
+        }
 
+        activity_kablan_mforat_oprname.onItemSelectedListener = object : AdapterView.OnItemSelectedListener
+        {
+            override fun onNothingSelected(parent: AdapterView<*>?)
+            {
 
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
+            {
+                // upon Spinner selecting a user, update the other fields
+                val big_item:big_table_data = activity_kablan_mforat_oprname.adapter.getItem(position) as big_table_data
+                (view as TextView).text = big_item.get_OPRID()?:""
                 val percentforaccount: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
-                (view as TextView).text = big_item.get_INVENTORY_ID() + " " + big_item.get_OPRID()
                 activity_kablan_mforat_kamot_hoza.text = (big_item.get_QTY() ?: "0").trim()
                 activity_kablan_mforat_yehida_price.text = (big_item.get_SALESPRICE() ?: "0").trim()
                 activity_kablan_mforat_peola_percent.text = ((big_item.get_MILESTONEPERCENT()?:"0").toInt()).toString() + "%"
@@ -142,7 +148,6 @@ class kablan_mforat : Activity() {
                     percentforaccount.toDouble()
                 activity_kablan_mforat_ahoz_meosher.hint = ((percentforaccount_checker_double).toInt().toString() + "%").trim() // ((big_item.get_MILESTONEPERCENT()?:"0").toInt()).toString() + "%"
                 activity_kablan_mforat_ahoz_meosher.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-                activity_kablan_mforat_oprname.text = (opr.get_opr_name()?:"").trim()
                 val price = (big_item.get_SALESPRICE() ?: "0").toDouble()
                 val count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
                 val percentforaccount_checker = if (percentforaccount.isEmpty())
@@ -231,6 +236,7 @@ class kablan_mforat : Activity() {
             }
 
         }
+
         Thread{
             compute_saah_hakol(big_table)
         }.start()
@@ -327,4 +333,14 @@ class kablan_mforat : Activity() {
         }
     }
 
+    private fun get_all_inventory_unique(inventory_id: String): Vector<big_table_data> {
+        val vec = Vector<big_table_data>()
+        for(i in 0 until activity_kablan_mforat_mispar_mozar.adapter.count)
+        {
+            val big_item = activity_kablan_mforat_mispar_mozar.adapter.getItem(i) as big_table_data
+            if (big_item.get_INVENTORY_ID() == inventory_id)
+                vec.addElement(big_item)
+        }
+        return vec
+    }
 }

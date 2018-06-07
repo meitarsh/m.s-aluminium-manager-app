@@ -134,6 +134,12 @@ class offline_mode_service : Service(){
         private lateinit var takala_table: local_salprojtakala_table_helper
 
         /**
+         * local salprojmng table instance
+         * @author Chaosruler972
+         */
+        private lateinit var salprojmng_table: local_salprojmng_table_helper
+
+        /**
          * Context we work with for strings.xml values extraction
          * @author Chaosruler972
          */
@@ -230,6 +236,7 @@ class offline_mode_service : Service(){
             big_table = local_big_table_helper(context)
             salproj_table = local_salprojluz_table_helper(context)
             takala_table = local_salprojtakala_table_helper(context)
+            salprojmng_table = local_salprojmng_table_helper(context)
 
             grab_time(ctx)
             init_remote_databases(context)
@@ -284,6 +291,7 @@ class offline_mode_service : Service(){
             remote_opr_table_helper.extract_variables(context)
             remote_projects_table_helper.extract_variables(context)
             remote_takala_table_helper.extract_variables(context)
+            remote_salprojmng_table_helper.extract_variables(context)
         }
 
         /**
@@ -455,7 +463,7 @@ class offline_mode_service : Service(){
             val user = remote_SQL_Helper.user!!
             build_small_notification(ctx.getString(R.string.sync_started), false)
             val done_count = IntArray(1)
-            val max_count = 6
+            val max_count = 7
 
 
 
@@ -506,6 +514,16 @@ class offline_mode_service : Service(){
                    done_syncing(mtx,done_count,max_count, lock, user)
 
                }.start()
+
+                async {
+                    global_variables_dataclass.log("db_sync", "salprojmng")
+//                   opr.beginTrans()
+                    salprojmng_table.sync_db<salprojluz_data>()
+//                   opr.endTrans()
+                    global_variables_dataclass.log("db_sync", "salprojmng done")
+                    done_syncing(mtx,done_count,max_count, lock, user)
+
+                }.start()
 
                 async {
                     global_variables_dataclass.log("db_sync", "vendor")
@@ -685,6 +703,13 @@ class offline_mode_service : Service(){
             async {
                 global_variables_dataclass.log("load", "Started syncing salproj baka")
                 global_variables_dataclass.db_salprojtakala_vec = takala_table.get_local_DB()
+                global_variables_dataclass.log("load", "salproj bakara ${global_variables_dataclass.db_salprojtakala_vec.size}")
+                done_syncing(mtx,done_count,max_count, lock, user, false)
+            }.start()
+
+            async {
+                global_variables_dataclass.log("load", "Started syncing salprojmng")
+                global_variables_dataclass.db_salprojmng_vec = salproj_table.get_local_DB()
                 global_variables_dataclass.log("load", "salproj bakara ${global_variables_dataclass.db_salprojtakala_vec.size}")
                 done_syncing(mtx,done_count,max_count, lock, user, false)
             }.start()

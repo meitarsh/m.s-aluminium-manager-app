@@ -66,6 +66,32 @@
     </LinearLayout>
 
 
+    <!--shem peola -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/kablan_mforat_oprid_label" />
+
+
+        <Spinner
+            android:id="@+id/activity_kablan_mforat_oprname"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:textDirection="rtl" />
+
+    </LinearLayout>
+
     <!--kamot hoza -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,34 +112,7 @@
             android:id="@+id/activity_kablan_mforat_kamot_hoza"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-             />
-
-    </LinearLayout>
-
-
-    <!--kamot hoza -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_top_bottom_spinner_all_activities"
-        android:layout_marginTop="@dimen/margin_top_bottom_spinner_all_activities"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/kablan_mforat_oprid_label" />
-
-
-        <TextView
-            android:id="@+id/activity_kablan_mforat_oprname"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textDirection="rtl" />
+            android:layout_weight="2" />
 
     </LinearLayout>
 
@@ -138,8 +137,7 @@
             android:id="@+id/activity_kablan_mforat_yehida_price"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
+            android:layout_weight="2" />
 
     </LinearLayout>
 
@@ -163,7 +161,7 @@
             android:id="@+id/activity_kablan_mforat_peola_percent"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:enabled="false" />
 
     </LinearLayout>
@@ -214,7 +212,7 @@
             android:id="@+id/activity_kablan_mforat_kamot_kablan"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:gravity="end"
             android:inputType="numberSigned"
             tools:ignore="LabelFor" />
@@ -240,7 +238,7 @@
             android:id="@+id/activity_kablan_mforat_ahoz_meosher"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:gravity="end"
             android:inputType="numberSigned"
             tools:ignore="LabelFor" />
@@ -267,8 +265,7 @@
             android:id="@+id/activity_kablan_mforat_tashlom_sah"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
+            android:layout_weight="2" />
 
     </LinearLayout>
 
@@ -292,7 +289,7 @@
             android:id="@+id/activity_kablan_mforat_saah_hakol"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@color/yellow" />
 
     </LinearLayout>

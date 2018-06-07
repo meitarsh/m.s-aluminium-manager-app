@@ -13,6 +13,7 @@
     <string name="TABLE_OPR">ROUTEOPRTABLE</string>
     <string name="TABLE_SALPROJLUZ">SALPROJLUZ</string>
     <string name="TABLE_SALPROJBAKARA">SALPROJBAKARA</string>
+    <string name="TABLE_SALPROJMNG">SALPROJMANG</string>
 
     <!-- Both should be updated before production -->
     <string name="TABLE_BIG">OFERKABLANCONSTRUCTIONONA50052</string>
@@ -235,4 +236,21 @@
 
     <string name="TABLE_SALPROJBAKARA_RECID">RECID</string>
     <string name="TABLE_SALPROJBAKARA_RECID_TYPE">bigint</string>
+
+    <!-- TABLE_SALPROJMNG -->
+    <string name="TABLE_SALPROJMNG_PROJID">PROJID</string>
+    <string name="TABLE_SALPROJMNG_PROJID_TYPE">VARCHAR</string>
+
+    <string name="TABLE_SALPROJMNG_USERID">USERID</string>
+    <string name="TABLE_SALPROJMNG_USERID_TYPE">VARCHAR</string>
+
+    <string name="TABLE_SALPROJMNG_DATAAREAID">DATAAREAID</string>
+    <string name="TABLE_SALPROJMNG_DATAAREAID_TYPE">VARCHAR</string>
+
+    <string name="TABLE_SALPROJMNG_RECVERSION">RECVERSION</string>
+    <string name="TABLE_SALPROJMNG_RECVERSION_TYPE">int</string>
+
+    <string name="TABLE_SALPROJMNG_RECID">RECID</string>
+    <string name="TABLE_SALPROJMNG_RECID_TYPE">bigint</string>
+
 </resources>

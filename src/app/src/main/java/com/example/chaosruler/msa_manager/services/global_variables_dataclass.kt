@@ -188,6 +188,19 @@ object global_variables_dataclass
      */
     var db_salprojtakala_vec: Vector<takala_data> = Vector()
 
+
+    /**
+     * A locally loaded database of salprojmng
+     * @author Chaosruler972
+     */
+    @SuppressLint("StaticFieldLeak")
+    var DB_SALPROJMNG: local_salprojmng_table_helper? = null
+    /**
+     * A locally loaded vector of salprojmng when loaded to memory
+     * @author Chaosruler972
+     */
+    var db_salprojmng_vec: Vector<salprojmng_table_data> = Vector()
+
     // Following were removed from production
     /**
      * A locally loaded database of inventory
@@ -228,6 +241,7 @@ object global_variables_dataclass
         DB_USERS = user_database_helper(context)
         DB_SALPROJ = local_salprojluz_table_helper(context)
         DB_SALPROJTAKALA = local_salprojtakala_table_helper(context)
+        DB_SALPROJMNG = local_salprojmng_table_helper(context)
     }
 
     /**
