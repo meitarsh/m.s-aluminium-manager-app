@@ -1,9 +1,11 @@
-package com.example.chaosruler.msa_manager.object_types
+@file:Suppress("MemberVisibilityCanBePrivate")
+
+package com.example.chaosruler.msa_manager.object_types.salprojmng_table_data
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_salprojmng_table_helper
-import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
+import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
 class salprojmng_table_data(
         private var projid: String?,
@@ -189,4 +191,6 @@ class salprojmng_table_data(
     {
         return get_username()!!
     }
+
 }
+

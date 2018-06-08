@@ -15,7 +15,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.divohi_takalot_new_takala_activity.NewTakala
-import com.example.chaosruler.msa_manager.object_types.takala_data
+import com.example.chaosruler.msa_manager.object_types.takala_data.takala_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.divohi_takalot_edit.*

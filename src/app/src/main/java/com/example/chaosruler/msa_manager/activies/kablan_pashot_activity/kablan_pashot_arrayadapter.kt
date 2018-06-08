@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.big_table_data
-import com.example.chaosruler.msa_manager.object_types.opr_data
-import com.example.chaosruler.msa_manager.object_types.vendor_data
+import com.example.chaosruler.msa_manager.object_types.big_table.big_table_data
+import com.example.chaosruler.msa_manager.object_types.opr_data.opr_data
+import com.example.chaosruler.msa_manager.object_types.vendor_data.vendor_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
@@ -40,24 +40,26 @@ class kablan_pashot_arrayadapter(context: Context,arr: Vector<big_table_data>) :
         val peola:TextView = themer.get_view(convertView,R.id.item_kablan_pashot_peola) as TextView
         val ahoz:TextView = themer.get_view(convertView,R.id.item_kablan_pashot_ahoz_peola) as TextView
 
-        val big_item:big_table_data = getItem(position)
+        val big_item: big_table_data = getItem(position)
         val vendor_item: vendor_data = try {
             global_variables_dataclass.db_vendor_vec.filter { it.get_accountnum() == big_item.get_VENDOR_ID()?:"" }[0]
         }
         catch (e: IndexOutOfBoundsException)
         {
-            vendor_data("","err","","")
+            vendor_data("", "err", "", "")
         }
 
         val opr: opr_data =
                 try {
-                    val index = global_variables_dataclass.db_opr_vec.indexOf(opr_data(big_item.get_OPRID()?:"", "","",""))
+                    val index = global_variables_dataclass.db_opr_vec.indexOf(opr_data(big_item.get_OPRID()
+                            ?: "", "", "", ""))
                     global_variables_dataclass.db_opr_vec[index]
                 }
                 catch (e:IndexOutOfBoundsException)
                 {
                     // hack for testing case, since database weirdly doesn't have this data
-                    opr_data("", big_item.get_OPRID()?:"", "", "")
+                    opr_data("", big_item.get_OPRID()
+                            ?: "", "", "")
                 }
 
         hoza.text = (vendor_item.get_accountnum() ?: "").trim()

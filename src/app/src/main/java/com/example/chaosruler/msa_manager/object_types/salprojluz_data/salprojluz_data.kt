@@ -1,8 +1,11 @@
-package com.example.chaosruler.msa_manager.object_types
+@file:Suppress("MemberVisibilityCanBePrivate")
+
+package com.example.chaosruler.msa_manager.object_types.salprojluz_data
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_salprojluz_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
+import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
 /**
  * Dataclass to represent salprojluz
@@ -355,8 +358,8 @@ class salprojluz_data(
      * @return a copy of this dataclass data
      */
     override fun copy(): salprojluz_data = salprojluz_data(
-        PROJID, STARTDATE, FINISHDATE, IS_FINISHED, SIUM_BPOAL,
-            NOTES, KOMA, BUILDING, PERCENTEXC, DATAARAEID,RECID, RECVERSOIN, USERNAME
+            PROJID, STARTDATE, FINISHDATE, IS_FINISHED, SIUM_BPOAL,
+            NOTES, KOMA, BUILDING, PERCENTEXC, DATAARAEID, RECID, RECVERSOIN, USERNAME
     )
 
     override fun to_hashmap(): HashMap<String, String> {
@@ -407,4 +410,6 @@ class salprojluz_data(
     {
         return get_username()!!
     }
+
 }
+

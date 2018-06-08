@@ -1,8 +1,11 @@
-package com.example.chaosruler.msa_manager.object_types
+@file:Suppress("MemberVisibilityCanBePrivate")
+
+package com.example.chaosruler.msa_manager.object_types.takala_data
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_takala_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
+import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
 /**
  * Takala dataclass
@@ -465,4 +468,6 @@ class takala_data(
         return get_USERNAME()
     }
 
+
 }
+

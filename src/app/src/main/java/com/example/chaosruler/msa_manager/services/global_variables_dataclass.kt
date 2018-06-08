@@ -10,7 +10,14 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 import com.example.chaosruler.msa_manager.activies.MainActivity
-import com.example.chaosruler.msa_manager.object_types.*
+import com.example.chaosruler.msa_manager.object_types.big_table.big_table_data
+import com.example.chaosruler.msa_manager.object_types.inventory_data.inventory_data
+import com.example.chaosruler.msa_manager.object_types.opr_data.opr_data
+import com.example.chaosruler.msa_manager.object_types.project_data.project_data
+import com.example.chaosruler.msa_manager.object_types.salprojluz_data.salprojluz_data
+import com.example.chaosruler.msa_manager.object_types.salprojmng_table_data.salprojmng_table_data
+import com.example.chaosruler.msa_manager.object_types.takala_data.takala_data
+import com.example.chaosruler.msa_manager.object_types.vendor_data.vendor_data
 import java.math.BigInteger
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets

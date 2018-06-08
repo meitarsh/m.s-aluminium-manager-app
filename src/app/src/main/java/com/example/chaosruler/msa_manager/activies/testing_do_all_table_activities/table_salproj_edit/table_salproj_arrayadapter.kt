@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.salprojluz_data
+import com.example.chaosruler.msa_manager.object_types.salprojluz_data.salprojluz_data
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
 

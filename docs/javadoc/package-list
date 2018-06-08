@@ -4,6 +4,7 @@ com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 com.example.chaosruler.msa_manager.abstraction_classes
 com.example.chaosruler.msa_manager.activies
 com.example.chaosruler.msa_manager.activies.KablanMforat
+com.example.chaosruler.msa_manager.activies.KablanMforat.KablanArrayAdapter
 com.example.chaosruler.msa_manager.activies.divohi_takalot_edit_activity
 com.example.chaosruler.msa_manager.activies.divohi_takalot_new_takala_activity
 com.example.chaosruler.msa_manager.activies.divohi_takalot_tofes_activity
@@ -22,5 +23,13 @@ com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.tabl
 com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_takala_edit
 com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_vendors_edit
 com.example.chaosruler.msa_manager.object_types
+com.example.chaosruler.msa_manager.object_types.big_table
+com.example.chaosruler.msa_manager.object_types.inventory_data
+com.example.chaosruler.msa_manager.object_types.opr_data
+com.example.chaosruler.msa_manager.object_types.project_data
+com.example.chaosruler.msa_manager.object_types.salprojluz_data
+com.example.chaosruler.msa_manager.object_types.salprojmng_table_data
+com.example.chaosruler.msa_manager.object_types.takala_data
+com.example.chaosruler.msa_manager.object_types.vendor_data
 com.example.chaosruler.msa_manager.services
 com.example.chaosruler.msa_manager.services.deprected_vpn_packages.VPN_google_toyVPN

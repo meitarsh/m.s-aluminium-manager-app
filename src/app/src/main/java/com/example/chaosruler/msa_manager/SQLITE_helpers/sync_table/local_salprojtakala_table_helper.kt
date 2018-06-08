@@ -7,9 +7,10 @@ import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_takala_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.syncable
-import com.example.chaosruler.msa_manager.object_types.takala_data
-import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass_hashmap_createable
+import com.example.chaosruler.msa_manager.object_types.takala_data.takala_builder
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -28,97 +29,97 @@ class local_salprojtakala_table_helper(private var context: Context) :
      * ITEMID
      * @author Chaosruler972
      */
-    val ITEMID = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_ITEMID)
+    val ITEMID = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_ITEMID)!!
 
     /**
      * DATAAREAID
      * @author Chaosruler972
      */
-    val DATAAREAID = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_DATAAREAID)
+    val DATAAREAID = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_DATAAREAID)!!
 
     /**
      * QTY
      * @author Chaosruler972
      */
-    val QTY = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_QTY)
+    val QTY = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_QTY)!!
 
     /**
      * KOMA
      * @author Chaosruler972
      */
-    val KOMA = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_KOMA)
+    val KOMA = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_KOMA)!!
 
     /**
      * BINYAN
      * @author Chaosruler972
      */
-    val BINYAN = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_BINYAN)
+    val BINYAN = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_BINYAN)!!
 
     /**
      * DIRA
      * @author Chaosruler972
      */
-    val DIRA = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_DIRA)
+    val DIRA = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_DIRA)!!
 
     /**
      * TEUR
      * @author Chaosruler972
      */
-    val TEUR = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_TEUR)
+    val TEUR = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_TEUR)!!
 
     /**
      * MUMLATZ
      * @author Chaosruler972
      */
-    val MUMLATZ = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_MUMLATZ)
+    val MUMLATZ = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_MUMLATZ)!!
 
     /**
      * MONAAT
      * @author Chaosruler972
      */
-    val MONAAT = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_MONAAT)
+    val MONAAT = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_MONAAT)!!
 
     /**
      * TGUVA
      * @author Chaosruler972
      */
-    val TGUVA = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_TGUVA)
+    val TGUVA = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_TGUVA)!!
 
     /**
      * SUG
      * @author Chaosruler972
      */
-    val SUG = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_SUG)
+    val SUG = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_SUG)!!
 
     /**
      * ALUT
      * @author Chaosruler972
      */
-    val ALUT = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_ALUT)
+    val ALUT = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_ALUT)!!
 
     /**
      * ITEMTXT
      * @author Chaosruler972
      */
-    val ITEMTXT = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_ITEMTXT)
+    val ITEMTXT = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_ITEMTXT)!!
 
     /**
      * RECVERSION
      * @author Chaosruler972
      */
-    val RECVERSION = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_RECVERSION)
+    val RECVERSION = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_RECVERSION)!!
 
     /**
      * RECID
      * @author Chaosruler972
      */
-    val RECID = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_RECID)
+    val RECID = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_RECID)!!
 
     /**
      * USERNAME
      * @author Chaosruler972
      */
-    val USERNAME = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_USERNAME)
+    val USERNAME = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_USERNAME)!!
 
     override var filtering_mz11_enabled: Boolean = context.resources.getBoolean(R.bool.filtering_mz11_enabled)
 
@@ -129,51 +130,9 @@ class local_salprojtakala_table_helper(private var context: Context) :
     override var REMOTE_DATAARAEID_KEY: String = context.getString(R.string.TABLE_SALPROJBAKARA_DATAAREAID)
     override var REMOTE_DATAARAEID_VAL: String = context.getString(R.string.DATAAREAID_DEVELOP)
 
-    override fun get_remote_typemap(): HashMap<String, String> = remote_takala_table_helper.define_type_map()
+    override var remote_sql_helper: remote_helper = remote_takala_table_helper
 
-
-    override fun hashmap_to_table_dataclass_local(hashMap: HashMap<String, String>): takala_data {
-        return takala_data(
-                hashMap[ID] ?: "",
-                hashMap[ITEMID] ?: "",
-                hashMap[DATAAREAID] ?: "",
-                hashMap[QTY] ?: "",
-                hashMap[KOMA] ?: "",
-                hashMap[BINYAN] ?: "",
-                hashMap[DIRA] ?: "",
-                hashMap[TEUR] ?: "",
-                hashMap[MUMLATZ] ?: "",
-                hashMap[MONAAT] ?: "",
-                hashMap[TGUVA] ?: "",
-                hashMap[SUG] ?: "",
-                hashMap[ALUT] ?: "",
-                hashMap[ITEMTXT] ?: "",
-                hashMap[RECVERSION] ?: "",
-                hashMap[RECID] ?: "",
-                remote_SQL_Helper.getusername()
-        )
-    }
-
-    override fun hashmap_to_table_dataclass_remote(hashMap: HashMap<String, String>): takala_data {
-        return takala_data(
-                (hashMap[remote_takala_table_helper.ID] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.ITEMID] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.DATAAREAID] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.QTY] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.KOMA] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.BINYAN] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.DIRA] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.TEUR] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.MUMLATZ] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.MONAAT] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.TGUVA] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.SUG] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.ALUT] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.ITEMTXT] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.RECVERSION] ?: "").trim(),
-                (hashMap[remote_takala_table_helper.RECID] ?: "").trim(),
-                remote_SQL_Helper.getusername())
-    }
+    override var builder: table_dataclass_hashmap_createable = takala_builder
 
     init {
         val vector: Vector<String> = Vector()

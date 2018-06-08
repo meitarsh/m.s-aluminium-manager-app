@@ -7,9 +7,10 @@ import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.syncable
-import com.example.chaosruler.msa_manager.object_types.project_data
-import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass_hashmap_createable
+import com.example.chaosruler.msa_manager.object_types.project_data.project_builder
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -35,7 +36,7 @@ class local_projects_table_helper(
      * the project name field name
      * @author Chaosruler972
      */
-    var NAME = context.getString(R.string.LOCAL_PROJECTS_COLUMN_NAME)
+    var NAME = context.getString(R.string.LOCAL_PROJECTS_COLUMN_NAME)!!
     /**
      * the dataaraeid field name
      * @author Chaosruler972
@@ -45,7 +46,7 @@ class local_projects_table_helper(
      * the username field name
      * @author Chaosruler972
      */
-    private var USERNAME = context.getString(R.string.LOCAL_PROJECTS_COLUMN_USERNAME)
+    var USERNAME = context.getString(R.string.LOCAL_PROJECTS_COLUMN_USERNAME)!!
 
     override var filtering_mz11_enabled: Boolean = context.resources.getBoolean(R.bool.filtering_mz11_enabled)
 
@@ -57,21 +58,9 @@ class local_projects_table_helper(
     override var REMOTE_DATAARAEID_KEY: String = context.getString(R.string.PROJECTS_DATAAREAID)
     override var REMOTE_DATAARAEID_VAL: String = context.getString(R.string.DATAAREAID_DEVELOP)
 
-    override fun get_remote_typemap(): HashMap<String, String> = remote_projects_table_helper.define_type_map()
+    override var remote_sql_helper: remote_helper = remote_projects_table_helper
 
-
-    override fun hashmap_to_table_dataclass_local(hashMap: HashMap<String, String>): project_data {
-        return project_data(hashMap[ID] ?: "".trim(), (hashMap[NAME]
-                ?: "").trim(), (hashMap[DATAAREAID] ?: "").trim(), (hashMap[USERNAME] ?: "").trim())
-    }
-
-    override fun hashmap_to_table_dataclass_remote(hashMap: HashMap<String, String>): project_data {
-        return project_data((hashMap[remote_projects_table_helper.ID] ?: "").trim(),
-                (hashMap[remote_projects_table_helper.NAME]
-                        ?: "").trim(), (hashMap[remote_projects_table_helper.DATAAREAID]
-                ?: "").trim(),
-                remote_SQL_Helper.getusername().trim())
-    }
+    override var builder: table_dataclass_hashmap_createable = project_builder
 
     /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted

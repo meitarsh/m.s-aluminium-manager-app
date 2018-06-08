@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
-import com.example.chaosruler.msa_manager.object_types.takala_data
+import com.example.chaosruler.msa_manager.object_types.takala_data.takala_data
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
@@ -313,6 +313,9 @@ class remote_takala_table_helper {
 
             RECID_TYPE = context.getString(R.string.TABLE_SALPROJBAKARA_RECID_TYPE)
 
+            TABLE_DATETIME_SYNCABLE= context.resources.getBoolean(R.bool.TABLE_SALPROJBAKARA_DATETIME_ENABLED)
+
+
         }
 
         /**
@@ -357,7 +360,7 @@ class remote_takala_table_helper {
             normalize_hashmap(all_map, typemap)
             for(item in map)
                 all_map[item.key] = item.value
-            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_takala_table_helper.DATABASE_NAME, remote_takala_table_helper.TABLE_NAME, where_clause, "varchar", map, all_map)
+            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_takala_table_helper.DATABASE_NAME, remote_takala_table_helper.TABLE_NAME, where_clause, "varchar", map, all_map, TABLE_DATETIME_SYNCABLE!!)
             query = query.replace("'", "&quote;")
             val str = offline_mode_service.general_push_command(query, remote_SQL_Helper.getusername())
             Toast.makeText(context, str, Toast.LENGTH_SHORT).show()

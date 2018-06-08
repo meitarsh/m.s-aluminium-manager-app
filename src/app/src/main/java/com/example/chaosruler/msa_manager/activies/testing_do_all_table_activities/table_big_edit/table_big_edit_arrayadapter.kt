@@ -12,7 +12,7 @@ import android.widget.EditText
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.big_table_data
+import com.example.chaosruler.msa_manager.object_types.big_table.big_table_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
@@ -241,6 +241,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                 global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                 themer.hideKeyboard(context,milestone_percent)
             }).start()
+            @Suppress("ConvertToStringTemplate")
             milestone_percent.hint = (str + "%").trim()
             milestone_percent.text.clear()
         }
@@ -284,6 +285,7 @@ class table_big_edit_arrayadapter(context: Context, arr: Vector<big_table_data>,
                     update_total_sum(totalsum, big_item)
                 }
             }).start()
+            @Suppress("ConvertToStringTemplate")
             percentforaccount.hint = (str + "%").trim()
             percentforaccount.text.clear()
         }

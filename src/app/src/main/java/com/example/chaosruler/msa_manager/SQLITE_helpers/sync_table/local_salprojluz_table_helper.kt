@@ -7,9 +7,10 @@ import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_salprojluz_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.syncable
-import com.example.chaosruler.msa_manager.object_types.salprojluz_data
-import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass_hashmap_createable
+import com.example.chaosruler.msa_manager.object_types.salprojluz_data.salprojluz_builder
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -40,67 +41,67 @@ class local_salprojluz_table_helper(
      * startdate
      * @author Chaosruler972
      */
-    val STARTDATE = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_STARTDATE)
+    val STARTDATE = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_STARTDATE)!!
     /**
      * finish date
      * @author Chaosruler972
      */
-    val FINISHDATE = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_FINISHDATE)
+    val FINISHDATE = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_FINISHDATE)!!
     /**
      * sium bpoal
      * @author Chaosruler972
      */
-    val SIUMBPOAL = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_SIUMBPOAL)
+    val SIUMBPOAL = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_SIUMBPOAL)!!
     /**
      * is finished
      * @author Chaosruler972
      */
-    val IS_FINISHED = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_ISFINISHED)
+    val IS_FINISHED = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_ISFINISHED)!!
     /**
      * notes
      * @author Chaosruler972
      */
-    val NOTES = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_NOTES)
+    val NOTES = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_NOTES)!!
     /**
      * koma
      * @author Chaosruler972
      */
-    val KOMA = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_KOMA)
+    val KOMA = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_KOMA)!!
     /**
      * building
      * @author Chaosruler972
      */
-    val BUILDING = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_BUILDING)
+    val BUILDING = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_BUILDING)!!
 
     /**
      * Percent executed
      * @author Chaosruler972
      */
-    val PERCENTEXC = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_PERCENTEXC)
+    val PERCENTEXC = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_PERCENTEXC)!!
 
     /**
      * dataaraeid
      * @author Chaosruler972
      */
-    val DATAARAEID = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_DATAARAEID)
+    val DATAARAEID = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_DATAARAEID)!!
 
     /**
      * recid
      * @author Chaosruler972
      */
-    val RECID = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_RECID)
+    val RECID = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_RECID)!!
 
     /**
      * recversion
      * @author Chaosruler972
      */
-    val RECVERSION = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_RECVERSION)
+    val RECVERSION = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_RECVERSION)!!
 
     /**
      * username
      * @author Chaosruler972
      */
-    val USERNAME = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_USERNAME)
+    val USERNAME = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_USERNAME)!!
 
     override var filtering_mz11_enabled: Boolean = context.resources.getBoolean(R.bool.filtering_mz11_enabled)
 
@@ -111,37 +112,9 @@ class local_salprojluz_table_helper(
     override var REMOTE_DATAARAEID_KEY: String = context.getString(R.string.TABLE_SALPROJLUZ_DATAAREAID)
     override var REMOTE_DATAARAEID_VAL: String = context.getString(R.string.DATAAREAID_DEVELOP)
 
-    override fun get_remote_typemap(): HashMap<String, String> = remote_salprojluz_table_helper.define_type_map()
+    override var remote_sql_helper: remote_helper = remote_salprojluz_table_helper
 
-
-    override fun hashmap_to_table_dataclass_local(hashMap: HashMap<String, String>): salprojluz_data {
-        return salprojluz_data(
-                hashMap[ID] ?: "", hashMap[STARTDATE] ?: "", hashMap[FINISHDATE] ?: "",
-                ((hashMap[IS_FINISHED] ?: "0") == "0"), hashMap[SIUMBPOAL] ?: "", hashMap[NOTES]
-                ?: "",
-                hashMap[KOMA] ?: "", hashMap[BUILDING] ?: "", hashMap[PERCENTEXC] ?: "",
-                hashMap[DATAARAEID] ?: "", hashMap[RECID] ?: "", hashMap[RECVERSION]
-                ?: "", hashMap[USERNAME] ?: ""
-        )
-    }
-
-    override fun hashmap_to_table_dataclass_remote(hashMap: HashMap<String, String>): salprojluz_data {
-        return salprojluz_data(
-                (hashMap[remote_salprojluz_table_helper.ID] ?: ""),
-                (hashMap[remote_salprojluz_table_helper.STARTDATE] ?: ""),
-                (hashMap[remote_salprojluz_table_helper.FINISHDATE] ?: ""),
-                ((hashMap[remote_salprojluz_table_helper.IS_FINISHED] ?: "") == "true"),
-                (hashMap[remote_salprojluz_table_helper.SIUMBPOAL] ?: ""),
-                (hashMap[remote_salprojluz_table_helper.NOTES] ?: ""),
-                (hashMap[remote_salprojluz_table_helper.KOMA] ?: ""),
-                (hashMap[remote_salprojluz_table_helper.BUILDING] ?: ""),
-                (hashMap[remote_salprojluz_table_helper.PERCENTEXC] ?: ""),
-                (hashMap[remote_salprojluz_table_helper.DATAAREAID] ?: ""),
-                (hashMap[remote_salprojluz_table_helper.RECID] ?: ""),
-                (hashMap[remote_salprojluz_table_helper.RECVERION] ?: ""),
-                remote_SQL_Helper.getusername()
-        )
-    }
+    override var builder: table_dataclass_hashmap_createable = salprojluz_builder
 
     init {
         val vector: Vector<String> = Vector()

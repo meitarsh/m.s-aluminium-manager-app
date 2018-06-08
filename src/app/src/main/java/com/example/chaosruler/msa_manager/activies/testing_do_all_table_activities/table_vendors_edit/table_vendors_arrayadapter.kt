@@ -10,7 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.vendor_data
+import com.example.chaosruler.msa_manager.object_types.vendor_data.vendor_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*

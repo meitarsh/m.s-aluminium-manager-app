@@ -7,9 +7,10 @@ import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.syncable
-import com.example.chaosruler.msa_manager.object_types.big_table_data
-import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass_hashmap_createable
+import com.example.chaosruler.msa_manager.object_types.big_table.big_builder
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -27,7 +28,6 @@ class local_big_table_helper(
 
 ) : syncable, local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_DATABASE_NAME)
 ,null,context.resources.getInteger(R.integer.LOCAL_BIG_TABLE_VERSION),context.getString(R.string.LOCAL_BIG_TABLE_NAME)) {
-
 
     /**
      * Account number field name
@@ -141,7 +141,7 @@ class local_big_table_helper(
      * QTY in partial
      * @author Chaosruler972
      */
-    private val QTYINPARTIALACC: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYINPARTIALACC)
+    val QTYINPARTIALACC: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYINPARTIALACC)
 
 
     override var REMOTE_DATABASE_NAME: String = context.getString(R.string.DATABASE_NAME)
@@ -149,63 +149,9 @@ class local_big_table_helper(
     override var REMOTE_DATAARAEID_KEY: String = context.getString(R.string.TABLE_BIG_DATAAREAID)
     override var REMOTE_DATAARAEID_VAL: String = context.getString(R.string.DATAAREAID_DEVELOP)
 
-    override fun get_remote_typemap(): HashMap<String, String> = remote_big_table_helper.define_type_map()
+    override var remote_sql_helper: remote_helper = remote_big_table_helper
 
-
-    override fun hashmap_to_table_dataclass_local(hashMap: HashMap<String, String>): big_table_data {
-        return big_table_data(
-                (hashMap[ACCOUNT_NUM] ?: "").trim(),
-                (hashMap[DATAARAEID] ?: "").trim(),
-                (hashMap[RECVERSION] ?: "").trim(),
-                (hashMap[RECID] ?: "").trim(),
-                (hashMap[PROJID] ?: "").trim(),
-                (hashMap[ITEMID] ?: "").trim(),
-                (hashMap[FLAT] ?: "").trim(),
-                (hashMap[FLOOR] ?: "").trim(),
-                (hashMap[QTY] ?: "").trim(),
-                (hashMap[SALESPRICE] ?: "").trim(),
-                (hashMap[OPR_ID] ?: "").trim(),
-                (hashMap[MILESTONEPERCENTAGE] ?: "").trim(),
-                (hashMap[QTYFORACCOUNT] ?: "").trim(),
-                (hashMap[PERCENTFORACCOUNT] ?: "").trim(),
-                (hashMap[TOTAL_SUM] ?: "").trim(),
-                (hashMap[SALPROG] ?: "").trim(),
-                (hashMap[PRINTORDER] ?: "").trim(),
-                (hashMap[ITEMNUMBER] ?: "").trim(),
-                (hashMap[KOMANUM] ?: "").trim(),
-                (hashMap[DIRANUM] ?: "").trim(),
-                (hashMap[USER] ?: "").trim(),
-                (hashMap[QTYINPARTIALACC] ?: "").trim()
-        )
-    }
-
-    override fun hashmap_to_table_dataclass_remote(hashMap: HashMap<String, String>): big_table_data {
-        return big_table_data(
-                hashMap[remote_big_table_helper.VENDOR_ID] ?: "",
-                hashMap[remote_big_table_helper.DATAREAID] ?: "",
-                hashMap[remote_big_table_helper.RECVERSION] ?: "",
-                hashMap[remote_big_table_helper.RECID] ?: "",
-                hashMap[remote_big_table_helper.PROJECTS_ID] ?: "",
-                hashMap[remote_big_table_helper.INVENTORY_ID] ?: "",
-                hashMap[remote_big_table_helper.FLAT] ?: "",
-                hashMap[remote_big_table_helper.FLOOR] ?: "",
-                hashMap[remote_big_table_helper.QTY] ?: "",
-                hashMap[remote_big_table_helper.SALESPRICE] ?: "",
-                hashMap[remote_big_table_helper.OPR_ID] ?: "",
-                hashMap[remote_big_table_helper.MILESTONEPERCENT] ?: "",
-                hashMap[remote_big_table_helper.QTYFORACCOUNT] ?: "",
-                hashMap[remote_big_table_helper.PERCENTFORACCOUNT] ?: "",
-                hashMap[remote_big_table_helper.TOTALSUM] ?: "",
-                hashMap[remote_big_table_helper.SALPROG] ?: "",
-                hashMap[remote_big_table_helper.PRINTORDER] ?: "",
-                hashMap[remote_big_table_helper.ITEMNUMBER] ?: "",
-                hashMap[remote_big_table_helper.KOMANUM] ?: "",
-                hashMap[remote_big_table_helper.DIRANUM] ?: "",
-                remote_SQL_Helper.getusername(),
-                hashMap[remote_big_table_helper.QTYINPARTIALACC] ?: ""
-        )
-    }
-
+    override var builder: table_dataclass_hashmap_createable = big_builder
 
     /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
@@ -280,7 +226,4 @@ class local_big_table_helper(
         val extra = " PRIMARY KEY($RECID, $USER) "
         createDB(db, map, foreign, extra)
     }
-
-
-
 }

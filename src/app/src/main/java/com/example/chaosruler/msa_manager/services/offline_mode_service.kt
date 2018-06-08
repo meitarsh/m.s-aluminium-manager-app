@@ -15,6 +15,12 @@ import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
 import com.example.chaosruler.msa_manager.object_types.*
+import com.example.chaosruler.msa_manager.object_types.big_table.big_table_data
+import com.example.chaosruler.msa_manager.object_types.opr_data.opr_data
+import com.example.chaosruler.msa_manager.object_types.project_data.project_data
+import com.example.chaosruler.msa_manager.object_types.salprojluz_data.salprojluz_data
+import com.example.chaosruler.msa_manager.object_types.takala_data.takala_data
+import com.example.chaosruler.msa_manager.object_types.vendor_data.vendor_data
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.sync.Mutex
 import kotlinx.coroutines.experimental.sync.withLock
@@ -137,6 +143,7 @@ class offline_mode_service : Service(){
          * local salprojmng table instance
          * @author Chaosruler972
          */
+        @SuppressLint("StaticFieldLeak")
         private lateinit var salprojmng_table: local_salprojmng_table_helper
 
         /**
@@ -316,9 +323,9 @@ class offline_mode_service : Service(){
          * @param vector the data
          * @return the stringified form of the SQL request
          */
-        fun push_add_command(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>): String {
+        fun push_add_command(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>, modified_time: Boolean): String {
 
-            val str = remote_SQL_Helper.construct_add_str(db, table, vector, map).replace("'", "&quote;")
+            val str = remote_SQL_Helper.construct_add_str(db, table, vector, map, modified_time).replace("'", "&quote;")
             val username = remote_SQL_Helper.getusername()
             return general_push_command(str, username)
         }
@@ -334,9 +341,9 @@ class offline_mode_service : Service(){
          * @param where_clause what field should we compare
          * @return the stringified form of the SQL request
          */
-        fun push_update_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>): String {
+        fun push_update_command(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>, modified_time: Boolean): String {
 
-            val str = remote_SQL_Helper.construct_update_str(db, table, where_clause, compare_to, type, update_to).replace("'", "&quote;")
+            val str = remote_SQL_Helper.construct_update_str(db, table, where_clause, compare_to, type, update_to, modified_time).replace("'", "&quote;")
             val username = remote_SQL_Helper.getusername()
             return general_push_command(str, username)
         }

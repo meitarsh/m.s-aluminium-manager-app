@@ -56,4 +56,10 @@ abstract class remote_helper
                         }
                 }
         }
+
+        /**
+         * a flag to know if this table is date time syncable
+         * @author Chaosruler972
+         */
+        var TABLE_DATETIME_SYNCABLE: Boolean? = null
 }
