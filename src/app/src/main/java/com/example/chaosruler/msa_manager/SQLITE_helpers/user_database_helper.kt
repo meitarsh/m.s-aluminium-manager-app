@@ -21,7 +21,8 @@ class user_database_helper(
          * @author Chaosruler972
          * @see Context
          */
-        @Suppress("CanBeParameter") private val con: Context
+        @Suppress("CanBeParameter")
+        private val con: Context
 ) : local_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.resources.getInteger(R.integer.USER_DB_VERSION), con.getString(R.string.USER_TABLE_NAME)) {
     private val USERS_ID: String = con.getString(R.string.USER_COL_ID)
     private val PASSWORD: String = con.getString(R.string.USER_COL_PASSWORD)
@@ -52,9 +53,10 @@ class user_database_helper(
     override fun onCreate(db: SQLiteDatabase) {
 
         val map: HashMap<String, String> = HashMap()
-        map[USERS_ID] = "TEXT primary key"
-        map[PASSWORD] = "TEXT"
-        map[USER_LAST_SYNC] = "TEXT"
+        val sqlite_val_type = con.getString(R.string.SQLITE_VAL_TYPE)
+        map[USERS_ID] = "$sqlite_val_type primary key"
+        map[PASSWORD] = "$sqlite_val_type"
+        map[USER_LAST_SYNC] = "$sqlite_val_type"
         createDB(db,map)
     }
 

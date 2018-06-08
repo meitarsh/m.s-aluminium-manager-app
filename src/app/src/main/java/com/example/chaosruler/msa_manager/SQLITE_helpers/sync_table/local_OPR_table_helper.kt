@@ -84,10 +84,11 @@ class local_OPR_table_helper(
      */
     override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "TEXT "
-        map[NAME] = "TEXT"
-        map[USER] = "TEXT"
-        map[DATAARAEID] = "TEXT"
+        val type = context.getString(R.string.SQLITE_VAL_TYPE)
+        map[ID] = "$type "
+        map[NAME] = "$type"
+        map[USER] = "$type"
+        map[DATAARAEID] = "$type"
         val extra = " PRIMARY KEY($ID, $USER) "
         createDB(db, map, HashMap(), extra)
     }

@@ -33,6 +33,12 @@ import javax.crypto.spec.SecretKeySpec
 object encryption
 {
     /**
+     * a boolean value that tells me if encryption is enabled or not
+     * @author Chaosruler972
+     */
+    private var encryption_enabled: Boolean = true
+
+    /**
      * The secret key representation of AES on Android API
      * @author Chaosruler972
      * @see javax.crypto.SecretKey
@@ -45,10 +51,11 @@ object encryption
      */
     fun generate_key(context: Context)
     {
-        val alias = context.getString(R.string.ENC_KEY)
-        val store = Store(context)
-        if(secretKey==null)
-        {
+        if (secretKey == null) {
+            val alias = context.getString(R.string.ENC_KEY)
+            val store = Store(context)
+            encryption_enabled = context.resources.getBoolean(R.bool.encryption_enabled)
+
             secretKey = if(store.hasKey(alias)) {
                 val key_to_get_key = store.getSymmetricKey(alias,null)
 
@@ -73,6 +80,7 @@ object encryption
      */
     private fun get_key_from_file(key_to_encrypt: SecretKey,flag:Boolean,context: Context) : SecretKey?
     {
+        val bits = context.resources.getInteger(R.integer.encryption_bits)
         if(flag) // load from file only
         {
             val encoded = ReadFromFile("key.key",context) ?: return null
@@ -87,7 +95,7 @@ object encryption
         {
             val crypto = Crypto(Options.TRANSFORMATION_SYMMETRIC)
             val keyGen = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES)
-            keyGen.init(256)
+            keyGen.init(bits)
             val new_key = keyGen.generateKey()
             val encoded = new_key.encoded
             global_variables_dataclass.log("Key length Saved:", encoded.size.toString())
@@ -164,7 +172,7 @@ object encryption
     @SuppressLint("GetInstance")
     fun encrypt(a: ByteArray): ByteArray
     {
-        if(secretKey == null || a.isEmpty())
+        if (secretKey == null || a.isEmpty() || !encryption_enabled)
             return a
         val c = Cipher.getInstance("AES")
         c.init(Cipher.ENCRYPT_MODE, secretKey!!,IvParameterSpec(ByteArray(16)))
@@ -183,7 +191,7 @@ object encryption
     fun decrypt(a:ByteArray): ByteArray
     {
 
-        if(secretKey == null || a.isEmpty())
+        if (secretKey == null || a.isEmpty() || !encryption_enabled)
             return a
         val new_a = Base64.decode(a,Base64.DEFAULT)
         val c = Cipher.getInstance("AES")

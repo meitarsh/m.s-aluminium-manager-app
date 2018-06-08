@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- SQLITE global strings -->
+    <string name="SQLITE_VAL_TYPE">TEXT</string>
+
     <!-- Service strings -->
     <string name="service_name">offline_mode_service</string>
     <string name="title_activity_settings">Settings</string>

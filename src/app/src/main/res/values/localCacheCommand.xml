@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
-
-
     <!-- Server-command cache db -->
     <string name="cache_DB_NAME">cache.db</string>
     <string name="cache_table_name">cache</string>

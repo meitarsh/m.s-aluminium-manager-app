@@ -194,7 +194,7 @@ class local_big_table_helper(
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        val type = "TEXT"
+        val type = context.getString(R.string.SQLITE_VAL_TYPE)
         map[ACCOUNT_NUM] = type
         map[DATAARAEID] = type
         map[RECVERSION] = type

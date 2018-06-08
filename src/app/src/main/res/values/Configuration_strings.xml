@@ -5,6 +5,8 @@
     <integer name="time_to_sync_in_sec">900</integer>
     <integer name="millis_in_sec">1000</integer> <!-- should be 1000 -->
     <integer name="inittime">10000</integer>
+    <bool name="encryption_enabled">true</bool>
+    <integer name="encryption_bits">256</integer>
 
     <!-- Finalized remote IP address -->
     <string name="REMOTE_IP_ADDR">192.168.1.210</string>

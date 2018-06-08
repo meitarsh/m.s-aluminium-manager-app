@@ -88,10 +88,11 @@ class local_projects_table_helper(
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "TEXT  "
-        map[NAME] = "TEXT"
-        map[DATAAREAID] = "TEXT"
-        map[USERNAME] = "TEXT"
+        val type = context.getString(R.string.SQLITE_VAL_TYPE)
+        map[ID] = "$type  "
+        map[NAME] = "$type"
+        map[DATAAREAID] = "$type"
+        map[USERNAME] = "$type"
         val extra = " PRIMARY KEY($ID, $USER) "
         createDB(db,map, HashMap(), extra)
     }

@@ -14,8 +14,9 @@ import com.example.chaosruler.msa_manager.MSSQL_helpers.*
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
-import com.example.chaosruler.msa_manager.object_types.*
+import com.example.chaosruler.msa_manager.object_types.User
 import com.example.chaosruler.msa_manager.object_types.big_table.big_table_data
+import com.example.chaosruler.msa_manager.object_types.cache_command
 import com.example.chaosruler.msa_manager.object_types.opr_data.opr_data
 import com.example.chaosruler.msa_manager.object_types.project_data.project_data
 import com.example.chaosruler.msa_manager.object_types.salprojluz_data.salprojluz_data
@@ -82,6 +83,8 @@ class offline_mode_service : Service(){
      * @author Chaosruler972
      */
     companion object {
+
+
         /**
          * Cache server db instance on SQLITE
          * @author Chaosruler972
@@ -666,7 +669,7 @@ class offline_mode_service : Service(){
         {
             val mtx = Mutex()
             val lock = Object()
-            val max_count = 6
+            val max_count = 7
             val done_count = IntArray(1)
             val user = remote_SQL_Helper.user!!
 

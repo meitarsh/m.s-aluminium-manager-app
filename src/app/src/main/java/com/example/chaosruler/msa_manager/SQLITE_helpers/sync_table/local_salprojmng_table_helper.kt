@@ -80,12 +80,13 @@ class local_salprojmng_table_helper(private var context: Context):
     override fun onCreate(db: SQLiteDatabase)
     {
         val map: HashMap<String, String> = HashMap()
-        map[PROJID] = "TEXT "
-        map[USERID] = "TEXT"
-        map[USER] = "TEXT"
-        map[RECVERSION] = "TEXT"
-        map[RECID] = "TEXT"
-        map[DATAARAEID] = "TEXT"
+        val type = context.getString(R.string.SQLITE_VAL_TYPE)
+        map[PROJID] = "$type "
+        map[USERID] = "$type"
+        map[USER] = "$type"
+        map[RECVERSION] = "$type"
+        map[RECID] = "$type"
+        map[DATAARAEID] = "$type"
         val extra = " PRIMARY KEY($RECID, $USER) "
         createDB(db,map, HashMap(), extra)
     }

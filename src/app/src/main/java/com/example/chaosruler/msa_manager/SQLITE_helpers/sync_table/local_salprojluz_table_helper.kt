@@ -142,19 +142,20 @@ class local_salprojluz_table_helper(
      */
     override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
-        map[ID] = "TEXT "
-        map[STARTDATE] = "TEXT"
-        map[FINISHDATE] = "TEXT"
-        map[SIUMBPOAL] = "TEXT"
-        map[IS_FINISHED] = "INTEGER"
-        map[NOTES] = "TEXT"
-        map[KOMA] = "TEXT"
-        map[BUILDING] = "TEXT"
-        map[DATAARAEID] = "TEXT"
-        map[USERNAME] = "TEXT"
-        map[PERCENTEXC] = "TEXT"
-        map[RECID] = "TEXT "
-        map[RECVERSION] = "TEXT"
+        val type = context.getString(R.string.SQLITE_VAL_TYPE)
+        map[ID] = "$type "
+        map[STARTDATE] = "$type"
+        map[FINISHDATE] = "$type"
+        map[SIUMBPOAL] = "$type"
+        map[IS_FINISHED] = "$type"
+        map[NOTES] = "$type"
+        map[KOMA] = "$type"
+        map[BUILDING] = "$type"
+        map[DATAARAEID] = "$type"
+        map[USERNAME] = "$type"
+        map[PERCENTEXC] = "$type"
+        map[RECID] = "$type "
+        map[RECVERSION] = "$type"
         val extra = " PRIMARY KEY($RECID, $USER) "
         createDB(db, map, HashMap(), extra)
     }

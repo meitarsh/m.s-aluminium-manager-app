@@ -13,6 +13,7 @@
     <string name="permission_rationale">גישה לאנשי קשר נדרשת כדי לבצע השלמה אוטומטית</string>
     <string name="login">התחבר</string>
     <string name="return_to_login">חזור למסך ההתחברות</string>
+    <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login menu -->
     <string name="entry1">הזן ידנית</string>
     <string name="entry2">הזן אוטומטית</string>

@@ -15,7 +15,7 @@ import java.util.*
  * @author Chaosruler972
  * @constructor a context to work with, the rest comes from strings.xml
  */
-class cache_server_commands(context: Context) : local_SQL_Helper(context, context.getString(R.string.cache_DB_NAME), null, context.resources.getInteger(R.integer.cache_db_ver), context.getString(R.string.cache_table_name))
+class cache_server_commands(private val context: Context) : local_SQL_Helper(context, context.getString(R.string.cache_DB_NAME), null, context.resources.getInteger(R.integer.cache_db_ver), context.getString(R.string.cache_table_name))
 {
     /**
      * a command id (raising, autoincrement) field name
@@ -54,9 +54,10 @@ class cache_server_commands(context: Context) : local_SQL_Helper(context, contex
      */
     override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
+        val sqlite_val_type = context.getString(R.string.SQLITE_VAL_TYPE)
         map[ID] = "INTEGER primary key AUTOINCREMENT"
-        map[COMMAND] = "TEXT"
-        map[USER] = "TEXT"
+        map[COMMAND] = "$sqlite_val_type"
+        map[USER] = "$sqlite_val_type"
         createDB(db,map)
     }
 

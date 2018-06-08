@@ -1,11 +1,11 @@
 package com.example.chaosruler.msa_manager.services
 
 import android.annotation.SuppressLint
+import android.arch.core.BuildConfig
 import android.content.Context
 import android.net.wifi.WifiManager
 import android.preference.PreferenceManager
 import android.util.Log
-import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
@@ -90,6 +90,7 @@ object global_variables_dataclass
      * @author Chaosruler972
      */
     var isLocal: Boolean = true
+
     /**
      * a boolean value that tells me if I should load any database values, aka GUI mode (in case we don't)
      * @author Chaosruler972
