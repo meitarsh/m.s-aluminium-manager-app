@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package com.example.chaosruler.msa_manager.MSSQL_helpers
 
 import android.content.Context
@@ -5,7 +7,7 @@ import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
-import com.example.chaosruler.msa_manager.object_types.salprojmng_table_data
+import com.example.chaosruler.msa_manager.object_types.salprojmng_table_data.salprojmng_table_data
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
@@ -112,6 +114,9 @@ class remote_salprojmng_table_helper {
             RECID_TYPE = context.getString(R.string.TABLE_SALPROJMNG_RECID_TYPE)
 
             DATAARAEID_VAL = context.getString(R.string.DATAAREAID_DEVELOP)
+
+            TABLE_DATETIME_SYNCABLE= context.resources.getBoolean(R.bool.TABLE_SALPROJMNG_DATETIME_ENABLED)
+
         }
 
         /**
@@ -135,7 +140,7 @@ class remote_salprojmng_table_helper {
          * @return returns a vector of hashmap of strings, each element represents a row, hasmap items represents columns
          */
         @Suppress("unused")
-        fun select_wildcard(): Vector<HashMap<String, String>> = remote_SQL_Helper.select_columns_from_db_with_where(DATABASE_NAME, TABLE_NAME, define_type_map(), DATAAREAID, DATAAREAID_TYPE)
+        fun select_wildcard(): Vector<HashMap<String, String>> = remote_SQL_Helper.select_columns_from_db_with_where(DATABASE_NAME, TABLE_NAME, define_type_map(), DATAAREAID, DATAAREAID_TYPE, TABLE_DATETIME_SYNCABLE!!)
 
         /**
          * pushes an update to the database on remote call
@@ -167,7 +172,7 @@ class remote_salprojmng_table_helper {
             for (item in map)
                 all_map[item.key] = item.value
 
-            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_salprojmng_table_helper.DATABASE_NAME, remote_salprojmng_table_helper.TABLE_NAME, where_clause, "varchar", map, all_map)
+            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_salprojmng_table_helper.DATABASE_NAME, remote_salprojmng_table_helper.TABLE_NAME, where_clause, "varchar", map, all_map, TABLE_DATETIME_SYNCABLE!!)
             query = query.replace("'", "&quote;")
             val str = offline_mode_service.general_push_command(query, remote_SQL_Helper.getusername())
             Toast.makeText(context, str, Toast.LENGTH_SHORT).show()

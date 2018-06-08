@@ -7,9 +7,10 @@ import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.syncable
-import com.example.chaosruler.msa_manager.object_types.opr_data
-import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass_hashmap_createable
+import com.example.chaosruler.msa_manager.object_types.opr_data.opr_builder
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -56,20 +57,9 @@ class local_OPR_table_helper(
     override var REMOTE_DATAARAEID_KEY: String = context.getString(R.string.OPR_DATAAREAID)
     override var REMOTE_DATAARAEID_VAL: String = context.getString(R.string.DATAAREAID_DEVELOP)
 
-    override fun get_remote_typemap(): HashMap<String, String> = remote_opr_table_helper.define_type_map()
+    override var remote_sql_helper: remote_helper = remote_opr_table_helper
 
-
-    override fun hashmap_to_table_dataclass_local(hashMap: HashMap<String, String>): opr_data {
-        return opr_data((hashMap[ID] ?: "").trim(), (hashMap[NAME]
-                ?: "").trim(), (hashMap[DATAARAEID] ?: "").trim(), (hashMap[USER] ?: "").trim())
-    }
-
-    override fun hashmap_to_table_dataclass_remote(hashMap: HashMap<String, String>): opr_data {
-        return opr_data((hashMap[remote_opr_table_helper.ID] ?: "").trim(),
-                (hashMap[remote_opr_table_helper.NAME]
-                        ?: "").trim(), (hashMap[remote_opr_table_helper.DATAAREAID] ?: "").trim(),
-                remote_SQL_Helper.getusername().trim())
-    }
+    override var builder: table_dataclass_hashmap_createable = opr_builder
 
     /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted

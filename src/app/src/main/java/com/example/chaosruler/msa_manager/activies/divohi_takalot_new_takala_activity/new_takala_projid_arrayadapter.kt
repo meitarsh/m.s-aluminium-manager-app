@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.project_data
-import org.jetbrains.anko.textColor
+import com.example.chaosruler.msa_manager.object_types.project_data.project_data
 
 /**
  * Array Adapter that gives projname by its projid

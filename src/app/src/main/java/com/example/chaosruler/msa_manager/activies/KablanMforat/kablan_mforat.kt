@@ -11,9 +11,10 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.big_table_data
-import com.example.chaosruler.msa_manager.object_types.opr_data
-import com.example.chaosruler.msa_manager.object_types.vendor_data
+import com.example.chaosruler.msa_manager.activies.KablanMforat.KablanArrayAdapter.KablanArrayAdapter_Inventory_Id
+import com.example.chaosruler.msa_manager.activies.KablanMforat.KablanArrayAdapter.KablanArrayAdapter_Opr
+import com.example.chaosruler.msa_manager.object_types.big_table.big_table_data
+import com.example.chaosruler.msa_manager.object_types.vendor_data.vendor_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_kablan_mforat.*
@@ -93,7 +94,7 @@ class kablan_mforat : Activity() {
         {
             override fun onNothingSelected(parent: AdapterView<*>?)
             {
-                adapter2 = KablanArrayAdapter_Inventory_Id(baseContext, android.R.layout.simple_spinner_item, Vector() )
+                adapter2 = KablanArrayAdapter_Inventory_Id(baseContext, android.R.layout.simple_spinner_item, Vector())
                 activity_kablan_mforat_mispar_mozar.adapter = adapter2
 
             }
@@ -115,9 +116,10 @@ class kablan_mforat : Activity() {
             @SuppressLint("SetTextI18n")
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
             {
-                val big_item:big_table_data = activity_kablan_mforat_mispar_mozar.adapter.getItem(position) as big_table_data
+                val big_item: big_table_data = activity_kablan_mforat_mispar_mozar.adapter.getItem(position) as big_table_data
                 (view as TextView).text = big_item.get_INVENTORY_ID()?:""
-                adapter3 = KablanArrayAdapter_Opr(baseContext, android.R.layout.simple_spinner_item, get_all_inventory_unique(big_item.get_INVENTORY_ID()?:""))
+                adapter3 = KablanArrayAdapter_Opr(baseContext, android.R.layout.simple_spinner_item, get_all_inventory_unique(big_item.get_INVENTORY_ID()
+                        ?: ""))
             }
 
         }
@@ -129,15 +131,17 @@ class kablan_mforat : Activity() {
 
             }
 
+            @SuppressLint("SetTextI18n")
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
             {
                 // upon Spinner selecting a user, update the other fields
-                val big_item:big_table_data = activity_kablan_mforat_oprname.adapter.getItem(position) as big_table_data
+                val big_item: big_table_data = activity_kablan_mforat_oprname.adapter.getItem(position) as big_table_data
                 (view as TextView).text = big_item.get_OPRID()?:""
                 val percentforaccount: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
                 activity_kablan_mforat_kamot_hoza.text = (big_item.get_QTY() ?: "0").trim()
                 activity_kablan_mforat_yehida_price.text = (big_item.get_SALESPRICE() ?: "0").trim()
-                activity_kablan_mforat_peola_percent.text = ((big_item.get_MILESTONEPERCENT()?:"0").toInt()).toString() + "%"
+                @SuppressLint("SetTextI18n")
+                activity_kablan_mforat_peola_percent.text = (big_item.get_MILESTONEPERCENT()?:"0").toInt().toString() + "%"
 //                activity_kablan_mforat_kamot_helki.hint = (big_item.get_QTYINPARTIALACC() ?: "0").trim()
 //                activity_kablan_mforat_kamot_helki.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 activity_kablan_mforat_kamot_kablan.hint = (big_item.get_QTYFORACCOUNT() ?: "0").trim()
@@ -230,6 +234,7 @@ class kablan_mforat : Activity() {
                         themer.hideKeyboard(baseContext,activity_kablan_mforat_ahoz_meosher)
                         Thread { compute_saah_hakol(big_table) }.run()
                     }).start()
+                    @Suppress("ConvertToStringTemplate")
                     activity_kablan_mforat_ahoz_meosher.hint = (str + "%").trim()
                     activity_kablan_mforat_ahoz_meosher.text.clear()
                 }

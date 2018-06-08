@@ -9,8 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_takala_table_helper
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.project_data
-import com.example.chaosruler.msa_manager.object_types.takala_data
+import com.example.chaosruler.msa_manager.object_types.project_data.project_data
+import com.example.chaosruler.msa_manager.object_types.takala_data.takala_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import com.example.chaosruler.msa_manager.services.themer
@@ -108,7 +108,7 @@ class NewTakala : AppCompatActivity() {
             }
             val RECVERSION = baseContext.getString(R.string.remote_RECVERSION)
             val takala_data = takala_data(projid, itemid, "mz11", kamot, "", "",
-                    "",teeur,mumlatz, "",tguva,"",alut,"",RECVERSION,RECID, remote_SQL_Helper.getusername())
+                    "", teeur, mumlatz, "", tguva, "", alut, "", RECVERSION, RECID, remote_SQL_Helper.getusername())
 
             remote_takala_table_helper.push_update(takala_data,empty_hashmap, baseContext)
             global_variables_dataclass.db_salprojtakala_vec.addElement(takala_data)

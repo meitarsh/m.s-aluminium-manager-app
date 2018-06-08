@@ -1,8 +1,12 @@
-package com.example.chaosruler.msa_manager.object_types
+@file:Suppress("MemberVisibilityCanBePrivate")
+
+package com.example.chaosruler.msa_manager.object_types.big_table
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass_hashmap_createable
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
+import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
 /**
  * a dataclass to represent big table data
@@ -121,7 +125,6 @@ class big_table_data(
         private var QTYINPARTIALACC:String?
 )
     : table_dataclass, Comparable<big_table_data> {
-
 
     /**
      * Only gets keys
@@ -792,4 +795,5 @@ class big_table_data(
     {
         return get_USERNAME()!!
     }
+
 }

@@ -63,6 +63,7 @@ class cache_command(
 
     override fun toUserName(): String
     {
-        return __user!!
+        return __user
     }
+
 }

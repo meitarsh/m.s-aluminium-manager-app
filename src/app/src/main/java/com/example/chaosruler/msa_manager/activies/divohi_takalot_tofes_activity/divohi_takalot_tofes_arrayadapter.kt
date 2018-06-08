@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.object_types.big_table_data
-import com.example.chaosruler.msa_manager.object_types.project_data
-import com.example.chaosruler.msa_manager.object_types.takala_data
+import com.example.chaosruler.msa_manager.object_types.project_data.project_data
+import com.example.chaosruler.msa_manager.object_types.takala_data.takala_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import java.util.*
@@ -74,13 +73,13 @@ class divohi_takalot_tofes_arrayadapter(
         all_txtviews.add(alot_takala)
 
 
-        val takala_data:takala_data = getItem(position)
+        val takala_data: takala_data = getItem(position)
         val project_data: project_data = try {
             global_variables_dataclass.db_project_vec.filter { it.getProjID() == takala_data.get_projid() }[0]
         }
         catch (e: Exception)
         {
-            project_data(takala_data.get_projid(),"",takala_data.get_DATAAREAID(),"")
+            project_data(takala_data.get_projid(), "", takala_data.get_DATAAREAID(), "")
         }
 
 

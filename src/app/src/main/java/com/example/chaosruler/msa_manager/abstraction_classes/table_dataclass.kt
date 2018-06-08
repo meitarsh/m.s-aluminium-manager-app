@@ -21,21 +21,21 @@ interface table_dataclass {
      * @author Chaosruler972
      * @return a copy of this object represnetation
      */
-    fun copy(): table_dataclass
+    abstract fun copy(): table_dataclass
 
     /**
      * to hashmap
      * @author Chaosruler972
      * @return hashmap of this dataclass
      */
-    fun to_hashmap(): HashMap<String, String>
+    abstract fun to_hashmap(): HashMap<String, String>
 
     /**
      * to hashmap only on keys
      * @author Chaosruler972
      * return hashmap of only key and values
      */
-    fun to_key_hashmap(): Pair<String, String>
+    abstract fun to_key_hashmap(): Pair<String, String>
 
     /**
      * to hashmap only non keys
@@ -53,12 +53,15 @@ interface table_dataclass {
      * @author Chaosruler972
      * @return hashmap of local dataclass
      */
-    fun to_sql_hashmap(): HashMap<String, String>
+    abstract fun to_sql_hashmap(): HashMap<String, String>
 
     /**
      * to Username
      * @author Chaosruler972
      * @return a username of this class
      */
-    fun toUserName() : String
+    abstract fun toUserName() : String
+
+
 }
+

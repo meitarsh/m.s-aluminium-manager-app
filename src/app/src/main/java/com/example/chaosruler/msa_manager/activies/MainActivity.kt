@@ -11,7 +11,7 @@ import android.widget.*
 import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_chooser
-import com.example.chaosruler.msa_manager.object_types.project_data
+import com.example.chaosruler.msa_manager.object_types.project_data.project_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper

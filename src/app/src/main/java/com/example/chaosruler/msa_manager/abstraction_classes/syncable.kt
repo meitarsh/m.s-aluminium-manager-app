@@ -25,19 +25,17 @@ interface syncable {
 
     var filtering_mz11_enabled: Boolean
 
-    /**
-     * Converts local hashmap to table dataclass
-     * @author Chaosruler972
-     * @return a local hashmap of this dataclass
-     */
-    fun hashmap_to_table_dataclass_local(hashMap: HashMap<String, String>): table_dataclass
+    var remote_sql_helper: remote_helper
+
+    var builder: table_dataclass_hashmap_createable
+
 
     /**
-     * Converts remote hashmap to table dataclass
+     * Tells me of this table is date time syncable
      * @author Chaosruler972
-     * @return a remote hashmap of this dataclass
+     * @return true if this table is date time syncable
      */
-    fun hashmap_to_table_dataclass_remote(hashMap: HashMap<String, String>): table_dataclass
+    fun datetime_enabled(): Boolean = remote_sql_helper.TABLE_DATETIME_SYNCABLE!!
 
 
     abstract fun remove_from_db(where_clause: String, equal_to: Array<String>): Boolean
@@ -71,12 +69,12 @@ interface syncable {
         val all_db: Vector<java.util.HashMap<String, String>> = get_db()
         all_db
                 .filter { it[USER] != null && it[USER] ?: "" == remote_SQL_Helper.getusername() }
-                .forEach { vector.addElement(hashmap_to_table_dataclass_local(it) as T) }
+                .forEach { vector.addElement(builder.from_local_sql_hashmap(it) as T) }
         return vector
     }
 
 
-    fun get_remote_typemap(): HashMap<String, String>
+    fun get_remote_typemap(): HashMap<String, String> = remote_sql_helper.define_type_map()
 
     /**
      * server data to vector... by projid
@@ -88,15 +86,15 @@ interface syncable {
         val typemap: HashMap<String, String> = get_remote_typemap()
         val server_data: Vector<java.util.HashMap<String, String>> =
                 if (filtering_mz11_enabled) {
-                    remote_SQL_Helper.select_columns_from_db_with_where(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, REMOTE_DATAARAEID_KEY, REMOTE_DATAARAEID_VAL)
+                    remote_SQL_Helper.select_columns_from_db_with_where(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, REMOTE_DATAARAEID_KEY, REMOTE_DATAARAEID_VAL, datetime_enabled())
                 } else {
-                    remote_SQL_Helper.select_columns_from_db_with_where(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, null, null)
+                    remote_SQL_Helper.select_columns_from_db_with_where(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, null, null, datetime_enabled())
                 }
         val result_vector: Vector<T> = Vector()
 
         @Suppress("UNCHECKED_CAST")
         for (map in server_data)
-            result_vector.addElement(hashmap_to_table_dataclass_remote(map) as T)
+            result_vector.addElement(builder.from_remote_sql_hashmap(map) as T)
         return result_vector
     }
 
@@ -119,7 +117,7 @@ interface syncable {
 
         val vector = get_rows(input_map)
         if (vector.size > 0) {
-            return hashmap_to_table_dataclass_local(vector.firstElement())
+            return builder.from_local_sql_hashmap(vector.firstElement())
         }
 
         return null

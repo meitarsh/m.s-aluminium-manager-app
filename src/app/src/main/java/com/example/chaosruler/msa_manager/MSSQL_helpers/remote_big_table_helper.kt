@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
-import com.example.chaosruler.msa_manager.object_types.big_table_data
+import com.example.chaosruler.msa_manager.object_types.big_table.big_table_data
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
@@ -271,6 +271,7 @@ class remote_big_table_helper
         var TABLE_SECOND_SYNC_NAME: String = ""
 
 
+
         /**
          * Inits all the variables with the data from strings.xml holding right for big database remote metadata
          * @author Chaosruler972
@@ -343,6 +344,8 @@ class remote_big_table_helper
             QTYINPARTIALACC_TYPE = context.getString(R.string.TABLE_BIG_QTYFORACCOUNT_TYPE)
 
             TABLE_SECOND_SYNC_NAME = context.getString(R.string.TABLE_BIG_SYNC)
+
+            TABLE_DATETIME_SYNCABLE= context.resources.getBoolean(R.bool.TABLE_BIG_DATETIME_ENABLED)
         }
 
         /**
@@ -406,7 +409,7 @@ class remote_big_table_helper
             for(item in map)
                 all_hashmap[item.key] = item.value
 
-            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME, remote_big_table_helper.TABLE_NAME, where_clause, "varchar", map, all_hashmap)
+            var query = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME, remote_big_table_helper.TABLE_NAME, where_clause, "varchar", map, all_hashmap, TABLE_DATETIME_SYNCABLE!!)
             query = query.replace("'", "&quote;")
 
 
@@ -416,7 +419,7 @@ class remote_big_table_helper
                 Input hack in order to sync between two tables, not tested and not necceserily
                 stable at the very idea of it
              */
-            val query_second = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME, remote_big_table_helper.TABLE_SECOND_SYNC_NAME, where_clause, "varchar", normalize_map_for_sync_db(map), all_hashmap)
+            val query_second = remote_SQL_Helper.construct_update_str_multiwhere_text(remote_big_table_helper.DATABASE_NAME, remote_big_table_helper.TABLE_SECOND_SYNC_NAME, where_clause, "varchar", normalize_map_for_sync_db(map), all_hashmap, TABLE_DATETIME_SYNCABLE!!)
             offline_mode_service.general_push_command(query_second, remote_SQL_Helper.getusername())
             Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
         }

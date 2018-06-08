@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.*
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.floor_chooser.floor_chooser
-import com.example.chaosruler.msa_manager.object_types.big_table_data
+import com.example.chaosruler.msa_manager.object_types.big_table.big_table_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_flat_chooser.*

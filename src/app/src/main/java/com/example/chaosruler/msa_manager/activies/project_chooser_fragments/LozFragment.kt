@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ListView
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.loz_activity.loz_activity_arrayadapter
-import com.example.chaosruler.msa_manager.object_types.salprojluz_data
+import com.example.chaosruler.msa_manager.object_types.salprojluz_data.salprojluz_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import org.jetbrains.anko.support.v4.act

@@ -5,9 +5,10 @@ import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_salprojmng_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.syncable
-import com.example.chaosruler.msa_manager.object_types.salprojmng_table_data
-import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
+import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass_hashmap_createable
+import com.example.chaosruler.msa_manager.object_types.salprojmng_table_data.salprojmng_builder
 import java.util.*
 
 class local_salprojmng_table_helper(private var context: Context):
@@ -48,24 +49,9 @@ class local_salprojmng_table_helper(private var context: Context):
     override var REMOTE_DATAARAEID_KEY: String = context.getString(R.string.TABLE_SALPROJMNG_DATAAREAID)
     override var REMOTE_DATAARAEID_VAL: String = context.getString(R.string.DATAAREAID_DEVELOP)
 
-    override fun get_remote_typemap(): HashMap<String, String> = remote_salprojmng_table_helper.define_type_map()
+    override var remote_sql_helper: remote_helper = remote_salprojmng_table_helper
 
-    override fun hashmap_to_table_dataclass_local(hashMap: HashMap<String, String>): salprojmng_table_data {
-        return salprojmng_table_data((hashMap[PROJID] ?: "").trim(), (hashMap[USERID]
-                ?: "").trim(), (hashMap[DATAARAEID] ?: "").trim(), (hashMap[RECVERSION] ?: "").trim(),
-                (hashMap[RECID] ?: "").trim(),(hashMap[USER] ?: "").trim())
-    }
-
-    override fun hashmap_to_table_dataclass_remote(hashMap: HashMap<String, String>): salprojmng_table_data {
-        return salprojmng_table_data(
-                (hashMap[remote_salprojmng_table_helper.PROJID] ?: "").trim(),
-                (hashMap[remote_salprojmng_table_helper.USERID] ?: "").trim(),
-                (hashMap[remote_salprojmng_table_helper.DATAAREAID] ?: "").trim(),
-                (hashMap[remote_salprojmng_table_helper.RECVERSION] ?: "").trim(),
-                (hashMap[remote_salprojmng_table_helper.RECID] ?: "").trim(),
-                (remote_SQL_Helper.getusername()).trim()
-        )
-    }
+    override var builder: table_dataclass_hashmap_createable = salprojmng_builder
 
     /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted

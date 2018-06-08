@@ -8,7 +8,7 @@ import android.widget.*
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.KablanMforat.kablan_mforat
 import com.example.chaosruler.msa_manager.activies.divohi_takalot_tofes_activity.DivohiTakalotTofesActivity
-import com.example.chaosruler.msa_manager.object_types.big_table_data
+import com.example.chaosruler.msa_manager.object_types.big_table.big_table_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.themer
 import kotlinx.android.synthetic.main.activity_flat_and_floor_chooser.*

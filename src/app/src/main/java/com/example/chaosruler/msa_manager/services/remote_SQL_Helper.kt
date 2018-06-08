@@ -278,7 +278,7 @@ object remote_SQL_Helper {
      *   @param where_compare where clause data (compare to)
      *   @return a vector of hashmap represnting the results, each element represent a row, hashmap represnts col
      */
-    fun select_columns_from_db_with_where(db: String, table: String, colm_to_type: HashMap<String, String>, where_column: String?, where_compare: String?): Vector<HashMap<String, String>> {
+    fun select_columns_from_db_with_where(db: String, table: String, colm_to_type: HashMap<String, String>, where_column: String?, where_compare: String?, modified_time: Boolean): Vector<HashMap<String, String>> {
         global_variables_dataclass.log("remote SQL", "Started")
         val vector: Vector<HashMap<String, String>> = Vector()
         try {
@@ -318,11 +318,13 @@ object remote_SQL_Helper {
                     qry += " WHERE "
                     qry += " CONVERT(${colm_to_type.getValue(where_column)},$where_column) = $item "
                 }
-                val where_or_not = if (where_column == null)
-                    " WHERE "
-                else
-                    " AND "
-                qry += "$where_or_not $sync_column >= dateadd(s,${get_latest_sync_time().time / 1000},'19700101 00:00:00:000')"
+                if(modified_time) {
+                    val where_or_not = if (where_column == null)
+                        " WHERE "
+                    else
+                        " AND "
+                    qry += "$where_or_not $sync_column >= dateadd(s,${get_latest_sync_time().time / 1000},'19700101 00:00:00:000')"
+                }
                 global_variables_dataclass.log("remote_SQL", qry)
                 rs = connection!!.createStatement().executeQuery(qry)
             } catch (e: SQLTimeoutException) {
@@ -515,22 +517,26 @@ object remote_SQL_Helper {
      *  @param map what field types we have on that table that we add data to
      *  @return a string of the MSSQL command to add that specified data
      */
-    fun construct_add_str(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>): String {
+    fun construct_add_str(db: String, table: String, vector: Vector<String>, map: HashMap<String, String>, modified_time: Boolean): String {
         var command: String = "USE [$db] " +
                 "INSERT INTO [dbo].[$table] ("
 
         for (item in vector) {
             command += "[$item]"
+            if(vector.lastElement() != item)
                 command += ","
         }
-        command += sync_column!!
+        if(modified_time)
+            command += " , ${sync_column!!}"
         command += ") VALUES ("
 
         for (item in vector) {
             command += map[item]
+            if(vector.lastElement() != item)
                 command += ","
         }
-        command += "dateadd(s,${Date().time/1000},'19700101 00:00:00:000') "
+        if(modified_time)
+            command += " , dateadd(s,${Date().time/1000},'19700101 00:00:00:000') "
         command += ")"
         return command
     }
@@ -570,7 +576,7 @@ object remote_SQL_Helper {
      *  @param update_to what to update our data to
      *  @return a string of the MSSQL command to update that specified data
      */
-    fun construct_update_str(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>): String {
+    fun construct_update_str(db: String, table: String, where_clause: String, compare_to: Array<String>, type: String, update_to: HashMap<String, String>, modified_time: Boolean): String {
         var command: String = "USE [$db]" +
                 " UPDATE [dbo].[$table] SET "
         var breaker = 0
@@ -578,7 +584,8 @@ object remote_SQL_Helper {
             command += " [${item.key}] = ${item.value} "
             breaker++
         }
-        command += " [$sync_column] = dateadd(s,${Date().time/1000},'19700101 00:00:00:000') "
+        if(modified_time)
+            command += " [$sync_column] = dateadd(s,${Date().time/1000},'19700101 00:00:00:000') "
         command += " WHERE "
         for (item in compare_to) {
             command += "CONVERT($type,$where_clause) = $item "
@@ -601,7 +608,7 @@ object remote_SQL_Helper {
      *  @param all_type whats the type of all our data that we compare
      *  @return a string of the MSSQL command to update that specified data
      */
-    fun construct_update_str_multiwhere_text(db: String, table: String, where_clause: HashMap<String, String>, all_type: String, update_to: HashMap<String, String>, complete_map: HashMap<String, String>): String {
+    fun construct_update_str_multiwhere_text(db: String, table: String, where_clause: HashMap<String, String>, all_type: String, update_to: HashMap<String, String>, complete_map: HashMap<String, String>, modified_time: Boolean): String {
         var command: String = "USE [$db]" +
                 " UPDATE [dbo].[$table] SET "
         var breaker = 0
@@ -610,7 +617,7 @@ object remote_SQL_Helper {
             breaker++
             if (breaker < update_to.size)
                 command += " , "
-            else
+            else if(modified_time)
             {
                 command += " , [${context.getString(R.string.moddate)}] = dateadd(s,${Date().time/1000},'19700101 00:00:00:000') "
             }
@@ -632,8 +639,10 @@ object remote_SQL_Helper {
             breaker++
             if( breaker < complete_map.size)
                 command += " , "
-            else
-                command += " , ${context.getString(R.string.moddate)} "
+            else if(modified_time)
+            {
+                    command += " , ${context.getString(R.string.moddate)} "
+            }
         }
         command += ") values( "
         breaker = 0
@@ -643,7 +652,7 @@ object remote_SQL_Helper {
             breaker++
             if( breaker < complete_map.size)
                 command += " , "
-            else
+            else if(modified_time)
                 command += " , dateadd(s,${Date().time/1000},'19700101 00:00:00:000') "
         }
         command += " ) "

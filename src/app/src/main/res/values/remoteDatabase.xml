@@ -27,6 +27,8 @@
     <integer name="remote_recID_len">9</integer>
 
     <!-- TABLE INVENTORY -->
+    <bool name="TABLE_INVENTORY_DATETIME_ENABLED">true</bool>
+
     <string name="INVENTORY_ID">ITEMID</string>
     <string name="INVENTORY_ID_TYPE">nvarchar</string>
 
@@ -37,6 +39,7 @@
     <string name="INVENTORY_DATAAREAID_TYPE">nvarchar</string>
 
     <!-- TABLE PROJECTS -->
+    <bool name="TABLE_PROJECTS_DATETIME_ENABLED">true</bool>
 
     <string name="PROJECTS_ID">PROJID</string>
     <string name="PROJECTS_ID_TYPE">nvarchar</string>
@@ -49,6 +52,8 @@
 
 
     <!-- TABLE OPR -->
+    <bool name="TABLE_OPR_DATETIME_ENABLED">true</bool>
+
     <string name="OPR_ID">OPRID</string>
     <string name="OPR_ID_TYPE">nvarchar</string>
 
@@ -62,6 +67,8 @@
 
 
     <!-- TABLE VENDORS -->
+    <bool name="TABLE_VENDORS_DATETIME_ENABLED">true</bool>
+
     <string name="VENDORS_ID">ACCOUNTNUM</string>
     <string name="VENDORS_ID_TYPE">nvarchar</string>
 
@@ -73,6 +80,8 @@
 
 
     <!-- TABLE BIG -->
+    <bool name="TABLE_BIG_DATETIME_ENABLED">true</bool>
+
     <string name="TABLE_BIG_VENDOR_ID">ACCOUNTNUM</string>
     <string name="TABLE_BIG_VENDOR_ID_TYPE">nvarchar</string>
 
@@ -152,6 +161,8 @@
     <string name="TABLE_BIG_FLOOR_TYPE">nvarchar</string>
 
     <!-- TABLE_SALPROJLUZ -->
+    <bool name="TABLE_SALPROJLUZ_DATETIME_ENABLED">true</bool>
+
     <string name="TABLE_SALPROJLUZ_STARTDATE">STARTDATE</string>
     <string name="TABLE_SALPROJLUZ_STARTDATE_TYPE">datetime</string>
 
@@ -189,6 +200,8 @@
     <string name="TABLE_SALPROJLUZ_RECVERSION_TYPE">int</string>
 
     <!-- Table Salprojbakara -->
+    <bool name="TABLE_SALPROJBAKARA_DATETIME_ENABLED">true</bool>
+
     <string name="TABLE_SALPROJBAKARA_PROJID">PROJID</string>
     <string name="TABLE_SALPROJBAKARA_PROJID_TYPE">nvarchar</string>
 
@@ -238,6 +251,8 @@
     <string name="TABLE_SALPROJBAKARA_RECID_TYPE">bigint</string>
 
     <!-- TABLE_SALPROJMNG -->
+    <bool name="TABLE_SALPROJMNG_DATETIME_ENABLED">false</bool>
+
     <string name="TABLE_SALPROJMNG_PROJID">PROJID</string>
     <string name="TABLE_SALPROJMNG_PROJID_TYPE">VARCHAR</string>
 
