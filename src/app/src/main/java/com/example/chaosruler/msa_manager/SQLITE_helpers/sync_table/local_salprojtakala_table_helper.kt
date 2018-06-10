@@ -181,11 +181,12 @@ class local_salprojtakala_table_helper(private var context: Context) :
         map[ALUT] = "$type"
         map[ITEMTXT] = "$type"
         map[RECVERSION] = "$type"
-        map[RECID] = "$type "
+        map[RECID] = "$type PRIMARY KEY"
         map[USERNAME] = "$type"
         val empty_hashmap = HashMap<String, String>()
         val extra = " , PRIMARY KEY ($RECID, $USERNAME) "
-        createDB(db, map, empty_hashmap, extra)
+//        createDB(db, map, empty_hashmap, extra)
+        createDB(db, map)
     }
 
 }

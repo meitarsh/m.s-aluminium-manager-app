@@ -46,8 +46,8 @@ object global_variables_dataclass
      * @param message the message
      */
     fun log(tag: Any, message: Any, debug_level: LogLevel = LogLevel.INFO, forced: Boolean = false) {
-        val should_print_log = BuildConfig.DEBUG or print_in_prod
-        if (should_print_log or forced) {
+        val should_print_log = BuildConfig.DEBUG or print_in_prod or forced
+        if (should_print_log) {
             assert(debug_level < LogLevel.MAX)
             when (debug_level) {
                 LogLevel.ASSERT -> {

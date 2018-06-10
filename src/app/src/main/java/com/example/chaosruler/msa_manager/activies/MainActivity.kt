@@ -351,15 +351,19 @@ class MainActivity : Activity()
 
     /**
      * gets salprojmng vector of this user
+     * @author Chaosruler972
+     * @return vector of projids unique to user
      */
     private fun get_salprojmng_of_me(): Vector<String> {
         val vector = Vector<String>()
         val username = remote_SQL_Helper.getusername()
+        global_variables_dataclass.log("managers","managers Vector is size ${global_variables_dataclass.db_salprojmng_vec.size}")
         for(user in global_variables_dataclass.db_salprojmng_vec)
         {
             if(username == user.get_userid() && !vector.contains(user.get_projid()))
                 vector.addElement(user.get_projid())
         }
+        global_variables_dataclass.log("managers","Vector is size ${vector.size}")
         return vector
     }
 }

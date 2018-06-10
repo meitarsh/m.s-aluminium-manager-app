@@ -19,7 +19,7 @@ class KablanArrayAdapter_Opr(context: Context, resource_id: Int, list: List<big_
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val textView = TextView(context)
         val big_table_data = getItem(position)
-        textView.text = big_table_data.get_OPRID()
+        textView.text = big_table_data.get_OPRID()?:"No value from database"
         textView.setTextColor(Color.BLACK)
         return textView
     }

@@ -46,9 +46,9 @@ class ProjectOptions2Activity : AppCompatActivity() {
 
         if(BuildConfig.DEBUG)
         {
-//            val dbg_proj_id = "00315"
-//            global_variables_dataclass.projid = dbg_proj_id
-//            global_variables_dataclass.log("projid","Changed to $dbg_proj_id (${global_variables_dataclass.projid})")
+            val dbg_proj_id = "00341"
+            global_variables_dataclass.projid = dbg_proj_id
+            global_variables_dataclass.log("projid","Changed to $dbg_proj_id (${global_variables_dataclass.projid})")
         }
 
 //        setSupportActionBar(toolbar)

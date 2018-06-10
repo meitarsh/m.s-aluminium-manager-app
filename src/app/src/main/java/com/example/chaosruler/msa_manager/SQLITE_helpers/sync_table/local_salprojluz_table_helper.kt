@@ -154,10 +154,11 @@ class local_salprojluz_table_helper(
         map[DATAARAEID] = "$type"
         map[USERNAME] = "$type"
         map[PERCENTEXC] = "$type"
-        map[RECID] = "$type "
+        map[RECID] = "$type PRIMARY KEY"
         map[RECVERSION] = "$type"
         val extra = " PRIMARY KEY($RECID, $USER) "
-        createDB(db, map, HashMap(), extra)
+//        createDB(db, map, HashMap(), extra)
+        createDB(db, map)
     }
 
 }

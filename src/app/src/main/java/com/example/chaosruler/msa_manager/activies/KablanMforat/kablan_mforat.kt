@@ -120,6 +120,7 @@ class kablan_mforat : Activity() {
                 (view as TextView).text = big_item.get_INVENTORY_ID()?:""
                 adapter3 = KablanArrayAdapter_Opr(baseContext, android.R.layout.simple_spinner_item, get_all_inventory_unique(big_item.get_INVENTORY_ID()
                         ?: ""))
+                activity_kablan_mforat_oprname.adapter = adapter3
             }
 
         }
@@ -340,12 +341,17 @@ class kablan_mforat : Activity() {
 
     private fun get_all_inventory_unique(inventory_id: String): Vector<big_table_data> {
         val vec = Vector<big_table_data>()
-        for(i in 0 until activity_kablan_mforat_mispar_mozar.adapter.count)
+        val hashmap: HashMap<String, Boolean> = HashMap()
+        for(i in 0 until activity_kablan_mforat_mispar_mozar.count)
         {
-            val big_item = activity_kablan_mforat_mispar_mozar.adapter.getItem(i) as big_table_data
-            if (big_item.get_INVENTORY_ID() == inventory_id)
+            val big_item = activity_kablan_mforat_mispar_mozar.getItemAtPosition(i) as big_table_data
+            if (big_item.get_INVENTORY_ID() == inventory_id && !hashmap.containsKey(big_item.get_OPRID()?:""))
+            {
                 vec.addElement(big_item)
+                hashmap[big_item.get_OPRID()?:""] = true
+            }
         }
+        global_variables_dataclass.log("mforat", "hashmap size is ${hashmap.size}")
         return vec
     }
 }

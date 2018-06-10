@@ -85,9 +85,10 @@ class local_salprojmng_table_helper(private var context: Context):
         map[USERID] = "$type"
         map[USER] = "$type"
         map[RECVERSION] = "$type"
-        map[RECID] = "$type"
+        map[RECID] = "$type PRIMARY KEY"
         map[DATAARAEID] = "$type"
         val extra = " PRIMARY KEY($RECID, $USER) "
-        createDB(db,map, HashMap(), extra)
+//        createDB(db,map, HashMap(), extra)
+        createDB(db, map)
     }
 }

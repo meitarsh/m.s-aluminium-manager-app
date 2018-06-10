@@ -20,6 +20,7 @@ import com.example.chaosruler.msa_manager.object_types.cache_command
 import com.example.chaosruler.msa_manager.object_types.opr_data.opr_data
 import com.example.chaosruler.msa_manager.object_types.project_data.project_data
 import com.example.chaosruler.msa_manager.object_types.salprojluz_data.salprojluz_data
+import com.example.chaosruler.msa_manager.object_types.salprojmng_table_data.salprojmng_table_data
 import com.example.chaosruler.msa_manager.object_types.takala_data.takala_data
 import com.example.chaosruler.msa_manager.object_types.vendor_data.vendor_data
 import kotlinx.coroutines.experimental.async
@@ -528,7 +529,7 @@ class offline_mode_service : Service(){
                 async {
                     global_variables_dataclass.log("db_sync", "salprojmng")
 //                   opr.beginTrans()
-                    salprojmng_table.sync_db<salprojluz_data>()
+                    salprojmng_table.sync_db<salprojmng_table_data>()
 //                   opr.endTrans()
                     global_variables_dataclass.log("db_sync", "salprojmng done")
                     done_syncing(mtx,done_count,max_count, lock, user)
@@ -719,7 +720,7 @@ class offline_mode_service : Service(){
 
             async {
                 global_variables_dataclass.log("load", "Started syncing salprojmng")
-                global_variables_dataclass.db_salprojmng_vec = salproj_table.get_local_DB()
+                global_variables_dataclass.db_salprojmng_vec = salprojmng_table.get_local_DB()
                 global_variables_dataclass.log("load", "salproj bakara ${global_variables_dataclass.db_salprojtakala_vec.size}")
                 done_syncing(mtx,done_count,max_count, lock, user, false)
             }.start()

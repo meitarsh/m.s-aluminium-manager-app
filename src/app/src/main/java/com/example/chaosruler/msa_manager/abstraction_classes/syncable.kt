@@ -218,4 +218,5 @@ interface syncable {
         val key = table_dataclass.to_key_hashmap()
         return remove_from_db(key.first, arrayOf(key.second))
     }
+
 }

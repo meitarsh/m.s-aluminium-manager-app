@@ -5,6 +5,7 @@ package com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_takala_table_helper
+import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import com.example.chaosruler.msa_manager.abstraction_classes.remote_helper
@@ -55,7 +56,7 @@ class local_vendor_table_helper(
     override var REMOTE_DATAARAEID_KEY: String = context.getString(R.string.VENDORS_DATAAREAID)
     override var REMOTE_DATAARAEID_VAL: String = context.getString(R.string.DATAAREAID_DEVELOP)
 
-    override var remote_sql_helper: remote_helper = remote_takala_table_helper
+    override var remote_sql_helper: remote_helper = remote_vendors_table_helper
 
     override var builder: table_dataclass_hashmap_createable = vendor_builder
 
@@ -83,12 +84,13 @@ class local_vendor_table_helper(
     override fun onCreate(db: SQLiteDatabase) {
         val map: HashMap<String, String> = HashMap()
         val type = context.getString(R.string.SQLITE_VAL_TYPE)
-        map[ID] = "$type "
+        map[ID] = "$type PRIMARY KEY"
         map[NAME] = "$type"
         map[USER] = "$type"
         map[DATAARAEID] = "$type"
         val extra = " , PRIMARY KEY ($ID, $USER) "
-        createDB(db, map, HashMap(), extra)
+//        createDB(db, map, HashMap(), extra)
+        createDB(db, map)
     }
 
 }
