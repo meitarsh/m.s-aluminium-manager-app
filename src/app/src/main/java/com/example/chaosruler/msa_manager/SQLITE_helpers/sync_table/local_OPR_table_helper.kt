@@ -25,7 +25,7 @@ class local_OPR_table_helper(
          * @author Chaosruler972
          */
         private var context: Context
-) : local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_DATABASE_NAME), null, context.resources.getInteger(R.integer.LOCAL_OPR_TABLE_VERSION), context.getString(R.string.LOCAL_OPR_TABLE_NAME)), syncable {
+) : local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_OPR_DB__NAME), null, context.resources.getInteger(R.integer.LOCAL_OPR_TABLE_VERSION), context.getString(R.string.LOCAL_OPR_TABLE_NAME), create_vector_of_variables(context)), syncable {
 
 
     /**
@@ -61,6 +61,8 @@ class local_OPR_table_helper(
 
     override var builder: table_dataclass_hashmap_createable = opr_builder
 
+    override var SPECIAL_SEARCH_COLUMN: String = "None"
+
     /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
      * SQL class
@@ -94,4 +96,37 @@ class local_OPR_table_helper(
         createDB(db, map)
     }
 
+    companion object vector_of_variables_maker{
+        fun create_vector_of_variables(context: Context): Vector<String> {
+
+            /**
+             * The operation id field name
+             * @author Chaosruler972
+             */
+            val ID: String = context.getString(R.string.LOCAL_OPR_COLUMN_ID)
+            /**
+             * the operation name field name
+             * @author Chaosruler972
+             */
+            val NAME: String = context.getString(R.string.LOCAL_OPR_COLUMN_NAME)
+            /**
+             * the dataaraeid field name
+             * @author Chaosruler972
+             */
+            val DATAARAEID: String = context.getString(R.string.LOCAL_OPR_COLUMN_DATAARAEID)
+            /**
+             * The username that synced this data
+             * @author Chaosruler972
+             */
+
+            val USER: String = context.getString(R.string.LOCAL_OPR_COLUMN_USERNAME)
+
+            val vector: Vector<String> = Vector()
+            vector.add(ID)
+            vector.add(NAME)
+            vector.add(DATAARAEID)
+            vector.add(USER)
+            return vector
+        }
+    }
 }

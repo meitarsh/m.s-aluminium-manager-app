@@ -15,7 +15,7 @@ import java.util.*
  * @author Chaosruler972
  * @constructor a context to work with, the rest comes from strings.xml
  */
-class cache_server_commands(private val context: Context) : local_SQL_Helper(context, context.getString(R.string.cache_DB_NAME), null, context.resources.getInteger(R.integer.cache_db_ver), context.getString(R.string.cache_table_name))
+class cache_server_commands(private val context: Context) : local_SQL_Helper(context, context.getString(R.string.cache_DB_NAME), null, context.resources.getInteger(R.integer.cache_db_ver), context.getString(R.string.cache_table_name), create_vector_of_variables(context))
 {
     /**
      * a command id (raising, autoincrement) field name
@@ -184,5 +184,32 @@ class cache_server_commands(private val context: Context) : local_SQL_Helper(con
         return str
     }
 
+    companion object vector_of_variables_maker{
+        fun create_vector_of_variables(context: Context): Vector<String> {
+
+            /**
+             * a command id (raising, autoincrement) field name
+             * @author Chaosruler972
+             */
+            val ID: String = context.getString(R.string.cache_col_1)
+            /**
+             * a command field name
+             * @author Chaosruler972
+             */
+            val COMMAND:String = context.getString(R.string.cache_col_2)
+            /**
+             * calling user field name
+             * @author Chaosruler972
+             */
+            val USER:String = context.getString(R.string.cache_col_3)
+
+            val vector: Vector<String> = Vector()
+            vector.add(ID)
+            vector.add(COMMAND)
+            vector.add(USER)
+
+            return vector
+        }
+    }
 
 }

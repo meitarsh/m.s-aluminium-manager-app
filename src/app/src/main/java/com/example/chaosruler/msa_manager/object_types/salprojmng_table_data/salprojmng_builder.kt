@@ -16,7 +16,7 @@ object salprojmng_builder: table_dataclass_hashmap_createable()
     override fun from_local_sql_hashmap(hashMap: HashMap<String, String>): salprojmng_table_data
     {
         return salprojmng_table_data(
-                (hashMap[global_variables_dataclass.DB_SALPROJMNG!!.PROJID] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_SALPROJMNG!!.ID] ?: "").trim(),
                 (hashMap[global_variables_dataclass.DB_SALPROJMNG!!.USERID] ?: "").trim(),
                 (hashMap[global_variables_dataclass.DB_SALPROJMNG!!.DATAARAEID] ?: "").trim(),
                 (hashMap[global_variables_dataclass.DB_SALPROJMNG!!.RECVERSION] ?: "").trim(),

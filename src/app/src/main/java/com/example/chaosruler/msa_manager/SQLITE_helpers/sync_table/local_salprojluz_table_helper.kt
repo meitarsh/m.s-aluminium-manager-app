@@ -26,10 +26,11 @@ class local_salprojluz_table_helper(
          */
         private var context: Context
 ) : local_SQL_Helper(context,
-        context.getString(R.string.LOCAL_SYNC_DATABASE_NAME),
+        context.getString(R.string.LOCAL_SYNC_SALPROJLUZ_DB__NAME),
         null,
         context.resources.getInteger(R.integer.LOCAL_SALPROJLUZ_TABLE_VERSION),
-        context.getString(R.string.LOCAL_SALPROJLUZ_TABLE_NAME)
+        context.getString(R.string.LOCAL_SALPROJLUZ_TABLE_NAME),
+        create_vector_of_variables(context)
 ), syncable
 {
     /**
@@ -116,6 +117,8 @@ class local_salprojluz_table_helper(
 
     override var builder: table_dataclass_hashmap_createable = salprojluz_builder
 
+    override var SPECIAL_SEARCH_COLUMN: String = context.getString(R.string.TABLE_SALPROJLUZ_PROJID)
+
     init {
         val vector: Vector<String> = Vector()
         vector.add(ID)
@@ -161,4 +164,97 @@ class local_salprojluz_table_helper(
         createDB(db, map)
     }
 
+    companion object vector_of_variables_maker{
+        fun create_vector_of_variables(context: Context): Vector<String> {
+
+            /**
+             * ID
+             * @author Chaosruler972
+             */
+            val ID = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_ID)!!
+            /**
+             * startdate
+             * @author Chaosruler972
+             */
+            val STARTDATE = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_STARTDATE)!!
+            /**
+             * finish date
+             * @author Chaosruler972
+             */
+            val FINISHDATE = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_FINISHDATE)!!
+            /**
+             * sium bpoal
+             * @author Chaosruler972
+             */
+            val SIUMBPOAL = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_SIUMBPOAL)!!
+            /**
+             * is finished
+             * @author Chaosruler972
+             */
+            val IS_FINISHED = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_ISFINISHED)!!
+            /**
+             * notes
+             * @author Chaosruler972
+             */
+            val NOTES = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_NOTES)!!
+            /**
+             * koma
+             * @author Chaosruler972
+             */
+            val KOMA = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_KOMA)!!
+            /**
+             * building
+             * @author Chaosruler972
+             */
+            val BUILDING = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_BUILDING)!!
+
+            /**
+             * Percent executed
+             * @author Chaosruler972
+             */
+            val PERCENTEXC = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_PERCENTEXC)!!
+
+            /**
+             * dataaraeid
+             * @author Chaosruler972
+             */
+            val DATAARAEID = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_DATAARAEID)!!
+
+            /**
+             * recid
+             * @author Chaosruler972
+             */
+            val RECID = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_RECID)!!
+
+            /**
+             * recversion
+             * @author Chaosruler972
+             */
+            val RECVERSION = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_RECVERSION)!!
+
+            /**
+             * username
+             * @author Chaosruler972
+             */
+            val USERNAME = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_USERNAME)!!
+            val vector: Vector<String> = Vector()
+
+            vector.add(ID)
+            vector.add(STARTDATE)
+            vector.add(FINISHDATE)
+            vector.add(SIUMBPOAL)
+            vector.add(IS_FINISHED)
+            vector.add(NOTES)
+            vector.add(KOMA)
+            vector.add(BUILDING)
+            vector.add(DATAARAEID)
+            vector.add(USERNAME)
+            vector.add(PERCENTEXC)
+            vector.add(RECID)
+            vector.addElement(RECVERSION)
+
+            return vector
+
+        }
+    }
 }

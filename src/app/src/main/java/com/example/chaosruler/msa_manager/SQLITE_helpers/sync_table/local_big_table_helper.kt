@@ -26,8 +26,8 @@ class local_big_table_helper(
          */
         private var context: Context
 
-) : syncable, local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_DATABASE_NAME)
-,null,context.resources.getInteger(R.integer.LOCAL_BIG_TABLE_VERSION),context.getString(R.string.LOCAL_BIG_TABLE_NAME)) {
+) : syncable, local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_BIG_DB__NAME)
+,null,context.resources.getInteger(R.integer.LOCAL_BIG_TABLE_VERSION),context.getString(R.string.LOCAL_BIG_TABLE_NAME), create_vector_of_variables(context)) {
 
     /**
      * Account number field name
@@ -143,6 +143,7 @@ class local_big_table_helper(
      */
     val QTYINPARTIALACC: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYINPARTIALACC)
 
+    override var SPECIAL_SEARCH_COLUMN: String = context.getString(R.string.TABLE_BIG_PROJECTS_ID)
 
     override var REMOTE_DATABASE_NAME: String = context.getString(R.string.DATABASE_NAME)
     override var REMOTE_TABLE_NAME: String = context.getString(R.string.TABLE_BIG)
@@ -152,6 +153,7 @@ class local_big_table_helper(
     override var remote_sql_helper: remote_helper = remote_big_table_helper
 
     override var builder: table_dataclass_hashmap_createable = big_builder
+
 
     /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
@@ -222,9 +224,150 @@ class local_big_table_helper(
 //        foreign[ACCOUNT_NUM] = context.getString(R.string.LOCAL_VENDORS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_VENDORS_COLUMN_ID) + ")"
 //        foreign[ITEMID] = context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID) + ")"
 //        foreign[OPR_ID] = context.getString(R.string.LOCAL_OPR_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_OPR_COLUMN_ID) + ")"
-//        foreign[PROJID] = context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_PROJECTS_COLUMN_ID) + ")"
+//        foreign[ID] = context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME) + "(" + context.getString(R.string.LOCAL_PROJECTS_COLUMN_ID) + ")"
         val extra = " PRIMARY KEY($RECID, $USER) "
 //        createDB(db, map, foreign, extra)
         createDB(db, map)
+    }
+
+    companion object vector_of_variables_maker{
+        fun create_vector_of_variables(context: Context): Vector<String> {
+            /**
+             * Account number field name
+             * @author Chaosruler972TABLE_BIG_SYNC
+             */
+            val ACCOUNT_NUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_ACCOUNTNUM)
+            /**
+             * Dataaraeid field name
+             * @author Chaosruler972
+             */
+            val DATAARAEID: String = context.getString(R.string.LOCAL_BIG_COLUMN_DATAARAEID)
+            /**
+             * rec version field name
+             * @author Chaosruler972
+             */
+            val RECVERSION: String = context.getString(R.string.LOCAL_BIG_COLUMN_RECVERSION)
+            /**
+             * rec id field name
+             * @author Chaosruler972
+             */
+            val RECID: String = context.getString(R.string.LOCAL_BIG_COLUMN_RECID)
+            /**
+             * the project id field name
+             * @author Chaosruler972
+             */
+            val PROJID: String = context.getString(R.string.LOCAL_BIG_COLUMN_PROJID)
+            /**
+             * the item id field name
+             * @author Chaosruler972
+             */
+            val ITEMID: String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMID)
+            /**
+             * the flat field name
+             * @author Chaosruler972
+             */
+            val FLAT: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLAT)
+            /**
+             * flat field name
+             * @author Chaosruler972
+             */
+            val FLOOR: String = context.getString(R.string.LOCAL_BIG_COLUMN_FLOOR)
+            /**
+             * quanity field name
+             * @author Chaosruler972
+             */
+            val QTY: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTY)
+            /**
+             * the sales price field name
+             * @author Chaosruler972
+             */
+            val SALESPRICE = context.getString(R.string.LOCAL_BIG_COLUMN_SALESPRICE)
+            /**
+             * the operation id field name
+             * @author Chaosruler972
+             */
+            val OPR_ID: String = context.getString(R.string.LOCAL_BIG_COLUMN_OPRID)
+            /**
+             * the miestone to percent field name
+             * @author Chaosruler972
+             */
+            val MILESTONEPERCENTAGE: String = context.getString(R.string.LOCAL_BIG_COLUMN_MILESTONEPRECENT)
+            /**
+             * the quanity for account field name
+             * @author Chaosruler972
+             */
+            val QTYFORACCOUNT = context.getString(R.string.LOCAL_BIG_COLUMN_QTYFORACCOUNT)
+            /**
+             * the percent for account field name
+             * @author Chaosruler972
+             */
+            val PERCENTFORACCOUNT: String = context.getString(R.string.LOCAL_BIG_COLUMN_PERCENTFORACCOUNT)
+            /**
+             * the total sum field name
+             * @author Chaosruler972
+             */
+            val TOTAL_SUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_TOTALSUM)
+            /**
+             * the sale progress field name
+             * @author Chaosruler972
+             */
+            val SALPROG: String = context.getString(R.string.LOCAL_BIG_COLUMN_SALPROG)
+            /**
+             * the print order field name
+             * @author Chaosruler972
+             */
+            val PRINTORDER: String = context.getString(R.string.LOCAL_BIG_COLUMN_printorder)
+            /**
+             * the item number field name
+             * @author Chaosruler972
+             */
+            val ITEMNUMBER: String = context.getString(R.string.LOCAL_BIG_COLUMN_ITEMNUMBER)
+            /**
+             * the koma num field name
+             * @author Chaosruler972
+             */
+            val KOMANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_KOMANUM)
+            /**
+             * the dira num field name
+             * @author Chaosruler972
+             */
+            val DIRANUM: String = context.getString(R.string.LOCAL_BIG_COLUMN_DIRANUM)
+
+            /**
+             * the username that synced this data
+             * @author Chaosruler972
+             */
+            val USER: String = context.getString(R.string.LOCAL_BIG_COLUMN_USERNAME)
+
+            /**
+             * QTY in partial
+             * @author Chaosruler972
+             */
+            val QTYINPARTIALACC: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYINPARTIALACC)
+
+            val vector: Vector<String> = Vector()
+            vector.add(ACCOUNT_NUM)
+            vector.add(DATAARAEID)
+            vector.add(RECVERSION)
+            vector.add(RECID)
+            vector.add(PROJID)
+            vector.add(ITEMID)
+            vector.add(FLAT)
+            vector.add(FLOOR)
+            vector.add(QTY)
+            vector.add(SALESPRICE)
+            vector.add(OPR_ID)
+            vector.add(MILESTONEPERCENTAGE)
+            vector.add(QTYFORACCOUNT)
+            vector.add(PERCENTFORACCOUNT)
+            vector.add(TOTAL_SUM)
+            vector.add(SALPROG)
+            vector.add(PRINTORDER)
+            vector.add(ITEMNUMBER)
+            vector.add(KOMANUM)
+            vector.add(DIRANUM)
+            vector.add(USER)
+            return vector
+        }
     }
 }

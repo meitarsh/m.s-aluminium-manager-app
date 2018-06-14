@@ -20,7 +20,7 @@ import kotlin.collections.HashMap
  * @author Chaosruler972
  * @constructor a context to work with, the rest comes from strings.xml
  */
-class local_inventory_table_helper(private var context: Context) : local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_DATABASE_NAME), null, context.resources.getInteger(R.integer.LOCAL_INVENTORY_TABLE_VERSION), context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME)), syncable {
+class local_inventory_table_helper(private var context: Context) : local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_INVENTORY_DB__NAME), null, context.resources.getInteger(R.integer.LOCAL_INVENTORY_TABLE_VERSION), context.getString(R.string.LOCAL_INVENTORY_TABLE_NAME), create_vector_of_variables(context)), syncable {
 
 
     /**
@@ -57,6 +57,9 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
 
     override var builder: table_dataclass_hashmap_createable = inventory_builder
 
+    override var SPECIAL_SEARCH_COLUMN: String = "None"
+
+
     /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
      * SQL class
@@ -91,5 +94,35 @@ class local_inventory_table_helper(private var context: Context) : local_SQL_Hel
         createDB(db, map)
     }
 
+    companion object vector_of_variables_maker{
+        fun create_vector_of_variables(context: Context): Vector<String> {
+            /**
+             * The id field name
+             * @author Chaosruler972
+             */
+            val ID: String = context.getString(R.string.LOCAL_INVENTORY_COLUMN_ID)
+            /**
+             * The name field name
+             * @author Chaosruler972
+             */
+            val NAME: String = context.getString(R.string.LOCAL_INVENTORY_COLUMN_NAME)
+            /**
+             * The dataaraeid field name
+             * @author Chaosruler972
+             */
+            val DATAARAEID: String = context.getString(R.string.LOCAL_INVENTORY_COLUMN_DATAARAEID)
+            /**
+             * The user field name
+             * @author Chaosruler972
+             */
+            val USER: String = context.getString(R.string.LOCAL_INVENTORY_COLUMN_USERNAME)
+            val vector: Vector<String> = Vector()
+            vector.add(ID)
+            vector.add(NAME)
+            vector.add(DATAARAEID)
+            vector.add(USER)
+            return vector
+        }
+    }
 
 }

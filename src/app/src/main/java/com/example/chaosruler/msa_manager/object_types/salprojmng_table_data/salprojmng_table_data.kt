@@ -5,7 +5,6 @@ package com.example.chaosruler.msa_manager.object_types.salprojmng_table_data
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_salprojmng_table_helper
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
-import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 
 class salprojmng_table_data(
         private var projid: String?,
@@ -40,7 +39,7 @@ class salprojmng_table_data(
      * @author Chaosruler972
      * @return a key hashmap
      */
-    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_VENDOR!!.ID, recid!!)
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_SALPROJMNG!!.ID, recid!!)
 
     /**
      * projid getter
@@ -132,8 +131,8 @@ class salprojmng_table_data(
     }
 
     /**
-     * set PROJID
-     * @param str the PROJID
+     * set ID
+     * @param str the ID
      * @author Chaosruler972
      */
     fun set_PROJID(str: String) = {
@@ -178,7 +177,7 @@ class salprojmng_table_data(
      */
     override fun to_sql_hashmap(): HashMap<String, String> {
         val data: HashMap<String, String> = HashMap()
-        data[global_variables_dataclass.DB_SALPROJMNG!!.PROJID] = (get_projid() ?: "").trim()
+        data[global_variables_dataclass.DB_SALPROJMNG!!.ID] = (get_projid() ?: "").trim()
         data[global_variables_dataclass.DB_SALPROJMNG!!.USERID] = (get_userid() ?: "").trim()
         data[global_variables_dataclass.DB_SALPROJMNG!!.DATAARAEID] = (get_DATAREAID() ?: "").trim()
         data[global_variables_dataclass.DB_SALPROJMNG!!.RECVERSION] = (get_RECVERSION() ?: "").trim()

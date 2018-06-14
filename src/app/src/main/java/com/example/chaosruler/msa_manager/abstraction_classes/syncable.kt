@@ -3,6 +3,7 @@ package com.example.chaosruler.msa_manager.abstraction_classes
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
 import java.util.*
+import kotlin.collections.HashMap
 
 /**
  * Defines a syncale table
@@ -28,6 +29,8 @@ interface syncable {
 
     var builder: table_dataclass_hashmap_createable
 
+    var SPECIAL_SEARCH_COLUMN: String
+
 
     /**
      * Tells me of this table is date time syncable
@@ -43,11 +46,26 @@ interface syncable {
      * adds all big, updates, inserts... whatever
      * @author Chaosruler972
      */
+    fun <T : table_dataclass> sync_db_by_key(vec: Vector<String>) {
+        if (!global_variables_dataclass.isLocal)
+            return
+        val server_vec = server_data_to_vector_by_key<T>(vec)
+        global_variables_dataclass.log("download", "Successfully loaded entire db $REMOTE_TABLE_NAME vector with ${server_vec.size.toString()}", global_variables_dataclass.LogLevel.INFO)
+        for (item in server_vec) {
+            add_to_table(item)
+        }
+    }
+
+
+    /**
+     * adds all big, updates, inserts... whatever
+     * @author Chaosruler972
+     */
     fun <T : table_dataclass> sync_db() {
         if (!global_variables_dataclass.isLocal)
             return
         val server_vec = server_data_to_vector<T>()
-        global_variables_dataclass.log("db_sync", "Successfully loaded entire db $REMOTE_TABLE_NAME vector with ${server_vec.size.toString()}")
+        global_variables_dataclass.log("download", "Successfully loaded entire db $REMOTE_TABLE_NAME vector with ${server_vec.size.toString()}", global_variables_dataclass.LogLevel.INFO)
         for (item in server_vec) {
             add_to_table(item)
         }
@@ -75,6 +93,37 @@ interface syncable {
 
     fun get_remote_typemap(): HashMap<String, String> = remote_sql_helper.define_type_map()
 
+
+    /**
+     * server data to vector... by projid
+     * @author Chaosruler972
+     * @return a vector of big table filtered by project name
+     */
+    fun <T : table_dataclass> server_data_to_vector_by_key(vec: Vector<String>): Vector<T> {
+
+        val typemap: HashMap<String, String> = get_remote_typemap()
+        val where_hashmap = HashMap<String, Vector<String>>()
+        if(filtering_mz11_enabled)
+        {
+            val vec_mz11 = Vector<String>()
+            vec_mz11.addElement(REMOTE_DATAARAEID_VAL)
+            where_hashmap[REMOTE_DATAARAEID_KEY] = vec_mz11
+        }
+        if(SPECIAL_SEARCH_COLUMN != "None")
+        {
+            global_variables_dataclass.log("mng","enabled projects ${global_variables_dataclass.projids_to_sync}")
+            where_hashmap[SPECIAL_SEARCH_COLUMN] = vec
+        }
+
+        val server_data: Vector<java.util.HashMap<String, String>> = remote_SQL_Helper.select_columns_from_db_with_where_multi(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, where_hashmap, datetime_enabled())
+        val result_vector: Vector<T> = Vector()
+        global_variables_dataclass.log("db_sync_down", "Download for table $REMOTE_TABLE_NAME done", global_variables_dataclass.LogLevel.INFO)
+        @Suppress("UNCHECKED_CAST")
+        for (map in server_data)
+            result_vector.addElement(builder.from_remote_sql_hashmap(map) as T)
+        return result_vector
+    }
+
     /**
      * server data to vector... by projid
      * @author Chaosruler972
@@ -83,14 +132,22 @@ interface syncable {
     fun <T : table_dataclass> server_data_to_vector(): Vector<T> {
 
         val typemap: HashMap<String, String> = get_remote_typemap()
-        val server_data: Vector<java.util.HashMap<String, String>> =
-                if (filtering_mz11_enabled) {
-                    remote_SQL_Helper.select_columns_from_db_with_where(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, REMOTE_DATAARAEID_KEY, REMOTE_DATAARAEID_VAL, datetime_enabled())
-                } else {
-                    remote_SQL_Helper.select_columns_from_db_with_where(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, null, null, datetime_enabled())
-                }
-        val result_vector: Vector<T> = Vector()
+        val where_hashmap = HashMap<String, Vector<String>>()
+        if(filtering_mz11_enabled)
+        {
+            val vec_mz11 = Vector<String>()
+            vec_mz11.addElement(REMOTE_DATAARAEID_VAL)
+            where_hashmap[REMOTE_DATAARAEID_KEY] = vec_mz11
+        }
+        if(SPECIAL_SEARCH_COLUMN != "None")
+        {
+            global_variables_dataclass.log("mng","enabled projects ${global_variables_dataclass.projids_to_sync}")
+            where_hashmap[SPECIAL_SEARCH_COLUMN] = global_variables_dataclass.projids_to_sync
+        }
 
+        val server_data: Vector<java.util.HashMap<String, String>> = remote_SQL_Helper.select_columns_from_db_with_where_multi(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, where_hashmap, datetime_enabled())
+        val result_vector: Vector<T> = Vector()
+        global_variables_dataclass.log("db_sync_down", "Download for table $REMOTE_TABLE_NAME done", global_variables_dataclass.LogLevel.INFO)
         @Suppress("UNCHECKED_CAST")
         for (map in server_data)
             result_vector.addElement(builder.from_remote_sql_hashmap(map) as T)

@@ -6,6 +6,7 @@ import android.net.VpnService
 import android.os.AsyncTask
 import android.preference.PreferenceManager
 import com.example.chaosruler.msa_manager.BuildConfig
+import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.activies.LoginActivity
 import com.example.chaosruler.msa_manager.object_types.User
@@ -192,55 +193,52 @@ object remote_SQL_Helper {
             return vector
         try {
             val lock = java.lang.Object()
-            AsyncTask.execute(
-                    {
-                        var rs: ResultSet?
-                        @Suppress("LiftReturnOrAssignment")
-                        try {
-//                            if(BuildConfig.DEBUG)
-//                                rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]")
-//                            else
-                                rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]"
-                                + " WHERE $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 00:00:00:000') ")
-                            global_variables_dataclass.log("remote", "USE [$db] SELECT * FROM [dbo].[$table]"
-                                        + " WHERE $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 00:00:00:000') ")
-                        } catch (e: SQLTimeoutException) {
-                            global_variables_dataclass.log("remote", "EXCEPTION SQL timeout")
-                            rs = null
-                        } catch (e: SQLException) {
-                            global_variables_dataclass.log("remote", "EXCEPTION ${e.message}")
-                            rs = null
-                        } catch (e: KotlinNullPointerException) {
-                            global_variables_dataclass.log("remote", "EXCEPTION kotlin null pointer exception")
-                            rs = null
-                        }
-                        if (rs == null)
-                        {
-                            lock.notify()
-                            return@execute
-                        }
-                        val columnCount = rs.metaData.columnCount
-                        global_variables_dataclass.log("columns", "For DB $db is ${columnCount.toString()}")
-                        val rs_meta = rs.metaData
-                        while (rs.next()) {
-                            val map: HashMap<String, String> = HashMap()
-                            for (i in 1..(columnCount)) {
-                                val colum_name: String = rs_meta.getColumnName(i)
+            AsyncTask.execute {
+                var rs: ResultSet?
+                @Suppress("LiftReturnOrAssignment")
+                try {
+    //                            if(BuildConfig.DEBUG)
+    //                                rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]")
+    //                            else
+                    rs = connection!!.createStatement().executeQuery("USE [$db] SELECT * FROM [dbo].[$table]"
+                            + " WHERE $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 00:00:00:000') ")
+                    global_variables_dataclass.log("remote", "USE [$db] SELECT * FROM [dbo].[$table]"
+                            + " WHERE $sync_column >= dateadd(s,${get_latest_sync_time().time/1000},'19700101 00:00:00:000') ")
+                } catch (e: SQLTimeoutException) {
+                    global_variables_dataclass.log("remote", "EXCEPTION SQL timeout")
+                    rs = null
+                } catch (e: SQLException) {
+                    global_variables_dataclass.log("remote", "EXCEPTION ${e.message}")
+                    rs = null
+                } catch (e: KotlinNullPointerException) {
+                    global_variables_dataclass.log("remote", "EXCEPTION kotlin null pointer exception")
+                    rs = null
+                }
+                if (rs == null) {
+                    lock.notify()
+                    return@execute
+                }
+                val columnCount = rs.metaData.columnCount
+                global_variables_dataclass.log("columns", "For DB $db is ${columnCount.toString()}")
+                val rs_meta = rs.metaData
+                while (rs.next()) {
+                    val map: HashMap<String, String> = HashMap()
+                    for (i in 1..(columnCount)) {
+                        val colum_name: String = rs_meta.getColumnName(i)
 
-                                try
-                                {
-                                    map[colum_name] = rs.getString(colum_name)
-                                } catch (e: Exception) {
-                                    map[colum_name] = ""
-                                }
-                            }
-                            vector.addElement(map)
+                        try {
+                            map[colum_name] = rs.getString(colum_name)
+                        } catch (e: Exception) {
+                            map[colum_name] = ""
                         }
-                        synchronized(lock)
-                        {
-                            lock.notify()
-                        }
-                    })
+                    }
+                    vector.addElement(map)
+                }
+                synchronized(lock)
+                {
+                    lock.notify()
+                }
+            }
             try {
                 synchronized(lock)
                 {
@@ -279,7 +277,7 @@ object remote_SQL_Helper {
      *   @return a vector of hashmap represnting the results, each element represent a row, hashmap represnts col
      */
     fun select_columns_from_db_with_where(db: String, table: String, colm_to_type: HashMap<String, String>, where_column: String?, where_compare: String?, modified_time: Boolean): Vector<HashMap<String, String>> {
-        global_variables_dataclass.log("remote SQL", "Started")
+        global_variables_dataclass.log("remote_SQL", "Started for table $table")
         val vector: Vector<HashMap<String, String>> = Vector()
         try {
             connection!!.isReadOnly
@@ -298,7 +296,7 @@ object remote_SQL_Helper {
             var rs: ResultSet?
             try {
                 var qry = if (BuildConfig.DEBUG)
-                    "USE [$db] SELECT TOP 1000 "
+                    "USE [$db] SELECT DISTINCT "
                 else
                     "USE [$db] SELECT DISTINCT "
                 var first = false
@@ -326,6 +324,131 @@ object remote_SQL_Helper {
                     qry += "$where_or_not $sync_column >= dateadd(s,${get_latest_sync_time().time / 1000},'19700101 00:00:00:000')"
                 }
                 global_variables_dataclass.log("remote_SQL", qry)
+                rs = connection!!.createStatement().executeQuery(qry)
+            } catch (e: SQLTimeoutException) {
+                global_variables_dataclass.log("remote_SQL", "EXCEPTION SQL timeout exception")
+                rs = null
+            } catch (e: SQLException) {
+                global_variables_dataclass.log("remote_SQL", "EXCEPTION ${e.message}")
+                rs = null
+            } catch (e: KotlinNullPointerException) {
+                global_variables_dataclass.log("remote_SQL", "EXCEPTION kotlin null pointer exception")
+                rs = null
+            }
+            if (rs == null) {
+                return vector
+            }
+            val columnCount = rs.metaData.columnCount
+            global_variables_dataclass.log("remote_SQL", "For DB $db is ${columnCount.toString()}")
+            val rs_meta = rs.metaData
+            var count = 0
+            while (rs.next()) {
+                count++
+                val map: HashMap<String, String> = HashMap()
+                for (i in 1..(columnCount)) {
+                    val colum_name: String = rs_meta.getColumnName(i)
+                    if (colm_to_type[colum_name] == "datetime") {
+                        val date = rs.getDate(colum_name)
+                        map[colum_name] = date.time.toString()
+                    } else {
+                        try {
+                            map[colum_name] = rs.getString(colum_name)
+                        } catch (e: Exception) {
+                            map[colum_name] = ""
+                        }
+                    }
+                }
+                vector.addElement(map)
+            }
+            global_variables_dataclass.log("remote_SQL", "Count for $table is $count")
+
+
+        } catch (e: SQLException) {
+            global_variables_dataclass.log("remote_SQL", "EXCEPTION ${e.message}")
+            exception = e
+
+        }
+        global_variables_dataclass.log("remote_SQL", "Done with table $table")
+        return vector
+    }
+
+
+    /**
+     *   simulates select * from db where ...
+     *   @author Chaosruler972
+     *   @param colm_to_type what type are the colms
+     *   @param db the database name
+     *   @param table the table name
+     *   @return a vector of hashmap represnting the results, each element represent a row, hashmap represnts col
+     */
+    fun select_columns_from_db_with_where_multi(db: String, table: String, colm_to_type: HashMap<String, String>, wheres: HashMap<String, Vector<String>>, modified_time: Boolean): Vector<HashMap<String, String>> {
+        val vector: Vector<HashMap<String, String>> = Vector()
+        try {
+            connection!!.isReadOnly
+        } catch (e: SQLException) {
+            if (e.errorCode == 0) {
+                ReConnect()
+            }
+            global_variables_dataclass.log("remote_SQL", "EXCEPTION ${e.message}")
+        } catch (e: KotlinNullPointerException) {
+            ReConnect()
+            global_variables_dataclass.log("remote_SQL", "EXCEPTION kotlin null pointer exception")
+        }
+        if (!isvalid)
+            return vector
+        try {
+            var rs: ResultSet?
+            try {
+                global_variables_dataclass.log("remote SQL", "Started for table $table")
+
+                var qry = if (BuildConfig.DEBUG)
+                    "USE [$db] SELECT DISTINCT "
+                else
+                    "USE [$db] SELECT DISTINCT "
+                var first = false
+                for (column in colm_to_type) {
+                    if (first)
+                        qry += " ,"
+                    qry += "[${column.key}]"
+                    first = true
+                }
+
+                qry += " FROM [dbo].[$table] "
+                if(wheres.size > 0)
+                    qry += " WHERE "
+
+                val keys = wheres.keys.toList()
+                if(table == remote_projects_table_helper.TABLE_NAME)
+                {
+                    global_variables_dataclass.log("ACDC", "Before $colm_to_type")
+                }
+                for(where_column in keys)
+                {
+                    val where_compares = wheres[where_column]!!
+                    where_compares.forEach { where_compare ->
+                        val item: String = if (colm_to_type.getValue(where_column) == "text" || colm_to_type.getValue(where_column) == "varchar" || colm_to_type.getValue(where_column) == "nvarchar") {
+                            "N" + add_quotes(where_compare)
+                        } else
+                            where_compare
+                        if(table == remote_projects_table_helper.TABLE_NAME)
+                        {
+                            global_variables_dataclass.log("ACDC", "$where_column = $item")
+                        }
+                        qry += " CONVERT(${colm_to_type.getValue(where_column)},$where_column) = $item "
+                        if(where_compare != where_compares.lastElement())
+                            qry += " OR "
+                    }
+                    if(where_column != keys.last())
+                        qry += " AND "
+                }
+
+
+                if(modified_time) {
+                    val where_or_not = " AND "
+                    qry += "$where_or_not $sync_column >= dateadd(s,${get_latest_sync_time().time / 1000},'19700101 00:00:00:000')"
+                }
+                global_variables_dataclass.log("remote_qry", "Done building qry for table $table\n")
+                global_variables_dataclass.log("remote_qry", qry)
                 rs = connection!!.createStatement().executeQuery(qry)
             } catch (e: SQLTimeoutException) {
                 global_variables_dataclass.log("remote_SQL", "EXCEPTION SQL timeout exception")

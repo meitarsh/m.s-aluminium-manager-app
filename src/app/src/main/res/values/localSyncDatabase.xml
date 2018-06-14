@@ -3,8 +3,10 @@
 
     <!-- SYNC LOCAL SQL DATABASE STRINGS -->
     <string name="LOCAL_SYNC_DATABASE_NAME">local_sync_db.db</string>
+
     <!-- Local Projects TABLE strings -->
     <string name="LOCAL_PROJECTS_TABLE_NAME">projects</string>
+    <string name="LOCAL_SYNC_PROJECTS_DB__NAME">PROJECTS.db</string>
     <integer name="LOCAL_PROJECTS_TABLE_VERSION">5</integer>
     <string name="LOCAL_PROJECTS_COLUMN_ID">projid</string>
     <string name="LOCAL_PROJECTS_COLUMN_NAME">name</string>
@@ -12,6 +14,7 @@
     <string name="LOCAL_PROJECTS_COLUMN_USERNAME">username</string>
 
     <!-- Local vendors table strings -->
+    <string name="LOCAL_SYNC_VENDORS_DB__NAME">VENDORS.db</string>
     <string name="LOCAL_VENDORS_TABLE_NAME">vendors</string>
     <integer name="LOCAL_VENDORS_TABLE_VERSION">5</integer>
     <string name="LOCAL_VENDORS_COLUMN_ID">accountnum</string>
@@ -20,6 +23,7 @@
     <string name="LOCAL_VENDORS_COLUMN_USERNAME">username</string>
 
     <!-- Local opr table strings -->
+    <string name="LOCAL_SYNC_OPR_DB__NAME">OPR.db</string>
     <string name="LOCAL_OPR_TABLE_NAME">OprRouteTable</string>
     <integer name="LOCAL_OPR_TABLE_VERSION">5</integer>
     <string name="LOCAL_OPR_COLUMN_ID">oprid</string>
@@ -28,6 +32,7 @@
     <string name="LOCAL_OPR_COLUMN_USERNAME">username</string>
 
     <!-- Local SALPROJLUZ table strings -->
+    <string name="LOCAL_SYNC_SALPROJLUZ_DB__NAME">salprojluz.db</string>
     <string name="LOCAL_SALPROJLUZ_TABLE_NAME">salprojluz</string>
     <integer name="LOCAL_SALPROJLUZ_TABLE_VERSION">5</integer>
 
@@ -46,6 +51,7 @@
     <string name="LOCAL_SALPROJLUZ_COLUMN_RECVERSION">recversion</string>
 
     <!-- Local inventory table strings -->
+    <string name="LOCAL_SYNC_INVENTORY_DB__NAME">INVENTORY.db</string>
     <string name="LOCAL_INVENTORY_TABLE_NAME">inventory</string>
     <integer name="LOCAL_INVENTORY_TABLE_VERSION">5</integer>
     <string name="LOCAL_INVENTORY_COLUMN_ID">itemid</string>
@@ -54,6 +60,7 @@
     <string name="LOCAL_INVENTORY_COLUMN_USERNAME">username</string>
 
     <!-- Local big table strings -->
+    <string name="LOCAL_SYNC_BIG_DB__NAME">BIG.db</string>
     <string name="LOCAL_BIG_TABLE_NAME">big_table</string>
     <integer name="LOCAL_BIG_TABLE_VERSION">5</integer>
     <string name="LOCAL_BIG_COLUMN_ACCOUNTNUM">accountnum</string>
@@ -82,6 +89,7 @@
 
     <!-- Table Salprojbakara -->
 
+    <string name="LOCAL_SYNC_BAKARA_DB__NAME">BAKARA.db</string>
     <string name="LOCAL_SALPROJBAKARA_TABLE_NAME">Salprojbakara</string>
     <integer name="LOCAL_SALPROJBAKARA_TABLE_VERSION">5</integer>
 
@@ -121,6 +129,7 @@
 
     <!-- Local table salprojmng -->
 
+    <string name="LOCAL_SYNC_SALPROJMNG_DB__NAME">salprojmng.db</string>
     <string name="LOCAL_SALPROJMANG_TABLE_NAME">SALPROJMANG</string>
     <integer name="LOCAL_SALPROJMANG_TABLE_VERSION">5</integer>
 

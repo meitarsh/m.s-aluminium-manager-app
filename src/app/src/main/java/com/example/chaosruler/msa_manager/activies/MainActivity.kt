@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.*
 import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 import com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_chooser
 import com.example.chaosruler.msa_manager.object_types.project_data.project_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
@@ -20,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
 import java.lang.Thread.sleep
 import java.util.*
+import kotlin.collections.HashMap
 
 /**
  * Class is the main activity of the application, opens after login, and describes the logic of that activity
@@ -56,7 +58,14 @@ class MainActivity : Activity()
 
         if(global_variables_dataclass.isLocal && !global_variables_dataclass.GUI_MODE)
         {
-            remote_SQL_Helper.user = global_variables_dataclass.DB_USERS!!.get_user_by_id(remote_SQL_Helper.getusername())
+            try {
+                remote_SQL_Helper.user = global_variables_dataclass.DB_USERS?.get_user_by_id(remote_SQL_Helper.getusername())
+            }
+            catch (e: Exception)
+            {
+                global_variables_dataclass.DB_USERS = user_database_helper(baseContext)
+                remote_SQL_Helper.user = global_variables_dataclass.DB_USERS?.get_user_by_id(remote_SQL_Helper.getusername())
+            }
             //hide_everything()
             val tasked: Boolean = user_first_run()
             global_variables_dataclass.first_time_use = tasked
@@ -72,7 +81,14 @@ class MainActivity : Activity()
                     }
                 }
                 sync_alert.isCancelable = false
-                sync_alert.show()
+                try {
+//                    sync_alert.show()
+                }
+                catch (e: Exception)
+                {
+                    global_variables_dataclass.log("MainActivity", "Sync alert error ${e.toString()}", global_variables_dataclass.LogLevel.ERROR)
+                }
+
             }
         }
 
@@ -117,7 +133,7 @@ class MainActivity : Activity()
      */
     private fun init_companion()
     {
-        global_variables_dataclass.init_dbs(baseContext)
+//        global_variables_dataclass.init_dbs(baseContext)
     }
 
     /**
@@ -127,7 +143,7 @@ class MainActivity : Activity()
      */
     private fun init_sync_trd(boolean: Boolean = false)
     {
-        Thread({
+        Thread {
             remote_SQL_Helper.refresh_context(baseContext)
             //startService(Intent(this, offline_mode_service::class.java))
             //offline_mode_service.init_cache(baseContext,intent)
@@ -135,7 +151,7 @@ class MainActivity : Activity()
             intent.putExtra(getString(R.string.first_time_service),boolean)
             startService(service_intent)
             global_variables_dataclass.log("Main", "Offline service started")
-        }).start()
+        }.start()
     }
 
     /**
@@ -163,9 +179,9 @@ class MainActivity : Activity()
      */
     private fun on_adapter_set(projects:Vector<project_data>)
     {
-        val enabled_projectes = get_salprojmng_of_me()
-        val enabled_proj_vec = projects.filter { it.getProjID()!=null && enabled_projectes.contains(it.getProjID()!!) }
-        adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,Vector(enabled_proj_vec))
+//        val enabled_projectes = global_variables_dataclass.get_salprojmng_of_me(global_variables_dataclass.db_salprojmng_vec)
+//        val enabled_proj_vec     = projects.filter { it.getProjID()!=null && enabled_projectes.contains(it.getProjID()!!) }
+        adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,projects)
         main_spinner.adapter = adapter
 
         main_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener
@@ -203,9 +219,9 @@ class MainActivity : Activity()
                 progressStatus += rate
                 // Update the progress bar and display the
                 //current value in the text view
-                handler.post({
+                handler.post {
                     main_progressBar.progress = progressStatus
-                })
+                }
                 try
                 {
                     // Sleep for 1000/60 milliseconds.
@@ -279,7 +295,7 @@ class MainActivity : Activity()
      */
     private fun init_buttons()
     {
-        main_button_choose.setOnClickListener({
+        main_button_choose.setOnClickListener {
             val intent = Intent(this@MainActivity, ProjectOptions2Activity::class.java)
             if(!global_variables_dataclass.GUI_MODE && main_spinner.selectedItemPosition == Spinner.INVALID_POSITION)
             {
@@ -289,7 +305,7 @@ class MainActivity : Activity()
             if(!global_variables_dataclass.GUI_MODE)
                 intent.putExtra(getString(R.string.key_pass_main_to_options),(main_spinner.adapter.getItem(main_spinner.selectedItemPosition) as project_data).getProjID())
             startActivity(intent)
-        })
+        }
 
         if(PreferenceManager.getDefaultSharedPreferences(baseContext).getString(baseContext.getString(R.string.sync_frequency),baseContext.resources.getInteger(R.integer.time_to_sync_in_sec).toString()) == 0.toString())
         {
@@ -306,35 +322,32 @@ class MainActivity : Activity()
         if(BuildConfig.DEBUG)
         {
             project_options_all.visibility = Button.VISIBLE
-            project_options_all.setOnClickListener({ startActivity(Intent(this@MainActivity, table_chooser::class.java)) })
+            project_options_all.setOnClickListener { startActivity(Intent(this@MainActivity, table_chooser::class.java)) }
         }
 
         main_button_download.visibility = View.VISIBLE
-        main_button_download.setOnClickListener({
+        main_button_download.setOnClickListener {
             main_button_download.isEnabled = false
-            Thread({
+            Thread {
                 offline_mode_service.db_sync_func(baseContext,intent)
-            }).start()
-            Thread({
-                while (intent.getStringExtra(baseContext.getString(R.string.key_sync_offline))==null)
-                {
+            }.start()
+            Thread {
+                while (intent.getStringExtra(baseContext.getString(R.string.key_sync_offline))==null) {
                     try {
                         sleep(1000)
-                    }
-                    catch (e:InterruptedException)
-                    {
+                    } catch (e:InterruptedException) {
                         global_variables_dataclass.log("main_trd", "Woke up")
                     }
                 }
                 intent.removeExtra(baseContext.getString(R.string.key_sync_offline))
-                runOnUiThread({
-//                    val str_complete = getString(R.string.sync_done_prompt)
-//                    offline_mode_service.build_small_notification(str_complete)
+                runOnUiThread {
+                    //                    val str_complete = getString(R.string.sync_done_prompt)
+                    //                    offline_mode_service.build_small_notification(str_complete)
                     init_spinner()
                     main_button_download.isEnabled = true
-                })
-            }).start()
-        })
+                }
+            }.start()
+        }
     }
 
 
@@ -349,21 +362,5 @@ class MainActivity : Activity()
         remote_SQL_Helper.Disconnect()
     }
 
-    /**
-     * gets salprojmng vector of this user
-     * @author Chaosruler972
-     * @return vector of projids unique to user
-     */
-    private fun get_salprojmng_of_me(): Vector<String> {
-        val vector = Vector<String>()
-        val username = remote_SQL_Helper.getusername()
-        global_variables_dataclass.log("managers","managers Vector is size ${global_variables_dataclass.db_salprojmng_vec.size}")
-        for(user in global_variables_dataclass.db_salprojmng_vec)
-        {
-            if(username == user.get_userid() && !vector.contains(user.get_projid()))
-                vector.addElement(user.get_projid())
-        }
-        global_variables_dataclass.log("managers","Vector is size ${vector.size}")
-        return vector
-    }
+
 }

@@ -16,10 +16,11 @@ import kotlin.collections.HashMap
 
 class local_salprojtakala_table_helper(private var context: Context) :
         local_SQL_Helper(context,
-                context.getString(R.string.LOCAL_SYNC_DATABASE_NAME),
+                context.getString(R.string.LOCAL_SYNC_BAKARA_DB__NAME),
                 null,
                 context.resources.getInteger(R.integer.LOCAL_SALPROJBAKARA_TABLE_VERSION),
-                context.getString(R.string.LOCAL_SALPROJBAKARA_TABLE_NAME)), syncable {
+                context.getString(R.string.LOCAL_SALPROJBAKARA_TABLE_NAME),
+                create_vector_of_variables(context)), syncable {
     /**
      * ID
      * @author Chaosruler972
@@ -134,6 +135,8 @@ class local_salprojtakala_table_helper(private var context: Context) :
 
     override var builder: table_dataclass_hashmap_createable = takala_builder
 
+    override var SPECIAL_SEARCH_COLUMN: String = context.getString(R.string.TABLE_SALPROJBAKARA_PROJID)
+
     init {
         val vector: Vector<String> = Vector()
         vector.add(ID)
@@ -187,6 +190,133 @@ class local_salprojtakala_table_helper(private var context: Context) :
         val extra = " , PRIMARY KEY ($RECID, $USERNAME) "
 //        createDB(db, map, empty_hashmap, extra)
         createDB(db, map)
+    }
+
+    companion object vector_of_variables_maker{
+        fun create_vector_of_variables(context: Context): Vector<String> {
+
+            /**
+             * ID
+             * @author Chaosruler972
+             */
+            val ID = context.getString(R.string.LOCAL_SALPROJLUZ_COLUMN_ID)!!
+            /**
+             * ITEMID
+             * @author Chaosruler972
+             */
+            val ITEMID = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_ITEMID)!!
+
+            /**
+             * DATAAREAID
+             * @author Chaosruler972
+             */
+            val DATAAREAID = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_DATAAREAID)!!
+
+            /**
+             * QTY
+             * @author Chaosruler972
+             */
+            val QTY = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_QTY)!!
+
+            /**
+             * KOMA
+             * @author Chaosruler972
+             */
+            val KOMA = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_KOMA)!!
+
+            /**
+             * BINYAN
+             * @author Chaosruler972
+             */
+            val BINYAN = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_BINYAN)!!
+
+            /**
+             * DIRA
+             * @author Chaosruler972
+             */
+            val DIRA = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_DIRA)!!
+
+            /**
+             * TEUR
+             * @author Chaosruler972
+             */
+            val TEUR = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_TEUR)!!
+
+            /**
+             * MUMLATZ
+             * @author Chaosruler972
+             */
+            val MUMLATZ = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_MUMLATZ)!!
+
+            /**
+             * MONAAT
+             * @author Chaosruler972
+             */
+            val MONAAT = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_MONAAT)!!
+
+            /**
+             * TGUVA
+             * @author Chaosruler972
+             */
+            val TGUVA = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_TGUVA)!!
+
+            /**
+             * SUG
+             * @author Chaosruler972
+             */
+            val SUG = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_SUG)!!
+
+            /**
+             * ALUT
+             * @author Chaosruler972
+             */
+            val ALUT = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_ALUT)!!
+
+            /**
+             * ITEMTXT
+             * @author Chaosruler972
+             */
+            val ITEMTXT = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_ITEMTXT)!!
+
+            /**
+             * RECVERSION
+             * @author Chaosruler972
+             */
+            val RECVERSION = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_RECVERSION)!!
+
+            /**
+             * RECID
+             * @author Chaosruler972
+             */
+            val RECID = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_RECID)!!
+
+            /**
+             * USERNAME
+             * @author Chaosruler972
+             */
+            val USERNAME = context.getString(R.string.LOCAL_SALPROJBAKARA_COLUMN_USERNAME)!!
+
+            val vector: Vector<String> = Vector()
+            vector.add(ID)
+            vector.add(ITEMID)
+            vector.add(DATAAREAID)
+            vector.add(QTY)
+            vector.add(KOMA)
+            vector.add(BINYAN)
+            vector.add(DIRA)
+            vector.add(TEUR)
+            vector.add(MUMLATZ)
+            vector.add(MONAAT)
+            vector.add(TGUVA)
+            vector.add(SUG)
+            vector.add(ALUT)
+            vector.add(ITEMTXT)
+            vector.add(RECVERSION)
+            vector.add(RECID)
+            vector.add(USERNAME)
+
+            return vector
+        }
     }
 
 }

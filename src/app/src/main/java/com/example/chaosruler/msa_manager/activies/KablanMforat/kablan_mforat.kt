@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
 import com.example.chaosruler.msa_manager.R
+import com.example.chaosruler.msa_manager.R.id.activity_kablan_mforat_ahoz_meosher
 import com.example.chaosruler.msa_manager.activies.KablanMforat.KablanArrayAdapter.KablanArrayAdapter_Inventory_Id
 import com.example.chaosruler.msa_manager.activies.KablanMforat.KablanArrayAdapter.KablanArrayAdapter_Opr
 import com.example.chaosruler.msa_manager.object_types.big_table.big_table_data

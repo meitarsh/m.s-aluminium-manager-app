@@ -26,7 +26,7 @@ class local_vendor_table_helper(
          * @author Chaosruler972
          */
         private var context: Context
-) : local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_DATABASE_NAME), null, context.resources.getInteger(R.integer.LOCAL_VENDORS_TABLE_VERSION), context.getString(R.string.LOCAL_VENDORS_TABLE_NAME)), syncable {
+) : local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_VENDORS_DB__NAME), null, context.resources.getInteger(R.integer.LOCAL_VENDORS_TABLE_VERSION), context.getString(R.string.LOCAL_VENDORS_TABLE_NAME), create_vector_of_variables(context)), syncable {
     /**
      * the vendor id field name
      * @author Chaosruler972
@@ -60,6 +60,7 @@ class local_vendor_table_helper(
 
     override var builder: table_dataclass_hashmap_createable = vendor_builder
 
+    override var SPECIAL_SEARCH_COLUMN: String = "None"
     /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
      * SQL class
@@ -93,4 +94,39 @@ class local_vendor_table_helper(
         createDB(db, map)
     }
 
+
+    companion object vector_of_variables_maker{
+        fun create_vector_of_variables(context: Context): Vector<String> {
+
+            /**
+             * the vendor id field name
+             * @author Chaosruler972
+             */
+            val ID: String = context.getString(R.string.LOCAL_VENDORS_COLUMN_ID)
+            /**
+             * The vendor name field name
+             * @author Chaosruler972
+             */
+            val NAME: String = context.getString(R.string.LOCAL_VENDORS_COLUMN_NAME)
+            /**
+             * the dataaraeid field name
+             * @author Chaosruler972
+             */
+            val DATAARAEID: String = context.getString(R.string.LOCAL_VENDORS_COLUMN_DATAARAEID)
+            /**
+             * The username field name
+             * @author Chaosruler972
+             */
+
+            val USER: String = context.getString(R.string.LOCAL_VENDORS_COLUMN_USERNAME)
+
+            val vector: Vector<String> = Vector()
+            vector.add(ID)
+            vector.add(NAME)
+            vector.add(DATAARAEID)
+            vector.add(USER)
+
+            return vector
+        }
+    }
 }

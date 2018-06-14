@@ -12,13 +12,13 @@ import com.example.chaosruler.msa_manager.object_types.salprojmng_table_data.sal
 import java.util.*
 
 class local_salprojmng_table_helper(private var context: Context):
-        local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_DATABASE_NAME), null, context.resources.getInteger(R.integer.LOCAL_SALPROJMANG_TABLE_VERSION), context.getString(R.string.LOCAL_SALPROJMANG_TABLE_NAME)), syncable
+        local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_SALPROJMNG_DB__NAME), null, context.resources.getInteger(R.integer.LOCAL_SALPROJMANG_TABLE_VERSION), context.getString(R.string.LOCAL_SALPROJMANG_TABLE_NAME), create_vector_of_variables(context)), syncable
 {
     /**
      * The id field name
      * @author Chaosruler972
      */
-    val PROJID: String = context.getString(R.string.LOCAL_SALPROJMNG_COLUMN_PROJID)
+    val ID: String = context.getString(R.string.LOCAL_SALPROJMNG_COLUMN_PROJID)
     /**
      * The name field name
      * @author Chaosruler972
@@ -53,6 +53,8 @@ class local_salprojmng_table_helper(private var context: Context):
 
     override var builder: table_dataclass_hashmap_createable = salprojmng_builder
 
+    override var SPECIAL_SEARCH_COLUMN: String = context.getString(R.string.TABLE_SALPROJMNG_USERID)
+
     /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
      * SQL class
@@ -61,7 +63,7 @@ class local_salprojmng_table_helper(private var context: Context):
     init
     {
         val vector: Vector<String> = Vector()
-        vector.add(PROJID)
+        vector.add(ID)
         vector.add(USERID)
         vector.add(DATAARAEID)
         vector.addElement(RECVERSION)
@@ -81,7 +83,7 @@ class local_salprojmng_table_helper(private var context: Context):
     {
         val map: HashMap<String, String> = HashMap()
         val type = context.getString(R.string.SQLITE_VAL_TYPE)
-        map[PROJID] = "$type "
+        map[ID] = "$type "
         map[USERID] = "$type"
         map[USER] = "$type"
         map[RECVERSION] = "$type"
@@ -90,5 +92,47 @@ class local_salprojmng_table_helper(private var context: Context):
         val extra = " PRIMARY KEY($RECID, $USER) "
 //        createDB(db,map, HashMap(), extra)
         createDB(db, map)
+    }
+
+    companion object vector_of_variables_maker{
+        fun create_vector_of_variables(context: Context): Vector<String> {
+
+            /**
+             * The id field name
+             * @author Chaosruler972
+             */
+            val ID: String = context.getString(R.string.LOCAL_SALPROJMNG_COLUMN_PROJID)
+            /**
+             * The name field name
+             * @author Chaosruler972
+             */
+            val USERID: String = context.getString(R.string.LOCAL_SALPROJMNG_COLUMN_USERID)
+            /**
+             * The dataaraeid field name
+             * @author Chaosruler972
+             */
+            val DATAARAEID: String = context.getString(R.string.LOCAL_SALPROJMNG_COLUMN_DATAAREAID)
+            /**
+             * The RECVERSION field name
+             * @author Chaosruler972
+             */
+            val RECVERSION: String = context.getString(R.string.LOCAL_SALPROJMNG_COLUMN_RECVERSION)
+            /**
+             * The RECID field name
+             * @author Chaosruler972
+             */
+            val RECID: String = context.getString(R.string.LOCAL_SALPROJMNG_COLUMN_RECID)
+
+            val USER: String = context.getString(R.string.LOCAL_SALPROJMNG_COLUMN_USERNAME)
+
+            val vector: Vector<String> = Vector()
+            vector.add(ID)
+            vector.add(USERID)
+            vector.add(DATAARAEID)
+            vector.addElement(RECVERSION)
+            vector.addElement(RECID)
+            vector.add(USER)
+            return vector
+        }
     }
 }

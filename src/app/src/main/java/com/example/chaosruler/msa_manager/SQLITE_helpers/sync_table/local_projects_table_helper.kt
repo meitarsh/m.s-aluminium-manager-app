@@ -25,7 +25,7 @@ class local_projects_table_helper(
          * @author Chaosruler972
          */
         private var context: Context
-) : local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_DATABASE_NAME), null, context.resources.getInteger(R.integer.LOCAL_PROJECTS_TABLE_VERSION), context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME)), syncable
+) : local_SQL_Helper(context, context.getString(R.string.LOCAL_SYNC_PROJECTS_DB__NAME), null, context.resources.getInteger(R.integer.LOCAL_PROJECTS_TABLE_VERSION), context.getString(R.string.LOCAL_PROJECTS_TABLE_NAME), create_vector_of_variables(context)), syncable
 {
     /**
      * the project id field name
@@ -61,6 +61,8 @@ class local_projects_table_helper(
     override var remote_sql_helper: remote_helper = remote_projects_table_helper
 
     override var builder: table_dataclass_hashmap_createable = project_builder
+
+    override var SPECIAL_SEARCH_COLUMN: String = context.getString(R.string.PROJECTS_ID)
 
     /**
      *    MUST BE CALLED, it reports to the database about the table schema, is used by the abstracted
@@ -98,7 +100,40 @@ class local_projects_table_helper(
         createDB(db, map)
     }
 
+    companion object vector_of_variables_maker{
+        fun create_vector_of_variables(context: Context): Vector<String> {
 
+            /**
+             * the project id field name
+             * @author Chaosruler972
+             */
+            val ID = context.getString(R.string.LOCAL_PROJECTS_COLUMN_ID)!!
+            /**
+             * the project name field name
+             * @author Chaosruler972
+             */
+            val NAME = context.getString(R.string.LOCAL_PROJECTS_COLUMN_NAME)!!
+            /**
+             * the dataaraeid field name
+             * @author Chaosruler972
+             */
+            val DATAAREAID = context.getString(R.string.LOCAL_PROJECTS_COLUMN_DATAARAEID)!!
+            /**
+             * the username field name
+             * @author Chaosruler972
+             */
+            val USERNAME = context.getString(R.string.LOCAL_PROJECTS_COLUMN_USERNAME)!!
+
+            var USER = context.getString(R.string.LOCAL_PROJECTS_COLUMN_USERNAME)!!
+
+            val vector: Vector<String> = Vector()
+            vector.add(ID)
+            vector.add(NAME)
+            vector.add(DATAAREAID)
+            vector.add(USERNAME)
+            return vector
+        }
+    }
 
 
 }

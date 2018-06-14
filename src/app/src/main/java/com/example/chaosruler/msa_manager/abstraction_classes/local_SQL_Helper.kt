@@ -57,17 +57,22 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                                  * The table name that we are going to open
                                  * @author Chaosruler972
                                  */
-                                private var TABLE_NAME: String) : SQLiteOpenHelper(context,
+                                private var TABLE_NAME: String,
+                                /**
+                                 * abstract metadata holder
+                                 * will hold all the table variables (by name, not type)
+                                 * @sample
+                                 * vector.add("_id")
+                                 */
+                                private var vector_of_variables: Vector<String>
+
+                    ) : SQLiteOpenHelper(context,
         DATABASE_NAME, factory, version)
 {
 
-    /**
-     * abstract metadata holder
-     * will hold all the table variables (by name, not type)
-     * @sample
-     * vector.add("_id")
-     */
-    private lateinit var vector_of_variables: Vector<String>
+
+
+    private var db: SQLiteDatabase? = null
 
     /**
      * a function to initate parameer vector_of_variables
@@ -78,10 +83,10 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      */
     protected fun init_vector_of_variables(vector:Vector<String>)
     {
+        val db = get_db_instance()
         vector_of_variables = vector
         try
         {
-            val db = this.writableDatabase
             if(!isTableExists(TABLE_NAME))
                 this.onCreate(db) // ensures this is called, android by itself will only do it if it needs to read/write the database
             //db.close()
@@ -100,9 +105,9 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      */
     private fun isTableExists(tableName: String): Boolean {
 
-        val mDatabase: SQLiteDatabase = readableDatabase
+        val db = get_db_instance()
 
-        val cursor = mDatabase.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '$tableName'", null)
+        val cursor = db.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '$tableName'", null)
         if (cursor != null) {
             if (cursor.count > 0) {
                 cursor.close()
@@ -155,7 +160,8 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      */
     fun clearDB()
     {
-        this.writableDatabase.execSQL("delete from " + TABLE_NAME)
+        val db = get_db_instance()
+        db.execSQL("delete from " + TABLE_NAME)
     }
 
     /**
@@ -221,12 +227,12 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      */
     fun get_db(): Vector<HashMap<String, String>>
     {
-        val db: SQLiteDatabase = this.readableDatabase
+        val db = get_db_instance()
         val vector: Vector<HashMap<String, String>> = Vector()
 
         val syncToken = Object()
         // to not hang the ui
-        Thread({
+        Thread {
             @Suppress("CanBeVal")
             var c:Cursor? = null
             val start = Date().time;
@@ -254,16 +260,16 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 for (variable in vector_of_variables)
                 {
                     global_variables_dataclass.log("About to get columns", "Column $variable and its data is ${c.getString(c.getColumnIndex(variable))}")
-                        val input_str =
-                                try {
-                                    if (variable != "id")
-                                        String(global_variables_dataclass.xorWithKey(c.getString(c.getColumnIndex(variable)).toByteArray(), global_variables_dataclass.get_device_id(context).toByteArray(), true, context))
-                                    else
-                                        c.getString(c.getColumnIndex(variable))
-                                } catch (e: IllegalStateException) {
-                                    ""
-                                }
-                        small_map[variable] = input_str
+                    val input_str =
+                            try {
+                                if (variable != "id")
+                                    String(global_variables_dataclass.xorWithKey(c.getString(c.getColumnIndex(variable)).toByteArray(), global_variables_dataclass.get_device_id(context).toByteArray(), true, context))
+                                else
+                                    c.getString(c.getColumnIndex(variable))
+                            } catch (e: IllegalStateException) {
+                                ""
+                            }
+                    small_map[variable] = input_str
                 }
                 vector.addElement(small_map)
                 c.moveToNext()
@@ -275,7 +281,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             }
             if(c!=null)
                 c.close()
-        }).start()
+        }.start()
 
 
         synchronized(syncToken)
@@ -302,7 +308,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      */
     fun add_data(variables: Vector<HashMap<String, String>>, check_input: Boolean = true): Boolean
     {
-        val db: SQLiteDatabase = this.writableDatabase
+        val db = get_db_instance()
         //db.close()
         global_variables_dataclass.log("local_sql", "got request to add ${variables.toString()} to table $TABLE_NAME")
         var result = false
@@ -365,7 +371,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
         var result = false
         for(item in equal_to)
             equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(Charset.forName("UTF-8")),global_variables_dataclass.get_device_id(context).toByteArray(Charset.forName("UTF-8")) ,false,context) )
-        val db: SQLiteDatabase = this.writableDatabase
+        val db = get_db_instance()
         if(db.delete(TABLE_NAME,where_clause + " = ?", equal_to) >0)
             result = true
         //db.close()
@@ -384,7 +390,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
         var result = false
         for(item in equal_to)
             equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false,context) )
-        val db: SQLiteDatabase = this.writableDatabase
+        val db = get_db_instance()
         var where_clause_arguemnt = ""
         for(item in where_clause)
         {
@@ -415,11 +421,11 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
         for(item in equal_to)
             equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false,context) )
         global_variables_dataclass.log("Equal to", equal_to[0])
-        val db: SQLiteDatabase = this.writableDatabase
+        val db = get_db_instance()
         val values = ContentValues()
         for(item in update_to)
             values.put(item.key, String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false,context)))
-        if(db.update(TABLE_NAME,values,where_clause + "=?", equal_to)>0)
+        if(db.updateWithOnConflict(TABLE_NAME,values,where_clause + "=?", equal_to, SQLiteDatabase.CONFLICT_REPLACE)>0)
             result = true
         //db.close()
         return result
@@ -439,7 +445,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
         var result = false
         for(item in equal_to)
             equal_to[equal_to.indexOf(item)] = String( global_variables_dataclass.xorWithKey(item.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray() ,false,context) )
-        val db: SQLiteDatabase = this.writableDatabase
+        val db = get_db_instance()
         val values = ContentValues()
         for(item in update_to)
             values.put(item.key, String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false,context)))
@@ -451,7 +457,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 where_str+=" AND "
         }
         global_variables_dataclass.log("Equal to", equal_to[0])
-        if(db.update(TABLE_NAME,values,where_str, equal_to)>0)
+        if(db.updateWithOnConflict(TABLE_NAME,values,where_str, equal_to, SQLiteDatabase.CONFLICT_REPLACE)>0)
             result = true
         //db.close()
         return result
@@ -467,7 +473,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      */
     fun get_rows(map:HashMap<String,String>):Vector<HashMap<String,String>>
     {
-        val db = this.readableDatabase
+        val db = get_db_instance()
         /*
         for(item in map)
             map[item.key] = String(global_variables_dataclass.xorWithKey(item.value.toByteArray(),global_variables_dataclass.get_device_id(context).toByteArray(),false,context))
@@ -475,7 +481,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
         val vector = Vector<HashMap<String, String>>()
         val sync_token = Object()
         //to not hang the ui
-        Thread({
+        Thread {
             var sql_query = "SELECT DISTINCT * FROM $TABLE_NAME WHERE"
             var breaker = 0
             val where_args:Vector<String> = Vector()
@@ -566,7 +572,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 global_variables_dataclass.log("Where Query", c.count.toString())
                 c.close()
             }
-        }).start()
+        }.start()
 
         synchronized(sync_token)
         {
@@ -597,11 +603,11 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
     @Suppress("unused")
     protected fun get_db(sort_by_value: String, isAscending: Boolean): Vector<HashMap<String, String>>
     {
-        val db: SQLiteDatabase = this.readableDatabase
+        val db = get_db_instance()
         val vector: Vector<HashMap<String, String>> = Vector()
         val syncToken = Object()
         // to not hang the ui
-        Thread({
+        Thread {
             val ascending_descending_str: String = if (isAscending) {
                 " ASC"
             } else {
@@ -641,7 +647,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                 syncToken.notify()
             }
             c.close()
-        }).start()
+        }.start()
 
 
         synchronized(syncToken)
@@ -661,13 +667,19 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
 
     fun beginTrans()
     {
-        readableDatabase.beginTransaction()
+        get_db_instance().beginTransaction()
     }
 
     fun endTrans()
     {
-        readableDatabase.endTransaction()
+        get_db_instance().setTransactionSuccessful()
+        get_db_instance().endTransaction()
     }
 
+    private fun get_db_instance(): SQLiteDatabase {
+        if(db == null)
+            db = writableDatabase
+        return this.db!!
+    }
 
 }

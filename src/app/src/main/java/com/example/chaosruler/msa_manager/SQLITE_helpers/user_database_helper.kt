@@ -23,7 +23,7 @@ class user_database_helper(
          */
         @Suppress("CanBeParameter")
         private val con: Context
-) : local_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.resources.getInteger(R.integer.USER_DB_VERSION), con.getString(R.string.USER_TABLE_NAME)) {
+) : local_SQL_Helper(con, con.getString(R.string.USER_database_filename), null, con.resources.getInteger(R.integer.USER_DB_VERSION), con.getString(R.string.USER_TABLE_NAME), create_vector_of_variables(con)) {
     private val USERS_ID: String = con.getString(R.string.USER_COL_ID)
     private val PASSWORD: String = con.getString(R.string.USER_COL_PASSWORD)
     private val USER_LAST_SYNC: String = con.getString(R.string.USER_SYNC_TIME)
@@ -40,8 +40,6 @@ class user_database_helper(
         vector.add(PASSWORD)
         vector.add(USER_LAST_SYNC)
         init_vector_of_variables(vector)
-
-
     }
 
     /**
@@ -201,6 +199,18 @@ class user_database_helper(
         return null
     }
 
+    companion object vector_of_variables_maker{
+        fun create_vector_of_variables(context: Context): Vector<String> {
 
+            val USERS_ID: String = context.getString(R.string.USER_COL_ID)
+            val PASSWORD: String = context.getString(R.string.USER_COL_PASSWORD)
+            val USER_LAST_SYNC: String = context.getString(R.string.USER_SYNC_TIME)
+            val vector: Vector<String> = Vector()
+            vector.add(USERS_ID)
+            vector.add(PASSWORD)
+            vector.add(USER_LAST_SYNC)
+            return vector
+        }
+    }
 
 }

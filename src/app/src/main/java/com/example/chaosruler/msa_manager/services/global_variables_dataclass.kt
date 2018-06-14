@@ -22,6 +22,7 @@ import java.math.BigInteger
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
 import java.util.*
+import kotlin.collections.HashMap
 
 /**
  * a Singleton like objec that holds data true across all the activities such as settings and databases along with functions usabele across activities
@@ -232,6 +233,13 @@ object global_variables_dataclass
     var DB_USERS : user_database_helper? = null
     // Users is loaded only once, therefore we don't need a vector to store that
 
+
+    /**
+     * PROJids to sync
+     * @author Chaosruler972
+     */
+    var projids_to_sync = Vector<String>()
+
     /**
      * Inits all the database with an instance that can be called from all the objects
      * @author Chaosruler972
@@ -242,7 +250,7 @@ object global_variables_dataclass
         GUI_MODE = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.gui_mode_key), false)
 
         DB_BIG = local_big_table_helper(context)
-//        DB_INVENTORY = local_inventory_table_helper(context)
+        DB_INVENTORY = local_inventory_table_helper(context)
         DB_OPR = local_OPR_table_helper(context)
         DB_VENDOR = local_vendor_table_helper(context)
         DB_project = local_projects_table_helper(context)
@@ -363,5 +371,57 @@ object global_variables_dataclass
         return "dateadd(s,${time},'19700101 00:00:00:000')"
     }
 
+    /**
+     * gets salprojmng vector of this user
+     * @author Chaosruler972
+     * @return vector of projids unique to user
+     */
+    fun get_salprojmng_of_me(user_access : Vector<salprojmng_table_data>): Vector<String>
+    {
+        val hashmap = HashMap<String, Vector<String>>()
+        val username = remote_SQL_Helper.getusername()
+        for(user_project_data in user_access)
+        {
+            if(user_project_data.get_userid()!= null && user_project_data.get_projid()!=null)
+            {
+                if(!hashmap.containsKey(user_project_data.get_username()!!))
+                {
+                    hashmap[user_project_data.get_username()!!] = Vector()
+                }
+                hashmap[user_project_data.get_username()!!]!!.addElement(user_project_data.get_projid()!!)
+            }
+        }
+        global_variables_dataclass.log("managers","Vector is size ${(hashmap[username]?:Vector()).size} out of ${user_access.size}")
+        return hashmap[username] ?: Vector()
+    }
 
+    /**
+     * from vector of big, give me rest of the ids
+     * @author Chaosruler972
+     */
+    fun get_hashmap_of_ids_from_big(): HashMap<String, Vector<String>> {
+        val hashmap = HashMap<String, Vector<String>>()
+        val inv_hashmap = HashMap<String, Boolean>()
+        val opr = HashMap<String, Boolean>()
+        val vendor = HashMap<String, Boolean>()
+        for(big in global_variables_dataclass.db_big_vec)
+        {
+            if(big.get_OPRID()!=null)
+            {
+                opr[big.get_OPRID()!!] = true
+            }
+            if(big.get_VENDOR_ID()!=null)
+            {
+                vendor[big.get_VENDOR_ID()!!] = true
+            }
+            if(big.get_INVENTORY_ID()!=null)
+            {
+                inv_hashmap[big.get_INVENTORY_ID()!!] = true
+            }
+        }
+        hashmap["opr"] = Vector(opr.keys)
+        hashmap["inv"] = Vector(inv_hashmap.keys)
+        hashmap["vend"] = Vector(vendor.keys)
+        return hashmap
+    }
 }
