@@ -382,6 +382,7 @@ object remote_SQL_Helper {
      *   @return a vector of hashmap represnting the results, each element represent a row, hashmap represnts col
      */
     fun select_columns_from_db_with_where_multi(db: String, table: String, colm_to_type: HashMap<String, String>, wheres: HashMap<String, Vector<String>>, modified_time: Boolean): Vector<HashMap<String, String>> {
+        global_variables_dataclass.log("remote_SQL", "Started syncing for $table")
         val vector: Vector<HashMap<String, String>> = Vector()
         try {
             connection!!.isReadOnly
@@ -418,10 +419,6 @@ object remote_SQL_Helper {
                     qry += " WHERE "
 
                 val keys = wheres.keys.toList()
-                if(table == remote_projects_table_helper.TABLE_NAME)
-                {
-                    global_variables_dataclass.log("ACDC", "Before $colm_to_type")
-                }
                 for(where_column in keys)
                 {
                     val where_compares = wheres[where_column]!!

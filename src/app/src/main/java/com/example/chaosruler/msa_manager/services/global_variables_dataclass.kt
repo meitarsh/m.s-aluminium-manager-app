@@ -247,6 +247,9 @@ object global_variables_dataclass
      */
     var projids_to_sync = Vector<String>()
 
+    var opr_to_sync = Vector<String>()
+    var vendor_to_sync = Vector<String>()
+    var inventory_to_sync = Vector<String>()
     /**
      * Inits all the database with an instance that can be called from all the objects
      * @author Chaosruler972
@@ -406,8 +409,7 @@ object global_variables_dataclass
      * from vector of big, give me rest of the ids
      * @author Chaosruler972
      */
-    fun get_hashmap_of_ids_from_big(): HashMap<String, Vector<String>> {
-        val hashmap = HashMap<String, Vector<String>>()
+    fun get_hashmap_of_ids_from_big() {
         val inv_hashmap = HashMap<String, Boolean>()
         val opr = HashMap<String, Boolean>()
         val vendor = HashMap<String, Boolean>()
@@ -426,9 +428,8 @@ object global_variables_dataclass
                 inv_hashmap[big.get_INVENTORY_ID()!!] = true
             }
         }
-        hashmap["opr"] = Vector(opr.keys)
-        hashmap["inv"] = Vector(inv_hashmap.keys)
-        hashmap["vend"] = Vector(vendor.keys)
-        return hashmap
+        opr_to_sync = Vector(opr.keys)
+        inventory_to_sync = Vector(inv_hashmap.keys)
+        vendor_to_sync = Vector(vendor.keys)
     }
 }

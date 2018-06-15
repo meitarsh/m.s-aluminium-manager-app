@@ -47,29 +47,52 @@ object big_builder: table_dataclass_hashmap_createable() {
      * @return this table dataclass
      */
     override fun from_local_sql_hashmap(hashMap: HashMap<String, String>): big_table_data {
-        return big_table_data(
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ACCOUNT_NUM]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.DATAARAEID]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.RECVERSION]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.RECID]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.PROJID]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ITEMID]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.FLAT]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.FLOOR]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.QTY]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.SALESPRICE]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.OPR_ID]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.MILESTONEPERCENTAGE]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.QTYFORACCOUNT]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.PERCENTFORACCOUNT]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.TOTAL_SUM]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.SALPROG]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.PRINTORDER]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ITEMNUMBER]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.KOMANUM]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.DIRANUM]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.USER]!!] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.QTYINPARTIALACC]!!] ?: "").trim()
+        val big_data = big_table_data(
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ACCOUNT_NUM]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.DATAARAEID]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.RECVERSION]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.RECID]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.PROJID]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ITEMID]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.FLAT]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.FLOOR]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.QTY]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.SALESPRICE]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.OPR_ID]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.MILESTONEPERCENTAGE]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.QTYFORACCOUNT]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.PERCENTFORACCOUNT]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.TOTAL_SUM]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.SALPROG]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.PRINTORDER]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ITEMNUMBER]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.KOMANUM]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.DIRANUM]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.USER]!!]
+                        ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.QTYINPARTIALACC]!!]
+                        ?: "").trim()
         )
+        return big_data
     }
 }

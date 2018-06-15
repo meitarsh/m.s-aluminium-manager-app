@@ -149,7 +149,7 @@ class MainActivity : Activity()
             //offline_mode_service.init_cache(baseContext,intent)
             val service_intent = Intent(this, offline_mode_service::class.java)
             intent.putExtra(getString(R.string.first_time_service),boolean)
-            startService(service_intent)
+            offline_mode_service.init_cache(baseContext, service_intent)
             global_variables_dataclass.log("Main", "Offline service started")
         }.start()
     }
@@ -179,9 +179,9 @@ class MainActivity : Activity()
      */
     private fun on_adapter_set(projects:Vector<project_data>)
     {
-//        val enabled_projectes = global_variables_dataclass.get_salprojmng_of_me(global_variables_dataclass.db_salprojmng_vec)
-//        val enabled_proj_vec     = projects.filter { it.getProjID()!=null && enabled_projectes.contains(it.getProjID()!!) }
-        adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,projects)
+        val enabled_projectes = global_variables_dataclass.get_salprojmng_of_me(global_variables_dataclass.db_salprojmng_vec)
+        val enabled_proj_vec     = projects.filter { it.getProjID()!=null && enabled_projectes.contains(it.getProjID()!!) }
+        adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item, enabled_proj_vec)
         main_spinner.adapter = adapter
 
         main_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener

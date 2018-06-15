@@ -51,7 +51,8 @@ interface syncable {
         if (!global_variables_dataclass.isLocal)
             return
         val server_vec = server_data_to_vector_by_key<T>(vec)
-        global_variables_dataclass.log("download", "Successfully loaded entire db $REMOTE_TABLE_NAME vector with ${server_vec.size.toString()}", global_variables_dataclass.LogLevel.INFO)
+
+
         for (item in server_vec) {
             add_to_table(item)
         }
@@ -83,8 +84,8 @@ interface syncable {
      */
     fun <T : table_dataclass> get_local_DB(): Vector<T> {
         val vector: Vector<T> = Vector()
-
         val all_db: Vector<java.util.HashMap<String, String>> = get_db()
+
         all_db
                 .filter { it[USER] != null && it[USER] ?: "" == remote_SQL_Helper.getusername() }
                 .forEach { vector.addElement(builder.from_local_sql_hashmap(it) as T) }
@@ -110,15 +111,14 @@ interface syncable {
             vec_mz11.addElement(REMOTE_DATAARAEID_VAL)
             where_hashmap[REMOTE_DATAARAEID_KEY] = vec_mz11
         }
-        if(SPECIAL_SEARCH_COLUMN() != SPECIAL_SYNC_COLUMN_EMPTY_NAME())
+        if(SPECIAL_SEARCH_COLUMN() != SPECIAL_SYNC_COLUMN_EMPTY_NAME() && !vec.isEmpty())
         {
-            global_variables_dataclass.log("mng","enabled projects ${global_variables_dataclass.projids_to_sync}")
             where_hashmap[SPECIAL_SEARCH_COLUMN()] = vec
         }
-
         val server_data: Vector<java.util.HashMap<String, String>> = remote_SQL_Helper.select_columns_from_db_with_where_multi(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, where_hashmap, datetime_enabled())
         val result_vector: Vector<T> = Vector()
-        global_variables_dataclass.log("db_sync_down", "Download for table $REMOTE_TABLE_NAME done", global_variables_dataclass.LogLevel.INFO)
+        global_variables_dataclass.log("db_sync_down", "Download for table $REMOTE_TABLE_NAME done with ${server_data.size} elements", global_variables_dataclass.LogLevel.INFO)
+
         @Suppress("UNCHECKED_CAST")
         for (map in server_data)
             result_vector.addElement(builder.from_remote_sql_hashmap(map) as T)

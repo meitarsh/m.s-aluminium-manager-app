@@ -210,7 +210,7 @@ class local_big_table_helper(
              * QTY in partial
              * @author Chaosruler972
              */
-//            val QTYINPARTIALACC: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYINPARTIALACC)
+            val QTYINPARTIALACC: String = context.getString(R.string.LOCAL_BIG_COLUMN_QTYINPARTIALACC)
 
             val variable_hashmap = HashMap<Int, String>()
             variable_hashmap[local_big_enum.ACCOUNT_NUM] = ACCOUNT_NUM
@@ -235,6 +235,7 @@ class local_big_table_helper(
             variable_hashmap[local_big_enum.TOTAL_SUM] = TOTAL_SUM
             variable_hashmap[local_big_enum.PRINTORDER] = PRINTORDER
             variable_hashmap[local_big_enum.KOMANUM] = KOMANUM
+            variable_hashmap[local_big_enum.QTYINPARTIALACC] = QTYINPARTIALACC
             return variable_hashmap
         }
     }
