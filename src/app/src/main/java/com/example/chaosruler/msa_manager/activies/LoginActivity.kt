@@ -29,7 +29,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper.user_database_helper
 import com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity
 import com.example.chaosruler.msa_manager.object_types.User
 import com.example.chaosruler.msa_manager.services.deprected_vpn_packages.VPN_google_toyVPN.vpn_connection

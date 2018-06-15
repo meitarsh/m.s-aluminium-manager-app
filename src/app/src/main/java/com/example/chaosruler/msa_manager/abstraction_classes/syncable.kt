@@ -12,6 +12,7 @@ import kotlin.collections.HashMap
 @Suppress("UNCHECKED_CAST")
 interface syncable {
 
+    fun SPECIAL_SYNC_COLUMN_EMPTY_NAME() = "None"
 
     var REMOTE_DATABASE_NAME: String
 
@@ -29,7 +30,7 @@ interface syncable {
 
     var builder: table_dataclass_hashmap_createable
 
-    var SPECIAL_SEARCH_COLUMN: String
+    fun SPECIAL_SEARCH_COLUMN(): String = SPECIAL_SYNC_COLUMN_EMPTY_NAME()
 
 
     /**
@@ -109,10 +110,10 @@ interface syncable {
             vec_mz11.addElement(REMOTE_DATAARAEID_VAL)
             where_hashmap[REMOTE_DATAARAEID_KEY] = vec_mz11
         }
-        if(SPECIAL_SEARCH_COLUMN != "None")
+        if(SPECIAL_SEARCH_COLUMN() != SPECIAL_SYNC_COLUMN_EMPTY_NAME())
         {
             global_variables_dataclass.log("mng","enabled projects ${global_variables_dataclass.projids_to_sync}")
-            where_hashmap[SPECIAL_SEARCH_COLUMN] = vec
+            where_hashmap[SPECIAL_SEARCH_COLUMN()] = vec
         }
 
         val server_data: Vector<java.util.HashMap<String, String>> = remote_SQL_Helper.select_columns_from_db_with_where_multi(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, where_hashmap, datetime_enabled())
@@ -139,10 +140,10 @@ interface syncable {
             vec_mz11.addElement(REMOTE_DATAARAEID_VAL)
             where_hashmap[REMOTE_DATAARAEID_KEY] = vec_mz11
         }
-        if(SPECIAL_SEARCH_COLUMN != "None")
+        if(SPECIAL_SEARCH_COLUMN() != "None")
         {
             global_variables_dataclass.log("mng","enabled projects ${global_variables_dataclass.projids_to_sync}")
-            where_hashmap[SPECIAL_SEARCH_COLUMN] = global_variables_dataclass.projids_to_sync
+            where_hashmap[SPECIAL_SEARCH_COLUMN()] = global_variables_dataclass.projids_to_sync
         }
 
         val server_data: Vector<java.util.HashMap<String, String>> = remote_SQL_Helper.select_columns_from_db_with_where_multi(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, where_hashmap, datetime_enabled())

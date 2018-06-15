@@ -3,6 +3,7 @@
 package com.example.chaosruler.msa_manager.object_types.big_table
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper.local_big_enum
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass_hashmap_createable
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
@@ -132,7 +133,7 @@ class big_table_data(
      * @return a pair of key value of the key
      */
     override fun to_key_hashmap(): Pair<String, String> {
-        return Pair(global_variables_dataclass.DB_BIG!!.RECID, RECID!!)
+        return Pair(global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.RECID]!!, RECID!!)
     }
 
     /**
@@ -768,26 +769,26 @@ class big_table_data(
      */
     override fun to_sql_hashmap(): HashMap<String, String> {
         val map = HashMap<String, String>()
-        map[global_variables_dataclass.DB_BIG!!.ACCOUNT_NUM] = get_VENDOR_ID() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.FLAT] = get_FLAT() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.ITEMID] = get_INVENTORY_ID() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.PROJID] = get_PROJECT_ID() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.RECID] = get_RECID() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.RECVERSION] = get_RECVERSION() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.DATAARAEID] = get_DATAAREAID() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.FLOOR] = get_FLOOR() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.DIRANUM] = get_DIRANUM() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.KOMANUM] = get_KOMANUM() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.SALPROG] = get_SALPROG() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.SALESPRICE] = get_SALESPRICE() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.TOTAL_SUM] = get_TOTALSUM() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ACCOUNT_NUM]!!] = get_VENDOR_ID() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.FLAT]!!] = get_FLAT() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ITEMID]!!] = get_INVENTORY_ID() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.PROJID]!!] = get_PROJECT_ID() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.RECID]!!] = get_RECID() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.RECVERSION]!!] = get_RECVERSION() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.DATAARAEID]!!] = get_DATAAREAID() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.FLOOR]!!] = get_FLOOR() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.DIRANUM]!!] = get_DIRANUM() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.KOMANUM]!!] = get_KOMANUM() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.SALPROG]!!] = get_SALPROG() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.SALESPRICE]!!] = get_SALESPRICE() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.TOTAL_SUM]!!] = get_TOTALSUM() ?: ""
 //        map[global_variables_dataclass.DB_BIG!!.] = get_QTYINPARTIALACC()?:""
-        map[global_variables_dataclass.DB_BIG!!.MILESTONEPERCENTAGE] = get_MILESTONEPERCENT() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.QTYFORACCOUNT] = get_QTYFORACCOUNT() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.ITEMNUMBER] = get_ITEMNUMBER() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.OPR_ID] = get_OPRID() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.PRINTORDER] = get_PRINTORDER() ?: ""
-        map[global_variables_dataclass.DB_BIG!!.USER] = get_USERNAME() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.MILESTONEPERCENTAGE]!!] = get_MILESTONEPERCENT() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.QTYFORACCOUNT]!!] = get_QTYFORACCOUNT() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ITEMNUMBER]!!] = get_ITEMNUMBER() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.OPR_ID]!!] = get_OPRID() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.PRINTORDER]!!] = get_PRINTORDER() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.USER]!!] = get_USERNAME() ?: ""
         return map
     }
 

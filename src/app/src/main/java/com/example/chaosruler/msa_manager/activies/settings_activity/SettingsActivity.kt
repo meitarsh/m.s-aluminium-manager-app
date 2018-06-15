@@ -11,8 +11,8 @@ import android.preference.*
 import android.view.MenuItem
 import android.widget.Toast
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
-import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands.cache_server_commands
+import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper.user_database_helper
 import com.example.chaosruler.msa_manager.activies.LoginActivity
 import com.example.chaosruler.msa_manager.services.encryption
 import com.example.chaosruler.msa_manager.services.themer

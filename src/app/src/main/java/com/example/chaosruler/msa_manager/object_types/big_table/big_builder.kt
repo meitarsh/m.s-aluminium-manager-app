@@ -1,6 +1,7 @@
 package com.example.chaosruler.msa_manager.object_types.big_table
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_big_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper.local_big_enum
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass_hashmap_createable
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
@@ -47,28 +48,28 @@ object big_builder: table_dataclass_hashmap_createable() {
      */
     override fun from_local_sql_hashmap(hashMap: HashMap<String, String>): big_table_data {
         return big_table_data(
-                (hashMap[global_variables_dataclass.DB_BIG!!.ACCOUNT_NUM] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.DATAARAEID] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.RECVERSION] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.RECID] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.PROJID] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.ITEMID] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.FLAT] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.FLOOR] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.QTY] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.SALESPRICE] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.OPR_ID] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.MILESTONEPERCENTAGE] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.QTYFORACCOUNT] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.PERCENTFORACCOUNT] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.TOTAL_SUM] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.SALPROG] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.PRINTORDER] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.ITEMNUMBER] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.KOMANUM] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.DIRANUM] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.USER] ?: "").trim(),
-                (hashMap[global_variables_dataclass.DB_BIG!!.QTYINPARTIALACC] ?: "").trim()
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ACCOUNT_NUM]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.DATAARAEID]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.RECVERSION]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.RECID]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.PROJID]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ITEMID]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.FLAT]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.FLOOR]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.QTY]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.SALESPRICE]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.OPR_ID]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.MILESTONEPERCENTAGE]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.QTYFORACCOUNT]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.PERCENTFORACCOUNT]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.TOTAL_SUM]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.SALPROG]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.PRINTORDER]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ITEMNUMBER]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.KOMANUM]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.DIRANUM]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.USER]!!] ?: "").trim(),
+                (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.QTYINPARTIALACC]!!] ?: "").trim()
         )
     }
 }

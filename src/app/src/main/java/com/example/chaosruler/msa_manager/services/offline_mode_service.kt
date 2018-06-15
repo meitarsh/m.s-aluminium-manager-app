@@ -12,8 +12,15 @@ import android.preference.PreferenceManager
 import android.support.v4.app.NotificationCompat
 import com.example.chaosruler.msa_manager.MSSQL_helpers.*
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
-import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
+import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands.cache_server_commands
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_OPR_table_helper.local_OPR_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper.local_big_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper.local_inventory_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_projects_table_helper.local_projects_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojluz_table_helper.local_salprojluz_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojmng_table_helper.local_salprojmng_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojtakala_table_helpe.local_salprojtakala_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_vendor_table_helper.local_vendor_table_helper
 import com.example.chaosruler.msa_manager.object_types.User
 import com.example.chaosruler.msa_manager.object_types.big_table.big_table_data
 import com.example.chaosruler.msa_manager.object_types.cache_command
@@ -510,7 +517,7 @@ class offline_mode_service : Service(){
                 async {
                     global_variables_dataclass.log("db_sync", "projects")
                     projects.beginTrans()
-                    projects.sync_db<project_data>()
+                    projects.sync_db_by_key<project_data>(global_variables_dataclass.projids_to_sync)
                     projects.endTrans()
                     global_variables_dataclass.log("db_sync", "projects done")
                     done_syncing(mtx,done_count,max_count, lock, user)
@@ -530,7 +537,7 @@ class offline_mode_service : Service(){
                 async {
                     global_variables_dataclass.log("db_sync", "big_table")
                     big_table.beginTrans()
-                    big_table.sync_db<big_table_data>()
+                    big_table.sync_db_by_key<big_table_data>(global_variables_dataclass.projids_to_sync)
                     big_table.endTrans()
                     global_variables_dataclass.db_big_vec = big_table.get_local_DB()
 
@@ -562,9 +569,9 @@ class offline_mode_service : Service(){
 
                 async {
                     global_variables_dataclass.log("db_sync", "salproj_table")
-                    big_table.beginTrans()
-                    salproj_table.sync_db<salprojluz_data>()
-                    big_table.endTrans()
+                    salproj_table.beginTrans()
+                    salproj_table.sync_db_by_key<salprojluz_data>(global_variables_dataclass.projids_to_sync)
+                    salproj_table.endTrans()
                     global_variables_dataclass.log("db_sync", "salproj_table done")
                     done_syncing(mtx,done_count,max_count, lock, user)
 
@@ -572,9 +579,9 @@ class offline_mode_service : Service(){
 
                 async {
                     global_variables_dataclass.log("db_sync", "takala_table")
-                    big_table.beginTrans()
-                    takala_table.sync_db<takala_data>()
-                    big_table.endTrans()
+                    takala_table.beginTrans()
+                    takala_table.sync_db_by_key<takala_data>(global_variables_dataclass.projids_to_sync)
+                    takala_table.endTrans()
                     global_variables_dataclass.log("db_sync", "takala_table done")
                     done_syncing(mtx, done_count, max_count, lock, user)
 

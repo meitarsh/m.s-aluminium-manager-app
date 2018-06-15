@@ -3,6 +3,7 @@
 package com.example.chaosruler.msa_manager.object_types.inventory_data
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_inventory_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper.local_inventory_enum
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass_hashmap_createable
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
@@ -43,7 +44,7 @@ class inventory_data(
      * @author Chaosruler972
      * @return key hashmap of inventory
      */
-    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_INVENTORY!!.ID, ID!!)
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_INVENTORY!!.hashmap_of_variables[local_inventory_enum.ID]!!, ID!!)
 
     /**
      * Function responisble for inflating the data from strings.xml
@@ -153,10 +154,10 @@ class inventory_data(
      */
     override fun to_sql_hashmap(): HashMap<String, String> {
         val map = HashMap<String, String>()
-        map[global_variables_dataclass.DB_INVENTORY!!.ID] = get_itemid() ?: ""
-        map[global_variables_dataclass.DB_INVENTORY!!.DATAARAEID] = get_DATAREAID() ?: ""
-        map[global_variables_dataclass.DB_INVENTORY!!.NAME] = get_itemname() ?: ""
-        map[global_variables_dataclass.DB_INVENTORY!!.USER] = get_USERNAME() ?: ""
+        map[global_variables_dataclass.DB_INVENTORY!!.hashmap_of_variables[local_inventory_enum.ID]!!] = get_itemid() ?: ""
+        map[global_variables_dataclass.DB_INVENTORY!!.hashmap_of_variables[local_inventory_enum.DATAARAEID]!!] = get_DATAREAID() ?: ""
+        map[global_variables_dataclass.DB_INVENTORY!!.hashmap_of_variables[local_inventory_enum.NAME]!!] = get_itemname() ?: ""
+        map[global_variables_dataclass.DB_INVENTORY!!.hashmap_of_variables[local_inventory_enum.USER]!!] = get_USERNAME() ?: ""
         return map
     }
 

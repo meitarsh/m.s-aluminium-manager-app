@@ -3,6 +3,7 @@
 package com.example.chaosruler.msa_manager.object_types.takala_data
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_takala_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojtakala_table_helpe.local_salprojtakala_enum
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
@@ -104,7 +105,7 @@ class takala_data(
      * @author Chaosruler972
      * @return a key hashmap
      */
-    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_SALPROJTAKALA!!.ID, RECID!!)
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.ID]!!, RECID!!)
 
     /**
      * Projid getter
@@ -443,23 +444,23 @@ class takala_data(
      */
     override fun to_sql_hashmap(): HashMap<String, String> {
         val data: HashMap<String, String> = HashMap()
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.ID] = (get_projid() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.ITEMID] = (get_ITEMID() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.DATAAREAID] = (get_DATAAREAID() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.QTY] = (get_QTY() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.KOMA] = (get_KOMA() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.BINYAN] = (get_BINYAN() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.DIRA] = (get_DIRA() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.TEUR] = (get_TEUR() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.MUMLATZ] = (get_MUMLATZ() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.MONAAT] = (get_MONAAT() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.TGUVA] = (get_TGUVA() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.SUG] = (get_SUG() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.ALUT] = (get_ALUT() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.ITEMTXT] = (get_ITEMTXT() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.RECVERSION] = (get_RECVERSION() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.RECID] = (get_RECID() ?: "")
-        data[global_variables_dataclass.DB_SALPROJTAKALA!!.USERNAME] = (get_USERNAME())
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.ID]!!] = (get_projid() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.ITEMID]!!] = (get_ITEMID() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.DATAAREAID]!!] = (get_DATAAREAID() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.QTY]!!] = (get_QTY() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.KOMA]!!] = (get_KOMA() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.BINYAN]!!] = (get_BINYAN() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.DIRA]!!] = (get_DIRA() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.TEUR]!!] = (get_TEUR() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.MUMLATZ]!!] = (get_MUMLATZ() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.MONAAT]!!] = (get_MONAAT() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.TGUVA]!!] = (get_TGUVA() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.SUG]!!] = (get_SUG() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.ALUT]!!] = (get_ALUT() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.ITEMTXT]!!] = (get_ITEMTXT() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.RECVERSION]!!] = (get_RECVERSION() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.RECID]!!] = (get_RECID() ?: "")
+        data[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.USERNAME]!!] = (get_USERNAME())
         return data
     }
 

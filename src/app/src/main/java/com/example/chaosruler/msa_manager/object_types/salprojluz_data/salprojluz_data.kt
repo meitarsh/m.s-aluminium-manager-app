@@ -3,6 +3,7 @@
 package com.example.chaosruler.msa_manager.object_types.salprojluz_data
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_salprojluz_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojluz_table_helper.local_salprojluz_enum
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
@@ -85,7 +86,7 @@ class salprojluz_data(
      * @author Chaosruler972
      * @return key hashmap
      */
-    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_SALPROJ!!.ID, RECID!!)
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.ID]!!, RECID!!)
 
     init {
         if(PROJID != null)
@@ -388,21 +389,21 @@ class salprojluz_data(
      */
     override fun to_sql_hashmap(): HashMap<String, String> {
         val map = HashMap<String, String>()
-        map[global_variables_dataclass.DB_SALPROJ!!.ID] = get_projid() ?: ""
-        map[global_variables_dataclass.DB_SALPROJ!!.STARTDATE] = STARTDATE ?: ""
-        map[global_variables_dataclass.DB_SALPROJ!!.FINISHDATE] = FINISHDATE ?: ""
-        map[global_variables_dataclass.DB_SALPROJ!!.IS_FINISHED] = if (IS_FINISHED)
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.ID]!!] = get_projid() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.STARTDATE]!!] = STARTDATE ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.FINISHDATE]!!] = FINISHDATE ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.IS_FINISHED]!!] = if (IS_FINISHED)
             "255"
         else
             "0"
-        map[global_variables_dataclass.DB_SALPROJ!!.SIUMBPOAL] = SIUM_BPOAL ?: ""
-        map[global_variables_dataclass.DB_SALPROJ!!.NOTES] = get_notes() ?: ""
-        map[global_variables_dataclass.DB_SALPROJ!!.KOMA] = get_koma() ?: ""
-        map[global_variables_dataclass.DB_SALPROJ!!.BUILDING] = get_building() ?: ""
-        map[global_variables_dataclass.DB_SALPROJ!!.PERCENTEXC] = get_percentexc() ?: ""
-        map[global_variables_dataclass.DB_SALPROJ!!.RECID] = get_recid() ?: ""
-        map[global_variables_dataclass.DB_SALPROJ!!.RECVERSION] = get_recversion() ?: ""
-        map[global_variables_dataclass.DB_SALPROJ!!.USERNAME] = get_username() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.SIUMBPOAL]!!] = SIUM_BPOAL ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.NOTES]!!] = get_notes() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.KOMA]!!] = get_koma() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.BUILDING]!!] = get_building() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.PERCENTEXC]!!] = get_percentexc() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.RECID]!!] = get_recid() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.RECVERSION]!!] = get_recversion() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.USERNAME]!!] = get_username() ?: ""
         return map
     }
 

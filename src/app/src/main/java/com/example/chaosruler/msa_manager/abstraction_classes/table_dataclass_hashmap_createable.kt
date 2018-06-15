@@ -10,7 +10,7 @@ abstract class table_dataclass_hashmap_createable{
     abstract fun from_local_sql_hashmap(@Suppress("UNUSED_PARAMETER") hashMap: HashMap<String, String>): table_dataclass
 
 
-    /**
+    /**   const val RECID = 4
      * table dataclass from remote sql hashmap
      * @author Chaosruler972
      * @param hashMap the hashmap

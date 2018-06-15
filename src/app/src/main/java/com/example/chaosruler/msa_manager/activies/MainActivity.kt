@@ -10,7 +10,7 @@ import android.view.View
 import android.widget.*
 import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper.user_database_helper
 import com.example.chaosruler.msa_manager.activies.testing_do_all_table_activities.table_chooser
 import com.example.chaosruler.msa_manager.object_types.project_data.project_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
 import java.lang.Thread.sleep
 import java.util.*
-import kotlin.collections.HashMap
 
 /**
  * Class is the main activity of the application, opens after login, and describes the logic of that activity
@@ -113,8 +112,9 @@ class MainActivity : Activity()
                     //                    moveTaskToBack(true)
                 }
             }
+
             sync_alert.isCancelable = false
-            sync_alert.show()
+//            sync_alert.show()
             return true
         }
         return false

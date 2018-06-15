@@ -430,10 +430,6 @@ object remote_SQL_Helper {
                             "N" + add_quotes(where_compare)
                         } else
                             where_compare
-                        if(table == remote_projects_table_helper.TABLE_NAME)
-                        {
-                            global_variables_dataclass.log("ACDC", "$where_column = $item")
-                        }
                         qry += " CONVERT(${colm_to_type.getValue(where_column)},$where_column) = $item "
                         if(where_compare != where_compares.lastElement())
                             qry += " OR "

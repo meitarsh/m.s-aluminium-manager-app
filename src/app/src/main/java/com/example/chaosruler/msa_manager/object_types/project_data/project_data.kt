@@ -3,6 +3,7 @@
 package com.example.chaosruler.msa_manager.object_types.project_data
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_projects_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_projects_table_helper.local_projects_enum
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
@@ -42,7 +43,7 @@ class project_data(
      * @author Chaosruler972
      * @return key hashmap
      */
-    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_project!!.ID, projectID!!)
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_project!!.hashmap_of_variables[local_projects_enum.ID]!!, projectID!!)
 
     /**
      * Function responisble for inflating the data from strings.xml
@@ -151,10 +152,10 @@ class project_data(
      */
     override fun to_sql_hashmap(): HashMap<String, String> {
         val map = HashMap<String, String>()
-        map[global_variables_dataclass.DB_project!!.ID] = getProjID() ?: ""
-        map[global_variables_dataclass.DB_project!!.NAME] = get_project_name() ?: ""
-        map[global_variables_dataclass.DB_project!!.DATAAREAID] = get_DATAREAID() ?: ""
-        map[global_variables_dataclass.DB_project!!.USER] = get_USERNAME() ?: ""
+        map[global_variables_dataclass.DB_project!!.hashmap_of_variables[local_projects_enum.ID]!!] = getProjID() ?: ""
+        map[global_variables_dataclass.DB_project!!.hashmap_of_variables[local_projects_enum.NAME]!!] = get_project_name() ?: ""
+        map[global_variables_dataclass.DB_project!!.hashmap_of_variables[local_projects_enum.DATAAREAID]!!] = get_DATAREAID() ?: ""
+        map[global_variables_dataclass.DB_project!!.hashmap_of_variables[local_projects_enum.USERNAME]!!] = get_USERNAME() ?: ""
         return map
     }
 

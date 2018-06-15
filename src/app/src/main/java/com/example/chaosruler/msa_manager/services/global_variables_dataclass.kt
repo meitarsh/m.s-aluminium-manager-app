@@ -7,8 +7,15 @@ import android.net.wifi.WifiManager
 import android.preference.PreferenceManager
 import android.util.Log
 import com.example.chaosruler.msa_manager.R
-import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.*
-import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_OPR_table_helper.local_OPR_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper.local_big_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper.local_inventory_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_projects_table_helper.local_projects_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojluz_table_helper.local_salprojluz_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojmng_table_helper.local_salprojmng_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojtakala_table_helpe.local_salprojtakala_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_vendor_table_helper.local_vendor_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper.user_database_helper
 import com.example.chaosruler.msa_manager.activies.MainActivity
 import com.example.chaosruler.msa_manager.object_types.big_table.big_table_data
 import com.example.chaosruler.msa_manager.object_types.inventory_data.inventory_data

@@ -3,6 +3,8 @@
 package com.example.chaosruler.msa_manager.object_types.opr_data
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_opr_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands.local_cache_enum
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_OPR_table_helper.local_OPR_enum
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
@@ -41,7 +43,7 @@ class opr_data(
      * @author Chaosruler972
      * @return key hashmap
      */
-    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_OPR!!.ID, ID!!)
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_OPR!!.hashmap_of_variables[local_OPR_enum.ID]!!, ID!!)
 
     /**
      * Compares this opr data to another
@@ -168,10 +170,10 @@ class opr_data(
      */
     override fun to_sql_hashmap(): HashMap<String, String> {
         val map = HashMap<String, String>()
-        map[global_variables_dataclass.DB_OPR!!.ID] = get_oprid() ?: ""
-        map[global_variables_dataclass.DB_OPR!!.DATAARAEID] = get_DATAREAID() ?: ""
-        map[global_variables_dataclass.DB_OPR!!.NAME] = get_opr_name() ?: ""
-        map[global_variables_dataclass.DB_OPR!!.USER] = get_USERNAME() ?: ""
+        map[global_variables_dataclass.DB_OPR!!.hashmap_of_variables[local_OPR_enum.ID]!!] = get_oprid() ?: ""
+        map[global_variables_dataclass.DB_OPR!!.hashmap_of_variables[local_OPR_enum.DATAARAEID]!!] = get_DATAREAID() ?: ""
+        map[global_variables_dataclass.DB_OPR!!.hashmap_of_variables[local_OPR_enum.NAME]!!] = get_opr_name() ?: ""
+        map[global_variables_dataclass.DB_OPR!!.hashmap_of_variables[local_OPR_enum.USER]!!] = get_USERNAME() ?: ""
         return map
     }
 

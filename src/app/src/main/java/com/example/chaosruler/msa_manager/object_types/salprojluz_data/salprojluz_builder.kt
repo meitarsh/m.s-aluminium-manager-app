@@ -1,6 +1,7 @@
 package com.example.chaosruler.msa_manager.object_types.salprojluz_data
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_salprojluz_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojluz_table_helper.local_salprojluz_enum
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass_hashmap_createable
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
@@ -16,19 +17,19 @@ object salprojluz_builder: table_dataclass_hashmap_createable()
     override fun from_local_sql_hashmap(hashMap: HashMap<String, String>): salprojluz_data
     {
         return salprojluz_data(
-                hashMap[global_variables_dataclass.DB_SALPROJ!!.ID] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJ!!.STARTDATE] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJ!!.FINISHDATE] ?: "",
-                ((hashMap[global_variables_dataclass.DB_SALPROJ!!.IS_FINISHED] ?: "0") == "0"),
-                hashMap[global_variables_dataclass.DB_SALPROJ!!.SIUMBPOAL] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJ!!.NOTES] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJ!!.KOMA] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJ!!.BUILDING] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJ!!.PERCENTEXC] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJ!!.DATAARAEID] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJ!!.RECID] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJ!!.RECVERSION] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJ!!.USERNAME] ?: ""
+                hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.ID]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.STARTDATE]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.FINISHDATE]] ?: "",
+                ((hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.IS_FINISHED]!!] ?: "0") == "0"),
+                hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.SIUMBPOAL]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.NOTES]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.KOMA]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.BUILDING]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.PERCENTEXC]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.DATAARAEID]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.RECID]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.RECVERSION]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.USERNAME]!!] ?: ""
         )
 
     }

@@ -1,6 +1,14 @@
 com.example.chaosruler.msa_manager.MSSQL_helpers
-com.example.chaosruler.msa_manager.SQLITE_helpers
-com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table
+com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands
+com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_OPR_table_helper
+com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_big_table_helper
+com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_inventory_table_helper
+com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_projects_table_helper
+com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojluz_table_helper
+com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojmng_table_helper
+com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojtakala_table_helpe
+com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_vendor_table_helper
+com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper
 com.example.chaosruler.msa_manager.abstraction_classes
 com.example.chaosruler.msa_manager.activies
 com.example.chaosruler.msa_manager.activies.KablanMforat

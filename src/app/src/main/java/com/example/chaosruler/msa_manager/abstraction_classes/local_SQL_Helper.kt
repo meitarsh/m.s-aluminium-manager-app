@@ -64,8 +64,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                                  * @sample
                                  * vector.add("_id")
                                  */
-                                private var vector_of_variables: Vector<String>
-
+                                val hashmap_of_variables : HashMap<Int, String>
                     ) : SQLiteOpenHelper(context,
         DATABASE_NAME, factory, version)
 {
@@ -73,6 +72,16 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
 
 
     private var db: SQLiteDatabase? = null
+
+    /**
+     * abstract metadata holder
+     * will hold all the table variables (by name, not type)
+     * @sample
+     * vector.add("_id")
+     */
+    private var vector_of_variables: Vector<String> = Vector(hashmap_of_variables.values)
+
+
 
     /**
      * a function to initate parameer vector_of_variables

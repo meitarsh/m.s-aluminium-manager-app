@@ -1,6 +1,7 @@
 package com.example.chaosruler.msa_manager.object_types.takala_data
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_takala_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_salprojtakala_table_helpe.local_salprojtakala_enum
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass_hashmap_createable
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
@@ -17,23 +18,23 @@ object takala_builder: table_dataclass_hashmap_createable()
     {
 
         return takala_data(
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.ID] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.ITEMID] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.DATAAREAID] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.QTY] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.KOMA] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.BINYAN] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.DIRA] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.TEUR] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.MUMLATZ] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.MONAAT] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.TGUVA] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.SUG] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.ALUT] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.ITEMTXT] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.RECVERSION] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.RECID] ?: "",
-                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.USERNAME] ?: ""
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.ID]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.ITEMID]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.DATAAREAID]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.QTY]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.KOMA]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.BINYAN]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.DIRA]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.TEUR]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.MUMLATZ]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.MONAAT]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.TGUVA]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.SUG]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.ALUT]] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.ITEMTXT]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.RECVERSION]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.RECID]!!] ?: "",
+                hashMap[global_variables_dataclass.DB_SALPROJTAKALA!!.hashmap_of_variables[local_salprojtakala_enum.USERNAME]!!] ?: ""
         )
     }
 

@@ -3,6 +3,7 @@
 package com.example.chaosruler.msa_manager.object_types.vendor_data
 
 import com.example.chaosruler.msa_manager.MSSQL_helpers.remote_vendors_table_helper
+import com.example.chaosruler.msa_manager.SQLITE_helpers.sync_table.local_vendor_table_helper.local_vendor_enum
 import com.example.chaosruler.msa_manager.abstraction_classes.table_dataclass
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
@@ -40,7 +41,7 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
      * @author Chaosruler972
      * @return a key hashmap
      */
-    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_VENDOR!!.ID, ID!!)
+    override fun to_key_hashmap(): Pair<String, String> = Pair(global_variables_dataclass.DB_VENDOR!!.hashmap_of_variables[local_vendor_enum.ID]!!, ID!!)
 
     /**
      * gets the vendor account ID
@@ -146,10 +147,10 @@ class vendor_data(private var ID:String?,private var NAME:String?,private var DA
      */
     override fun to_sql_hashmap(): HashMap<String, String> {
         val data: HashMap<String, String> = HashMap()
-        data[global_variables_dataclass.DB_VENDOR!!.ID] = (get_accountnum() ?: "").trim()
-        data[global_variables_dataclass.DB_VENDOR!!.NAME] = (get_accountname() ?: "").trim()
-        data[global_variables_dataclass.DB_VENDOR!!.DATAARAEID] = (get_DATAREAID() ?: "").trim()
-        data[global_variables_dataclass.DB_VENDOR!!.USER] = (get_USERNAME() ?: "").trim()
+        data[global_variables_dataclass.DB_VENDOR!!.hashmap_of_variables[local_vendor_enum.ID]!!] = (get_accountnum() ?: "").trim()
+        data[global_variables_dataclass.DB_VENDOR!!.hashmap_of_variables[local_vendor_enum.NAME]!!] = (get_accountname() ?: "").trim()
+        data[global_variables_dataclass.DB_VENDOR!!.hashmap_of_variables[local_vendor_enum.DATAARAEID]!!] = (get_DATAREAID() ?: "").trim()
+        data[global_variables_dataclass.DB_VENDOR!!.hashmap_of_variables[local_vendor_enum.USER]!!] = (get_USERNAME() ?: "").trim()
         return data
     }
 
