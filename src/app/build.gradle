@@ -20,11 +20,11 @@ android {
         applicationId "com.example.chaosruler.msa_manager"
         minSdkVersion 23
         targetSdkVersion 27
-        versionCode 82
-        versionName '0.82'
+        versionCode 83
+        versionName '0.83'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
-        versionNameSuffix 'Final'
+        versionNameSuffix 'Final '
     }
     buildTypes {
         release {
