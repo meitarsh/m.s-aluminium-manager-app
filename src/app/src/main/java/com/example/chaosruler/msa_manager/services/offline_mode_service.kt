@@ -10,6 +10,7 @@ import android.os.Binder
 import android.os.IBinder
 import android.preference.PreferenceManager
 import android.support.v4.app.NotificationCompat
+import android.widget.Toast
 import com.example.chaosruler.msa_manager.MSSQL_helpers.*
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.cache_server_commands.cache_server_commands
@@ -427,7 +428,7 @@ object offline_mode_service{
 
         async {
             db_sync_func_without_mark()
-            mark_done(context, intent)
+
         }.start()
     }
 
@@ -437,8 +438,9 @@ object offline_mode_service{
      */
     private suspend fun db_sync_func_without_mark()
     {
+
+        val user = remote_SQL_Helper.user!!
         val get_projid_to_sync_job = async{
-            val user = remote_SQL_Helper.user!!
             val vecOfUsername = Vector<String>()
             vecOfUsername.addElement(user.get__username())
             global_variables_dataclass.projids_to_sync = vecOfUsername
@@ -542,6 +544,7 @@ object offline_mode_service{
             big_table_sync_job.join()
 
             global_variables_dataclass.db_big_vec = global_variables_dataclass.DB_BIG!!.get_local_DB<big_table_data>()
+            global_variables_dataclass.log("offline_mode", "Loaded db big with ${global_variables_dataclass.db_big_vec.size}")
             global_variables_dataclass.get_hashmap_of_ids_from_big()
             vend_table_job.start()
             opr_table_job.start()
@@ -550,7 +553,10 @@ object offline_mode_service{
             projeccts_sync_job.join()
             salprojluz_sync_job.join()
             takala_table_sync_job.join()
-
+            user.set_last_sync_time(Date().time)
+            remote_SQL_Helper.user = user
+            global_variables_dataclass.DB_USERS!!.update_user(user.get__username(), user.get__password(), user.get_last_sync_time().time)
+            build_small_notification(ctx.getString(R.string.notificatoin_syncing_done), false)
 
             load_db_job.start()
             load_db_job.join()
@@ -657,11 +663,11 @@ object offline_mode_service{
 
         }
 
-//        val db_big_load = async {
-//            global_variables_dataclass.log("load", "Started syncing big")
-//            global_variables_dataclass.db_big_vec = big_table.get_local_DB()
-//            global_variables_dataclass.log("load", "DB BIG Loaded ${global_variables_dataclass.db_big_vec.size}")
-//        }
+        val db_big_load = async {
+            global_variables_dataclass.log("load", "Started syncing big")
+            global_variables_dataclass.db_big_vec = big_table.get_local_DB()
+            global_variables_dataclass.log("load", "DB BIG Loaded ${global_variables_dataclass.db_big_vec.size}")
+        }
 
         val db_salprojluz_load = async {
             global_variables_dataclass.log("load", "Started syncing salproj")
@@ -682,6 +688,7 @@ object offline_mode_service{
         db_vendor_load.start()
         db_salprojluz_load.start()
         db_takala_load.start()
+        db_big_load.start()
 
         global_variables_dataclass.log("offline_mode", "Threads started")
 
@@ -699,7 +706,7 @@ object offline_mode_service{
 
         db_takala_load.join()
         global_variables_dataclass.log("offline_mode", "takala done")
-
+        db_big_load.join()
 //        db_big_load.join()
         build_small_notification(ctx.getString(R.string.notification_loading_done), false)
 

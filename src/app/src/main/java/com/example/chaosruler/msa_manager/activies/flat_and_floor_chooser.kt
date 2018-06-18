@@ -57,6 +57,7 @@ class flat_and_floor_chooser : AppCompatActivity() {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flat_and_floor_chooser)
+
         init_button()
         floot_flat_choose_btn.visibility = Button.INVISIBLE
         init_flat_spinner()
@@ -142,7 +143,7 @@ class flat_and_floor_chooser : AppCompatActivity() {
         floor_flat_floor_spinner.visibility = Spinner.INVISIBLE
         floor_flat_floor_spinner_label.visibility = Spinner.INVISIBLE
         floot_flat_choose_btn.visibility = Button.INVISIBLE
-
+        global_variables_dataclass.log("flat_floor", "Size flat ${distinct_flat_floor(vec_proj, true).size} vec proj ${vec_proj.size}")
         floor_flat__flat_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?)
             {
