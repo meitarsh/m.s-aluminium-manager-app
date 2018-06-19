@@ -544,6 +544,10 @@ object offline_mode_service{
             big_table_sync_job.join()
 
             global_variables_dataclass.db_big_vec = global_variables_dataclass.DB_BIG!!.get_local_DB<big_table_data>()
+            for(big_obj in global_variables_dataclass.db_big_vec)
+            {
+                global_variables_dataclass.log("offline_mode_test", "DB BIG P4Acc ${big_obj.get_PERCENTFORACCOUNT()}")
+            }
             global_variables_dataclass.log("offline_mode", "Loaded db big with ${global_variables_dataclass.db_big_vec.size}")
             global_variables_dataclass.get_hashmap_of_ids_from_big()
             vend_table_job.start()

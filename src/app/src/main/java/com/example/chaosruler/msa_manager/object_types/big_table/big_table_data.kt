@@ -263,7 +263,8 @@ class big_table_data(
      * @return the current qty (sqlite)
      */
     fun get_QTY(): String? =
-            try {
+            try
+            {
                 QTY!!.toDouble().toInt().toString()
             }
             catch (e: Exception)
@@ -757,6 +758,8 @@ class big_table_data(
         map[remote_big_table_helper.MILESTONEPERCENT] = get_MILESTONEPERCENT() ?: ""
         map[remote_big_table_helper.QTYFORACCOUNT] = get_QTYFORACCOUNT() ?: ""
         map[remote_big_table_helper.ITEMNUMBER] = get_ITEMNUMBER() ?: ""
+        map[remote_big_table_helper.PERCENTFORACCOUNT] = get_PERCENTFORACCOUNT() ?: ""
+        map[remote_big_table_helper.QTY] = get_QTY() ?: ""
         map[remote_big_table_helper.OPR_ID] = get_OPRID() ?: ""
         map[remote_big_table_helper.PRINTORDER] = get_PRINTORDER() ?: ""
         return map
@@ -781,6 +784,8 @@ class big_table_data(
         map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.KOMANUM]!!] = get_KOMANUM() ?: ""
         map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.SALPROG]!!] = get_SALPROG() ?: ""
         map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.SALESPRICE]!!] = get_SALESPRICE() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.PERCENTFORACCOUNT]!!] = get_PERCENTFORACCOUNT() ?: ""
+        map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.QTY]!!] = get_QTY() ?: ""
         map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.TOTAL_SUM]!!] = get_TOTALSUM() ?: ""
 //        map[global_variables_dataclass.DB_BIG!!.] = get_QTYINPARTIALACC()?:""
         map[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.MILESTONEPERCENTAGE]!!] = get_MILESTONEPERCENT() ?: ""

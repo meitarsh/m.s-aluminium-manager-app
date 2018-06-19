@@ -379,6 +379,7 @@ class salprojluz_data(
         map[remote_salprojluz_table_helper.PERCENTEXC] = get_percentexc() ?: ""
         map[remote_salprojluz_table_helper.RECID] = get_recid() ?: ""
         map[remote_salprojluz_table_helper.RECVERION] = get_recversion() ?: ""
+        map[remote_salprojluz_table_helper.DATAAREAID] = get_dataaraeid() ?: ""
         return map
     }
 
@@ -404,6 +405,7 @@ class salprojluz_data(
         map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.RECID]!!] = get_recid() ?: ""
         map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.RECVERSION]!!] = get_recversion() ?: ""
         map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.USERNAME]!!] = get_username() ?: ""
+        map[global_variables_dataclass.DB_SALPROJ!!.hashmap_of_variables[local_salprojluz_enum.DATAARAEID]!!] = get_dataaraeid() ?: ""
         return map
     }
 

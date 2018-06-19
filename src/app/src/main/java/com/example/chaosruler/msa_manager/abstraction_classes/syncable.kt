@@ -118,7 +118,6 @@ interface syncable {
         val server_data: Vector<java.util.HashMap<String, String>> = remote_SQL_Helper.select_columns_from_db_with_where_multi(REMOTE_DATABASE_NAME, REMOTE_TABLE_NAME, typemap, where_hashmap, datetime_enabled())
         val result_vector: Vector<T> = Vector()
         global_variables_dataclass.log("db_sync_down", "Download for table $REMOTE_TABLE_NAME done with ${server_data.size} elements", global_variables_dataclass.LogLevel.INFO)
-
         @Suppress("UNCHECKED_CAST")
         for (map in server_data)
             result_vector.addElement(builder.from_remote_sql_hashmap(map) as T)

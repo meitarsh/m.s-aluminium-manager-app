@@ -119,8 +119,8 @@ class kablan_mforat : Activity() {
             {
                 val big_item: big_table_data = activity_kablan_mforat_mispar_mozar.adapter.getItem(position) as big_table_data
                 (view as TextView).text = big_item.get_INVENTORY_ID()?:""
-                adapter3 = KablanArrayAdapter_Opr(baseContext, android.R.layout.simple_spinner_item, get_all_inventory_unique(big_item.get_INVENTORY_ID()
-                        ?: ""))
+                val oprs = get_all_inventory_unique(big_item.get_INVENTORY_ID()?:"")
+                adapter3 = KablanArrayAdapter_Opr(baseContext, android.R.layout.simple_spinner_item, oprs)
                 activity_kablan_mforat_oprname.adapter = adapter3
             }
 
@@ -136,11 +136,12 @@ class kablan_mforat : Activity() {
             @SuppressLint("SetTextI18n")
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
             {
+
                 // upon Spinner selecting a user, update the other fields
                 val big_item: big_table_data = activity_kablan_mforat_oprname.adapter.getItem(position) as big_table_data
                 (view as TextView).text = big_item.get_OPRID()?:""
-                val percentforaccount: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
-                activity_kablan_mforat_kamot_hoza.text = (big_item.get_QTY() ?: "0").trim()
+                val percentforaccount: Double = try{(big_item.get_PERCENTFORACCOUNT() ?: "0").toString().toDouble()} catch (e: NumberFormatException) {0.0}
+                activity_kablan_mforat_kamot_hoza.text = (big_item.get_QTY() ?: "0")
                 activity_kablan_mforat_yehida_price.text = (big_item.get_SALESPRICE() ?: "0").trim()
                 @SuppressLint("SetTextI18n")
                 activity_kablan_mforat_peola_percent.text = (big_item.get_MILESTONEPERCENT()?:"0").toInt().toString() + "%"
@@ -148,21 +149,12 @@ class kablan_mforat : Activity() {
 //                activity_kablan_mforat_kamot_helki.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 activity_kablan_mforat_kamot_kablan.hint = (big_item.get_QTYFORACCOUNT() ?: "0").trim()
                 activity_kablan_mforat_kamot_kablan.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
-                val percentforaccount_checker_double = if (percentforaccount.isEmpty())
-                    0.0
-                else
-                    percentforaccount.toDouble()
-                activity_kablan_mforat_ahoz_meosher.hint = ((percentforaccount_checker_double).toInt().toString() + "%").trim() // ((big_item.get_MILESTONEPERCENT()?:"0").toInt()).toString() + "%"
+                activity_kablan_mforat_ahoz_meosher.hint = (percentforaccount.toInt().toString() + "%").trim() // ((big_item.get_MILESTONEPERCENT()?:"0").toInt()).toString() + "%"
                 activity_kablan_mforat_ahoz_meosher.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED
                 val price = (big_item.get_SALESPRICE() ?: "0").toDouble()
                 val count = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
-                val percentforaccount_checker = if (percentforaccount.isEmpty())
-                    "0"
-                else
-                    percentforaccount
-                val parcent = percentforaccount_checker.toDouble()
-                activity_kablan_mforat_tashlom_sah.text = (price*count*parcent*0.01).roundToInt().toString().trim()
-
+                activity_kablan_mforat_tashlom_sah.text = (price*count*percentforaccount*0.01).roundToInt().toString().trim()
+                activity_kablan_mforat_qty.text = (big_item.get_QTY()?:"0").toString()
 //                activity_kablan_mforat_kamot_helki.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
 //                    if(hasFocus || activity_kablan_mforat_kamot_helki.text.isEmpty() )
 //                        return@OnFocusChangeListener
@@ -182,6 +174,35 @@ class kablan_mforat : Activity() {
 //                    activity_kablan_mforat_kamot_helki.text.clear()
 //                }
 
+
+//                activity_kablan_mforat_qty.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+//                    if(hasFocus || activity_kablan_mforat_qty.text.isEmpty())
+//                        return@OnFocusChangeListener
+//                    val str = activity_kablan_mforat_qty.text.toString()
+//                    Thread {
+//                        Looper.prepare()
+//                        val update_value: HashMap<String, String> = HashMap()
+//                        update_value[remote_big_table_helper.QTY] = str
+//                        remote_big_table_helper.push_update(big_item, update_value, baseContext)
+//                        big_item.set_QTY(str)
+//                        global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
+//                        themer.hideKeyboard(baseContext,activity_kablan_mforat_qty)
+//                        Thread { compute_saah_hakol(big_table) }.run()
+//                        runOnUiThread {
+//                            val peola_parcent_local: String = (big_item.get_PERCENTFORACCOUNT() ?: 0).toString()
+//                            val price_local = (big_item.get_SALESPRICE() ?: "0").toDouble()
+//                            val count_local = (big_item.get_QTYFORACCOUNT() ?: "0").toDouble()
+//                            val parcent_local = if(peola_parcent_local.isEmpty())
+//                                0.0
+//                            else
+//                                peola_parcent_local.toDouble()
+//                            activity_kablan_mforat_tashlom_sah.text = (price_local*count_local*parcent_local*0.01).roundToInt().toString().trim()
+//                        }
+//                    }.start()
+//                    activity_kablan_mforat_qty.hint = str.trim()
+//                    activity_kablan_mforat_qty.text.clear()
+//                }
+
                 activity_kablan_mforat_kamot_kablan.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                     if(hasFocus || activity_kablan_mforat_kamot_kablan.text.isEmpty())
                         return@OnFocusChangeListener
@@ -192,7 +213,7 @@ class kablan_mforat : Activity() {
                         global_variables_dataclass.log("kablan_mforat", "op cancelled")
                         return@OnFocusChangeListener
                     }
-                    Thread({
+                    Thread {
                         Looper.prepare()
                         val update_value: HashMap<String, String> = HashMap()
                         update_value[remote_big_table_helper.QTYFORACCOUNT] = str
@@ -211,7 +232,7 @@ class kablan_mforat : Activity() {
                                 peola_parcent_local.toDouble()
                             activity_kablan_mforat_tashlom_sah.text = (price_local*count_local*parcent_local*0.01).roundToInt().toString().trim()
                         }
-                    }).start()
+                    }.start()
                     activity_kablan_mforat_kamot_kablan.hint = str.trim()
                     activity_kablan_mforat_kamot_kablan.text.clear()
                 }
@@ -226,7 +247,7 @@ class kablan_mforat : Activity() {
                         global_variables_dataclass.log("kablan_mforat", "op cancelled")
                         return@OnFocusChangeListener
                     }
-                    Thread({
+                    Thread {
                         Looper.prepare()
                         val update_value: HashMap<String, String> = HashMap()
                         update_value[remote_big_table_helper.PERCENTFORACCOUNT] = str
@@ -235,7 +256,7 @@ class kablan_mforat : Activity() {
                         global_variables_dataclass.DB_BIG!!.add_to_table(big_item)
                         themer.hideKeyboard(baseContext,activity_kablan_mforat_ahoz_meosher)
                         Thread { compute_saah_hakol(big_table) }.run()
-                    }).start()
+                    }.start()
                     @Suppress("ConvertToStringTemplate")
                     activity_kablan_mforat_ahoz_meosher.hint = (str + "%").trim()
                     activity_kablan_mforat_ahoz_meosher.text.clear()
@@ -343,10 +364,9 @@ class kablan_mforat : Activity() {
     private fun get_all_inventory_unique(inventory_id: String): Vector<big_table_data> {
         val vec = Vector<big_table_data>()
         val hashmap: HashMap<String, Boolean> = HashMap()
-        for(i in 0 until activity_kablan_mforat_mispar_mozar.count)
+        for(big_item in global_variables_dataclass.db_big_vec)
         {
-            val big_item = activity_kablan_mforat_mispar_mozar.getItemAtPosition(i) as big_table_data
-            if (big_item.get_INVENTORY_ID() == inventory_id && !hashmap.containsKey(big_item.get_OPRID()?:""))
+            if (big_item.get_PROJECT_ID() == global_variables_dataclass.projid && big_item.get_INVENTORY_ID() == inventory_id && !hashmap.containsKey(big_item.get_OPRID()?:""))
             {
                 vec.addElement(big_item)
                 hashmap[big_item.get_OPRID()?:""] = true

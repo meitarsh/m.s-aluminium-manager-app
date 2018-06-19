@@ -105,11 +105,11 @@
     <string name="TABLE_BIG_INVENTORY_ID_TYPE">nvarchar</string>
 
     <string name="TABLE_BIG_QTY">QTY</string> <!-- Used to be QTY -->
-    <string name="TABLE_BIG_QTY_TYPE">real</string>
+    <string name="TABLE_BIG_QTY_TYPE">numeric</string>
 
 
     <string name="TABLE_BIG_SALESPRICE">SALESPRICE</string>
-    <string name="TABLE_BIG_SALESPRICE_TYPE">real</string>
+    <string name="TABLE_BIG_SALESPRICE_TYPE">numeric</string>
 
 
     <string name="TABLE_BIG_OPR_ID">OPRID</string>
@@ -117,21 +117,21 @@
 
 
     <string name="TABLE_BIG_MILESTONEPERCENT">MILESTONEPERCENT</string>
-    <string name="TABLE_BIG_MILESTONEPERCENT_TYPE">real</string>
+    <string name="TABLE_BIG_MILESTONEPERCENT_TYPE">numeric</string>
 
     <string name="TABLE_BIG_QTYFORACCOUNT">QTYFORACCOUNT</string>
-    <string name="TABLE_BIG_QTYFORACCOUNT_TYPE">real</string>
+    <string name="TABLE_BIG_QTYFORACCOUNT_TYPE">numeric</string>
 
     <string name="TABLE_BIG_QTYINPARTIALACC">QTYFORACCOUNT</string>
-    <string name="TABLE_BIG_QTYINPARTIALACC_TYPE">real</string>
+    <string name="TABLE_BIG_QTYINPARTIALACC_TYPE">numeric</string>
 
 
     <string name="TABLE_BIG_PERCENTFORACCOUNT">PERCENTFORACCOUNT</string>
-    <string name="TABLE_BIG_PERCENTFORACCOUNT_TYPE">real</string>
+    <string name="TABLE_BIG_PERCENTFORACCOUNT_TYPE">numeric</string>
 
 
     <string name="TABLE_BIG_TOTALSUM">TOTALSUM</string>
-    <string name="TABLE_BIG_TOTALSUM_TYPE">real</string>
+    <string name="TABLE_BIG_TOTALSUM_TYPE">numeric</string>
 
 
     <string name="TABLE_BIG_SALPROG">SALPROG</string> <!-- used to be SALPROG -->
@@ -143,7 +143,7 @@
 
 
     <string name="TABLE_BIG_ITEMNUMBER">ITEMNUMBER</string>
-    <string name="TABLE_BIG_ITEMNUMBER_TYPE">real</string>
+    <string name="TABLE_BIG_ITEMNUMBER_TYPE">numeric</string>
 
 
     <string name="TABLE_BIG_KOMANUM">KOMANUM</string>
@@ -151,7 +151,7 @@
 
 
     <string name="TABLE_BIG_DIRANUM">DIRANUM</string>
-    <string name="TABLE_BIG_DIRANUM_TYPE">real</string>
+    <string name="TABLE_BIG_DIRANUM_TYPE">numeric</string>
 
     <string name="TABLE_BIG_FLAT">FLAT</string>
     <string name="TABLE_BIG_FLAT_TYPE">nvarchar</string>

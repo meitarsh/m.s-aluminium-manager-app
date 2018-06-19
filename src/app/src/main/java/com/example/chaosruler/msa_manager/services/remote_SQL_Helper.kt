@@ -468,7 +468,12 @@ object remote_SQL_Helper {
                     if (colm_to_type[colum_name] == "datetime") {
                         val date = rs.getDate(colum_name)
                         map[colum_name] = date.time.toString()
-                    } else {
+                    } else if (colm_to_type[colum_name] == "real" || colm_to_type[colum_name] == "numeric")
+                    {
+                        map[colum_name] = rs.getDouble(colum_name).toString()
+                    }
+                    else
+                    {
                         try {
                             map[colum_name] = rs.getString(colum_name)
                         } catch (e: Exception) {

@@ -47,6 +47,7 @@ object big_builder: table_dataclass_hashmap_createable() {
      * @return this table dataclass
      */
     override fun from_local_sql_hashmap(hashMap: HashMap<String, String>): big_table_data {
+        global_variables_dataclass.log("big_data", hashMap.toString())
         val big_data = big_table_data(
                 (hashMap[global_variables_dataclass.DB_BIG!!.hashmap_of_variables[local_big_enum.ACCOUNT_NUM]!!]
                         ?: "").trim(),

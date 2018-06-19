@@ -84,7 +84,6 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         db = user_database_helper(baseContext)
         // Set up the login form.
 
-
         val users = db.get_entire_db()
         adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, users)
         login_spinner.adapter = adapter
@@ -141,8 +140,8 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
             Snackbar.make(login_email, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok,
-                            { requestPermissions(arrayOf(READ_CONTACTS), REQUEST_READ_CONTACTS) })
+                    .setAction(android.R.string.ok
+                    ) { requestPermissions(arrayOf(READ_CONTACTS), REQUEST_READ_CONTACTS) }
         } else {
             requestPermissions(arrayOf(READ_CONTACTS), REQUEST_READ_CONTACTS)
         }
