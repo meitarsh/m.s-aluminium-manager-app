@@ -4,8 +4,9 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.example.chaosruler.msa_manager.abstraction_classes.local_SQL_Helper
 import java.util.*
+import kotlin.collections.HashMap
 
-class dull_database(context: Context) : local_SQL_Helper(context, "Test",null,1, "Test")
+class dull_database(context: Context) : local_SQL_Helper(context, "Test",null,1, "Test", test_hashmap.create_hashmap())
 {
     private val ID = "id"
     private val DATA = "data"
@@ -47,4 +48,13 @@ class dull_database(context: Context) : local_SQL_Helper(context, "Test",null,1,
         this.writableDatabase.execSQL("DELETE FROM Test")
     }
 
+    companion object test_hashmap{
+        fun create_hashmap(): HashMap<Int, String>
+        {
+            val hashmap = HashMap<Int, String>()
+            hashmap[0] = "id"
+            hashmap[1] = "data"
+            return hashmap
+        }
+    }
 }

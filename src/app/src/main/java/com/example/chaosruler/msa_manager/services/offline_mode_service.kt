@@ -130,7 +130,7 @@ object offline_mode_service{
      * creates a syncing thread
      * @author Chaosruler972
      */
-    private var trd:Thread= Thread {
+    var trd:Thread= Thread {
 
         //            Thread.sleep(time)
 //            Timer().scheduleAtFixedRate(object : TimerTask() {

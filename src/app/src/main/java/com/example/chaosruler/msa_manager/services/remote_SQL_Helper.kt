@@ -83,6 +83,16 @@ object remote_SQL_Helper {
     fun getusername(): String = username
 
     /**
+     * set new username
+     * @author Chaosruler972
+     * @param new_username the new username
+     */
+    fun setusername(new_username: String)
+    {
+        username = new_username
+    }
+
+    /**
      * password of user logged in
      * @author Chaosruler972
      * @return gets the password that is logged in
