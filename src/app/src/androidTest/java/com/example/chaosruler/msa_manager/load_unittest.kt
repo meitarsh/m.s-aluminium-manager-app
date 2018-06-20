@@ -30,6 +30,7 @@ import com.example.chaosruler.msa_manager.object_types.vendor_data.vendor_data
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
 import com.example.chaosruler.msa_manager.services.offline_mode_service
 import com.example.chaosruler.msa_manager.services.remote_SQL_Helper
+import kotlinx.coroutines.experimental.async
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.*
@@ -91,106 +92,128 @@ class load_unittest {
         val account_nums = generate_unique_vector(ACCOUNT_NUM_SIZE)
 
         val bigs = Vector<big_table_data>()
-        val bigs_hashmap = HashMap<String, Boolean>()
-        for(i in 0..(BIG_TABLE_DATA_SIZE-1))
-        {
-            var recid = generateRandomWord(8)
-            while(bigs_hashmap.containsKey(recid))
-            {
-                recid = generateRandomWord(8)
+        val big_job = Thread {
+            val bigs_hashmap = HashMap<String, Boolean>()
+            for (i in 0..(BIG_TABLE_DATA_SIZE - 1)) {
+                var recid = generateRandomWord(8)
+                while (bigs_hashmap.containsKey(recid)) {
+                    recid = generateRandomWord(8)
+                }
+                bigs_hashmap[recid] = true
+                val base = fill_hashmap_of_big(get_random_key_from_vec(project_ids), get_random_key_from_vec(oprs), get_random_key_from_vec(account_nums), recid, test_username)
+                bigs.addElement(fill_all_data(remote_big_table_helper, big_builder, base) as big_table_data)
             }
-            bigs_hashmap[recid] = true
-            val base = fill_hashmap_of_big(get_random_key_from_vec(project_ids), get_random_key_from_vec(oprs), get_random_key_from_vec(account_nums), recid, test_username)
-            bigs.addElement(fill_all_data(remote_big_table_helper, big_builder, base) as big_table_data)
+
+            for(big in bigs)
+            {
+                global_variables_dataclass.DB_BIG!!.add_to_table(big)
+            }
+            global_variables_dataclass.db_big_vec = global_variables_dataclass.DB_BIG!!.get_local_DB()
+
         }
+
 
         val bakara = Vector<takala_data>()
-        val bakara_hashmap = HashMap<String, Boolean>()
-        for(i in 0..(TAKALA_TABLE_SIZE-1))
-        {
-            var recid = generateRandomWord(8)
-            while(bakara_hashmap.containsKey(recid))
-            {
-                recid = generateRandomWord(8)
+        val bakara_job = Thread {
+            val bakara_hashmap = HashMap<String, Boolean>()
+            for (i in 0..(TAKALA_TABLE_SIZE - 1)) {
+                var recid = generateRandomWord(8)
+                while (bakara_hashmap.containsKey(recid)) {
+                    recid = generateRandomWord(8)
+                }
+                bakara_hashmap[recid] = true
+                val base = fill_hashmap_of_takala(get_random_key_from_vec(project_ids), recid, test_username)
+                bakara.addElement(fill_all_data(remote_takala_table_helper, takala_builder, base) as takala_data)
             }
-            bakara_hashmap[recid] = true
-            val base = fill_hashmap_of_takala(get_random_key_from_vec(project_ids), recid, test_username)
-            bakara.addElement(fill_all_data(remote_takala_table_helper, takala_builder, base) as takala_data)
+
+            for(takala in bakara)
+            {
+                global_variables_dataclass.DB_SALPROJTAKALA!!.add_to_table(takala)
+            }
+
+            global_variables_dataclass.db_salprojtakala_vec = global_variables_dataclass.DB_SALPROJTAKALA!!.get_local_DB()
+
         }
 
-
         val luz = Vector<salprojluz_data>()
-        val luz_hashmap = HashMap<String, Boolean>()
-        for(i in 0..(LUZ_TABLE_SIZE-1))
-        {
-            var recid = generateRandomWord(8)
-            while(luz_hashmap.containsKey(recid))
-            {
-                recid = generateRandomWord(8)
+        val luz_job = Thread {
+            val luz_hashmap = HashMap<String, Boolean>()
+            for (i in 0..(LUZ_TABLE_SIZE - 1)) {
+                var recid = generateRandomWord(8)
+                while (luz_hashmap.containsKey(recid)) {
+                    recid = generateRandomWord(8)
+                }
+                luz_hashmap[recid] = true
+                val base = fill_hashmap_of_luz(get_random_key_from_vec(project_ids), recid, test_username)
+                luz.addElement(fill_all_data(remote_salprojluz_table_helper, salprojluz_builder, base) as salprojluz_data)
             }
-            luz_hashmap[recid] = true
-            val base = fill_hashmap_of_luz(get_random_key_from_vec(project_ids), recid, test_username)
-            luz.addElement(fill_all_data(remote_salprojluz_table_helper, salprojluz_builder, base) as salprojluz_data)
+
+
+            for(luzit in luz)
+            {
+                global_variables_dataclass.DB_SALPROJ!!.add_to_table(luzit)
+            }
+            global_variables_dataclass.db_salproj_vec = global_variables_dataclass.DB_SALPROJ!!.get_local_DB()
+
         }
 
         val projects = Vector<project_data>()
-        for(i in 0..(PROJECT_SIZE-1))
-        {
-            val base = fill_hashmap_of_project(project_ids[i]!!,test_username)
-            projects.addElement(fill_all_data(remote_projects_table_helper, project_builder, base) as project_data)
+        val projects_job = Thread {
+            for (i in 0..(PROJECT_SIZE - 1)) {
+                val base = fill_hashmap_of_project(project_ids[i]!!, test_username)
+                projects.addElement(fill_all_data(remote_projects_table_helper, project_builder, base) as project_data)
+            }
+
+            for(project in projects)
+            {
+                global_variables_dataclass.DB_project!!.add_to_table(project)
+            }
+
+            global_variables_dataclass.db_project_vec = global_variables_dataclass.DB_project!!.get_local_DB()
         }
 
         val opers = Vector<opr_data>()
-        for(i in 0..(OPR_SIZE-1))
-        {
-            val base = fill_hashmap_of_opr(oprs[i]!!,test_username)
-            opers.addElement(fill_all_data(remote_opr_table_helper, opr_builder, base) as opr_data)
+        val opers_job = Thread {
+            for (i in 0..(OPR_SIZE - 1)) {
+                val base = fill_hashmap_of_opr(oprs[i]!!, test_username)
+                opers.addElement(fill_all_data(remote_opr_table_helper, opr_builder, base) as opr_data)
+            }
+            for(opr in opers)
+            {
+                global_variables_dataclass.DB_OPR!!.add_to_table(opr)
+            }
+            global_variables_dataclass.db_opr_vec = global_variables_dataclass.DB_OPR!!.get_local_DB()
+
         }
 
         val vendors = Vector<vendor_data>()
-        for(i in 0..(ACCOUNT_NUM_SIZE-1))
-        {
-            val base = fill_hashmap_of_vendor(account_nums[i]!!,test_username)
-            vendors.addElement(fill_all_data(remote_vendors_table_helper, vendor_builder, base) as vendor_data)
+        val vendors_job = Thread {
+            for (i in 0..(ACCOUNT_NUM_SIZE - 1)) {
+                val base = fill_hashmap_of_vendor(account_nums[i]!!, test_username)
+                vendors.addElement(fill_all_data(remote_vendors_table_helper, vendor_builder, base) as vendor_data)
+            }
+
+            for(vendor in vendors)
+            {
+                global_variables_dataclass.DB_VENDOR!!.add_to_table(vendor)
+            }
+            global_variables_dataclass.db_vendor_vec = global_variables_dataclass.DB_VENDOR!!.get_local_DB()
+
         }
 
+        big_job.start()
+        bakara_job.start()
+        luz_job.start()
+        vendors_job.start()
+        projects_job.start()
+        opers_job.start()
 
-        for(big in bigs)
-        {
-            global_variables_dataclass.DB_BIG!!.add_to_table(big)
-        }
-
-        for(project in projects)
-        {
-            global_variables_dataclass.DB_project!!.add_to_table(project)
-        }
-
-        for(opr in opers)
-        {
-            global_variables_dataclass.DB_OPR!!.add_to_table(opr)
-        }
-
-        for(takala in bakara)
-        {
-            global_variables_dataclass.DB_SALPROJTAKALA!!.add_to_table(takala)
-        }
-
-        for(vendor in vendors)
-        {
-            global_variables_dataclass.DB_VENDOR!!.add_to_table(vendor)
-        }
-
-        for(luzit in luz)
-        {
-            global_variables_dataclass.DB_SALPROJ!!.add_to_table(luzit)
-        }
-
-        global_variables_dataclass.db_big_vec = global_variables_dataclass.DB_BIG!!.get_local_DB()
-        global_variables_dataclass.db_project_vec = global_variables_dataclass.DB_project!!.get_local_DB()
-        global_variables_dataclass.db_opr_vec = global_variables_dataclass.DB_OPR!!.get_local_DB()
-        global_variables_dataclass.db_salproj_vec = global_variables_dataclass.DB_SALPROJ!!.get_local_DB()
-        global_variables_dataclass.db_vendor_vec = global_variables_dataclass.DB_VENDOR!!.get_local_DB()
-        global_variables_dataclass.db_salprojtakala_vec = global_variables_dataclass.DB_SALPROJTAKALA!!.get_local_DB()
+        big_job.join()
+        bakara_job.join()
+        luz_job.join()
+        vendors_job.join()
+        projects_job.join()
+        opers_job.join()
 
         assert(global_variables_dataclass.db_big_vec.size == BIG_TABLE_DATA_SIZE)
         assert(global_variables_dataclass.db_project_vec.size == PROJECT_SIZE)
