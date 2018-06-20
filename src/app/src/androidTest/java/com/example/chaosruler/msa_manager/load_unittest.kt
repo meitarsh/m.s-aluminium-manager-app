@@ -43,7 +43,7 @@ class load_unittest {
     private val OPR_SIZE = 1000
     private val PROJECT_SIZE = 200
     private val ACCOUNT_NUM_SIZE = 500
-    private val BIG_TABLE_DATA_SIZE = 1700
+    private val BIG_TABLE_DATA_SIZE = 17000
     private val TAKALA_TABLE_SIZE = 200
     private val LUZ_TABLE_SIZE = 200
     private fun generateRandomWord(length: Int): String
