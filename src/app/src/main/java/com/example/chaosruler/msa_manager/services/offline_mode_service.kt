@@ -537,6 +537,7 @@ object offline_mode_service{
 
             }
 
+            load_db_job.start()
             projeccts_sync_job.start()
             salprojluz_sync_job.start()
             takala_table_sync_job.start()
@@ -560,10 +561,12 @@ object offline_mode_service{
             user.set_last_sync_time(Date().time)
             remote_SQL_Helper.user = user
             global_variables_dataclass.DB_USERS!!.update_user(user.get__username(), user.get__password(), user.get_last_sync_time().time)
-            build_small_notification(ctx.getString(R.string.notificatoin_syncing_done), false)
-
-            load_db_job.start()
+//            build_small_notification(ctx.getString(R.string.notificatoin_syncing_done), false)
             load_db_job.join()
+            build_small_notification(ctx.getString(R.string.notification_loading_done), false)
+
+            if(service_intent != null)
+                mark_done(ctx, service_intent!!)
     }
 
     /**
@@ -692,7 +695,7 @@ object offline_mode_service{
         db_vendor_load.start()
         db_salprojluz_load.start()
         db_takala_load.start()
-        db_big_load.start()
+//        db_big_load.start()
 
         global_variables_dataclass.log("offline_mode", "Threads started")
 
@@ -710,12 +713,8 @@ object offline_mode_service{
 
         db_takala_load.join()
         global_variables_dataclass.log("offline_mode", "takala done")
-        db_big_load.join()
 //        db_big_load.join()
-        build_small_notification(ctx.getString(R.string.notification_loading_done), false)
 
-        if(service_intent != null)
-            mark_done(ctx, service_intent!!)
     }
 
 

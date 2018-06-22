@@ -28,6 +28,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
+import com.example.chaosruler.msa_manager.BuildConfig
 import com.example.chaosruler.msa_manager.R
 import com.example.chaosruler.msa_manager.SQLITE_helpers.user_database_helper.user_database_helper
 import com.example.chaosruler.msa_manager.activies.settings_activity.SettingsActivity
@@ -79,11 +81,14 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         setTheme(themer.style(baseContext))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        login_imageview.setOnClickListener {
+            Toast.makeText(baseContext, "Version ${BuildConfig.VERSION_NAME} flavor ${BuildConfig.BUILD_TYPE}", Toast.LENGTH_SHORT).show()
+        }
         //status = false // means, that we are going to login by using the spinner details
         //  I am going to support it by disabling the password input in that case
         db = user_database_helper(baseContext)
         // Set up the login form.
-
         val users = db.get_entire_db()
         adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, users)
         login_spinner.adapter = adapter

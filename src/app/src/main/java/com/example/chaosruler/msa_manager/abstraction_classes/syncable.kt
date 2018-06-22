@@ -83,12 +83,15 @@ interface syncable {
      *  @return a vector of big table from local DB
      */
     fun <T : table_dataclass> get_local_DB(): Vector<T> {
+        val start_time = System.currentTimeMillis()
         val vector: Vector<T> = Vector()
         val all_db: Vector<java.util.HashMap<String, String>> = get_db()
 
         all_db
                 .filter { it[USER] != null && it[USER] ?: "" == remote_SQL_Helper.getusername() }
                 .forEach { vector.addElement(builder.from_local_sql_hashmap(it) as T) }
+        val end_time = System.currentTimeMillis()
+        global_variables_dataclass.log("syncable", "Time it took to create vector of elements to table $REMOTE_TABLE_NAME is ${end_time - start_time} ms", forced = true)
         return vector
     }
 
@@ -103,6 +106,7 @@ interface syncable {
      */
     fun <T : table_dataclass> server_data_to_vector_by_key(vec: Vector<String>): Vector<T> {
 
+        val start = System.currentTimeMillis()
         val typemap: HashMap<String, String> = get_remote_typemap()
         val where_hashmap = HashMap<String, Vector<String>>()
         if(filtering_mz11_enabled)
@@ -121,6 +125,8 @@ interface syncable {
         @Suppress("UNCHECKED_CAST")
         for (map in server_data)
             result_vector.addElement(builder.from_remote_sql_hashmap(map) as T)
+        val end = System.currentTimeMillis()
+        global_variables_dataclass.log("syncable", "Recieved vector of table $REMOTE_TABLE_NAME as a object vector in ${end-start} ms", forced = true)
         return result_vector
     }
 

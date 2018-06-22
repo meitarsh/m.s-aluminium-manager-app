@@ -287,6 +287,7 @@ object remote_SQL_Helper {
      *   @return a vector of hashmap represnting the results, each element represent a row, hashmap represnts col
      */
     fun select_columns_from_db_with_where(db: String, table: String, colm_to_type: HashMap<String, String>, where_column: String?, where_compare: String?, modified_time: Boolean): Vector<HashMap<String, String>> {
+        val start = System.currentTimeMillis()
         global_variables_dataclass.log("remote_SQL", "Started for table $table")
         val vector: Vector<HashMap<String, String>> = Vector()
         try {
@@ -379,6 +380,8 @@ object remote_SQL_Helper {
 
         }
         global_variables_dataclass.log("remote_SQL", "Done with table $table")
+        val end = System.currentTimeMillis()
+        global_variables_dataclass.log("remote_SQL_Helper", "It took me ${end-start} ms to load vector of hashmap from table $table", forced = true)
         return vector
     }
 
@@ -392,6 +395,7 @@ object remote_SQL_Helper {
      *   @return a vector of hashmap represnting the results, each element represent a row, hashmap represnts col
      */
     fun select_columns_from_db_with_where_multi(db: String, table: String, colm_to_type: HashMap<String, String>, wheres: HashMap<String, Vector<String>>, modified_time: Boolean): Vector<HashMap<String, String>> {
+        val start = System.currentTimeMillis()
         global_variables_dataclass.log("remote_SQL", "Started syncing for $table")
         val vector: Vector<HashMap<String, String>> = Vector()
         try {
@@ -432,6 +436,7 @@ object remote_SQL_Helper {
                 for(where_column in keys)
                 {
                     val where_compares = wheres[where_column]!!
+                    qry += " ( "
                     where_compares.forEach { where_compare ->
                         val item: String = if (colm_to_type.getValue(where_column) == "text" || colm_to_type.getValue(where_column) == "varchar" || colm_to_type.getValue(where_column) == "nvarchar") {
                             "N" + add_quotes(where_compare)
@@ -441,6 +446,7 @@ object remote_SQL_Helper {
                         if(where_compare != where_compares.lastElement())
                             qry += " OR "
                     }
+                    qry += " ) "
                     if(where_column != keys.last())
                         qry += " AND "
                 }
@@ -451,7 +457,7 @@ object remote_SQL_Helper {
                     qry += "$where_or_not $sync_column >= dateadd(s,${get_latest_sync_time().time / 1000},'19700101 00:00:00:000')"
                 }
                 global_variables_dataclass.log("remote_qry", "Done building qry for table $table\n")
-                global_variables_dataclass.log("remote_qry", qry)
+                global_variables_dataclass.log("remote_SQL_Helper", qry, forced = false)
                 rs = connection!!.createStatement().executeQuery(qry)
             } catch (e: SQLTimeoutException) {
                 global_variables_dataclass.log("remote_SQL", "EXCEPTION SQL timeout exception")
@@ -502,6 +508,8 @@ object remote_SQL_Helper {
 
         }
         global_variables_dataclass.log("remote_SQL", "Done with table $table")
+        val end = System.currentTimeMillis()
+        global_variables_dataclass.log("remote_SQL_Helper", "It took me ${end-start} ms to load vector of hashmap from table $table with ${vector.size} results parsed", forced = true)
         return vector
     }
 

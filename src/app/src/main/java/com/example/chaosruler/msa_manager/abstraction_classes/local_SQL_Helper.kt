@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.chaosruler.msa_manager.services.global_variables_dataclass
+import org.jetbrains.anko.db.select
+import org.jetbrains.anko.doAsyncResult
 import java.nio.charset.Charset
 import java.util.*
 import kotlin.collections.HashMap
@@ -236,6 +238,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
      */
     fun get_db(): Vector<HashMap<String, String>>
     {
+        val start_time = System.currentTimeMillis()
         val db = get_db_instance()
         val vector: Vector<HashMap<String, String>> = Vector()
 
@@ -247,6 +250,8 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
             val start = Date().time;
             try
             {
+                // TODO -> Add usage of CursorWindow (https://developer.android.com/reference/android/database/CursorWindow#CursorWindow%28java.lang.String,%20long%29)
+                // When android P is released, application was developed in android Marshmallow to android Oreo in mind
                 c = db.rawQuery("SELECT DISTINCT * FROM " + TABLE_NAME, null)
                 c.moveToFirst()
                 val end_qry = Date().time
@@ -262,9 +267,16 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
 
             }
             global_variables_dataclass.log("results_amount", "For table ${TABLE_NAME} " + c?.count.toString())
-            while (c!=null && !c.isAfterLast)
-
+            val mapToIndex = HashMap<String, Int>()
+            if(c!=null)
             {
+                for(variable in vector_of_variables) {
+                    mapToIndex[variable] = c.getColumnIndex(variable)
+                }
+            }
+            while (c!=null && !c.isAfterLast)
+            {
+
                 val small_map: HashMap<String, String> = HashMap()
                 for (variable in vector_of_variables)
                 {
@@ -272,7 +284,7 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
                     val input_str =
                             try {
                                 if (variable != "id")
-                                    String(global_variables_dataclass.xorWithKey(c.getString(c.getColumnIndex(variable)).toByteArray(), global_variables_dataclass.get_device_id(context).toByteArray(), true, context))
+                                    String(global_variables_dataclass.xorWithKey(c.getString(mapToIndex[variable]!!).toByteArray(), global_variables_dataclass.get_device_id(context).toByteArray(), true, context))
                                 else
                                     c.getString(c.getColumnIndex(variable))
                             } catch (e: IllegalStateException) {
@@ -306,6 +318,8 @@ abstract class local_SQL_Helper(@Suppress("CanBeParameter")
         }
         global_variables_dataclass.log("local_sql_count", "For table $TABLE_NAME I got ${vector.size}")
         //db.close()
+        val end_time = System.currentTimeMillis()
+        global_variables_dataclass.log("local_SQL_Helper", "TBL $TABLE_NAME load took ${end_time-start_time} ms} to load vector of hashmap", forced = true)
         return vector
     }
 

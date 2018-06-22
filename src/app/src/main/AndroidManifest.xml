@@ -131,11 +131,12 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
-        <service
-            android:name=".services.offline_mode_service"
-            android:enabled="true"
-            android:exported="true"
-            tools:ignore="ExportedService" />
+        <!--<service-->
+            <!--android:name=".services.offline_mode_service"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="true"-->
+            <!--tools:ignore="ExportedService" />-->
+
         <service
             android:name=".services.deprected_vpn_packages.VPN_google_toyVPN.vpn_connection"
             android:permission="android.permission.BIND_VPN_SERVICE"
