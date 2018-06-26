@@ -15,9 +15,7 @@
 
 * This project depends on [Android SDK](https://developer.android.com/studio/index.html) in order to compile and run the application
 
-* This project depends on [JTDS](http://jtds.sourceforge.net/), a 100% pure java free & open-source JDBC driver for remote MSSQL databases, JTDS is licensed under [LGPL License](https://www.gnu.org/copyleft/lesser.html), read [JTDS license](http://jtds.sourceforge.net/license.html) here, this project won't change JTDS driver functionality, but is based on it, thus is shared under free & open source license, we didn't change JTDS, thus we are free to choose to MIT as our license.
-
-* This project also depends on [ics-openVPN](https://github.com/schwabe/ics-openvpn), a port of [openVPN](https://openvpn.net/) for Android for VPN functionality,  [ics-openVPN](https://github.com/schwabe/ics-openvpn) is licensed under [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) therefore this project, if it changes ics-openVPN, must distribute its changes.
+* This project depends on [JTDS](http://jtds.sourceforge.net/), a 100% pure java free & open-source JDBC driver for remote MSSQL databases, JTDS is licensed under [LGPL License](https://www.gnu.org/copyleft/lesser.html), read [JTDS license](http://jtds.sourceforge.net/license.html) here, this project won't change JTDS driver functionality, but is based on it, thus is shared under free & open source license, we didn't change JTDS, thus we are free to choose to MIT as our software.
 
 ## Staff
 * Main project developer repository masters
@@ -34,7 +32,6 @@ Zeev Melumuian
 |---|---|
 | Version Control System| [![git](https://img.shields.io/badge/Version%20Control-Git-green.svg)](https://git-scm.com/) & [![github](https://img.shields.io/badge/Version%20Control-Github-green.svg)](https://github.com/) |
 | Recommended IDE | [![Android Studio](https://img.shields.io/badge/IDE-Android%20Studio-green.svg)](https://developer.android.com/studio/index.html) |
-| License | [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/meitarsh/m.s-aluminium-manager-app/) |
 | Code Style | [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/meitarsh/m.s-aluminium-manager-app) |
 | Issues | [![GitHub issues](https://img.shields.io/github/issues/meitarsh/m.s-aluminium-manager-app.svg?style=flat)](https://github.com/meitarsh/m.s-aluminium-manager-app/issues) |
 | Project Management Board| [![here](https://img.shields.io/badge/Project%20Management%20Board-On%20demand-lightgrey.svg)](https://github.com/meitarsh/m.s-aluminium-manager-app/projects/1) |
