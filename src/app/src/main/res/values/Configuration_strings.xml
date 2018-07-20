@@ -9,7 +9,7 @@
     <integer name="encryption_bits">256</integer>
 
     <!-- Finalized remote IP address -->
-    <string name="REMOTE_IP_ADDR">192.168.1.210</string>
+    <string name="REMOTE_IP_ADDR">192.168.1.34</string> <!-- Testing server 192.168.1.210 -->
 
 
     <string name="REMOTE_CONNECT_OPTIONS">;progname=Android_MSA;socketKeepAlive=true;loginTimeout=5;socketKeepAlive=true</string>

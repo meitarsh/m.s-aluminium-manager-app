@@ -401,7 +401,7 @@ object global_variables_dataclass
                 hashmap[user_project_data.get_username()!!]!!.addElement(user_project_data.get_projid()!!)
             }
         }
-        global_variables_dataclass.log("managers","Vector is size ${(hashmap[username]?:Vector()).size} out of ${user_access.size}")
+        global_variables_dataclass.log("managers","Vector is size ${(hashmap[username]?:Vector()).size} out of ${user_access.size} from db of ${global_variables_dataclass.db_salprojmng_vec.size}", forced = true)
         return hashmap[username] ?: Vector()
     }
 

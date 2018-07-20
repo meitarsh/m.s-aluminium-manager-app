@@ -334,16 +334,16 @@ object remote_SQL_Helper {
                         " AND "
                     qry += "$where_or_not $sync_column >= dateadd(s,${get_latest_sync_time().time / 1000},'19700101 00:00:00:000')"
                 }
-                global_variables_dataclass.log("remote_SQL", qry)
+                global_variables_dataclass.log("remote_SQL", qry, forced = true)
                 rs = connection!!.createStatement().executeQuery(qry)
             } catch (e: SQLTimeoutException) {
-                global_variables_dataclass.log("remote_SQL", "EXCEPTION SQL timeout exception")
+                global_variables_dataclass.log("remote_SQL", "EXCEPTION SQL timeout exception", forced = true)
                 rs = null
             } catch (e: SQLException) {
-                global_variables_dataclass.log("remote_SQL", "EXCEPTION ${e.message}")
+                global_variables_dataclass.log("remote_SQL", "EXCEPTION ${e.message}", forced = true)
                 rs = null
             } catch (e: KotlinNullPointerException) {
-                global_variables_dataclass.log("remote_SQL", "EXCEPTION kotlin null pointer exception")
+                global_variables_dataclass.log("remote_SQL", "EXCEPTION kotlin null pointer exception", forced = true)
                 rs = null
             }
             if (rs == null) {
@@ -381,7 +381,7 @@ object remote_SQL_Helper {
         }
         global_variables_dataclass.log("remote_SQL", "Done with table $table")
         val end = System.currentTimeMillis()
-        global_variables_dataclass.log("remote_SQL_Helper", "It took me ${end-start} ms to load vector of hashmap from table $table", forced = true)
+        global_variables_dataclass.log("remote_SQL_Helper", "It took me ${end-start} ms to load vector of hashmap from table $table with size ${vector.size}", forced = true)
         return vector
     }
 
@@ -457,16 +457,16 @@ object remote_SQL_Helper {
                     qry += "$where_or_not $sync_column >= dateadd(s,${get_latest_sync_time().time / 1000},'19700101 00:00:00:000')"
                 }
                 global_variables_dataclass.log("remote_qry", "Done building qry for table $table\n")
-                global_variables_dataclass.log("remote_SQL_Helper", qry, forced = false)
+                global_variables_dataclass.log("remote_SQL_Helper", qry, forced = true)
                 rs = connection!!.createStatement().executeQuery(qry)
             } catch (e: SQLTimeoutException) {
-                global_variables_dataclass.log("remote_SQL", "EXCEPTION SQL timeout exception")
+                global_variables_dataclass.log("remote_SQL", "EXCEPTION SQL timeout exception", forced = true)
                 rs = null
             } catch (e: SQLException) {
-                global_variables_dataclass.log("remote_SQL", "EXCEPTION ${e.message}")
+                global_variables_dataclass.log("remote_SQL", "EXCEPTION ${e.message}", forced = true)
                 rs = null
             } catch (e: KotlinNullPointerException) {
-                global_variables_dataclass.log("remote_SQL", "EXCEPTION kotlin null pointer exception")
+                global_variables_dataclass.log("remote_SQL", "EXCEPTION kotlin null pointer exception", forced = true)
                 rs = null
             }
             if (rs == null) {
@@ -509,7 +509,7 @@ object remote_SQL_Helper {
         }
         global_variables_dataclass.log("remote_SQL", "Done with table $table")
         val end = System.currentTimeMillis()
-        global_variables_dataclass.log("remote_SQL_Helper", "It took me ${end-start} ms to load vector of hashmap from table $table with ${vector.size} results parsed", forced = true)
+        global_variables_dataclass.log("remote_SQL_Helper", "It took me ${end-start} ms to load vector of hashmap from table $table with size ${vector.size}", forced = true)
         return vector
     }
 
